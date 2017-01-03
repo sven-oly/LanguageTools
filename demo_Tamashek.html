@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<!-- saved from url=(0052)https://x20web.corp.google.com/~shuchen/vk/demo.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <link rel="stylesheet" href="/css/blueprint/screen.css" type="text/css" media="screen">
+  <link rel="stylesheet" href="/css/blueprint/print.css" type="text/css" media="print"> 
+  <!--[if lt IE 8]>
+    <link rel="stylesheet" href="/css/blueprint/ie.css" type="text/css" media="screen, projection">
+  <![endif]-->
+
+  <link rel="stylesheet" type="text/css" href="/css/fonts.css">
+  <link rel="stylesheet" type="text/css" href="/css/keyboard.css">
+
+  <style>
+    /* Font encoding */
+    @font-face{
+      font-family:'NotoTifi';
+      src:url('/fonts/NotoSansTifinagh-Regular.ttf');
+      font-weight:normal;
+      font-style:normal;
+      font-size: 32px;
+    }
+
+    .NotoTifi {
+      font-family:'NotoTifi';
+      font-size: 32px;
+    }
+
+    .default-font {
+      font-family: NotoTifi, Times New Roman, Arial, Helvetica;
+      font-size:24px;
+      }
+
+    textarea {
+        font-size:24px;
+        width: 600px;
+	    height: 200px;
+	}      
+      </style>
+
+  <script src="/js/utils.js"></script>
+  <script src="/js/vk-debug.js"></script>
+  <script>
+    var diff_list = [];
+
+    var controller, visible = true;
+    function onPageLoaded() {
+      var input = document.getElementById('t1');
+      controller = new i18n.input.keyboard.Keyboard();
+      controller.loadLayout('tmh');
+      controller.reposition(input, 3, 4, [1, 0, 0, 0]);
+      controller.register(input);
+      controller.addEventListener(
+          'kc',
+          function() { visible = false; });
+      var layoutCode = document.getElementById('kb_selector').value;
+      onLayoutSelected(layoutCode);
+      input.focus();
+    }
+
+    function onLayoutSelected(layoutCode) {
+      controller.activateLayout(layoutCode);
+      document.getElementById('t1').focus();
+      var vkbox = document.getElementById('kbd');
+      }
+
+
+    function toggle() {
+      if (controller) {
+        controller.setVisible(visible = !visible);
+      }
+    }
+
+    function clearText(id) {
+      var field = document.getElementById(id);
+      field.value = '';
+      field = document.getElementById('codepoints');
+      field.value = '';
+      document.getElementById('t1').focus();
+    }
+
+    function showCodePoints() {
+      var src_field = document.getElementById('t1');
+      var code_text = uplus(src_field.value);
+      var dest_field = document.getElementById('codepoints');
+      dest_field.value = code_text;
+      document.getElementById('t1').focus();
+    }
+  </script>
+
+  <script>window["_GOOG_TRANS_EXT_VER"] = "1";</script>
+  </head>
+  <body onload="onPageLoaded()">
+  <select onchange="onLayoutSelected(this.value)" id="kb_selector">
+    <option value="tmh">Tamashek</option>
+  </select>
+  <input type="button" value="Clear text" onclick="clearText('t1')">
+  <br />
+  <textarea id="t1" dir="ltr" class="default-font" cols="80" rows="10"></textarea>
+  <br />
+  <input type="button" value="Code points" onclick="showCodePoints()">
+  <br />
+  Hex code points:
+  <br />
+  <textarea id="codepoints" class="default-font" cols="80" rows="3"></textarea>
+  <br>
+  <br>
+
+</body></html>

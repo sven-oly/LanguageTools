@@ -1,0 +1,32 @@
+runtime: python27
+api_version: 1
+threadsafe: yes
+
+handlers:
+- url: /favicon\.ico
+  static_files: favicon.ico
+  upload: favicon\.ico
+
+- url: /fonts
+  static_dir: fonts
+
+- url: /css
+  static_dir: css
+  
+- url: /js
+  static_dir: js
+
+- url: /layouts
+  static_dir: layouts
+  
+- url: /images
+  static_dir: images
+
+- url: .*
+  script: main.app
+
+libraries:
+- name: webapp2
+  version: "2.5.2"
+- name: django
+  version: latest

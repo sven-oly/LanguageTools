@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+
+  <title>Language Tools</title>
+
+  <link rel="stylesheet" href="/css/blueprint/screen.css" type="text/css" media="screen">
+  <link rel="stylesheet" href="/css/blueprint/print.css" type="text/css" media="print"> 
+
+  <!--[if lt IE 8]>
+    <link rel="stylesheet" href="/css/blueprint/ie.css" type="text/css" media="screen, projection">
+  <![endif]-->
+  <link rel="stylesheet" type="text/css" href="/css/fonts.css">
+
+  <style>
+  textarea {
+    width: 600px;
+	height: 400px;
+	border: 3px solid #cccccc;
+	padding: 5px;
+	font-size: 24px;
+	}
+  .default {
+    font-family: "NotoTifi, MonlamBodyig, Courier New";
+  }
+  </style>
+  <script src="/js/utils.js"></script>
+  
+  <script> 
+    function init() {
+    // Fill in if needed.
+
+  }
+
+  </script>
+  
+<body onload="init()">
+  <div class="container">
+    <div class="span-1">  
+    </div>  <!-- span-1 -->
+
+    <div class="span-16">
+      <h2>Available tool sets</h2>
+        <ul class="default">
+        {% for lang in langlist %}
+          <li>{{lang.0}}({{lang.1}}) {{lang.2}}
+          </li>
+        {% endfor %}
+        </ul>
+    
+    </div>  <!-- span-16 -->
+
+    <div class="span-4 last">
+    <h4>Links:</h4>
+      {% for lang in langlist %}
+        <a href="/demo_{{lang.1}}/">{{lang.0}}</a>
+        <br />
+      {% endfor %}    
+    </div> <!-- span-4 -->
+  
+  </div> <!-- container -->
+
+</body>
+
+</html>
+
