@@ -40,25 +40,90 @@
     <div class="span-1">  
     </div>  <!-- span-1 -->
 
-    <div class="span-16">
-      <h2>Available tool sets</h2>
+    <div class="span-12">
+      <h2>Tools for indigenous languages on the web</h2>
+      <p>This site provides basic tools and prototypes for some indigenous languages.
+      </p>
+      <h3>Available languages:</h3>
         <ul class="default">
         {% for lang in langlist %}
-          <li>{{lang.0}}({{lang.1}}) {{lang.2}}
+          <li>{{lang.0}} ({{lang.1}}) {{lang.2}}
           </li>
         {% endfor %}
-        </ul>
+          <li>Fulani / Fulfulde / Pular in Adlamscript (ful)</li>
+           <li>Osage language (osa)</li>
+       </ul>
     
-    </div>  <!-- span-16 -->
+    </div>  <!-- span-12 -->
 
-    <div class="span-4 last">
+    <div class="span-6 last">
     <h4>Links:</h4>
       {% for lang in langlist %}
         <a href="/demo_{{lang.1}}/">{{lang.0}}</a>
         <br />
-      {% endfor %}    
+       {% endfor %}    
+       <a href="http://adlamtesting.appspot.com/">Fulani / Fulfulde / Pular in Adlam</a>
+       <br />
+       <a href="http://osagelanguagetools.appspot.com/">Osage language</a>
     </div> <!-- span-4 -->
   
+  </div> <!-- container -->
+  <div class="container">
+    <!-- TURN ON WHEN READY -->
+    <div class="span-12 last">
+    <h2>Levels of language support on the web</h2>
+    <ul>
+    <li>Standard representation for text
+      <ul>
+        <li>Typically this is Unicode (UTF-8, UTF-16)</li>
+        <li>It may be a defined standard, e.g. Shift-JIS, ISO-8859-1</li>
+        <li>Font encodings (hacked fonts with replaced glyphs) are unlikely to be supported.
+          Example: Burmese encoding in non-Standard Zawgyi.
+        </li>
+      </ul>
+    </li>
+    <li>Font support (usually Unicode)
+      <ul>
+        <li>Downloadable fonts for desktop and laptop computers</li>
+        <li>Web fonts for web sites</li>
+        <li>To show text on a mobile device, a font for the script is needed. Note that
+          such devices generally do not allow users to add fonts.
+        </li>
+      </ul>
+    </li>
+    <li>
+      Keyboard support: A way to enter text
+      <ul>
+        <li>May be available on operating system or via an installed application</li>
+        <li>Web-based keyboard in browser and web apps. Example: Google Input Tools</li>
+        <li>Mobile device text keyboard</li>
+        <li>Soft keyboard + text suggestions</li>
+      </ul>
+    </li>
+    <li>High quality search: requires text processing and analysis
+      <ul>
+        <li>Language identification (from text)</li>
+        <li>Segmentation: breaking text into words</li>
+        <li>Determining the "stems" of words, as in a language with various forms, e.g.,
+          "housing" & "houses" -> "house"</li>
+        <li>In some cases, conversion to Unicode encoding</li>
+      </ul>
+    <li>Highest level: requires extensive data and processing.
+      <ul>
+        <li>Full user interface translation in products</li>
+        <li>Machine Translation</li>
+        <li>Voice understanding</li>
+		<li>Speech to text</li>
+		<li>Optical character recognition (OCR)</li>
+	  </ul>
+	</li>
+
+    </li>
+
+
+  </ul>
+    </div>  <!-- span-12 -->
+
   </div> <!-- container -->
 
 </body>
