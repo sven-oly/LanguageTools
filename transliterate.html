@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+
+  <title>Transliteration testing</title>
+
+  <link rel="stylesheet" href="/css/blueprint/screen.css" type="text/css" media="screen">
+  <link rel="stylesheet" href="/css/blueprint/print.css" type="text/css" media="print"> 
+  <!--[if lt IE 8]>
+    <link rel="stylesheet" href="/css/blueprint/ie.css" type="text/css" media="screen, projection">
+  <![endif]-->
+
+  <link rel="stylesheet" type="text/css" href="/css/fonts.css">
+
+  <style>
+  textarea {
+    width: 500px;
+	height: 40px;
+	border: 2px solid #cccccc;
+	padding: 5px;
+	font-size: 18px;
+	}
+   .default {
+     font-family: "Courier New";
+   }
+  </style>
+  
+  <script src="/js/utils.js"></script>
+
+  <script type="text/javascript" >
+
+  function requestTransliterate(inputarea, outputarea, rulearea, messagearea) {
+    // Prepare for the call to the backendvar xmlhttp;
+	if (window.XMLHttpRequest) { // code for IE7+, Firefox, Chrome, Opera, Safari
+	  xmlhttp=new XMLHttpRequest();
+	} else { // code for IE6, IE5
+	  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+	}
+
+    // Deal with the results	  
+    xmlhttp.onreadystatechange=function() {
+	  if(xmlhttp.readyState==4) {
+	    var returned_json = xmlhttp.responseText;
+		var json_obj = JSON.parse(returned_json);
+
+        var outputObj = document.getElementById(outputarea);
+        var messageObj = document.getElementById(messagearea);
+
+        if (json_obj.error) {
+          // Warn, and don't change values.
+          alert(json_obj.error);
+          return;
+        }
+        messageObj.value = messageObj.innerHTML = json_obj.message;
+        outputObj.value = outputObj.innerHTML = json_obj.outText;
+      }          
+    }
+	
+	// Set up the call
+    var inputObj = document.getElementById('inputarea');
+    var inputtext = escape(inputObj.value);
+    var encodedInput = encodeURIComponent(inputObj.value);
+    var ruleaObj = document.getElementById('rulearea');
+    var ruletext = escape(ruleaObj.value);
+    
+	var target = "/dotransliterate/?input=" + encodedInput + "&rules=" + ruletext;
+	//xmlhttp.open("POST", target, true);
+	xmlhttp.open("GET", target, true);
+	var size = target.length;
+	xmlhttp.send(null);	  
+  }
+
+
+  // Initialize the page.
+  function init() {
+
+  }
+
+  </script>
+  
+  </head>
+  
+  <body onload="init()">
+  <div class="container">
+    <h2>Transliteration from rules</h2>
+    <div class="span-1">  
+    </div>
+    <div class="span-16">
+
+      <div id='inputtext'>
+        <h3>Input:
+        <br />
+        <textarea id="inputarea" class="default">{{intext}}</textarea>
+        <br />
+        <input type="button" value="Transliterate"
+           onclick="requestTransliterate('inputarea', 'outputarea', 'rulearea', 'message');"/>
+        </div>
+        
+      <div id='outputtext'>
+        <h3>Output:
+        <br />
+        <textarea id="outputarea" class="default">{{outtext}}</textarea>
+        <br />
+      </div>
+
+      <div id='ruletext'>
+        <h3>Rules:
+        <br />
+        <textarea id="rulearea" class="default">{{rules}}</textarea>
+        <br />
+      </div>            
+    </div> <!-- end span 16 -->
+    
+    <div class="span-4 last">  
+    <textarea id="message" class="" cols=10>{{message}}</textarea>
+      
+    </div> <!-- end span last -->
+  </div> <!-- end container --> 
+</body>
+</html>    

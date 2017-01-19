@@ -9,34 +9,15 @@
     <link rel="stylesheet" href="/css/blueprint/ie.css" type="text/css" media="screen, projection">
   <![endif]-->
 
-  <link rel="stylesheet" type="text/css" href="/css/fonts.css">
+  <link rel="stylesheet" type="text/css" href="/css/fonts.css"> 
   <link rel="stylesheet" type="text/css" href="/css/keyboard.css">
 
   <style>
     /* Font encoding */
-    @font-face{
-      font-family:'NotoTifi';
-      src:url('/fonts/NotoSansTifinagh-Regular.ttf');
-      font-weight:normal;
-      font-style:normal;
-      font-size: 32px;
-    }
-
-    .NotoTifi {
-      font-family:'NotoTifi';
-      font-size: 32px;
-    }
-
     .default-font {
-      font-family: NotoTifi, Times New Roman, Arial, Helvetica;
+      font-family: Times New Roman, Arial, Helvetica;
       font-size:24px;
       }
-
-    textarea {
-        font-size:24px;
-        width: 600px;
-	    height: 200px;
-	}      
       </style>
 
   <script src="/js/utils.js"></script>
@@ -48,7 +29,7 @@
     function onPageLoaded() {
       var input = document.getElementById('t1');
       controller = new i18n.input.keyboard.Keyboard();
-      controller.loadLayout('tmh');
+      controller.loadLayout('omq');
       controller.reposition(input, 3, 4, [1, 0, 0, 0]);
       controller.register(input);
       controller.addEventListener(
@@ -92,35 +73,39 @@
   <script>window["_GOOG_TRANS_EXT_VER"] = "1";</script>
   </head>
   <body onload="onPageLoaded()">
+
   <div class="container">
     <div class="span-1">
     </div>
     
     <div class="span-16">
-    <h2>Tamashek Keyboard</h2>
-    <p>Use this virtual keyboard to type Tamashek text. The output is standard
-      Unicode. Text is shown with <em>Noto Sans Tifinagh Regular/em> font.
-
-  <select onchange="onLayoutSelected(this.value)" id="kb_selector" style="display:none;">>
-    <option value="tmh">Tamashek</option>
+    <h2>Unicode Otomanguean Keyboard</h2>
+    <p>This keyboard site allows typing with Unicode phonetic characters. The output is Unicode,
+    which is a standard way to represent characters. The advantage is that text can be
+    understood on any computer or mobile device, even without a special font.
+    </p>
+    
+  <select onchange="onLayoutSelected(this.value)" id="kb_selector">
+    <option value="omq">Otomanguean phonetic</option>
   </select>
-  <p>Unicode text: 
   <input type="button" value="Clear text" onclick="clearText('t1')">
+  <input type="button" value="Code points" onclick="showCodePoints()" style="display:none;">
   <br />
+  Unicode text:
+  <br/>
   <textarea id="t1" dir="ltr" class="default-font" cols="80" rows="10"></textarea>
-  <div id='hex_output' style="display:none;">
   <br />
-  <input type="button" value="Code points" onclick="showCodePoints()">
-  <br />
-  Hex code points:
-  <br />
-  <textarea id="codepoints" class="default-font" cols="80" rows="3"></textarea>
-  <br>
-  <br>
+
+  <div id="hex_codes" style="display:none;">
+  <input type="checkbox" id="hex_toggle"
+      onchange="toggleDiv('codepoints', 'hex_toggle');"><label>Show hex</label>
+    Hex code points:
+    <br />
+    <textarea id="codepoints" class="default-font" cols="80" rows="3"></textarea>
+    <br>
   </div>
-  
-  
+
   </div>
   </div> <!-- container -->
-
+  
 </body></html>

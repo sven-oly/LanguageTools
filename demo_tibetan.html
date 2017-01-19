@@ -22,6 +22,18 @@
       font-size: 32px;
     }
 
+    @font-face{
+      font-family:'NotoSansTibetan';
+      src:url('/fonts/NotoSansTibetan-Regular.ttf');
+      font-weight:normal;
+      font-style:normal;
+      font-size: 32px;
+    }
+
+    .notoTibetan {
+      font-family:'NotoSansTibetan';
+      font-size: 32px;
+    }
 
     .monlam {
       font-family:'MonlamBodyig';
@@ -34,7 +46,9 @@
       }
 
     {font-family:Monlam Arial;}
+    
     input {font-size:18px;}
+
     textarea {
         font-size:24px;
         width: 600px;
@@ -100,7 +114,7 @@
     <div class="span-1">
     </div>
     
-    <div class="span-16">
+    <div class="span-16 last">
     <h2>Tibetan Keyboard</h2>
     <p>Use this virtual keyboard to type Tibetan text. The output is standard
       Unicode. Text is shown with <em>Monlam</em> font.
@@ -112,19 +126,29 @@
       <select onchange="onLayoutSelected(this.value)" id="kb_selector"  style="display:none;">
         <option value="bo">Monlam</option>
       </select>
-  <br />
-  <p>Unicode text:  <input type="button" value="Clear text" onclick="clearText()">
 
+  <h3>Displayed with Monlam Tibetan font</h3>
+  <div id="monlan_div">
+    <textarea id="t1" dir="ltr" class="monlam" classstyle="width:600px;" rows="10"></textarea>
+  </div>
+
+  <input type="button" value="Noto Sans Tibetan" 
+    onclick="toggleVisible('notosans_div');copyText('t1', 'notoSansArea');">
+  <div id="notosans_div" style="display: none">
+    <input type="button" value="Copy text" 
+      onclick="copyText('t1', 'notoSansArea');">
+    <textarea id="notoSansArea" dir="ltr" class="notoTibetan" classstyle="width:600px;" rows="10"></textarea>
+  </div>  
   <br />
-  <textarea id="t1" dir="ltr" class="monlam" classstyle="width:600px;" rows="10"></textarea>
   <br />
-  <div id="codepoint_block">
-    <input type="button" value="Show code points" onclick="showCodePoints()">
+  <input type="button" value="Show code points" onclick="showCodePoints();toggleVisible('codepoint_block');">
+  <br />
+  <div id="codepoint_block" style="display: none">
     <br />
     <textarea id="codepoints" class="default-font" classstyle="width:600px;" rows="10"></textarea>
     <br>
   </div>
 
-  </div>
+  </div> <!-- span-16 last -->
   </div> <!-- container -->
 </body></html>

@@ -8,12 +8,27 @@ function toggleDiv(id, toggle) {
     else
       obj.style.display = 'none';
 }
-    
+
+function toggleVisible(id) {
+    var obj = document.getElementById(id);
+    if (obj.style.display == 'none')
+      obj.style.display = 'block';
+    else
+      obj.style.display = 'none';
+}
+  
 function clear_rules_counts() {
   var i;
   for (i = 0; i < diff_rules.length; i += 1) {
     diff_rules[i] = 0;
   }
+}
+
+// Copy text contents from area1 to area2.
+function copyText(area1Id, area2Id) {
+  var obj1 = document.getElementById(area1Id);
+  var obj2 = document.getElementById(area2Id);
+  obj2.innerHTML = obj2.value = obj1.value;
 }
 
 function utf16common(text, prefix, suffix, asciitoo, highlight_list)

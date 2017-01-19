@@ -16,6 +16,8 @@
 # limitations under the License.
 #
 
+import translit
+
 import json
 import logging
 import os
@@ -29,6 +31,8 @@ LanguageList = [
     ('Tibetan', 'bo'),
     ('Tamashek', 'tmh', 'ⵜⴰⵎⴰⵌⴰⵆ'),
     (u'A\u1e49angu Yol\u014bu', 'en_anangu', 'Aṉangu-Yolngu'),
+    ('Otomanguean phonetic', 'omq'),
+    ('Myanmar indigenous', 'myanmar'),
   ]
 
 class MainHandler(webapp2.RequestHandler):
@@ -65,11 +69,30 @@ class AnanuguYolnguHomeHandler(webapp2.RequestHandler):
       path = os.path.join(os.path.dirname(__file__), 'demo_anangu.html')
       self.response.out.write(template.render(path, template_values))
 
+class OtomangueanHomeHandler(webapp2.RequestHandler):
+    def get(self):
+      template_values = {
+        'langlist': LanguageList,
+      }
+      path = os.path.join(os.path.dirname(__file__), 'demo_omq.html')
+      self.response.out.write(template.render(path, template_values))
+
+class MyanmarIndigenousHomeHandler(webapp2.RequestHandler):
+    def get(self):
+      template_values = {
+        'langlist': LanguageList,
+      }
+      path = os.path.join(os.path.dirname(__file__), 'demo_myanmar.html')
+      self.response.out.write(template.render(path, template_values))
 
 app = webapp2.WSGIApplication([
     ('/', MainHandler),
     ('/demo_bo/', TibetanHomeHandler),
     ('/demo_tmh/', TamashekHomeHandler),
+    ('/demo_omq/', OtomangueanHomeHandler),
+    ('/demo_myanmar/', MyanmarIndigenousHomeHandler),
     ('/demo_en_anangu/', AnanuguYolnguHomeHandler),
+    ('/transliterate/', translit.TranslitUIHandler),
+    ('/dotransliterate/', translit.DoTranslitHandler),
 
 ], debug=True)
