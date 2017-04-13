@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<!-- saved from url=(0052)https://x20web.corp.google.com/~shuchen/vk/demo.html -->
+<html>
+  <head>
+    <title>Keyboard input template</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    <link rel="stylesheet" href="css/blueprint/screen.css" type="text/css" media="screen, projection">
+    <link rel="stylesheet" href="css/blueprint/print.css" type="text/css" media="print">
+    <!--
+       <link rel="stylesheet" href="/css/blueprint/screen.css" type="text/css" media="screen, projection">
+      <link rel="stylesheet" href="/css/blueprint/print.css" type="text/css" media="print"> 
+     -->
+     <!--[if lt IE 8]>
+      <link rel="stylesheet" href="css/blueprint/ie.css" type="text/css" media="screen, projection">
+      <!--
+        <link rel="stylesheet" href="/css/blueprint/ie.css" type="text/css" media="screen, projection">
+        -->
+    <![endif]-->
+
+    <!--
+      <script src="/js/vk-debug.js"></script>
+      <link rel="stylesheet" type="text/css" href="/css/keyboard.css">
+      <script src="/js/text_utils.js"></script>
+     -->
+    <script src="js/vk-debug.js"></script>
+    <script>
+    // RESET TO BE RELATIVE TO KEYBOARD's DIRECTORY.
+    i18n.input.keyboard.Model.STATIC_DIR = "layouts/";
+    </script>
+
+    <link rel="stylesheet" type="text/css" href="css/keyboard.css">
+    <script src="js/text_utils.js"></script>
+
+
+    <script type="text/css">
+      .vk-button {font-family: Arial;}
+      .input {font-size:18px;}
+      .textarea {font-size:24px;}
+      .textarea {font-family: Arial;}
+    </script>
+
+  <script>
+    var diff_list = [];
+
+    var controller, visible = true;
+    function onPageLoaded() {
+      var outputArea = 't1';
+      var input = document.getElementById(outputArea);
+      controller = new i18n.input.keyboard.Keyboard();
+      controller.loadLayout('en');
+      controller.reposition(input, 2, 0, [1, 0, 0, 0]);
+      controller.register(input);
+      controller.addEventListener('kc', function() { visible = false; });
+      input.focus();
+      var selector = document.getElementById('selectKeyboard');
+      onLayoutSelected(selector, controller, outputArea);
+      onFontSelected(document.getElementById('selectFont'), 't1');
+    }
+
+  function onLayoutSelected(selector, this_controller, outputId) {
+    var layoutCode = selector.value;
+    if (this_controller) {
+      this_controller.activateLayout(layoutCode);
+    } else {  // The global.
+      controller.activateLayout(layoutCode);
+    }
+    document.getElementById(outputId).focus();
+    var vkbox = document.getElementById('kbd');
+    var field = document.getElementById(outputId);
+
+    // onFontSelected('selectFont', 't1');
+  }
+
+    function toggle() {
+      if (controller) {
+        controller.setVisible(visible = !visible);
+      }
+    }
+
+    function clearText() {
+      var field = document.getElementById('t1');
+      field.value = '';
+      field = document.getElementById('codepoints');
+      field.value = '';
+      document.getElementById('t1').focus();
+    }
+
+    function showCodePoints() {
+      var src_field = document.getElementById('t1');
+      var code_text = uplus(src_field.value);
+      var dest_field = document.getElementById('codepoints');
+      dest_field.value = code_text;
+      document.getElementById('t1').focus();
+    }
+
+   function onFontSelected(selected, area) {
+     var output_text = document.getElementById(area);
+     var fontFam = selected.value + ", MyFont";
+     output_text.style.fontFamily = fontFam;
+   }
+   
+  function changeFontSize(selected) {
+     var fontObj = document.getElementById(selected);
+     var fontSize = fontObj.value;
+     var div = document.getElementById("t1");
+     div.style.fontSize = fontSize;
+   }
+
+  </script>
+
+<script>window["_GOOG_TRANS_EXT_VER"] = "1";</script>
+</head>
+
+<body onload="onPageLoaded()">
+  <div class="container">
+    <div class="span-1">  
+    </div>
+  <div class="span-16">
+  <h1>Keyboard template</h1>
+  <select onchange="onLayoutSelected(this, null, 't1')" id="selectKeyboard">
+    <option value="en">English</option>
+  </select>
+  <input type="button" value="Clear text" onclick="clearText()">
+
+    Select font: <select onchange="onFontSelected(this, 't1');" id="selectFont">
+      <option value="Arial">Arial</option>
+      <option value="Helvetica">Helvetica</option>
+       <option value="Times New Roman">Times New Roman</option>
+   </select>
+      Font size: <select id='fontSize'
+             onChange="changeFontSize('fontSize');">
+             <option value="9pt">9</option>
+             <option value="10pt">10</option>
+             <option value="12pt">12</option>
+             <option value="14pt" selected="selected">14</option>
+             <option value="18pt">18</option>
+             <option value="24pt">24</option>
+             <option value="32pt">32</option>
+             <option value="36pt">36</option>
+             <option value="48pt">48</option>
+             <option value="64pt">64</option>
+           <select/>
+    <br />
+
+  <!-- OUTPUT FOR THE KEYBOARD -->
+  <textarea id="t1" dir="ltr" class="myTextFont" style="width:600px;height:300px;font-size:14pt" rows="10"></textarea>
+  <br />
+  <input type="button" value="Code points" onclick="showCodePoints()">
+    </div>
+ <div class="span-4 last">
+    <h3>Useful links</h3>
+      <ul>
+        <li>
+           <a href="mylink">My link</a>
+
+        </li>
+        
+        </ul>
+    </div>
+  <div class="span-18 last">
+  <textarea id="codepoints" class="default-font" style="width:600px;" rows="10"></textarea>
+  <br>
+  </div>
+  </div>
+
+</body></html>

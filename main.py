@@ -85,6 +85,29 @@ class MyanmarIndigenousHomeHandler(webapp2.RequestHandler):
       path = os.path.join(os.path.dirname(__file__), 'demo_myanmar.html')
       self.response.out.write(template.render(path, template_values))
 
+
+class Downloads(webapp2.RequestHandler):
+  def get(self):
+    infile = self.request.get("infile", "")
+    outfile = self.request.get("outfile", "")
+    template_values = {
+      'infile': infile,
+      'outfile': outfile,
+    }
+    path = os.path.join(os.path.dirname(__file__), 'downloads.html')
+    self.response.out.write(template.render(path, template_values))
+
+class DownloadKBText(webapp2.RequestHandler):
+  def get(self):
+    infile = self.request.get("infile", "")
+    outfile = self.request.get("outfile", "")
+    template_values = {
+      'infile': infile,
+      'outfile': outfile,
+    }    
+    path = os.path.join(os.path.dirname(__file__), 'downloads/keyboardTemplate.html')
+    self.response.out.write(template.render(path, template_values))
+
 app = webapp2.WSGIApplication([
     ('/', MainHandler),
     ('/demo_bo/', TibetanHomeHandler),
@@ -92,6 +115,8 @@ app = webapp2.WSGIApplication([
     ('/demo_omq/', OtomangueanHomeHandler),
     ('/demo_myanmar/', MyanmarIndigenousHomeHandler),
     ('/demo_en_anangu/', AnanuguYolnguHomeHandler),
+    ('/downloads/', Downloads),
+    ('/downloadsTest/', DownloadKBText),
     ('/transliterate/', translit.TranslitUIHandler),
     ('/dotransliterate/', translit.DoTranslitHandler),
 

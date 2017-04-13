@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+
+  <title>Download Osage resources</title>
+
+  <link rel="stylesheet" href="/css/blueprint/screen.css" type="text/css" media="screen">
+  <link rel="stylesheet" href="/css/blueprint/print.css" type="text/css" media="print"> 
+  <!--[if lt IE 8]>
+    <link rel="stylesheet" href="/css/blueprint/ie.css" type="text/css" media="screen, projection">
+  <![endif]-->
+
+  <link rel="stylesheet" type="text/css" href="/css/fonts.css">
+
+  <style>
+  textarea {
+    width: 600px;
+	height: 120px;
+	border: 3px solid #cccccc;
+	padding: 5px;
+	font-size: 24px;
+	}
+  {
+    font-family: "Courier New";
+  }
+  </style>
+  <script src="/js/utils.js"></script>
+  <script src="/js/osageConverter.js"></script>
+  <script src="/js/osage_utils.js"></script>
+  <script>
+
+ 
+  
+  function toggle(id, toggle) {
+    var obj = document.getElementById(id);
+    var checkBox = document.getElementById(toggle);
+    var showIt = checkBox.checked;
+    if(showIt)
+      obj.style.display = 'block';
+    else
+      obj.style.display = 'none';
+    }
+
+  function init() {
+    // Fill in if needed.
+  }
+
+  </script>
+  </head>
+
+  <body onload="init()">
+  <div class="container">
+    <div class="span-1">  
+    </div>
+  <div class="span-16">
+    <h1>Download tools</h1>
+
+    <ul>
+      <li>
+        <a href="/download/keyboardGeneric.zip" download
+          class="keyboardGeneric">keyboardGeneric.zip</a>
+    </li>
+
+<!--          <li>
+        <a href="/download/keyboardTemplate.html" download
+          class="keyboardTemplate">keyboardTemplate.html</a>
+    </li>
+    <li>
+        <a href="/js/vk-debug.js" download
+          class="vk-debug">vk-debug.js</a>
+    </li>
+    <li>
+      <a href="/layouts/en.js" download
+        class="en">en.js(Layout file)</a>
+    </li>
+    <li>
+      <a href="/css/keyboard.css" download
+        class="keyboard">keyboard.css</a>
+    </li>
+-->
+    </ul>
+  </div>
+  <div class="span-4 last">
+    <!--
+    <h3>Useful links</h3>
+      <ul>
+        <li><a href='link'>My link</a>
+        </li>
+        
+      </ul>
+      -->
+    </div>
+  </div> <!-- container -->
+
+</body>
+</html>
