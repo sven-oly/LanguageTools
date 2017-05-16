@@ -61,7 +61,7 @@ function utf16common(text, prefix, suffix, asciitoo, highlight_list)
             if (i < highlight_list.length && highlight_list[i]) {
               res += prefix + tmp + suffix;
             } else {
-              res += "<b>" + prefix + tmp + suffix + "</b>";
+              res += prefix + tmp + suffix;
             }
           } else {
             res += "[error Surrogate High only]";

@@ -18,6 +18,10 @@
       font-family: Times New Roman, Arial, Helvetica;
       font-size:24px;
       }
+    .myanmar-font {
+      font-family: NotoSansMyanmar;
+      font-size:24px;     
+    }
       </style>
 
   <script src="/js/utils.js"></script>
@@ -30,6 +34,9 @@
       var input = document.getElementById('t1');
       controller = new i18n.input.keyboard.Keyboard();
       controller.loadLayout('ksw');
+      {% for kb in kb_list %}
+      controller.loadLayout('{{kb.shortName}}');
+      {% endfor %}
       controller.reposition(input, 3, 4, [1, 0, 0, 0]);
       controller.register(input);
       controller.addEventListener(
@@ -37,6 +44,8 @@
           function() { visible = false; });
       var layoutCode = document.getElementById('kb_selector').value;
       onLayoutSelected(layoutCode);
+      var sizeSelected = document.getElementById("sizeSelector").value;
+      onSizeSelected(sizeSelected, "sizeSelector");
       input.focus();
     }
 
@@ -44,6 +53,7 @@
       controller.activateLayout(layoutCode);
       document.getElementById('t1').focus();
       var vkbox = document.getElementById('kbd');
+      document.getElementById('t1').lang = layoutCode;
       }
 
 
@@ -60,6 +70,11 @@
       field.value = '';
       document.getElementById('t1').focus();
     }
+
+    function onSizeSelected(newSize, textArea) {
+      var area_element = document.getElementById(textArea);
+      area_element.style.fontSize = newSize;
+    } 
 
     function showCodePoints() {
       var src_field = document.getElementById('t1');
@@ -84,29 +99,40 @@
     which is a standard way to represent characters. The advantage is that text can be
     understood on any computer or mobile device, even without a special font.
     </p>
-    <p>THIS IS STILL A WORK IN PROGRESS 17-Jan-2017
+    <p>THIS IS STILL A WORK IN PROGRESS 8-May-2017
     </p>
     
-  <select onchange="onLayoutSelected(this.value)" id="kb_selector">
-    <option value="ksw">S'gaw Karen</option>
-    <option value="shn">Shan</option>
+  Keyboard: <select id='kb_selector' onchange="onLayoutSelected(this.value)">
+    {% for kb in kb_list %}
+    <option value="{{kb.shortName}}" select="">{{kb.longName}}</option>
+    {% endfor %}
   </select>
+  
   <input type="button" value="Clear text" onclick="clearText('t1')">
+
+  Size: <select id="sizeSelector" onchange="onSizeSelected(this.value, 't1');">
+    <option value="10px">10</option>
+    <option value="14px" selected>14</option>
+    <option value="18px">18</option>
+    <option value="24px">24</option>
+    <option value="32px">32</option>
+  </select>
   <input type="button" value="Code points" onclick="showCodePoints()" style="display:none;">
   <br />
-  Unicode text:
-  <br/>
-  <textarea id="t1" dir="ltr" class="default-font" cols="80" rows="10"></textarea>
+  <h3>Unicode text:</h3>
+  <textarea id="t1" dir="ltr" class="myanmar-font" style="width:600px;height:150px;"></textarea>
   <br />
 
+ {% if showHex %}
   <div id="hex_codes" style="display:block;">
   <input type="checkbox" id="hex_toggle"
       onchange="toggleDiv('codepoints', 'hex_toggle');"><label>Show hex</label>
     Hex code points:
     <br />
-    <textarea id="codepoints" class="default-font" cols="80" rows="3"></textarea>
+    <textarea id="codepoints" class="default-font" style="width:600px;height:150px;"></textarea>
     <br>
   </div>
+  {% endif %}
 
   </div>
   </div> <!-- container -->

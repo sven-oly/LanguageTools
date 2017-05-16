@@ -12,6 +12,12 @@
       font-size: 32px;
     }
 
+/* Myanmar script */
+  @font-face {
+    font-family: 'NotoSansMyanmar';
+    src: url('/fonts/NotoSansMyanmar-Regular.otf');
+  }
+
 /* Tamashek */
     @font-face{
       font-family:'NotoTifi';
@@ -28,4 +34,20 @@
       font-weight:normal;
       font-style:normal;
       font-size: 32px;
+    }
+    
+/* Chakma */
+    @font-face{
+      font-family:'NotoSansChakma';
+      src:url('/fonts/NotoSansChakma-Regular.ttf');
+      font-weight:normal;
+      font-style:normal;
+      font-size: 32px;
+    }
+
+    @font-face{
+      font-family:"RibengUni3";
+      src:url("/fonts/RibengUni3.ttf");
+      font-weight:normal;
+      font-style:normal;
     }

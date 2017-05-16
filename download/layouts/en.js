@@ -42,6 +42,7 @@ var EN_LAYOUT = {
   },
   'transform': {
     'aaa': 'a-a',  // Placeholder
+    'superca': 'supercalifragilisticexpialidocious',
   }
 };
 

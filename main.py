@@ -32,7 +32,9 @@ LanguageList = [
     ('Tamashek', 'tmh', 'ⵜⴰⵎⴰⵌⴰⵆ'),
     (u'A\u1e49angu Yol\u014bu', 'en_anangu', 'Aṉangu-Yolngu'),
     ('Otomanguean phonetic', 'omq'),
+    ('Chakma', 'ccp'),
     ('Myanmar indigenous', 'myanmar'),
+    ('Ahom, Aiton, Khamti', 'tai'),
   ]
 
 class MainHandler(webapp2.RequestHandler):
@@ -79,12 +81,126 @@ class OtomangueanHomeHandler(webapp2.RequestHandler):
 
 class MyanmarIndigenousHomeHandler(webapp2.RequestHandler):
     def get(self):
+      lang_list = [
+        {'shortName':  'shn',
+         'longName': 'Shan'
+        },
+        {'shortName':  'mnw',
+         'longName': 'Mon'
+        },
+        {'shortName':  'ksw',
+         'longName': 'S\'gaw Karen'
+        },
+
+        {'shortName':  'aio',
+         'longName': 'Aiton'
+        },
+        {'shortName':  'kht',
+         'longName': 'Khamti'
+        },
+        {'shortName':  'phk',
+         'longName': 'Phake'
+        },
+        ]
       template_values = {
         'langlist': LanguageList,
+        'kb_list': lang_list,
       }
       path = os.path.join(os.path.dirname(__file__), 'demo_myanmar.html')
       self.response.out.write(template.render(path, template_values))
 
+class ChakmaIndigenousHomeHandler(webapp2.RequestHandler):
+    def get(self):
+      font_list = [
+        { 'family': 'NotoSansChakma',
+          'longName': 'NotoSans Chakma',
+          'source': '/fonts/NotoSansChakma-Regular.ttf',
+        },    
+        { 'family': 'RibengUni3',
+          'longName': 'RibengUni3',
+          'source': '/fonts/RibengUni_3.ttf',
+        },
+      ]
+      kb_list = [
+        {'shortName':  'ccp',
+         'longName': 'Chakma'
+        }
+      ]
+      links = [
+        {'linkText': 'Chakma Unicode',
+         'ref': 'http://unicode.org/charts/PDF/U11100.pdf'
+         },
+         {'linkText': 'Chakma Language',
+         'ref': 'https://en.wikipedia.org/wiki/Chakma_language'
+         },
+         ]
+      template_values = {
+        'langlist': LanguageList,
+        'language': 'Chakma',
+        'font_list': font_list,
+        'lang_list': None,
+        'kb_list': kb_list,
+        'links': links,
+      }
+      path = os.path.join(os.path.dirname(__file__), 'demo_general.html')
+      self.response.out.write(template.render(path, template_values))
+
+class TaiLanguagesHomeHandler(webapp2.RequestHandler):
+    def get(self):
+      font_list = [
+        { 'family': 'AHOMFONT_Unicode',
+          'longName': 'AHOMFONT Unicode',
+          'source': '/fonts/ahom_aiton/AHOMFONT_Unicode.ttf',
+        },
+        { 'family': 'AHOMFONT',
+          'longName': 'AHOM FONT',
+          'source': '/fonts/ahom_aiton/AHOMFONT.ttf',
+        },
+        { 'family': 'AhomUnicode',
+          'longName': 'Ahom Unicode',
+          'source': '/fonts/ahom_aiton/AhomUnicode.ttf',
+        },
+        { 'family': 'Ahom_Manuscript',
+          'longName': 'Ahom Manuscript',
+          'source': '/fonts/ahom_aiton/Ahom_Manuscript.ttf',
+        },
+        { 'family': 'NotoSansMyanmar',
+          'longName': 'NotoSansMyanmar',
+          'source': '/fonts/NotoSansMyanmar-Regular.otf',
+        },
+      ]
+      lang_list = [
+        {'shortName':  'aho',
+         'longName': 'Tai Ahom'
+        },
+        {'shortName':  'aio',
+         'longName': 'Aiton'
+        },
+        {'shortName':  'kht',
+         'longName': 'Khamti'
+        },
+        {'shortName':  'phk',
+         'longName': 'Phake'
+        },
+        {'shortName':  'shn',
+         'longName': 'Shan'
+        },
+        {'shortName':  'ksw',
+         'longName': 'S\'gaw Karen'
+        },
+      ]
+      links = [
+      ]
+      template_values = {
+        'langlist': LanguageList,
+        'language': 'Ahom',
+        'font_list': font_list,
+        'lang_list': lang_list,
+        'kb_list': lang_list,
+        'links': links,
+      }
+      path = os.path.join(os.path.dirname(__file__), 'demo_general.html')
+      self.response.out.write(template.render(path, template_values))
 
 class Downloads(webapp2.RequestHandler):
   def get(self):
@@ -105,7 +221,7 @@ class DownloadKBText(webapp2.RequestHandler):
       'infile': infile,
       'outfile': outfile,
     }    
-    path = os.path.join(os.path.dirname(__file__), 'downloads/keyboardTemplate.html')
+    path = os.path.join(os.path.dirname(__file__), 'download/keyboardTemplate.html')
     self.response.out.write(template.render(path, template_values))
 
 app = webapp2.WSGIApplication([
@@ -115,9 +231,12 @@ app = webapp2.WSGIApplication([
     ('/demo_omq/', OtomangueanHomeHandler),
     ('/demo_myanmar/', MyanmarIndigenousHomeHandler),
     ('/demo_en_anangu/', AnanuguYolnguHomeHandler),
+    ('/demo_ccp/', ChakmaIndigenousHomeHandler),
     ('/downloads/', Downloads),
     ('/downloadsTest/', DownloadKBText),
     ('/transliterate/', translit.TranslitUIHandler),
     ('/dotransliterate/', translit.DoTranslitHandler),
+
+    ('/demo_tai/', TaiLanguagesHomeHandler),
 
 ], debug=True)
