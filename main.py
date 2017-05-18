@@ -190,6 +190,18 @@ class TaiLanguagesHomeHandler(webapp2.RequestHandler):
         },
       ]
       links = [
+        {'linkText': 'Ahom Unicode',
+         'ref': 'http://www.unicode.org/charts/PDF/U11700.pdf'
+        },
+        {'linkText': 'Aiton and Khamti Shan Unicode. Extended-A',
+         'ref': 'http://www.unicode.org/charts/PDF/UAA60.pdf'
+        },
+        {'linkText': 'Myanmar Extended-B',
+         'ref': 'http://www.unicode.org/charts/PDF/UA9E0.pdf'
+        },
+        {'linkText': 'Myanmar Unicode block',
+         'ref': 'https://en.wikipedia.org/wiki/Myanmar_(Unicode_block)'
+        },
       ]
       template_values = {
         'langlist': LanguageList,

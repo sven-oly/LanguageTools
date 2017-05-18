@@ -10,7 +10,6 @@
   <!--[if lt IE 8]>
     <link rel="stylesheet" href="/css/blueprint/ie.css" type="text/css" media="screen, projection">
   <![endif]-->
-  <link rel="stylesheet" type="text/css" href="/css/fonts.css">
     
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -25,6 +24,7 @@
     }
     {% endfor %}
     </script>
+  <link rel="stylesheet" type="text/css" href="/css/fonts.css">
 
     <style>
       .default-font {
@@ -171,7 +171,7 @@
    <h4>Useful links</h4>
    {% endif %}
    {% for link in links %}
-    <a href="{{link.ref}}">{{link.linkText}}</a>
+    <a href="{{link.ref}}" target="_blank">{{link.linkText}}</a>
     <br />
    {% endfor %}
  </div>
