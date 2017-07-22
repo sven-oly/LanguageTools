@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+
+  <title>Testing {{language}} Unicode and conversion</title>
+
+  <link rel="stylesheet" href="/css/blueprint/screen.css" type="text/css" media="screen">
+  <link rel="stylesheet" href="/css/blueprint/print.css" type="text/css" media="print"> 
+  <!--[if lt IE 8]>
+    <link rel="stylesheet" href="/css/blueprint/ie.css" type="text/css" media="screen, projection">
+  <![endif]-->
+
+  <link rel="stylesheet" type="text/css" href="/css/fonts.css">
+
+  <style>
+  textarea {
+    width: 600px;
+	height: 120px;
+	border: 3px solid #cccccc;
+	padding: 5px;
+	font-size: 24px;
+    font-variant-ligatures: normal;
+	}
+  {
+    font-family: "Courier New";
+  }
+  </style>
+
+  <!-- Font encoding areas -->  
+  <style>
+    {% for encoding in encodingList %}
+    @font-face{
+      font-family:'{{encoding.font_name}}';
+      src:url('{{encoding.font_path}}');
+      font-weight:normal;
+      font-style:normal;
+      font-size: 32px;
+    }
+    .{{encoding.font_name}} {
+      font-family:{{encoding.font_name}};
+      font-size: 32px;
+    }
+    {% endfor %}
+
+  </style>
+
+  <!-- Unicode fonts -->
+  <style>
+    {% for font in unicodeFonts %}
+    @font-face{
+      font-family:'{{font.family}}';
+      src:url('{{font.source}}');
+      font-weight:normal;
+      font-style:normal;
+      font-size: 32px;
+    }
+
+    .{{font.family}} {
+      font-family:{{font.family}};
+      font-size: 32px;
+    }
+    {% endfor %}
+  </style>
+
+  <script src="/js/utils.js"></script>
+  <script src="/js/{{langTag}}Converter.js"></script>
+  <script src="/js/text_utils.js"></script>
+
+  <script src="/js/vk-debug.js"></script>
+
+  <script>
+
+  // When an area is changed, set the hex characters, too.
+  function updateHex(inArea, outArea) {
+    var inText = document.getElementById(inArea).value;
+    var hex_output = document.getElementById(outArea);
+    var hexString = charsToHexString(inText);
+    if (hex_output != null) {
+      hex_output.value = hexString;
+      hex_output.innerHTML = hexString;
+    }
+  }
+
+  function clearArea(outId, outArea) {
+    var inText = "";
+    var output_text = document.getElementById(outId);
+    output_text.innerHTML = inText;
+    output_text.value = inText;
+
+    var hex_output = document.getElementById(outArea);
+    if (hex_output) {
+      hex_output.innerHTML = "";
+      hex_output.value = "";
+	}
+  }
+
+  function onFontSelected(selected, outarea) {
+  var output_text = document.getElementById(outarea);
+  document.getElementById('Unicode_font_output_text');
+     var fontFam = selected.value + ", Arial";
+    output_text.style.fontFamily = fontFam;
+  }
+
+  function toAllFonts(area1, area2) {
+    // Open a comparison window with the resulting text.
+    var area1Elem = document.getElementById(area1);
+    var text1 = area1Elem.value;
+
+    var area2Elem = document.getElementById(area2);
+    var text2= area2Elem.value;
+
+    compareUrl = "/OsageFonts/?utext=" + text1 + "&osageText=" + text2;
+
+    window.location=compareUrl;
+  }
+
+  function toggle(id, toggle) {
+    var obj = document.getElementById(id);
+    var checkBox = document.getElementById(toggle);
+    var showIt = checkBox.checked;
+    if(showIt)
+      obj.style.display = 'block';
+    else
+      obj.style.display = 'none';
+    }
+
+  var controller, visible = true;
+  function initKeyboard(textAreaID) {
+      var input = document.getElementById(textAreaID);
+      controller = new i18n.input.keyboard.Keyboard();
+      {% for kb in kb_list %}
+      controller.loadLayout('{{kb.shortName}}');
+      {% endfor %}
+      controller.reposition(input, 2, 0, [1, 0, 0, 0]);
+      controller.register(input);
+      controller.addEventListener('kc', function() { visible = false; });
+      input.focus();
+      var selector = document.getElementById('selectKeyboard');
+      if (selector) {
+        onLayoutSelected(selector, controller, textAreaID);
+      }
+  }
+
+  function onLayoutSelected(selector, this_controller, outputId) {
+    var layoutCode = selector.value;
+    if (this_controller) {
+      this_controller.activateLayout(layoutCode);
+    } else {  // The global.
+      controller.activateLayout(layoutCode);
+    }
+    document.getElementById(outputId).focus();
+  }
+
+  // Fills the input with all the characters in the old Osage range.
+  function fillWithOldChars(target, hex_target) {
+    var output_text = document.getElementById(target);
+    var outputString = "{{text}}";
+
+    output_text.innerHTML = outputString;
+    output_text.value = outputString;
+
+    updateHex(target, hex_target);
+  }
+
+  // Fills the input with all the characters in the old Osage range.
+  function fillAreaWithChars(newString, target, hex_target) {
+    var output_text = document.getElementById(target);
+
+    output_text.innerHTML = newString;
+    output_text.value = newString;
+
+    updateHex(target, hex_target);
+  }
+
+  // Fills the input with all the characters in the old Osage range.
+  function fillWithUnicodeText(target, hex_target) {
+    var output_text = document.getElementById(target);
+    var outputString = "{{unicodeChars}}";
+
+    output_text.innerHTML = outputString;
+    output_text.value = outputString;
+
+    updateHex(target, hex_target);
+  }
+
+  function onPageLoaded() {
+    initKeyboard('Unicode_font_output_text');
+  }
+
+  function init() {
+    // Fill in if needed.
+    updateHex('old_font_input_text', 'old_hex');
+    updateHex('Unicode_font_output_text', 'new_hex');
+  }
+
+  function callConvertEncodingToUnicode(sourceArea, destinationArea, encodeSelectorName) {
+  var encodingIndex = 0;
+    if (encodeSelectorName) {
+      // TODO: Generalize this
+      var encodeSelector = document.getElementById(encodeSelectorName);
+      if (encodeSelector.value == 'Sujoyan') {
+        encodingIndex = 1;
+      }
+      if (encodeSelector.value == 'Alaam') {
+        encodingIndex = 2;
+      }    }
+    convertEncodingToUnicode(sourceArea, destinationArea, encodingIndex);
+  }
+
+  </script>
+  </head>
+
+  <body onload="onPageLoaded();">
+  <div class="container">
+    <div class="span-1">
+    </div>
+  <div class="span-16">
+
+   <div id="old_encoding_area">
+    <h3>Old {{language}} font data</h3>
+    <textarea class="{{encodingList.0.font_name}}" id="old_font_input_text"
+              columns="60" rows="3" style="font-size: 28px;"
+              onchange="updateHex('old_font_input_text', 'old_hex');">{{oldInput}}</textarea>
+    <br />
+
+    <input type="button" value="Clear"
+           onclick="clearArea('old_font_input_text', 'old_hex');">
+    Encoding font: <select onchange="onFontSelected(this, 'old_font_input_text');" id="selectEncodingFont">
+      {% for encoding in encodingList %}
+      <option value="{{encoding.font_name}}">{{encoding.display_name}}</option>
+      {% endfor %}
+    </select>
+    <!-- TODO: Provide the selected encoding font -->
+    <input type="button" value="Convert to Unicode"
+           onclick="callConvertEncodingToUnicode('old_font_input_text',
+                    'Unicode_font_output_text', 'selectEncodingFont');">
+    <input type="checkbox" name="showOldTools" id="showOldTools"
+      onchange="toggle('OldEncodingTools', 'showOldTools');">Tools?<br />
+
+    <div id="OldEncodingTools"
+         {% if showTools %}
+         style="display:block;"
+         {% else %}
+         style="display:none;"
+         {% endif %}
+       >
+    <input type="button" value="All old chars"
+           onclick="fillWithOldChars('old_font_input_text', 'old_hex')">
+      {% for text in textStrings %}
+      <input type="button" value="{{text.name}}"
+           onclick="fillAreaWithChars('{{text.string}}', 'old_font_input_text', 'old_hex');">
+      {% endfor %}
+
+      {% if offerLowerConversion %}
+      <input type="checkbox" name="lowerCase" id="DoLower">To lower?<br />
+      {% endif %}
+      <input type="button" value="Show hex values"
+             onclick="updateHex('old_font_input_text', 'old_hex');">
+      <br />
+    <br />
+
+    Hex values:
+    <textarea id="old_hex" cols="80" rows="2" style="font-family:'Courier New';font-size:20px;"></textarea>
+    <input type="button"
+           onclick="convertToText('old_hex', 'old_font_input_text');"
+           value="Convert hex to text" />
+    </div>
+    <br />
+   </div>
+   <div id="unicode_area">
+    <h3>Unicode {{language}} text</h3>
+    <textarea class="{{unicodeFonts.0.family}}" id="Unicode_font_output_text"
+     onchange="updateHex('Unicode_font_output_text', 'new_hex');"
+              cols="50" rows="3" style="font-size: 28px;">{{unicodeInput}}</textarea>
+    <br />
+    <input type="button" value="Clear"
+           onclick="clearArea('Unicode_font_output_text', 'new_hex');">
+    <input type="button"
+           onclick="fillWithUnicodeText('Unicode_font_output_text',
+                    'new_hex');"
+           value="Unicode chars" />
+    Select font: <select onchange="onFontSelected(this, 'Unicode_font_output_text');" id="selectFont">
+      {% for font in unicodeFonts %}
+      <option value="{{font.family}}">{{font.longName}}</option>
+      {% endfor %}
+    </select>
+
+    {% if kb_list|length > 1 %}
+       Keyboard: <select onchange="onLayoutSelected(this, null, 'Unicode{{language}}Tools');" id="selectKeyboard">
+       {% for kb in kb_list %}
+       <option value="kb.shortName">{{kb.longName}} Unicode</option>
+       {% endfor %}
+     </select>
+    {% endif %}
+
+    <input type="checkbox" name="showNewTools" id="showNewTools"
+      onchange="toggle('Unicode{{language}}Tools', 'showNewTools');">Tools?<br />
+
+    <div id="Unicode{{language}}Tools"
+         {% if showTools %}
+         style="display:block;"
+         {% else %}
+         style="display:none;"
+         {% endif %}
+      >
+      <input type="button" value="Show hex values"
+           onclick="updateHex('Unicode_font_output_text', 'new_hex');">      <br />
+    <br />
+    Hex values:
+    <textarea id="new_hex" cols="80" rows="3" style="font-family:'Courier New';font-size:20px;"></textarea>
+    <br />
+    <input type="button"
+           onclick="convertToText('new_hex', 'Unicode_font_output_text', 'new_hex')"
+           value="Convert hex to Unicode Text" />
+    <br />
+    </div>
+    {% if allFonts %}
+    <input type="button" onclick="toOsageFonts('Unicode_font_output_text', 'old_font_input_text');" value="To all fonts">
+    <br />
+    {% endif %}
+   </div>
+
+  </div>  <!-- end of span -->
+  <div class="span-4 last">
+    {% if user_nickname %}
+    <h4>Welcome {{user_nickname}}
+    {% if user_logout %}
+    <a href={{user_logout}}>Logout</a>
+    {% endif %}
+    {% else %}
+    <a href='{{user_login_url}}'>Log in</a>
+    {% endif %}
+
+    <h3>Useful links</h3>
+      <ul>
+        {% for link in links %}
+          <li>
+            <a href="{{link.ref}}">{{link.linkText}}</a>
+          </li>
+        {% endfor %}
+
+
+        </ul>
+         {% if isAdmin %}
+        <hr>
+        <h4>Admin Functions</h4>
+        <ul>
+          <li><a href="/db/manageDB/">Manage Databases</a></li>
+          <li><a href="/db/resetDbEntries/">Reset Database Entries</a>
+        </ul>
+        {% endif %}
+    </div>
+  </div> <!-- container -->
+
+</body>
+</html>
