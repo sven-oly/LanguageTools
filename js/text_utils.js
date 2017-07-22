@@ -86,9 +86,9 @@ function utf16common(text, prefix, suffix, asciitoo, highlight_list)
 
 
   // Takes hex text and converts to characters, displaying in another field.
-  function convertToText() {
-    var textinput = document.getElementById('textInput');
-    var textoutput = document.getElementById('textOutput');
+  function convertToText(textInputId, textOutputId) {
+    var textinput = document.getElementById(textInputId);
+    var textoutput = document.getElementById(textOutputId);
     var inChars = textinput.value;
     var outCharacters = uhexToChars(inChars)
     textoutput.innerHTML = outCharacters;

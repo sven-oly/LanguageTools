@@ -1,3 +1,4 @@
+DESCRIPTION = u'Convert ASCII Chakma encoded text to Unicode.  28-May-2017'
 TRANS_LIT_RULES = KNU_UNICODE_TRANSLITERATE = u"""
 # Ignore inserted invisible spaces
 #\u200b > ;

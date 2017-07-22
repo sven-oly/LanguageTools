@@ -16,6 +16,8 @@
 # limitations under the License.
 #
 
+import chakma
+
 import translit
 
 import json
@@ -243,11 +245,16 @@ app = webapp2.WSGIApplication([
     ('/demo_omq/', OtomangueanHomeHandler),
     ('/demo_myanmar/', MyanmarIndigenousHomeHandler),
     ('/demo_en_anangu/', AnanuguYolnguHomeHandler),
-    ('/demo_ccp/', ChakmaIndigenousHomeHandler),
+
     ('/downloads/', Downloads),
     ('/downloadsTest/', DownloadKBText),
     ('/transliterate/', translit.TranslitUIHandler),
     ('/dotransliterate/', translit.DoTranslitHandler),
+
+    ('/demo_ccp/', chakma.ChakmaIndigenousHomeHandler),
+    ('/ccp/convertUI/', chakma.ChakmaConvertUIHandler),
+    ('/ccp/converter/', chakma.ChakmaConvertHandler),
+    ('/ccp/encodingRules/', chakma.ChakmaEncodingRules),
 
     ('/demo_tai/', TaiLanguagesHomeHandler),
 

@@ -16,7 +16,7 @@ var CCP_LAYOUT = {
 	        '{{\uD804\uDD09}}{{\uD804\uDD24}}\u005B\u005D{{\uD804\uDD42}}' +
           '{{\uD804\uDD2D}}{{\uD804\uDD2A}}{{\uD804\uDD28}}{{\uD804\uDD27}}' +
 	        '{{\uD804\uDD33}}{{\uD804\uDD1D}}{{\uD804\uDD07}}{{\uD804\uDD16}}' +
-	        '{{\uD804\uDD18}}{{\uD804\uDD34}}\u0022' +
+	        '{{\uD804\uDD18}}{{\uD804\uDD34}}\u0027' +
           '{{\uD804\uDD04}}{{\uD804\uDD2E}}{{\uD804\uDD2C}}{{\uD804\uDD22}}' +
 	        '{{\uD804\uDD1A}}{{\uD804\uDD25}}{{\uD804\uDD1F}}{{\u002c}}' +
             '{{\u002e}}{{\u002f}}'
@@ -27,7 +27,7 @@ var CCP_LAYOUT = {
           '{{\uD804\uDD01}}{{\uD804\uDD20}}{{\uD804\uDD14}}{{\uD804\uDD1c}}' +
 	        '{{\uD804\uDD12}}{{\uD804\uDD0d}}{{\uD804\uDD0f}}{{\uD804\uDD10}}' +
 	        '{{\uD804\uDD0a}}{{\uD804\uDD05}}\u007b\u007d{{\uD804\uDD02}}' +
-          '{{\uD804\uDD31}}{{\uD804\uDD2B}}{{\uD804\uDD28}}{{\uD804\uDD03}}' +
+          '{{\uD804\uDD31}}{{\uD804\uDD2B}}{{\uD804\uDD29}}{{\uD804\uDD03}}' +
             '{{\uD804\uDD41}}{{\uD804\uDD1e}}{{\uD804\uDD08}}{{\uD804\uDD17}}' +
             '{{\uD804\uDD19}}\u003A\u0022' +
           '{{\uD804\uDD40}}{{\uD804\uDD2F}}{{\uD804\uDD30}}{{\uD804\uDD23}}' +
@@ -47,38 +47,16 @@ var CCP_LAYOUT = {
     }
   },
   'transform': {
-    '\uD804\uDD2c(\uD804\uDD07)': '$1\uD804\uDD2c',  // consonants and E
-    '\uD804\uDD2c(\uD804\uDD08)': '$1\uD804\uDD2c',  // consonants and E
-    '\uD804\uDD2c(\uD804\uDD09)': '$1\uD804\uDD2c',  // consonants and E
-    '\uD804\uDD2c(\uD804\uDD0a)': '$1\uD804\uDD2c',  // consonants and E
-    '\uD804\uDD2c(\uD804\uDD0b)': '$1\uD804\uDD2c',  // consonants and E
-    '\uD804\uDD2c(\uD804\uDD0c)': '$1\uD804\uDD2c',  // consonants and E
-    '\uD804\uDD2c(\uD804\uDD0d)': '$1\uD804\uDD2c',  // consonants and E
-    '\uD804\uDD2c(\uD804\uDD0e)': '$1\uD804\uDD2c',  // consonants and E
-    '\uD804\uDD2c(\uD804\uDD0f)': '$1\uD804\uDD2c',  // consonants and E
-    '\uD804\uDD2c(\uD804\uDD10)': '$1\uD804\uDD2c',  // consonants and E
-    '\uD804\uDD2c(\uD804\uDD11)': '$1\uD804\uDD2c',  // consonants and E
-    '\uD804\uDD2c(\uD804\uDD12)': '$1\uD804\uDD2c',  // consonants and E
-    '\uD804\uDD2c(\uD804\uDD13)': '$1\uD804\uDD2c',  // consonants and E
-    '\uD804\uDD2c(\uD804\uDD14)': '$1\uD804\uDD2c',  // consonants and E
-    '\uD804\uDD2c(\uD804\uDD15)': '$1\uD804\uDD2c',  // consonants and E
-    '\uD804\uDD2c(\uD804\uDD16)': '$1\uD804\uDD2c',  // consonants and E
-    '\uD804\uDD2c(\uD804\uDD17)': '$1\uD804\uDD2c',  // consonants and E
-    '\uD804\uDD2c(\uD804\uDD18)': '$1\uD804\uDD2c',  // consonants and E
-    '\uD804\uDD2c(\uD804\uDD19)': '$1\uD804\uDD2c',  // consonants and E
-    '\uD804\uDD2c(\uD804\uDD1a)': '$1\uD804\uDD2c',  // consonants and E
-    '\uD804\uDD2c(\uD804\uDD1b)': '$1\uD804\uDD2c',  // consonants and E
-    '\uD804\uDD2c(\uD804\uDD1c)': '$1\uD804\uDD2c',  // consonants and E
-    '\uD804\uDD2c(\uD804\uDD1d)': '$1\uD804\uDD2c',  // consonants and E
-    '\uD804\uDD2c(\uD804\uDD1e)': '$1\uD804\uDD2c',  // consonants and E
-    '\uD804\uDD2c(\uD804\uDD1f)': '$1\uD804\uDD2c',  // consonants and E
-    '\uD804\uDD2c(\uD804\uDD20)': '$1\uD804\uDD2c',  // consonants and E
-    '\uD804\uDD2c(\uD804\uDD21)': '$1\uD804\uDD2c',  // consonants and E
-    '\uD804\uDD2c(\uD804\uDD22)': '$1\uD804\uDD2c',  // consonants and E
-    '\uD804\uDD2c(\uD804\uDD23)': '$1\uD804\uDD2c',  // consonants and E
-    '\uD804\uDD2c(\uD804\uDD24)': '$1\uD804\uDD2c',  // consonants and E
-    '\uD804\uDD2c(\uD804\uDD25)': '$1\uD804\uDD2c',  // consonants and E
-    '\uD804\uDD2c(\uD804\uDD26)': '$1\uD804\uDD2c',  // consonants and E
+    // consonants, independent vowels, and E
+    '\uD804\uDD2c\uD804([\uDD03-\uDD26])': '\uD804$1\uD804\uDD2c',
+    // Move E after the virama/consonant. \u001d marks the end point of a previous output.
+    '\uD804\uDD2c\u001d\uD804\uDD33\uD804([\uDD03-\uDD26])': '\uD804\uDD33\uD804$1\uD804\uDD2c',
+    // Reorder upper vs. lower diacritics
+    '\ud804([\udd2a\udd2b\udd31\udd32])\ud804([\udd27-\udd29\udd2d\udd30\udd34])':
+      '\ud804$2\ud804$1',
+    // Question: Should we convert doubled signs to the separate Unicode values?
+    // e.g., 11127 11127 -> 11127 11134?
+    '\uD804\uDD27\uD804\udd27': '\uD804\udd27\uD804\uDD34',
   }
 };
 

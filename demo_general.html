@@ -169,11 +169,14 @@
  <div class="span-4 last">
    {% if links %}
    <h4>Useful links</h4>
-   {% endif %}
+     <ul>
    {% for link in links %}
-    <a href="{{link.ref}}" target="_blank">{{link.linkText}}</a>
-    <br />
+      <li>
+        <a href="{{link.ref}}" target="_blank">{{link.linkText}}</a>
+     </li>
    {% endfor %}
+     </ul>
+   {% endif %}
  </div>
 
 </body></html>
