@@ -243,7 +243,6 @@ def chakmaCombiningCombos(baseHexChar):
   testString = u''
   for c0 in combiners:
     for c1 in combiners:
-      if c0 != c1:
-        testString += baseHexChar + c0 + c1 + ' '
+      testString += baseHexChar + c0 + c1 + ' '
     testString += '\u000a'
   return testString
