@@ -151,6 +151,7 @@ bucZ t JeborM ribo sunelo$ at tirtVire kili"""
       unicodeChars += '\ud804\udd05'
       unicodeChars += '\ud804\udd06'
 
+      unicodeCombiningChars = chakmaCombiningCombos(u'\ud804\udd07')
       kb_list = [
         {'shortName':  'ccp',
          'longName': 'Chakma'
@@ -175,6 +176,7 @@ bucZ t JeborM ribo sunelo$ at tirtVire kili"""
           'textStrings': testStringList,
           'showTools': self.request.get('tools', None),
           'unicodeChars': unicodeChars,
+          'combiningChars': unicodeCombiningChars,
       }
       path = os.path.join(os.path.dirname(__file__), 'translit_general.html')
       self.response.out.write(template.render(path, template_values))
@@ -225,3 +227,23 @@ class ChakmaEncodingRules(webapp2.RequestHandler):
       }
       path = os.path.join(os.path.dirname(__file__), 'fontsView.html')
       self.response.out.write(template.render(path, template_values))
+
+
+# Create a string with combinations of the combining characters,
+# following the given base character.
+def chakmaCombiningCombos(baseHexChar):
+
+  combiners = [u'\ud804\udd00', u'\ud804\udd01', u'\ud804\udd02',
+               u'\ud804\udd27', u'\ud804\udd28', u'\ud804\udd29',
+               u'\ud804\udd2a',
+               u'\ud804\udd2b', u'\ud804\udd2c', u'\ud804\udd2d',
+               u'\ud804\udd2e', u'\ud804\udd2f',
+               u'\ud804\udd30', u'\ud804\udd31', u'\ud804\udd32',
+               u'\ud804\udd33', u'\ud804\udd34']
+  testString = u''
+  for c0 in combiners:
+    for c1 in combiners:
+      if c0 != c1:
+        testString += baseHexChar + c0 + c1 + ' '
+    testString += '\u000a'
+  return testString
