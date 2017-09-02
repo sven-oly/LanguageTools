@@ -184,6 +184,16 @@
     updateHex(target, hex_target);
   }
 
+  function fillWithUnicodeCombiners(target, hex_target) {
+    var output_text = document.getElementById(target);
+    var outputString = "{{combiningChars}}";
+
+    output_text.innerHTML = outputString;
+    output_text.value = outputString;
+
+    updateHex(target, hex_target);
+  }
+  
   function onPageLoaded() {
     initKeyboard('Unicode_font_output_text');
   }
@@ -305,7 +315,11 @@
          {% endif %}
       >
       <input type="button" value="Show hex values"
-           onclick="updateHex('Unicode_font_output_text', 'new_hex');">      <br />
+           onclick="updateHex('Unicode_font_output_text', 'new_hex');">
+    <input type="button"
+           onclick="fillWithUnicodeCombiners('Unicode_font_output_text',
+                    'new_hex');"
+           value="Unicode combining chars" />
     <br />
     Hex values:
     <textarea id="new_hex" cols="80" rows="3" style="font-family:'Courier New';font-size:20px;"></textarea>

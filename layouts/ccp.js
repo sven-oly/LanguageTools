@@ -5,7 +5,7 @@
 // Prototype for Chakma, 3-May-2017
 var CCP_LAYOUT = {
   'id': 'ccp',
-  'title': 'Chaka prototype',
+  'title': '\ud804\udd0c\ud804\udd0b\ud804\udd34\ud804\udd1f\ud804\udd33\ud804\udd26',
   'mappings': {
     ',c': {
       '': '`{{\ud804\udd37}}{{\ud804\udd38}}{{\ud804\udd39}}{{\ud804\udd3a}}' +

@@ -118,9 +118,9 @@ class ChakmaIndigenousHomeHandler(webapp2.RequestHandler):
           'longName': 'NotoSans Chakma',
           'source': '/fonts/NotoSansChakma-Regular.ttf',
         },    
-        { 'family': 'RibengUni3',
-          'longName': 'RibengUni3',
-          'source': '/fonts/RibengUni_3.ttf',
+        { 'family': 'RibengUni',
+          'longName': 'RibengUni',
+          'source': '/fonts/RibengUni-Regular_20170814.ttf',
         },
       ]
       kb_list = [
