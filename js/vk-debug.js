@@ -7646,6 +7646,14 @@ i18n.input.keyboard.Standalone.prototype.commitText = function $i18n$input$keybo
       from > to && (from += to, to = from - to, from -= to);
       !text && 1 == back && from < to && (back = 0);
       from -= from < back ? from : back;
+      var part1 = value.slice(0, from);
+      var last1 = part1.substr(-1);
+      if (last1) {
+        var codep1 = last1.charCodeAt();
+        if (codep1 >= 0xd800 && codep1 <= 0xdbff) {
+          from -= 1;  // It leaves the first part of a supplementary character. Remove it, too.
+        }
+      }
       this.activeInput_.value = value.slice(0, from) + text + value.slice(to);
       from += text.length;
       this.activeInput_.setSelectionRange(from, from);
