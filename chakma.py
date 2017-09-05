@@ -228,6 +228,25 @@ class ChakmaEncodingRules(webapp2.RequestHandler):
       path = os.path.join(os.path.dirname(__file__), 'fontsView.html')
       self.response.out.write(template.render(path, template_values))
 
+class ChakmaRenderPage(webapp2.RequestHandler):
+    def get(self):
+
+      kb_list = [
+        {'shortName':  'ccp',
+         'longName': 'Chakma Unicode'
+        }
+      ]
+      template_values = {
+        'converterJS': "/js/ccpConverter.js",
+        'language': 'Chakma',
+        'encoding_list': encoding_font_list,
+        'unicode_list': unicode_font_list,
+        'kb_list': kb_list,
+        'links': links,
+      }
+      path = os.path.join(os.path.dirname(__file__), 'renderCombos.html')
+      self.response.out.write(template.render(path, template_values))
+
 
 # Create a string with combinations of the combining characters,
 # following the given base character.

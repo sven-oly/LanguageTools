@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+
+  <title>{{language}} combining charcters and fonts</title>
+
+  <!-- Font encoding areas -->
+  <style>
+    {% for encoding in encoding_list %}
+    @font-face{
+      font-family:'{{encoding.font_name}}';
+      src:url('{{encoding.font_path}}');
+      font-weight:normal;
+      font-style:normal;
+      font-size: 32px;
+    }
+    .{{encoding.font_name}} {
+      font-family:{{encoding.font_name}};
+      font-size: 32px;
+    }
+    {% endfor %}
+  </style>
+  <!-- Unicode fonts -->
+  <style>
+    {% for font in unicode_list %}
+    @font-face{
+      font-family:'{{font.family}}';
+      src:url('{{font.source}}');
+      font-weight:normal;
+      font-style:normal;
+      font-size: 32px;
+    }
+
+    .{{font.family}} {
+      font-family:{{font.family}};
+      font-size: 32px;
+    }
+    {% endfor %}
+  </style>
+
+  <style>
+    table {
+      border-collapse: collapse;
+    }
+
+    table, th, td {
+      border: 1px solid black;
+    }
+    td {
+    text-align: center;
+    width: 120px;
+    font-size:20px;
+    }
+  </style>
+
+  <!-- Path to convert with code tables and other  this for the converter. -->
+  <script src="{{converterJS}}"></script>
+
+  <script src="/js/utils.js"></script>
+
+  <script>
+  function onPageLoaded() {
+    var codetable = document.getElementById('codetable');
+    buildEncodingTable(codetable);
+  }
+
+  var encoding_font_list = [
+  {% for encoding in encoding_list %}"{{encoding.font_name}}",{% endfor %}
+  ];
+
+  var unicode_font_list = [
+  {% for font in unicode_list %}"{{font.family}}",{% endfor %}
+  ];
+
+  var combining_chars = [
+  {% for char in combiners %}char.toString(16){% endfor %}
+  ];
+
+function buildDiacritics(table) {
+
+  var baseChar = 0x11107.toString(16);
+
+  var fontsize="14px";
+  var code;
+  // Update headers.
+  var header = table.createTHead();
+  var row = header.insertRow(0);
+  for (var i = 0 ; i < combining_chars.length; i ++) {
+    row.insertCell(outIndex).innerHTML = combiners[i];
+  }
+
+  var outIndex = 2;
+
+    var row = table.rows[0];
+    row.insertCell(outIndex).innerHTML = map_encoding_names[i];
+    outIndex += 1;
+    row.insertCell(outIndex).innerHTML = map_encoding_names[i] +
+               " to " +unicode_font_list[0];
+    outIndex += 1;
+  }
+  code_list = [];
+  for (code in private_use_map_combined) {
+    code_list.push(code);
+  }
+  code_list.sort();
+
+  for (var i = 0 ; i < combining_chars.length; i ++) {
+    var combiner_row = combining_chars[i];
+    var row = table.insertRow(rowNum);
+    var items = private_use_map_combined[code];
+
+    var cell1 = row.insertCell(0);
+    var cell2 = row.insertCell(1);
+    cell1.innerHTML = "0x" + code.charCodeAt(0).toString(16);
+    cell2.innerHTML = code;
+
+    // Add coded output.
+    var outIndex = 2;
+    for (var i = 0; i<combining_chars.length; i ++) {
+      var combiner_col = combining_chars[i];
+      var cell = row.insertCell(outIndex);
+      cell.innerHTML = baseChar + combiner_row + combiner_col;
+      var fontString = encoding_font_list[i];
+      cell.style.fontFamily = fontString;
+      outIndex += 1;
+    }
+   rowNum += 1;
+  }
+}
+  </script>
+</head>
+
+
+<body onload="onPageLoaded();">
+
+  <h1>{{language}} encoding converters to Unicode</h1>
+  <p>This table gives the code points and characters shown in several
+    font encodings for {{language}}. Conversions to Unicode appear for each entry.
+  <p>Hint: hover over the Unicode conversions for the hex code points (UTF-16).
+  <table id='codetable' border="1">
+  </table>
+
+</body>
+</html>
