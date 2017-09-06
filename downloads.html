@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8"/>
 
-  <title>Download Osage resources</title>
+  <title>Download {{language}} resources</title>
 
   <link rel="stylesheet" href="/css/blueprint/screen.css" type="text/css" media="screen">
   <link rel="stylesheet" href="/css/blueprint/print.css" type="text/css" media="print"> 
@@ -30,8 +30,6 @@
   <script src="/js/osage_utils.js"></script>
   <script>
 
- 
-  
   function toggle(id, toggle) {
     var obj = document.getElementById(id);
     var checkBox = document.getElementById(toggle);
@@ -53,44 +51,19 @@
   <div class="container">
     <div class="span-1">  
     </div>
-  <div class="span-16">
-    <h1>Download tools</h1>
+  <div class="span-16 last">
+    <h1>Download {{language}} fonts</h1>
 
     <ul>
+      {% for font in unicode_font_list %}
       <li>
-        <a href="/download/keyboardGeneric.zip" download
-          class="keyboardGeneric">keyboardGeneric.zip</a>
-    </li>
-
-<!--          <li>
-        <a href="/download/keyboardTemplate.html" download
-          class="keyboardTemplate">keyboardTemplate.html</a>
-    </li>
-    <li>
-        <a href="/js/vk-debug.js" download
-          class="vk-debug">vk-debug.js</a>
-    </li>
-    <li>
-      <a href="/layouts/en.js" download
-        class="en">en.js(Layout file)</a>
-    </li>
-    <li>
-      <a href="/css/keyboard.css" download
-        class="keyboard">keyboard.css</a>
-    </li>
--->
+        <a href="{{font.source}}" download
+           style="font-family:{{font.family}};font-size:24px;">{{font.longName}} ({{language_native}})</a>
+      </li>
+      {% endfor %}
     </ul>
-  </div>
-  <div class="span-4 last">
-    <!--
-    <h3>Useful links</h3>
-      <ul>
-        <li><a href='link'>My link</a>
-        </li>
-        
-      </ul>
-      -->
-    </div>
+
+  </div> <!-- span-16 -->
   </div> <!-- container -->
 
 </body>

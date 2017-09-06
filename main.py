@@ -253,6 +253,7 @@ app = webapp2.WSGIApplication([
 
     ('/demo_ccp/', chakma.ChakmaIndigenousHomeHandler),
     ('/ccp/convertUI/', chakma.ChakmaConvertUIHandler),
+    ('/ccp/downloads/', chakma.ChakmaDownloads),
     ('/ccp/converter/', chakma.ChakmaConvertHandler),
     ('/ccp/encodingRules/', chakma.ChakmaEncodingRules),
 

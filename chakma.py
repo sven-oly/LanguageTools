@@ -26,6 +26,9 @@ import webapp2
 
 from google.appengine.ext.webapp import template
 
+Language = 'Chakma'
+Language_native = '𑄌𑄋𑄴𑄟𑄳𑄦'
+
 encoding_font_list = [
     {
       'font_path':'/fonts/ArjCN__.TTF',
@@ -45,13 +48,17 @@ encoding_font_list = [
 ]
 
 unicode_font_list = [
-  { 'family': 'RibengUni',
+  { 'family': 'RibengUni_20170814',
     'longName': 'Ribeng Uni',
     'source': '/fonts/RibengUni-Regular_20170814.ttf',
   },
   { 'family': 'NotoSansChakma',
     'longName': 'NotoSans Chakma',
     'source': '/fonts/NotoSansChakma-Regular.ttf',
+  },
+  { 'family': 'extendedNotoSansChakma',
+    'longName': 'extended NotoSans Chakma',
+    'source': '/fonts/extendedNotoSansChakma-Regular.ttf',
   },
 ]
 
@@ -63,6 +70,9 @@ links = [
      'ref': '/ccp/convertUI/'},
     {'linkText': 'Font conversion summary',
       'ref': '/ccp/encodingRules/'
+    },
+    {'linkText': 'Resources',
+      'ref': '/ccp/downloads/'
     },
     {'linkText': 'Unicode',
     'ref': 'http://unicode.org/charts/PDF/U11100.pdf'
@@ -245,6 +255,18 @@ class ChakmaRenderPage(webapp2.RequestHandler):
         'links': links,
       }
       path = os.path.join(os.path.dirname(__file__), 'renderCombos.html')
+      self.response.out.write(template.render(path, template_values))
+
+
+class ChakmaDownloads(webapp2.RequestHandler):
+    def get(self):
+
+      template_values = {
+          'language': Language,
+          'language_native': Language_native,
+          'unicode_font_list': unicode_font_list,
+      }
+      path = os.path.join(os.path.dirname(__file__), 'downloads.html')
       self.response.out.write(template.render(path, template_values))
 
 
