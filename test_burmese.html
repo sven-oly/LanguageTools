@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<!-- saved from url=(0052)https://x20web.corp.google.com/~shuchen/vk/demo.html -->
+<html>
+  <head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <link rel="stylesheet" href="/css/blueprint/screen.css" type="text/css" media="screen">
+  <link rel="stylesheet" href="/css/blueprint/print.css" type="text/css" media="print">
+  <!--[if lt IE 8]>
+    <link rel="stylesheet" href="/css/blueprint/ie.css" type="text/css" media="screen, projection">
+  <![endif]-->
+
+  <link rel="stylesheet" type="text/css" href="/css/fonts.css">
+  <link rel="stylesheet" type="text/css" href="/css/keyboard.css">
+
+  <style>
+    /* Font encoding */
+    @font-face{
+      font-family:'Zawgyi';
+      src:url('http://zawgyi-unicode-test.appspot.com/fonts/ZawgyiOne.ttf');
+      font-weight:normal;
+      font-style:normal;
+      font-size:32px;
+    }
+    @font-face{
+      font-family:'NotoSansMyanmar';
+      src:url('http://zawgyi-unicode-test.appspot.com/fonts/NotoSansMyanmar-Regular.ttf');
+      font-weight:normal;
+      font-style:normal;
+      font-size:32px;
+    }
+    .zawgyi {
+      font-family: 'Zawgyi';
+      font-size: 32px;
+    }
+    .unicode {
+      font-family: 'NotoSansMyanmar';
+      font-size: 32px;
+    }
+
+    textarea {
+    font-size:24px;
+    width: 600px;
+    height: 200px;
+    }
+  </style>
+
+  <script src="/js/utils.js"></script>
+
+  </head>
+  <body>
+  <div class="container">
+    <div class="span-1">
+    </div>
+
+    <div class="span-16">
+    <h2>Test Burmese font</h2>
+
+    <textarea id="t1" dir="ltr" class="zawgyi" cols="80" rows="10">
+    {{ztext}}</textarea>
+    <br />
+
+    <textarea id="t1" dir="ltr" class="unicode" cols="80" rows="10">
+    {{utext}}</textarea>
+  </div>
+
+
+  </div>
+  </div> <!-- container -->
+
+</body></html>
