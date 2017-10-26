@@ -16,8 +16,6 @@
 # limitations under the License.
 #
 
-import chakma
-
 import translit
 
 import json
@@ -109,42 +107,6 @@ class MyanmarIndigenousHomeHandler(webapp2.RequestHandler):
         'kb_list': lang_list,
       }
       path = os.path.join(os.path.dirname(__file__), 'demo_myanmar.html')
-      self.response.out.write(template.render(path, template_values))
-
-class ChakmaIndigenousHomeHandler(webapp2.RequestHandler):
-    def get(self):
-      font_list = [
-        { 'family': 'NotoSansChakma',
-          'longName': 'NotoSans Chakma',
-          'source': '/fonts/NotoSansChakma-Regular.ttf',
-        },    
-        { 'family': 'RibengUni',
-          'longName': 'RibengUni',
-          'source': '/fonts/RibengUni-Regular_20170814.ttf',
-        },
-      ]
-      kb_list = [
-        {'shortName':  'ccp',
-         'longName': 'Chakma'
-        }
-      ]
-      links = [
-        {'linkText': 'Chakma Unicode',
-         'ref': 'http://unicode.org/charts/PDF/U11100.pdf'
-         },
-         {'linkText': 'Chakma Language',
-         'ref': 'https://en.wikipedia.org/wiki/Chakma_language'
-         },
-         ]
-      template_values = {
-        'langlist': LanguageList,
-        'language': 'Chakma',
-        'font_list': font_list,
-        'lang_list': None,
-        'kb_list': kb_list,
-        'links': links,
-      }
-      path = os.path.join(os.path.dirname(__file__), 'demo_general.html')
       self.response.out.write(template.render(path, template_values))
 
 class TaiLanguagesHomeHandler(webapp2.RequestHandler):
@@ -240,23 +202,17 @@ class DownloadKBText(webapp2.RequestHandler):
 
 app = webapp2.WSGIApplication([
     ('/', MainHandler),
-    ('/demo_bo/', TibetanHomeHandler),
-    ('/demo_tmh/', TamashekHomeHandler),
-    ('/demo_omq/', OtomangueanHomeHandler),
-    ('/demo_myanmar/', MyanmarIndigenousHomeHandler),
-    ('/demo_en_anangu/', AnanuguYolnguHomeHandler),
+    ('/bo/', TibetanHomeHandler),
+    ('/tmh/', TamashekHomeHandler),
+    ('/omq/', OtomangueanHomeHandler),
+    ('/myanmar/', MyanmarIndigenousHomeHandler),
+    ('/en_anangu/', AnanuguYolnguHomeHandler),
 
     ('/downloads/', Downloads),
     ('/downloadsTest/', DownloadKBText),
     ('/transliterate/', translit.TranslitUIHandler),
     ('/dotransliterate/', translit.DoTranslitHandler),
 
-    ('/demo_ccp/', chakma.ChakmaIndigenousHomeHandler),
-    ('/ccp/convertUI/', chakma.ChakmaConvertUIHandler),
-    ('/ccp/downloads/', chakma.ChakmaDownloads),
-    ('/ccp/converter/', chakma.ChakmaConvertHandler),
-    ('/ccp/encodingRules/', chakma.ChakmaEncodingRules),
-
-    ('/demo_tai/', TaiLanguagesHomeHandler),
+    ('/tai/', TaiLanguagesHomeHandler),
 
 ], debug=True)

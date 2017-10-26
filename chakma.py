@@ -64,7 +64,7 @@ unicode_font_list = [
 
 links = [
     {'linkText': 'Keyboard',
-     'ref': '/demo_ccp/'
+     'ref': '/ccp/'
     },
     {'linkText': 'Converter',
      'ref': '/ccp/convertUI/'},
@@ -287,3 +287,11 @@ def chakmaCombiningCombos(baseHexChar):
       testString += baseHexChar + c0 + c1 + ' '
     testString += '\u000a'
   return testString
+
+app = webapp2.WSGIApplication([
+    ('/ccp/', ChakmaIndigenousHomeHandler),
+    ('/ccp/convertUI/', ChakmaConvertUIHandler),
+    ('/ccp/downloads/', ChakmaDownloads),
+    ('/ccp/converter/', ChakmaConvertHandler),
+    ('/ccp/encodingRules/', ChakmaEncodingRules),
+], debug=True)

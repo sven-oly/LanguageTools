@@ -28,6 +28,9 @@ handlers:
 - url: /test/*
   script: test.app
 
+- url: /ccp/*
+  script: chakma.app
+
 - url: .*
   script: main.app
 
