@@ -23,7 +23,7 @@ var AHO_LAYOUT = {
             '{{\ud805\udf39}}{{\ud805\udf30}}-=' +
           '{{\ud805\udf2b}}{{}}{{\u200c\ud805\udf26}}{{\ud805\udf0d}}' +
             '{{\ud805\udf04}}{{\ud805\udf0a}}{{\ud805\udf25}}{{\ud805\udf22}}' +
-            '{{\ud805\udf28}}{{\ud805\udf06}}{{\ud805\udf08}}{{\ud805\udf27}}\\' +
+            '{{\ud805\udf28}}{{\ud805\udf06}}{{\ud805\udf02}}{{\ud805\udf27}}\\' +
           '{{\ud805\udf21}}{{\ud805\udf0f}}{{\ud805\udf13}}{{\ud805\udf07}}' +
             '{{\ud805\udf16}}{{\ud805\udf11}}{{\ud805\udf29}}{{\ud805\udf00}}' +
             '{{\ud805\udf0e}}{{\ud805\udf20}}\'' +
