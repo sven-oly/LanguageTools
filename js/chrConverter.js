@@ -1,20 +1,69 @@
-// Convert from old font-encoding Anangu/Yolngu text to Unicode forms:
+// Convert from old font-encoding of Cherokee text to Unicode forms:
 
-// Mappings for both arjyban, sujoyan, alaam, etc. encodings.
+// Mappings for both Old Cherokee font
 var map_encoding_names = [
-  'Arjyban', 'Sujoyan', 'Alaam'];
+  'OldCherokee'];
 
 var private_use_map_combined = {
-  '\u0000': ['\u0020', '\u0000', '\u0000'],  // null
-  '\u0009': ['\u0009', '\u0009'],  // horizontal tab
-  '\u000D': ['\u000D', '\u0000'],  // Carriage return
-  '\u0020': [' ', ' ', ' '],  // Space
-  '\u0023': ['\uD804\uDD42', '\u003b', '\uD804\uDD33\uD804\uDD05'],  // #
-  '\u0024': ['\uD804\uDD41', ' ', '\uD804\uDD14'],  // $
-  '\u0025': ['\u0025', '\u0025', '\ud804\udd33\ud804\udd22\ud804\udd2a'],  // %
-  '\u0026': ['\uD804\uDD00', '\u0026'],  // &
+  '\u0000': ['\u0000', '\u0000', '\u0000'],  // null
+  '\u0001': ['\u0020', '\u0000', '\u0000'],  // null
+  '\u0002': ['\u0020', '\u0000', '\u0000'],  // null
+  '\u0003': ['\u0020', '\u0000', '\u0000'],  // null
+  '\u0004': ['\u1eb1', '\u0000', '\u0000'],  // null
+  '\u0005': ['\u0022', '\u0000', '\u0000'],  // null
+  '\u0006': ['\u13c7', '\u0000', '\u0000'],  // null
+  '\u0007': ['\u13b0', '\u0000', '\u0000'],  // null
+  '\u0008': ['\u13b9', '\u0000', '\u0000'],  // null
+  '\u0009': ['\u13e1', '\u0009'],  // horizontal tab
+  '\u000a': ['\u0027', '\u0000'],  // Carriage return
+  '\u000b': ['\u0028', '\u0000'],  // Carriage return
+  '\u000c': ['\u0029', '\u0000'],  // Carriage return
+  '\u000d': ['\u13ba', '\u0000'],  // Carriage return
+  '\u000e': ['\u138d', '\u0000'],  // Carriage return
+  '\u000f': ['\u002c', '\u0000'],  // Carriage return
+
+  '\u0010': ['\u0010', '\u0010', '\u0010'],  // TODO!
+  '\u0011': ['\u002e', '\u0010', '\u0010'],  // null
+  '\u0012': ['\u1ec7', '\u0010', '\u0010'],  // null
+  '\u0013': ['\u13c4', '\u0010', '\u0010'],  // null
+  '\u0014': ['', '\u0010', '\u0010'],  // Tsa La Gi
+  '\u0015': ['', '\u0010', '\u0010'],  // Osiyo
+  '\u0016': ['', '\u0010', '\u0010'],  // Wado
+  '\u0017': ['\u13d9', '\u0010', '\u0010'],  // null
+  '\u0018': ['\u13e6', '\u0010', '\u0010'],  // null
+  '\u0019': ['\u13dc', '\u0019'],  // horizontal tab
+  '\u001a': ['\u13cb', '\u0010'],  // Carriage return
+  '\u001b': ['\u13d6', '\u0010'],  // Carriage return
+  '\u001c': ['\u13d2', '\u0010'],  // Carriage return
+  '\u001d': ['\u13e0', '\u0010'],  // Carriage return
+  '\u001e': ['\u13e8', '\u0010'],  // Carriage return
+  '\u001f': ['\u13e2', '\u0000'],  // Carriage return
+
+  '\u0020': ['\u13e3', ' ', ' '],  // Space
+  '\u0021': ['\u13b4', ' ', ' '],  // Space
+  '\u0022': ['\u13c9 ', ' ', ' '],  // Space
+  '\u0023': ['\u13ef', '\u003b', '\uD804\uDD33\uD804\uDD05'],  // #
+  '\u0024': ['\u13cc', ' ', '\uD804\uDD14'],  // $
+  '\u0025': ['\u13f0', '\u0025', '\ud804\udd33\ud804\udd22\ud804\udd2a'],  // %
+  '\u0026': ['\u13df', '\u0026'],  // &
+
+  // TODO: Finish
   '\u0027': ['\u0027', '\u0027', '\u0027'],  // '
+  '\u0028': ['\uD804\uDD33\uD804\uDD23', '\u0000',
+	     '\uD804\uDD33\uD804\uDD05'],  // *
+  '\u0029': ['\uD804\uDD33\uD804\uDD23', '\u0000',
+	     '\uD804\uDD33\uD804\uDD05'],  // *
   '\u002a': ['\uD804\uDD33\uD804\uDD23', '\u0000',
+	     '\uD804\uDD33\uD804\uDD05'],  // *
+  '\u002b': ['\uD804\uDD33\uD804\uDD23', '\u0000',
+	     '\uD804\uDD33\uD804\uDD05'],  // *
+  '\u002c': ['\uD804\uDD33\uD804\uDD23', '\u0000',
+	     '\uD804\uDD33\uD804\uDD05'],  // *
+  '\u002d': ['\uD804\uDD33\uD804\uDD23', '\u0000',
+	     '\uD804\uDD33\uD804\uDD05'],  // *
+  '\u002e': ['\uD804\uDD33\uD804\uDD23', '\u0000',
+	     '\uD804\uDD33\uD804\uDD05'],  // *
+  '\u0024': ['\uD804\uDD33\uD804\uDD23', '\u0000',
 	     '\uD804\uDD33\uD804\uDD05'],  // *
   '\u0030': ['\uD804\uDD36', '\uD804\uDD36', '\uD804\uDD36'],  // 0
   '\u0031': ['\uD804\uDD37', '\uD804\uDD37', '\uD804\uDD37'],  // 1
@@ -72,156 +121,14 @@ var private_use_map_combined = {
   '\u0062': ['\uD804\uDD1d', '\uD804\uDD25', '\ud804\udd1a'],  // b
   '\u0063': ['\uD804\uDD0c', '\uD804\uDD0d', '\ud804\udd1b'],  // c
   '\u0064': ['\uD804\uDD18', '\uD804\uDD1e', '\ud804\udd1c'],  // d
-  '\u0065': ['\uD804\uDD28', '\uD804\uDD1b', '\ud804\udd1d'],  // e
-  '\u0066': ['\uD804\uDD1c', '\uD804\uDD0b', '\ud804\udd1e'],  // f
-  '\u0067': ['\uD804\uDD09', '\uD804\uDD1a', '\ud804\udd1f'],  // g
-  '\u0068': ['\uD804\uDD26', '\uD804\uDD22', '\ud804\udd21'],  // h
-  '\u0069': ['\uD804\uDD27', '\uD804\uDD1c', '\ud804\udd22'],  // i
-  '\u006a': ['\uD804\uDD0e', '\uD804\uDD1d', '\ud804\udd23'],  // j
-  '\u006b': ['\uD804\uDD07', '\uD804\uDD0c', '\ud804\udd33\ud804\udd26'],  // k
-  '\u006c': ['\uD804\uDD23', '\uD804\uDD26\uD804\uDD33\uD804\uDD23',
-	     '\ud804\udd33\ud804\udd1a'],  // l
-  '\u006d': ['\uD804\uDD1f', '\uD804\uDD0a', '\ud804\udd25'],  // m
-  '\u006e': ['\uD804\uDD1a', '\uD804\uDD20', '\ud804\udd26'],  // n
-  '\u006f': ['\uD804\uDD2e', '\uD804\uDD16', '\ud804\udd24'],  // o
-  '\u0070': ['\uD804\uDD1b', '\uD804\uDD08', '\ud804\udd05'],  // p
-  '\u0071': ['\uD804\uDD11', '\uD804\uDD03', '\ud804\udd20'],  // q
-  '\u0072': ['\uD804\uDD22', '\uD804\uDD09', '\uD804\uDD26\uD804\uDD33\uD804\uDD23'],  // r
-  '\u0073': ['\uD804\uDD25', '\uD804\uDD0e', '\ud804\udd01'],  // s
-  '\u0074': ['\uD804\uDD16', '\uD804\uDD23', '\ud804\udd02'],  // t
-  '\u0075': ['\uD804\uDD2a', '\uD804\uDD18', '\ud804\udd03'],  // u
-  '\u0076': ['\uD804\uDD1e', '\uD804\uDD17', '\ud804\udd27'],  // v
-  '\u0077': ['\uD804\uDD24', '\uD804\uDD19', '\ud804\udd28'],  // w
-  '\u0078': ['\uD804\uDD13', '\uD804\uDD11', '\ud804\udd29'],  // x
-  '\u0079': ['\uD804\uDD20', '\uD804\uDD0f', '\uD804\uDD2a'],  // y
-  '\u007a': ['\uD804\uDD21', '\uD804\uDD14', '\uD804\uDD2a'],  // z
-  '\u007c': ['\uD804\uDD33\ud804\udd03', '\uD804\uDD41', '\uD804\uDD41'],  // |
-  '\u007e': ['\uD804\uDD02', '~', '\uD804\uDD2b'],  // ~
-  '\u00a1': [' ', ' ', '\ud804\udd1d'],
-  '\u00a2': [' ', ' ', '\ud804\udd1e'],
-  '\u00a3': [' ', '\ud804\udd1a\ud804\udd33\ud804\udd1a',
-	     '\ud804\udd1e'],  // registered TM symbol
-  '\u00a4': [' ', ' ', '\ud804\udd1f'],
-  '\u00a5': [' ', ' ', '\ud804\udd20'],
-  '\u00a6': [' ', ' ', '\ud804\udd1d'],
-  '\u00a7': [' ', ' ', '\ud804\udd07'],
-  '\u00a8': [' ', ' ', '\ud804\udd33\ud804\udd20'],
-  '\u00a9': [' ', ' ', '\ud804\udd31'],  // Copyright
-  '\u00aa': [' ', ' ', '\ud804\udd33\ud804\udd22'],
-  '\u00ab': [' ', ' ', '\ud804\udd33\ud804\udd22'],
-  '\u00ac': [' ', ' ', '\ud804\udd01\ud804\udd28'],
-  '\u00ae': [' ', '\ud804\udd29'],  // registered Circle
-  '\u00af': [' ', ' ', '\ud804\udd25'],  // registered Circle
-  '\u00b0': ['', ' ', '\ud804\udd07' ],
-  '\u00b1': ['', ' ', '\ud804\udd07' ],
-  '\u00b2': ['', ' ', '\ud804\udd21' ],    // TODO!
-  '\u00b3': ['', ' ', '<' ],
-  '\u00b4': ['', '\uD804\uDD34'],  // accute accent ? Should this be under?
-  '\u00b5': ['', '\uD804\udd33\uD804\udd16', '\ud804\udd07' ],  // micro sign
-  '\u00b6': ['', ' ', '\uD804\udd06\uD804\udd33\uD804\udd06'],
-  '\u00b7': ['', ' ', '\ud804\udd07' ],  // micro sign
-  '\u00b8': [' ', ' ', '\ud804\udd09'],
-  '\u00ba': [' ', ' ', '\ud804\udd2a\ud804\udd33\ud804\udd26'],
-  '\u00be': [' ', ' ', '\ud804\udd40'],
-  '\u00bf': [' ', ' ', '\ud804\udd16'],
-  '\u00c1': [' ', ' ', '\ud804\udd33\ud804\udd26'],
-  '\u00c5': ['', '\uD804\udd10'],  // A ring
-  '\u00c7': ['', '\uD804\udd15'],  // C cedilla
-  '\u00c9': [' ', ' ', '\u00f7'],  // Division
-  '\u00cb': [' ', ' ', '>'],
-  '\u00cc': [' ', ' ', '\ud804\udd17'],
-  '\u00cd': [' ', ' ', '\ud804\udd0e'],
-  '\u00ce': [' ', ' ', '\ud804\udd16'],
-  '\u00cf': [' ', ' ', '\ud804\udd16'],
-  '\u00ce': [' ', ' ', '\ud804\udd16'],
-  '\u00d0': [' ', ' ', '-'],
-  '\u00d1': [' ', ' ', '\ud804\udd40'],
-  '\u00d2': [' ', ' ', '\"'],
-  '\u00d3': ['', '', '\uD804\udd42'],  //
-  '\u00d4': ['', '', ';'],  //
-  '\u00d5': ['', '', '\''],  //
-  '\u00d6': [' ', ' ', '\ud804\udd33\ud804\udd22'],
-  '\u00d8': [' ', ' ', '\ud804\udd28\ud804\udd34'],
-  '\u00d9': ['', '\uD804\udd2b', '\uD804\udd43'],
-  '\u00da': ['', '\uD804\udd2b', '\uD804\udd10'],
-  '\u00db': ['', '\uD804\udd2b'],  // TODO!
-  '\u00dc': ['', '\uD804\udd2b', '\uD804\udd04'],
-  '\u00de': ['', '\uD804\udd00\ud804\udd02', '\uD804\udd02\ud804\udd00'],
-  '\u00df': ['', '\uD804\udd2b', '\u00d7'],  // multiplication
-
-  '\u00e0': ['', '\uD804\udd0c\ud804\udd33\uD804\udd07',
-	     '\ud804\udd33\ud804\udd05'],
-  '\u00e1': ['', '\uD804\udd0c\ud804\udd33\uD804\udd07',
-	    '\ud804\udd2a\ud804\udd33\ud804\udd22'],  //
-  '\u00e2': ['', '\uD804\udd0c\ud804\udd33\uD804\udd1c',
-	    '\uD804\udd28\ud804\udd02'],  //
-  '\u00e3': ['', '\uD804\udd0c\ud804\udd33\uD804\udd1f', '\uD804\udd0d'],
-  '\u00e4': ['', '\uD804\udd0c\ud804\udd33\uD804\udd16', '\ud804\udd15'],
-  '\u00e5': ['', '\uD804\udd0c\ud804\udd33\uD804\udd17',
-	    '\ud804\udd1e'],  //
-  '\u00e6': ['', ' ', '\ud804\udd28'],
-  '\u00e7': ['', ' ', '\ud804\udd11'],
-  '\u00e8': ['', '\uD804\udd28\uD804\udd34', '\ud804\udd1a'],  // A with ring
-  '\u00e9': ['', ' ', '\ud804\udd01\ud804\udd00'],  //
-  '\u00ea': ['', '\uD804\udd06'],  //
-  '\u00eb': ['', '\uD804\udd06\uD804\udd33\uD804\udd06',
-	     '\ud804\udd01\ud804\udd28'],
-  '\u00ec': ['', '\uD804\udd07\ud804\udd33\uD804\udd08', ' '],  // TODO
-  '\u00ed': ['', '\uD804\udd07\ud804\udd33\uD804\udd07', ' '],  // TODO
-  '\u00ee': ['', '\uD804\udd07\ud804\udd33\uD804\udd0c', '\uD804\udd23'],  //
-  '\u00ef': ['', '\uD804\udd07\ud804\udd33\uD804\udd0d', ' '],  // TODO
-
-  '\u00f0': ['', ' ', '\uD804\udd0f'],
-  '\u00f1': ['', '\uD804\udd07\ud804\udd33\uD804\udd0e', '\uD804\udd22'],
-  '\u00f2': ['', '\uD804\udd07\ud804\udd33\uD804\udd12', '%'],  //
-  '\u00f3': ['', '\uD804\udd07\ud804\udd33\uD804\udd0f', '\uD804\udd21'],  //
-  '\u00f4': ['', '\uD804\udd07\ud804\udd33\uD804\udd16', ' '],  //
-  '\u00f5': ['', '\uD804\udd07\ud804\udd33\uD804\udd23', '\uD804\udd12'],  //
-  '\u00f6': ['', '\uD804\udd07\ud804\udd33\uD804\udd17', '\uD804\udd11'],  //
-  '\u00f7': ['', ' ', '\uD804\udd11'],
-  '\u00f8': ['', ' ', '\uD804\udd28\ud804\udd00'],
-  '\u00f9': ['', '\uD804\udd0c\ud804\udd33\uD804\udd0c', '\uD804\udd25'],
-
-  '\u00fa': ['', '\uD804\udd0c\ud804\udd33\uD804\udd25', '\uD804\udd1b'],
-  '\u00fb': ['', '\uD804\udd16\ud804\udd33\uD804\udd16', '\ud804\udd26'],
-  '\u00fc': ['', '\uD804\udd1b\ud804\udd33\uD804\udd1b', '\ud804\udd26'],
-  '\u00fd': ['', ' ', '\ud804\udd26'],  //
-  '\u00fe': ['', ' ', '\u00d7'],  //
-  '\u00ff': ['', '\uD804\udd20', '\uD804\udd06\uD804\udd33\uD804\udd06'],
-
-  '\u0152': [' ', '~', '\uD804\uDD07'],
-  '\u0153': [' ', '~', '\uD804\uDD1a'],
-  '\u0160': [' ', '~', '\uD804\uDD2f'],
-  '\u0160': [' ', '~', '\uD804\uDD2f'],
-  '\u0178': [' ', '~', '\uD804\uDD1d'],
-  '\u017d': [' ', '~', '\u00d7'],
-  '\u017e': [' ', '~', '\ud804\udd04'],
-  '\u0192': [' ', '~', '\uD804\uDD2b'],
-
-  '\u02c6': [' ', ' ', '\uD804\uDD2e'],
-
-  '\u2013': [' ', '~', '\uD804\uDD2a'],
-  '\u2014': [' ', ' ', ' '],
-  '\u2018': [' ', '~', '\uD804\uDD16'],
-  '\u2019': [' ', ' ', ' '],
-  '\u201a': [' ', '~', '\uD804\uDD2b'],
-  '\u201c': [' ', '~', '\uD804\uDD2a'],
-  '\u201d': [' ', ' ', '\uD804\uDD2c'],
-  '\u201e': [' ', ' ', '\uD804\uDD2d'],
-  '\u2020': [' ', ' ', '\uD804\uDD2c'],
-  '\u2021': [' ', ' ', '\uD804\uDD2c'],
-  '\u2022': [' ', '\uD804\uDD32', '\ud804\udd0b'],
-  '\u2026': [' ', ' ', '\uD804\uDD2d'],
-  '\u2030': [' ', ' ', '\uD804\uDD30'],
-  '\u2039': [' ', ' ', '\uD804\uDD07'],
-  '\u203a': [' ', ' ', ' '],
-  '\u203c': [' ', ' ', ' '],
-  '\u20ac': [' ', ' ', '\u00f7'], // division
-  '\u2122': ['\u0000', '\uD804\uDD33\ud804\udd26\ud804\udd31', ' '],
-  '\u2202': ['\u0000', '\ud804\udd33\ud804\udd0c'],
-  '\u2260': ['\u0000', '\u25cc'], // ≠ --> "dotted circle"
 
 };
+
+function toLower(instring) {
+  // If code in range 13a0-1eef, add ab70-13a0
+  // If code in range 1ef0-1ef5, add 8
+  return instring.toLowerCase();  // Check if this actually works for CHR.
+}
 
 function convertEncodingToUnicode(inbox, outbox, encodingIndex) {
   var inarea = document.getElementById(inbox);
@@ -242,84 +149,6 @@ function convertEncodingToUnicode(inbox, outbox, encodingIndex) {
     }
     outtext += out;
   }
-
-  // Next, move some code points in context to get proper Unicode ordering.
-  // Vowel sign to right of consonants:
-  ePattern = /\uD804\uDD2c\uD804([\uDD03-\uDD26])/gi;
-  eReplace = "\uD804$1\uD804\uDD2c";
-  var newText = outtext.replace(ePattern, eReplace);
-
-  // Move the eVowel over a virama.
-  viramaEPattern = /\ud804([\udd01\udd27-\udd34])\ud804\udd33\ud804([\uDD03-\uDD26])/gi;
-  viramaEReplace = "\ud804\udd33\ud804$2\ud804$1";
-  var result = newText.search(viramaEPattern);
-  while (result >= 0) {
-    newText = newText.replace(viramaEPattern, viramaEReplace);
-    result = newText.search(viramaEPattern);
-  }
-
-  dotPattern = /\ud804([\udd41\udd42])\ud804\udd01/gi;
-  dotReplace = "\ud804\udd01\ud804$1";
-  newText = newText.replace(dotPattern, dotReplace);
-
-  // Replace CHAKMA VOWEL SIGN O + CHAKMA VOWEL SIGN AI with
-  //    CHAKMA VOWEL SIGN OI + CHAKMA O MARK
-  oIPattern = /\ud804\udd2e\ud804\udd2d/gi;
-  oIReplace = "\ud804\udd30\ud804\udd31";
-  newText = newText.replace(oIPattern, oIReplace);
-
-  // Replace
-  //
-  uIPattern = /\ud804\udd2a\ud804\udd2d/gi;
-  uIReplace = "\ud804\udd2d\ud804\udd2a";
-  newText = newText.replace(uIPattern, uIReplace);
-
-  // Replace
-  //
-  iZPattern = /\ud804\udd27\ud804\udd33\ud804\udd20/gi;
-  iZReplace = "\ud804\udd33\ud804\udd20\ud804\udd27";
-  newText = newText.replace(iZPattern, iZReplace);
-
-  iGraveZPattern = /\ud804\udd27\ud804\udd01\ud804\udd33\ud804\udd20/gi;
-  iGraveZReplace = "\ud804\udd33\ud804\udd20\ud804\udd27\ud804\udd01";
-  newText = newText.replace(iGraveZPattern, iGraveZReplace);
-
-  deRPattern = /\ud804\udd28\ud804\udd33\ud804\udd22/gi;
-  deRReplace = "\ud804\udd33\ud804\udd22\ud804\udd28";
-  newText = newText.replace(deRPattern, deRReplace);
-
-  // Reorder with 11101.
-  onePattern = /\ud804\udd01\ud804([\udd28])/gi;
-  oneReplace = "\ud804$1\ud804\udd01";
-  newText = newText.replace(onePattern, oneReplace);
-
-
-  // Fix some modifiers after a space, newline or left parent.
-  spaceModPattern = /([\u000a\u0020]|\u0020\u0040)\ud804([\udd00\udd27-\udd34])/gi;
-  spaceModReplace = "\ud804$2$1";
-  newText = newText.replace(spaceModPattern, spaceModReplace);
-
-  // Fix some virama followed by space or new line.
-  viramaSpacePattern = /\ud804\udd33([\u000a\u0020])\ud804([\udd05])/gi;
-  viramaSpaceReplace = "\ud804\udd33\ud804$2$1";
-  newText = newText.replace(viramaSpacePattern, viramaSpaceReplace);
-
-  // Space modifier space
-  spaceModSpacePattern = /\u0020\ud804([\udd00])\u0020/gi;
-  spaceModSpaceReplace = "\ud804$1\u0020";
-  newText = newText.replace(spaceModSpacePattern, spaceModSpaceReplace);
-
-  // Virama pattern after space.
-  spaceModSpacePattern = /\u0020\ud804\udd33\ud804([\uDD03-\uDD26])/gi;
-  spaceModSpaceReplace = "\ud804\udd33\ud804$1\u0020";
-  newText = newText.replace(spaceModSpacePattern, spaceModSpaceReplace);
-
-  // Diacritics 131 before 130 space.
-  spaceModSpacePattern = /\ud804\udd31\ud804\udd30/gi;
-  spaceModSpaceReplace = "\ud804\udd30\ud804\udd31";
-  newText = newText.replace(spaceModSpacePattern, spaceModSpaceReplace);
-
-  // TODO: Run some reorderings again, e.g., 11131 11127
 
   if (outarea) {
     outarea.innerHTML = outarea.value = newText;
