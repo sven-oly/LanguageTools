@@ -64,7 +64,7 @@ unicode_font_list = [
 
 links = [
     {'linkText': 'Keyboard',
-     'ref': '/demo_ccp/'
+     'ref': '/ccp/'
     },
     {'linkText': 'Converter',
      'ref': '/ccp/convertUI/'},

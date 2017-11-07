@@ -37,6 +37,9 @@ handlers:
 - url: /chr/.*
   script: cherokee.app
 
+- url: /test/*
+  script: test.app
+
 - url: .*
   script: main.app
 
