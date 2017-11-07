@@ -17,6 +17,7 @@
 #
 
 import chakma
+import cherokee
 
 import translit
 
@@ -35,6 +36,7 @@ LanguageList = [
     (u'A\u1e49angu Yol\u014bu', 'en_anangu', 'Aṉangu-Yolngu'),
     ('Otomanguean phonetic', 'omq'),
     ('Chakma', 'ccp'),
+    ('Cherokee', 'chr'),
     ('Myanmar indigenous', 'myanmar'),
     ('Ahom, Aiton, Khamti', 'tai'),
   ]
@@ -251,11 +253,12 @@ app = webapp2.WSGIApplication([
     ('/transliterate/', translit.TranslitUIHandler),
     ('/dotransliterate/', translit.DoTranslitHandler),
 
-    ('/demo_ccp/', chakma.ChakmaIndigenousHomeHandler),
-    ('/ccp/convertUI/', chakma.ChakmaConvertUIHandler),
-    ('/ccp/downloads/', chakma.ChakmaDownloads),
-    ('/ccp/converter/', chakma.ChakmaConvertHandler),
-    ('/ccp/encodingRules/', chakma.ChakmaEncodingRules),
+
+#    ('/demo_ccp/', chakma.ChakmaIndigenousHomeHandler),
+#    ('/ccp/convertUI/', chakma.ChakmaConvertUIHandler),
+#    ('/ccp/downloads/', chakma.ChakmaDownloads),
+#    ('/ccp/converter/', chakma.ChakmaConvertHandler),
+#   ('/ccp/encodingRules/', chakma.ChakmaEncodingRules),
 
     ('/demo_tai/', TaiLanguagesHomeHandler),
 

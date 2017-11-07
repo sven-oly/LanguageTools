@@ -25,6 +25,18 @@ handlers:
 - url: /download
   static_dir: download
 
+- url: /demo_ccp/*
+  script: chakma.app
+
+- url: /ccp/.*
+  script: chakma.app
+
+- url: /demo_chr/*
+  script: cherokee.app
+
+- url: /chr/.*
+  script: cherokee.app
+
 - url: .*
   script: main.app
 
