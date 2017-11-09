@@ -62,8 +62,8 @@ links = [
 ]
 
 
-# Shows keyboard for Chakma
-class ChrIndigenousHomeHandler(webapp2.RequestHandler):
+# Shows keyboard for Cherokee
+class CherokeeIndigenousHomeHandler(webapp2.RequestHandler):
     def get(self):
 
       kb_list = [
@@ -82,7 +82,7 @@ class ChrIndigenousHomeHandler(webapp2.RequestHandler):
       self.response.out.write(template.render(path, template_values))
 
 # Presents UI for conversions from font encoding to Unicode.
-class ChakmaConvertUIHandler(webapp2.RequestHandler):
+class CherokeeConvertUIHandler(webapp2.RequestHandler):
     def get(self):
 
       # All old characters
@@ -140,7 +140,7 @@ bucZ t JeborM ribo sunelo$ at tirtVire kili"""
       unicodeCombiningChars = chakmaCombiningCombos(u'\ud804\udd07')
       kb_list = [
         {'shortName':  'ccp',
-         'longName': 'Chakma'
+         'longName': 'Cherokee'
         }
       ]
 
@@ -151,7 +151,7 @@ bucZ t JeborM ribo sunelo$ at tirtVire kili"""
           'encodingList': encoding_font_list,
           'encoding': {
               'font_path':'/fonts/ArjCN__.TTF',
-              'font_name':'ChakmaASCII',
+              'font_name':'CherokeeASCII',
           },
           'kb_list': kb_list,
           'unicodeFonts': unicode_font_list,
@@ -167,8 +167,8 @@ bucZ t JeborM ribo sunelo$ at tirtVire kili"""
       path = os.path.join(os.path.dirname(__file__), 'translit_general.html')
       self.response.out.write(template.render(path, template_values))
 
-# AJAX handler for Chakma converter
-class ChakmaConvertHandler(webapp2.RequestHandler):
+# AJAX handler for Cherokee converter
+class CherokeeConvertHandler(webapp2.RequestHandler):
     def get(self):
       # TODO: Get the text values
       # Call transliterator
@@ -195,12 +195,12 @@ class ChakmaConvertHandler(webapp2.RequestHandler):
       self.response.out.write(json.dumps(result))
 
 
-class ChakmaEncodingRules(webapp2.RequestHandler):
+class CherokeeEncodingRules(webapp2.RequestHandler):
     def get(self):
 
       kb_list = [
         {'shortName':  'ccp',
-         'longName': 'Chakma Unicode'
+         'longName': 'Cherokee Unicode'
         }
       ]
       template_values = {
@@ -214,12 +214,12 @@ class ChakmaEncodingRules(webapp2.RequestHandler):
       path = os.path.join(os.path.dirname(__file__), 'fontsView.html')
       self.response.out.write(template.render(path, template_values))
 
-class ChakmaRenderPage(webapp2.RequestHandler):
+class CherokeeRenderPage(webapp2.RequestHandler):
     def get(self):
 
       kb_list = [
         {'shortName':  'ccp',
-         'longName': 'Chakma Unicode'
+         'longName': 'Cherokee Unicode'
         }
       ]
       template_values = {
@@ -234,7 +234,7 @@ class ChakmaRenderPage(webapp2.RequestHandler):
       self.response.out.write(template.render(path, template_values))
 
 
-class ChakmaDownloads(webapp2.RequestHandler):
+class CherokeeDownloads(webapp2.RequestHandler):
     def get(self):
 
       template_values = {
@@ -265,9 +265,9 @@ def chakmaCombiningCombos(baseHexChar):
   return testString
 
 app = webapp2.WSGIApplication([
-  ('/demo_chr/', ChrIndigenousHomeHandler),
-  ('/chr/convertUI/', ChakmaConvertUIHandler),
-  ('/chr/downloads/', ChakmaDownloads),
-  ('/chr/converter/', ChakmaConvertHandler),
-  ('/chr/encodingRules/', ChakmaEncodingRules),
+  ('/demo_chr/', CherokeeIndigenousHomeHandler),
+  ('/chr/convertUI/', CherokeeConvertUIHandler),
+  ('/chr/downloads/', CherokeeDownloads),
+  ('/chr/converter/', CherokeeConvertHandler),
+  ('/chr/encodingRules/', CherokeeEncodingRules),
 ], debug=True)
