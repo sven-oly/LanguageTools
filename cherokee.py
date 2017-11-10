@@ -42,6 +42,11 @@ unicode_font_list = [
     'longName': 'Webster Cherokee',
     'source': '/fonts/Cherokee/WebsterCherokee.ttf',
   },
+  { 'family': 'Digawogvi.ttf',
+    'longName': 'Digawogvi',
+    'source': '/fonts/Cherokee/Digawogvi.ttf',
+  },
+
 ]
 
 links = [
