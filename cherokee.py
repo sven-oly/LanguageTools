@@ -31,7 +31,7 @@ Language_native = 'ᏣᎳᎩ'
 
 encoding_font_list = [
     {
-      'font_path':'/fonts/cherokee/CherokeeOLD.ttf',
+      'font_path':'/fonts/Cherokee/CherokeeOLD.ttf',
       'font_name':'Cherokee_Old',
       'display_name': 'Cherokee Old',
     },
@@ -94,43 +94,14 @@ class CherokeeConvertUIHandler(webapp2.RequestHandler):
       font = self.request.get('font')
       testStringList = [
           {'name': 'Test 1', # Note: must escape the single quote.
-           'string': u'CVMmH picMCinM\\u0027 blobo vlikM velonM Fag 1409 b`l slitM'},
-          {'name': 'Test 2',
-           'string': 'Fag hIoayZ$` trar FitalayZ valde'},
-          {'name': 'Test 3',
-           'string': 'cVMmH alGy bodolnyM : gZnisnMti vnMat \\\\ kqR'},
-          {'name': 'Test ordering',
-           'string': 'Ti\`Z goI toIbc cniZ\` \u005c VyuI'},
-          {'name': '7-June-2017',
-           'string': 'jureH acI lG KcMc`ZVo pde'},
-          {'name': 'long test',
-           'string':
-"""suneanI diZboan tirtVire koI FudelkM : nebo veal nebo, jamI nebo$ as ajar tr deboan apkM rGad vlikM brM trrM asI apkM Dbne  gEtMo agal-Fo asI ni adKZ mnucMo FilirM$ trM kini ri-si anI$\
-bucZ t JeborM ribo sunelo$ at tirtVire kili"""
-          },
-          {'name': 'Sujoyan test a-d',
-           'string': u'¡ ¢ £ ¥ § © ª ¬ ® ° ± ´ µ ¶ · º ¿ À Ã Ä Å Ç É Ñ Õ Ö Ø Ü ß'},
-          {'name': 'Sujoyan test e-f',
-           'string': u'\u00e0 á â ã ä å æ ç è é ê ë ì í î ï ð ñ ò ó ô õ ö ÷ ø ù ú û ü ý þ ÿ'},
-          {'name': 'Sujoyan test other',
-           'string': u'\u0152 \u0153 \u0178 \u0192 \u2013 \u2014 \u2018 \u2019 \u201a \u201c \u201d' +
-            u'\u201e \u2020 \u2021 \u2022 \u2030 \u2039 \u203a \u2044 \u20ac \u2122 \u2126 \u2202 \u220f' +
-            u'\u2044 \u221a \u221e \u222b \u2248 \u2260 \u2264 \u2265'},
-          {'name': 'Alaam test1',
-           'string':
-           u'g„y Ag Nvivi; †eMv PwMIb; †f…eI| gvZ;Zzb; Agvbvi;'
-           + u'fPmwNwei; AvgvKv`v ac; ‡Ajv| ‡mbvZ;‡Z¨ g„y gv g@'
-           + u'Agvbvi; fP; Mv‡g `‡j„ mwNw j©qIO;| gy„ PO;gk †jN'
-           + u'A¸yi; Mviw Aviv Av‡i„ g‡`„ civO; A@ †jNw'
-           + u'civO;| mvg‡i g„y Aë‡iRx A@ esj K‰© civO;| g„y PO;gk'
-           + u'AmwKw A@ PO;gk AwpybwKIZ; d«vb;U; e‡bqIO;| mvg‡i g„y'
-           + u'PO;gk KweIZ;AI e‡bqIO;| g„y bv ms gv g@ fP; Av‡jnv‡b'
-           + u'‡AK;`wb; Awqb;'
-           + u'nSwRIK;|'
-          },
+           'string': u'\u0004\u0005\u0006\u0007\u0008\u0009' +
+           '\u000a\u000b'},
       ]
 
-      oldInput = 'CVMmH picMCinM\' blobo vlikM velonM Fag 1409 b`l slitM'
+      oldInput = u''
+      for i in xrange(0x4, 0x7f):
+        oldInput += unichr(i)
+
       unicodeChars = '\ud804\udd00'
       unicodeChars += '\ud804\udd03'
       unicodeChars += '\ud804\udd04'
@@ -266,6 +237,7 @@ def chakmaCombiningCombos(baseHexChar):
 
 app = webapp2.WSGIApplication([
   ('/demo_chr/', CherokeeIndigenousHomeHandler),
+  ('/chr/', CherokeeIndigenousHomeHandler),
   ('/chr/convertUI/', CherokeeConvertUIHandler),
   ('/chr/downloads/', CherokeeDownloads),
   ('/chr/converter/', CherokeeConvertHandler),

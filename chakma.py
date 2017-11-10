@@ -290,6 +290,7 @@ def chakmaCombiningCombos(baseHexChar):
 
 app = webapp2.WSGIApplication([
   ('/demo_ccp/', ChakmaIndigenousHomeHandler),
+  ('/ccp/', ChakmaIndigenousHomeHandler),
   ('/ccp/convertUI/', ChakmaConvertUIHandler),
   ('/ccp/downloads/', ChakmaDownloads),
   ('/ccp/converter/', ChakmaConvertHandler),

@@ -84,7 +84,7 @@ var private_use_map_combined = {
 
   '\u0040': ['\u13bb', '-', '\ud804\udd33\ud804\udd05'],  // @
   '\u0041': ['\u13dd', '\ud804\udd33\ud804\udd05', '\ud804\udd03'],  // A
-  '\u0042': ['\u13b', '\uD804\uDD41', '\ud804\udd43'],  // B
+  '\u0042': ['\u13bc', '\uD804\uDD41', '\ud804\udd43'],  // B
   '\u0043': [' ', '\uD804\uDD33\uD804\uDD05',
 	     '\ud804\udd33\ud804\udd26'],  // C
   '\u0044': ['\u13a0', 'uD804\uDD2c', '\ud804\udd32'],  // D
@@ -95,7 +95,7 @@ var private_use_map_combined = {
   '\u0049': ['\u13a9', '\uD804\uDD27', '\ud804\udd2e'],  // I
   '\u004a': ['\u13a6', '\ud804\udd33\uD804\uDD20', '\ud804\udd2f'],  // J
   '\u004b': ['\u13af', '\ud804\udd33\ud804\udd1a', '\ud804\udd07'],  // K
-  '\u004c': ['\ua2', '\ud804\udd33\ud804\udd22\ud804\udd2a', '\ud804\udd08'],  // L
+  '\u004c': ['\u13a2', '\ud804\udd33\ud804\udd22\ud804\udd2a', '\ud804\udd08'],  // L
   '\u004d': ['\u13da', '\uD804\uDD24', '\ud804\udd09'],  // M
   '\u004e': ['\u13b8', '\uD804\uDD33\ud804\udd26\ud804\udd2a', '\ud804\udd0a'],  //N
   '\u004f': ['\u13b5\uDD27\uD804\uDD32', '\uD804\uDD28', '\ud804\udd0b'],  // O
@@ -151,6 +151,9 @@ function convertEncodingToUnicode(inbox, outbox, encodingIndex) {
     }
     outtext += out;
   }
+
+  // Insert more complex replacements here.
+  var newText = outtext;
 
   if (outarea) {
     outarea.innerHTML = outarea.value = newText;
