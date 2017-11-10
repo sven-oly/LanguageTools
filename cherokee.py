@@ -14,6 +14,8 @@
 # limitations under the License.
 #
 
+from allCherokeeFonts import all_cherokee_unicode_fonts
+
 #import translit
 import transliterate
 import transrule_chr
@@ -38,19 +40,10 @@ encoding_font_list = [
 ]
 
 unicode_font_list = [
-  { 'family': 'WebsterCherokee',
-    'longName': 'Webster Cherokee',
-    'source': '/fonts/Cherokee/WebsterCherokee.ttf',
-  },
-  { 'family': 'Digawogvi',
-    'longName': 'Digawogvi',
-    'source': '/fonts/Cherokee/Digawogvi.ttf',
-  },
-  {'family': 'PhoreusCherokee',
-   'longName': 'PhoreusCherokee',
-   'source': '/fonts/Cherokee/PhoreusCherokee-Regular.otf',
-   },
 ]
+
+for f in all_cherokee_unicode_fonts:
+  unicode_font_list.append(f)
 
 links = [
     {'linkText': 'Keyboard',
@@ -64,7 +57,7 @@ links = [
     {'linkText': 'Resources',
       'ref': '/chr/downloads/'
     },
-    {'linkText': 'Unicode',
+    {'linkText': 'Unicode Cherokee',
       'ref': 'http://unicode.org/charts/PDF/U13A0.pdf'
     },
     {'linkText': 'Unicode Supplement',
@@ -110,18 +103,15 @@ class CherokeeConvertUIHandler(webapp2.RequestHandler):
       ]
 
       oldInput = u''
-      for i in xrange(0x20, 0x7f):
+      for i in xrange(0x20, 0x3e):
+        oldInput += unichr(i)
+      for i in xrange(0x40, 0x7f):
         oldInput += unichr(i)
 
-      unicodeChars = '\ud804\udd00'
-      unicodeChars += '\ud804\udd03'
-      unicodeChars += '\ud804\udd04'
-      unicodeChars += '\ud804\udd05'
-      unicodeChars += '\ud804\udd06'
-
-      unicodeCombiningChars = chakmaCombiningCombos(u'\ud804\udd07')
+      unicodeChars = ''
+      unicodeCombiningChars = ''
       kb_list = [
-        {'shortName':  'ccp',
+        {'shortName':  'chr',
          'longName': 'Cherokee'
         }
       ]
@@ -132,8 +122,9 @@ class CherokeeConvertUIHandler(webapp2.RequestHandler):
           'langTag': 'chr',
           'encodingList': encoding_font_list,
           'encoding': {
-              'font_path':'/fonts/ArjCN__.TTF',
-              'font_name':'CherokeeASCII',
+              'font_path':'/fonts/Cherokee/CherokeeOLD.ttf',
+              'font_name':'Cherokee_Old',
+              'display_name': 'Cherokee Old',
           },
           'kb_list': kb_list,
           'unicodeFonts': unicode_font_list,
