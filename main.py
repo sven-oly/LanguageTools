@@ -38,7 +38,7 @@ LanguageList = [
     ('Chakma', 'ccp'),
     ('Cherokee', 'chr'),
     ('Myanmar indigenous', 'myanmar'),
-    ('Ahom, Aiton, Khamti', 'tai'),
+    ('Ahom, Aiton, Khamti', 'aho'),
   ]
 
 class MainHandler(webapp2.RequestHandler):
@@ -216,9 +216,5 @@ app = webapp2.WSGIApplication([
     ('/downloadsTest/', DownloadKBText),
     ('/transliterate/', translit.TranslitUIHandler),
     ('/dotransliterate/', translit.DoTranslitHandler),
-
-    ('/demo_tai/', TaiLanguagesHomeHandler),
-
-    ('/tai/', TaiLanguagesHomeHandler),
 
 ], debug=True)
