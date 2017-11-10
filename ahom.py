@@ -40,6 +40,21 @@ encoding_font_list = [
       'font_name':'AhomManuscript',
       'display_name': 'Ahom Manuscript',
     },
+  {
+    'font_path': '/fonts/ahom_aiton/AITON.TTF',
+    'font_name': 'Aiton',
+    'display_name': 'Aiton',
+  },
+  {
+    'font_path': '/fonts/ahom_aiton/PHAKE.TTF',
+    'font_name': 'Phake',
+    'display_name': 'Phake',
+  },
+  {
+    'font_path': '/fonts/ahom_aiton/PHAKERAM.TTF',
+    'font_name': 'Phakeram',
+    'display_name': 'Phake Ram',
+  },
 ]
 
 unicode_font_list = [
@@ -47,20 +62,34 @@ unicode_font_list = [
     'longName': 'Ahom',
     'source': '/fonts/ahom_aiton/AHOMFONT.ttf',
   },
-
+  {
+    'source': '/fonts/ahom_aiton/AitonUni.gr_2.ttf',
+    'font_name': 'family',
+    'longName': 'Aiton Uni',
+  },
+  {
+    'source': '/fonts/ahom_aiton/Aitongr.ttf',
+    'family': 'Aitongr',
+    'longName': 'Aiton Gr',
+  },
+  {
+    'source': '/fonts/ahom_aiton/PHAKERAM.TTF',
+    'family': 'Phakeram',
+    'longName': 'Phake Ram',
+  },
 ]
 
 links = [
     {'linkText': 'Keyboard',
-     'ref': '/demo_chr/'
+     'ref': '/aho/'
     },
     {'linkText': 'Converter',
-     'ref': '/chr/convertUI/'},
+     'ref': '/aho/convertUI/'},
     {'linkText': 'Font conversion summary',
-      'ref': '/chr/encodingRules/'
+      'ref': '/aho/encodingRules/'
     },
     {'linkText': 'Resources',
-      'ref': '/chr/downloads/'
+      'ref': '/aho/downloads/'
     },
     {'linkText': 'Unicode',
     'ref': 'http://unicode.org/charts/PDF/U11100.pdf'
@@ -157,7 +186,7 @@ class ConvertUIHandler(webapp2.RequestHandler):
       ]
 
       oldInput = u''
-      for i in xrange(0x4, 0x7f):
+      for i in xrange(0x23, 0xf1):
         oldInput += unichr(i)
 
       unicodeChars = '\ud804\udd00'
@@ -176,7 +205,7 @@ class ConvertUIHandler(webapp2.RequestHandler):
       template_values = {
           'font': font,
           'language': Language,
-          'langTag': 'chr',
+          'langTag': 'aho',
           'encodingList': encoding_font_list,
           'encoding': {
               'font_path':'/fonts/ArjCN__.TTF',
@@ -217,7 +246,7 @@ class ConvertHandler(webapp2.RequestHandler):
         'message' : message,
         'error': error,
         'language': Language,
-        'langTag': 'chr',
+        'langTag': 'aho',
         'showTools': self.request.get('tools', None),
         'summary' : transCcp.getSummary(),
       }
@@ -298,8 +327,8 @@ app = webapp2.WSGIApplication([
     ('/demo_tai/', LanguagesHomeHandler),
     ('/aho/', LanguagesHomeHandler),
     ('/demo_tai/', LanguagesHomeHandler),
-    ('/tai/convertUI/', ConvertUIHandler),
-    ('/tai/downloads/', Downloads),
-    ('/tai/converter/', ConvertHandler),
-    ('/tai/encodingRules/', EncodingRules),
+    ('/aho/convertUI/', ConvertUIHandler),
+    ('/aho/downloads/', Downloads),
+    ('/aho/converter/', ConvertHandler),
+    ('/aho/encodingRules/', EncodingRules),
 ], debug=True)

@@ -11,7 +11,7 @@ var private_use_map_combined = {
   '[': ['\ud805\udf02'],
   'n': ['\ud805\udf03'],
   't': ['\ud805\udf04'],
-  'XYZ'': ['\ud805\udf05'],  // TODO: Find the key for this, if any
+  'XYZ': ['\ud805\udf05'],  // TODO: Find the key for this, if any
 'p': ['\ud805\udf06'],
 'f': ['\ud805\udf07'],
 'b': ['\ud805\udf08'],
@@ -28,7 +28,7 @@ var private_use_map_combined = {
 'd': ['\ud805\udf13'],
 'D': ['\ud805\udf14'],
 'g': ['\ud805\udf15'],
-'XYZ2': ': ['\ud805\udf16'], // TODO: FIX
+'XYZ2': ['\ud805\udf16'], // TODO: FIX
   'G': ['\ud805\udf17'],
   'B': ['\ud805\udf18'],
   'J': ['\ud805\udf19'],
@@ -55,9 +55,9 @@ var private_use_map_combined = {
   '3': ['\ud805\udf33'],
   '4': ['\ud805\udf34'],
   '5': ['\ud805\udf35'],
-  ['6': '\ud805\udf36'],
-  ['\'7': ud805\udf37'],
-['\'8': ud805\udf38'],
+  '6': ['\ud805\udf36'],
+  '7': ['\ud805\udf37'],
+  '8': ['\ud805\udf38'],
   '9': ['\ud805\udf39'],
   '(:)': ['\ud805\udf3A'],
 'XYZ4': ['\ud805\udf3B'], // FIX
@@ -96,6 +96,7 @@ function convertEncodingToUnicode(inbox, outbox, encodingIndex) {
     }
     outtext += out;
   }
+  var newText = outtext;
 
   if (outarea) {
     outarea.innerHTML = outarea.value = newText;

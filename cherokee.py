@@ -38,15 +38,18 @@ encoding_font_list = [
 ]
 
 unicode_font_list = [
-  { 'family': 'WebsterCherokee.ttf',
+  { 'family': 'WebsterCherokee',
     'longName': 'Webster Cherokee',
     'source': '/fonts/Cherokee/WebsterCherokee.ttf',
   },
-  { 'family': 'Digawogvi.ttf',
+  { 'family': 'Digawogvi',
     'longName': 'Digawogvi',
     'source': '/fonts/Cherokee/Digawogvi.ttf',
   },
-
+  {'family': 'PhoreusCherokee',
+   'longName': 'PhoreusCherokee',
+   'source': '/fonts/Cherokee/PhoreusCherokee-Regular.otf',
+   },
 ]
 
 links = [
@@ -62,7 +65,10 @@ links = [
       'ref': '/chr/downloads/'
     },
     {'linkText': 'Unicode',
-    'ref': 'http://unicode.org/charts/PDF/U11100.pdf'
+      'ref': 'http://unicode.org/charts/PDF/U13A0.pdf'
+    },
+    {'linkText': 'Unicode Supplement',
+     'ref': 'http://unicode.org/charts/PDF/UAB70.pdf'
     },
 ]
 
@@ -104,7 +110,7 @@ class CherokeeConvertUIHandler(webapp2.RequestHandler):
       ]
 
       oldInput = u''
-      for i in xrange(0x4, 0x7f):
+      for i in xrange(0x20, 0x7f):
         oldInput += unichr(i)
 
       unicodeChars = '\ud804\udd00'
@@ -180,7 +186,7 @@ class CherokeeEncodingRules(webapp2.RequestHandler):
         }
       ]
       template_values = {
-        'converterJS': "/js/ccpConverter.js",
+        'converterJS': "/js/chrConverter.js",
         'language': Language,
         'encoding_list': encoding_font_list,
         'unicode_list': unicode_font_list,
