@@ -17,7 +17,7 @@
 from main import LanguageList
 #import translit
 import transliterate
-import transrule_chr
+# import transrule_chr
 
 import json
 import logging
@@ -143,6 +143,17 @@ class LanguagesHomeHandler(webapp2.RequestHandler):
         },
       ]
       links = [
+          {'linkText': 'Keyboard',
+           'ref': '/aho/'
+          },
+          {'linkText': 'Converter',
+           'ref': '/aho/convertUI/'},
+          {'linkText': 'Font conversion summary',
+           'ref': '/aho/encodingRules/'
+          },
+          {'linkText': 'Resources',
+           'ref': '/aho/downloads/'
+          },
         {'linkText': 'Ahom Unicode',
          'ref': 'http://www.unicode.org/charts/PDF/U11700.pdf'
         },

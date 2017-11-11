@@ -47,7 +47,7 @@ for f in all_cherokee_unicode_fonts:
 
 links = [
     {'linkText': 'Keyboard',
-     'ref': '/demo_chr/'
+     'ref': '/chr/'
     },
     {'linkText': 'Converter',
      'ref': '/chr/convertUI/'},
