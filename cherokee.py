@@ -107,6 +107,11 @@ class CherokeeConvertUIHandler(webapp2.RequestHandler):
         oldInput += unichr(i)
       for i in xrange(0x40, 0x7f):
         oldInput += unichr(i)
+      oldInput += unichr(0x000a)
+      for i in xrange(0xf020, 0xf03e):
+        oldInput += unichr(i)
+      for i in xrange(0xf040, 0xf07f):
+        oldInput += unichr(i)
 
       unicodeChars = ''
       unicodeCombiningChars = ''
