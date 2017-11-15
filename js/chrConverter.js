@@ -123,8 +123,7 @@ var private_use_map_combined = {
   '\u009c': ['\u13e4', '\`', '\ud804\udd18'],  // `
   '\u007d': ['\u13ca', '\uD804\uDD07', '\ud804\udd19'],  // a
   '\u007e': [' ', '\uD804\uDD25', '\ud804\udd1a'],  // b
-  '\u0063': [' ', '\uD804\uDD0d', '\ud804\udd1b'],  // c
-  '\u0064': [' ', '\uD804\uDD1e', '\ud804\udd1c'],  // d
+  // '\u0064': [' ', '\uD804\uDD1e', '\ud804\udd1c'],  // d
 
 };
 

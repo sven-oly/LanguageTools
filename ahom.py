@@ -91,9 +91,15 @@ links = [
     {'linkText': 'Resources',
       'ref': '/aho/downloads/'
     },
-    {'linkText': 'Unicode',
-    'ref': 'http://unicode.org/charts/PDF/U11100.pdf'
+    {'linkText': 'Unicode Ahom',
+    'ref': 'http://unicode.org/charts/PDF/U11700.pdf'
     },
+    {'linkText': 'Unicode Aiton',
+     'ref': 'http://unicode.org/charts/PDF/UAA60.pdf'
+     },
+    {'linkText': 'Unicode Tai Laing',
+     'ref': 'http://unicode.org/charts/PDF/UA9E0.pdf'
+     },
 ]
 
 
