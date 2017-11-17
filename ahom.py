@@ -58,9 +58,9 @@ encoding_font_list = [
 ]
 
 unicode_font_list = [
-  { 'family': 'AhomFont',
-    'longName': 'Ahom',
-    'source': '/fonts/ahom_aiton/AHOMFONT.ttf',
+  { 'family': 'Ahom Unicode',
+    'longName': 'Ahom Unicode',
+    'source': '/fonts/ahom_aiton/AHOMFONT_Unicode.TTF',
   },
   {
     'source': '/fonts/ahom_aiton/AitonUni.gr_2.ttf',
@@ -214,7 +214,7 @@ class ConvertUIHandler(webapp2.RequestHandler):
 
       unicodeCombiningChars = chakmaCombiningCombos(u'\ud804\udd07')
       kb_list = [
-        {'shortName':  'ccp',
+        {'shortName':  'aho',
          'longName': ''
         }
       ]
@@ -224,10 +224,7 @@ class ConvertUIHandler(webapp2.RequestHandler):
           'language': Language,
           'langTag': 'aho',
           'encodingList': encoding_font_list,
-          'encoding': {
-              'font_path':'/fonts/ArjCN__.TTF',
-              'font_name':'ASCII',
-          },
+
           'kb_list': kb_list,
           'unicodeFonts': unicode_font_list,
           'links': links,
@@ -250,8 +247,8 @@ class ConvertHandler(webapp2.RequestHandler):
       # Return JSON structure with values.
 
       transCcp = transliterate.Transliterate(
-        transrule_ccp.TRANS_LIT_RULES,
-        transrule_ccp.DESCRIPTION
+        transrule_aho.TRANS_LIT_RULES,
+        transrule_aho.DESCRIPTION
       )
 
       outText = '\u11103\u11101\u11103'
@@ -274,12 +271,12 @@ class EncodingRules(webapp2.RequestHandler):
     def get(self):
 
       kb_list = [
-        {'shortName':  'ccp',
+        {'shortName':  'aho',
          'longName': ' Unicode'
         }
       ]
       template_values = {
-        'converterJS': "/js/ccpConverter.js",
+        'converterJS': "/js/ahoConverter.js",
         'language': Language,
         'encoding_list': encoding_font_list,
         'unicode_list': unicode_font_list,
@@ -293,12 +290,12 @@ class RenderPage(webapp2.RequestHandler):
     def get(self):
 
       kb_list = [
-        {'shortName':  'ccp',
+        {'shortName':  'aho',
          'longName': ' Unicode'
         }
       ]
       template_values = {
-        'converterJS': "/js/ccpConverter.js",
+        'converterJS': "/js/ahoConverter.js",
         'language': Language,
         'encoding_list': encoding_font_list,
         'unicode_list': unicode_font_list,
