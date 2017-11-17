@@ -35,11 +35,11 @@ encoding_font_list = [
     'display_name': 'Ahom',
     'font_path': '/fonts/ahom_aiton/AHOMFONT.ttf',
   },
-    {
-      'font_path':'/fonts/ahom_aiton/Ahom_Manuscript.ttf',
-      'font_name':'AhomManuscript',
-      'display_name': 'Ahom Manuscript',
-    },
+  {
+    'font_path':'/fonts/ahom_aiton/Ahom_Manuscript.ttf',
+    'font_name':'AhomManuscript',
+    'display_name': 'Ahom Manuscript',
+  },
   {
     'font_path': '/fonts/ahom_aiton/AITON.TTF',
     'font_name': 'Aiton',
@@ -64,7 +64,7 @@ unicode_font_list = [
   },
   {
     'source': '/fonts/ahom_aiton/AitonUni.gr_2.ttf',
-    'font_name': 'family',
+    'family': 'AitonUni',
     'longName': 'Aiton Uni',
   },
   {
@@ -340,7 +340,7 @@ app = webapp2.WSGIApplication([
     ('/tai/', LanguagesHomeHandler),
     ('/demo_tai/', LanguagesHomeHandler),
     ('/aho/', LanguagesHomeHandler),
-    ('/demo_tai/', LanguagesHomeHandler),
+    ('/demo_aho/', LanguagesHomeHandler),
     ('/aho/convertUI/', ConvertUIHandler),
     ('/aho/downloads/', Downloads),
     ('/aho/converter/', ConvertHandler),
