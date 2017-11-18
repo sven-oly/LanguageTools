@@ -63,6 +63,17 @@
       {% endfor %}
     </ul>
 
+    <h1>Download {{language}} files</h1>
+
+    <ul>
+      {% for font in file_list %}
+      <li>
+        <a href="{{font}}" download
+           style="font-family:{{font.family}};font-size:24px;">{{font}} ({{language_native}})</a>
+      </li>
+      {% endfor %}
+    </ul>
+
   </div> <!-- span-16 -->
   </div> <!-- container -->
 

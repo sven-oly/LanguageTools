@@ -60,7 +60,7 @@ encoding_font_list = [
 unicode_font_list = [
   { 'family': 'Ahom Unicode',
     'longName': 'Ahom Unicode',
-    'source': '/fonts/ahom_aiton/AHOMFONT_Unicode.TTF',
+    'source': '/fonts/ahom_aiton/AhomUnicode.ttf',
   },
   { 'family': 'Ahom Unicode',
     'longName': 'Ahom Unicode',
@@ -106,6 +106,10 @@ links = [
      },
 ]
 
+text_file_list = [
+  '/download/aho/3-5-1-1.txt',
+  '/download/aho/nemi_mang_text.txt'
+]
 
 # Shows keyboard for
 class LanguagesHomeHandler(webapp2.RequestHandler):
@@ -119,8 +123,8 @@ class LanguagesHomeHandler(webapp2.RequestHandler):
           'longName': 'Ahom',
           'source': '/fonts/ahom_aiton/AHOMFONT.TTF',
         },
-        { 'family': 'AhomUnicode',
-          'longName': 'Ahom Unicode',
+        { 'family': 'AhomUnicode_2',
+          'longName': 'Ahom Unicode 2',
           'source': '/fonts/ahom_aiton/AhomUnicode.ttf',
         },
         { 'family': 'Ahom_Manuscript',
@@ -152,31 +156,7 @@ class LanguagesHomeHandler(webapp2.RequestHandler):
          'longName': 'S\'gaw Karen'
         },
       ]
-      links = [
-          {'linkText': 'Keyboard',
-           'ref': '/aho/'
-          },
-          {'linkText': 'Converter',
-           'ref': '/aho/convertUI/'},
-          {'linkText': 'Font conversion summary',
-           'ref': '/aho/encodingRules/'
-          },
-          {'linkText': 'Resources',
-           'ref': '/aho/downloads/'
-          },
-        {'linkText': 'Ahom Unicode',
-         'ref': 'http://www.unicode.org/charts/PDF/U11700.pdf'
-        },
-        {'linkText': 'Aiton and Khamti Shan Unicode. Extended-A',
-         'ref': 'http://www.unicode.org/charts/PDF/UAA60.pdf'
-        },
-        {'linkText': 'Myanmar Extended-B',
-         'ref': 'http://www.unicode.org/charts/PDF/UA9E0.pdf'
-        },
-        {'linkText': 'Myanmar Unicode block',
-         'ref': 'https://en.wikipedia.org/wiki/Myanmar_(Unicode_block)'
-        },
-      ]
+
       template_values = {
         'langlist': LanguageList,
         'language': 'Ahom',
@@ -317,6 +297,7 @@ class Downloads(webapp2.RequestHandler):
           'language': Language,
           'language_native': Language_native,
           'unicode_font_list': unicode_font_list,
+          'file_list': text_file_list,
       }
       path = os.path.join(os.path.dirname(__file__), 'downloads.html')
       self.response.out.write(template.render(path, template_values))

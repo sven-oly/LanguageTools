@@ -1,0 +1,2410 @@
+Text Number
+	3-5-1-1 (SDM03-19991218-06_SaMyat_LikHongKhon)
+	Name
+	Book of calling back the Khon (likqhogqxonq)
+	Note
+	The word xonq [khɔn⁶] has not been translated but rendered as  khon. If it were to be translated, terms like ‘spirit’ or ‘soul’ might be used. However khon is not really the same as the Western concept of either ‘spirit’ or ‘soul’. Terwiel (1980:71) uses the term ‘vitality’.
+	Type
+	Manuscript.
+	Provenance
+	In the possession of Sa Myat Chowlik (samYtqcWlikq),
+	Place
+	Pawaimukh, Makum Killa, Margherita, Tinsukia District, Assam.
+	Author
+	Unknown
+	Copyist
+	Mu Cha Chowlik (mUcacWlikq), father of Sa Myat Chowlik)
+	Date
+	-
+	Other copies of the MS
+	  In preparation of this analysis, an Aiton version written by Chaw Seng Hun Phalung (cWsigqhugq falugq) (cau³ sɛŋ¹ huŋ) literally ‘resp-diamond-dazzling’, the father of Nabin Shyam Phalung, who died before the Assam earthquake of 1950, when Nabin was a child.
+  Several Phake versions, one copied by Aithown Che Chakap, and another in the possession of Ee Nyan Khet, were also consulted.
+	Translation
+	  The first draft of this analysis was prepared by Stephen Morey in September 2000, based on the examination of a tape explaining the text recorded with Sa Myat Chowlik in February 2000.
+  The text was revised with the assistance of Nabin Shyam Phalung in March 2001. 
+  The text was then further revised with the assistance of Aithown Che Chakap, and various pandits from Namphakey village, namely Ai Che Let Hailung, Sam Thon Wingkyen, Ai Chanta Thoumoung and Ee Nyan Khet Thoumong in late March 2001. Since the final translation was done with the help of Phake pandits, the phonemicisation is in Phake.
+	Publication details
+	The text and translation were published as Book of Calling the Khon. 2001, Dibrugarh: Triograph Offset
+	Recording details
+	  A reading of the entire text was made by Sa Myat Chowlik at Video 2000.6 (4) 15’44” on 19/12/1999 (SDM03-19991218-06_SaMyat_LikHongKhon.mpeg)
+  The explanation of the text by Sa Myat Chowlik is on Cassettes 2000.3.3 A & B; 2000.3.4 A & 2000.3.5 A & B, recorded 1-3/2/2001.
+  Part of the discussion in Namphakey village is recorded at Minidisc 2001.1.1 (4).
+	Recording Length 
+	14’29”
+	Wave File
+	3-5-1-1.mp3
+	Name of this document
+	3-5-1-1.doc
+	Format of document
+	Word 6
+	Special fonts used
+	aiton.ttf, assamnew.ttf, banchob.ttf, phake.ttf, shan.ttf, 
+	Notes
+	  The phonemicisations of the Khamyang text are based on Banchob (1987)
+  Sa Myat Chowlik’s comments are added as 1.1), 1.2) &c.
+  Alternate versions, based on the Aiton or Phake MSS are added as 1Ait) or 1Ph).
+	________________
+TEXT
+
+
+likqhogqxonqkunq
+
+
+njelcgqnjtkqmasigqxXpnqsJnqcUyJnqhJgqnnqpUya / pJnqhiYkqwjpamXmI
+nj / cFmJwqpUsigqfaekapigqhitqma / AikqtgqcEwnq yXehalaekafigq / ginqpinqhJgqnnqnjljpIfiwqka / xnqhotqcUcgqnjmWyacoMxa / tgqkaeta lukqAikqetalnq / tkqmaecaaxunqsigqwnqpkqlW / etanjxonqwgqlnq pigqkXnEmWcigq / palExjyUcanWvigcEyuM / cgqnjlnqmEmItgqxJgqkUfoM kuNqAojwnqlkqkojec / tkqmaXyonqAWwxonqwgqlnqpigqsJwqhMefhE
+nj / watIcEwnqpUtIfjhicqcWxW S / AikqtgqkonqsWyXhjemaqkupq puNqxWeha / cgqnjlnqmEmItgqpakupqxW / AikqtgqnMsEtWkinqhoM / kuNqAojkupqxogqwnq / tgqAnqxogqhoMcUljpnqpUya / tgqAnqkuNq AojkupqxogqtJwq / tgqAnqxaxigqkgqyJgqyJwqAikqlU / xnqexaxWxiwqfj kupqhokq / AikqtgqxJkqsonqspqynqnMljxokqsjxW / tgkapunnjhE mEpUcWsJwtINEfjhJg / xiNqetapjxaxonqnIlnqpigqkUlJmqmJgqhEnj / pikq tikjynqcUviwqliwqljspqeka / xiNqetapUcWelsokqkUexhuNqfa gpqlFxa / hEAnjtgqxonqmnqlnqAonqnoj / AWmasWfigqeclapaemAU / sWhJgqvunqljpIyXxj / hEAnqnakIyuMpkqfojxUwqgM / watIpUkonqsWsMcigq munqxigq / sWfigqvnqfjnigqhicqcWxWS / lkqpojkamugqpunqmJgqNExaxonq / ciwqpjciwqmanjAWpnqyXlJwqenwnq / cgqnjlnqmEmItgqxiwqkupqfa / sgq waxonqkaxWtIcatnqAJnqlFxa / pJnqwacaramUxahiwq / pUcWAWtgqxiwq fjttqhonqxtqyMniwqesnj / sgqwaxonqwgqmJwqsWtIexsEljela / pUcW AWtgqhJkqsonqsmqynqnMfaekaqlFxa / xqAnqnjtgqxonqmnqlnq Aonqnojmapnq / ciwqpjlFxanjxnDyalJwqenwnq / njelsJwqnnqmWsUnjngq walFhnqcM / ljcJgqAWtgqexaxnqmJwqcUmUhigqvnqAJpqpiNq / kojpinqxunq xJgqxpqkogqknqlJwqeka / yiwqAnqmigqcanjmaetasWes / pJnwoacalX mUxXAJpqpiNqcugqlugq / sgqwoaxonqwgqyUnEkugqfayoj / sgqwaxonqnIyUsJwq nnqcM / lkqpojsiwnjpukqehamnqAWmaenwnq / watIpUkonqsWtINE fjhJgqxWS / xiNqetapjxaxonqnIlnqpigqkUlJmqmJgqcotqtInJXen / mJgqnJwq AikqmJgqtE / tIkEkupqtIkjtnqynqelsgq / pikqwaxopqfatIkjNW ekaq / pUlkqtMtinqsUhWwmJgqelsokq / xWynqcUviwqliwqyawa / pUcW ntqnatigqpjxa / hEAnqnjtgqxonqmnqlnqAonqnojmavogq / sWnIkgqhJnq tnqsigqhogqyUcJnqenwnq / sgqwaxWnImJwqsWtIvgqlugqkJtqyU / pUcWAW tgqelaxutqsUlFxa / sgqelmWsUnjngqwalFxa / xiNqetapjmjlFvgqlugq vJnqnugqnaelsokq / sgqlkqvJpqhnqyWAWmahEnj / AikqtgqlogqyU catgqxjciwqxiNqenwn / sgqwalFxaxWnIvJnqnugqpigqmWnjcM / pUcWlkq pojkZasokqpgqhjkupqnapigq / huNqhogqAikqAugqna / yiwqesxonqwgqlnq pigqkJtqsWfkqynqtUfUcW / yMniwqmJwqpjAWmamWhUnj / cgqpinqmtqmigqxj yUcanjmjxgqnW / xiNqhEpUcWsMmugqcotqljxa / sgqlkJpqhnqxonqwgqyW AWmasUhogq / lnqpigqpnqAWmahEnjenwnq / tnjpjxafjniNqlFcotq / tgqkahuNqhogqelsokqyWnUcotqhnqecq / sglkmWsUnjngwalFhn / ljcJgpjxafIfitqcEtnqfUyukq / AWtgqknqNWhokpjlFkupqkgq / pU lkqkXsokqfIfitqhjkgqpgqhFmJgq / sgqwafIfitqcamWpojfayMniwqcM / AWtgqmElFhokqpjviwqsipqxgq / sgqelygqhicqkMkJmqmWpojfacM / AW tgqkgqxaxJwqnitqyJwqq / nnqekamWpojhEpnqma / ljcJgqAWtgqtWfjnpq xuMcakagJtq / hEmnqpWwWfkqnIkjtJnqpj / cgqtkqfapojhEnuNqgjpnqxonq cMyW / watIpUcWsJwqtINEfjxigqkWS / xiNqetapjxaxonqwgqpEsWfigqfU cWenwnq / njeltgqkaljlJmqpgqhFmJgqlFcotq / tgqkafIfitqyukqel sokqyWmWkutqnUec / tgqnnqmWsUnjngqwahWxnqcM / pojcJgqpjxahWmJgq tIkjynqtgqtI / sJwqAnqfIxinqnoDtgqpojtuMmWvtq / pJnqhikqecpjapinq ktqxjxonqwanj / nnqekaxiNqhEpUcWsMmugqcotqnUecq / xaAWxonqlnq pokqhJnqeysUhogqenwnq / sgqwafIxinqkMkJmqmWpojfXcM / pUcWAWtgq knqkoMlMmavamgqes / ngqekamWpojhEwgqpnq / ljcJgqAWtgqxogqtJwqcogq ljAnqnopqhE / sgqlkqpnqmayWpigqcEngqAgqcM / AWpokqhogqhJnqkZgq vJgqpkqkinqyJnqenwnq / njekaelsokqyWkUtInUcotqlFxa / mWmI tuNqhnqsJwqhigqtanjcigq / ljcJgqygqmIcWgWmUxaxiwqpahiwq / tnqexaxonq canjmJwqkiwqsWes / tgqnnqhEnUcotqfjxa / sgqlkqlFhnqxonqwgq lnqpigqpnqAWmahEnjenwnq / maelmataxonqS / makinqpakupqxW / ma kinqnMsEtWtUvimq / makinqkuNqAojkupqxogqwnq / makinqxogqhoMcUlj pnqpUyamEta / maelmatXsM / 0 / xonqyUtuwqAnqvunqcUyXka / ma elmatakW / 0 / xonqyUxigq / masWyUhigqpInJXcW / yalonqlapjfjmJgq nEtgqtI / yUnJXnogqAikqpitgqlj / mataxonqkWwkUpinqehaq / masWyU figqtUyafkq / xonqhUxonqtaXyUsJwqkW / yXnpqfjljfW / pjma / hn etavWvJgqekehaxW / yClonqmIefcogqtgqnWnjwa / tgqkasUpinqxonq kunqpkqsWtFfgq / hnetavWfigqhgqvJgqpkqkinqyJnqenwnqxonqS / yUelyUtayUtunqcUsWnI / hJgnnqyXmIxIyUAonq / nEwnpEfigtUwhuM
+yU / huMsgqepaempIAikqnogqhuMcMfJnqvUnEhJnq / yahj yUcanjmjmIxI / sW figqtuwqxigqyUhigqpIyXfkqtXwnqxonqS / yXhEmIxIxogqehacEpYapa / yUcJnqnJXsahJgqnnqtXwnqxonqS xonqenoa / cI$cukDgkD / fJnqmUcacWlikqnMa /
+
+
+List of articles required for this function (from Phake ms)
+1. xnq 2. exa 3. xiwq 4. fa 5. hokq 6. kgq 7. npq. 8. xonq 9. ela 10. xJkq 11. funq 12. fj 13. emanJgq 14. nMtW 16. tiwqema 17. muNqkuNqAoj
+
+
+yakIljkinq
+pUvWehafahuwq
+yahgqnIhaeka
+
+
+________________
+TRANSLATION
+
+
+        Now is the time to search for the customs of our ancestors from former times, from long, long ago. They established this process, and we have continued it in their way. Long ago grandfather Singpha, together with sweet-hearted grandmother Hola, began this custom. We have heard about this for many, many years. Up to this time we have not failed to follow our grandparents, even unto the generations of the children and grandchildren.
+        The time has come to mix these sweet sounds and tell them. The troubled khon of our beloved grandchild is lost, and we do not know where it is. He is feverish, very cold and disturbed in his heart. 
+        Now your grandchild has every requisite, banana, sugarcane and all the sweet foods. The grandfather will come to beg the troubled khon of our beloved grandchild to take this fine pink satin shirt. 
+        Oh, sweet-hearted grandfather at the fireplace, perform this ceremony, Oh listen! With a rice tripod, pots, saucepan and water dipper, oh listen! Now your grandchild has both fish and rice, together with fragrant water from the water jar and banana, sugar cane and other sweet things, as well as all the scented foods collected by our grandparents over a long period, with banana, sugar cane and utensils, with an axe, a hoe, a sharp sickle and a lance and a fish trap for catching fish on the edge of the flowing where the white sands are.
+        All things we give you, oh respected grandfather, who sits at the bright glare of the fire. Please go and search out the good khon of our beloved grandson in every country. 
+        If it is in a very far away place, in any direction, please grandfather, search for it in every channel and stream, and under every flat stone. Get the khon of our small grandchild, so that our grandchild may stay for a long time and complete many years without illness; so that he may have a smiling, laughing and happy face. Oh grandfather who sits at the three-pronged cooking stand, with a round rim, by the fire of red charcoals, perform this ceremony, oh listen!
+        Now go to look for the khon in other far away countries. We request you to go quickly and bring it back. Do not rest anywhere. Now your grandchild has both a sickle and a cleaver. If the khon goes to another bad place, search for it. Some say it is in a wild forest, or a place where there is pile of green thatch. Oh grandfather, now take the sharp sickle, and cut and tear it out.
+        If the troubled khon is in the river where clear water flows, Oh grandfather, take the fish trap and search for it at the edge of the river and among the rocks. Allow the khon of the little grandchild to come. We request you to go quickly and bring it back. Do not rest anywhere.
+        Then, if you cannot find it in that place, go and look for it further. Take the hoe and axe and search among the thousands of planks and coffins. It may be mixed up inside these planks which are arranged one after the other in a heap. If the khon gets to go to a bad place, in that place which others call wild forest, a place where there is pile of thatch, where there are big coffins.
+        If the troubled khon has gone to live inside the hollow of a tree, or in an overhanging stone, if there is a good khon staying in that place, then catch it and package it into a cloth and bring it, we request. Oh, respected grandfather at the cooking tripod, who has remained by the fire for a long time, oh listen!
+        Please go to search for the good khon of our beloved grandson in every country, in every place, up hill and down dale, in places far and near.
+        If the khon is in a very distant place where the sky meets the earth, Grandfather will place set his legs and roam to the bordering countries to search for it. If it is very very far away, Grandfather will start searching along that straight road. 
+        Let the khon of the little grandchild come and reach us. Oh khon, we request you to stay happily inside the house, speak and become well. 
+        If the good khon is staying in a large and deep pit, our respected grandfather will take a shovel to dig it out and find it. If you do not easily find the khon, please go to search for it in the big deep thick forest. If you meet it, bring it back. As it is in a bad way and suffering illness, come quickly so that it will become better.
+        If after searching for the good khon in that deep forest, you don’t get it, Oh Grandfather, now go and search on the open ground, on the dry rice fields and the flat wet paddy fields, in the creeks and drains and lowland fields. If the troubled khon of our beloved grandchild has become separated, and is far away, when the time will come to bring it back, is not known. The grandchild is ill, he is feverish, he is burning with a cold fever. Please, grandfather, again go to search everywhere.
+        If you meet the troubled khon of our beloved grandchild, bring it back, we request you. Go and search at the borders and look everywhere. Go and search thoroughly in the creeks and drains and look everywhere. 
+        If you don’t get to see it, then go to search for the evil spirits, the stupid and the wicked persons. Take the long handled lance, with the crossbow. Grandfather, go to look for the very bad spirits on the open ground outside of the village. If the bad spirits will still not release the khon, take the thin blade of the lance and stab their sides. If they grab it tightly and will not release it, take the crossbow and striking at them, shoot them. If they still don’t release it, take a sharp sword with a razor sharp edge and go to chop them.  Make the bad spirits run away, far, far away. Then the spirits will easily release the khon. Oh, respected grandfather, who sits by the large fire, please go and search for the troubled khon and watch over it so it may stay quietly with the grandchild, we request you.
+        Go searching in many places, in the open ground outside the edges of the village. If you have searched for all the bad spirits, don’t fail to look thoroughly. If you don’t manage to get it quickly, afterwards, go and search at the borders of the country and in every place.        
+        At that time the cold bad spirits have gathered in pandemonium, bustling without ceasing. Others call it a city, a market for selling khons. In that case, grandfather, please go there and again search everywhere thoroughly. Search and bring the khon of our grandchild back home, to this room, we request you.
+        If the bad spirits have tightly caught it and will not release it, Grandfather, take a very big long stick and beat them. If they don’t release it, and put it down, bring all the many utensils which were given. 
+        If they give up the khon, our hearts will be glad and full of hope. Bring it back to this house, and let it eat peacefully, we request you. Thus you have roamed and sought it in every place,
+        If it does not have strong eyes or if it does not clearly know the many things in the cemetery which is covered with green thatch, then get the bad khon and bind it up and make it stay at the cemetery. Go walking and looking everywhere to search for it.
+        If you see the troubled khon of the beloved grandchild, bring it here, we request you.
+
+
+        Welcome, do come, oh khon! Come and eat fish and rice! Come and drink the clear water which we have put into the pot. Come and eat banana, sugar can and all sweet things! Come and eat the fragrant food which over a long time grandmother and grandfather have given you.
+        Come and be welcome, all 30 khons which live in the body, complete your full life, don’t go. Come all 90 khons which live in the body. Come and stay with your owner for a thousand years. Do not go and take off and wander in other countries. Come and stay with your younger and elder siblings. Come and stay quietly in his body, and don’t go away. Don’t go walking about here and there many times, coming and going.        Let him reach old age, the age of white hair. Don’t go away and leave him with any epidemic or fever.
+        Altogether there are 120 types of khons in people.
+        Come here, live quietly and reach the age of a hundred, eating well and peacefully, oh khon, we request you! Stay and live your complete life and stay well. Live for a long time and without sadness or weakness. Every day, wait quietly in this body. Stay together with your father, mother, elder and younger siblings, and eat at the dinner table with the eating sticks, here in this house. Do not let the bad fever stay and burn you up in sadness. Stay quietly in this body for a thousand years and do not go away, oh khon, we request you. Do not let sadness come to touch the heart. We request you to stay happily for a long time, oh khon, oh khon!
+
+
+        Chi Chuk Chi Chuk Chi Chuk.
+
+
+        This is the book which Chaw Sok has written in reverence
+
+
+
+
+List of articles required for this function (from Phake ms)
+1. An axe        
+2. A hoe
+3. A sickle
+4. A cleaver
+5. A lance
+6. A bow
+7. A sword
+8. A stick
+9. A shovel
+10. A fishing implement
+11. Firewood 
+12. A fire 
+13. A cooking pot
+14. A water pot
+15. Cloth for binding holes in a pot
+16. A dipper
+17. Banana and Sugarcane
+
+
+Many old women should come to ceremony, along with old men in turbans. There should be at least five old women.
+
+
+________________
+ANALYSIS
+
+
+Note on this analysis: Since the final translation was done with the help of Phake pandits, the phonemicisation is in Phake.
+
+
+
+
+Link to Audio file for this text
+Link to Photograph of the Manuscript, page 1
+
+
+
+
+The Book of Calling the Khon
+
+
+1)        njel        cgqnj        tk        ma        sig        xX
+        nai⁴ le²        cüŋ² nai³        tak¹        mā²        seŋ⁶         khā⁶
+        this is        now        will        come        sound        search
+        ‘Now is the time to search for (the customs) of our ancestors.’
+
+
+2)        pnsJnq        cU        yJnq        hJgq        nnq        pUya /
+        pān² sün²        cū²        yən²        hüŋ⁶        nān²        pū¹ yā⁵
+        old time / past        time        long time        longtime        longtime         ancestors
+        ‘From former times, from long long ago.’
+
+
+
+
+3)        pJnq        hiYkq        wj        pamX        mI        nj /
+        pən⁵        hek⁴        wai⁴        pa¹ mā¹        mī²        nai⁴
+        others        start*        keep**        like this***        have        this
+‘They established this process, and in this way we have continued it.’
+
+
+Notes:        * In Shan hYkqH means, ‘to begin to work; begin by doing a little, because it is declared to be an auspicious day.’  
+        Nabin Shyam Phalung stated that in Aiton hikqna (hɛk³ naa²) means ‘start ploughing the fields’; and hikqxW (hɛk³ naa²) ‘start to cut the paddy’.
+        ** In the Aiton text this was written as wja  (waa² wai³)
+        *** There was some debate about the meaning of this. Ai Che Let Hailung stated that it was an abbreviation for  Aupama (u⁴ pa¹ mā¹) ‘example’.
+
+
+
+
+4)        cF        mJwq        pU        sigqfa        eka        pigq        hitq        ma / 
+        cem²        mə⁵        pū¹        siŋ¹phā⁴        kɔ⁴        paiŋ⁴        het¹        mā²
+        since        time        grandfather        Singpha        start        start*        make        come
+‘From the time that grandfather Singpha began to make (this custom).’
+
+
+Notes:        * the Aiton version has figq. ekafigq is given as ‘at first starting’. See below (5)
+        Nabin Shyam stated that pUsigqfa (puu¹ siŋ¹ phaa³) and yasigqfa (yaa² siŋ¹ phaa³) are the names of the god and goddess who allowed the Tai people to come down from heaven.        
+
+
+
+
+5)        Aikqtgq        cE        wnq        yX        ehala        eka        figq / 
+        ik¹ tüŋ¹        caü²        wān⁶        yā⁵        hɔ¹ lā²        kɔ¹        phiŋ⁶
+        with        heart        sweet        grandmother        Hola*        begin        do, begin**
+‘Together with sweet hearted grandmother Hola, they began (this custom)’
+
+
+Notes:        * Nabin stated that Hola was the name of Pu Singpha’s wife. The Phakes stated that the correct name is yaehasa (yā⁵ ho⁶ sā²).
+        **  perhaps Shan fYgq ‘along with, together with’ - he explains it as meaning that both Grandfather and grandmother started the work.
+
+
+
+
+6)        ginqpinq        hJgq        nnq        nj        lj        pI        fiwq        ka / 
+        ŋin² pen²        hüŋ⁶        nān²        nai³        lāi⁶        pī²        phɛu⁶        kā¹
+        heard*        long time        long        get        many        year        exceed        finished
+‘We have heard of this for many many years.’
+
+
+Notes:        * Nabin stated that this means ‘heard’. It is literally ‘hear-be’, but note Shan  ginqLpYnq ‘to feel, to experience, to be affected by’.
+
+
+
+
+7)        xnq        hotq        cU        cgqnj        mW        ya        coM        xa / 
+        khan⁶        hɔt⁴        cū²        cüŋ² nai⁴        mau¹        yā¹        cɔm²        khā⁶
+        up to this        arrive        time        now        neg        neg        follow        search
+‘Up to this time we have not failed to follow our grandparents.’
+
+
+Notes: ya  yā¹ is usually a prohibitive particle (as in Standard Thai), which in speech would be expressed with pi pi¹. It does appear that this sentence represents a ‘double negation’ making a positive. 
+
+
+In the Aiton version, the first few words are given as: xnqhotqetacU.
+        xnq        hotq        eta        cU.
+        khan⁶        hɔt⁵        tɔ⁵        cū²
+        up to        arrive        prt        time
+‘up to this present time...’
+Banchob (1987) notes khan⁶ tɔ⁵ mə⁴ nan⁴ ‘At that time (bookish)’
+
+
+
+
+8)        tgqka        eta        lukq        Aik        eta        ln / 
+        tüŋ¹ kā¹        tɔ¹        luk⁴        ik¹        tɔ¹        lān⁶        
+        all        until        child        also        until        grandchild
+‘Even unto the generations of the children and grandchildren.’
+
+
+Notes:         tgqka omitted in the Aiton version.
+        *eta is given as tUwq in the MS and was read as to² ‘body’ by Nabin Shyam. It is written tU in the Phake version belonging to Aithown Che, but he and Yenow Than felt the reading should be etalukqetalnq  tɔ¹ luk⁴ tɔ¹ lān⁶ ‘up to the generation of the children and grandchildren’. Note Shan etaG ‘until’
+
+
+
+
+9)        tk        ma        ecaa        xun        sig        wn        pk        lW / 
+        tak¹        mā²        cɔ² cɔ²        khon⁴        seŋ⁶        wān⁶        pāk¹        lau⁵
+        will        come        onom*        mix        sound        sweet        mouth        to tell
+‘The time has come to mix these sweet sounds and tell them.’
+
+
+
+
+10)        etanj        xonq        wgq        lnq        pigq        kX        nE        mW        cigq / 
+        tɔ¹ nai⁴        khɔn⁶        waŋ¹        lān⁶        paiŋ²        kā¹        naü⁶        mau¹        caiŋ⁵
+        until now        soul        confused        grandchild        love        go        where        neg        know
+‘Now the troubled khon of our beloved grandchild is lost, we do not know where it has gone.’
+
+
+Note:         Sao Tern Moeng (1995:68) translates xonq as ‘fairy or spirit attached to a person from birth, similar to a guardian angel’, and offers an alternative spelling xTnq. She also refers to the xogqHxjG ‘basket and its content. viz. two bundles of salt, two of tea, two bunches of bananas, two bracelets and two hands of thread used as a wedding gift to a bride; also as an offering to spirits and to call back a fairy when a person is very ill or shocked into a daze. hogqOxonq hpqOxonq (an ancient custom).
+
+
+
+
+11)        pa        hE        xj        yU        ca        nW        vig        cE        yuM / 
+        pā²        haɯ³        khai³        yū¹        cā⁴        nāu⁶        thaiŋ³        caü²        yum³
+        with*        allow        sick        stay        bad        cold        more        heart        disturbed
+‘He is feverish, very cold and disturbed in his heart.’
+
+
+Notes:        * There was some discussion about this word. Nabin Shyam read it as pa² ‘to carry (the fever). Aithown Che Chakap stated that it meant with, which is suggested by Shan pa: ‘be with, have with’, in itself possibly related to the word for ‘carry’. The Phake pandits suggested that it might better be read as epa.
+
+
+
+
+12)        cgqnj        ln        mE        mI        tgq        xJgq        kU        foM        
+        cüŋ¹ nai⁴        lān⁶        maü²        mī²        tüŋ¹        khüŋ⁵        kū⁵        phɔm⁴
+        now        grandchild        2sg        have         everything         thing         every        clf
+
+
+        kuN        Aoj        wn        lk        koj        ec / 
+        koi³        ɔi³        wān⁶        lāk¹        kɔi²        ce²
+        banana        cane        sweet        diverse        alone        complete*
+‘Now your grandchild has every requisite, banana, sugarcane and all the sweet foods.’  
+
+
+Notes:        * Sa Myat explained wnqlkqkojec wān⁶ lāk¹ kɔi² ce² and his explanation was translated as  ‘everything sweet mix up and eat, there is no one type, not only banana, every good taste is different.’ The meaning is that the grandfather has arranged these things so that the grandson’s missing khon will come to eat these things.
+
+
+        the Aiton version differs at the end
+        kouN        Aoj        lj        sM        hF        pnq / 
+        koi³        ɔi³        laai¹        sam³        hɛm²        pan²
+        banana        cane        many        many        prepare        give
+‘Banana and sugar cane are prepared to give (to the khon).’
+
+
+
+
+
+
+13)        tk        maX        yon        AWw        /
+        tak¹        mā²        yɔn²        au²
+        will        come        beg        take
+‘We come to beg the khon’
+
+
+The Aiton version differs as follows:
+13.1)        tk        ma        yon        migq        koupq        xonq        xM        hE        nj        /        
+        tak¹        maa²        yɔn²        miŋ²/³        kup¹        khɔn¹        kham²        haɯ³        nai³/dai³
+        will        come        beg        spirit*        with        khon        gold        allow        get
+        ‘We come to beg the spirit of the golden khon.’ $L=Aiton$
+
+
+Notes:         * Nabin explained that miŋ²/³  was another type of spirit (perhaps related to Shan migqH ‘fate, destiny’) and that this sentence meant that the Ming and the Khon were together
+
+
+
+
+14)        xonq        wg        ln        pig        sJw        hM        ef        hE        nj / 
+        khɔn⁶        wāŋ¹        lān⁶        paiŋ²        sə³        hām¹        phɛ²        haü³        nai⁴
+        soul        confuse        grandchild        love        shirt        pink colour        satin        give        prt
+        ‘(The grandfather) will come to beg the troubled khon of our beloved grandchild to take this fine pink satin shirt’
+
+
+
+
+The Phake version of the text adds:
+15)        migq        kupq        xonq        hE        nj / 
+        meŋ/miŋ³/⁵        kup¹        khɔn⁶        haü³        nai⁴
+        type of spirit        and        soul        give        this
+        ‘And the spirit khon.’ $L=Phake$
+
+
+Note:         The Aiton version lacks 14, 15 as in the Phake version -
+
+
+
+
+16)        wa        tI        cE        wn        pU        tI        fj        hc
+        wā⁵        tī⁵        caü²        wān⁶        pū¹        tī⁵        phai²        het¹
+        speak        to        heart        sweet        grandfather        to        fire        make
+‘Oh, sweet hearted grandfather at the fireplace, perform this ceremony, oh listen!’
+
+
+
+
+17)        cW        xW         S /
+        cau³        khau⁶        əi²
+        resp        plu        prt
+‘Oh, Listen!’
+
+
+Notes:        Nabin explained that the place where water is boiled in the kitchen is called tIfj. He paraphrased this section as follows:
+
+
+17.1)        fE        Anq        hogq        xonq        nnq        woa        hgq        tI        fj        nnq
+        phaɯ¹        an²        hɔŋ³        khɔn¹        nan³        waa²        haŋ²        tii²        phai²        nan³
+        who        clf        call        khon        that        say        to        at        fire        that
+
+
+        woa        pU        tI        fj        sI         hogq        yW  
+        waa²        puu¹        tii²        phai²        sii¹        hɔŋ³        yau³
+        say        grandfather        at        fire        prt        call        finished
+
+
+        ljpJwqnj        mJwq        hogq        xonq        lukqAonq        nnq        xW        woa 
+        lai³ pɯ² nai³        mɯ²        hɔŋ³        khɔn¹        luk³ ɔn¹        nan³        khau¹        waa²
+        thus        time        call        khon        child        that        3pl        say
+
+
+        pU        tI        fj        S        /
+        puu¹        tii²        phai²        ɯi²
+        grandfather        at        fire        excl
+        ‘Who it is that is calling the khon is our grandfather at the fireplace, and so the grandfather at the fireplace calls the child’s khon.’ $L=Aiton$
+
+
+18)        Aiktgq        konsW        yX        hj        emaq
+        ik¹ tüŋ²        kɔn³ sau³        yā⁵        hai⁶        mɔ³
+        together with        tripod*        grandmother        pot        saucepan
+‘With a rice tripod, pots, saucepan,’
+
+
+Notes:        * a very archaic word for keŋ² ‘metal tripod on which a pot of rice is cooked.’
+
+
+19)        kup        muN        xW        ena /
+        kup¹        mui²        khau⁶        nɔ²
+        together        water dipper        3pl        prt
+‘and water dipper, oh listen! ‘
+        
+In the Aiton version the last two words are xW S
+
+
+
+
+20)        cgnj        ln        mE        mI        tgq        pa        kup        xW / 
+        cüŋ¹ nai⁴        lān⁶        maü²        mī²        tüŋ¹        pā²        kup¹        khau³
+        now / then        grandchild        2sg        have        both        fish        and        rice
+‘Now your grandchild has both fish and rice.’
+
+
+Notes:        Fish and rice are the staples of the Tai diet.
+        In the Aiton version kup is given as koupq.
+
+
+
+
+21)        Aiktg        nM        sE        tW        kin        hoM / 
+        ik¹ tüŋ¹        nam⁴        saü¹        tau³        kin²        hɔm⁶                        
+        together with        water        put in        jar/ bottle        eat        sweet smell
+‘Together with fragrant water from the water jar.’
+
+
+
+
+22)        kuN        Aoj        kup        xogq        wn / 
+        kɔi³        ɔi³        kup¹        khauŋ⁶        wān⁶
+        banana        sugar        together        thing        sweet
+‘And banana, sugar cane and (other) sweet things.’
+
+
+In the Aiton version, it is:
+22.1)        kuN        Aoj        Aikq        xogq        tJwq / 
+        kɔi³        ɔi³        ik¹        khɔŋ¹        tɯ²
+        banana        sugar        together        thing        use*
+‘Banana, sugar cane and (other) sweet things.’
+
+
+        
+23)        tgAn        xogq        hoM        cU        lj        pnq        pU        ya / 
+        tüŋ¹ an²        khauŋ⁶        hɔm⁶        cū²        lāi⁶        pān²        pū¹        yā⁵
+        and        thing        scented        time        many        lifetime        grandfather        grandmother
+‘and all the scented foods (collected) by our grandparents over a long period.’
+
+
+In the Aiton version:
+23.1)        tgAn        xa        xigq        kgq        sigq        yJwq        kupq        lU 
+        tāŋ¹ an²        khā⁶        khɛŋ¹        kaaŋ¹        sɛŋ¹        ʒɯ²        kup¹        luu³        
+        and        bow        hard        bow        diamond        shoot        with        destroyed
+‘and a bow, hard as diamond, with which to shoot and destroy.’
+
+
+Notes:        *Part of the bow ¡ÒÌ ¼Òb ¸¹Ø Note also Shan xaG ‘a frame’
+        ** Nabin translated this as ‘destroyed, but it is perhaps it is Phake lo⁴ ‘shovel’
+
+
+In the Aiton version, this is followed by sentence 26)
+
+
+23.2)        xogqhoM        Anq        kinq        wn
+        khauŋ⁶ hɔm⁶        an²        kin²        wān⁶
+‘khauŋ⁶ hɔm⁶’        clf        eat        sweet
+‘‘‘khauŋ⁶ hɔm⁶’’ means sweet foods.’ $L=Aiton$
+
+
+
+
+24)        tgqAn        kuN        Aoj        kup        xogq        tJw / 
+        tüŋ¹ an²        koi³        ɔi³        kup¹        khauŋ⁶        tə²
+        and        banana        sugar        and        thing        to use
+‘with banana, sugar cane and utensils’
+
+
+
+
+25)        tgqAn        xa        xig        kg
+        tüŋ¹ an²        khā⁶        khaiŋ⁶        kāŋ¹
+        and        bow        hard        crossbow
+
+
+        yJg        yJw        Aik        lU / 
+        yəŋ²        yü²        ik¹        lo⁴
+        aim        shoot        and        shovel
+‘And a strong crossbow to aim and shoot and as well a shovel.’
+
+
+
+
+26)        xn        exa        xW        xiw        fj        kup        hok /
+        khān⁶        khɔ⁶        khau¹        kheu²        phāi⁶        kup¹        hauk¹
+        axe*        hoe        3pl        sickle**        sharp        and        lance
+‘With an axe, a hoe, a sharp sickle and a lance’
+
+
+
+
+27)        Aiktg        xJk        sonq        
+        ik¹ tüŋ¹        khük¹        sɔn³
+        and        implement for catching fish        catch fish with a khük¹
+
+
+        sp        yn        nM        lj        xok        sj        xW / 
+        sāp¹        yān⁴        nam⁴        lai⁶        khauk¹        sāi²        khāu⁶
+        near*        edge        water        flow        portion        sand        white
+‘And a fish trap for catching fish on the edge of the flowing where the white sands are.’
+
+
+Notes:        Sa Myat defined sāp¹ as spq mXnj AnqgokqAnqgJnqen ‘Sāp¹ means turning, twisting’. Note that the Phakes felt it was sap¹ ‘to stab’;
+
+
+        In the Aiton version - 1st two words are tgqAnq.
+
+
+
+
+28)        tgka        pun        nj        hE        mE
+        tüŋ¹ kā¹        pon⁴        nai⁴        haü³        maü²
+        everything        exceed        this        give        2sg
+
+
+        pU        cW        sJw        tI        NE        fj        hJg / 
+        pū¹        cau³        sü⁵        tī⁵        yaü¹        phai²        hüŋ²
+        grandfather        resp        straight*        place        big        fire        glare (of fire)
+‘All things we give you, oh respected grandfather, who sits at the bright glare of the fire.’
+ 
+Notes:        tgqkapunqnj means ‘all of this’
+        The Aiton version is:        tgkanjmahEpUcWsJwtIyEfjhJg / T
+        Nabin stated that fIsJwq phii¹ sɯ² and fIsJwqmJgq phii¹ sɯ² mɯŋ² are types of spirits.
+
+
+
+
+29)        xiNeta        pj        xa        xon        nI
+        khɛn² tɔ⁵        pai²        khā⁶        khɔn⁶        nī²
+        please        go        search        spirit        good
+        
+        ln        pig        kU        lJm        mJg        hE        nj / 
+        lān⁶        paiŋ²        kū⁵        lüm²        məŋ²        haü³        nai³
+        grandson        love        all        country        country        for        get
+‘Please go and search out the good khon of our beloved grandson in every country.’
+
+
+(Explanation tape: End of Tape 2000.3.3 side B, commencement of tape 2000.3.4 side A - after prayers)
+
+
+
+
+30)        pik        ti        kj        yn        cU        
+        paik⁴        tī⁵        kai²        yān⁶        cū¹
+        if        place        far        far        long far place
+
+
+        viwliw        lj        spq        eka / 
+        theu² leu²        lāi⁶        sāp¹        kɔ⁴
+        very far        many        sides        link
+‘If it is in a very far away place, in any direction,’ 
+
+
+
+
+Notes:         There was considerable discussion about the meaning of theu² leu², which several informants did not understand. Sa Myat had defined it (translated to me as) ‘man cannot go that place, place on earth where ghosts can go but men cannot go there.’
+        In the Aiton version, the last word eka is omitted.
+
+
+
+
+31)        xiNeta        pU        cW        el        sok
+        khɛn² tɔ⁵        pū¹        cau³        lɛ¹        sauk⁴
+        please        grandfather        resp        roam        search*
+                                                
+        kU        ex        huN        fa        gp        lF        xa / 
+        kū⁵        khɛ²        hoi³        phā⁶        ŋāp¹        lɛm²        khā⁶
+        all        river        small river        rock        recess/crack        look        search
+‘Please grandfather, search for it every channel and stream, and under every flat stone.’ 
+
+
+Notes:        * error in MS - written sop.
+        The meaning of phā⁶ ŋāp¹ was explained ‘under a flat stone’. The Phake pandits explained that it referred to a type of drain. Nabin stated that ‘in river if there is a stone, under that it is called fagpq phaa¹ ŋaap¹. 
+        In the Aiton version, pUcW is omitted and sopq is written sokq - the latter being correct; ex is written ek - which is incorrect
+
+
+
+
+31)        hE        Anj        nj        tg        xon        mn        ln        Aon        noj / 
+        haü²        an²        nai³        tüŋ¹        khɔn⁶        mün²        lān⁶        ɔn¹        nɔi⁴        
+        give        clf        get        all        soul        his        grandson        small        small
+‘Get the khon of our small grandchild.’
+
+
+In the Aiton version, the AWma of (32) is included at the end of (31)
+
+
+        
+32)        AW        ma        sW        fig        es        lapa        em        AU / 
+        au²        mā²        sau²        phaiŋ⁶        sɛ⁶         lā² pā²        mɛ⁵        ū¹
+        take        come        stay        side of        prt        parents        mother        father
+‘Bring it back to side of its loving mother and father’
+
+
+
+
+33)        sW        hJg        vun        lj        pI        yX        xj / 
+        sau²        hüŋ⁶        thon³        lāi⁶        pī²        yā¹        khai³
+        stay        long time        complete        many        years        don’t        illness
+‘So that our grandchild may stay for a long time and complete many years without illness.’
+
+
+
+
+34)        hE        An        na        kIyuM        pk        foj        xUwq        gM / 
+        haü²        an²        nā³        kī¹ yom⁴        pāk¹        phɔi¹        kho⁶        ŋām²
+        give        clf        face        smiling        mouth        onom        laughing        good*
+‘So that he may have a smiling, laughing and happy face.’
+
+
+Notes:        * The MS has gp, but this is altered, following the Aiton version, where the word is gM ŋaam² ‘good’
+
+
+
+
+35)        wa        tI        pU        konsW        sM        cig        mun        xig / 
+        wā⁵        tī⁵        pū¹        kɔn³ sau³        sām⁶        ceŋ¹        mon²        khiŋ²
+        speak        to        grandfather        tripod        three        angle*        round**        body
+‘Oh grandfather (who sits at) the three pronged cooking stand, with a round rim.’
+
+
+Notes:        * Here cigq refers to the three prongs on the top of the keŋ² (tripod).
+        ** refers to the round top of the keŋ² (tripod).
+
+
+
+
+36)        sW        fig        vn        fj        nig        hc        cW        xW        S /
+        sau²        phaiŋ⁶        thān¹        phai²        naiŋ²        het¹        cau³        khau⁶        əi²
+        stay        side*        charcoal        fire        red        do        resp        plu        prt
+‘who is by the fire of red charcoals, perform (this ceremony), oh listen!’
+
+
+Notes:        * This refers to the fact that the grandfather who is to perform this ceremony is sitting beside the fire.
+
+
+
+
+37)        lkpoj        ka        mug        pun        mJg        NE        xa        xon / 
+        lak¹ pɔi²        kā¹        muŋ⁵        pun⁴        məŋ²        yaü¹        khā⁶        khɔn⁶
+        now*        go        look forward        beyond        country        big        search        soul
+‘Now go to look for the khon in other far away countries.’
+
+
+Notes:        * Translated by the pandits as ‘now’, but cf. Shan lkq:poj:. ‘PART. [denoting certainly, truly]
+
+
+
+
+38)        ciw        pj        ciw        ma        nj        AW        pn
+        ceu²        pai²        ceu²        mā²        nai³        au²        pan²
+        quickly        go        quickly        come        get        take        give
+
+
+        yX        lJw        enwn / 
+        yā¹        lü³        nɛ¹ wān²
+        don’t        stop        prt-request
+‘We request you to go quickly and bring it back, do not rest anywhere.’ 
+
+
+
+
+39)        cgnj        ln        mE        mI        tg        xiw        kup        fa / 
+        cüŋ¹ nai⁴        lān⁶        maü²        mī²        tüŋ¹        kheu²        kup¹        phā⁴
+        now        grandson        you        have        all        sickle        and        cleaver
+‘Now your grandchild has both a sickle and a cleaver.’ 
+
+
+MS p2
+Link to Photograph of the Manuscript, page 2
+
+
+40)        sg        wa        xonq        ka        xW        tI
+        süŋ⁶        wā⁵        khɔn⁶        kā¹        khau³        tī⁵
+        if        say that        spirit        go        enter        place
+
+
+        ca        tn        AJn        lF        xa / 
+        cā⁴        tan⁴        ün¹        lɛm²        khā⁶
+        bad        that        other        look        search        
+‘If the khon goes to another bad place, search for it.’
+
+
+The Aiton version is:
+40Ait        sg        woa        xonq        ka        tI        pa        ca        lF        xa /
+        saŋ¹        waa²        khɔn¹        kaa¹        tii²        paa¹        caa³        lɛm²        khaa¹
+        if        say        spirit        go        place        forest        bad        look        search
+‘If the khon goes to a cemetery, search for it.
+
+
+paca means a cemetery; The Aitons also say pacapahiwq paa¹ caa³ paa¹ hiu².
+
+
+
+
+41)        pJn        wa        cara        mU        xa        xiw / 
+        pən⁵        wā⁵        cā¹ la⁴         mū¹         khā²        kheu⁶
+        other        say        wild forest        group        thatch        green
+‘Some say it is in a wild forest, or a place where there is pile of green thatch.’
+
+
+Note:        The Aiton version has pJwq pɯ² as the first word, which would mean ‘so that’ - Nabin stated that either reading would be possible. 
+        Nabin believed that the last word should be hiwq hiu² cemetery; and that calamUxa is the name of the cemetery. 
+        Aithown Che stated that the meaning of xa khā² thatch, and that the meaning was ‘a green place covered with thatch’, where ca means ‘to cover’
+
+
+
+
+42)        mU        cW        AW        tgq        xiw        fj        tt
+        pū¹        cau³        au²        tüŋ¹        kheu²        phāi⁶        tat¹
+        grandfather        resp        take        all        sickle        sharp        cut
+
+
+        hon        xtq        yMniw        es        nj / 
+        hɔn²        khāt¹        yām² neu²        sɛ¹        nai³
+        cut        torn        now        prt        prt
+‘Oh grandfather, now take the sharp sickle, and cut and tear it out.’
+
+
+The Aiton version is:
+42)        AW        tgq        xiw        fj        tt
+        au²        taŋ¹        khiu²        phai²        tat¹
+        take        all        sickle        sharp        cut
+
+
+        hon        ptq        yMniw        xn        nj / 
+        hɔn²        pat¹        ʒaam² niu²        khan⁶        nai³
+        cut        cut        now        prt        prt
+‘Take the sharp sickle, and cut it now.’ $L=Aiton$
+
+
+
+
+43)        sg        wa        xon        wg        mJw        sW
+        süŋ⁶        wā⁵        khɔn⁶        wāŋ¹        mə⁵        sau²
+        if        that        soul        trouble        time        stay
+
+
+        tI        ex        sE        lj        ela / 
+        tī⁵        khɛ²        saü⁶        lai⁶        lɔ¹
+        place        river        clear        flow        flow down
+‘If the troubled khon is in the river where clear water flows,’
+
+
+The Aiton version has xonqlnq.
+
+
+
+
+44)        pU        cW        AW        tg        xJk        son
+        pū¹        cau³        au²        tüŋ¹        khük¹        sɔn³
+        grandfather        resp        take        all        fishing implement        catch fish        
+
+
+        sp        yn        nM        fa        ekaq        lF        xa / 
+        sāp¹        yān⁶        nam⁴        phā⁶        kɔ⁴        lɛm²        khā⁶                                
+        near        far        water        rock        link        look        search
+‘Oh grandfather, take the fish trap and search for it at the edge of the river and among the rocks.’
+
+
+The Aiton version is:
+44)        Aow        tg        xJk        son        
+        au²        taŋ¹        khɯk¹        sɔn³
+        take        all        fishing implement        catch fish
+
+
+        spq        yn        nM        fa        elaq        sj        xW / 
+        saap¹        yaan¹        nam³        phaa¹        lɔ¹        saai²        khaau¹
+        near        far        water        rock        flow down        sand        white
+        ‘Tkae the fishing implement tnear to where the water flows down a rock and the sand is white.’ $L=Aiton$
+
+
+
+
+45)        hE        An        nj        tg        xon        mn
+        haü³        an²        nai⁴        tüŋ¹        khɔn⁶        mün²
+        let        clf        this        all        soul        3sg                                
+
+
+        ln        Aon        noj        ma        pn / 
+        lān⁶        ɔn¹        nɔi⁴        mā²        pan²
+        grandchild        little        little        come        give
+‘Allow the khon of the little grandchild to come.’
+
+
+In the Aiton version the first three words of line two are lnqfUnj ‘this grandson’
+
+
+
+
+46)        ciw        pj        lF        xa        nj        xnD        ya        lJw        enwn / 
+        ceū²        pai²        lɛm²        khā⁶        nai³        khan⁶        yā¹        lü³        nɛ¹ wan³
+        quickly        go        look        search        get        fast        don’t        rest        prt
+‘We request you to go quickly and bring it back, do not rest anywhere.’ 
+
+
+In the Aiton version, the word ma is added before ya.
+
+
+(Explanation tape: End of Tape 2000.3.4 side A, commencement of tape 2000.3.5)
+
+
+
+
+47)        njel        sJw        nn        mW        sU        nj        ng
+        nai³ lɛ³        sü        nan⁴        mau¹        sū¹        nai³        nüŋ¹
+        prt-then        place        this        neg        reach        get        then/like
+
+
+        wa        lF        hn        cM / 
+        wā⁵        lɛm²        han⁶        cam⁴
+        say        look        see        prt
+‘Then, if you cannot find it in that place, go and look for it further.’
+
+
+The Aiton version is:
+47)        njel        sgq        woa        sJw        nn        mW        yg        nj        lF        xa / 
+        nai³ lɛ³         saŋ¹        waa²        sɯ        nan³        mau¹        ʒaŋ²        nai³        lɛm²        khaa¹
+        prt        if        say        place        that        neg        be        get        see        search
+‘If not there, go and search for it (further).’
+
+
+
+
+48)        ljcJg        AW        tg        exa        xn        
+        lai⁴ cüŋ¹        au²        tüŋ¹        khɔ⁶        khān⁶
+        then        take        with        hoe*        axe
+
+
+        mJw        cU        mU        hig        vn        AJp        piN / 
+        mə⁵        cū²        mū¹        heŋ⁶        thān⁵        əp¹        pɛn⁵
+        time        time        crowd        thousand        enough        coffin        plank
+‘Take the hoe and axe (and search) among the thousands of planks and coffins.’
+
+
+Note:        It was explained that this means that the khon may be among the planks which people use for making coffins.
+        * This is written eha not exa in the manuscript. In the Aiton version, it is xnexoa
+
+
+
+
+49)        koj        pin        xun        xJg        xp
+        kɔi²        pen²        khon²        khüŋ⁵        khap⁴
+        only        be        mix        thing        arranged in a row
+
+
+        kog        kn        lJw        eka / 
+        kauŋ²        kan²        lə⁶        kɔ¹
+        heap        recip        left over        heap
+‘It may be mixed up inside these (planks) which are arranged one after the other in a heap.’
+
+
+Notes:        It was stated that kojpinq kɔi² pen² means ‘it may be’. It may be related to Shan kojH, ‘denoting changes in quality as time passes’, as in kojHyUGkojHlI ‘the longer it remains the better it gets’
+
+
+
+
+50)        yiwAn        mig        ca        nj        ma        eta        sW        es / 
+        yɛu² an²        miŋ⁵        cā⁴        nai³        mā²        tɔ¹        sau²        sɛ¹                
+        if        spirit        bad        get        come        prt        stay        prt
+‘If the khon gets to go to a bad place,’
+
+
+Notes:        Sa Myat explained this as:  xonqmnqemygqcI  migqca xjcip.
+
+
+The Aiton MS has:
+50.1)        siw        es        mig        yU        cX        nj        mJw        eta        sow        es / 
+        sɛu³        sɛ¹        miŋ²        ʒuu¹        caa³        dai³        mɯ²        tɔ¹        sau²        sɛ¹
+        catch        prt        spirit        stay        bad        get        time        prt        stay        prt
+‘(If) The meng catches the khon and gets to a bad place and stays there,’ $L=Aiton$
+
+
+
+
+51)        pJn        wa        cara        mU        xa         AJp        piN        cug        lug /
+        pən⁵        wā⁵        cā¹ la⁴         mū¹         khā²         əp¹        pɛn²        cuŋ²        loŋ⁶
+        other        say        wild forest        group        thatch*         coffin        plank        coffin        big
+‘In that place which others call wild forest, a place where there is pile of thatch, there are big coffins.’
+
+
+Notes:        The MS gives caraxamU. xa is not in the Aiton version.
+
+
+
+
+52)        sg        woa        xon        wg        yU        nE        kug        fa        yoj / 
+        süŋ⁶        wā⁵        khɔn⁶        wāŋ¹        yū¹        naü²        koŋ²        phā⁶        yɔi⁴
+        if        that        soul        confused        stay        in        hollow*        stone        to drop, hang down
+‘If the troubled khon has gone to live inside the hollow of a tree, or in an overhanging stone.’
+
+
+Notes:        * short for koŋ² mai⁴ ‘a hollow in a tree’.
+
+
+
+
+53)        sg        wa        xon        nI        yU        sJw        nn        cM / 
+        süŋ⁶        wā⁵        khɔn⁶        nī²        yū¹        sü¹        nan⁴        cam⁴
+        if        that        soul        good        stay        place        that        prt
+‘If there is a good khon staying in that place,’
+
+
+
+
+54)        lkpoj        siw        nj        pukq        eha
+        lak¹ pɔi²        sɛu³        nai³        puk¹        hɔ¹
+        again        catch        get        bind        package
+
+
+        mn        AW        ma        enwn / 
+        mün²        au²        mā²        nɛ¹ wān²
+        3sg        take        come        prt
+‘Then catch it and package it into a cloth and bring it, we request.’
+
+
+In the Aiton version, AWma is omitted.
+
+
+
+
+55)        watI        pU        konsW        tI        yE        fj        hJg        xW        S / 
+        wā⁵ tī⁵        pū¹        kɔn³ sau³        tī⁵        yaü¹        phai²        hüŋ⁶        khau⁶        əi²        
+        prt*        grandfather        tripod        at        big        fire        long time        plu        prt        
+‘Oh, respected grandfather at the cooking tripod, who has remained by the fire for a long time, oh listen!’
+
+
+Notes:        Ai Che Let gave the tone of this as wā⁵ tī¹.
+
+
+
+
+56)        xiNeta        pj        xa        xon        nI
+        khɛn² tɔ⁵        pai²        khā⁶        khɔn⁶        nī²
+        please        go        search        soul        good
+
+
+        ln        pig        kU        lJm        mJg        cot        tI        nJX        en/ 
+        lān⁶        paiŋ²        kū⁵        lüm²        məŋ²        cɔt¹        tī⁵        noi³        nɛ⁴
+        grandchild        love        every        place        country        everywhere        place        with        prt
+‘Please go to search for the good khon of our beloved grandson in every country, in every place,’ 
+
+
+
+
+57)        mJg        nJw        Aik        mJgq        tE / 
+        məŋ²        nə⁶        ik¹        məŋ²        taü³
+        country        up        also        country        down
+‘Up hill and down dale.’
+
+
+
+
+58)        tI        kE        kup        tI        kj        tn
+        tī⁵        kaü³        kup        tī²        kai²        tan⁴
+        place        close        with        place        far        that
+
+
+        yn        el        sg / 
+        yān⁶        lɛ⁴        saŋ⁶
+        far        prt        any
+‘In places far and near,’
+
+
+
+
+59)        pik        wa        xopq        fa        tI        kj        NW        ekaq / 
+        paik⁴        wā⁵        khɔp¹        phā⁴        tī⁵        kai²        yāu²        kɔ⁴
+        if        that        realm        sky*        place        far        long        link
+‘If the khon is in a very distant place where the sky meets the earth.’
+
+
+Notes:        *The meaning of xopqfa was given as ‘The place where the sky meets the earth.’
+        The Aiton version has eta instead of wa and no final ekaq.
+
+
+
+
+60)        pU        lk        tM        tin        sU        hWw
+        pū¹        lak¹        tam²        tīn²        sū¹        hāu²
+        grandfather        again        put down        leg        to        line*
+
+
+        mJg        el        sokq / 
+        məŋ²        lɛ¹        sauk⁴
+        country        roam        search for        
+‘Grandfather will set down his legs and roam to the bordering countries to search for it.’
+
+
+Note:        * Hāu² literally means ‘line, range (of mountains)’, but was translated as ‘border’. This probably refers to the fact that the borders of Assam are mountain ranges.
+
+
+The Aiton version is:
+60.1)        pU        lk        wgq        tin        tj        howtg
+        puu¹        lak¹        waaŋ²        tin²        tai¹        haau² taaŋ²
+        grandfather        again        put down        foot        walk on road        road
+
+
+        el        sokq / 
+        lɛ¹        sɔk³
+        roam        search
+        ‘Grandfather again walks on the road searching.’ $L=Aiton$
+
+
+61)        hW        yn        cU        viwliw        ya        wa / 
+        hāu²        yān⁶        cū¹        theu² leu²        yā        wā⁵
+        line*        far        far away place        very far        don’t        say
+‘If it is very very far away,’
+
+
+Note:        * Given as xW in the manuscript
+
+
+The Aiton version states:
+61.1)        hW        yn        kj        ya        wa / 
+        haau²        yaan¹        kai²        yaa¹        waa²                        
+        line        far        far        not        say
+        ‘It is a far away place.’ $L=Aiton$
+
+
+
+
+62)        pU        cW        nt        na        tig        pj        xa / 
+        pū¹        cau³        nat¹        nā³        taiŋ¹        pai²        khā⁶
+        grandfather        resp        straight road        face        begin        go        search
+‘Grandfather will start searching along that straight road.’
+
+
+
+
+63)        hE        An        nj        tg        xon        mn
+        haü³        an²        nai⁴        tüŋ¹        khɔn⁶        mün²
+        give        clf        that        with        soul        3sg
+
+
+        ln        Aon        noj        ma        vogq / 
+        lān⁶        ɔn¹        nɔi⁴        mā²        thɔŋ⁶
+        grandchild        little        little        come        reach*
+‘Let the khon of the little grandchild come and reach us.’
+
+
+Note        * This is written togq, but it is probably an error and there appears to be a correction in the MS.
+
+
+The Aiton version has:
+63.1)        hE        nj        xon        mn        
+        haü³        nai⁴        khɔn⁶        mün²
+        give        that        soul        3sg
+
+
+        ln        Aon        noj        fU        cW        ma        vogq / 
+        lān⁶        ɔn¹        nɔi⁴        phuu³        cau³        mā²        thüŋ⁶
+        grandchild        little        little        person        resp        come        reach
+‘Let the khon of the little grandchild come and reach us.’ $L=Aiton$
+
+
+
+
+64)        sW        nI        kg        hJn        tn        sig
+        sau²        nī²        kāŋ²        hən²        tān³        seŋ¹
+        stay        good        middle        house        speak        sound
+
+
+        hog        yU        cJn        enwnq / 
+        hauŋ³        yū¹        cün³        nɛ¹ wān²
+        room        stay        become well        prt
+‘Oh khon, we request you to stay happily inside the house, speak and become well.’
+
+
+In the Aiton MS hogq is incorrectly written as has xogq.
+
+
+
+
+65)        sg        wa        xoqnI        mJw        sW
+        süŋ⁶        wā⁵        khɔn⁶ nī⁶        mə⁵        sau²
+        if        that        good khon        time        stay
+
+
+        tI        vg        lug        kJt        yU / 
+        tī⁵        thāŋ⁶        loŋ⁶        kət¹        yū¹
+        place        deep pit        big        remain        stay
+‘If the good khon is staying in a large and deep pit’
+
+
+
+
+66)        pU        cW        AW        tgq        ela        xut        sU        lF        xa / 
+        pū¹        cau³        au²        tüŋ¹        lɔ⁴        khut¹        sū¹        lɛm²        khā⁶
+        grandfather        resp        take        both        shovel        dig        to        look        find
+‘Respected grandfather will take a shovel to dig it out and find it.’
+
+
+The Aiton version has:
+66)        pU        cW        AW        tgq        kU        mJw        sU        lF        xa / 
+        puu¹        cau³        au²        taŋ¹        kuu²        mɯ²        suu¹        lɛm²        khaa¹
+        grandfather        resp        take        both        every        time        to        look        find
+‘Respected grandfather will time to search and find it.’ $L=Aiton$
+
+
+
+
+67)        sg        el        mW        sU        nj        ng        wa        lF        xa / 
+        süŋ⁶        lɛ¹        mau¹        suu¹        nai⁴        nüŋ¹        wā⁵        lɛm²        khā⁶
+        if        prt        neg        to        then        thus        say        look        search
+‘If you do not easily find the khon,’
+
+
+The Aiton version is different, and Nabin read the meaning of some words differently:
+67.1)        ngq        nnq        mow        sU        nj        ng        woa        tuN        hn        /
+        naŋ¹        nan³        mau¹        suu³        dai³        naŋ¹        waa²        tui²        han¹
+        like        that        neg        agree        get        like        say        look        look
+        ‘Like this, if you not not find the it.’ $L=Aiton$
+
+
+
+
+68)        xiNeta        pj        lF        tghoM
+        khɛn² tɔ⁵        pai²        lɛm²        tāŋ² hɔm²
+        please        go        look        junction
+
+
+        vJn        nug        na        el        sokq / 
+        thən¹        noŋ²        nā⁶        lɛ¹        sauk⁴
+        forest        deep forest        thick        roam        search for
+‘Please go to search for it at the junctions and in the big deep thick forest. ‘
+
+
+The Aiton version has:
+68.1)        xiNeta        pj        xa        vg        xuM
+        khɛn² tɔ²        pai²        khaa¹        thaaŋ¹        khum¹
+        please        go        search        hole        hole
+
+
+        vJn        nug        na        el        sokq / 
+        thɯn¹        nuŋ²        naa¹        lɛ¹        sɔk³
+        forest        deep forest        thick        roam        search for
+‘Please go to search for it in deep hole and the thick forest.’
+
+
+
+
+69)        sglk        vup        hn        yW         AW        ma        hE        nj /
+        süŋ⁶ lak¹        thup¹        han⁶        yau⁴         au²        mā²        haü³        nai³
+        if        meet*        see        finished         take        come        give        get
+‘If you meet it, bring it back.’
+
+
+Notes:        * Written as vJpq in the MS. It is possible that both thüp¹ and thup¹ are used for ‘meet’
+        In the Aiton version, last two words are replaced with xnqnj ‘quickly’
+
+
+
+
+70)        Aiktg        log        yU        ca
+        ik¹ tüŋ¹        lauŋ⁵        yū¹        cā⁴
+        also        condition        stay        bad
+
+
+        tg        xj        ciw        xiN        enwn / 
+        tāŋ²        khai³        ceu²        khɛn²        nɛ¹ wān²
+        condition        sick        quick        become better        prt
+‘As it is in a bad way and suffering illness, (come) quickly (so that) it will become better’
+
+
+Notes:        The line appears to be corrupted - 
+        The Aiton MS has ciwqsJnq not ciwqxiNq - but the meaning is the same. 
+
+
+
+
+71)        sg        wa        lF        xa        xoqnI        vJn
+        süŋ⁶        wā⁵        lɛm²        khā²        khɔn⁶ nī²        thən¹
+        if        that        see        search        good khon        forest        
+
+
+        nug        pig        mW        nj        cM / 
+        noŋ²        peŋ²        mau¹        nai³        cam⁴
+        deep        plain        neg        get        prt
+‘If after searching for the good khon in that deep forest, you don’t get it.’
+
+
+The Aiton version omits xonqnI.
+
+
+
+
+72)        pU        cW        lkpoj        kZa        sok
+        pū¹        cau³        lak pɔi        kā¹        sauk⁴
+        grandfather        resp        now        go        search
+
+
+        pg        hj        kup        na        pig / 
+        pāŋ¹        hai⁵        kup¹        nā²        peŋ²
+        open ground        dry rice field        with        wet rice field        flat
+‘Oh Grandfather, now go and search on the open ground, on the dry rice fields and the flat wet paddy fields.’
+
+
+
+
+73)        huN        hog        Aik        Aug        na / 
+        hoi³        hauŋ⁵        ik¹        uŋ²        nā²
+        creek        drain        also        lowland        field
+‘in the creeks and drains and lowland fields’
+
+
+The Aiton version has hugq for na. Nabin Shyam does not the meaning of hugq.
+
+
+
+
+74)        yiw        es        xon        wg        ln        pig        kJt        
+        yɛu²        sɛ¹        khɔn⁶        wāŋ¹        lān⁶        paiŋ²        kət¹
+        if        prt        soul        confused        grandson        love        remain
+
+
+        sW        fk        yn        tU        fU        cW /
+        sau²        phāk³        yān⁶        to²        phū³        cau³
+        stay        separate        far        body        person        resp
+‘If the troubled khon of our beloved grandchild has become separated, and is far away,’
+
+
+Notes:        Aithown Che explained that this meant that the khon had got separated from the its body, the fUcW.
+        The Aiton version omits lnqpigq.
+
+
+
+
+75)        yM        mJw        pj        ma        mW        hU        nj / 
+        yām²        mə⁵        pai²        mā²        mau¹        hū⁴        nai³
+        time        time        go        come        neg        know        get
+‘When the time will come to bring it back, is not known’
+
+
+The Phake version differs as follows:
+75)        yM        niwq        mJw        pj        AW        ma        mW        hU        nj / 
+        yām²        neu²        mə⁵        pai²        au²        mā²        mau¹        hū⁴        nai³
+        time        one        time        go        take        come        neg        know        get
+‘When the time will come to bring it back, is not known’ $L=Phake$
+
+
+
+
+76)        cg        pin        mtqmig        xj
+        cüŋ¹        pen²        mat¹ miŋ⁵        khai³
+        thus        be        body not well*        fever
+
+
+        yU        ca        nj        mj        xg        nW / 
+        yū¹        cā⁴        nai³        mai³        khāŋ²        nāu⁶
+        stay        bad        get        burn        moan        cold fever**
+‘The (grandchild) is ill, he is feverish, he is burning with a cold fever.’
+
+
+Notes:        * 
+        ** Short for xjnW khai³ nāu⁶.
+
+
+The Phake version is somewhat different - and the meaning is not fully clear.
+76.1)         cg        es        mtmig        sinqcE        mj        xgq        nW
+        cüŋ¹        sɛ¹        mat¹ miŋ⁵        sen³ caü²        mai³        khāŋ²        nāu⁶
+        thus        prt        not well        heart/mind        burn        moan        cold fever
+‘The (grandchild) is ill, he is feverish, he is burning with a cold fever.’ $L=Phake$
+
+
+
+
+77)        xiN        hE        pU        cW        sM        mug        cotq        lj        xa / 
+        khɛn²        haü²        pū¹        cau³        sam⁴        muŋ⁵        cɔt¹        lāi⁶        khā⁶
+        please        let        grandfather        resp        again        search        everywhere        many        search
+‘Please, grandfather, again go to search everywhere.’
+
+
+
+
+78)        sglk        vup        hn        xon        wgq / 
+        süŋ⁶ lak¹        thup¹        han⁶        khɔn⁶        wāŋ¹
+        if        meet        see        soul        confused
+        
+
+
+p3
+Link to Photograph of the Manuscript, page 3
+
+
+
+
+79)        ln        pig        pn        AW        ma        hE        nj        enwn 
+        lān⁶        paiŋ²        pan²        au²        mā²        haü³        nai³        nɛ¹ wān²
+        grandchild        love        give        take        come        give        get        prt
+78-79        ’If (you) meet the troubled khon of our beloved grandchild, bring it back home, we request you.’
+
+
+Note:        It appears that these are a single sentence.
+
+
+The Aiton version reads as follows:
+78.1)        sglk        vJp        hn        yow        Aow        ma        sU        hogq / 
+        saŋ¹ lak¹        thup¹        han⁶        ʒau³        au²        maa²        suu¹        hɔŋ³
+        if        meet        see        finished        take        come        to        house
+‘If (he) meets the (the confused soul), he should bring it home.’
+
+
+Notes:        Sa Myat paraphrased this as:        
+78.2)        ka        vJpq        ka        nj         ey   
+        kaa¹        thɤp¹        kaa¹        nai³        yɛ⁴
+        go        meet        go        get        prt
+
+
+        AW        ma        hE        lnq        ta        eAa.
+        au²        maa²        haɯ³        laan¹        taa⁴        ɔ¹
+        take        come        give        grandchild        prt.imp        prt
+‘If (he) meets the (the confused soul), he should bring it home.’
+
+
+
+
+80)        tnj        pj        xa        fj        niNq        lF        cotq / 
+        tan⁴ nai⁴        pai²        khā⁶        phāi³        nɛn²        lɛm²        cɔt¹
+        now        go        search        walk        border        see        everywhere
+‘Go and search at the borders and look everywhere.’
+
+
+The Aiton version adds lj ‘every, many’ after fj
+
+
+81)        tg        ka        huN        hog        el        sokq        yW
+        tüŋ¹        kā¹        hoi³        hauŋ⁵        lɛ¹        sauk⁴        yau⁴
+        all        go        creek        drain        roam        seach        finished
+
+
+        nU        cot        hn        ecq / 
+        nū²        cɔt¹        han⁶        ce²
+        look        complete        see        prt
+‘Go and and search thoroughly in the creeks and drains and look everywhere.’
+
+
+In the Aiton version, the last line is
+81.1)        koj        cot        nU        ecq / 
+        kɔi³        cɔt¹        nū²        cɛ²
+        only        complete        look        prt
+        ‘Look for it thoroughly.’ $L=Aiton$
+
+
+
+
+82)        sglk        mW        sU        nj        ng        wa        lF        hn / 
+        süŋ⁶ lak¹        mau¹        sū¹        nai³        nüŋ¹        wā⁵        lɛm²        han⁶
+        if        neg        reach        get        thus        that        look        see
+‘If (you) don’t get to see it,’
+
+
+The Aiton version has:
+82.1)        tgnj        mow        hnq        nj        woa        lF        hn         cM        / 
+        taŋ¹ nai³        mau¹        han¹        nai³/dai³        waa²        lɛm²        han¹        cam³
+        if        neg        see        get        say        look        see        prt
+‘If (you) don’t get to see it,’
+
+
+
+
+83)        ljcJg        pj        xa        fit
+        lai⁴ cüŋ¹        pai²        khā⁶        phet¹
+        then        go        search        ghost
+
+
+        cE        tn        fU        yukq / 
+        caü²        tan²        phū³        yuk⁴
+        heart        ignorant        person        bad in character
+‘Then go to search for the evil spirits, the stupid and the wicked persons.’
+
+
+Notes:        Sa Myat listed the bad spirits as follows:  fitqcEtnq  fIyukqfImanI.
+        In the Aiton version, the word fitq is replaced by fIfitca phii¹ phɛt¹ caa³ ‘bad spirit’
+
+
+
+
+84)        AW        tg        kn        NW 
+        au²        tüŋ¹        kan²        yāu²
+        take        all        handle        long
+
+
+        hok        pj        lF        kup        kg / 
+        hauk¹        pāi²        lɛm²        kup¹        kāŋ¹
+        lance        end        clf        with        crossbow
+‘Take the long handled lance, with the crossbow.’
+
+
+In the Aiton version NW is spelled as yow .
+
+
+
+
+85)        pU        lk        kX        sok        fI        fitq        hj
+        pū¹        lak¹        kā¹        sauk⁴        phī⁶        phet¹        hāi⁴
+        grandfather        again        go        search        ghost        bad ghost        bad
+
+
+        kg        pg        hF        mJgq / 
+        kāŋ²        pāŋ¹        him²        məŋ²
+        middle        open ground        edge        country/city
+‘Grandfather, go to look for the very bad spirits on the open ground outside of the village.’
+
+
+Notes        * Incorrectly written as tI in the MS.
+
+
+The first section of the Aiton version is:
+85        pU        cow        lkpoj        kZa        sok        /
+        puu¹        cau³        lak¹ pɔi²        kaa¹        sɔk³
+        grandfather        resp        now        go        search
+        ‘Grandfather goes to search.’
+
+
+
+
+86)        sg        wa        fI        fit        ca        mW        poj        fa
+        süŋ⁶        wā⁵        phī⁶        phet¹        cā⁴        mau¹        pɔi¹        phā³
+        if        that        spirit        bad        bad        neg        release        release
+
+
+        yMniw        cM / 
+        yām² neu²        cam⁴
+        now        prt
+‘If the bad spirits will still not release the khon.’
+
+
+Note         The Aiton version has pojhE for pojfa.
+
+
+
+
+87)        AW        tg        mE        lF        hok        pj        viw        sip        xgq /
+        au²        tüŋ¹        maü²        lɛm²        hauk¹        pāi²        theu⁶        sep¹        khaŋ
+        take        all        blade        clf        lance        edge        thin        stab        side of body
+‘Take the thin blade of the lance and stab the side (of the bad spirit).’
+
+
+Note        Aithown Che stated that viwq theu⁶ means ‘very thin and flexible’.
+
+
+
+
+88)        sg        el        yg        hicq
+        süŋ⁶        lɛ²        yaŋ²        het¹
+        if        prt        have        do
+
+
+        kM        kJm        mW        pojfa        cM / 
+        kam²        küm²        mau¹        pɔi¹ phā³        cam⁴
+        catch        tight        neg        release        prt
+‘If they grab it tightly and will not release it.’
+
+
+
+
+89)        AW        tgq        kg        xa        xJw        nit        yJwq / 
+        au²        tüŋ¹        kāŋ¹        khā⁶        khü²        net¹        yü²
+        take        both        crossbow        part of bow        strike in sliding motion        flick        shoot
+‘Take the crossbow and striking at them, shoot them.’
+
+
+The Aiton version has ka in place of xJw.
+
+
+
+
+90)        nn        eka        mW        poj        hE        pn        ma / 
+        nan⁴        kɔ⁴        mau¹        pɔi¹        haü³        pan²        mā²
+        that        link        neg        release        give        give        come 
+‘If they still don’t release it.’
+
+
+
+
+91)        ljcJg        AW        tg        tW        fj
+        lai⁴ cüŋ¹        au²        tüŋ¹        tāu²        phāi⁶
+        therefore        take        all        sword        sharp
+
+
+        np        xuM        ca        ka        gJtq / 
+        nāp¹        khom²        cā²        kā¹        ŋət⁴
+        sword        sharp        rough        go        cut
+‘Take a sharp sword with a razor sharp edge and go to chop them.’
+
+
+
+
+92)        hE        mn        pWwW        fk        nI        kj        tJn        pj / 
+        haü³        mün²        pāu² wāu²        phāk³        nī⁶        kai²        tün¹        pāi⁵
+        give        3sg        frightened        separated        go away        far        fear        flee
+‘Make the (bad spirits) run away, far far away.’
+
+
+Notes:        There was some discussion as to the meaning of pWwW . It was stated that it was onomatopoeic, referring to the call of the khon after it has been cut. 
+
+
+
+
+93)        cg        tkq        fa        poj        hE        nuN        gj
+        cüŋ¹        tak¹        phā³        pɔi¹        haü³        noi³        ŋāi⁵
+        so        will        release        release        allow        with        easy
+
+
+        pn        xonq        cM        yW / 
+        pan²        khɔn⁶        cam⁴        yau⁴
+        give        soul        prt        finished
+‘The the spirits will easily release the khon.’
+
+
+The Aiton version has:
+93.1)        mn        cgq        fa        poj        hE        nj        gj        pn        xon
+        man²        caŋ¹        phaa³        pɔi¹        haɯ³        dai³        ŋaai²        pan²        khɔn¹        
+        he        then        release        release        allow        get        easy        give        soul
+‘Then easily he will release the khon.’
+
+
+
+
+94)        watI        pU        cW        sJw        tI        NE
+        wā⁵ tī⁵        pū¹        cau³        sü        tī⁵        yaü¹
+        prt        grandfather        resp        place        place        big
+
+
+        fj        nig        kW        S / 
+        phai²        khaiŋ⁶        kau²        əi²
+        fire        strong        1sg        prt
+‘Oh, respected grandfather, who sits by the large fire,’
+
+
+In the last line, the Aiton version is simply fjhJgq.
+
+
+
+
+95)        xiNeta        pj        xa        xon        wg
+        khɛn² tɔ⁵        pai²        khā⁶        khɔn⁶        wāŋ¹
+        please        go        search        soul        confused
+
+
+        pE        sW        fig        fU        cW        enwn / 
+        paü⁴        sau²        phɛŋ        phū³        cau³        nɛ¹ wān²
+        watch        stay        quietly        person        resp        prt
+‘Please go and search for the troubled khon and watch over it so it may stay quietly with the grandchild, we request you.’
+
+
+
+
+The Aiton version has:
+95.1)        xiNeta        pj        Aow        xon        ln
+        khɛn² tɔ²        pai²        au²        khɔn¹        laan¹
+        please        go        take        soul        grandchild
+
+
+        pE        sW        fig        mow        fk        enwn / 
+        paɯ³        sau²        phɛŋ        mau¹        phaak³        nɛ¹ waan²
+        watch        stay        quietly        neg        separate        prt
+        ‘Please go and bring the troubled khon and watch over it so it may stay quietly.’ $L=Aiton$
+
+
+
+
+96)        njel        tg        ka        lj        lJm
+        nai⁴ le²        tüŋ¹        kā¹        lāi⁶        lüm²
+        prt        all        go        many        country
+
+
+        pg        hF        mJg        lF        cotq / 
+        paŋ¹        him²        məŋ²        lɛm²        cɔt¹
+        open ground        side        country        look        everywhere
+‘Go searching in many places, in the open ground outside the edges of the village.’
+
+
+Notes:        In the Aiton version it is lJpq not lJmq , cf Shan lJpqG ‘country’. Nabin stated that lJpq is used more widely. mJgq is replaced by xopq ‘border’ in the Aiton version.
+
+
+
+
+97)        tgka        fI        fit        yuk        el
+        tüŋ¹ kā¹        phī¹        phɛt¹        yuk⁴        lɛ¹
+        all        ghost        bad ghost        bad in character        roam
+
+
+        sokq        yW        mW        kut        nU        ec / 
+        sauk⁴        yau⁴        mau¹        kut⁴        nū²        ce²
+        search        finished        neg        miss        look        thoroughly        
+‘If you have searched for all the bad spirits, don’t fail to look thoroughly.’
+
+
+The Aiton version has:
+97.1)        tgka        fI        fit        ykxa        el
+        taŋ¹ kaa¹        phii¹        phɛt¹        yak¹ khaa¹         lɛ¹
+        all        spirit        bad        ghost        roam
+
+
+        sokq        yow        mow        kot        hnq        hE / 
+        sɔk³        ʒau³        mau¹        kɔt        han¹        haɯ³
+        search        finished        neg        ?*        see        give
+‘If you have searched for all the bad spirits, don’t fail to look thoroughly.’ $L=Aiton$
+
+
+Notes:        * Probably an error for kutq kut⁴ ‘miss’.
+
+
+The Phake version is:
+97.2)        tgka        huNq        hogq        el        sokq        yW
+        tüŋ¹ kā¹        hoi³        hauŋ⁵        lɛ¹        sauk⁴        yau⁴
+        all        stream        drain        roam        search        finished
+
+
+        mow        xotq        hnq        nE / 
+        mau¹        khɔt¹        han⁵        naɯ²
+        neg        come to an end        see        in
+‘If you have searched all the drains and streams, don’t let your looking cease.’ $L=Phake$
+
+
+
+
+98)        tg        nn        mW        sU        nj        ng
+        tüŋ¹        nan⁴        mau¹        sū¹        nai³        nüŋ¹
+        all        that        not        to        get        like
+
+
+        wa        hW        xnq        cM / 
+        wā⁵        hau²        khan⁶        cam⁴
+        say        1pl        quick        prt
+‘If you don’t manage to get it quickly,’
+
+
+The Aiton version has
+98.1)        lj        eka        mW        sU        njgq
+        lai³        kɔ³        mau¹        suu¹        nai³        naŋ¹
+        so        link        not        to        get        like
+
+
+        wa        how        hnq        cM / 
+        waa²        hau²        han¹        cam³
+        say        1pl        see        prt
+‘If you don’t manage to get it quickly,’ $L=Aiton$
+
+
+Phake version
+98.2)        tg        nj        mW        sU        nj        ngq
+        tüŋ¹        nan⁴        mau¹        sū³        nai³        nüŋ¹
+        all        that        not        agree        get        like
+
+
+        nMxoM        woa        hW        xnq        cM / 
+        nam⁴ khām²        wā²        hau²        khan⁶        cam⁴
+        what we say        say        1pl        quick        prt
+‘If it doesn’t agree, let it come quickly.’ $L=Phake$
+
+
+
+
+99)        pojcJg        pj        xa        hoF                mJg        tI
+        pɔi¹ cüŋ¹        pai²        khā⁶        khau³        him²        məŋ²        tī⁵
+        afterwards        go        search        enter        edge        country        place
+
+
+        kj        yn        tg        tI / 
+        kai²        yān⁶        tüŋ¹        tī⁵
+        far        far        all        place
+‘Afterwards, go and search at the borders of the country and in every place.’        
+
+
+The Aiton version has:
+99.1)        pj        xa        hF        mJg        tI
+        pai²        khaa¹        him²        mɯŋ²        tii²
+        go        search        edge        country        place
+
+
+        kj        yn        tg        tI / 
+        kai²        yaan¹        taŋ¹        tii²
+        far        far        all        place
+‘Afterwards, go and search at the borders of the country and in every yonder place.’ $L=Aiton$        
+
+
+
+
+100)        sJw        An        fI        xiN        noD
+        sü⁵        an²        phī⁶        khen⁶        nāu⁶ nāu⁶
+        straight        clf        ghost        bad luck        cold
+
+
+        tg        poj        tuM        mW        vtq / 
+        taŋ³        pɔi²        tum²        mau¹        thāt¹
+        make        festival        gather        neg        cease
+‘At that time the cold bad spirits have gathered in pandemonium, bustling without ceasing.’
+
+
+Notes:        In was stated that sJwqAnq sü⁵ an² meant ‘at that time’
+
+
+In the Aiton version, the first line is:
+100.1)        tI        An        fI        fikq        noD        /
+        tii²        an²        phii¹        phet¹        naau¹ naau¹
+        place        clf        ghost        bad        cold
+        ‘The place of the cold bad spirits.’ $L=Aiton$
+
+
+
+
+101)        pJn        hik        ec        pja                pin
+        pən⁵        hek⁴        cɛ⁵        pai²        mā²        pen²
+        other        call        city        go        come        be        
+
+
+        kt        xj        xon        wa        nj / 
+        kat¹        khāi⁶        khɔn⁶        wā⁵        nai⁴
+        market        sell        soul        say        that
+‘Others call it a city, a market for selling khons.’
+
+
+In the Aiton version, the first line is:
+101.1)        pJn        hik        ec        nokq        fa        pin
+        pɯn²        hik³        cɛ²        nɔk¹        phaa³        pen²
+        other        call        city        outside        world        be                        
+        ‘Others call it a city.’ $L=Aiton$
+
+
+
+
+102)        nn        eka        xiN        hE        pU        cW
+        nan⁴        kɔ⁴        khɛn²        haü³        pū¹        cau³
+        that        link        please        give        grandfather        resp
+
+
+        sM        mug        cotq        nU        ecq / 
+        sam⁴        muŋ⁵        cɔt¹        nū²        ce²
+        again        look forward        everywhere        look        thoroughly
+‘In that case, grandfather please go there and again search everywhere thoroughly.’ 
+
+
+The Aiton version is:
+102.1)        nn        eka        pU        cW        sM        mug        kZa        nU        ecq /
+        nan³        kɔ³        puu¹        cau³        sam³        muŋ²        kaa¹        nuu²        ce²
+        that        link        grandfather        resp        again        look forward        go        look        thoroughly
+‘In that case, grandfather please go there and again search everywhere thoroughly.’ $L=Aiton$
+
+
+
+
+103)        xa        AW        xon        ln        pok
+        khā⁶        au²        khɔn⁶        lān⁶        pauk⁴
+        search        take        soul        grandchild        return
+
+
+        hJn        ey        sU        hog        enwn / 
+        hən²        ye²        sū¹        hauŋ³        nɛ¹ wān²
+        house        granary        arrive        room        prt
+‘Search and bring the khon of our grandchild back home, to this room, we request you.’
+
+
+
+
+104)        sg        wa        fI        xiN        kM        kJm        
+        süŋ⁶        wā⁵        phī⁶        khen⁶        kam²        küm²
+        if        that        ghost        bad luck        catch        tight
+
+
+        mW        pojfX        cM / 
+        mau¹        pɔi¹ phā³        cam⁴
+        neg        release        prt
+‘If the bad spirits have tightly caught it and will not release it,’
+
+
+The Aiton version has kMca in place of kMkJmq and the last line is
+104.1)        mW        poj        hE        cM / 
+        mau¹        pɔi¹        haɯ³        cam³
+        neg        release        give        prt
+        ‘Will not release it.’ $L=Aiton$
+
+
+
+
+105)        pU        cW        AW        tg        kn        koM
+        pū¹        cau³        au²        tüŋ¹        kan²        kɔm³        
+        grandfather        resp        take        all        big stick
+
+
+        lM        ma        va        mg        es / 
+        lam¹         mā²        thā³         maŋ²        sɛ⁶
+        clf         come        wait        beat        prt
+‘Grandfather, take a very big long stick and beat them.’
+
+
+The Aiton version is:
+105.1)        Aow        tg        cgqlgq        lF        wj        S /
+        au²        taŋ¹        caŋ² laŋ²        lɛm³        waai¹        ɯi²
+        take        all        red colour        long thing        rattan        excl
+
+
+        mgq        es        /
+        maŋ²        sɛ¹
+        hit        prt
+        ‘Take a long red rattan stick and hit them.’ $L=Aiton$
+
+
+
+
+(Explanation tape: End of Tape 2000.3.5 side A, commencement of tape 2000.3.5 side B)
+
+
+106)        nneka        mW        poj        hE        wg        pn / 
+        nan⁴ kɔ⁴        mau¹        pɔi¹        haü³        wāŋ²        pan²
+        then        neg        release        give        put down        give
+‘If they don’t release it, and put it down.’
+
+
+Notes:        Nabin paraphrased this as:        hEpUnnqlFsIelsokq  AWlFwjmgqhgqfIxinq /
+        The Aiton version adds cM cam³ ‘prt’ at the end.
+
+
+
+
+107)        ljcJg        AW        tg        xog        tJw
+        lai⁴ cüŋ¹        au²        tüŋ¹        khauŋ⁶        tü²
+        so        take        all        thing        use
+
+
+        cog        lj        An        nop        hE / 
+        cauŋ⁵        lāi⁶        an²        nɔp⁴        haü³
+        clf        many        clf        offer        give
+‘Bring all the many utensils which were given.’
+
+
+In the Aiton version, ljcJgq is omitted.
+
+
+
+
+108)        sglk        pn        ma        yW
+        süŋ⁶ lak¹        pan²        mā²        yau⁴
+        if        give        come        finished
+
+
+        pig        cE        ng        Ag        cM / 
+        paiŋ²        caü²        nüŋ¹        āŋ³        cam⁴
+        love        heart        as        wish, expect        prt        
+‘If they give up the khon, our hearts will be glad and full of hope.’
+
+
+In the Aiton version cM cam³ ‘prt’ is omitted.
+
+
+
+
+109)        AW        pok        hog        hJn        kZg        vJg
+        au²        pauk⁴        hauŋ⁴        hən²        kāŋ¹        thüŋ⁶
+        take        return        room        house        wide        reach
+
+
+        pk        kin        yJn        enwnq / 
+        pāk¹        kin²        yün        nɛ¹ wān²        
+        mouth        eat        *        prt
+‘Bring it back to this house, and let it eat peacefully, we request you.’
+
+
+Notes:        * Sa Myat defined this as nI$kinq. Nabin stated that it means: ‘After you get you stay mindful and eat in peace.’
+        In the Aiton version yJnq is written as yinq.
+
+
+
+
+110)        nj        eka        el        sok        yW
+        nai⁴        kɔ⁴        lɛ¹        sauk³        yau⁴
+        this        link        roam        search        finished
+
+
+        kU        tI        nU        cot        lF        xa / 
+        kū⁵        tī⁵        nū²        cɔt¹        lɛm²        khĀ⁶
+        every        place        look        everywhere        see        search
+‘Thus you have roamed and sought it in every place,’
+
+
+The Aiton version opens with njelel.
+
+
+
+
+111)        mW        mI        tuN        hn        sJw        hig
+        mau¹        mī²        toi²        han⁶        sü⁵        hiŋ¹ tā²
+        neg        have        look        see        straight*        guess
+
+
+        nj        cig / 
+        nai³        caiŋ⁵
+        get        know
+‘If it does not have strong eyes or if it does not clearly know,’
+
+
+
+
+112)        ljcJg        yg        mI        sW        gW
+        lai⁴ cüŋ¹        yaŋ²        mī²        sau³        ŋau²
+        so        have        have        gloomy        sad countenance
+
+
+        mU        xa        xiw        pahiw / 
+        mū         khā²        kheu⁶        pā¹ heu⁵        
+        group        thatch        green        cemetery
+‘If there is sadness in the cemetery which is covered with green thatch.’
+
+
+Notes:        The reading of this line is uncertain. The text states cWgW and the Phake pandits suggested that this meant ‘many things’. Nabin suggested that change to sWgW ‘sadness’.
+
+
+
+
+p4
+Link to Photograph of the Manuscript, page 4
+
+
+113)        tn        exa        xon        ca        nj        mJw        kiw        sW        es /
+        tan⁴        khɔ        khɔn⁶        cā⁴        nai⁴        mə⁵        kiu²        sau²        sɛ¹
+        that        ?        soul        bad        get        get        bind        stay        prt
+‘Then get the bad khon and bind it up and make it stay (at the cemetery).’
+
+
+The first two words in the Aiton version are tntI.
+
+
+
+
+114)        tg        nn        hE        nU        cot        fj        xa / 
+        tüŋ¹        nan⁴        haü³        nū²        cɔt¹        phāi³        khā⁶
+        all        that        give        look        everywhere        walk        search
+‘Go walking and looking everywhere to search for it.’
+
+
+The Aiton version is:
+114.1)        tg        nn        pU        cow        sM        nU        cot        lF        xa / 
+        taŋ¹        nan³        puu¹        cau³        sam³        nuu²        cɔt¹        lɛm²        khaa⁶
+        all        that        grandfather        resp        again        look        everywhere        look        search
+        ‘Grandfather will again search everywhere.’ $L=Aiton$
+
+
+
+
+115)        sglk        lF        hn        xonq        wgq        lnq        pigq
+        süŋ⁶ lak¹        lɛm²        han⁶        khɔn⁶        wāŋ¹        lān⁶        paiŋ²
+        if        look        see        soul        worried        grandchild        love
+
+
+        pn        AW        ma        hE        nj        enwnq / 
+        pan²        au²        mā²        haü³        nai³        nɛ¹ wān²
+        give        take        come        give        get        prt
+‘If (you) see the troubled khon of the beloved grandchild, bring it here, we request you.’
+
+
+The Aiton version is:
+115.1)        sg        woa        lkq        vJpq        hnq        yow        
+        saŋ¹        waa²        lak¹        thüp¹        han¹        ʒau³
+        if        that        again        get/meet        see        finished
+
+
+        Aow        ma        sU        hogq        enwnq
+        au²        maa²        suu¹        hɔŋ³        nɛ¹ waan²
+        take        come        to        room        prt
+‘If you get to see him, take him to the room.’ $L=Aiton$
+
+
+
+
+116)        ma        el        ma        ta        xon        S / 
+        mā²        lɛ⁴        mā²        tā⁴        khɔn⁶        əi²
+        come        prt        come        prt        soul        resp
+‘Welcome, do come, oh khon!’
+
+
+
+
+117)        ma        kin        pa        kup        xW /
+        mā²        kin²        pā²        kup¹        khau³
+        come        eat        fish        and        rice
+‘Come and eat fish and rice!’
+
+
+In place of 116 and 117, the Aiton version has:
+116.1)        ma        el        ma        ta        ma        kinq        pa        kupq        xow        / 
+        maa²        lɛ³        maa²        taa³        maa²        kin²        paa²        kup¹        khau³
+        come        prt        come        prt        come        eat        fish        and        rice
+‘Come, come oh soul!’ $L=Aiton$
+
+
+
+
+118)        ma        kin        nM        sE        tW        tU        vim /
+        mā²        kin²        nam³        saü⁶        tau³        tū²        thɛm⁶
+        come        eat        water        put in        pot        body        put in, add to
+‘Come and drink the clear water which we have put into the pot.’
+
+
+Notes:        * here it means ‘we’. Note Shan tU ‘I’
+
+
+
+
+119)        ma        kinq        kuN        Aoj        kup        xog        wn /
+        mā²        kin²        koi³        ɔi³        kup¹        khauŋ⁶        wān⁶
+        come        eat        banana        sugarcane        with        thing        sweet
+‘Come and eat banana, sugar can and all sweet things!’
+
+
+The Aiton version has Aikq in place of kupq.
+
+
+
+
+120)        ma        kin        xog        hoM        cU        lj        pn 
+        mā²        kin²        khauŋ⁶        hɔm⁶        cū²        lāi⁶        pān²
+        come        eat        thing        fragrant        generation        many        clf of time
+
+
+        pU        ya         mE        ta        /
+        pū¹        yā⁵        maü²        tā⁴
+        grandfather        grandmother        2sg        prt-polite
+‘Come and eat the fragrant food, which over a long time grandmother and grandfather have given you.’
+
+
+
+
+The first line in the Aiton version is:
+120.1)        ma        sipq        xogq        tJw        cU        lj        pn        /
+        maa²                khɔŋ¹        tɯ²        cuu²        laai¹        paan²
+        come        ?        thing        use        generation        many        clf of time
+        ‘Come and use the things we have had for many generations.’ $L=Aiton$
+
+
+
+
+Lines 116 to 120 are repeated in the Khamyang MS as lines 121-125. They are omitted here.
+
+
+
+
+126)        ma        el        ma        tX        sM         / 0 /
+        mā²        lɛ        mā²        tā⁴        sām⁶        sip¹
+        come        prt        come        prt        3        10
+
+
+        xon        yU         tuU        Anq        vunq        cU        yX        ka /
+        khɔn⁶        yū¹        to²        ān¹        thon³        co⁵        yā¹        kā¹
+        soul        live        body        count        complete        time        don’t        go        
+‘Come and be welcome, all 30 khons which live in the body, complete your full life, don’t go.’
+
+
+
+
+127)        ma        el        ma        ta        kW         / 0 /
+        mā²        lɛ⁴        mā²        tā⁴        kau³        sip¹
+        come        prt        come        prt        nine        10
+
+
+        xon        yU        xig /
+        khɔn⁶        yū¹        khiŋ²
+        soul        stay        body
+‘Come all 90 khons which live in the body.’
+
+
+In place of 126 and 127, the Aiton version gives:
+126.1)        ma        el        ma        ta        sM        sip        sM        xonq
+        maa²        lɛ³        maa²        taa³        saam¹        sip¹        saam¹        khɔn¹
+        come        prt        come        prt        3        10        3        soul
+
+
+        yU        xigq        kunq        mow        fkq /
+        yuu¹        khiŋ²        kun²        mau¹        phaak³
+        live        body        person        neg        separate
+‘Come all thirty-three khons who live in the body, don’t be separated.’
+
+
+
+
+127.1)        ma        yU        nJwq        vunq        pkq        kinq        yJnq        enwnq /
+        maa²        yuu¹        nɯ¹        thun³        paak¹        kin²        yɯn        nɛ¹ waan²
+        come        live        up        complete        hundred        eat        peace        prt        
+‘Come and live for a hundred years and eat in peace.’
+
+
+
+
+127.2)        ma        ta        kow        sipq        xon        Aon        xigq /
+        maa²        taa³        kau³        sip¹        khɔn¹        ɔn²        khiŋ²
+        come        prt        9        10        soul        front        body
+‘Come all ninety khons who live on the front of the body.’
+
+
+
+
+128)        ma        sW        yU        hig        pI        nJX        cW /
+        mā²        sau²        yū¹        heŋ⁶        pī²        noi³        cau³
+        come        stay        stay        1000        year        with        resp
+‘Come and stay with your owner for a thousand years.’
+
+
+The Aiton version adds the words mEta.
+
+
+
+
+129)        ya        lon        la        pj        fj        mJg        nE        tg        tI /
+        yā¹        lɔn⁴        lā²        pai²        phāi³        məŋ²        naü²        tāŋ¹        tī⁵
+        don’t        leave*        leave        go        walk        country        in        other        lace        
+‘Do not go and take off and wander in other countries.’
+
+
+Notes:        * Uncertain reading, perhaps Shan lonqO ‘exceed, go beyond’
+        The Aiton version has mJwqnE for mJgqnE.
+                                                                
+
+
+130)        yU        nJX        nog        Aik        pI        tg        lj /
+        yū¹        noi³        nauŋ⁴        ik¹        pī¹        tüŋ¹        lāi⁶
+        stay        with        younger        also        elder        all        many
+‘Come and stay with your younger and elder siblings.’
+
+
+
+
+131)        ma        ta        xon        kWw        fU        pin        ehaq /
+        mā²        tā⁴        khɔn⁶        kau¹        phū        pen²        ho⁶
+        come        prt        soul        old/original        person        be        head
+‘Come, original khon, to the head of our beloved grandson.’ 
+
+
+The Aiton version adds the word eka after xonq.
+
+
+
+
+132)        ma        sW        yU        fig        tU        ya        fkq /
+        mā²        sau²        yū¹        phɛŋ        to²        yā¹        phāk³
+        come        stay        stay        quiet        body        don’t        separate
+‘Come and stay quietly in his body, and don’t go away.’
+
+
+
+
+133)        xon        hU        xon        taX        yU        sJw        kW  /
+        khɔn⁶        hū⁶        khɔn⁶        tā²        yū¹        sü⁵        kau³
+        soul        ear        soul        eye        stay        straight        bundle of hair
+‘Khon of the ear, and khon of the eye, stay at that bundle of hair.’
+
+
+In the Aiton version, the word eha is spelled as hU.
+
+
+
+
+134)        yX        npq        fj        lj        fW /
+        yā¹        nap¹        phāi³        lāi⁶        phau¹
+        don’t        don’t        walk        many        time
+
+
+        pj        ma /
+        pai²        mā²
+        go        come
+        ‘Don’t go walking about here and there many times, coming and going.’
+
+
+In the Aiton version, 134 and 135 are combined as:
+134.1)        ya        npq        la        pj        fj        lj        fow        mja /
+        yaa¹        nap¹        laa¹        pai²        phaai³        laai¹        phau¹        pai² maa²
+        don’t        PROHIB        prt        go        walk        many        time        come and go
+        ‘Don’t go walking about here and there many times, coming and going.’ $L=Aiton$
+
+
+
+
+136)        hn        eta        vW        vJg        ek        eha        xW /
+        han¹        tɔ¹        thau³        thüŋ⁶        kɛ¹        ho⁶        khāu⁶
+        see        let        old        reach        old        head        white
+‘Let him reach old age, the age of white hair.’
+
+
+
+
+137)        yC        lon        mI        ef        cog        tg        nW        nj        wa /
+        yā⁵        lɔn⁴        mī²        phe²        cauŋ⁵        taŋ³         nāu⁶        nai³        wā⁵
+        don’t        leave off        have        problem        kind        set up        cold fever        get        say
+‘Don’t go away and leave him with any epidemic or fever.’
+
+
+
+
+138)        tgka        sU        pin        xon        kun
+        tüŋ¹ kā¹        sū⁶        pen²        khɔn⁶        kon²
+        all        you        be        soul        person
+
+
+        pksW        tFm        fg /
+        pāk¹ sāu²        tem²        phaŋ
+        120        full        modifier
+‘Altogether there are 120 (types) of khons in people’
+
+
+
+
+139)        hneta ..... kkinyJnenwnxonS /
+
+
+Since the Khamyang MS is damaged, the Aiton text will be followed:
+139)        hn        eta        vow        fig        hg        vJgq        pkq        
+        han¹        tɔ¹        thau³        phɛŋ        haaŋ²        thɯŋ¹        paak¹
+        see        prt        old        stay quiet        body        reach        hundred
+
+
+        kin        yJn        enwn        xon        S /
+        kin²        yɯn        nɛ¹ waan²        khɔn¹        ɯi²
+        body        peace        prt         soul        prt
+‘Come here, live quietly and reach the age of a hundred, eating well and peacefully, oh khon, we request you!’
+
+
+
+
+140)        yU        el        yU        ta        yU        tun        cU        sW        nI /
+        yū¹        lɛ⁴        yū¹        tā⁴        yū¹        thon³        cū²        sau²        nī²
+        stay        prt        stay        prt        stay        complete        time        stay        good
+‘Stay and live your complete life and stay well.’
+
+
+
+
+141)        hJgnnyXmIsI ...        
+
+
+Since the Khamyang MS is damaged, the Aiton text will be followed:
+141)        hJg        nn        yX         mI        xI        yU        Aounq
+        hɯŋ²        naan²        yaa¹        mii²        khii¹        yuu¹        ɔn¹
+        long time        long time        don’t        have        sad        stay        weak
+‘Live for a long time and without sadness or weakness.’
+
+
+ 
+142)        ....tu.. nEwnpEfigtUwhuMyU /
+
+
+Since the Khamyang MS is damaged, the Aiton text will be followed:
+142)        nE        wn         pE        fig        tUw        huM        yU /
+        naɯ²        wan²        paɯ³        phɛŋ        tuu²        hum²        yuu¹
+        in/all        day        wait        quietly        body        together        stay
+‘Every day, wait quietly in this body.’
+
+
+
+
+143)        huM        sg        epa        em        pI        Aik
+        hom⁵        sāŋ³        pɔ⁵        mɛ⁵        pī⁵        ik¹
+        together        live        father        mother        elder        and
+
+
+        nog        huM        cM        fJn        vU        nE        hJnq /
+        nauŋ⁴        hom⁵        cam⁴        phün¹        tho¹        naü²        hən²
+        younger        together        prt        table for eating rice        spoon/utensil        in        house
+‘Stay together with (your) father, mother, elder and younger siblings, and eat at the dinner table with the eating sticks, here in this house.’
+
+
+Notes:        The Phake version has huMknqvUnEhJnq. It was staated that vU thū¹ means ‘help (each other)’
+
+
+
+
+144)        ya        hE         xj        yU        ca        nj        mj        mI        xI /
+        yā¹        haü³        khai³        yū¹        cā⁴        nai⁴        mai³        mī²        khī⁶
+        don’t        give        fever        stay        bad        get        burn        have        sad
+‘Do not let the bad fever stay and burn you up in sadness.’
+
+
+
+
+145)        sW        fig        tUw        xig        yU        hig        pI
+        sau²        phɛŋ        to²        khiŋ²        yū¹        heŋ⁶        pī²
+        stay        quiet        body        body        stay        1000        year
+
+
+        yX        fk        tXwn        xon        S /
+        yā¹        phāk³        ta³ wān²        khɔn⁶        əi²
+        don’t        separate        prt        soul        prt
+‘Stay quietly in this body for a thousand years and do not go away, oh khon, we request you’
+
+
+Note that Aiton version spells tUw as tU. In the Aiton version, tXwn is replaced by konqta.
+
+
+
+
+146)        yX        hE        mI        xI        xog        ehacE        pYapa /
+        yā¹        haü³        mī²        khī⁶        khauŋ³        ho⁶ caü²        pyā¹ pā¹
+        don’t        give        have        sad        disturb        heart        sadness/anxiety
+‘Do not let sadness come to touch the heart.’
+
+
+In the MS, the last word appears to be written kYagqpa. The meaning of this was unknown to any of the informants, so it was replaced by pYapa ‘anxiety’, following the Aiton MS.
+
+
+
+
+147)        yU        cJn        nJX        xYMsa        hJgq        nn
+        yū¹        cün⁵        noi³        khɛm³ sā¹        hüŋ⁶        nān²
+        stay        clear        with        good        long time        long time
+
+
+        tXwn        xon        S         xon        enoa /
+        ta⁴ wān²        khɔn⁶        əi²        khɔn⁶        nɔ²
+        prt        soul        prt        soul        prt
+‘We request you to stay happily for a long time, oh khon, oh khon!’
+
+
+In the Aiton version, tXwn is replaced by enwn.
+
+
+The Aiton version adds an extra line:
+147.1)         sow        pamowq        xowq        S        /
+        saau¹        pa¹ maau¹        khau¹        ɯi²
+        girl        youth*        plu        excl
+        ‘Young women and youths!. $L=Aiton$
+
+
+Note        * This was written pWmowq but following Nabin it is read as pamowq.
+
+
+
+
+148)        cI$        cukD        gkD /
+        cī¹ cī¹        cuk⁴ cuk⁴        ŋak⁴ ŋak⁴
+‘Chi Chuk Chi Chuk Chi Chuk.’
+        
+The Aiton version of 148 is written with a different pen as:
+148.1)        cI        cupq        cI        cupq        cI        cupq /
+        cii³        cup⁴        cii¹         cup³        cii¹        cup³
+        ‘Chi Chup Chi Chup Chup.’ $L=Aiton$
+
+
+Both of these are the incantations used for calling the khon. They have to be used first and last to call the khon.
+
+
+
+
+149)        fJn        mUca        cW        likq        nMa /
+        phün        mū² cā²        cau³        lek¹        nüm¹ nā²
+        clf        reverence        resp        iron        prt
+‘This is the book which Mu Cha Chowlik has written.’
+
+
+
+
+The Aiton version has a different final line:
+149.1)        xoM        hogq        xonq        sutq        tIvj        yW /
+        khaam²        hɔŋ³        khɔn¹        sut¹        tii² phai³        ʒau³
+        word        call        khon        finish        here        finished
+‘The book of calling the khon is finished.’ $L=Aiton$
+
+
+The Aiton version was copied by 
+        cWsigqhugq        falugq
+        cau³ sɛŋ¹ huŋ        phaa³ luŋ¹
+        Chaw Seng Hung*        Phalung
+
+
+* literally: ‘resp-diamond-dazzling’
+
+
+
+
+Aithown Che’s Phake copy of the MS adds a list of implements required for the ceremony:
+
+
+150.1)        1.         xnq         2.         exa         3.         xiwq         4.         fa         5.         hokq 
+        nüŋ⁵        khān⁶        sauŋ⁶        khɔ⁶        sām⁶        kheu²        sī¹        phā⁴        hā³        hauk¹
+        one        axe        two        hoe        three        sickle        four        cleaver        five        lance
+
+
+        6.         kgq         7.         npq.         8.         xonq         9.         ela         10.         xJkq 
+        hok¹        kāŋ¹        set¹        nāp¹        pɛt¹        khɔn³        kau³        lo⁴        sip¹        khük¹
+        six        bow        seven        sword        eight        stick        nine        shovel        ten        fishing implement
+
+
+        11.        funq         12.         fj         13.        emanJgq        
+        sip¹ et¹        phun²        sip¹ sauŋ⁶        phai²        sip¹ sām⁶        mɔ³ nüŋ³
+        eleven        firewood        twelve        fire        thirteen        pot-steam
+
+
+        14.        nMtW        15.         tiwqema         
+        sip¹ sī¹        nam³ tau³        sip¹ hā³        thiu mɔ³        
+        fourteen        water pot        fifteen        cloth for binding hole in pots
+
+
+        16.         muNq        kuNq        Aoj        /
+        sip¹ hok¹        mui²        koi³        ɔi³
+        sixteen        dipper        banana        sugar cane
+‘One, an axe; two, a hoe; three, a sickle; four, a cleaver; five, a lance; six, a bow; seven, a sword; eight, a stick; nine, a shovel; ten, a fishing implement; eleven, firewood; twelve, fire; thirteen, a steaming pot; fourteen, a water pot; fifteen, cloth for binding hole in pots; sixteen, a dipper; banana and sugar cane.’ $L=Phake$
+
+
+There is then a list of people required for the ceremony:
+
+
+151)        ya        kI        lj        kunq        /
+        yā⁵        kī¹        lāi⁶        kun²
+        grandmother        how many        many        person
+‘Many old women’ $L=Phake$
+
+
+152)        pU        vW        eha        fahuwq        /
+        pū¹        thau³        hɔ¹        phā³ ho⁶
+        grandfather        old        wrap        turban        
+‘Old men with turbans’ $L=Phake$
+
+
+153)        ya        hgq        nI        ha        eka        /
+        yā⁵        haŋ²        nī²        hā³        kɔ³
+        grandmother        to        good        five        clf
+‘There should be at least five old women.’ $L=Phake$
