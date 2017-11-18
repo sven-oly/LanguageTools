@@ -33,7 +33,7 @@ Language_native = 'Name of language'
 encoding_font_list = [
   { 'font_name': 'AhomFont',
     'display_name': 'Ahom',
-    'font_path': '/fonts/ahom_aiton/AHOMFONT.ttf',
+    'font_path': '/fonts/ahom_aiton/AHOMFONT.TTF',
   },
   {
     'font_path':'/fonts/ahom_aiton/Ahom_Manuscript.ttf',
@@ -58,6 +58,10 @@ encoding_font_list = [
 ]
 
 unicode_font_list = [
+  { 'family': 'Ahom Unicode',
+    'longName': 'Ahom Unicode',
+    'source': '/fonts/ahom_aiton/AHOMFONT_Unicode.TTF',
+  },
   { 'family': 'Ahom Unicode',
     'longName': 'Ahom Unicode',
     'source': '/fonts/ahom_aiton/AHOMFONT_Unicode.TTF',
@@ -108,12 +112,12 @@ class LanguagesHomeHandler(webapp2.RequestHandler):
     def get(self):
       font_list = [
         { 'family': 'AHOMFONT_Unicode',
-          'longName': 'AHOMFONT Unicode',
-          'source': '/fonts/ahom_aiton/AHOMFONT_Unicode.ttf',
+          'longName': 'Ahom Unicode',
+          'source': '/fonts/ahom_aiton/AHOMFONT_Unicode.TTF',
         },
-        { 'family': 'AHOMFONT',
-          'longName': 'AHOM FONT',
-          'source': '/fonts/ahom_aiton/AHOMFONT.ttf',
+        { 'family': 'AhomFont',
+          'longName': 'Ahom',
+          'source': '/fonts/ahom_aiton/AHOMFONT.TTF',
         },
         { 'family': 'AhomUnicode',
           'longName': 'Ahom Unicode',
@@ -272,7 +276,7 @@ class EncodingRules(webapp2.RequestHandler):
 
       kb_list = [
         {'shortName':  'aho',
-         'longName': ' Unicode'
+         'longName': 'Ahom Unicode'
         }
       ]
       template_values = {

@@ -84,11 +84,11 @@ function buildEncodingTable(table) {
   row.insertCell(outIndex).innerHTML = "Unicode";
 
   var outIndex = 2;
-  for (var i = 0 ; i < map_encoding_names.length; i ++) {
+  for (var i = 0 ; i < encoding_font_list.length; i ++) {
     var row = table.rows[0];
-    row.insertCell(outIndex).innerHTML = map_encoding_names[i];
+    row.insertCell(outIndex).innerHTML = encoding_font_list[i];
     outIndex += 1;
-    row.insertCell(outIndex).innerHTML = map_encoding_names[i] +
+    row.insertCell(outIndex).innerHTML = encoding_font_list[i] +
                " to " +unicode_font_list[0];
     outIndex += 1;
   }
@@ -117,6 +117,7 @@ function buildEncodingTable(table) {
       cell.innerHTML = items[i];
       var fontString = encoding_font_list[i];
       cell.style.fontFamily = fontString;
+      cell.style.fontSize = "20px";
       outIndex += 1;
 
       // Unicode conversion.
@@ -126,6 +127,7 @@ function buildEncodingTable(table) {
       cellUni.style.fontFamily = fontStringUni;
       // Add the Unicode hex for hover info.
       cellUni.title = charsToHexString(items[i]);
+      cell.style.fontSize = "14px";
       outIndex += 1;
     }
    rowNum += 1;
