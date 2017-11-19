@@ -209,10 +209,10 @@
     if (encodeSelectorName) {
       // TODO: Generalize this
       var encodeSelector = document.getElementById(encodeSelectorName);
-      if (encodeSelector.value == 'Sujoyan') {
+      if (encodeSelector.value == 'Sujoyan' || encodeSelector.value == 'AhomManuscript') {
         encodingIndex = 1;
       }
-      if (encodeSelector.value == 'Alaam') {
+      if (encodeSelector.value == 'Alaam' || encodeSelector.value == 'Aiton') {
         encodingIndex = 2;
       }    }
     convertEncodingToUnicode(sourceArea, destinationArea, encodingIndex);
