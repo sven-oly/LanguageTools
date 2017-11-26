@@ -62,24 +62,10 @@ unicode_font_list = [
     'longName': 'Ahom Unicode',
     'source': '/fonts/ahom_aiton/AhomUnicode.ttf',
   },
-  { 'family': 'Ahom Unicode',
-    'longName': 'Ahom Unicode',
-    'source': '/fonts/ahom_aiton/AHOMFONT_Unicode.TTF',
-  },
-  {
-    'source': '/fonts/ahom_aiton/AitonUni.gr_2.ttf',
-    'family': 'AitonUni',
-    'longName': 'Aiton Uni',
-  },
   {
     'source': '/fonts/ahom_aiton/Aitongr.ttf',
     'family': 'Aitongr',
     'longName': 'Aiton Gr',
-  },
-  {
-    'source': '/fonts/ahom_aiton/PHAKERAM.TTF',
-    'family': 'Phakeram',
-    'longName': 'Phake Ram',
   },
 ]
 
@@ -160,7 +146,7 @@ class LanguagesHomeHandler(webapp2.RequestHandler):
       template_values = {
         'langlist': LanguageList,
         'language': 'Ahom',
-        'font_list': font_list,
+        'font_list': unicode_font_list,
         'lang_list': lang_list,
         'kb_list': lang_list,
         'links': links,

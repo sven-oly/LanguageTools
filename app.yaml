@@ -40,6 +40,9 @@ handlers:
 - url: /aho/.*
   script: ahom.app
 
+- url: /my/.*
+  script: burmese.app
+
 - url: /tai/.*
   script: ahom.app
 

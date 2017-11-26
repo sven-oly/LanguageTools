@@ -16,6 +16,7 @@
 # limitations under the License.
 #
 
+import burmese
 import chakma
 import cherokee
 
@@ -37,8 +38,7 @@ LanguageList = [
     ('Otomanguean phonetic', 'omq'),
     ('Chakma', 'ccp'),
     ('Cherokee', 'chr'),
-    ('Myanmar indigenous', 'myanmar'),
-    ('Ahom, Aiton, Khamti', 'aho'),
+    ('Myanmar indigenous', 'my')
   ]
 
 class MainHandler(webapp2.RequestHandler):
@@ -113,74 +113,6 @@ class MyanmarIndigenousHomeHandler(webapp2.RequestHandler):
       path = os.path.join(os.path.dirname(__file__), 'demo_myanmar.html')
       self.response.out.write(template.render(path, template_values))
 
-class TaiLanguagesHomeHandler(webapp2.RequestHandler):
-    def get(self):
-      font_list = [
-        { 'family': 'AHOMFONT_Unicode',
-          'longName': 'AHOMFONT Unicode',
-          'source': '/fonts/ahom_aiton/AHOMFONT_Unicode.ttf',
-        },
-        { 'family': 'AHOMFONT',
-          'longName': 'AHOM FONT',
-          'source': '/fonts/ahom_aiton/AHOMFONT.ttf',
-        },
-        { 'family': 'AhomUnicode',
-          'longName': 'Ahom Unicode',
-          'source': '/fonts/ahom_aiton/AhomUnicode.ttf',
-        },
-        { 'family': 'Ahom_Manuscript',
-          'longName': 'Ahom Manuscript',
-          'source': '/fonts/ahom_aiton/Ahom_Manuscript.ttf',
-        },
-        { 'family': 'NotoSansMyanmar',
-          'longName': 'NotoSansMyanmar',
-          'source': '/fonts/NotoSansMyanmar-Regular.otf',
-        },
-      ]
-      lang_list = [
-        {'shortName':  'aho',
-         'longName': 'Tai Ahom'
-        },
-        {'shortName':  'aio',
-         'longName': 'Aiton'
-        },
-        {'shortName':  'kht',
-         'longName': 'Khamti'
-        },
-        {'shortName':  'phk',
-         'longName': 'Phake'
-        },
-        {'shortName':  'shn',
-         'longName': 'Shan'
-        },
-        {'shortName':  'ksw',
-         'longName': 'S\'gaw Karen'
-        },
-      ]
-      links = [
-        {'linkText': 'Ahom Unicode',
-         'ref': 'http://www.unicode.org/charts/PDF/U11700.pdf'
-        },
-        {'linkText': 'Aiton and Khamti Shan Unicode. Extended-A',
-         'ref': 'http://www.unicode.org/charts/PDF/UAA60.pdf'
-        },
-        {'linkText': 'Myanmar Extended-B',
-         'ref': 'http://www.unicode.org/charts/PDF/UA9E0.pdf'
-        },
-        {'linkText': 'Myanmar Unicode block',
-         'ref': 'https://en.wikipedia.org/wiki/Myanmar_(Unicode_block)'
-        },
-      ]
-      template_values = {
-        'langlist': LanguageList,
-        'language': 'Ahom',
-        'font_list': font_list,
-        'lang_list': lang_list,
-        'kb_list': lang_list,
-        'links': links,
-      }
-      path = os.path.join(os.path.dirname(__file__), 'demo_general.html')
-      self.response.out.write(template.render(path, template_values))
 
 class Downloads(webapp2.RequestHandler):
   def get(self):
@@ -209,7 +141,6 @@ app = webapp2.WSGIApplication([
     ('/bo/', TibetanHomeHandler),
     ('/tmh/', TamashekHomeHandler),
     ('/omq/', OtomangueanHomeHandler),
-    ('/myanmar/', MyanmarIndigenousHomeHandler),
     ('/en_anangu/', AnanuguYolnguHomeHandler),
 
     ('/downloads/', Downloads),

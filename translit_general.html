@@ -71,11 +71,12 @@
 
   <script>
 
+  diff_list = [];
   // When an area is changed, set the hex characters, too.
   function updateHex(inArea, outArea) {
     var inText = document.getElementById(inArea).value;
     var hex_output = document.getElementById(outArea);
-    var hexString = charsToHexString(inText);
+    var hexString = uplus(inText); uplus  //charsToHexString
     if (hex_output != null) {
       hex_output.value = hexString;
       hex_output.innerHTML = hexString;
@@ -98,7 +99,7 @@
   function onFontSelected(selected, outarea) {
   var output_text = document.getElementById(outarea);
   document.getElementById('Unicode_font_output_text');
-     var fontFam = selected.value + ", Arial";
+     var fontFam = selected.value;  // + ", Arial";
     output_text.style.fontFamily = fontFam;
   }
 
@@ -271,7 +272,7 @@
     <br />
 
     Hex values:
-    <textarea id="old_hex" cols="80" rows="2" style="font-family:'Courier New';font-size:20px;"></textarea>
+    <textarea id="old_hex" cols="80" rows="2" style="font-family:'Courier New';font-size:14px;"></textarea>
     <input type="button"
            onclick="convertToText('old_hex', 'old_font_input_text');"
            value="Convert hex to text" />
@@ -322,7 +323,7 @@
            value="Unicode combining chars" />
     <br />
     Hex values:
-    <textarea id="new_hex" cols="80" rows="3" style="font-family:'Courier New';font-size:20px;"></textarea>
+    <textarea id="new_hex" cols="80" rows="3" style="font-family:'Courier New';font-size:14px;"></textarea>
     <br />
     <input type="button"
            onclick="convertToText('new_hex', 'Unicode_font_output_text', 'new_hex')"
