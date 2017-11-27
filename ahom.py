@@ -58,7 +58,11 @@ encoding_font_list = [
 ]
 
 unicode_font_list = [
-  { 'family': 'Ahom Unicode',
+  { 'family': 'AhomFontUnicode',
+    'longName': 'Ahom Font Unicode',
+    'source': '/fonts/ahom_aiton/AHOMFONT_Unicode.TTF',
+  },
+  { 'family': 'AhomUnicode',
     'longName': 'Ahom Unicode',
     'source': '/fonts/ahom_aiton/AhomUnicode.ttf',
   },
@@ -66,6 +70,11 @@ unicode_font_list = [
     'source': '/fonts/ahom_aiton/Aitongr.ttf',
     'family': 'Aitongr',
     'longName': 'Aiton Gr',
+  },
+  {
+    'source': '/fonts/ahom_aiton/AitonUni.gr_2.ttf',
+    'family': 'Aitongr2',
+    'longName': 'Aiton Uni Gr2',
   },
 ]
 
@@ -100,28 +109,6 @@ text_file_list = [
 # Shows keyboard for
 class LanguagesHomeHandler(webapp2.RequestHandler):
     def get(self):
-      font_list = [
-        { 'family': 'AHOMFONT_Unicode',
-          'longName': 'Ahom Unicode',
-          'source': '/fonts/ahom_aiton/AHOMFONT_Unicode.TTF',
-        },
-        { 'family': 'AhomFont',
-          'longName': 'Ahom',
-          'source': '/fonts/ahom_aiton/AHOMFONT.TTF',
-        },
-        { 'family': 'AhomUnicode_2',
-          'longName': 'Ahom Unicode 2',
-          'source': '/fonts/ahom_aiton/AhomUnicode.ttf',
-        },
-        { 'family': 'Ahom_Manuscript',
-          'longName': 'Ahom Manuscript',
-          'source': '/fonts/ahom_aiton/Ahom_Manuscript.ttf',
-        },
-        { 'family': 'NotoSansMyanmar',
-          'longName': 'NotoSansMyanmar',
-          'source': '/fonts/NotoSansMyanmar-Regular.otf',
-        },
-      ]
       lang_list = [
         {'shortName':  'aho',
          'longName': 'Tai Ahom'
