@@ -114,10 +114,10 @@ function buildEncodingTable(table) {
     for (var i = 0; i<items.length; i ++) {
       // The encoded value.
       var cell = row.insertCell(outIndex);
-      cell.innerHTML = items[i];
+      cell.innerHTML = code; // the encoded value
       var fontString = encoding_font_list[i];
       cell.style.fontFamily = fontString;
-      cell.style.fontSize = "20px";
+      cell.style.fontSize = "30px";
       outIndex += 1;
 
       // Unicode conversion.
@@ -125,9 +125,10 @@ function buildEncodingTable(table) {
       cellUni.innerHTML = items[i];
       var fontStringUni = unicode_font_list[0];
       cellUni.style.fontFamily = fontStringUni;
+      cellUni.style.fontSize = "20px";
+
       // Add the Unicode hex for hover info.
       cellUni.title = charsToHexString(items[i]);
-      cell.style.fontSize = "14px";
       outIndex += 1;
     }
    rowNum += 1;
