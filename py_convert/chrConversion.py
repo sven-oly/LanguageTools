@@ -71,8 +71,8 @@ private_use_map = {
   u'\uf03d': u'\u13f3',
   u'\u003e': u'\u13b4',
   u'\uf03e': u'\u13b4',
-  u'\u000f': u'\u2421',
-  u'\uf03f': u'\u2421',
+  u'\u003f': u'\u13c9',
+  u'\uf03f': u'\u13c9',
 
   u'\u0040': u'\u13c7',
   u'\uf040': u'\u13c7',
