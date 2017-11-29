@@ -55,7 +55,9 @@ unicode_font_list = [
 
 links = [
     {'linkText': 'Converter',
-     'ref': '/my/convertUI/'},
+      'ref': '/my/convertUI/'},
+    {'linkText': 'Convert to Zawgyi',
+      'ref': '/my/convertToZawgyi/'},
     {'linkText': 'Font conversion summary',
       'ref': '/my/encodingRules/'
     },
@@ -107,16 +109,16 @@ class ConvertUIHandler(webapp2.RequestHandler):
       oldInput = u''
       for i in xrange(0x20, 0x80):
         oldInput += unichr(i)
-        oldInput += unichr(0x20)
-      for i in xrange(0xa0, 0xae):
+        oldInput += unichr(0x20) + unichr(0x20)
+      for i in xrange(0xa0, 0xaf):
         oldInput += unichr(i)
-        oldInput += unichr(0x20)
+        oldInput += unichr(0x20) + unichr(0x20)
+      for i in xrange(0xb0, 0xf9):
+        oldInput += unichr(i)
+        oldInput += unichr(0x20) + unichr(0x20)
       for i in xrange(0xb0, 0xf8):
         oldInput += unichr(i)
-        oldInput += unichr(0x20)
-      for i in xrange(0xb0, 0xf8):
-        oldInput += unichr(i)
-        oldInput += unichr(0x20)
+        oldInput += unichr(0x20) + unichr(0x20)
       oldInput += unichr(0xfb)
       oldInput += unichr(0xff)
       oldInput += unichr(0x152)
@@ -173,6 +175,91 @@ class ConvertUIHandler(webapp2.RequestHandler):
       }
       path = os.path.join(os.path.dirname(__file__), 'translit_general.html')
       self.response.out.write(template.render(path, template_values))
+
+
+class ConvertToZawgyiHandler(webapp2.RequestHandler):
+  def get(self):
+
+    # All old characters
+    oldChars = (u'\u0001 !"\u0023\u0024%&\'()*+,-./' +
+                '0123456789:;<=>?@' +
+                'ABCDEFGHIJKLMNOPQRSTUVWXYZ[ \\ ]^_`' +
+                'abcdefghijklmnopqrstuvwxyz{|}~')
+    text = self.request.get('text', oldChars)
+    font = self.request.get('font')
+    testStringList = [
+      {'name': 'Test 1',  # Note: must escape the single quote.
+       'string': u'\u0004\u0005\u0006\u0007\u0008\u0009' +
+                 '\u000a\u000b'},
+    ]
+
+    oldInput = u''
+    for i in xrange(0x20, 0x80):
+      oldInput += unichr(i)
+      oldInput += unichr(0x20) + unichr(0x20)
+    for i in xrange(0xa0, 0xaf):
+      oldInput += unichr(i)
+      oldInput += unichr(0x20) + unichr(0x20)
+    for i in xrange(0xb0, 0xf9):
+      oldInput += unichr(i)
+      oldInput += unichr(0x20) + unichr(0x20)
+
+    oldInput += unichr(0xfb)
+    oldInput += unichr(0xff)
+    oldInput += unichr(0x152)
+    oldInput += unichr(0x153)
+    oldInput += unichr(0x160)
+    oldInput += unichr(0x161)
+    oldInput += unichr(0x192)
+    oldInput += unichr(0x2c6)
+    oldInput += unichr(0x2013)
+    oldInput += unichr(0x2014)
+    oldInput += unichr(0x2018)
+    oldInput += unichr(0x2019)
+    oldInput += unichr(0x201a)
+    oldInput += unichr(0x201c)
+    oldInput += unichr(0x201d)
+    oldInput += unichr(0x201e)
+    oldInput += unichr(0x2020)
+    oldInput += unichr(0x2021)
+    oldInput += unichr(0x2022)
+    oldInput += unichr(0x2026)
+    oldInput += unichr(0x2030)
+    oldInput += unichr(0x2039)
+    oldInput += unichr(0x2122)
+
+    unicodeChars = ''
+    unicodeCombiningChars = ''
+    kb_list = [
+      {'shortName': LanguageCode,
+       'longName': Language,
+       }
+    ]
+
+    template_values = {
+      'font': font,
+      'language': Language,
+      'langTag': 'myZawgyi',
+      'encodingList': encoding_font_list,
+      'kb_list': kb_list,
+      'unicodeFonts': [{
+        'family': 'ZawgyiOne',
+        'longName': 'Zawgyi One',
+        'source': '/fonts/burmese/ZawgyiOne.ttf',
+      }],
+      'links': links,
+      'oldChars': oldChars,
+      'oldInput': oldInput,
+      'outputFont': 'Zawgyi',
+      'text': text,
+      'textStrings': testStringList,
+      'showTools': self.request.get('tools', None),
+      'unicodeChars': unicodeChars,
+      'combiningChars': unicodeCombiningChars,
+    }
+    path = os.path.join(os.path.dirname(__file__), 'translit_general.html')
+    self.response.out.write(template.render(path, template_values))
+
 
 # AJAX handler for Cherokee converter
 class ConvertHandler(webapp2.RequestHandler):
@@ -261,5 +348,6 @@ app = webapp2.WSGIApplication([
   ('/my/convertUI/', ConvertUIHandler),
   ('/my/downloads/', Downloads),
   ('/my/converter/', ConvertHandler),
+  ('/my/convertToZawgyi/', ConvertToZawgyiHandler),
   ('/my/encodingRules/', EncodingRules),
 ], debug=True)
