@@ -283,7 +283,7 @@
     <h3>{%if outputFont %}{{outputFont}}{%else%}Unicode{%endif%} {{language}} text</h3>
     <textarea class="{{unicodeFonts.0.family}}" id="Unicode_font_output_text"
      onchange="updateHex('Unicode_font_output_text', 'new_hex');"
-              cols="50" rows="3" style="font-size: 28px;">{{unicodeInput}}</textarea>
+              cols="50" rows="3" style="font-size: 28px;" lang="{{langTag}}">{{unicodeInput}}</textarea>
     <br />
     <input type="button" value="Clear"
            onclick="clearArea('Unicode_font_output_text', 'new_hex');">

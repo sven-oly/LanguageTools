@@ -38,6 +38,7 @@ LanguageList = [
     ('Otomanguean phonetic', 'omq'),
     ('Chakma', 'ccp'),
     ('Cherokee', 'chr'),
+    ('Navajo', 'nv'),
     ('Myanmar indigenous', 'my')
   ]
 

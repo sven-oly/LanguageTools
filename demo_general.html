@@ -154,7 +154,7 @@
   <div id="t1_div">
     <textarea id="t1" style="width:600px;font-family:{{font.family.0}};"
       rows="10"
-      style="font-size:18px;" lang="{{lang_list.0.shortName}}"></textarea>
+      style="font-size:18px;" lang="{%if lang_list.0.shortName %}{{lang_list.0.shortName}}{%endif%}{%if langTag %}{{langTag}}{%endif%}"></textarea>
   </div>
 
   <div id="codepoint_div">

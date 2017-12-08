@@ -43,6 +43,9 @@ handlers:
 - url: /my/.*
   script: burmese.app
 
+- url: /nv/.*
+  script: navajo.app
+
 - url: /tai/.*
   script: ahom.app
 
