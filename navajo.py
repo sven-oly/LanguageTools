@@ -39,7 +39,7 @@ encoding_font_list = [
     'display_name': 'Times New Roman Navajo',
   },
   {
-    'font_path': '/fonts/Navajo/VERDN____.ttf',
+    'font_path': '/fonts/Navajo/VERDN___.TTF',
     'font_name': 'VerdanaNavajo',
     'display_name': 'Verdana Navajo',
   },
