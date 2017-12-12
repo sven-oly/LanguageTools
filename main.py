@@ -37,6 +37,7 @@ LanguageList = [
     (u'A\u1e49angu Yol\u014bu', 'en_anangu', 'Aṉangu-Yolngu'),
     ('Otomanguean phonetic', 'omq'),
     ('Chakma', 'ccp'),
+    ('Ahom/Tai/Aiton/Phake', 'tai'),
     ('Cherokee', 'chr'),
     ('Navajo', 'nv'),
     ('Myanmar indigenous', 'my')
