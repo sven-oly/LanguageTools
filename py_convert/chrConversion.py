@@ -255,6 +255,7 @@ def oldEncodingToUnicode(textIn, convertToLower=True):
   return convertResult
 
 
+# TODO: fix these tests to do Cherokee!
 def testConvertOld():
   # Debug!
   print '\nOLD CHR'
