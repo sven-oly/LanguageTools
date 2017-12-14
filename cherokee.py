@@ -122,6 +122,7 @@ class CherokeeConvertUIHandler(webapp2.RequestHandler):
       ]
 
       template_values = {
+          'allFonts': True,
           'font': font,
           'language': Language,
           'langTag': 'chr',
@@ -224,23 +225,21 @@ class CherokeeDownloads(webapp2.RequestHandler):
       self.response.out.write(template.render(path, template_values))
 
 
-# Create a string with combinations of the combining characters,
-# following the given base character.
-def chakmaCombiningCombos(baseHexChar):
+class AllFontTest(webapp2.RequestHandler):
+  def get(self):
+    utext = self.request.get("utext", "")
+    encodedText = self.request.get("encodedText", "")
+    template_values = {
+      'scriptName': Language,
+      'fontFamilies': all_cherokee_unicode_fonts,
+      'encodedText': encodedText,
+      'utext': utext,
+      'language': Language,
+    }
 
-  combiners = [u'\ud804\udd00', u'\ud804\udd01', u'\ud804\udd02',
-               u'\ud804\udd27', u'\ud804\udd28', u'\ud804\udd29',
-               u'\ud804\udd2a',
-               u'\ud804\udd2b', u'\ud804\udd2c', u'\ud804\udd2d',
-               u'\ud804\udd2e', u'\ud804\udd2f',
-               u'\ud804\udd30', u'\ud804\udd31', u'\ud804\udd32',
-               u'\ud804\udd33', u'\ud804\udd34']
-  testString = u''
-  for c0 in combiners:
-    for c1 in combiners:
-      testString += baseHexChar + c0 + c1 + ' '
-    testString += '\u000a'
-  return testString
+    path = os.path.join(os.path.dirname(__file__), 'allFonts.html')
+    self.response.out.write(template.render(path, template_values))
+
 
 app = webapp2.WSGIApplication([
   ('/demo_chr/', CherokeeIndigenousHomeHandler),
@@ -249,4 +248,5 @@ app = webapp2.WSGIApplication([
   ('/chr/downloads/', CherokeeDownloads),
   ('/chr/converter/', CherokeeConvertHandler),
   ('/chr/encodingRules/', CherokeeEncodingRules),
+  ('/chr/AllFonts/', AllFontTest )
 ], debug=True)

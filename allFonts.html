@@ -1,0 +1,176 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <title>{{scriptName}} Unicode text with fonts
+   </title>
+
+  <link rel="stylesheet" type="text/css" href="/css/fonts.css">
+
+
+  <link rel="stylesheet" href="/css/blueprint/screen.css" type="text/css" media="screen, projection">
+  <link rel="stylesheet" href="/css/blueprint/print.css" type="text/css" media="print">
+  <!--[if lt IE 8]>
+    <link rel="stylesheet" href="/css/blueprint/ie.css" type="text/css" media="screen, projection">
+  <![endif]-->
+
+
+   <script type="text/javascript" src="/js/utils.js"></script>
+
+   <script src="/js/vk-debug.js"></script>
+
+   <style>
+   {% for fontFam in fontFamilies %}
+    @font-face{
+      font-family:'{{fontFam.family}}';
+      src:url('{{fontFam.source}}');
+      font-weight:normal;
+      font-style:normal;
+      font-size: 32px;
+    }
+   .{{fontFam.family|lower}} {
+      font-family:'{{fontFam.family}}';
+      font-size: 32px;
+    }
+   {% endfor %}
+   </style>
+
+   <script>
+   function fillAllWithUnicode() {
+     area_List = [{% for fontFam in fontFamilies %}"{{fontFam.family|lower}}_area",{% endfor %} "None"];
+     for (var i = 0; i < area_List.length - 1; i ++) {
+       var name = area_List[i];
+       fillWithUnicode(name, null);
+     }
+   }
+
+   function copyToAll(input_id) {
+     var input_id = document.getElementById(input_id);
+     var input_text = input_id.value;
+     area_List = [{% for fontFam in fontFamilies %}"{{fontFam.family|lower}}_area",{% endfor %} "None"];
+     for (var i = 0; i < area_List.length - 1; i ++) {
+       var name = area_List[i];
+       var output_id = document.getElementById(name);
+       output_id.innerHTML = input_text;
+       output_id.value = input_text;
+     }
+   }
+
+   function changeFontSize(selected) {
+     var fontObj = document.getElementById(selected);
+     var fontSize = fontObj.value;
+     {% for fontFam in fontFamilies %}
+       var div = document.getElementById("{{fontFam.family|lower}}_area");
+       div.style.fontSize = fontSize;
+     {% endfor %}
+   }
+
+   function onload() {
+     copyToAll("input_area");
+     initKeyboard('input_area');
+  }
+
+  // DRAG FUNCTIONS
+  function allowDrop(ev) {
+    ev.preventDefault();
+  }
+
+  function drag(ev) {
+    ev.dataTransfer.setData("text", ev.target.id);
+    ev.dataTransfer.setData("divObj", ev.target);
+    ev.dataTransfer.setData("prev", ev.currentTarget.previousElementSibling);
+  }
+
+  function drop(ev, targetElement) {
+    ev.preventDefault();
+    var movingId = ev.dataTransfer.getData("text");
+    var movingNode = document.getElementById(movingId);
+    var movingDiv = ev.dataTransfer.getData("divObj");
+    var parent = ev.currentTarget.parentNode;
+    var currentId = ev.target.id;
+    var currentTarget = ev.target;
+    parent.insertBefore(movingNode, targetElement);
+    //ev.target.appendChild(document.getElementById(data));
+  }
+
+  var controller, visible = true;
+  function initKeyboard(textAreaID) {
+      var input = document.getElementById(textAreaID);
+      controller = new i18n.input.keyboard.Keyboard();
+      controller.loadLayout('osa');
+      controller.reposition(input, 2, 0, [1, 0, 0, 0]);
+      controller.register(input);
+      controller.addEventListener('kc', function() { visible = false; });
+      input.focus();
+      var selector = document.getElementById('selectKeyboard');
+      onLayoutSelected(selector, controller, textAreaID);
+  }
+
+  function onLayoutSelected(selector, this_controller, outputId) {
+    var layoutCode = selector.value;
+    if (this_controller) {
+      this_controller.activateLayout(layoutCode);
+    } else {  // The global.
+      controller.activateLayout(layoutCode);
+    }
+    document.getElementById(outputId).focus();
+  }
+
+   </script>
+
+   </head>
+
+  <body onload="onload()">
+
+  <div class="container">
+  <div class="span-1">
+  </div>
+  <div class="span-18 last">
+  <h2>Test Unicode fonts with {{scriptName}} script</h2>
+  {% for fontFam in fontFamilies %}
+  <div id="{{fontFam.family}}_div" draggable="true" ondragstart="drag(event)" ondrop="drop(event,this)"
+    ondragover="allowDrop(event)">
+    &#9776;
+    <b>{{fontFam.family}}</b>
+    <br/>
+      <text id="{{fontFam.family|lower}}_area" class="{{fontFam.family|lower}}"
+      style="font-size:32px; white-space:pre-wrap;" colums="80" rows="2">{{utext}}</text>
+    <br />
+  </div>
+  {% endfor %}
+
+  <div id='osageUnicodeSource'>
+    <br />
+    <h3>Unicode text:</h3>
+    <textarea id="input_area" class="avant" cols="60" rows="3"
+      onchanged="copyToAll('input_area', null);">{{utext}}
+    </textarea>
+    <br />
+  </div>
+  <input type="button"
+           onclick="copyToAll('input_area',
+                    null);"
+           value="Copy to all" />
+  Font size: <select id='fontSize'
+             onChange="changeFontSize('fontSize');">
+             <option value="10pt">10</option>
+             <option value="12pt">12</option>
+             <option value="14pt">14</option>
+             <option value="18pt">18</option>
+             <option value="24pt">24</option>
+             <option value="32pt" selected="selected">32</option>
+             <option value="36pt">36</option>
+             <option value="48pt">48</option>
+             <option value="64pt">64</option>
+           </select>
+  <input type="button"
+           onclick="fillAllWithUnicode('Unicode_font_output_text',
+                    'new_hex');"
+           value="Insert all {{scriptName}} Unicode characters" />
+    Keyboard: <select onchange="onLayoutSelected(this, null, 'UnicodeOsageTools')")" id="selectKeyboard">
+      <option value="osa">Osage Unicode</option>
+    </select>
+
+  </div>
+  </div>
+  </body>
+</html>

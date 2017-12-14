@@ -174,7 +174,10 @@ private_use_map_combined = {
   '\u2039': ['\u1037'],
   '\u2030': ['\u1037'],
 
-    }
+   }
+
+
+# TODO: Convert combinations, especially medials.break
 
 function convertEncodingToUnicode(inbox, outbox, encodingIndex) {
   var inarea = document.getElementById(inbox);

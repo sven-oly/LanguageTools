@@ -17,7 +17,7 @@
 
 #import translit
 import transliterate
-import transrule_chr
+#import transrule_chr
 
 import json
 import logging
@@ -70,7 +70,7 @@ links = [
 ]
 
 
-# Shows keyboard for Cherokee
+# Shows keyboard
 class IndigenousHomeHandler(webapp2.RequestHandler):
     def get(self):
 
@@ -157,11 +157,7 @@ class ConvertUIHandler(webapp2.RequestHandler):
           'language': Language,
           'langTag': LanguageCode,
           'encodingList': encoding_font_list,
-          'encoding': {
-              'font_path':'/fonts/Cherokee/CherokeeOLD.ttf',
-              'font_name':'Cherokee_Old',
-              'display_name': 'Cherokee Old',
-          },
+          'encoding': encoding_font_list[0],
           'kb_list': kb_list,
           'unicodeFonts': unicode_font_list,
           'links': links,
@@ -261,7 +257,7 @@ class ConvertToZawgyiHandler(webapp2.RequestHandler):
     self.response.out.write(template.render(path, template_values))
 
 
-# AJAX handler for Cherokee converter
+# AJAX handler for converter
 class ConvertHandler(webapp2.RequestHandler):
     def get(self):
       # TODO: Get the text values
@@ -293,8 +289,8 @@ class EncodingRules(webapp2.RequestHandler):
     def get(self):
 
       kb_list = [
-        {'shortName':  'ccp',
-         'longName': 'Cherokee Unicode'
+        {'shortName':  LanguageCode,
+         'longName': Language + ' Unicode'
         }
       ]
       template_values = {
@@ -312,12 +308,12 @@ class RenderPage(webapp2.RequestHandler):
     def get(self):
 
       kb_list = [
-        {'shortName':  'ccp',
-         'longName': 'Cherokee Unicode'
+        {'shortName':  LanguageCode,
+         'longName': Language + ' Unicode'
         }
       ]
       template_values = {
-        'converterJS': "/js/ccpConverter.js",
+        'converterJS': "/js/' + LanguageCode + 'Converter.js",
         'language': Language,
         'encoding_list': encoding_font_list,
         'unicode_list': unicode_font_list,

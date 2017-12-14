@@ -11,7 +11,7 @@ import sys
 
 # https://openpyxl.readthedocs.io/en/default/tutorial.html
 
-FONTS_TO_CONVERT = ['Cherokee;MT Extra', 'Cherokee OLD']
+FONTS_TO_CONVERT = ['Cherokee;MT Extra', 'Cherokee OLD', 'Cherokee;Cherokee2']
 
 LANGUAGE = 'Cherokee'
 

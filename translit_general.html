@@ -111,7 +111,7 @@
     var area2Elem = document.getElementById(area2);
     var text2= area2Elem.value;
 
-    compareUrl = "/OsageFonts/?utext=" + text1 + "&osageText=" + text2;
+    compareUrl = "/{{langTag}}/AllFonts/?utext=" + text1 + "&encodedText=" + text2;
 
     window.location=compareUrl;
   }
@@ -153,7 +153,7 @@
     document.getElementById(outputId).focus();
   }
 
-  // Fills the input with all the characters in the old Osage range.
+  // Fills the input with all the characters in the old range.
   function fillWithOldChars(target, hex_target) {
     var output_text = document.getElementById(target);
     var outputString = "{{text}}";
@@ -164,7 +164,7 @@
     updateHex(target, hex_target);
   }
 
-  // Fills the input with all the characters in the old Osage range.
+  // Fills the input with all the characters given.
   function fillAreaWithChars(newString, target, hex_target) {
     var output_text = document.getElementById(target);
 
@@ -174,7 +174,7 @@
     updateHex(target, hex_target);
   }
 
-  // Fills the input with all the characters in the old Osage range.
+  // Fills the input with all the characters in the old range.
   function fillWithUnicodeText(target, hex_target) {
     var output_text = document.getElementById(target);
     var outputString = "{{unicodeChars}}";
@@ -331,7 +331,7 @@
     <br />
     </div>
     {% if allFonts %}
-    <input type="button" onclick="toOsageFonts('Unicode_font_output_text', 'old_font_input_text');" value="To all fonts">
+    <input type="button" onclick="toAllFonts('Unicode_font_output_text', 'old_font_input_text');" value="To all fonts">
     <br />
     {% endif %}
    </div>
