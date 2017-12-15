@@ -11,7 +11,9 @@ import sys
 
 # https://openpyxl.readthedocs.io/en/default/tutorial.html
 
-FONTS_TO_CONVERT = ['Cherokee;MT Extra', 'Cherokee OLD', 'Cherokee;Cherokee2']
+FONTS_TO_CONVERT = ['Cherokee', 'MT Extra', 'Cherokee OLD',
+                    'Cherokee;Cherokee2',
+                    'Cherokee2']
 
 LANGUAGE = 'Cherokee'
 
@@ -23,10 +25,10 @@ import chrConversion
 # Flag for handling all characters in an Old font.
 convertAllInOldFontRange = True
 
-debugFlag = False
+debugFlag = True  # False
 
 # Set to True to get lower case conversion
-toLowerCase = False
+toLowerCase = True # False
 
 # Check for Osage text and convert the Osage parts of the strings.
 # It assumes that the font has been detected.
@@ -86,14 +88,19 @@ def convertDoc(doc, unicodeFont, debugInfo=None):
     runNum = 1
     for run in runs:
       if len(run.text):
-        if debugInfo:
-          print ('  Run %d text(%d) =  >%s<' % (runNum, len(run.text), run.text))
         thisText = run.text
         fontObj = run.font
         fontName = fontObj.name
+        if debugInfo:
+          print ('  Run #%1d in font >%s<. Text(%d) =  >%s<' % (
+              runNum, fontName, len(run.text), run.text))
         if fontName not in FONTS_TO_CONVERT:
+          if debugInfo:
+            print('  ** Font %s not in FONTS_TO_CONVERT' % fontName)
           continue
         if thisText:
+          if debugInfo:
+            print('  ****** WORKING TO CONVERT data in font %s' % fontName)
           convertedText = checkAndConvertText(thisText)
           if thisText != convertedText:
             numConverts += 1
