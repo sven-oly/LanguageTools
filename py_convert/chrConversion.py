@@ -5,7 +5,7 @@ import re
 
 # Convert Cherokee encoded text to Unicode.
 
-debug = False
+debug = True  #False
 
 private_use_map = {
   u'\u0020': u'\u0020',
@@ -220,37 +220,46 @@ def toLower(inText):
   return out
 
 def preParseOld(instring):
-    # Nothing special for these conversion in Chrokee
+    # Nothing special for these conversion in Cherokee
     outList = instring
     return outList;
 
-def oldEncodingToUnicode(textIn, convertToLower=True):
+def oldEncodingToUnicode(textIn, convertToLower=False):
+  global debug
+
   convertResult = u''
   outputIsUTF16 = True
 
   parsedInput = preParseOld(textIn)
   if debug:
-    print('&&&& Text in = >%s<' % textIn)
-    print('&&& Convert parsed input = %s' % parsedInput)
+    print('      &&&& Text in = >%s<' % textIn)
 
   if not parsedInput:
     return ''
 
+  print(' +++ %d found in input' % len(parsedInput))
   for index in xrange(len(parsedInput)):
     c = parsedInput[index];
-
     # Special handling if needed
 
     out = c
     if c in private_use_map:
       out = private_use_map[c]
-
+    else:
+      if debug:
+        print('----- character %s (%s) not found' %
+              (c, ord(c)))
     convertResult += out
+    if debug:
+      print('  character: %s to %s' % (c, out))
 
   if convertToLower:
     lowerResult = toLower(convertResult)
     if lowerResult != convertResult:
       convertResult = lowerResult
+
+  if debug:
+    print(' ---> %s' % convertResult)
 
   return convertResult
 
