@@ -30,6 +30,7 @@ from google.appengine.ext.webapp import template
 
 Language = 'Cherokee'
 Language_native = 'ᏣᎳᎩ'
+LanguageTag = 'chr'
 
 encoding_font_list = [
     {
@@ -236,6 +237,7 @@ class AllFontTest(webapp2.RequestHandler):
       'encodedText': encodedText,
       'utext': utext,
       'language': Language,
+      'LanguageTag': LanguageTag
     }
 
     path = os.path.join(os.path.dirname(__file__), 'allFonts.html')

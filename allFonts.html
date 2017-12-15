@@ -96,7 +96,7 @@
   function initKeyboard(textAreaID) {
       var input = document.getElementById(textAreaID);
       controller = new i18n.input.keyboard.Keyboard();
-      controller.loadLayout('osa');
+      controller.loadLayout('{{LanguageTag}}');
       controller.reposition(input, 2, 0, [1, 0, 0, 0]);
       controller.register(input);
       controller.addEventListener('kc', function() { visible = false; });
@@ -165,7 +165,7 @@
                     'new_hex');"
            value="Insert all {{scriptName}} Unicode characters" />
     Keyboard: <select onchange="onLayoutSelected(this, null, 'UnicodeOsageTools')")" id="selectKeyboard">
-      <option value="osa">Osage Unicode</option>
+      <option value="{{osa}}">{{Language}} Unicode</option>
     </select>
 
   </div>
