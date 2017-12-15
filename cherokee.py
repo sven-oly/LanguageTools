@@ -229,6 +229,7 @@ class AllFontTest(webapp2.RequestHandler):
   def get(self):
     utext = self.request.get("utext", "")
     encodedText = self.request.get("encodedText", "")
+    logging.info('AllFontTest utext =>%s<' % utext)
     template_values = {
       'scriptName': Language,
       'fontFamilies': all_cherokee_unicode_fonts,
