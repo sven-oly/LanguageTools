@@ -219,6 +219,64 @@
     convertEncodingToUnicode(sourceArea, destinationArea, encodingIndex);
   }
 
+{% if backend_convert %}
+  // Code to request transliteration (conversion) and handle the return.
+  function callConvertEncodingToUnicodeBackend(source, destinationArea, encodeSelectorName) {
+
+    // Get the text and prepare the call to server.
+    source_element = document.getElementById(source);
+    text_in = encodeURIComponent(source_element.value);
+
+    // Prepare for the call to the backendvar xmlhttp;
+	if (window.XMLHttpRequest)
+	  {
+	  // code for IE7+, Firefox, Chrome, Opera, Safari
+	  xmlhttp=new XMLHttpRequest();
+	  }
+	else
+	  {
+	  // code for IE6, IE5
+	  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+	  }
+
+    // Deal with the results
+    xmlhttp.onreadystatechange=function()
+	{
+	  if(xmlhttp.readyState==4) {
+	  	  if (xmlhttp.status != 200) {
+	  	    alert('Bad status =' + xmlhttp.status);
+	  	    return;
+	  	  }
+	      var returned_json = xmlhttp.responseText;
+		  var output_area = document.getElementById(destinationArea);
+		  var json_obj = JSON.parse(returned_json);
+		  alert(json_obj.converted);
+
+          output_area.innerHTML = json_obj.converted;
+          output_area.value = json_obj.converted;
+		  var hex_area = document.getElementById('convertedHex');
+          hex_area.value = textToHex(json_obj.converted);
+
+		  var msg_area = document.getElementById('msgArea');
+          msg_area.innerHTML = json_obj.msg;
+          msg_area.value = json_obj.msg;
+     }
+	}
+
+	// Set up the call.
+    var encodedText = encodeURIComponent(text_in);
+    type = 'WWBURN_Unicode'
+	var encodedTarget = "/convert/?text=" + encodedText + "&type=" + type +
+	  "&noreturn=1";  // UNUSED
+
+	var target = "/{{langTag}}/converter/?text=" + text_in + "&type=" + type +
+	  "&noreturn=1";
+	xmlhttp.open("GET", target, true);
+	var size = target.length;
+	xmlhttp.send(null);
+  }
+{% endif %}
+
   </script>
   </head>
 
@@ -246,7 +304,12 @@
     <input type="button" value="Convert to {% if outputFont %}{{outputFont}}{% else %}Unicode{% endif %}"
            onclick="callConvertEncodingToUnicode('old_font_input_text',
                     'Unicode_font_output_text', 'selectEncodingFont');">
-    <input type="checkbox" name="showOldTools" id="showOldTools"
+    {% if backend_convert %}
+    <input type="button" value="Python: Convert to {% if outputFont %}{{outputFont}}{% else %}Unicode{% endif %}"
+           onclick="callConvertEncodingToUnicodeBackend('old_font_input_text',
+                    'Unicode_font_output_text', 'selectEncodingFont');">
+    {% endif %}
+     <input type="checkbox" name="showOldTools" id="showOldTools"
       onchange="toggle('OldEncodingTools', 'showOldTools');">Tools?<br />
 
     <div id="OldEncodingTools"

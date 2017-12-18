@@ -17,7 +17,7 @@
 
 #import translit
 import transliterate
-#import transrule_chr
+import transrule_my_wwburn
 
 import json
 import logging
@@ -30,6 +30,9 @@ from google.appengine.ext.webapp import template
 Language = 'Burmese'
 Language_native = 'မြန်မာဘာသာ'
 LanguageCode = 'my'
+
+my_wwburn_converter_Unicode = None  # to Unicode
+my_wwburn_converter_Z = None  # to Unicode or maybe to Z?
 
 encoding_font_list = [
     {
@@ -168,6 +171,7 @@ class ConvertUIHandler(webapp2.RequestHandler):
           'showTools': self.request.get('tools', None),
           'unicodeChars': unicodeChars,
           'combiningChars': unicodeCombiningChars,
+          'backend_convert': True,  # For the backend conversion.
       }
       path = os.path.join(os.path.dirname(__file__), 'translit_general.html')
       self.response.out.write(template.render(path, template_values))
@@ -257,34 +261,6 @@ class ConvertToZawgyiHandler(webapp2.RequestHandler):
     self.response.out.write(template.render(path, template_values))
 
 
-# AJAX handler for converter
-class ConvertHandler(webapp2.RequestHandler):
-    def get(self):
-      # TODO: Get the text values
-      # Call transliterator
-      # Return JSON structure with values.
-
-      transCcp = transliterate.Transliterate(
-        transrule_ccp.TRANS_LIT_RULES,
-        transrule_ccp.DESCRIPTION
-      )
-
-      outText = '\u11103\u11101\u11103'
-      message = 'TBD'
-      error = ''
-
-      result = {
-        'outText' : outText,
-        'message' : message,
-        'error': error,
-        'language': Language,
-        'langTag': LanguageCode,
-        'showTools': self.request.get('tools', None),
-        'summary' : transCcp.getSummary(),
-      }
-      self.response.out.write(json.dumps(result))
-
-
 class EncodingRules(webapp2.RequestHandler):
     def get(self):
 
@@ -336,6 +312,68 @@ class Downloads(webapp2.RequestHandler):
       self.response.out.write(template.render(path, template_values))
 
 
+# Convert text in URL, with JSON return
+class ConvertHandler(webapp2.RequestHandler):
+  def post(self):
+    self.response.headers['Content-Type'] = 'text/plain'
+
+    print 'ConvertHandler post received.'
+    self.response.out.write('ConvertHandler post received.\n')
+
+  def get(self):
+    logging.info('ConvertHandler get received. %s' % self.request)
+    global my_wwburn_converter_Unicode
+
+    text = unicode(self.request.get('text'))
+    logging.info('text         = %s' % text)
+    input_type = self.request.get('type', 'Z')
+    strip_spaces = self.request.get('strip_spaces', None)
+    debug = self.request.get('debug', None)
+
+    input = urllib.unquote(text)  # .decode('utf-8')
+    logging.info('decoded text = %s' % text)
+
+    noreturn = self.request.get('noreturn', None)
+    msg = ''
+
+    logging.info('CONVERT %d characters' % len(input))
+    logging.info('Input type = >%s<' % input_type)
+
+    # THE ACTUAL CONVERSION.
+    # TODO: debug this.
+    #if not my_wwburn_converter_Unicode:
+    #  my_wwburn_converter_Unicode = transliterate.Transliterate(
+    #    transrule_my_wwburn.MY_WWBURN_UNICODE_TRANSLITERATE,
+    #    transrule_my_wwburn.UNICODE_DESCRIPTION)
+    #result = my_wwburn_converter_Unicode.transliterate(input, debug)
+
+    result = "TEMPORARY"
+    self.response.headers['Content-Type'] = 'application/json'
+    if input:
+      if noreturn:
+        returntext = ''
+      else:
+        returntext = text
+
+      logging.info('RESULT has %d characters' % len(result))
+
+      # Call the converter on this text data.
+      obj = {'input': returntext,
+             'input_type': input_type,
+             'msg': msg,
+             'converted': result,
+             'detector_description': transrule_my_wwburn.UNICODE_DESCRIPTION,
+             'noreturn': noreturn,
+             'inputSize': len(input),
+             'resultSize': len(result),
+             'errmsg': None}
+    else:
+      obj = {'input': text,
+             'input_type': input_type,
+             'msg': msg,
+             'noreturn': noreturn,
+             'errmsg': 'Null input'}
+    self.response.out.write(json.dumps(obj))
 
 
 app = webapp2.WSGIApplication([
