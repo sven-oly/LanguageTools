@@ -19,6 +19,16 @@ Substitutions = KNU_substitutions = [
   ]
 
 MY_WWBURN_UNICODE_TRANSLITERATE = u"""
+$nondigits = [^\u1040-\u1049];
+$space = '\u0020';
+$consonant = [\u1000-\u1021];
+$vowelsign = [\u102B-\u1030\u1032];
+$umedial = [\u103B-\u103E];
+$vowelmedial = [\u102B-\u1030\u1032\u103B-\u103F];
+$ukinzi = \u1004\u103A\u1039;
+$zmedialra = [\u103B\u107E-\u1084];
+$spaces = [\u0020\u00a0\u2000-\u200a];
+
 # Ignore inserted invisible spaces
 
 # Phase 1: single character conversions.
