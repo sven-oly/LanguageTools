@@ -10,7 +10,13 @@ Substitutions = KNU_substitutions = [
     [ u'[',  u'\u101f'],
     [ u'|',  u'\u103f'],
     [ u']', '='],
-]
+    [ u';', u'\u1038'],
+    [ u'|',  u'ျွ'],
+    [u'^', u'\u1009'],
+    [u'.', u'\u104f'],
+    [u'?', u'\u104b'],
+    [u'>', u'\u1039\u1006'],
+  ]
 
 MY_WWBURN_UNICODE_TRANSLITERATE = u"""
 # Ignore inserted invisible spaces
@@ -25,15 +31,9 @@ MY_WWBURN_UNICODE_TRANSLITERATE = u"""
   \u0025 > \u100f ;
   \u0026 > \u101b ;
   \u0027 > \u1012 ;
-#  \u0028 > \( ;
-#  \u0029 > \) ;
-#  \u002a > \u1002 ;  IMPORTANT Fix this one!
-#  \u002b > \u103c ;
   \u002c > \u101a ;
   \u002d > \u2014 ;
-  \u002e > \u104f ;
   \u002f > \u104a ;
-
   \u0030 > \u1040 ;
   \u0031 > \u1041 ;
   \u0032 > \u1042 ;
@@ -45,12 +45,9 @@ MY_WWBURN_UNICODE_TRANSLITERATE = u"""
   \u0038 > \u1048 ;
   \u0039 > \u1049 ;
   \u003a > \u102b\u103a ;
-  \u003b > \u1038 ;
   \u003c > \u1039\u1013 ;
   \u003d > \u103c ;
-  \u003e > \u1039\u1006 ;
-#   \u003f > \u104b ;
-
+# \u003e > \u1039\u1006 ;
   \u0040 > \u1037 ;
   \u0041 > \u1017 ;
   \u0042 > \u1039\u1018 ;
@@ -67,7 +64,6 @@ MY_WWBURN_UNICODE_TRANSLITERATE = u"""
   \u004d > \u1039\u1014 ;
   \u004e > \u1039\u1012 ;
   \u004f > \u1025 ;
-
   \u0050 > \u1039\u1005 ;
   \u0051 > \u1039\u1001 ;
   \u0052 > \u1039\u1019 ;
@@ -79,12 +75,7 @@ MY_WWBURN_UNICODE_TRANSLITERATE = u"""
   \u0058 > \u100c ;
   \u0059 > \u104c ;
   \u005a > \u1007 ;
-#  \u005b > \u101f ;
-#  \u005c > \u103f ;
-#  \u005d > = ;
-  \u005e > \u1009 ;
   \u005f > \u103e\u102f ;
-
   \u0060 > \u1039\u1015 ;
   \u0061 > \u1031 ;
   \u0062 > \u1018 ;
@@ -101,7 +92,6 @@ MY_WWBURN_UNICODE_TRANSLITERATE = u"""
   \u006d > \u102c ;
   \u006e > \u100a ;
   \u006f > \u101e ;
-
   \u0070 > \u1005 ;
   \u0071 > \u1006 ;
   \u0072 > \u1019 ;
@@ -114,13 +104,11 @@ MY_WWBURN_UNICODE_TRANSLITERATE = u"""
   \u0079 > \u1015 ;
   \u007a > \u1016 ;
   \u007b > \u1027 ;
-  \u007c > \u103b\u103d ;
   \u007d > \u103c ;
   \u007e > \u1039\u1002 ;
-  \u007f > \u0020 ;
 
   # More to do but more unusual combinations
-  \u00a0 >   ;
+#  \u00a0 >   ;
   \u00a1 > [ ;
   \u00a2 > ] ;
   \u00a3 > \u00a3 ;

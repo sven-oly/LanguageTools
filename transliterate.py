@@ -286,8 +286,8 @@ class Transliterate():
           # Size of last part of old string after the replacement
           cSize = len(currentString) - matchObj.end(0) - self.start  # Last part of old string not matched
           if debug and debug > 1:
-            print ' Rule %d: >%s<  Matched sequence = >%s<' % (rule.id, rule.pattern,
-            matchObj.string[matchObj.start(0):matchObj.end(0)])
+            print ' Rule %d: >%s<  Matched sequence = >%s<' % (rule.id, rule.pattern.encode('utf-8'),
+            matchObj.string[matchObj.start(0):matchObj.end(0)].encode('utf-8'))
           substitution = rule.subst
 
           if debug and debug > 1:
