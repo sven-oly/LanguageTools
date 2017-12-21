@@ -26,17 +26,21 @@ import types
 
 # Globals
 allPhases = None
+debug_output = True
 
 class Rule():
   # Stores one rule of a phase, including substitution information
   def __init__(self, pattern, substitution, id=0):
+    if debug_output:
+      print(' Rule: %s --> %s' % (pattern.encode('utf-8'),
+                                  substitution.encode('utf-8')))
     self.id = id
     self.pattern = pattern
     self.re_pattern = re.compile(pattern, re.UNICODE)
     self.subst = substitution
     #? Store info on repositioning cursor
 
-  
+
 class Phase():
   # one phase of the transliteration spec
   def __init__(self, id=0):
@@ -45,9 +49,12 @@ class Phase():
     self.phase_id = id
 
   def fillRules(self, rulelist):
+    global debug_output
+
     # set up pattern and subst value for each rule
     index = 0
-    # print '%d rules in rulelist, phase %d' % (len(rulelist), self.phase_id)
+    if debug_output:
+      print '%d rules in rulelist, phase %d' % (len(rulelist), self.phase_id)
     for rule1 in rulelist:
       rule1 = rule1.strip()
       rule = re.sub('\n', '', rule1)
@@ -60,6 +67,10 @@ class Phase():
           #subst = re.sub(' ', '', uStringsToText(parts[1]))
           newPair = (pattern, subst)
           self.rules.append(newPair)
+          if debug_output and False:
+            print(' ** Rule1 = %s' % rule.encode('utf-8'))
+            print(' appending to RuleList: #%d %s --> %s' %
+                  (index, pattern.encode('utf-8'), subst.encode('utf-8')))
           self.RuleList.append(Rule(pattern, subst, index))  # Rule objects
         except IndexError, e:
           print 'Error e = %s. Phase %s, %d rule = %s' % (e, self.phase_id, index, rule1)
@@ -74,7 +85,7 @@ class Phase():
   def getRuleList(self):
     # List of rule objects
     return self.RuleList
-    
+
   def apply(self, intext):
     # takes each rule (pattern, substitute), applying to intext
     for rule in self.rules:
@@ -88,7 +99,7 @@ def extractShortcuts(ruleString):
   # also remove comment lines and blank lines
   shorcutPattern = '(\$\w+)\s*=\s*([^;]*)'
   matches = re.findall(shorcutPattern, ruleString)
-  
+
   shortcuts = {}
   for m in matches:
     shortcuts[m[0]] = m[1]
@@ -99,7 +110,7 @@ def extractShortcuts(ruleString):
   stripped = re.sub(shorcutPattern, '', ruleString)
   smaller = re.sub(commentPattern, "", stripped)
   return (shortcuts, smaller)
-  
+
 
 def expandShortcuts(shortcuts, inlist):
   newlist = inlist
@@ -108,8 +119,8 @@ def expandShortcuts(shortcuts, inlist):
     sublist = re.sub(key, value, newlist)
     newlist = sublist
   return newlist
-  
-  
+
+
 def splitPhases(ruleString):
   phases = ruleString.split('::Null;')
   return phases
@@ -117,12 +128,12 @@ def splitPhases(ruleString):
 def testZawgyiConvert():
   z1 = 'ဘယ္'
   u1 = ConvertZawgyiToUnicode(z1)
-  
-  
+
+
 def ConvertZawgyiToUnicode(ztext):
   # Run the phases over the data.
   out1 = ztext
-  
+
   for phase in phases:
     # Apply each regular expression with global replacement;
     rules = phases.rules
@@ -132,22 +143,22 @@ def ConvertZawgyiToUnicode(ztext):
 
 def uStringsFixPlaceholder(string):
   return re.sub(u'\$(\d)', subBackSlash, string) # Fix the replacement patterns
-  
+
 def uStringsToText(string):
   pattern = '\\\u[0-9A-Fa-f]{4}'
   result = re.sub(pattern, decodeHexU, string)
   return re.sub(u'\$(\d)', subBackSlash, result) # Fix the replacement patterns
-  
+
 def uStringToHex(string):
   result = ''
   for c in string:
     result += '%4s ' % hex(ord(c))
   return result
-    
+
 
 def subBackSlash(pattern):
   return '\\' + pattern.group(0)[1:]
-  
+
 def decodeHexU(uhexcode):
   # Convert \uhhhh in input hex code match to Unicode character
   text = uhexcode.group(0)[2:]
@@ -157,22 +168,24 @@ def decodeHexU(uhexcode):
 class Transliterate():
   # Accepting a set of rules, create a transliterator with phases,
   # ready to apply them.
-  
+
   def __init__(self, raw_rules, description='Default conversion'):
     # Get the short cuts.
 
     self.description = description
     # Convert Unicode escapes to characters
     self.raw_rules = raw_rules  #.decode('unicode-escape')
-    #self.raw_rules = raw_rules
-    
+
     (self.shortcuts, self.reduced) = extractShortcuts(self.raw_rules)
     # Expand short cuts.
     self.expanded = expandShortcuts(self.shortcuts, self.reduced)
-   
-    
+
     self.phaseStrings = splitPhases(self.expanded)
-    
+
+    if debug_output:
+      print('phase strings = %s' % self.phaseStrings)
+      print('-------------------------------------\n')
+
     # Create the phase objects
     self.phaseList = []
     index = 0
@@ -184,6 +197,15 @@ class Transliterate():
     # Range of current string, for passing information to substFunction.
     self.start = 0
     self.limit = 0
+
+    if debug_output:
+      for phase in self.phaseList:
+        print 'Phase %s' % phase
+        for rule in phase.RuleList:
+          print '  rule %s: %s (%s) --> %s' % (
+              rule.id, rule.pattern.encode('utf-8'), len(rule.pattern),
+              rule.subst.encode('utf-8'))
+
 
   def printSummary(self):
     # Print the statistics
@@ -203,29 +225,30 @@ class Transliterate():
       'raw rules': len(self.raw_rules),
       'shortcuts': len(self.shortcuts),
       'reduced': len(self.reduced),
-      'phaseStrings': self.phaseStrings, 
+      'phaseStrings': self.phaseStrings,
       'phaseList': len(self.phaseList)
     }
     return result
 
   def substFunction(matchObj):
     return 'UNFINISHED'
-    
+
   def applyPhase(self, index, instring,  debug):
     if debug:
       print 'Applying phase %d to %s' % (index, instring.encode('utf-8'))
       print '  instring = %s' % uStringToHex(instring)
-    
+      print ' DEBUG LEVEL = %s' % debug
+
     # It should do:
     #  a. Find rule that matches from the start
     #  b. if a match, substitute text and move start as required
     # until start >= limit
-    
+
     # For each rule, apply to instring.
     self.start = 0
     self.limit = len(instring) - 1
     ruleList = self.phaseList[index].RuleList
-    
+
     currentString = instring
     if debug:
       print ' Phase %d has %d rules' % (index, len(ruleList))
@@ -240,44 +263,45 @@ class Transliterate():
       foundRule = None
       for rule in ruleList:
         # Try to match each rule at the current start point.
-        re_pattern = rule.re_pattern 
+        re_pattern = rule.re_pattern
 
         try:
           # look at the current position.
           matchObj = re_pattern.match(currentString[self.start:])
           # matchObj = re.match(rule.pattern, currentString[self.start:])
         except TypeError, e:
-          print '***** TypeError EXCEPTION %s in phase %s, rule %s: %s -> %s' % (e, 
-            index, ruleIndex, uStringToHex(rule.pattern), uStringToHex(rule.subst))        
+          print '***** TypeError EXCEPTION %s in phase %s, rule %s: %s -> %s' % (e,
+            index, ruleIndex, uStringToHex(rule.pattern), uStringToHex(rule.subst))
         except:
           e = sys.exc_info()[0]
-          print '***** EXCEPTION %s in phase %s, rule %s: %s -> %s' % (e, 
+          print '***** EXCEPTION %s in phase %s, rule %s: %s -> %s' % (e,
             index, ruleIndex, uStringToHex(rule.pattern), uStringToHex(rule.subst))
 
         if matchObj:
           # Do just one substitution!
           foundRule = ruleIndex
           if debug:
-            print ' Matched rule %s. abs start = %d, rel start = %d, end = %d' % (rule.id, 
+            print ' Matched rule %s. abs start = %d, rel start = %d, end = %d' % (rule.id,
               self.start, matchObj.start(0), matchObj.end(0) )
           # Size of last part of old string after the replacement
           cSize = len(currentString) - matchObj.end(0) - self.start  # Last part of old string not matched
           if debug and debug > 1:
-            print ' Rule %d: %s  Matched sequence = %s' % (rule.id, rule.pattern,
+            print ' Rule %d: >%s<  Matched sequence = >%s<' % (rule.id, rule.pattern,
             matchObj.string[matchObj.start(0):matchObj.end(0)])
           substitution = rule.subst
 
           if debug and debug > 1:
-            print '  replacing %s with %s' % (
-              uStringToHex(matchObj.string[matchObj.start(0):matchObj.end(0)]),
+            old_stuff = matchObj.string[matchObj.start(0):matchObj.end(0)]
+            print '  replacing >%s< (%d) with %s' % (
+                uStringToHex(old_stuff), len(old_stuff),
               uStringToHex(substitution))
-          if debug  == 2:
+          if debug >= 2:
             print '  before: %s' % uStringToHex(currentString)
 
           outstring = re.sub(rule.pattern, substitution, currentString[self.start:], 1)
           # Try to advance start.
           newString = currentString[0:self.start] + outstring
-          if debug == 2:
+          if debug >= 2:
             print '  after:  %s' % uStringToHex(newString)
           self.limit = len(newString) - 1
           # Figure out the new start and limit.
@@ -290,28 +314,28 @@ class Transliterate():
       # Rule loop complete
       if not foundRule:
         # Increment position since no rule matched
-        self.start += 1       
-        
+        self.start += 1
+
     return currentString
 
-  
+
   def transliterate(self, instring, debug=None):
     # Apply each phase to the incoming string or string list.
-    
+
     if type(instring) == types.ListType:
       # Recursive on each list item.
       return [self.transliterate(item, debug) for item in instring]
-    
+
     if type(instring) != types.StringType and type(instring) != types.UnicodeType:
       return 'Error: type = %s. String or Unicode required' % type(instring)
 
     for phaseIndex in range(len(self.phaseList)):
       outstring = self.applyPhase(phaseIndex, instring, debug)
       instring = outstring
-      
+
     # ?? .decode('unicode-escape')
     return outstring
-    
+
 
 # ----------------- TESTING ------------------
 # TODO: Factor out the tests.
@@ -323,7 +347,7 @@ def biggerTest(trans):
   result1 = trans.transliterate(zString)
   print 'in = %s' % zString
   print 'out = %s' % result1
-  
+
   if result1 == expectedU:
     print 'ThanLWinSoft title passes'
   else:
@@ -340,7 +364,7 @@ def biggerTest2(trans):
   result1 = trans.transliterate(zString)
   # print 'in = %s' % zString
   # print 'out = %s' % result1
-  
+
   if result1 == expectedU:
     print 'biggerTest2 passes'
   else:
@@ -387,7 +411,7 @@ def testList(transliterator):
     u'\u1002\u103a\u1064\u1005\u108c\u1006\u108d\u106a\u1025\u102e',
     u'\u1002\u103a\u1064\u1005\u1072']
   resultList = transliterator.transliterate(zList)
-  
+
   eList = [u'င်္ဆျီု|၎်ဥျံြွင', u'င်္ဂျင်္စီင်္ဆံ', u'င်္ဂျင်္စီင်္ဆံ']
   for i in range(len(resultList)):
     if resultList[i] == eList[i]:
@@ -396,7 +420,7 @@ def testList(transliterator):
       print '  testList %d fails' % 1
       print '  Z input =      %s' % uStringToHex(zList[i])
       print '  Result hex =   %s' % uStringToHex(resultList[i])
-      print '  Expected hex = %s' % uStringToHex(eList[i])    
+      print '  Expected hex = %s' % uStringToHex(eList[i])
 
 
 def transliterateFile(trans, encoding, fileName):
@@ -411,9 +435,9 @@ def transliterateFile(trans, encoding, fileName):
     print '%s\t%s' % (lineNum, outline)
     lineNum += 1
   return
-  
+
 def main(argv=None):
- 
+
   if len(argv) > 1:
     print argv
     inType = argv[1]
@@ -432,12 +456,12 @@ def main(argv=None):
     elif inType == 'shanthai':
       trans =  None  # Transliterate(translit_zawgyi.SHANTHAI_TRANSLITERATE)
       encoding = 'shanthai'
-  
+
     transliterateFile(trans, encoding, inFile)
-    return 
+    return
 
   trans = Transliterate(translit_zawgyi.ZAWGYI_UNICODE_TRANSLITERATE)
-  
+
   # New is not working yet.
   # trans = Transliterate(ZAWGYI_UNICODE_TRANSLITERATE_2)
   #trans.summary()
@@ -448,7 +472,7 @@ def main(argv=None):
   biggerTest2(trans)
 
   #return
-  
+
   test1 = u'ေျခႀက'  # 1031 103b 1001 1080 1000
   result1 = trans.transliterate(test1)
   print 'Output is %s' % result1
@@ -458,14 +482,14 @@ def main(argv=None):
   result2 = trans.transliterate(test2)
 
   print 'Output 2 is %s' % result2
-  
+
   print '-------------\n'
 
   # biggerTest()
-  
+
   return
 
 
 if __name__ == "__main__":
-    print 'ARGS = %s' % sys.argv 
+    print 'ARGS = %s' % sys.argv
     sys.exit(main(sys.argv))

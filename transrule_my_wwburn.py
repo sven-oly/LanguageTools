@@ -1,25 +1,36 @@
 # -*- coding: utf-8 -*-
 
 UNICODE_DESCRIPTION = u'Convert ASCII wwburn encoded text to Unicode.  14-Dec-2017'
+Substitutions = KNU_substitutions = [
+    [ u'*', u'\u1002' ],
+    [ u'+', u'\u1003' ],
+    [ u'+', u'u103c' ],
+    [ u'\u00b7', u'*' ],
+    [ u'?', u'\u104b' ],
+    [ u'[',  u'\u101f'],
+    [ u'|',  u'\u103f'],
+    [ u']', '='],
+]
+
 MY_WWBURN_UNICODE_TRANSLITERATE = u"""
 # Ignore inserted invisible spaces
 
-\u200b > ;
-
 # Phase 1: single character conversions.
+  \u200b > ;
+
   \u0021 > \u100a;
   \u0022 > \u1013 ;
   \u0023 > \u103b\u103e ;
-  \u0024 > \u103d\u103e ;  // ?
+  \u0024 > \u103d\u103e ;
   \u0025 > \u100f ;
   \u0026 > \u101b ;
   \u0027 > \u1012 ;
-  \u0028 > \( ;
-  \u0029 > \) ;
-  \u002a > \u1002 ;
-  \u002b > \u103c ;
+#  \u0028 > \( ;
+#  \u0029 > \) ;
+#  \u002a > \u1002 ;  IMPORTANT Fix this one!
+#  \u002b > \u103c ;
   \u002c > \u101a ;
-  \u002d > \u2014 ;  // long dash?
+  \u002d > \u2014 ;
   \u002e > \u104f ;
   \u002f > \u104a ;
 
@@ -38,7 +49,7 @@ MY_WWBURN_UNICODE_TRANSLITERATE = u"""
   \u003c > \u1039\u1013 ;
   \u003d > \u103c ;
   \u003e > \u1039\u1006 ;
-  \u003f > \u104b ;
+#   \u003f > \u104b ;
 
   \u0040 > \u1037 ;
   \u0041 > \u1017 ;
@@ -47,7 +58,7 @@ MY_WWBURN_UNICODE_TRANSLITERATE = u"""
   \u0044 > \u102e ;
   \u0045 > \u1014 ;
   \u0046 > \u1004\u103a\u1039 ;
-  \u0047 > \u103d ;  //?
+  \u0047 > \u103d ;
   \u0048 > \u1036 ;
   \u0049 > \u104d ;
   \u004a > \u1032 ;
@@ -55,7 +66,7 @@ MY_WWBURN_UNICODE_TRANSLITERATE = u"""
   \u004c > \u1030 ;
   \u004d > \u1039\u1014 ;
   \u004e > \u1039\u1012 ;
-  \u004f > \u1025 ;  // ?
+  \u004f > \u1025 ;
 
   \u0050 > \u1039\u1005 ;
   \u0051 > \u1039\u1001 ;
@@ -63,14 +74,14 @@ MY_WWBURN_UNICODE_TRANSLITERATE = u"""
   \u0053 > \u103e ;
   \u0054 > \u1024 ;
   \u0055 > \u1039\u1000 ;
-  \u0056 > \u1020 ;  // ?
+  \u0056 > \u1020 ;
   \u0057 > \u1039\u1010 ;
   \u0058 > \u100c ;
   \u0059 > \u104c ;
   \u005a > \u1007 ;
-  \u005b > \u101f ;
-  \u005c > \u103f ;
-  \u005d > = ;
+#  \u005b > \u101f ;
+#  \u005c > \u103f ;
+#  \u005d > = ;
   \u005e > \u1009 ;
   \u005f > \u103e\u102f ;
 
@@ -128,7 +139,6 @@ MY_WWBURN_UNICODE_TRANSLITERATE = u"""
   \u00b4 > ?', '? ;
   \u00b5 > % ;
   \u00b6 > \u101b ;
-  \u00b7 > * ;
   \u00b8 > \u103e\u103d ;
   \u00b9 > \u103c ;
   \u00ba > \u103c ;
