@@ -325,29 +325,34 @@ class ConvertHandler(webapp2.RequestHandler):
     global my_wwburn_converter_Unicode
 
     text = unicode(self.request.get('text'))
-    logging.info('text         = %s' % text)
+    #logging.info('text         = %s' % text)
     input_type = self.request.get('type', 'Z')
     strip_spaces = self.request.get('strip_spaces', None)
     debug = self.request.get('debug', None)
 
     input = urllib.unquote(text)  # .decode('utf-8')
-    logging.info('decoded text = %s' % text)
+    #logging.info('decoded text = %s' % text)
 
     noreturn = self.request.get('noreturn', None)
     msg = ''
 
-    logging.info('CONVERT %d characters' % len(input))
-    logging.info('Input type = >%s<' % input_type)
+    #logging.info('CONVERT %d characters' % len(input))
+    #logging.info('Input type = >%s<' % input_type)
 
     # THE ACTUAL CONVERSION.
-    # TODO: debug this.
-    #if not my_wwburn_converter_Unicode:
-    #  my_wwburn_converter_Unicode = transliterate.Transliterate(
-    #    transrule_my_wwburn.MY_WWBURN_UNICODE_TRANSLITERATE,
-    #    transrule_my_wwburn.UNICODE_DESCRIPTION)
-    #result = my_wwburn_converter_Unicode.transliterate(input, debug)
+    if not my_wwburn_converter_Unicode:
+      my_wwburn_converter_Unicode = transliterate.Transliterate(
+        transrule_my_wwburn.MY_WWBURN_UNICODE_TRANSLITERATE,
+        transrule_my_wwburn.UNICODE_DESCRIPTION)
 
-    result = "TEMPORARY"
+    subst = transrule_my_wwburn.Substitutions
+    text = input
+    for rep in subst:
+      text = input.replace(rep[0], rep[1])
+      input = text
+    result = my_wwburn_converter_Unicode.transliterate(input, debug)
+
+
     self.response.headers['Content-Type'] = 'application/json'
     if input:
       if noreturn:
@@ -355,7 +360,7 @@ class ConvertHandler(webapp2.RequestHandler):
       else:
         returntext = text
 
-      logging.info('RESULT has %d characters' % len(result))
+      #logging.info('RESULT has %d characters' % len(result))
 
       # Call the converter on this text data.
       obj = {'input': returntext,

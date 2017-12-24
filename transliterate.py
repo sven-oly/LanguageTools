@@ -26,7 +26,7 @@ import types
 
 # Globals
 allPhases = None
-debug_output = True
+debug_output = False
 
 class Rule():
   # Stores one rule of a phase, including substitution information
@@ -124,6 +124,7 @@ def expandShortcuts(shortcuts, inlist):
 def splitPhases(ruleString):
   phases = ruleString.split('::Null;')
   return phases
+
 
 def testZawgyiConvert():
   z1 = 'ဘယ္'

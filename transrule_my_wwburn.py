@@ -16,7 +16,8 @@ Substitutions = KNU_substitutions = [
     [u'.', u'\u104f'],
     [u'?', u'\u104b'],
     [u'>', u'\u1039\u1006'],
-  ]
+    [u'$', u'\u103D\u103E'],
+]
 
 MY_WWBURN_UNICODE_TRANSLITERATE = u"""
 $nondigits = [^\u1040-\u1049];
