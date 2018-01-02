@@ -62,7 +62,17 @@ unicode_font_list = [
     'family': 'Padauk-book',
     'longName': 'Padauk-book',
     'source': '/fonts/burmese/Padauk-book.ttf',
-  }
+  },
+  {
+    'family': 'BeautiUNI-2',
+    'longName': 'BeautiUNI-2',
+    'source': '/fonts/burmese/BeautiUNI-2.ttf',
+  },
+  {
+    'family': 'BeautiUNI-6',
+    'longName': 'BeautiUNI-6',
+    'source': '/fonts/burmese/BeautiUNI-6.ttf',
+  },
 ]
 
 

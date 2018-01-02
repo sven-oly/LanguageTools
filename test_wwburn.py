@@ -6,7 +6,7 @@ import transliterate
 
 import sys
 
-debug = True
+debug = False  #True
 
 def apply(input, trans, subst):
   if debug:
@@ -42,6 +42,11 @@ def test1(trans, subst):
 
   input = '-opa-w;vsm;vlrsKd;'
   expected = u'—သစေ—တးလျားလူမျိုး'
+  result = apply(input, trans, subst)
+  compare(result, expected)
+
+  input = 'tjyefvufrSwf'
+  expected = u'အပြန်လက်မှတ်'
   result = apply(input, trans, subst)
   compare(result, expected)
 
