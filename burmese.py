@@ -92,6 +92,13 @@ links = [
     },
 ]
 
+testStringList = [
+  {'name': 'Test  ww_burn samples',
+   'string': u'tÛudufqkH; ' + u't-uH^m%f ' +
+             u'∫uGm;w,f ' + u'ac|;xGufw,f\ ' + u'tdyf&mxw,f ' + u'tawmftwefn' +
+             'tjyefvufrSwf ' + ' tjypfusL;vGefo ' + ' u|rf;usifo ',
+   },
+]
 
 # Shows keyboard
 class IndigenousHomeHandler(webapp2.RequestHandler):
@@ -123,12 +130,6 @@ class ConvertUIHandler(webapp2.RequestHandler):
                   'abcdefghijklmnopqrstuvwxyz{|}~')
       text = self.request.get('text', oldChars)
       font = self.request.get('font')
-      testStringList = [
-        {'name': 'Test  ww_burn samples',
-         'string': u'tÛudufqkH; ' + u't-uH^m%f ' +
-                   u'∫uGm;w,f ' + u'ac|;xGufw,f\ ' + u'tdyf&mxw,f ' + u'tawmftwefn',
-         },
-      ]
 
       oldInput = u''
       for i in xrange(0x20, 0x80):
@@ -214,12 +215,6 @@ class ConvertToZawgyiHandler(webapp2.RequestHandler):
                 'abcdefghijklmnopqrstuvwxyz{|}~')
     text = self.request.get('text', oldChars)
     font = self.request.get('font')
-    testStringList = [
-      {'name': 'Test  ww_burn samples',
-       'string': u'tÛudufqkH; ' + u't-uH^m%f ' +
-                 u'∫uGm;w,f ' + u'ac|;xGufw,f\ ' + u'tdyf&mxw,f ' + u'tawmftwefn',
-       },
-    ]
 
     oldInput = u''
     for i in xrange(0x20, 0x80):
