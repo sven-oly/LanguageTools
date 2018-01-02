@@ -7,12 +7,13 @@ Substitutions = KNU_substitutions = [
     [ u'+', u'u103c' ],
     [ u'\u00b7', u'*' ],
     [ u'?', u'\u104b' ],
-    [ u'[',  u'\u101f'],
-    [ u'|',  u'\u103f'],
-    [ u']', '='],
+    [ u'\u003d', u'\u103c'],
+    [ u'[',  u'\u101f'],  # 0x5b
+    [ u'\\',  u'\u103f'], # 0x5c
+    [ u'\]', '='],         # 0x5d
     [ u';', u'\u1038'],
-    [ u'|',  u'ျွ'],
-    [u'^', u'\u1009'],
+    [ u'|',  u'ျွ'],      # 0x7c
+    [u'^', u'\u1009'],    # 0x5e
     [u'.', u'\u104f'],
     [u'?', u'\u104b'],
     [u'>', u'\u1039\u1006'],
@@ -25,7 +26,7 @@ $space = '\u0020';
 $consonant = [\u1000-\u1021];
 $vowelsign = [\u102B-\u1030\u1032];
 $umedial = [\u103B-\u103E];
-$vowelmedial = [\u102B-\u1030\u1032\u103B-\u103F];
+$vowelmedial = [\u102B-\u1030\u1032\u103B-\u103E];
 $ukinzi = \u1004\u103A\u1039;
 $zmedialra = [\u103B\u107E-\u1084];
 $spaces = [\u0020\u00a0\u2000-\u200a];
@@ -42,6 +43,7 @@ $spaces = [\u0020\u00a0\u2000-\u200a];
   \u0025 > \u100f ;
   \u0026 > \u101b ;
   \u0027 > \u1012 ;
+  \u102b > \u103c ;
   \u002c > \u101a ;
   \u002d > \u2014 ;
   \u002f > \u104a ;
@@ -57,7 +59,6 @@ $spaces = [\u0020\u00a0\u2000-\u200a];
   \u0039 > \u1049 ;
   \u003a > \u102b\u103a ;
   \u003c > \u1039\u1013 ;
-  \u003d > \u103c ;
 # \u003e > \u1039\u1006 ;
   \u0040 > \u1037 ;
   \u0041 > \u1017 ;
@@ -65,7 +66,7 @@ $spaces = [\u0020\u00a0\u2000-\u200a];
   \u0043 > \u1003 ;
   \u0044 > \u102e ;
   \u0045 > \u1014 ;
-  \u0046 > \u1004\u103a\u1039 ;
+  \u0046 > $ukinzi ;
   \u0047 > \u103d ;
   \u0048 > \u1036 ;
   \u0049 > \u104d ;
@@ -157,7 +158,8 @@ $spaces = [\u0020\u00a0\u2000-\u200a];
   \u00eb > \u103d ;
   \u00ec > \u103d\u103e ;
   \u00ed > \u103b\u103d ;
-  \u00ee > \u103d\u103d\u103e ;
+  \u00ee > \u103b\u103d\u103e ;
+  \u00ef > \u103d\u103e ;
   \u00f0 > \u103c\u102f ;
   \u00f1 > \u103c\u102f ;
   \u00f2 > \u103c\u102f ;
@@ -180,15 +182,19 @@ $spaces = [\u0020\u00a0\u2000-\u200a];
 ([ါာုူ]) ([ိီဲ]) > $2 $1;
 ြ ($consonant) > $1 ြ;
 ု ြ ($consonant) > $1 ြ ု ;
+
 ##### Stage 3
 ::Null;
+([\u1000-\u1020]) $ukinzi > $ukinzi  $1 ;
+
 ([ေ]+) $ukinzi ($consonant) > $ukinzi $2 ေ;
 ေ ($consonant) ($umedial+) > $1 $2 ေ;
-# MAYTBE FIX THIS FOR CURSOR POSITION
+
 ေ ($consonant) ([^ျ-ှ]) > $1 ေ $2;
 ြ ် ္ ($consonant) > ် ္ $1 ြ;
 ံ ($umedial+) > $1 ံ;
 း ([ံ့်ိုဲွ]) > $1 း;
+
 ##### Stage 4
 ::Null;
 ([ြွှ]+) ျ > ျ $1;
@@ -219,6 +225,9 @@ $spaces = [\u0020\u00a0\u2000-\u200a];
 ာ ု > ု ာ ;
 ် ီ > ီ ် ;
 ူ ိ > ိ ူ ;
+
+\u103a \u102c > \u102c \u103a ;
+
 #### Stage 6
 ::Null;
 ($consonant) ျ ် > $1 ် ျ;

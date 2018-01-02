@@ -25,11 +25,26 @@ def apply(input, trans, subst):
     print('Final result = >%s<' % result.encode('utf-8'))
   return result
 
+def compare(result, expected):
+  if result != expected:
+    print('** FAILURE:')
+    print('  expected = >%s<' % expected)
+    print('  result   = >%s<' % result)
+  else:
+    print(' TEST PASSED')
+
 
 def test1(trans, subst):
   input = 'ta-umif;jycsuf'
-  expected = 'အေ—ကာင်းပြချက်'
+  expected = u'အေ—ကာင်းပြချက်'
   result = apply(input, trans, subst)
+  compare(result, expected)
+
+  input = '-opa-w;vsm;vlrsKd;'
+  expected = u'—သစေ—တးလျားလူမျိုး'
+  result = apply(input, trans, subst)
+  compare(result, expected)
+
 
 def main(args):
   trans = transliterate.Transliterate(

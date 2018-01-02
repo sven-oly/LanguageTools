@@ -52,6 +52,16 @@ unicode_font_list = [
     'family': 'NotoSansMyanmar',
     'longName': 'Noto Sans Myanmar',
     'source': '/fonts/NotoSansMyanmar-Regular.ttf',
+  },
+  {
+    'family': 'Padauk',
+    'longName': 'Padauk',
+    'source': '/fonts/burmese/Padauk.ttf',
+  },
+  {
+    'family': 'Padauk-book',
+    'longName': 'Padauk-book',
+    'source': '/fonts/burmese/Padauk-book.ttf',
   }
 ]
 
@@ -104,24 +114,29 @@ class ConvertUIHandler(webapp2.RequestHandler):
       text = self.request.get('text', oldChars)
       font = self.request.get('font')
       testStringList = [
-          {'name': 'Test 1', # Note: must escape the single quote.
-           'string': u'\u0004\u0005\u0006\u0007\u0008\u0009' +
-           '\u000a\u000b'},
+        {'name': 'Test  ww_burn samples',
+         'string': u'tÛudufqkH; ' + u't-uH^m%f ' +
+                   u'∫uGm;w,f ' + u'ac|;xGufw,f\ ' + u'tdyf&mxw,f ' + u'tawmftwefn',
+         },
       ]
 
       oldInput = u''
       for i in xrange(0x20, 0x80):
         oldInput += unichr(i)
         oldInput += unichr(0x20) + unichr(0x20)
+      oldInput += unichr(0x000a)
       for i in xrange(0xa0, 0xaf):
         oldInput += unichr(i)
         oldInput += unichr(0x20) + unichr(0x20)
+      oldInput += unichr(0x000a)
       for i in xrange(0xb0, 0xf9):
         oldInput += unichr(i)
         oldInput += unichr(0x20) + unichr(0x20)
+      oldInput += unichr(0x000a)
       for i in xrange(0xb0, 0xf8):
         oldInput += unichr(i)
         oldInput += unichr(0x20) + unichr(0x20)
+      oldInput += unichr(0x000a)
       oldInput += unichr(0xfb)
       oldInput += unichr(0xff)
       oldInput += unichr(0x152)
@@ -130,6 +145,7 @@ class ConvertUIHandler(webapp2.RequestHandler):
       oldInput += unichr(0x161)
       oldInput += unichr(0x192)
       oldInput += unichr(0x2c6)
+      oldInput += unichr(0x000a)
       oldInput += unichr(0x2013)
       oldInput += unichr(0x2014)
       oldInput += unichr(0x2018)
@@ -172,6 +188,7 @@ class ConvertUIHandler(webapp2.RequestHandler):
           'unicodeChars': unicodeChars,
           'combiningChars': unicodeCombiningChars,
           'backend_convert': True,  # For the backend conversion.
+          'converter_type': 'WWBURN_Unicode',
       }
       path = os.path.join(os.path.dirname(__file__), 'translit_general.html')
       self.response.out.write(template.render(path, template_values))
@@ -188,21 +205,25 @@ class ConvertToZawgyiHandler(webapp2.RequestHandler):
     text = self.request.get('text', oldChars)
     font = self.request.get('font')
     testStringList = [
-      {'name': 'Test 1',  # Note: must escape the single quote.
-       'string': u'\u0004\u0005\u0006\u0007\u0008\u0009' +
-                 '\u000a\u000b'},
+      {'name': 'Test  ww_burn samples',
+       'string': u'tÛudufqkH; ' + u't-uH^m%f ' +
+                 u'∫uGm;w,f ' + u'ac|;xGufw,f\ ' + u'tdyf&mxw,f ' + u'tawmftwefn',
+       },
     ]
 
     oldInput = u''
     for i in xrange(0x20, 0x80):
       oldInput += unichr(i)
       oldInput += unichr(0x20) + unichr(0x20)
+    oldInput += unichr(0x000a)
     for i in xrange(0xa0, 0xaf):
       oldInput += unichr(i)
       oldInput += unichr(0x20) + unichr(0x20)
+    oldInput += unichr(0x000a)
     for i in xrange(0xb0, 0xf9):
       oldInput += unichr(i)
       oldInput += unichr(0x20) + unichr(0x20)
+    oldInput += unichr(0x000a)
 
     oldInput += unichr(0xfb)
     oldInput += unichr(0xff)
@@ -212,6 +233,7 @@ class ConvertToZawgyiHandler(webapp2.RequestHandler):
     oldInput += unichr(0x161)
     oldInput += unichr(0x192)
     oldInput += unichr(0x2c6)
+    oldInput += unichr(0x000a)
     oldInput += unichr(0x2013)
     oldInput += unichr(0x2014)
     oldInput += unichr(0x2018)
@@ -340,7 +362,7 @@ class ConvertHandler(webapp2.RequestHandler):
     #logging.info('Input type = >%s<' % input_type)
 
     # THE ACTUAL CONVERSION.
-    if not my_wwburn_converter_Unicode:
+    if True:  ## TODO: Fix later. not my_wwburn_converter_Unicode:
       my_wwburn_converter_Unicode = transliterate.Transliterate(
         transrule_my_wwburn.MY_WWBURN_UNICODE_TRANSLITERATE,
         transrule_my_wwburn.UNICODE_DESCRIPTION)
