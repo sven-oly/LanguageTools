@@ -34,8 +34,11 @@ handlers:
 - url: /demo_chr/*
   script: cherokee.app
 
-- url: /chr/.*
-  script: cherokee.app
+- url: /demo_win/*
+  script: hochunk.app
+
+- url: /win/.*
+  script: hochunk.app
 
 - url: /aho/.*
   script: ahom.app

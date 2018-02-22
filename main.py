@@ -40,7 +40,8 @@ LanguageList = [
     ('Ahom/Tai/Aiton/Phake', 'tai'),
     ('Cherokee', 'chr'),
     ('Navajo', 'nv'),
-    ('Myanmar indigenous', 'my')
+    ('Myanmar indigenous', 'my'),
+    ('Hoocąk (Ho-chunk)', 'win'),
   ]
 
 class MainHandler(webapp2.RequestHandler):
