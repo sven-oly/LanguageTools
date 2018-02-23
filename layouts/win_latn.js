@@ -22,7 +22,7 @@ var WIN_LATN_LAYOUT = {
           'z\u03c7\u00e7vb\u019e\u014b \u0307\u0328'
     },
     'sc' : {  // Shift lock
-      '' : '\u0303!@#$%^&*()_+' +
+      '' : '\u0303!@#\u023b%^&*()_+' +
           'QW\u018fR\u0398YUIOP{}|' +
           'AS\u00d0\u0110\u0194HJKL:\u0308' +
           'Z\u03a7\u00c7VB\u207f\u014a \u0323\u0294'
