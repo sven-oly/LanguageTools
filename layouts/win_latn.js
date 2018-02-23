@@ -6,8 +6,8 @@ var WIN_LATN_LAYOUT = {
     '': {
       '': '\u20181234567890-=' +
       'qwertyuiop[]\\' +
-      'asdfghjkl;ʼ\u2019' +
-          'zxcvbnm,./'
+      'asdfghjkl;\u2019' +
+          'zxcvbnm,.\u02b9'
     },
     's': {
       '': '~!@#$%^&*()_+' +
@@ -18,14 +18,14 @@ var WIN_LATN_LAYOUT = {
     'c' : {  // Control
       '' : '\u0300123\u023c5678\u00ab\u00bb\u0304=' +
           'qw\u0259r\u03b8yuiop[]\\' +
-          'as\u00f0\u0111\u0263\u02b0jkl\u030c\u0308' +
-          'z\u03c7\u00e7vb\u019e\u014b\u0307\u0328\u0294'
+          'as\u00f0\u0111\u0263\u02b0jkl\u030c\u0301' +
+          'z\u03c7\u00e7vb\u019e\u014b \u0307\u0328'
     },
     'sc' : {  // Shift lock
       '' : '\u0303!@#$%^&*()_+' +
-          'QWERTYUIOP{}|' +
-          'AS\u00d0\u0110\u0194HJKL:"' +
-          'ZXCVB\u207fM\u014a\u0323\u02c0'
+          'QW\u018fR\u0398YUIOP{}|' +
+          'AS\u00d0\u0110\u0194HJKL:\u0308' +
+          'Z\u03a7\u00c7VB\u207f\u014a \u0323\u0294'
     },
     'l,cl' : {  // Shift lock
       '' : '`1234567890-=' +

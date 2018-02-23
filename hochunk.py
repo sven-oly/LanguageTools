@@ -64,6 +64,9 @@ links = [
     {'linkText': 'Martindale Center',
       'ref': 'http://www.martindalecenter.com/Language_1_Indigenous.html#ENGTO-HO-CHUNK',
     },
+    {'linkText': 'Language Geek keyboard',
+     'ref': 'http://www.languagegeek.com/siouan/keyboards/keymaps/Pan-Siouan.pdf',
+     },
 ]
 
 
