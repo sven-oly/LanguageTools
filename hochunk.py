@@ -59,7 +59,10 @@ links = [
       'ref': 'https://en.wikipedia.org/wiki/Winnebago_language#Orthography',
     },
     {'linkText': 'hoocak.org',
-     'ref': 'https://www.hoocak.org/',
+      'ref': 'https://www.hoocak.org/',
+    },
+    {'linkText': 'Martindale Center',
+      'ref': 'http://www.martindalecenter.com/Language_1_Indigenous.html#ENGTO-HO-CHUNK',
     },
 ]
 

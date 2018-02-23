@@ -4,27 +4,36 @@ var WIN_LATN_LAYOUT = {
   'title': 'Hoocąk',
   'mappings': {
     '': {
-      '': '`\u00e1\u0105{{\u0105\u0301}}\u00e9\u0119' +
-      '{{\u0119\u0301}}\u00ed\u012f{{\u012F\u0301}}\u00f3{{\u01eb}}' +
-      '{{\u01eb\u0301}}' +
-      'qwertyuiop\u0142\u0144\\' +
-      'asdfghjkl;ʼ' +
+      '': '\u20181234567890-=' +
+      'qwertyuiop[]\\' +
+      'asdfghjkl;ʼ\u2019' +
           'zxcvbnm,./'
     },
     's': {
-      '': '~\u00c1\u0104{{\u0104\u0301}}\u00c9\u0118{{\u0118\u0301}}' +
-          '\u00Cd\u012e{{\u012e\u0301}}\u00d3\u01ea{{\u01ea\u0301}}' +
-          'QWERTYUIOP\u0141\u0143|' +
-          'ASDFGHJKL:"' +
+      '': '~!@#$%^&*()_+' +
+          'QWERTYUIOP\u201c\u201d|' +
+          'ASDFGHJKL\u036f\u2019' +
           'ZXCVBNM<>?'
     },
-    'c,l,cl' : {  // Lock
+    'c' : {  // Control
+      '' : '\u0300123\u023c5678\u00ab\u00bb\u0304=' +
+          'qw\u0259r\u03b8yuiop[]\\' +
+          'as\u00f0\u0111\u0263\u02b0jkl\u030c\u0308' +
+          'z\u03c7\u00e7vb\u019e\u014b\u0307\u0328\u0294'
+    },
+    'sc' : {  // Shift lock
+      '' : '\u0303!@#$%^&*()_+' +
+          'QWERTYUIOP{}|' +
+          'AS\u00d0\u0110\u0194HJKL:"' +
+          'ZXCVB\u207fM\u014a\u0323\u02c0'
+    },
+    'l,cl' : {  // Shift lock
       '' : '`1234567890-=' +
           'qwertyuiop[]\\' +
           'asdfghjkl;\'' +
           'zxcvbnm,./'
     },
-    'sc,sl,scl' : {  // Shift lock
+    'sl,scl' : {  // Shift lock
       '' : '~!@#$%^&*()_+' +
           'QWERTYUIOP{}|' +
           'ASDFGHJKL:"' +
