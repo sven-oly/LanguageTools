@@ -6,14 +6,14 @@ var WIN_LATN_LAYOUT = {
     '': {
       '': '\u20181234567890-=' +
       'qwertyuiop[]\\' +
-      'asdfghjkl;\u2019' +
+      'asdfghjkl\u0306\u2019' +
           'zxcvbnm,.\u02b9'
     },
     's': {
       '': '~!@#$%^&*()_+' +
           'QWERTYUIOP\u201c\u201d|' +
-          'ASDFGHJKL\u036f\u2019' +
-          'ZXCVBNM<>?'
+          'ASDFGHJKL\u030c\u2019' +
+          'ZXCVBNM;:?'
     },
     'c' : {  // Control
       '' : '\u0300123\u023c5678\u00ab\u00bb\u0304=' +
