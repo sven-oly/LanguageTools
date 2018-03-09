@@ -48,8 +48,11 @@ var CCP_LAYOUT = {
   },
   'transform': {
     // consonants, independent vowels, and E
+    // Doubled ekaara
+    '\uD804\uDD2c\uD804\uDD2c\uD804([\uDD03-\uDD26])': '\uD804$1\uD804\uDD2c\uD804\uDD2c',
     '\uD804\uDD2c\uD804([\uDD03-\uDD26])': '\uD804$1\uD804\uDD2c',
     // Move E after the virama/consonant. \u001d marks the end point of a previous output.
+    '\uD804\uDD2c\uD804\uDD2c\u001d\uD804\uDD33\uD804([\uDD03-\uDD26])': '\uD804\uDD33\uD804$1\uD804\uDD2c\uD804\uDD2c',
     '\uD804\uDD2c\u001d\uD804\uDD33\uD804([\uDD03-\uDD26])': '\uD804\uDD33\uD804$1\uD804\uDD2c',
     // Reorder upper vs. lower diacritics
     '\ud804([\udd2a\udd2b\udd31\udd32])\ud804([\udd27-\udd29\udd2d\udd30\udd34])':
