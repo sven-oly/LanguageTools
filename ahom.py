@@ -67,6 +67,11 @@ unicode_font_list = [
     'source': '/fonts/ahom_aiton/AhomUnicode.ttf',
   },
   {
+    'source': '/fonts/ahom_aiton/NotoSansAhom-Regular.otf',
+    'family': 'NotoSansAhom',
+    'longName': 'Noto Sans Ahom (20180315)',
+  },
+  {
     'source': '/fonts/ahom_aiton/Aitongr.ttf',
     'family': 'Aitongr',
     'longName': 'Aiton Gr',
