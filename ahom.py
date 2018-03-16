@@ -59,11 +59,11 @@ encoding_font_list = [
 
 unicode_font_list = [
   { 'family': 'AhomFontUnicode',
-    'longName': 'Ahom Font Unicode',
+    'longName': 'Ahom Unicode',
     'source': '/fonts/ahom_aiton/AHOMFONT_Unicode.TTF',
   },
   { 'family': 'AhomUnicode',
-    'longName': 'Ahom Unicode',
+    'longName': 'Ahom Manuscript Unicode',
     'source': '/fonts/ahom_aiton/AhomUnicode.ttf',
   },
   {
