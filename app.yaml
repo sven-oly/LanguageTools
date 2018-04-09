@@ -31,7 +31,10 @@ handlers:
 - url: /ccp/.*
   script: chakma.app
 
-- url: /demo_chr/*
+- url: /chr/.*
+  script: cherokee.app
+
+- url: /demo_chr/.*
   script: cherokee.app
 
 - url: /demo_win/*
