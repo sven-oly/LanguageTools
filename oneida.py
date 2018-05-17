@@ -57,10 +57,7 @@ unicode_font_list = [
 
 kb_list = [
   {'shortName': LanguageCode,
-   'longName': Language + ' Modern'
-   },
-  {'shortName': LanguageCode + '_std',
-   'longName': Language + ' Traditional'
+   'longName': Language + ' Unicode'
    },
 ]
 
@@ -180,7 +177,7 @@ class EncodingRules(webapp2.RequestHandler):
     def get(self):
 
       template_values = {
-        'converterJS': "/js/' + LanguageCode + 'Converter.js",
+        'converterJS': '/js/' + LanguageCode + 'Converter.js',
         'language': Language,
         'langTag': LanguageCode,
         'encoding_list': encoding_font_list,
