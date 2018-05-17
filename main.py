@@ -40,6 +40,7 @@ LanguageList = [
     ('Ahom/Tai/Aiton/Phake', 'tai'),
     ('Cherokee', 'chr'),
     ('Navajo', 'nv'),
+    ('Oneida', 'one'),
     ('Myanmar indigenous', 'my'),
     ('Hoocąk (Ho-chunk)', 'win'),
   ]

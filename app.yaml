@@ -52,6 +52,9 @@ handlers:
 - url: /nv/.*
   script: navajo.app
 
+- url: /one/.*
+  script: oneida.app
+
 - url: /tai/.*
   script: ahom.app
 
