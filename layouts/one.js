@@ -32,15 +32,15 @@ var ONE_LAYOUT = {
     },
     'l,cl': {
       '': '`1234567890-=' +
-          'QWERTYUIOP[]\\' +
-          'ASDFGHJKL;\'' +
-          'ZXCVBNM,./'
-    },
-    'sl,scl': {
-      '': '~!@#$%^&*()_+' +
           'qwertyuiop{}|' +
           'asdfghjkl:"' +
           'zxcvbnm<>?'
+    },
+    'sl,scl': {
+      '': '~!@#$%^&*()_+' +
+          'QWERTYUIOP[]\\' +
+          'ASDFGHJKL;\'' +
+          'ZXCVBNM,./'
     }
   }
 };
