@@ -13,6 +13,7 @@ var private_use_map_combined = {
   '&': ['\u00fa'],
   '<': ['\u028c'],
   '>': ['\u0242'],
+  '=': ['\u00b7'],
 };
 
 function toLower(instring) {

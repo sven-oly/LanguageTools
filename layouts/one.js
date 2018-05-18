@@ -19,7 +19,7 @@ var ONE_LAYOUT = {
   'title': 'Oneida (need localized name)',
   'mappings': {
     ',c': {
-      '': '`1234567890-=' +
+      '': '`1234567890-\u00b7' +
           'qwertyuiop[]\\' +
           'asdfghjkl;\'' +
           'zxcvbnm,./'
