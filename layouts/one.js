@@ -20,15 +20,15 @@ var ONE_LAYOUT = {
   'mappings': {
     ',c': {
       '': '`1234567890-\u00b7' +
-          'qwertyuiop[]\\' +
+          '\u0245wertyuiop[]\\' +
           'asdfghjkl;\'' +
           'zxcvbnm,./'
     },
     's,sc': {
-      '': '~!\u00e1\u00e9\u00ed\u00f32{{\u028c\u0300}}\u00fa*()_+' +
-          'QWERTYUIOP{}|' +
+      '': '~!\u00e1\u00e9\u00ed\u00f3{{\u028c\u0301}}\u00fa*()_+' +
+          '{{\u0245\u0301}}WERTYUIOP{}|' +
           'ASDFGHJKL:"' +
-          'ZXCVBNM\u0242\u028c?'
+          'ZXCVBNM\u0294\u028c?'
     },
     'l,cl': {
       '': '`1234567890-=' +
