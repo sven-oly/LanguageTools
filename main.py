@@ -43,6 +43,7 @@ LanguageList = [
     ('Oneida', 'one'),
     ('Myanmar indigenous', 'my'),
     ('Hoocąk (Ho-chunk)', 'win'),
+    ('Oneida', 'one'),
   ]
 
 class MainHandler(webapp2.RequestHandler):
