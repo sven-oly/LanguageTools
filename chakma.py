@@ -49,9 +49,9 @@ encoding_font_list = [
 
 unicode_font_list = [
 
-  { 'family': 'RibengUni20180221',
-    'longName': 'RibengUni 2018-02-21',
-    'source': '/fonts/RibengUni-Regular_20180221.ttf',
+  { 'family': 'RibengUni2018018',
+    'longName': 'RibengUni 2018-06-18',
+    'source': '/fonts/RibengUni-Regular_20180618.ttf',
   },
   { 'family': 'NotoSansChakma',
     'longName': 'NotoSans Chakma',
