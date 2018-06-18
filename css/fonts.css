@@ -55,10 +55,9 @@
       font-size: 32px;
     }
 
-    
     @font-face{
       font-family:"RibengUni";
-      src:url("/fonts/RibengUni-Regular_20170814.ttf");
+      src:url("/fonts/RibengUni-Regular_20180618.ttf");
       font-weight:normal;
       font-style:normal;
     }
