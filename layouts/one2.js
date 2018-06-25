@@ -14,21 +14,26 @@
 // capital turned V (and with accent), or others.
 // Perhaps on cntr-alt level?
 
-var ONE_LAYOUT = {
-  'id': 'one',
-  'title': 'Onʌyoteʔa·ká·',
+var ONE2_LAYOUT = {
+  'id': 'one2',
+  'title': 'Onʌyoteʔa·ká· V2',
   'mappings': {
-    ',c': {
-      '': '`1234567890-\u00b7' +
-          '\u0245wertyuiop[]\\' +
+    ',': {
+      '': '\u00e1\u00e9\u00ed\u00f3{{\u028c\u0301}}\u00fa\u00c1\u00c9\u00cd\u00d3\u00da{{\u0245\u0301}}\u00b7' +
+          'qwertyuiop-\u0332/' +   // Combining low line ??
           'asdfghjkl;\'' +
-          'zxcvbnm,./'
+          'zxcvbnmʌʔ.'
+    },
+    'c': {
+      '': '~!@#$%^&*()_+' +
+          '{{}}{{}}{{}}{{}}{{}}{{}}{{}}{{}}{{}}{{}}{}|' +
+          '{{}}{{}}{{}}{{}}{{}}{{}}{{}}{{}}{{}}[]'
     },
     's,sc': {
-      '': '~!\u00e1\u00e9\u00ed\u00f3{{\u028c\u0301}}\u00fa*()_+' +
-          '{{\u0245\u0301}}WERTYUIOP{}|' +
+      '': '!1234567890()' +
+          'QWERTYUIOP{}\u0320' +  // Combining macron below ??
           'ASDFGHJKL:"' +
-          'ZXCVBNM\u0294\u028c?'
+          'ZXCVBNM\u0245?,'
     },
     'l,cl': {
       '': '`1234567890-=' +
@@ -46,4 +51,4 @@ var ONE_LAYOUT = {
 };
 
 // Load the layout and inform the keyboard to switch layout if necessary.
-google.elements.keyboard.loadme(ONE_LAYOUT);
+google.elements.keyboard.loadme(ONE2_LAYOUT);
