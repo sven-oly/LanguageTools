@@ -59,6 +59,12 @@ kb_list = [
   {'shortName': LanguageCode,
    'longName': Language + ' Unicode'
    },
+  {'shortName': LanguageCode + '2',
+   'longName': Language + ' Unicode Test 2'
+   },
+  {'shortName': LanguageCode + '3',
+   'longName': Language + ' Unicode Test 3'
+   },
 ]
 
 
