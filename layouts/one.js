@@ -16,7 +16,7 @@
 
 var ONE_LAYOUT = {
   'id': 'one',
-  'title': 'Onʌyoteʔa·á·',
+  'title': 'Onʌyoteʔa·ká·',
   'mappings': {
     ',c': {
       '': '`1234567890-\u00b7' +

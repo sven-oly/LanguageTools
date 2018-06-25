@@ -16,7 +16,7 @@
 
 var ONE3_LAYOUT = {
   'id': 'one3',
-  'title': 'Onʌyoteʔa·á· V3',
+  'title': 'Onʌyoteʔa·ká· V3',
   'mappings': {
     ',': {
       '': '\u03011234567890-=' +

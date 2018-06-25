@@ -16,7 +16,7 @@
 
 var ONE2_LAYOUT = {
   'id': 'one2',
-  'title': 'Onʌyoteʔa·á· V2',
+  'title': 'Onʌyoteʔa·ká· V2',
   'mappings': {
     ',': {
       '': '\u00e1\u00e9\u00ed\u00f3{{\u028c\u0301}}\u00fa\u00c1\u00c9\u00cd\u00d3\u00da{{\u0245\u0301}}\u00b7' +
