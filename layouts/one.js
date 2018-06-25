@@ -16,7 +16,7 @@
 
 var ONE_LAYOUT = {
   'id': 'one',
-  'title': 'Oneida (need localized name)',
+  'title': 'Onʌyoteʔa·á·',
   'mappings': {
     ',c': {
       '': '`1234567890-\u00b7' +
