@@ -68,7 +68,7 @@ def convertAllSheets(wb, oldConverterFunc, oldFontList, unicodeFont):
 
 def processOneSpreadsheet(path_to_spreadsheet, output_dir,
                           oldConverterFunc, oldFontList,
-                          unicodeFont)
+                          unicodeFont):
   print 'PATH = %s' % path_to_spreadsheet
   wb = load_workbook(path_to_spreadsheet)
 
