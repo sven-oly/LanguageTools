@@ -19,7 +19,7 @@ var ONE2_LAYOUT = {
   'title': 'Onʌyoteʔa·ká· V2',
   'mappings': {
     ',': {
-      '': '\u00e1\u00e9\u00ed\u00f3{{\u028c\u0301}}\u00fa\u00c1\u00c9\u00cd\u00d3\u00da{{\u0245\u0301}}\u00b7' +
+      '': '\u00e1\u00e9\u00ed\u00f3\u00fa{{\u028c\u0301}}\u00c1\u00c9\u00cd\u00d3\u00da{{\u0245\u0301}}\u00b7' +
           'qwertyuiop-\u0332/' +   // Combining low line ??
           'asdfghjkl;\'' +
           'zxcvbnmʌʔ.'
@@ -31,7 +31,7 @@ var ONE2_LAYOUT = {
     },
     's,sc': {
       '': '!1234567890()' +
-          'QWERTYUIOP{}\u0320' +  // Combining macron below ??
+          'QWERTYUIOP{}+' +  // Combining macron below ??
           'ASDFGHJKL:"' +
           'ZXCVBNM\u0245?,'
     },
