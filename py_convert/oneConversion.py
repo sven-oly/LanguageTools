@@ -5,18 +5,18 @@ import re
 
 # Convert Oneida encoded text to Unicode.
 
-debug = True  #False
+debug = False
 
 private_use_map = {
-  '@': u'\u00e1',
   '#': u'\u00e9',
   '$': u'\u00ed',
   '%': u'\u00f3',
-  '^': u'\u0283\u0300',
   '&': u'\u00fa',
-  '<': u'\u0294',
-  '>': u'\u028c',
+  '<': u'\u028c',
   '=': u'\u00b7',
+  '>': u'\u0294',
+  '@': u'\u00e1',
+  '^': u'\u028C\u0300'
 }
 
 
@@ -52,7 +52,8 @@ def oldEncodingToUnicode(textIn, convertToLower=False):
   if not parsedInput:
     return ''
 
-  print(' +++ %d found in input' % len(parsedInput))
+  if debug:
+    print(' +++ %d found in input' % len(parsedInput))
   for index in xrange(len(parsedInput)):
     c = parsedInput[index];
     # Special handling if needed
@@ -83,15 +84,16 @@ def oldEncodingToUnicode(textIn, convertToLower=False):
 def testConvertOld():
   # Debug!
   print '\nOLD Oneida'
-  oldOneText = u'\uf044\uf041\uf04e\uf059\uf020\uf057\uf041\uf04c\uf059\uf05e'  # u'\'
-  expected = u'𐓈𐒰𐓁𐒻 𐓏𐒰𐒿𐒻͘'
+  oldOneText = u'@hs< na>tekut<hnu=t#hle> (kuti=kw#ku)'
+  expected = u'áhsʌ naʔtekutʌhnu·téhleʔ (kuti·kwéku)'
 
-  result = oldOneToUnicode(oldOneText)
+  result = oldEncodingToUnicode(oldOneText)
 
   if result != expected:
-    print 'Old Chr = %s' % oldOneText.encode('utf-8')
-    print '** Not converting Old Chr: expected(%d) >%s<. Result(%d) = >%s<' % (len(expected), expected, len(result), result)
-
+    print 'Old Oneida = %s' % oldOneText.encode('utf-8')
+    print '** Not converting Old Oneida: expected(%d) >%s<. Result(%d) = >%s<' % (len(expected), expected, len(result), result)
+  else:
+    print '  * PASSES *'
 
 def testConvert():
   return
@@ -99,6 +101,7 @@ def testConvert():
 
 def main():
   testConvert()
+  testConvertOld()
 
 if __name__ == '__main__':
   main()

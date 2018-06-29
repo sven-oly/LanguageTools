@@ -11,7 +11,7 @@ import sys
 
 # https://openpyxl.readthedocs.io/en/default/tutorial.html
 
-FONTS_TO_CONVERT = ['Oneida',]
+FONTS_TO_CONVERT = ['Oneida', ]
 
 LANGUAGE = 'Oneida'
 
@@ -23,7 +23,7 @@ import oneConversion
 # Flag for handling all characters in an Old font.
 convertAllInOldFontRange = True
 
-debugFlag = True  # False
+debugFlag = False  # False
 
 # Set to True to get lower case conversion
 toLowerCase = True # False
@@ -37,7 +37,7 @@ def checkAndConvertText(textIn):
     return textIn
 
   # Handle Latin and TraditionalOsage private use characters.
-  result = chrConversion.oldEncodingToUnicode(textIn, toLowerCase)
+  result = oneConversion.oldEncodingToUnicode(textIn, toLowerCase)
   return result
 
 

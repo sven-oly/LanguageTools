@@ -54,7 +54,6 @@
       var input = document.getElementById('t1');
       controller = new i18n.input.keyboard.Keyboard();
       onSizeSelected(document.getElementById("sizeSelector").value, 't1');
-      setFontFamily(document.getElementById("fontSelector").value);
       {% for kb in kb_list %}
       controller.loadLayout('{{kb.shortName}}');
       {% endfor %}
@@ -65,6 +64,9 @@
           'kc',
           function() { visible = false; });
       input.focus();
+
+      setFontFamily(document.getElementById("fontSelector").value);
+
     }
 
     function onLayoutSelected(layoutCode) {
@@ -93,14 +95,23 @@
       document.getElementById('t1').focus();
     }
 
+    function setKeyCapsFont(newFontFamily) {
+      var keycaps = document.getElementsByClassName("vk-cap");
+      for (var i = 0; i < keycaps.length; i++ ) {
+        keycaps[i].style.fontFamily = newFontFamily;
+      }
+    }
+
     function setFontFamily(newFontFamily) {
+      setKeyCapsFont(newFontFamily);
+
       var t1_element = document.getElementById('t1');
       t1_element.className = newFontFamily;
       t1_element.style.fontFamily = newFontFamily; //  + ",Arial";
     }
 
     function onLanguageSelected(newLangTag, textArea) {
-      var t1_element = document.getElementById(textArea);
+      var t1_element = document.x(textArea);
       t1_element.lang = newLangTag;
     }
 
