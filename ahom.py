@@ -58,6 +58,11 @@ encoding_font_list = [
 ]
 
 unicode_font_list = [
+  {
+    'source': '/fonts/ahom_aiton/NotoSerifAhom-Regular.ttf',
+    'family': 'NotoSerifAhom',
+    'longName': 'Noto Serif Ahom',
+  },
   { 'family': 'AhomFontUnicode',
     'longName': 'Ahom Unicode',
     'source': '/fonts/ahom_aiton/AHOMFONT_Unicode.TTF',
@@ -65,11 +70,6 @@ unicode_font_list = [
   { 'family': 'AhomUnicode',
     'longName': 'Ahom Manuscript Unicode',
     'source': '/fonts/ahom_aiton/AhomUnicode.ttf',
-  },
-  {
-    'source': '/fonts/ahom_aiton/NotoSansAhom-Regular.otf',
-    'family': 'NotoSansAhom',
-    'longName': 'Noto Sans Ahom (20180315)',
   },
   {
     'source': '/fonts/ahom_aiton/Aitongr.ttf',
