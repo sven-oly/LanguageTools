@@ -14,7 +14,7 @@
 // Caps lock gives underlined characters.
 var ONE_MOBILE_LAYOUT = {
   'id': 'onemobile',
-  'title': 'Onʌyoteʔa·ká· V4',
+  'title': 'Onʌyoteʔa·ká· Mobile Prototype',
   'mappings': {
     ',': {
       '': '{{}}{{}}{{}}\u00e1\u00e9\u00ed\u00f3\u00fa{{\u028c\u0301}}\u00b7{{}}{{}}{{}}' +
