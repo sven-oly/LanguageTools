@@ -68,6 +68,9 @@ kb_list = [
   {'shortName': LanguageCode + '4',
    'longName': Language + ' Unicode V4'
    },
+  {'shortName': LanguageCode + 'mobile',
+   'longName': Language + ' Unicode Mobile'
+   },
 ]
 
 
