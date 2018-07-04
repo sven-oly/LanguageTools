@@ -61,6 +61,9 @@ var AHO_LAYOUT = {
   'transform' : {
       // Reorder vowel E after other letters. Use \u200c as marker.
       '\u200c(\ud805\udf26)(\ud805[\udf00-\udf19])': '$2$1',
+
+      // Reorder sign killer before other signs.
+      '(\ud805[\udf20-\udf2a])(\ud805\udf2b)': '$2$1',
   }
 };
 
