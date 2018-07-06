@@ -25,24 +25,22 @@ def convertOffice(input_path, output_dir, oldConverterFunc, oldFontList, newUnic
   UnicodeOsageFont = args.font
   print '** args = %s' % args
 
-  paths_to_doc = args.filenames
-
-  for path in paths_to_doc:
-    extension = os.path.splitext(path)[-1]
-    if extension == '.docx':
-      convertDoc.processDOCX(input_path, output_dir,
-                             oldConverterFunc, oldFontList,
-                             newUnicodeFont)
-    elif extension == '.pptx':
-      convertPPT.processOnePresentation(input_path, output_dir,
-                                        oldConverterFunc, oldFontList,
-                                        newUnicodeFont)
-    elif extension == '.xlsx':
-      convertXLS.processOneSpreadsheet(input_path, output_dir,
-                                       oldConverterFunc, oldFontList,
-                                       newUnicodeFont)
-    else:
-      print '!!! Not processing file %s !' % input_path
+  print('***** input_path = %s' % input_path)
+  extension = os.path.splitext(input_path)[-1]
+  if extension == '.docx':
+    convertDoc.processDOCX(input_path, output_dir,
+                           oldConverterFunc, oldFontList,
+                           newUnicodeFont)
+  elif extension == '.pptx':
+    convertPPT.processOnePresentation(input_path, output_dir,
+                                      oldConverterFunc, oldFontList,
+                                      newUnicodeFont)
+  elif extension == '.xlsx':
+    convertXLS.processOneSpreadsheet(input_path, output_dir,
+                                     oldConverterFunc, oldFontList,
+                                     newUnicodeFont)
+  else:
+    print '!!! Not processing file %s !' % input_path
 
 
 

@@ -26,9 +26,10 @@ def main(argv):
 
   FONTS_TO_CONVERT = ['Oneida', ]
 
-  convertOffice.convertOffice(paths_to_doc, args.output_dir,
-                              oneConversion.oldEncodingToUnicode,
-                              FONTS_TO_CONVERT, newUnicodeFont)
+  for input in paths_to_doc:
+    convertOffice.convertOffice(input, args.output_dir,
+                                oneConversion.oldEncodingToUnicode,
+                                FONTS_TO_CONVERT, newUnicodeFont)
 
 if __name__ == "__main__":
   main(sys.argv)

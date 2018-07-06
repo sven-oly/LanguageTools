@@ -9,8 +9,6 @@ import xml.etree.ElementTree as ET
 
 import convertUtil
 
-# import osageConversion
-
 # The version using docx
 
 # TIMESTAMP for version information.
@@ -20,10 +18,7 @@ TIMESTAMP = "Version 2018-06-28"
 # https://docs.python.org/2/library/xml.etree.elementtree.html
 # https://docs.python.org/2/library/zipfile.html
 
-# Font names:
-OfficialOsageFont = 'Official Osage Language'
-
-debug_output = False
+debug_output = True  #False
 
 # Flag controls if the conversion removes
 # structure from replaced text when drawings are found
@@ -32,10 +27,10 @@ removeOldText = False
 # More aggressive removal of grandparents of empty text blocks.
 removeOldTextParents = False
 
-# If enabled, replaces the Official Osage font in fontsTable.xml
+# If enabled, replaces old fonts in list in fontsTable.xml
 convertFontsTable = False
 
-def fixElementAndParent(textElement, parent, newText, unicodeFont):
+def fixElementAndParent(textElement, parent, newText, oldFontList, unicodeFont):
   removeList = []
   oldText = textElement.text
   for item in parent.findall('*'):
@@ -43,7 +38,7 @@ def fixElementAndParent(textElement, parent, newText, unicodeFont):
       if re.search('}rFonts', child.tag):
         attrib = child.attrib
         for key in attrib:
-          if attrib[key] == OfficialOsageFont:
+          if attrib[key] in oldFontList:
             attrib[key] = unicodeFont
       elif re.search('}vertAlign', child.tag):
         if (oldText == u'H' or oldText == u'\uf048'):
@@ -59,14 +54,15 @@ def fixElementAndParent(textElement, parent, newText, unicodeFont):
 # batch, and remove the empty elements.
 # Should I reset the font in this function, too?
 def processCollectedText(collectedText, textElementList, parent_map, superscriptNode,
-                         unicodeFont):
+                         oldFontList,
+                         unicodeFont, conversionFunc):
   clearedTextElements = []
   global debug_output
 
   # First, change the text
   if debug_output:
     print('** CONVERTING %s to Unicode. ' % collectedText.encode('utf-8'))
-  convertedText = osageConversion.oldOsageToUnicode(collectedText)
+  convertedText = conversionFunc(collectedText)
   convertedCount = 0
   if convertedText != collectedText:
     convertedCount = 1
@@ -79,7 +75,8 @@ def processCollectedText(collectedText, textElementList, parent_map, superscript
     # ∂textElementList[0].text = convertedText
   parent = parent_map[textElementList[0]]
   # Fix font and superscripting
-  fixElementAndParent(textElementList[0], parent, convertedText, unicodeFont)  # Update the font in this item.
+  fixElementAndParent(textElementList[0], parent, convertedText, oldFontList,
+                      unicodeFont)  # Update the font in this item.
   if superscriptNode:
     superscriptNode.val = 'baseline'
 
@@ -91,7 +88,9 @@ def processCollectedText(collectedText, textElementList, parent_map, superscript
   return convertedCount, clearedTextElements
 
 # Looks at text parts of the DOCX data, extracting each.
-def parseDocXML(docfile_name, path_to_doc, unicodeFont='Pawhuska',
+def parseDocXML(docfile_name, path_to_doc, oldFontList,
+                unicodeFont,
+                conversionFunc,
                 saveConversion=False, outpath=None, isString=False):
   global debug_output
   if isString:
@@ -157,7 +156,7 @@ def parseDocXML(docfile_name, path_to_doc, unicodeFont='Pawhuska',
                 elif re.search('}rFonts', rprchild.tag):
                   # Font info.
                   fontFound = True
-                  if isOsageFontNode(rprchild):
+                  if isOldFontNode(rprchild, oldFontList):
                     # In font encoded node
                     inEncodedFont = True
                   else:
@@ -168,7 +167,7 @@ def parseDocXML(docfile_name, path_to_doc, unicodeFont='Pawhuska',
                           processCollectedText(collectedText,
                                                textElements, parent_map,
                                                superscriptNode,
-                                               unicodeFont=unicodeFont))
+                                               unicodeFont))
                         convertCount += newConvertedCount
                         allEmptiedTextElements.append(emptiedElements)
                       collectedText = ''
@@ -184,13 +183,18 @@ def parseDocXML(docfile_name, path_to_doc, unicodeFont='Pawhuska',
               else:
                 notEncoded = rchild.text
                 if notEncoded and debug_output:
+                  print(' &&& fontFound = %s, inEncodedFont = %s' %
+                        (fontFound, inEncodedFont))
                   print 'notEncoded = >%s<' % notEncoded.encode('utf-8')
 
     if collectedText:
       (newConvertedCount, emptiedElements) = (
         processCollectedText(collectedText,
                              textElements, parent_map, superscriptNode,
-                             unicodeFont=unicodeFont))
+                             oldFontList,
+                             unicodeFont,
+                             conversionFunc
+        ))
       convertCount += newConvertedCount
       collectedText = ''
       textElements = []
@@ -235,44 +239,49 @@ def removeOldTextElements(allElementsToRemove, parent_map):
   print 'removed %d items' % count
   return count
 
-def isOsageFontNode(node):
-  # Look for "rFonts", and check if any font contains "Official Osage"
+def isOldFontNode(node, oldFontList):
+  # Look for "rFonts", and check if any font contains one of the old fonts
   if re.search('}rFonts', node.tag):
     for key in node.attrib:
-      if re.search('Official Osage', node.attrib[key]):
-        return True
+      for oldFont in oldFontList:
+        if re.search(oldFont, node.attrib[key]):
+          return True
   return False
 
 
-def parseFontTable(docXML, unicodeFont):
+def parseFontTable(docXML, oldFontList, unicodeFont):
   tree = ET.fromstring(docXML)
 
   for node in tree.iter('*'):
     if re.search('}font$', node.tag):
       keys = node.attrib.keys()
-      if re.search('}name', keys[0]) and node.attrib[keys[0]] == OfficialOsageFont:
+      if re.search('}name', keys[0]) and node.attrib[keys[0]] in oldFontList:
         print 'Replacing font %s with %s' % (node.attrib[keys[0]], unicodeFont)
         node.attrib[keys[0]] = unicodeFont
   return ET.tostring(tree, encoding='utf-8')
 
 
-def tryFontUpdate(newzip, unicodeFont):
+def tryFontUpdate(newzip, oldFontList, unicodeFont):
   filename = 'word/fontTable.xml'
   docXML = newzip.read(filename)  # A file-like object
 
-  return parseFontTable(docXML, unicodeFont)
+  return parseFontTable(docXML, oldFontList, unicodeFont)
 
 
 def processDOCX(path_to_doc, output_dir,
                 oldConverterFunc, oldFontList,
                 unicodeFont, debug=False):
 
+  if debug_output:
+    print('processDOCX path = %s, output_dir = %s\n' % (path_to_doc, output_dir))
+    print ('    oldConvertFunc = %s, oldFontList = %s' % (
+        oldConverterFunc, oldFontList))
   newzip = zipfile.ZipFile(path_to_doc)
   docfiles = ['word/document.xml', 'word/header1.xml', 'word/footer1.xml']
   docPartsOut = {}
 
   if convertFontsTable:
-    newFontTable = tryFontUpdate(newzip, unicodeFont)
+    newFontTable = tryFontUpdate(newzip, oldFontList, unicodeFont)
     docPartsOut['word/fontTable.xml'] = newFontTable
 
   for docfile_name in docfiles:
@@ -291,7 +300,9 @@ def processDOCX(path_to_doc, output_dir,
       continue
 
     # The real parsing.
-    new_docXML = parseDocXML(docfile_name, docXML, unicodeFont, isString=True)
+    new_docXML = parseDocXML(docfile_name, docXML,
+                             oldFontList, unicodeFont, oldConverterFunc,
+                             isString=True)
     # Remember this piece for output.
     docPartsOut[docfile_name] = new_docXML
 
