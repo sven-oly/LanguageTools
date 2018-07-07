@@ -41,6 +41,7 @@ def fixElementAndParent(textElement, parent, newText, oldFontList, unicodeFont):
           if attrib[key] in oldFontList:
             attrib[key] = unicodeFont
       elif re.search('}vertAlign', child.tag):
+        # TODO: Fix! This is specific for Old Osage
         if (oldText == u'H' or oldText == u'\uf048'):
           keys = child.attrib.keys()
           if re.search('}val', keys[0]):
@@ -54,26 +55,30 @@ def fixElementAndParent(textElement, parent, newText, oldFontList, unicodeFont):
 # batch, and remove the empty elements.
 # Should I reset the font in this function, too?
 def processCollectedText(collectedText, textElementList, parent_map, superscriptNode,
-                         oldFontList,
-                         unicodeFont, conversionFunc):
+                         oldFontList, unicodeFont, conversionFunc,
+                         formatTextInfo):
   clearedTextElements = []
   global debug_output
 
   # First, change the text
   if debug_output:
     print('** CONVERTING %s to Unicode. ' % collectedText.encode('utf-8'))
-  convertedText = conversionFunc(collectedText)
+
+  convertedText = conversionFunc(collectedText, fontTextInfo=formatTextInfo)
   convertedCount = 0
   if convertedText != collectedText:
     convertedCount = 1
+    print('  ++++ Converted: %s' % convertedText.encode('utf-8'))
   else:
-    print('---- Not converted: %s' % collectedText.encode('utf-8'))
+    print('  ---- Not converted: %s' % collectedText.encode('utf-8'))
 
   # 1. Reset text in first element
   if not textElementList:
+    print('!!!!!!!!!!!!!!! NO TEXT ELEMENT LIST')
     return 0
-    # ∂textElementList[0].text = convertedText
+
   parent = parent_map[textElementList[0]]
+
   # Fix font and superscripting
   fixElementAndParent(textElementList[0], parent, convertedText, oldFontList,
                       unicodeFont)  # Update the font in this item.
@@ -123,6 +128,7 @@ def parseDocXML(docfile_name, path_to_doc, oldFontList,
   # Look for series of items
   textElements = []
   collectedText = ''
+  rprFormatData = []
   superscriptNode = False
 
   # Current font
@@ -134,6 +140,8 @@ def parseDocXML(docfile_name, path_to_doc, oldFontList,
     if re.search('}p$', node.tag):
 
       textElements = []
+      formatTextInfo = []
+      rprFormatData = []
       collectedText = ''
       superscriptNode = False
       inEncodedFont = False
@@ -150,6 +158,9 @@ def parseDocXML(docfile_name, path_to_doc, oldFontList,
             if re.search('}rPr', rchild.tag):
               fontFound = False
               for rprchild in rchild._children:
+                # Collect all the formatting information
+                rprFormatData.append(rprchild)
+
                 # Process <w:rPr>
                 if re.search('}vertAlign', rprchild.tag):
                   superscriptNode = rprchild
@@ -163,14 +174,19 @@ def parseDocXML(docfile_name, path_to_doc, oldFontList,
                     # Check if we are switching out. If so, handle accumulated text
                     if inEncodedFont:
                       if collectedText:
-                        (newConvertedCount, emptiedElements) = (
-                          processCollectedText(collectedText,
-                                               textElements, parent_map,
-                                               superscriptNode,
-                                               unicodeFont))
+                        (newConvertedCount, emptiedElements) = processCollectedText(collectedText,
+                                                                                    textElements,
+                                                                                    parent_map,
+                                                                                    superscriptNode,
+                                                                                    oldFontList,
+                                                                                    unicodeFont,
+                                                                                    conversionFunc,
+                                                                                    formatTextInfo)
                         convertCount += newConvertedCount
                         allEmptiedTextElements.append(emptiedElements)
                       collectedText = ''
+                      rprFormatData = []
+                      formatTextInfo = []
                       textElements = []
                       inEncodedFont = False
             elif re.search('}t', rchild.tag):
@@ -178,7 +194,10 @@ def parseDocXML(docfile_name, path_to_doc, oldFontList,
                 print('^^^^^^^^^^^^^ Font not found ^^^^')
               if fontFound and inEncodedFont and rchild.text:
                 # Process <w:t>
+
+                formatTextInfo.append([rchild.text, rprFormatData])
                 collectedText += rchild.text
+                rprFormatData = []
                 textElements.append(rchild)
               else:
                 notEncoded = rchild.text
@@ -188,16 +207,17 @@ def parseDocXML(docfile_name, path_to_doc, oldFontList,
                   print 'notEncoded = >%s<' % notEncoded.encode('utf-8')
 
     if collectedText:
-      (newConvertedCount, emptiedElements) = (
-        processCollectedText(collectedText,
-                             textElements, parent_map, superscriptNode,
-                             oldFontList,
-                             unicodeFont,
-                             conversionFunc
-        ))
+      (newConvertedCount, emptiedElements) = processCollectedText(collectedText,
+                                                                  textElements,
+                                                                  parent_map, superscriptNode,
+                                                                  oldFontList,
+                                                                  unicodeFont,
+                                                                  conversionFunc,
+                                                                  formatTextInfo)
       convertCount += newConvertedCount
       collectedText = ''
       textElements = []
+      rprFormatData = []
       allEmptiedTextElements.append(emptiedElements)
 
   # TODO: remove all emptied text elements.

@@ -1,11 +1,13 @@
 # -*- coding: utf-8 -*-
 #!/usr/bin/env python
 
+import decimal
+import numbers
 import re
 
 # Convert Oneida encoded text to Unicode.
 
-debug = False
+debug = True  # False
 
 private_use_map = {
   '#': u'\u00e9',
@@ -19,43 +21,67 @@ private_use_map = {
   '^': u'\u028C\u0300'
 }
 
+# Special for Oneida underline conversion, added as diacritic when underline format has been applied
+combiningLowerLine = u'\u0332'
 
 # Converts Oneida upper case characters
-# TODO: FINISH
+
 def toLower(inText):
-  out = ''
-  for c in inText:
-    out_char = c
-    if c >= u'\u13a0' and c <= u'\u13f5':
-      if c >= u'\u13a0' and c <= u'\u13ef':
-        out_char = unichr(ord(c) + (0xab70 - 0x13a0))
-      else:
-        out_char = unichr(ord(c) + 8)
-    out += out_char
-  return out
+  inText.lower().encode('utf-8')
 
-def preParseOld(instring):
-    # Nothing special for these conversion in Oneida
-    outList = instring
-    return outList;
 
-def oldEncodingToUnicode(textIn, convertToLower=False):
+# Consider the font information if relevant, e.g., underlining.
+# fontInfo: a list of font data for this code, including formatting for each piece.
+def oldEncodingToUnicode(textIn, convertToLower=False, fontTextInfo=None):
   global debug
 
   convertResult = u''
   outputIsUTF16 = True
 
-  parsedInput = preParseOld(textIn)
   if debug:
     print('      &&&& Text in = >%s<' % textIn)
+    print('         is it a string? %s' % isinstance(textIn, basestring))
+    print('         is it a integer? %s' % isinstance(textIn, int))
+    print('         is it a number? %s' % isinstance(textIn, numbers.Number))
 
-  if not parsedInput:
-    return ''
+  if not isinstance(textIn, basestring):
+    return textIn
+
+  if not fontTextInfo:
+    print('    &&&& fontTextInfo = %s ' % fontTextInfo)
+    return convertString(textIn, None, convertToLower)
+
+  # Take the data from the fontTextInfo field.
+  convertList = []
+  for item in fontTextInfo:
+    if debug:
+      print('++ text = %s' % item[0])
+
+    tags = []
+    for fmt in item[1]:
+      loc = fmt.tag.find('}')
+      tags.append(fmt.tag[loc + 1:])
+      if debug:
+        print(' %s ' % fmt.tag[loc+1:])
+
+    # Convert this one, and return the result
+    convertList.append(convertString(item[0], tags, convertToLower))
+
+  print('***** CONVERT LIST = %s' % u''.join(convertList).encode('utf-8'))
+
+  return u''.join(convertList)
+
+
+def convertString(textIn, fontInfo, convertToLower=False):
+  convertedList = []
+  convertResult = u''
+  outputIsUTF16 = True
 
   if debug:
-    print(' +++ %d found in input' % len(parsedInput))
-  for index in xrange(len(parsedInput)):
-    c = parsedInput[index];
+    print('$$$$$ text = %s, fontInfo = %s' % (textIn, fontInfo))
+
+  for index in xrange(len(textIn)):
+    c = textIn[index];
     # Special handling if needed
 
     out = c
@@ -65,9 +91,16 @@ def oldEncodingToUnicode(textIn, convertToLower=False):
       if debug:
         print('----- character %s (%s) not found' %
               (c, ord(c)))
-    convertResult += out
-    if debug:
-      print('  character: %s to %s' % (c, out))
+
+    # Special case for handling underlined text
+    if fontInfo and 'u' in fontInfo:
+      convertedList.append(out + combiningLowerLine)
+      if debug:
+        print('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% convertedList = %s' % convertedList)
+    else:
+      convertedList.append(out)
+
+  convertResult = ''.join(convertedList)
 
   if convertToLower:
     lowerResult = toLower(convertResult)
@@ -75,7 +108,7 @@ def oldEncodingToUnicode(textIn, convertToLower=False):
       convertResult = lowerResult
 
   if debug:
-    print(' ---> %s' % convertResult)
+    print('!!!!!!!!!!!!! convertedList = %s' % convertResult)
 
   return convertResult
 
@@ -84,10 +117,10 @@ def oldEncodingToUnicode(textIn, convertToLower=False):
 def testConvertOld():
   # Debug!
   print '\nOLD Oneida'
-  oldOneText = u'@hs< na>tekut<hnu=t#hle> (kuti=kw#ku)'
+  oldOneText = [[u'@hs< na>tekut<hnu=t#hle> (kuti=kw#ku)', []]]
   expected = u'áhsʌ naʔtekutʌhnu·téhleʔ (kuti·kwéku)'
 
-  result = oldEncodingToUnicode(oldOneText)
+  result = oldEncodingToUnicode(oldOneText[0][0], fontTextInfo=oldOneText)
 
   if result != expected:
     print 'Old Oneida = %s' % oldOneText.encode('utf-8')

@@ -8,20 +8,11 @@ import sys
 import convertUtil
 
 # TIMESTAMP for version information.
-TIMESTAMP = "Version 2018-06-28"
-
-
-def replFunc(matchObj):
-  if matchObj.group(0):
-     # Avoid converting strings with [aeo] after capital, but in English
-    if notOsageLatinLower.search(matchObj.group(0)):
-      return matchObj.group(0)
-    else:
-      return osageConversion.oldOsageToUnicode(matchObj.group(0))
+TIMESTAMP = "Version 2018-07-06"
 
 
 # Process all text runs in Table elements
-def processTable(shape, oldFontList, outFont):
+def processTable(shape, oldFontList, outFont, converterFunc):
     conversionCount = 0
     rownum = 1
     for row in shape.table.rows:
@@ -35,8 +26,7 @@ def processTable(shape, oldFontList, outFont):
                           if run.font:
                             fontObj = run.font
                           if fontObj and fontObj.name in oldFontList:
-                            if not notOsageLatinLower.search(run.text):
-                              tryResult = re.subn(latinOsagePattern2, replFunc, run.text)
+                              tryResult = converterFunc(run.text)
                               if tryResult[1]:
                                 conversionCount += 1
                                 run.text = tryResult[0]
@@ -47,7 +37,7 @@ def processTable(shape, oldFontList, outFont):
 
 
 # Process all text runs in Text Frame elements
-def processsTextFrame(shape, oldFontList, outFont):
+def processTextFrame(shape, oldFontList, outFont, converterFunc):
     conversionCount = 0
     for paragraph in shape.text_frame.paragraphs:
         for run in paragraph.runs:
@@ -55,11 +45,11 @@ def processsTextFrame(shape, oldFontList, outFont):
           if run.font:
             fontObj = run.font
           if fontObj and fontObj.name in oldFontList:
-            tryResult = re.subn(latinOsagePattern2, replFunc, run.text)
-            if tryResult[1]:
+            tryResult = converterFunc(run.text)
+            if tryResult != run.text:
               conversionCount += 1
               run.text = tryResult[0]
-              fontObj.name = outFont
+            fontObj.name = outFont
     return conversionCount
 
 
@@ -77,10 +67,10 @@ def processOnePresentation(path_to_presentation, output_dir,
     newconversionCount = 0
     for shape in slide.shapes:
       if shape.has_table:
-        newconversionCount += processTable(shape, outputFont)
+        newconversionCount += processTable(shape, outputFont, oldConverterFunc)
 
       if shape.has_text_frame:
-        newconversionCount += processsTextFrame(shape, outputFont)
+        newconversionCount += processTextFrame(shape, oldFontList, outputFont, oldConverterFunc)
     print ('  Slide %d of %d has %d conversions' % (slideNum, len(prs.slides),
                                                     newconversionCount))
 
