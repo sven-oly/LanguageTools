@@ -66,7 +66,10 @@ def processCollectedText(collectedText, textElementList, parent_map, superscript
   if debug_output:
     print('** CONVERTING %s to Unicode. ' % collectedText.encode('utf-8'))
 
-  convertedText = converter.oldEncodingToUnicodec(collectedText, fontTextInfo=formatTextInfo)
+  # ctext = converter.convertText(collectedText)
+  convertedText = converter.convertText(collectedText, formatTextInfo)
+  # TODO: Add case conversion, if desired.
+
   convertedCount = 0
   if convertedText != collectedText:
     convertedCount = 1

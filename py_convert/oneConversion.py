@@ -36,7 +36,7 @@ class converter():
 
     # Consider the font information if relevant, e.g., underlining.
     # fontInfo: a list of font data for this code, including formatting for each piece.
-    def oldEncodingToUnicode(self, textIn, convertToLower=False, fontTextInfo=None):
+    def convertText(self, textIn, convertToLower=False, fontTextInfo=None):
         if not isinstance(textIn, basestring):
            return textIn
 

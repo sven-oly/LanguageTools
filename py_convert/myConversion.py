@@ -26,17 +26,24 @@ class myConvert():
     translit_zawgyi.ZAWGYI_UNICODE_TRANSLITERATE,
     translit_zawgyi.ZAWGYI_description)
 
-  oldFonts = ['Zawgyi', 'ZawgyiOne']  # Maybe some others?
+  oldFonts = ['Zawgyi', 'ZawgyiOne', 'Zawgyi2008']  # Maybe some others?
 
-  def __init(self):
+  def __init__(self, newFont=None):
+      if newFont:
+        self.unicodeFont = newFont
+      else:
+        self.unicodeFont = 'NotoSansMyanmar'
       return
 
+  def convertText(self, textIn):
+    self.convertText(textIn, False, None)
+
   def toLower(self, inText):
-    inText.lower().encode('utf-8')
+    return inText
 
   # Consider the font information if relevant, e.g., underlining.
   # fontInfo: a list of font data for this code, including formatting for each piece.
-  def oldEncodingToUnicode(self, textIn, convertToLower=False, fontTextInfo=None):
+  def convertText(self, textIn, fontTextInfo):
 
     if not isinstance(textIn, basestring):
       return textIn
@@ -60,12 +67,11 @@ class myConvert():
           print(' %s ' % fmt.tag[loc+1:])
 
       # Convert this one, and return the result
-      convertList.append(self.convertString(item[0], tags, convertToLower))
+      convertList.append(self.convertString(item[0], tags))
 
     print('***** CONVERT LIST = %s' % u''.join(convertList).encode('utf-8'))
 
     return u''.join(convertList)
-
 
   def convertString(self, textIn, fontInfo, convertToLower=False):
     transliterator = self.converter
