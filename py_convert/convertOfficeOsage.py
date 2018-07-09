@@ -9,7 +9,7 @@ import re
 import sys
 
 import convertOffice
-import oneConversion
+import osageConversion
 
 import convertUtil
 
@@ -17,18 +17,18 @@ import convertUtil
 def main(argv):
 
   args = convertUtil.parseArgs()
-  newUnicodeFont = args.font  # "NotoSans-Regular"
+  newUnicodeFont = "NotoSans-Regular"
   print '** args = %s' % args
 
   paths_to_doc = args.filenames
 
-  FONTS_TO_CONVERT = ['Oneida', ]
+  print('Args = %s'% args)
 
-  converter = oneConversion.converter(FONTS_TO_CONVERT, newUnicodeFont)
+  FONTS_TO_CONVERT = ['Official Osage Language', ]
 
   for input in paths_to_doc:
     convertOffice.convertOffice(input, args.output_dir,
-                                converter,
+                                osageConversion.oldEncodingToUnicode,
                                 FONTS_TO_CONVERT, newUnicodeFont)
 
 if __name__ == "__main__":

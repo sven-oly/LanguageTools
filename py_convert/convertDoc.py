@@ -8,6 +8,7 @@ import zipfile
 import xml.etree.ElementTree as ET
 
 import convertUtil
+import convertWord
 
 # The version using docx
 
@@ -18,7 +19,7 @@ TIMESTAMP = "Version 2018-06-28"
 # https://docs.python.org/2/library/xml.etree.elementtree.html
 # https://docs.python.org/2/library/zipfile.html
 
-debug_output = True  #False
+debug_output = True  # False
 
 # Flag controls if the conversion removes
 # structure from replaced text when drawings are found
@@ -29,6 +30,7 @@ removeOldTextParents = False
 
 # If enabled, replaces old fonts in list in fontsTable.xml
 convertFontsTable = False
+
 
 def fixElementAndParent(textElement, parent, newText, oldFontList, unicodeFont):
   removeList = []
@@ -55,8 +57,8 @@ def fixElementAndParent(textElement, parent, newText, oldFontList, unicodeFont):
 # batch, and remove the empty elements.
 # Should I reset the font in this function, too?
 def processCollectedText(collectedText, textElementList, parent_map, superscriptNode,
-                         oldFontList, unicodeFont, conversionFunc,
-                         formatTextInfo):
+                         converter, formatTextInfo):
+  # type: (object, object, object, object, object, object) -> object
   clearedTextElements = []
   global debug_output
 
@@ -64,7 +66,7 @@ def processCollectedText(collectedText, textElementList, parent_map, superscript
   if debug_output:
     print('** CONVERTING %s to Unicode. ' % collectedText.encode('utf-8'))
 
-  convertedText = conversionFunc(collectedText, fontTextInfo=formatTextInfo)
+  convertedText = converter.oldEncodingToUnicodec(collectedText, fontTextInfo=formatTextInfo)
   convertedCount = 0
   if convertedText != collectedText:
     convertedCount = 1
@@ -80,9 +82,9 @@ def processCollectedText(collectedText, textElementList, parent_map, superscript
   parent = parent_map[textElementList[0]]
 
   # Fix font and superscripting
-  fixElementAndParent(textElementList[0], parent, convertedText, oldFontList,
-                      unicodeFont)  # Update the font in this item.
-  if superscriptNode:
+  fixElementAndParent(textElementList[0], parent, convertedText, converter.oldFonts,
+                      converter.unicodeFont)  # Update the font in this item.
+  if superscriptNode:  # This is special case for Osage. TODO: Move to Osage converter
     superscriptNode.val = 'baseline'
 
   # 2. Clear text in other elements
@@ -92,10 +94,9 @@ def processCollectedText(collectedText, textElementList, parent_map, superscript
 
   return convertedCount, clearedTextElements
 
+
 # Looks at text parts of the DOCX data, extracting each.
-def parseDocXML(docfile_name, path_to_doc, oldFontList,
-                unicodeFont,
-                conversionFunc,
+def parseDocXML(docfile_name, path_to_doc, converter,
                 saveConversion=False, outpath=None, isString=False):
   global debug_output
   if isString:
@@ -111,10 +112,10 @@ def parseDocXML(docfile_name, path_to_doc, oldFontList,
       drawingCount += 1
 
   if debug_output:
-    print ('%d drawing lines found' % drawingCount)
+    print('%d drawing lines found' % drawingCount)
 
-  if drawingCount == 0 and docfile_name == 'word/document':
-    convertWordGeneral.convertOneDoc(path_to_doc)
+  if drawingCount == 0 and docfile_name == 'word/document':  # CHECK THIS!
+    convertWord.convertOneDoc(path_to_doc)
     return
 
   # So we can get the parents of each node.
@@ -167,7 +168,7 @@ def parseDocXML(docfile_name, path_to_doc, oldFontList,
                 elif re.search('}rFonts', rprchild.tag):
                   # Font info.
                   fontFound = True
-                  if isOldFontNode(rprchild, oldFontList):
+                  if isOldFontNode(rprchild, converter.oldFonts):
                     # In font encoded node
                     inEncodedFont = True
                   else:
@@ -178,9 +179,7 @@ def parseDocXML(docfile_name, path_to_doc, oldFontList,
                                                                                     textElements,
                                                                                     parent_map,
                                                                                     superscriptNode,
-                                                                                    oldFontList,
-                                                                                    unicodeFont,
-                                                                                    conversionFunc,
+                                                                                    converter,
                                                                                     formatTextInfo)
                         convertCount += newConvertedCount
                         allEmptiedTextElements.append(emptiedElements)
@@ -204,15 +203,13 @@ def parseDocXML(docfile_name, path_to_doc, oldFontList,
                 if notEncoded and debug_output:
                   print(' &&& fontFound = %s, inEncodedFont = %s' %
                         (fontFound, inEncodedFont))
-                  print 'notEncoded = >%s<' % notEncoded.encode('utf-8')
+                  print('notEncoded = >%s<' % notEncoded.encode('utf-8'))
 
     if collectedText:
       (newConvertedCount, emptiedElements) = processCollectedText(collectedText,
                                                                   textElements,
                                                                   parent_map, superscriptNode,
-                                                                  oldFontList,
-                                                                  unicodeFont,
-                                                                  conversionFunc,
+                                                                  converter,
                                                                   formatTextInfo)
       convertCount += newConvertedCount
       collectedText = ''
@@ -223,7 +220,7 @@ def parseDocXML(docfile_name, path_to_doc, oldFontList,
   # TODO: remove all emptied text elements.
   removeOldTextElements(allEmptiedTextElements, parent_map)
 
-  print ' %s: %d text items converted' % (docfile_name, convertCount)
+  print( ' %s: %d text items converted' % (docfile_name, convertCount))
 
   if isString:
     return ET.tostring(root, encoding='utf-8')
@@ -243,21 +240,21 @@ def removeOldTextElements(allElementsToRemove, parent_map):
 
   # This may be causing corruption in the MS Word file structure.
   for group in reversed(allElementsToRemove):
-    for item in  reversed(group):
+    for item in reversed(group):
       parent = parent_map[item]
       parent.remove(item)
 
       if not removeOldTextParents:
         continue
-     # Can I remove the parent of this, too?
+      # Can I remove the parent of this, too?
       grandparent = parent_map[parent]
       if grandparent is not None:
         grandparent.remove(parent)
       count += 1
 
   # And probably remove the siblings and the empty parent, too.
-  print 'removed %d items' % count
   return count
+
 
 def isOldFontNode(node, oldFontList):
   # Look for "rFonts", and check if any font contains one of the old fonts
@@ -276,7 +273,7 @@ def parseFontTable(docXML, oldFontList, unicodeFont):
     if re.search('}font$', node.tag):
       keys = node.attrib.keys()
       if re.search('}name', keys[0]) and node.attrib[keys[0]] in oldFontList:
-        print 'Replacing font %s with %s' % (node.attrib[keys[0]], unicodeFont)
+        print( 'Replacing font %s with %s' % (node.attrib[keys[0]], unicodeFont))
         node.attrib[keys[0]] = unicodeFont
   return ET.tostring(tree, encoding='utf-8')
 
@@ -289,19 +286,17 @@ def tryFontUpdate(newzip, oldFontList, unicodeFont):
 
 
 def processDOCX(path_to_doc, output_dir,
-                oldConverterFunc, oldFontList,
-                unicodeFont, debug=False):
-
+                converter, debug=False):
   if debug_output:
     print('processDOCX path = %s, output_dir = %s\n' % (path_to_doc, output_dir))
-    print ('    oldConvertFunc = %s, oldFontList = %s' % (
-        oldConverterFunc, oldFontList))
+    print('    oldConvert = %s, oldFontList = %s' % (
+      converter, converter.oldFonts))
   newzip = zipfile.ZipFile(path_to_doc)
   docfiles = ['word/document.xml', 'word/header1.xml', 'word/footer1.xml']
   docPartsOut = {}
 
   if convertFontsTable:
-    newFontTable = tryFontUpdate(newzip, oldFontList, unicodeFont)
+    newFontTable = tryFontUpdate(newzip, converter.oldFonts, converter.unicodeFont)
     docPartsOut['word/fontTable.xml'] = newFontTable
 
   for docfile_name in docfiles:
@@ -312,7 +307,7 @@ def processDOCX(path_to_doc, output_dir,
         compress_method = info.compress_type
 
     if debug_output:
-      print 'COMPRESS TYPE = %s' % compress_method
+      print('COMPRESS TYPE = %s' % compress_method)
 
     try:
       docXML = newzip.read(docfile_name)  # A file-like object
@@ -320,8 +315,7 @@ def processDOCX(path_to_doc, output_dir,
       continue
 
     # The real parsing.
-    new_docXML = parseDocXML(docfile_name, docXML,
-                             oldFontList, unicodeFont, oldConverterFunc,
+    new_docXML = parseDocXML(docfile_name, docXML, converter,
                              isString=True)
     # Remember this piece for output.
     docPartsOut[docfile_name] = new_docXML
@@ -334,9 +328,9 @@ def processDOCX(path_to_doc, output_dir,
   else:
     baseWOextension = os.path.splitext(path_to_doc)[0]
   outpath = os.path.join(output_dir, baseWOextension + '_unicode.docx')
-  outzip = zipfile.ZipFile(outpath, 'w')  #, compress_method)
+  outzip = zipfile.ZipFile(outpath, 'w')  # , compress_method)
 
-  print '  OUTPATH = %s' % outpath
+  print('  OUTPATH = %s' % outpath)
 
   # copy other things
   for info in newzip.infolist():
@@ -344,12 +338,12 @@ def processDOCX(path_to_doc, output_dir,
       copyfile = newzip.read(info.filename)
       outzip.writestr(info, copyfile)
       if debug_output:
-        print '  COPY %s' % info.filename
+        print('  COPY %s' % info.filename)
     else:
       # Skipping the new data for now.
       outzip.writestr(info, docPartsOut[info.filename])
       if debug_output:
-        print 'Adding %s' % info.filename
+        print('Adding %s' % info.filename)
 
   if debug_output:
     outzip.printdir()
@@ -359,11 +353,11 @@ def processDOCX(path_to_doc, output_dir,
 
 def unzipInputFile(infile, outdir):
   # https://docs.python.org/3/library/zipfile.html
-  print 'unzipping %s to directory %s' % (infile, outdir)
+  print( 'unzipping %s to directory %s' % (infile, outdir))
 
   newzip = zipfile.ZipFile(infile)
   result = newzip.extractall(path=outdir, pwd=None)
-  print 'zip extract result = %s' % result
+  print('zip extract result = %s' % result)
 
   return newzip
 
@@ -374,16 +368,14 @@ def main(argv):
   args = convertUtil.parseArgs()
 
   paths_to_doc = args.filenames
-  print 'ARGS = %s' % args
-
-  print('Args = %s'% args.debug)
+  print('ARGS = %s' % args)
 
   for path in paths_to_doc:
     extension = os.path.splitext(path)[-1]
     if extension == '.docx':
       processDOCX(path, args.output_dir, args.font, debug_output)
     else:
-      print '!!! Not processing file %s !' % path
+      print('!!! Not processing file %s !' % path)
 
 
 if __name__ == "__main__":

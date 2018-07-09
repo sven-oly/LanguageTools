@@ -2,16 +2,13 @@
 
 import copy
 import os
-import re
-import sys
 
 # Read and process Excel spreadsheets, converting old encoding into
 # Unicode characters.
 
 # https://openpyxl.readthedocs.io/en/default/tutorial.html
 
-from openpyxl import Workbook
-from openpyxl import load_workbook
+from openpyxl import load_workbook, Workbook
 
 debug = False
 
@@ -19,8 +16,12 @@ debug = False
 TIMESTAMP = "Version 2018-06-28"
 
 
-def convertSheet(ws, oldConverterFunc, oldFontList, unicodeFont):
-  print '\n  Converting sheet: %s' % ws
+def convertSheet(ws, oldConverter, oldFontList, unicodeFont):
+  """
+
+  :type ws: object
+  """
+  print('\n  Converting sheet: %s' % ws)
   numConverts = 0
   notConverted = 0
   rowNum = 1
@@ -33,10 +34,10 @@ def convertSheet(ws, oldConverterFunc, oldFontList, unicodeFont):
         continue
 
       if debug:
-        print 'Cell (%d, %d) = >%s<  font = %s' % (rowNum, col, cell.value, cell.font.name)
+        print('Cell (%d, %d) = >%s<  font = %s' % (rowNum, col, cell.value, cell.font.name))
       thisFont = cell.font
       if thisFont and thisFont.name in oldFontList:
-        convertedText = oldConverterFunc(thisText)
+        convertedText = oldConverter.oldEncodingToUnicode(thisText)
         if thisText != convertedText:
           converted = True
           numConverts += 1
@@ -45,7 +46,7 @@ def convertSheet(ws, oldConverterFunc, oldFontList, unicodeFont):
           newFont.name = unicodeFont
           cell.font = newFont
           if debug:
-            print '  Conversion = %s' % convertedText.encode('utf-8')
+            print('  Conversion = %s' % convertedText.encode('utf-8'))
         else:
           converted = False
           notConverted += 1
@@ -53,28 +54,27 @@ def convertSheet(ws, oldConverterFunc, oldFontList, unicodeFont):
       col += 1
       rowNum += 1
   print ('    %d values converted to Unicode' % numConverts)
-  return (numConverts, notConverted)
+  return numConverts, notConverted
 
 
-def convertAllSheets(wb, oldConverterFunc, oldFontList, unicodeFont):
+def convertAllSheets(wb, oldConverter, oldFontList, unicodeFont):
   totalConversions = 0
 
   for ws in wb.worksheets:
-    (converted, notConverted) = convertSheet(ws, oldConverterFunc, oldFontList, unicodeFont)
+    (converted, notConverted) = convertSheet(ws, oldConverter, oldFontList, unicodeFont)
     totalConversions += converted
 
   return totalConversions
 
 
 def processOneSpreadsheet(path_to_spreadsheet, output_dir,
-                          oldConverterFunc, oldFontList,
+                          oldConverter, oldFontList,
                           unicodeFont):
-  print 'PATH = %s' % path_to_spreadsheet
-  wb = load_workbook(path_to_spreadsheet)
+  wb = load_workbook(path_to_spreadsheet)  # type: Workbook
 
-  print 'Converting %s in file: %s' % (oldFontList, path_to_spreadsheet)
+  print('Converting %s in file: %s' % (oldFontList, path_to_spreadsheet))
 
-  numConverts = convertAllSheets(wb, oldConverterFunc, oldFontList, unicodeFont)
+  numConverts = convertAllSheets(wb, oldConverter, oldFontList, unicodeFont)
 
   if numConverts:
     newName = os.path.splitext(path_to_spreadsheet)[0]
@@ -82,12 +82,12 @@ def processOneSpreadsheet(path_to_spreadsheet, output_dir,
       fileIn = os.path.split(path_to_spreadsheet)[1]
       baseWOextension = os.path.splitext(fileIn)[0]
       unicode_path_to_spreadsheet = os.path.join(
-          output_dir, baseWOextension + '_unicode.xlsx')
+        output_dir, baseWOextension + '_unicode.xlsx')
     else:
       baseWOextension = os.path.splitext(path_to_spreadsheet)[0]
       unicode_path_to_spreadsheet = os.path.join(
-          output_dir, baseWOextension + '_unicode.xlsx')
+        output_dir, baseWOextension + '_unicode.xlsx')
     wb.save(unicode_path_to_spreadsheet)
-    print 'Saved new version to file %s' % unicode_path_to_spreadsheet
+    print('Saved new version to file %s' % unicode_path_to_spreadsheet)
   else:
-    print '  No conversion done, so no new file croeated.'
+    print('  No conversion done, so no new file croeated.')

@@ -9,7 +9,7 @@ import re
 import sys
 
 import convertOffice
-import oneConversion
+import myConversion
 
 import convertUtil
 
@@ -22,9 +22,11 @@ def main(argv):
 
   paths_to_doc = args.filenames
 
+  print('Args = %s'% args)
+
   FONTS_TO_CONVERT = ['Oneida', ]
 
-  converter = oneConversion.converter(FONTS_TO_CONVERT, newUnicodeFont)
+  converter = myConversion.myConvert()  # An object
 
   for input in paths_to_doc:
     convertOffice.convertOffice(input, args.output_dir,
