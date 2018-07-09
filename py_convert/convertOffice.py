@@ -16,29 +16,18 @@ import convertPPT
 import convertUtil
 
 
-def main(argv):
-  return
-
-
-def convertOffice(input_path, output_dir, oldConverter, oldFontList, newUnicodeFont):
+def convertOffice(input_path, output_dir, converter):
 
   print('***** input_path = %s' % input_path)
 
   extension = os.path.splitext(input_path)[-1]
   if extension == '.docx':
-    convertDoc.processDOCX(input_path, output_dir, oldConverter)
+    convertDoc.processDOCX(input_path, output_dir, converter)
   elif extension == '.pptx':
     convertPPT.processOnePresentation(input_path, output_dir,
-                                      oldConverter, oldFontList,
-                                      newUnicodeFont)
+                                      converter)
   elif extension == '.xlsx':
     convertXLS.processOneSpreadsheet(input_path, output_dir,
-                                     oldConverter, oldFontList,
-                                     newUnicodeFont)
+                                     converter)
   else:
     print('!!! Not processing file type %s: %s !' % (extension, input_path))
-
-
-
-if __name__ == "__main__":
-  main(sys.argv)

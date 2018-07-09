@@ -12,7 +12,7 @@ TIMESTAMP = "Version 2018-07-06"
 
 
 # Process all text runs in Table elements
-def processTable(shape, oldFontList, outFont, converter):
+def processTable(shape, converter):
     conversionCount = 0
     rownum = 1
     for row in shape.table.rows:
@@ -23,40 +23,40 @@ def processTable(shape, oldFontList, outFont, converter):
                     if para.runs:
                         for run in para.runs:
                           fontObj = None
+                          # TODO: Simplify this logic
                           if run.font:
                             fontObj = run.font
-                          if fontObj and fontObj.name in oldFontList:
-                              tryResult = converter.oldEncodingToUnicode(run.text)
+                          if fontObj and fontObj.name in converter.oldFonts:
+                              tryResult = converter.convertText(run.text, None)
                               if tryResult != run.text:
                                 conversionCount += 1
                                 run.text = tryResult
-                                fontObj.name = outFont
+                                fontObj.name = converter.unicodeFont
             cellnum += 1
         rownum += 1
     return conversionCount
 
 
 # Process all text runs in Text Frame elements
-def processTextFrame(shape, oldFontList, outFont, converter):
+def processTextFrame(shape, converter):
     conversionCount = 0
     for paragraph in shape.text_frame.paragraphs:
         for run in paragraph.runs:
           fontObj = None
           if run.font:
             fontObj = run.font
-          if fontObj and fontObj.name in oldFontList:
-            tryResult = converter.oldEncodingToUnicode(run.text)
+          if fontObj and fontObj.name in converter.oldFonts:
+            tryResult = converter.convertText(run.text, None)
             if tryResult != run.text:
               conversionCount += 1
               run.text = tryResult
-            fontObj.name = outFont
+            fontObj.name = converter.unicodeFont
     return conversionCount
 
 
 # *****************************************************************
 def processOnePresentation(path_to_presentation, output_dir,
-                           oldConverter, oldFontList,
-                           outputFont):
+                           converter):
   prs = Presentation(path_to_presentation)
 
   print( '%d slides found in %s' % (len(prs.slides), path_to_presentation))
@@ -67,10 +67,10 @@ def processOnePresentation(path_to_presentation, output_dir,
     newconversionCount = 0
     for shape in slide.shapes:
       if shape.has_table:
-        newconversionCount += processTable(shape, outputFont, oldConverter)
+        newconversionCount += processTable(shape, converter)
 
       if shape.has_text_frame:
-        newconversionCount += processTextFrame(shape, oldFontList, outputFont, oldConverter)
+        newconversionCount += processTextFrame(shape, converter)
     print ('  Slide %d of %d has %d conversions' % (slideNum, len(prs.slides),
                                                     newconversionCount))
 

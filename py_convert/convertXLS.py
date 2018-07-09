@@ -10,16 +10,16 @@ import os
 
 from openpyxl import load_workbook, Workbook
 
-debug = False
+debug = True
 
 # TIMESTAMP for version information.
-TIMESTAMP = "Version 2018-06-28"
+TIMESTAMP = "Version 2018-07-09"
 
 
-def convertSheet(ws, oldConverter, oldFontList, unicodeFont):
+def convertSheet(ws, converter):
   """
-
   :type ws: object
+  :type converter: object
   """
   print('\n  Converting sheet: %s' % ws)
   numConverts = 0
@@ -36,14 +36,14 @@ def convertSheet(ws, oldConverter, oldFontList, unicodeFont):
       if debug:
         print('Cell (%d, %d) = >%s<  font = %s' % (rowNum, col, cell.value, cell.font.name))
       thisFont = cell.font
-      if thisFont and thisFont.name in oldFontList:
-        convertedText = oldConverter.oldEncodingToUnicode(thisText)
+      if thisFont and thisFont.name in converter.oldFonts:
+        convertedText = converter.convertText(thisText, None)
         if thisText != convertedText:
           converted = True
           numConverts += 1
           cell.value = convertedText
           newFont = copy.copy(thisFont)
-          newFont.name = unicodeFont
+          newFont.name = converter.unicodeFont
           cell.font = newFont
           if debug:
             print('  Conversion = %s' % convertedText.encode('utf-8'))
@@ -57,24 +57,23 @@ def convertSheet(ws, oldConverter, oldFontList, unicodeFont):
   return numConverts, notConverted
 
 
-def convertAllSheets(wb, oldConverter, oldFontList, unicodeFont):
+def convertAllSheets(wb, converter):
   totalConversions = 0
 
   for ws in wb.worksheets:
-    (converted, notConverted) = convertSheet(ws, oldConverter, oldFontList, unicodeFont)
+    (converted, notConverted) = convertSheet(ws, converter)
     totalConversions += converted
 
   return totalConversions
 
 
 def processOneSpreadsheet(path_to_spreadsheet, output_dir,
-                          oldConverter, oldFontList,
-                          unicodeFont):
+                          converter):
   wb = load_workbook(path_to_spreadsheet)  # type: Workbook
 
-  print('Converting %s in file: %s' % (oldFontList, path_to_spreadsheet))
+  print('Converting %s in file: %s' % (converter.oldFonts, path_to_spreadsheet))
 
-  numConverts = convertAllSheets(wb, oldConverter, oldFontList, unicodeFont)
+  numConverts = convertAllSheets(wb, converter)
 
   if numConverts:
     newName = os.path.splitext(path_to_spreadsheet)[0]

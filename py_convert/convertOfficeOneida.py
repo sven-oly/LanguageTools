@@ -27,9 +27,8 @@ def main(argv):
   converter = oneConversion.converter(FONTS_TO_CONVERT, newUnicodeFont)
 
   for input in paths_to_doc:
-    convertOffice.convertOffice(input, args.output_dir,
-                                converter,
-                                FONTS_TO_CONVERT, newUnicodeFont)
+    convertOffice.convertOffice(input, args.output_dir, converter)
+
 
 if __name__ == "__main__":
   main(sys.argv)

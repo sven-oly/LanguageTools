@@ -22,17 +22,23 @@ class converter():
     }
     description = 'Converts Oneida font encoding to Unicode'
 
+    oldFonts = ['Oneida',]
+
     # Converts Oneida upper case characters
     def toLower(self, inText):
         inText.lower().encode('utf-8')  # Standard Unicode conversion.
         return inText
 
-    def __init__(self, oldFontList, newFont='Times New Roman'):
-        self.debug = True  # False
+    def __init__(self, oldFontList, newFont=None):
+        self.debug = False
         # The fonts detected for conversion
         self.oldFonts = oldFontList
         # Name of the substitute Unicode font, if provided
-        self.unicodeFont = newFont
+
+        if newFont:
+            self.unicodeFont = newFont
+        else:
+            self.unicodeFont = 'Times New Roman'
 
     # Consider the font information if relevant, e.g., underlining.
     # fontInfo: a list of font data for this code, including formatting for each piece.

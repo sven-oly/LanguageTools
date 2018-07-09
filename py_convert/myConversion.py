@@ -16,9 +16,6 @@ import translit_zawgyi
 debug = True  # False
 
 
-# Special for Oneida underline conversion, added as diacritic when underline format has been applied
-combiningLowerLine = u'\u0332'
-
 class myConvert():
   description = 'Converts Zawgyi font encoding to Unicode'
 
@@ -49,8 +46,7 @@ class myConvert():
       return textIn
 
     if not fontTextInfo:
-      print('    &&&& fontTextInfo = %s ' % fontTextInfo)
-      return self.convertString(textIn, None, convertToLower)
+      return self.convertString(textIn, None, convertToLower=None)
 
     # Take the data from the fontTextInfo field.
     # TODO: Apply style as needed.
