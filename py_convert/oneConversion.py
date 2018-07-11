@@ -91,12 +91,9 @@ class converter():
                     (c, ord(c)))
 
           # Special case for handling underlined text
+          convertedList.append(out)
           if fontInfo and 'u' in fontInfo:
-            convertedList.append(out).append(self.combiningLowerLine)
-            if self.debug:
-              print('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% convertedList = %s' % convertedList)
-          else:
-            convertedList.append(out)
+            convertedList.append(self.combiningLowerLine)
 
         convertResult = ''.join(convertedList)
 

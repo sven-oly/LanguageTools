@@ -89,4 +89,4 @@ def processOneSpreadsheet(path_to_spreadsheet, output_dir,
     wb.save(unicode_path_to_spreadsheet)
     print('Saved new version to file %s' % unicode_path_to_spreadsheet)
   else:
-    print('  No conversion done, so no new file croeated.')
+    print('  No conversion done, so no new file created.')

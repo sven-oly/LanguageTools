@@ -67,7 +67,7 @@ def processCollectedText(collectedText, textElementList, parent_map, superscript
     print('** CONVERTING %s to Unicode. ' % collectedText.encode('utf-8'))
 
   # ctext = converter.convertText(collectedText)
-  convertedText = converter.convertText(collectedText, formatTextInfo)
+  convertedText = converter.convertText(collectedText, fontTextInfo=formatTextInfo)
   # TODO: Add case conversion, if desired.
 
   convertedCount = 0
@@ -177,6 +177,7 @@ def parseDocXML(docfile_name, path_to_doc, converter,
                   else:
                     # Check if we are switching out. If so, handle accumulated text
                     if inEncodedFont:
+                      # TODO: Even if no text, reset the encoded font
                       if collectedText:
                         (newConvertedCount, emptiedElements) = processCollectedText(collectedText,
                                                                                     textElements,

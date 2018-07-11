@@ -20,6 +20,9 @@ def convertOffice(input_path, output_dir, converter):
 
   print('***** input_path = %s' % input_path)
 
+  if input_path.find('unicode.') > 0:
+    return
+
   extension = os.path.splitext(input_path)[-1]
   if extension == '.docx':
     convertDoc.processDOCX(input_path, output_dir, converter)

@@ -27,7 +27,9 @@ def main(argv):
   converter = myConversion.myConvert()  # An object
 
   for input in paths_to_doc:
-    convertOffice.convertOffice(input, args.output_dir, converter)
+    # Avoid converting Unicode files.
+    if input.find("_unicode.") < 0:
+      convertOffice.convertOffice(input, args.output_dir, converter)
 
 
 if __name__ == "__main__":
