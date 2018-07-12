@@ -89,3 +89,10 @@ font-family: 'Noto Sans', sans-serif;
       font-weight:normal;
       font-style:normal;
     }
+
+    @font-face{
+    src:url("/fonts/Padauk-Regular.ttf");
+    font-family:'Padauk';
+      font-weight:normal;
+      font-style:normal;
+    }

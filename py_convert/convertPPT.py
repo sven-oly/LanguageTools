@@ -46,7 +46,15 @@ def processTextFrame(shape, converter):
           if run.font:
             fontObj = run.font
           if fontObj and fontObj.name in converter.oldFonts:
-            tryResult = converter.convertText(run.text, None)
+            fontInfo = []
+            if fontObj.underline:
+              fontInfo.append('u')
+            if fontObj.italic:
+              fontInfo.append('i')
+            if fontObj.bold:
+              fontInfo.append('b')
+
+            tryResult = converter.convertText(run.text, fontInfo)
             if tryResult != run.text:
               conversionCount += 1
               run.text = tryResult

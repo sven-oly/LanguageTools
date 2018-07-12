@@ -81,6 +81,16 @@ unicode_font_list = [
     'family': 'Aitongr2',
     'longName': 'Aiton Uni Gr2',
   },
+  {
+    'source': '/fonts/Padauk-Regular.ttf',
+    'family': 'Padauk',
+    'longName': 'Padauk',
+  },
+  {
+    'source': '/fonts/NotoSansMyanmar-Regular.ttf',
+    'family': 'NotoSansMyanmar ',
+    'longName': 'Noto Sans Myanmar',
+  },
 ]
 
 links = [

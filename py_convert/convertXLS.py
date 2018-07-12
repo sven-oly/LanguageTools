@@ -69,7 +69,7 @@ def convertAllSheets(wb, converter):
 
 def processOneSpreadsheet(path_to_spreadsheet, output_dir,
                           converter):
-  wb = load_workbook(path_to_spreadsheet)  # type: Workbook
+  wb = load_workbook(path_to_spreadsheet, read_only=True)  # type: Workbook
 
   print('Converting %s in file: %s' % (converter.oldFonts, path_to_spreadsheet))
 
