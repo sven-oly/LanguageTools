@@ -36,7 +36,7 @@ encoding_font_list = [
   {
     'font_path': '/fonts/NotoSansBatak-Regular.ttf',
     'font_name': 'NotoSansBatak',
-    'display_name': 'Noto Batak Sans',
+    'display_name': 'Noto Sans Batak',
   },
 ]
 
@@ -66,7 +66,16 @@ links = [
       'ref': '/' + LanguageCode + '/downloads/'
     },
     {'linkText': 'Unicode Batak page',
-       'ref': 'https://www.unicode.org/charts/PDF/U1BC0.pdf'
+     'ref': 'https://www.unicode.org/charts/PDF/U1BC0.pdf'
+    },
+    {'linkText': 'Batak script',
+     'ref': 'https://en.wikipedia.org/wiki/Batak_script'
+    },
+    {'linkText': 'Wikipedi page',
+     'ref': 'https://en.wikipedia.org/wiki/Batak_Simalungun_language'
+    },
+    {'linkText': 'Ethnolog',
+     'ref': 'https://www.ethnologue.com/language/bts'
     },
 ]
 
