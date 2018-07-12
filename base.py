@@ -15,9 +15,7 @@
 #
 
 from main import LanguageList
-#import translit
 import transliterate
-# import transrule_chr
 
 import json
 import logging
@@ -27,128 +25,57 @@ import webapp2
 
 from google.appengine.ext.webapp import template
 
-Language = 'Tai Ahom'
-Language_native = 'Name of language'
+class languageTemplate():
 
-baseHexUTF16 = u'\ud805\udf00'
+  LanguageCode
+  Language = 'General'
+  Language_native = 'Name of language'
 
-encoding_font_list = [
-  { 'font_name': 'AhomFont',
-    'display_name': 'Ahom',
-    'font_path': '/fonts/ahom_aiton/AHOMFONT.TTF',
-  },
-  {
-    'font_path':'/fonts/ahom_aiton/Ahom_Manuscript.ttf',
-    'font_name':'AhomManuscript',
-    'display_name': 'Ahom Manuscript',
-  },
-  {
-    'font_path': '/fonts/ahom_aiton/AITON.TTF',
-    'font_name': 'Aiton',
-    'display_name': 'Aiton',
-  },
-  {
-    'font_path': '/fonts/ahom_aiton/PHAKE.TTF',
-    'font_name': 'Phake',
-    'display_name': 'Phake',
-  },
-  {
-    'font_path': '/fonts/ahom_aiton/PHAKERAM.TTF',
-    'font_name': 'Phakeram',
-    'display_name': 'Phake Ram',
-  },
-]
+  baseHexUTF16 = u'\ud805\udf00'
 
-unicode_font_list = [
-  {
-    'source': '/fonts/ahom_aiton/NotoSerifAhom-Regular.ttf',
-    'family': 'NotoSerifAhom',
-    'longName': 'Noto Serif Ahom',
-  },
-  { 'family': 'AhomFontUnicode',
-    'longName': 'Ahom Unicode',
-    'source': '/fonts/ahom_aiton/AHOMFONT_Unicode.TTF',
-  },
-  { 'family': 'AhomUnicode',
-    'longName': 'Ahom Manuscript Unicode',
-    'source': '/fonts/ahom_aiton/AhomUnicode.ttf',
-  },
-  {
-    'source': '/fonts/ahom_aiton/Aitongr.ttf',
-    'family': 'Aitongr',
-    'longName': 'Aiton Gr',
-  },
-  {
-    'source': '/fonts/ahom_aiton/AitonUni.gr_2.ttf',
-    'family': 'Aitongr2',
-    'longName': 'Aiton Uni Gr2',
-  },
-  {
-    'source': '/fonts/Padauk-Regular.ttf',
-    'family': 'Padauk',
-    'longName': 'Padauk',
-  },
-  {
-    'source': '/fonts/NotoSansMyanmar-Regular.ttf',
-    'family': 'NotoSansMyanmar ',
-    'longName': 'Noto Sans Myanmar',
-  },
-]
+  encoding_font_list = [
+      { 'font_name': Language + 'Font',
+        'display_name': Language,
+        'font_path': '/fonts/',
+      },
+  ]
+
+  unicode_font_list = [
+      {
+          'source': '/fonts/ahom_aiton/NotoSerifAhom-Regular.ttf',
+          'family': 'NotoSerifAhom',
+          'longName': 'Noto Serif Ahom',
+      },
+  ]
 
 links = [
     {'linkText': 'Keyboard',
      'ref': '/aho/'
     },
     {'linkText': 'Converter',
-     'ref': '/aho/convertUI/'},
+     'ref': LanguageCode + '/convertUI/'},
     {'linkText': 'Font conversion summary',
-      'ref': '/aho/encodingRules/'
+      'ref': LanguageCode + 'encodingRules/'
     },
     {'linkText': 'Resources',
-      'ref': '/aho/downloads/'
+      'ref': LanguageCode + '/downloads/'
     },
-    {'linkText': 'Unicode Ahom',
+    {'linkText': 'Unicode ' + Language,
     'ref': 'http://unicode.org/charts/PDF/U11700.pdf'
     },
-    {'linkText': 'Unicode Aiton',
-     'ref': 'http://unicode.org/charts/PDF/UAA60.pdf'
-     },
-    {'linkText': 'Unicode Tai Laing',
-     'ref': 'http://unicode.org/charts/PDF/UA9E0.pdf'
-     },
 ]
 
-ahom_test_data = """'𑜱𑜴𑜳𑜴𑜵𑜶𑜷𑜸𑜹𑜰
-𑜫 ‌𑜦 𑜍 𑜄 𑜊 𑜥 𑜩 𑜢 𑜨 𑜆 𑜂 𑜧
-𑜡 𑜏 𑜓 𑜇 𑜖 𑜑 𑜩 𑜀 𑜎 𑜠 '
- 𑜁 𑜋 𑜌 𑜈 𑜃 𑜉 𑜼 𑜽
-𑜾
-𑜝 ​𑜣  𑜥
-𑜒​𑜞​𑜔​𑜕​𑜗​𑜿​𑜙​𑜕
-𑜘𑜐
+test_data = """
+  Insert test data here.
 """
 
 text_file_list = [
-  '/download/aho/3-5-1-1.txt',
-  '/download/aho/nemi_mang_text.txt'
 ]
 
-# Shows keyboard for
+# Shows keyboard for Language
 class LanguagesHomeHandler(webapp2.RequestHandler):
     def get(self):
       lang_list = [
-        {'shortName':  'aho',
-         'longName': 'Tai Ahom'
-        },
-        {'shortName':  'aio',
-         'longName': 'Aiton'
-        },
-        {'shortName':  'kht',
-         'longName': 'Khamti'
-        },
-        {'shortName':  'phk',
-         'longName': 'Phake'
-        },
         {'shortName':  'shn',
          'longName': 'Shan'
         },
@@ -159,7 +86,7 @@ class LanguagesHomeHandler(webapp2.RequestHandler):
 
       template_values = {
         'langlist': LanguageList,
-        'language': 'Ahom',
+        'language': Language
         'font_list': unicode_font_list,
         'lang_list': lang_list,
         'kb_list': lang_list,
@@ -206,7 +133,7 @@ class ConvertUIHandler(webapp2.RequestHandler):
       template_values = {
           'font': font,
           'language': Language,
-          'langTag': 'aho',
+          'langTag': LanguageCode
           'encodingList': encoding_font_list,
 
           'kb_list': kb_list,
@@ -230,7 +157,7 @@ class ConvertHandler(webapp2.RequestHandler):
       # Call transliterator
       # Return JSON structure with values.
 
-      transCcp = transliterate.Transliterate(
+      transliterator = transliterate.Transliterate(
         transrule_aho.TRANS_LIT_RULES,
         transrule_aho.DESCRIPTION
       )
@@ -244,9 +171,9 @@ class ConvertHandler(webapp2.RequestHandler):
         'message' : message,
         'error': error,
         'language': Language,
-        'langTag': 'aho',
+        'langTag': LanguageCode
         'showTools': self.request.get('tools', None),
-        'summary' : transCcp.getSummary(),
+        'summary' : transliterator.getSummary(),
       }
       self.response.out.write(json.dumps(result))
 
@@ -255,12 +182,12 @@ class EncodingRules(webapp2.RequestHandler):
     def get(self):
 
       kb_list = [
-        {'shortName':  'aho',
-         'longName': 'Ahom Unicode'
+        {'shortName':  LanguageCode,
+         'longName': Language
         }
       ]
       template_values = {
-        'converterJS': "/js/ahoConverter.js",
+        'converterJS': "/js/' + LanguageCode + 'Converter.js",
         'language': Language,
         'encoding_list': encoding_font_list,
         'unicode_list': unicode_font_list,
@@ -274,12 +201,12 @@ class RenderPage(webapp2.RequestHandler):
     def get(self):
 
       kb_list = [
-        {'shortName':  'aho',
-         'longName': ' Unicode'
+        {'shortName':  LanguageCode
+         'longName': Language + ' Unicode'
         }
       ]
       template_values = {
-        'converterJS': "/js/ahoConverter.js",
+        'converterJS': "/js/' + LanguageCode + 'Converter.js",
         'language': Language,
         'encoding_list': encoding_font_list,
         'unicode_list': unicode_font_list,
@@ -319,11 +246,10 @@ def getCombiningCombos(baseHexChar):
 
 app = webapp2.WSGIApplication([
     ('/tai/', LanguagesHomeHandler),
-    ('/demo_tai/', LanguagesHomeHandler),
-    ('/aho/', LanguagesHomeHandler),
-    ('/demo_aho/', LanguagesHomeHandler),
-    ('/aho/convertUI/', ConvertUIHandler),
-    ('/aho/downloads/', Downloads),
-    ('/aho/converter/', ConvertHandler),
-    ('/aho/encodingRules/', EncodingRules),
+    ('/' + LanguageCode + '/', LanguagesHomeHandler),
+    ('/demo_' + LanguageCode + '/', LanguagesHomeHandler),
+    ('/' + LanguageCode + '/convertUI/', ConvertUIHandler),
+    ('/' + LanguageCode + '/downloads/', Downloads),
+    ('/' + LanguageCode + '/converter/', ConvertHandler),
+    ('/' + LanguageCode + '/encodingRules/', EncodingRules),
 ], debug=True)
