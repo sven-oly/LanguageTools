@@ -25,7 +25,7 @@ var ONE_LAYOUT = {
           'zxcvbnm,./'
     },
     's,sc': {
-      '': '~!\u00e1\u00e9\u00ed\u00f3{{\u028c\u0301}}\u00fa*()_+' +
+      '': '~!\u00e1\u00e9\u00ed\u00f3\u00fa{{\u028c\u0301}}*()_+' +
           '{{\u0245\u0301}}WERTYUIOP{}|' +
           'ASDFGHJKL:"' +
           'ZXCVBNM\u0294\u028c?'
