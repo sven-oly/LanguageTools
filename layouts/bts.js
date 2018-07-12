@@ -10,10 +10,10 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-// Implements Ahom keyboard based on ...
+// Implements Batak Simalungun keyboard based on request,
 // TODO: Add reference
 
-var KHT_LAYOUT = {
+var BTS_LAYOUT = {
   'id': 'bts',
   'title': "Batak Simalungun (prototype)",
   'mappings': {
@@ -54,4 +54,4 @@ var KHT_LAYOUT = {
 };
 
 // Load the layout and inform the keyboard to switch layout if necessary.
-google.elements.keyboard.loadme(KHT_LAYOUT);
+google.elements.keyboard.loadme(BTS_LAYOUT);

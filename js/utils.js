@@ -34,51 +34,51 @@ function utf16common(text, prefix, suffix, asciitoo, highlight_list)
       res += "\\\\";
     } else if ((ccode >= 0xd800) && (ccode < 0xdc00)) {
       // high surrogate
-        if ( i+1 >= text.length ) {
-          res += "[error Surrogate High only]";
-        } else {
-          i++;
-          var nextcode = text.charCodeAt(i);
-          if ((nextcode >= 0xdc00) && (nextcode < 0xe000)) {
-            var ucs4 = ((ccode - 0xd800) << 10) + ((nextcode - 0xdc00)) + 0x10000;
-            var tmp = "";
-            for (var j = 0; j < 6; j++) {
-              var cur = ucs4 & 0x000f;
-              if (cur > 9) {
-                tmp = "ABCDEF".charAt(cur-10) + tmp;
-              } else {
-                tmp = "0123456789".charAt(cur) + tmp;
-              }
-              ucs4 >>= 4;
-            }
-            if (i < highlight_list.length && highlight_list[i]) {
-              res += prefix + tmp + suffix;
-            } else {
-              res += prefix + tmp + suffix;
-            }
-          } else {
-            res += "[error Surrogate High only]";
-            i--;
-          }
+	if ( i+1 >= text.length ) {
+	  res += "[error Surrogate High only]";
+	} else {
+	  i++;
+	  var nextcode = text.charCodeAt(i);
+	  if ((nextcode >= 0xdc00) && (nextcode < 0xe000)) {
+	    var ucs4 = ((ccode - 0xd800) << 10) + ((nextcode - 0xdc00)) + 0x10000;
+	    var tmp = "";
+	    for (var j = 0; j < 6; j++) {
+	      var cur = ucs4 & 0x000f;
+	      if (cur > 9) {
+		tmp = "ABCDEF".charAt(cur-10) + tmp;
+	      } else {
+		tmp = "0123456789".charAt(cur) + tmp;
+	      }
+	      ucs4 >>= 4;
+	    }
+	    if (i < highlight_list.length && highlight_list[i]) {
+	      res += prefix + tmp + suffix;
+	    } else {
+	      res += prefix + tmp + suffix;
+	    }
+	  } else {
+	    res += "[error Surrogate High only]";
+	    i--;
+	  }
        }
     } else if ((ccode >= 0xdc00) && (ccode < 0xe000)) {
       res += "[error Surrogate Low only]";
     } else if (asciitoo || (ccode > 0x007F) || (ccode < 0x0020)) {
       var tmp = "";
       for (var j = 0; j < 4; j++) {
-        var cur = ccode & 0x000f;
-        if (cur > 9) {
-          tmp = "ABCDEF".charAt(cur-10) + tmp;
-        } else {
-          tmp = "0123456789".charAt(cur) + tmp;
-        }
-        ccode >>= 4;
+	var cur = ccode & 0x000f;
+	if (cur > 9) {
+	  tmp = "ABCDEF".charAt(cur-10) + tmp;
+	} else {
+	  tmp = "0123456789".charAt(cur) + tmp;
+	}
+	ccode >>= 4;
 
       }
       if (i < highlight_list.length && highlight_list[i]) {
-        res += "<b>" + prefix + tmp + suffix + "</b>";
+	res += "<b>" + prefix + tmp + suffix + "</b>";
       } else {
-        res += prefix + tmp + suffix;
+	res += prefix + tmp + suffix;
       }
     } else  {
       res += text.charAt(i);
@@ -98,7 +98,7 @@ function utf16common(text, prefix, suffix, asciitoo, highlight_list)
 
   function isSubscriptConsonant(num) {
     return (0x1000 <= num && num <= 0x1019) || num == 0x101c || num == 0x101e ||
-            num == 0x1020 || num == 0x1021;
+	    num == 0x1020 || num == 0x1021;
   }
 
   function isMedial(num) {
@@ -118,16 +118,16 @@ function utf16common(text, prefix, suffix, asciitoo, highlight_list)
     for (index = 0; index < data.length; index ++) {
       myz_detect = (detectZawgyi(data[index][1]) > 0);
       if (data[index][4] != myz_detect) {
-        if (myz_detect) {
-            diff_ids.push(index);
-        } else {
-          diff_ids2.push(index);
-        }
+	if (myz_detect) {
+	    diff_ids.push(index);
+	} else {
+	  diff_ids2.push(index);
+	}
       }
     }
       return diff_ids + ' ||| ' + diff_ids2;
   }
-  
+
 function identifyBadOriginalData() {
     var bad_ids = new Array(0);
     var index;
@@ -247,4 +247,43 @@ function charsToHexString(text) {
     nums = nums + xout + " ";
   }
   return nums;
+}
+
+// Take hex and put it into the fields.
+function hexToOutput(infield, outfield) {
+  // Get the hex values, converted to Unicode.
+  // Then set in the
+  var inHexElem = document.getElementById(infield);
+  var textHex = intArrayFromHexString(inHexElem.value);
+  var uChars = fromCodePointHex(textHex);
+
+  var outField = document.getElementById(outfield);
+  outField.value = uChars;
+}
+
+// Input is string of hex values, separated by spaces.
+// Also accept 0x, u+, and \u for each hex value.
+function intArrayFromHexString(inString) {
+  // Remove U+ or 0x. Split at space.
+  var newString = inString.replace(/(U\+)|(u\+)|(0x)|(0X)|( 0x)|( 0X)|\\u|\\U/g, " ")
+  var hStrings = newString.split(" ");
+  var intList = [];
+  for (var i=0; i < hStrings.length; i ++) {
+    if (hStrings[i] != "") {
+      intList[i] = parseInt(hStrings[i], 16);
+    }
+  }
+  return intList;
+}
+
+// Create Unicode chars from array of hex characters.
+function fromCodePointHex(arguments) {
+  var chars = [], point, offset, units, i;
+  for (i = 0; i < arguments.length; ++i) {
+    point = arguments[i];
+    offset = point - 0x10000;
+    units = point > 0xFFFF ? [0xD800 + (offset >> 10), 0xDC00 + (offset & 0x3FF)] : [point];
+    chars.push(String.fromCharCode.apply(null, units));
+  }
+  return chars.join("");
 }
