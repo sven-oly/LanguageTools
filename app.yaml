@@ -28,6 +28,9 @@ handlers:
 - url: /demo_ccp/*
   script: chakma.app
 
+- url: /bts/.*
+  script: bataksimalungun.app
+
 - url: /ccp/.*
   script: chakma.app
 

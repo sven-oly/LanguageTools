@@ -32,19 +32,20 @@ from google.appengine.ext.webapp import template
 
 # English name, language code, name in the language.
 LanguageList = [
-    ('Tibetan', 'bo'),
-    ('Tamashek', 'tmh', 'ⵜⴰⵎⴰⵌⴰⵆ'),
     (u'A\u1e49angu Yol\u014bu', 'en_anangu', 'Aṉangu-Yolngu'),
-    ('Otomanguean phonetic', 'omq'),
-    ('Chakma', 'ccp'),
     ('Ahom/Tai/Aiton/Phake', 'tai'),
+    ('Batak Sinalungun', 'bts'),
+    ('Chakma', 'ccp'),
     ('Cherokee', 'chr'),
+    ('Hoocąk (Ho-chunk)', 'win'),
     ('Navajo', 'nv'),
     ('Oneida', 'one'),
+    ('Otomanguean phonetic', 'omq'),
     ('Myanmar indigenous', 'my'),
-    ('Hoocąk (Ho-chunk)', 'win'),
     ('Oneida', 'one'),
-  ]
+    ('Tamashek', 'tmh', 'ⵜⴰⵎⴰⵌⴰⵆ'),
+    ('Tibetan', 'bo'),
+]
 
 class MainHandler(webapp2.RequestHandler):
     def get(self):
