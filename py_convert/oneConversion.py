@@ -18,7 +18,7 @@ class converter():
       '=': u'\u00b7',
       '>': u'\u0294',
       '@': u'\u00e1',
-      '^': u'\u028C\u0300'
+      '^': u'\u028C\u0301'
     }
     description = 'Converts Oneida font encoding to Unicode'
 
