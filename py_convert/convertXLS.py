@@ -62,7 +62,7 @@ def convertSheet(ws, converter):
   return numConverts, notConverted
 
 
-def ProcessXlsZip(path_to_doc, output_dir, converter):
+def ProcessSharedStrings(path_to_doc, output_dir, converter):
   # TODO: Examine the sharedStrings.xml for the font
   newzip = zipfile.ZipFile(path_to_doc)
   docPartsOut = {}
@@ -78,9 +78,16 @@ def ProcessXlsZip(path_to_doc, output_dir, converter):
       compress_method = info.compress_type
 
   # The real parsing of sharedStrings.xml
-  (new_xlsXML, numConverts) = parseXlsXML(filename, xlsXML, converter)
+  # Note that all the string data seems to be in sharedStrings
+  (newSharedStrings, numConverts) = parseXlsXML(filename, xlsXML, converter)
+
+  if numConverts <= 0:
+    # Nothing should be done
+    print('  No conversion done, so no new file was created.')
+    return numConverts
+
   # Remember this piece for output.
-  docPartsOut[filename] = new_xlsXML
+  docPartsOut[filename] = newSharedStrings
 
   # All done with the pieces. Now create a new zip archive to save it.
   if output_dir is not '':
@@ -92,45 +99,65 @@ def ProcessXlsZip(path_to_doc, output_dir, converter):
   outpath = os.path.join(output_dir, baseWOextension + '_unicode.docx')
   outzip = zipfile.ZipFile(outpath, 'w')  # , compress_method)
 
-  print('  OUTPATH = %s' % outpath)
+  # copy other things
+  for info in newzip.infolist():
+    print 'COPY %s' % info.filename
+    if info.filename not in docPartsOut:
+      copyfile = newzip.read(info.filename)
+      outzip.writestr(info, copyfile)
+    else:
+      # Skipping the new data for now.
+      outzip.writestr(info, docPartsOut[info.filename])
+
+  if debug:
+    outzip.printdir()
+  outzip.comment = newzip.comment + ' Updated to Unicode text'
+  outzip.close()
+
+  print('Saved new version to file %s' % outpath)
   return numConverts
 
 def parseXlsXML(file_name, theXML, converter):
   # TODO: Finish this, converting and update all with the input fonts.
   numConverts = 0
-  isString = True
-  if isString:
-    tree = ET.fromstring(theXML)
-    root = tree
-  else:
-    tree = ET.parse(theXML)
-    root = tree.getroot()
+  tree = ET.fromstring(theXML)
+  root = tree
 
   drawingCount = 0
   for p in tree.getiterator():
     if re.search('}r', p.tag):
-      print('Found a:r: %s' % p.tag)
+      format_list = []
+      found_font = None
       for rprchild in p._children:
-        foundFont = None
-        if re.search('}rPr', rprchild.tag):
-          print('Found a:rPr: %s' % rprchild.tag)
-          # TODO: look for the children of this one for formatting,
-          # and for the oldFonts.
+        short_tag = rprchild.tag[rprchild.tag.find('}') + 1:]
+        if short_tag == 'rPr':
           for format in rprchild._children:
-            print('tag = %s' % format.tag)
             keys = format.attrib.keys()
-            if re.search('}rFont', format.tag) >= 0:
-              if 'val' in keys and format.attrib['val'] in converter.oldFonts:
-                foundFont = format.attrib['val']
-        elif re.search('}t', rprchild.tag):
-          if foundFont:
-            print('Found a:t: %s' % rprchild.tag)
-          text = rprchild.text
-          # TODO: Convert text
-          # TODO: Update font.
-          numConverts += 1
 
-  return numConverts
+            short_tag = format.tag[format.tag.find('}') + 1:]
+            # Keep the tag, the value, and the format object itself
+            # for later use.
+            if 'val' in keys:
+              format_list.append([short_tag, format.attrib['val'], format])
+            else:
+              format_list.append([short_tag, None, format])
+            if short_tag == 'rFont':
+              if 'val' in keys and format.attrib['val'] in converter.oldFonts:
+                found_font = format  # remember the font object for change
+        elif re.search('}t', rprchild.tag):
+          if found_font != None:
+            text = rprchild.text
+            print('Found text a:t: %s: %s' % (rprchild.tag, text))
+            print('  format list = %s' % format_list)
+            new_text = converter.convertText(text, format_list)
+            rprchild.text = new_text
+
+            # TODO: Make sure that this updates font object.
+            print('found_font = %s' % found_font)
+            found_font.attrib['val'] = converter.unicodeFont
+            numConverts += 1
+
+  return (ET.tostring(root, encoding='utf-8'), numConverts)
 
 
 def convertAllSheets(wb, converter):
@@ -149,12 +176,13 @@ def processOneSpreadsheet(path_to_spreadsheet, output_dir,
 
   print('Converting %s in file: %s' % (converter.oldFonts, path_to_spreadsheet))
 
-  numConverts = ProcessXlsZip(path_to_spreadsheet, output_dir, converter)
-  #TODO: remove the following if not needed.
+  numConverts = ProcessSharedStrings(path_to_spreadsheet, output_dir, converter)
+  return
+  # TODO: remove the following if not needed.
+  # THE FOLLOWING IS OLD
+  ## numConverts = convertAllSheets(wb, converter)
 
-  numConverts = convertAllSheets(wb, converter)
-
-  if numConverts:
+  if numConverts > 0:
     newName = os.path.splitext(path_to_spreadsheet)[0]
     if output_dir is not '':
       fileIn = os.path.split(path_to_spreadsheet)[1]
