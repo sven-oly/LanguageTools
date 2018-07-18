@@ -2,6 +2,10 @@
 
 import copy
 import os
+import re
+import zipfile
+
+import xml.etree.ElementTree as ET
 
 # Read and process Excel spreadsheets, converting old encoding into
 # Unicode characters.
@@ -24,6 +28,7 @@ def convertSheet(ws, converter):
   print('\n  Converting sheet: %s' % ws)
   numConverts = 0
   notConverted = 0
+
   rowNum = 1
   for row in ws.rows:
     col = 0
@@ -57,6 +62,77 @@ def convertSheet(ws, converter):
   return numConverts, notConverted
 
 
+def ProcessXlsZip(path_to_doc, output_dir, converter):
+  # TODO: Examine the sharedStrings.xml for the font
+  newzip = zipfile.ZipFile(path_to_doc)
+  docPartsOut = {}
+
+  filename = 'xl/sharedStrings.xml'
+  try:
+    xlsXML = newzip.read(filename)  # A file-like object
+  except KeyError:
+    return None
+
+  for info in newzip.infolist():
+    if info.filename == filename:
+      compress_method = info.compress_type
+
+  # The real parsing of sharedStrings.xml
+  (new_xlsXML, numConverts) = parseXlsXML(filename, xlsXML, converter)
+  # Remember this piece for output.
+  docPartsOut[filename] = new_xlsXML
+
+  # All done with the pieces. Now create a new zip archive to save it.
+  if output_dir is not '':
+    # String the directory tree to the file, substituting the output
+    fileIn = os.path.split(path_to_doc)[1]
+    baseWOextension = os.path.splitext(fileIn)[0]
+  else:
+    baseWOextension = os.path.splitext(path_to_doc)[0]
+  outpath = os.path.join(output_dir, baseWOextension + '_unicode.docx')
+  outzip = zipfile.ZipFile(outpath, 'w')  # , compress_method)
+
+  print('  OUTPATH = %s' % outpath)
+  return numConverts
+
+def parseXlsXML(file_name, theXML, converter):
+  # TODO: Finish this, converting and update all with the input fonts.
+  numConverts = 0
+  isString = True
+  if isString:
+    tree = ET.fromstring(theXML)
+    root = tree
+  else:
+    tree = ET.parse(theXML)
+    root = tree.getroot()
+
+  drawingCount = 0
+  for p in tree.getiterator():
+    if re.search('}r', p.tag):
+      print('Found a:r: %s' % p.tag)
+      for rprchild in p._children:
+        foundFont = None
+        if re.search('}rPr', rprchild.tag):
+          print('Found a:rPr: %s' % rprchild.tag)
+          # TODO: look for the children of this one for formatting,
+          # and for the oldFonts.
+          for format in rprchild._children:
+            print('tag = %s' % format.tag)
+            keys = format.attrib.keys()
+            if re.search('}rFont', format.tag) >= 0:
+              if 'val' in keys and format.attrib['val'] in converter.oldFonts:
+                foundFont = format.attrib['val']
+        elif re.search('}t', rprchild.tag):
+          if foundFont:
+            print('Found a:t: %s' % rprchild.tag)
+          text = rprchild.text
+          # TODO: Convert text
+          # TODO: Update font.
+          numConverts += 1
+
+  return numConverts
+
+
 def convertAllSheets(wb, converter):
   totalConversions = 0
 
@@ -72,6 +148,9 @@ def processOneSpreadsheet(path_to_spreadsheet, output_dir,
   wb = load_workbook(path_to_spreadsheet, read_only=True)  # type: Workbook
 
   print('Converting %s in file: %s' % (converter.oldFonts, path_to_spreadsheet))
+
+  numConverts = ProcessXlsZip(path_to_spreadsheet, output_dir, converter)
+  #TODO: remove the following if not needed.
 
   numConverts = convertAllSheets(wb, converter)
 
