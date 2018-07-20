@@ -348,8 +348,8 @@ def getCombiningCombos(baseHexChar):
   combineOffsets = range(0x1d, 0x1e, 0x1f).append(range(0x20, 0x2b))
 
   testString = u''
-  for c0 in combiners:
-    for c1 in combiners:
+  for c0 in diacritic_list:
+    for c1 in diacritic_list:
       testString += baseHexChar + c0 + c1 + ' '
     testString += '\u000a'
   return testString
