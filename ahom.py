@@ -116,6 +116,9 @@ links = [
     {'linkText': 'Unicode Tai Laing',
      'ref': 'http://unicode.org/charts/PDF/UA9E0.pdf'
      },
+    {'linkText': 'Combiners',
+     'ref': '/aho/diacritic/',
+     },
 ]
 
 ahom_test_data = """'𑜱𑜴𑜳𑜴𑜵𑜶𑜷𑜸𑜹𑜰
@@ -128,22 +131,7 @@ ahom_test_data = """'𑜱𑜴𑜳𑜴𑜵𑜶𑜷𑜸𑜹𑜰
 𑜘𑜐
 """
 
-diacritic_list = [u'\ud805\udf1d',
-                  u'\ud805\udf1e',
-                  u'\ud805\udf1f',
-                  u'\ud805\udf20',
-                  u'\ud805\udf12',
-                  u'\ud805\udf22',
-                  u'\ud805\udf23',
-                  u'\ud805\udf24',
-                  u'\ud805\udf25',
-                  u'\ud805\udf26',
-                  u'\ud805\udf27',
-                  u'\ud805\udf28',
-                  u'\ud805\udf29',
-                  u'\ud805\udf2a',
-                  u'\ud805\udf2b',
-]
+diacritic_list = [unichr(x) for x in range(0x1171d, 0x1172c)]
 base_consonant = u'\ud805\udf00'
 
 text_file_list = [
@@ -325,18 +313,24 @@ class DiacriticHandler(webapp2.RequestHandler):
   def get(self):
     # Generate combinations of base + diacritic pairs
     combos = []
+    table = []
     for x in diacritic_list:
+      row = [x + ' (%4x)' %ord(x)]
       for y in diacritic_list:
         text = base_consonant + x + y
         combos.append({'text': text,
                        'codes': ['%4x ' % ord(c) for c in text]})
+        row.append(text)
+      table.append(row)
 
     template_values = {
+        'language': Language,
         'base_char': base_consonant.encode('utf-8'),
         'base_hex': ['%4x' % ord(x) for x in base_consonant],
         'diacritics': [x for x in diacritic_list],
-#        'diacritics_hex': ['%4x ' % ord(x) for x in diacritic_list],
+        'diacritics_hex': ['%4x ' % ord(y) for y in diacritic_list],
         'combinations': combos,
+        'table': table,
     }
     path = os.path.join(os.path.dirname(__file__), 'diacritics.html')
     self.response.out.write(template.render(path, template_values))

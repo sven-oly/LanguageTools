@@ -77,8 +77,15 @@ links = [
     {'linkText': 'Ethnolog',
      'ref': 'https://www.ethnologue.com/language/bts'
     },
+    {'linkText': 'Combiners',
+     'ref': '/bts/diacritic/'
+     },
 ]
 
+
+diacritic_list = [unichr(x) for x in range(0x1be6, 0x1bf3)]
+
+base_consonant = u'\u1bc6'
 
 # Shows keyboards
 class IndigenousHomeHandler(webapp2.RequestHandler):
@@ -220,6 +227,31 @@ class Downloads(webapp2.RequestHandler):
       self.response.out.write(template.render(path, template_values))
 
 
+class DiacriticHandler(webapp2.RequestHandler):
+  def get(self):
+    # Generate combinations of base + diacritic pairs
+    combos = []
+    table = []
+    for x in diacritic_list:
+      row = [x + ' (%4x)' %ord(x[0])]
+      for y in diacritic_list:
+        text = base_consonant + x + y
+        combos.append({'text': text,
+                       'codes': ['%4x ' % ord(c) for c in text]})
+        row.append(text)
+      table.append(row)
+
+    template_values = {
+        'language': Language,
+        'base_char': base_consonant.encode('utf-8'),
+        'base_hex': ['%4x' % ord(x) for x in base_consonant],
+        'diacritics': [x for x in diacritic_list],
+        'diacritics_hex': ['%4x ' % ord(y[0]) for y in diacritic_list],
+        'combinations': combos,
+        'table': table,
+    }
+    path = os.path.join(os.path.dirname(__file__), 'diacritics.html')
+    self.response.out.write(template.render(path, template_values))
 
 
 app = webapp2.WSGIApplication([
@@ -229,4 +261,5 @@ app = webapp2.WSGIApplication([
   ('/' + LanguageCode + '/downloads/', Downloads),
   ('/' + LanguageCode + '/converter/', ConvertHandler),
   ('/' + LanguageCode + '/encodingRules/', EncodingRules),
+  ('/' + LanguageCode + '/diacritic/', DiacriticHandler),
 ], debug=True)

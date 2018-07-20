@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8"/>
 
-  <title>Download {{language}} resources</title>
+  <title>Show diacritic combinations for {{language}}</title>
 
   <link rel="stylesheet" href="/css/blueprint/screen.css" type="text/css" media="screen">
   <link rel="stylesheet" href="/css/blueprint/print.css" type="text/css" media="print"> 
@@ -30,15 +30,41 @@
 
   <body onload="init()">
   <div class="container">
-    <div class="span-1">  
-    </div>
-  <div class="span-16 last">
-    <h2>Base = {{base_hex}}: {{base_char}}</h2>
-    <h2>{{diacritics|length}} Diacritics: {{diacritics_nex}}</h2>
-    <h2>Combinations</h2>
+    <div class="span-24 last">
+      <h1>Diacritic combinations for {{language}}</h1>
+    <h2>Base character = {{base_hex}}: {{base_char}}</h2>
+    <h2>{{diacritics|length}} Diacritics: {{diacritics_hex}}</h2>
+    <h2>Table</h2>
+    <table>
+      <th>
+        <td></td>
+        {% for d in diacritics_hex %}
+        <td>
+          {{d}}
+        </td>
+        {%endfor%}
+    {% for row in table%}
+      </th>
+      <tr>
+        <td>
+          {{diacritics_hex.forloop.counter0}}
+          </td>
+        {% for item in row %}
+        <td>
+        {{item}}
+        </td>
+        {% endfor %}
+        </tr>
+       {% endfor %}
+      </table>
+
+    <!-- OLDER long list
+    <h2>{{combinations|length}} Combinations</h2>
     {% for combo in combinations %}
     <p>{{combo.text}} | {% for c in combo.codes%}{{c}}{% endfor %}</p>
     {% endfor %}
+    -->
+
   </div>
   </div>
   </body>

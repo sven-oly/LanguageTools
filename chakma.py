@@ -83,9 +83,18 @@ links = [
     },
     {'linkText': 'Hill Education Chakma Script',
      'ref': 'http://hilledu.com/'
-    }
+    },
+    {'linkText': 'Combiners',
+     'ref': '/ccp/diacritic/'
+     },
 ]
 
+
+diacritic_list = [unichr(x) for x in range(0x11100, 0x11103)]
+diacritic_list.extend([unichr(x) for x in range(0x11127, 0x11133)])
+diacritic_list.extend([unichr(x) for x in range(0x11134, 0x11135)])
+
+base_consonant = u'\ud804\udd0e'
 
 # Shows keyboard for Chakma
 class ChakmaIndigenousHomeHandler(webapp2.RequestHandler):
@@ -289,6 +298,34 @@ def chakmaCombiningCombos(baseHexChar):
     testString += '\u000a'
   return testString
 
+
+class DiacriticHandler(webapp2.RequestHandler):
+  def get(self):
+    # Generate combinations of base + diacritic pairs
+    combos = []
+    table = []
+    for x in diacritic_list:
+      row = [x + ' (%4x)' %ord(x)]
+      for y in diacritic_list:
+        text = base_consonant + x + y
+        combos.append({'text': text,
+                       'codes': ['%4x ' % ord(c) for c in text]})
+        row.append(text)
+      table.append(row)
+
+    template_values = {
+        'language': Language,
+        'base_char': base_consonant.encode('utf-8'),
+        'base_hex': ['%4x' % ord(x) for x in base_consonant],
+        'diacritics': [x for x in diacritic_list],
+        'diacritics_hex': ['%4x ' % ord(y) for y in diacritic_list],
+        'combinations': combos,
+        'table': table,
+    }
+    path = os.path.join(os.path.dirname(__file__), 'diacritics.html')
+    self.response.out.write(template.render(path, template_values))
+
+
 app = webapp2.WSGIApplication([
   ('/demo_ccp/', ChakmaIndigenousHomeHandler),
   ('/ccp/', ChakmaIndigenousHomeHandler),
@@ -296,4 +333,5 @@ app = webapp2.WSGIApplication([
   ('/ccp/downloads/', ChakmaDownloads),
   ('/ccp/converter/', ChakmaConvertHandler),
   ('/ccp/encodingRules/', ChakmaEncodingRules),
+  ('/ccp/diacritic/', DiacriticHandler),
 ], debug=True)

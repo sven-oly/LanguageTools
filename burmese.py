@@ -90,7 +90,15 @@ links = [
     {'linkText': 'Unicode Myanmar',
       'ref': 'http://unicode.org/charts/PDF/U1000.pdf'
     },
+    {'linkText': 'Combiners',
+     'ref': '/my/diacritic/'
+     },
 ]
+
+
+diacritic_list = [unichr(x) for x in range(0x102b, 0x103f)]
+
+base_consonant = u'\u1000'
 
 testStringList = [
   {'name': 'Test  ww_burn samples',
@@ -408,6 +416,33 @@ class ConvertHandler(webapp2.RequestHandler):
     self.response.out.write(json.dumps(obj))
 
 
+class DiacriticHandler(webapp2.RequestHandler):
+  def get(self):
+    # Generate combinations of base + diacritic pairs
+    combos = []
+    table = []
+    for x in diacritic_list:
+      row = [x + ' (%4x)' %ord(x[0])]
+      for y in diacritic_list:
+        text = base_consonant + x + y
+        combos.append({'text': text,
+                       'codes': ['%4x ' % ord(c) for c in text]})
+        row.append(text)
+      table.append(row)
+
+    template_values = {
+        'language': Language,
+        'base_char': base_consonant.encode('utf-8'),
+        'base_hex': ['%4x' % ord(x) for x in base_consonant],
+        'diacritics': [x for x in diacritic_list],
+        'diacritics_hex': ['%4x ' % ord(y[0]) for y in diacritic_list],
+        'combinations': combos,
+        'table': table,
+    }
+    path = os.path.join(os.path.dirname(__file__), 'diacritics.html')
+    self.response.out.write(template.render(path, template_values))
+
+
 app = webapp2.WSGIApplication([
   ('/demo_my/', IndigenousHomeHandler),
   ('/my/', IndigenousHomeHandler),
@@ -416,4 +451,5 @@ app = webapp2.WSGIApplication([
   ('/my/converter/', ConvertHandler),
   ('/my/convertToZawgyi/', ConvertToZawgyiHandler),
   ('/my/encodingRules/', EncodingRules),
+  ('/my/diacritic/', DiacriticHandler),
 ], debug=True)
