@@ -26,6 +26,25 @@
   }
   </style>
 
+  <script>
+   function onFontSelected(selected, area) {
+     var output_text = document.getElementById(area);
+     var fontFam = selected.value + ", MyFont";
+     output_text.style.fontFamily = fontFam;
+   }
+   
+  function changeFontSize(selected) {
+     var fontObj = document.getElementById(selected);
+     var fontSize = fontObj.value;
+     var div = document.getElementById("combo_table");
+     div.style.fontSize = fontSize;
+   }
+
+    function init() {
+        /* Fill in as needed */
+    }
+  </script>
+
   </head>
 
   <body onload="init()">
@@ -34,8 +53,28 @@
       <h1>Diacritic combinations for {{language}}</h1>
     <h2>Base character = {{base_hex}}: {{base_char}}</h2>
     <h2>{{diacritics|length}} Diacritics: {{diacritics_hex}}</h2>
-    <h2>Table</h2>
-    <table>
+    Select font: <select onchange="onFontSelected(this, 'combo_table');" id="selectFont">
+      {% for font in unicode_font_list %}
+      <option value="{{font.family}}">{{font.longName}}</option>
+      {%endfor%}
+   </select>
+      Font size: <select id='fontSize'
+             onChange="changeFontSize('fontSize');">
+             <option value="9pt">9</option>
+             <option value="10pt">10</option>
+             <option value="12pt">12</option>
+             <option value="14pt" selected="selected">14</option>
+             <option value="18pt">18</option>
+             <option value="24pt">24</option>
+             <option value="32pt">32</option>
+             <option value="36pt">36</option>
+             <option value="48pt">48</option>
+             <option value="64pt">64</option>
+           <select/>
+    <br />
+
+    <h2 >Table</h2>
+    <table id="combo_table">
       <th>
         <td></td>
         {% for d in diacritics_hex %}

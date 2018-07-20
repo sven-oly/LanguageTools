@@ -14,8 +14,6 @@
 # limitations under the License.
 #
 
-from allCherokeeFonts import all_cherokee_unicode_fonts
-
 #import translit
 import transliterate
 # import transrule_nv
@@ -249,6 +247,7 @@ class DiacriticHandler(webapp2.RequestHandler):
         'diacritics_hex': ['%4x ' % ord(y[0]) for y in diacritic_list],
         'combinations': combos,
         'table': table,
+        'unicode_font_list': unicode_font_list,
     }
     path = os.path.join(os.path.dirname(__file__), 'diacritics.html')
     self.response.out.write(template.render(path, template_values))
