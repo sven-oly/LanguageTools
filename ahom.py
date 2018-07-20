@@ -57,6 +57,9 @@ encoding_font_list = [
     'font_name': 'Phakeram',
     'display_name': 'Phake Ram',
   },
+  {'linkText': 'Combiners',
+   'ref': '/bts/diacritic/'
+  },
 ]
 
 unicode_font_list = [
