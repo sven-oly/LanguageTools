@@ -25,13 +25,11 @@ import webapp2
 
 from google.appengine.ext.webapp import template
 
+# A base class for handling the general things needed in a language.
 class languageTemplate():
-
-  LanguageCode
+  LanguageCode = 'base'
   Language = 'General'
   Language_native = 'Name of language'
-
-  baseHexUTF16 = u'\ud805\udf00'
 
   encoding_font_list = [
       { 'font_name': Language + 'Font',
@@ -42,62 +40,59 @@ class languageTemplate():
 
   unicode_font_list = [
       {
-          'source': '/fonts/ahom_aiton/NotoSerifAhom-Regular.ttf',
-          'family': 'NotoSerifAhom',
-          'longName': 'Noto Serif Ahom',
+          'source': '/fonts/NotoSans-Regular.ttf',
+          'family': 'NotoSans',
+          'longName': 'Noto Sans',
       },
   ]
 
-links = [
-    {'linkText': 'Keyboard',
-     'ref': '/aho/'
-    },
-    {'linkText': 'Converter',
-     'ref': LanguageCode + '/convertUI/'},
-    {'linkText': 'Font conversion summary',
-      'ref': LanguageCode + 'encodingRules/'
-    },
-    {'linkText': 'Resources',
-      'ref': LanguageCode + '/downloads/'
-    },
-    {'linkText': 'Unicode ' + Language,
-    'ref': 'http://unicode.org/charts/PDF/U11700.pdf'
-    },
-]
+  lang_list = []
+  links = [
+      {'linkText': 'Keyboard',
+       'ref': '/aho/'
+      },
+      {'linkText': 'Converter',
+       'ref': LanguageCode + '/converter/'},
+      {'linkText': 'Font conversion summary',
+       'ref': LanguageCode + 'encodingRules/'
+      },
+      {'linkText': 'Resources',
+       'ref': LanguageCode + '/downloads/'
+      },
+  ]
 
-test_data = """
-  Insert test data here.
-"""
+  text_file_list = [
+  ]
 
-text_file_list = [
-]
+  baseHexUTF16 = u''
 
-# Shows keyboard for Language
-class LanguagesHomeHandler(webapp2.RequestHandler):
+  def __init__(self):
+    return
+
+
+  # Shows keyboards for Language
+  class LanguagesHomeHandler(webapp2.RequestHandler):
     def get(self):
       lang_list = [
-        {'shortName':  'shn',
-         'longName': 'Shan'
-        },
-        {'shortName':  'ksw',
-         'longName': 'S\'gaw Karen'
-        },
+          {'shortName':  'tst',
+           'longName': 'Testing'
+          },
       ]
 
       template_values = {
         'langlist': LanguageList,
-        'language': Language
-        'font_list': unicode_font_list,
-        'lang_list': lang_list,
-        'kb_list': lang_list,
-        'links': links,
+        'language': languageTemplate.Language,
+        'font_list': languageTemplate.unicode_font_list,
+        'lang_list': languageTemplate.lang_list,
+        'kb_list': languageTemplate.lang_list,
+        'links': languageTemplate.links,
       }
       path = os.path.join(os.path.dirname(__file__), 'demo_general.html')
       self.response.out.write(template.render(path, template_values))
 
 
-# Presents UI for conversions from font encoding to Unicode.
-class ConvertUIHandler(webapp2.RequestHandler):
+    # Presents UI for conversions from font encoding to Unicode.
+  class ConvertUIHandler(webapp2.RequestHandler):
     def get(self):
 
       # All old characters
@@ -133,7 +128,7 @@ class ConvertUIHandler(webapp2.RequestHandler):
       template_values = {
           'font': font,
           'language': Language,
-          'langTag': LanguageCode
+          'langTag': LanguageCode,
           'encodingList': encoding_font_list,
 
           'kb_list': kb_list,
@@ -150,8 +145,8 @@ class ConvertUIHandler(webapp2.RequestHandler):
       path = os.path.join(os.path.dirname(__file__), 'translit_general.html')
       self.response.out.write(template.render(path, template_values))
 
-# AJAX handler for  converter
-class ConvertHandler(webapp2.RequestHandler):
+  # AJAX handler for  converter
+  class ConvertHandler(webapp2.RequestHandler):
     def get(self):
       # TODO: Get the text values
       # Call transliterator
@@ -171,14 +166,14 @@ class ConvertHandler(webapp2.RequestHandler):
         'message' : message,
         'error': error,
         'language': Language,
-        'langTag': LanguageCode
+        'langTag': LanguageCode,
         'showTools': self.request.get('tools', None),
         'summary' : transliterator.getSummary(),
       }
       self.response.out.write(json.dumps(result))
 
 
-class EncodingRules(webapp2.RequestHandler):
+  class EncodingRules(webapp2.RequestHandler):
     def get(self):
 
       kb_list = [
@@ -197,12 +192,12 @@ class EncodingRules(webapp2.RequestHandler):
       path = os.path.join(os.path.dirname(__file__), 'fontsView.html')
       self.response.out.write(template.render(path, template_values))
 
-class RenderPage(webapp2.RequestHandler):
+  class RenderPage(webapp2.RequestHandler):
     def get(self):
 
       kb_list = [
-        {'shortName':  LanguageCode
-         'longName': Language + ' Unicode'
+        {'shortName':  languageTemplate.LanguageCode,
+         'longName': languageTemplate.Language + ' Unicode',
         }
       ]
       template_values = {
@@ -217,12 +212,12 @@ class RenderPage(webapp2.RequestHandler):
       self.response.out.write(template.render(path, template_values))
 
 
-class Downloads(webapp2.RequestHandler):
+  class Downloads(webapp2.RequestHandler):
     def get(self):
 
       template_values = {
-          'language': Language,
-          'language_native': Language_native,
+          'language': languageTemplate.Language,
+          'language_native': languageTemplate.Language_native,
           'unicode_font_list': unicode_font_list,
           'file_list': text_file_list,
       }
@@ -230,26 +225,15 @@ class Downloads(webapp2.RequestHandler):
       self.response.out.write(template.render(path, template_values))
 
 
-# Create a string with combinations of the combining characters,
-# following the given base character.
-# TODO: Finish this.
-def getCombiningCombos(baseHexChar):
-
-  combineOffsets = range(0x1d, 0x1e, 0x1f).append(range(0x20, 0x2b))
-
-  testString = u''
-  for c0 in combiners:
-    for c1 in combiners:
-      testString += baseHexChar + c0 + c1 + ' '
-    testString += '\u000a'
-  return testString
-
 app = webapp2.WSGIApplication([
-    ('/tai/', LanguagesHomeHandler),
-    ('/' + LanguageCode + '/', LanguagesHomeHandler),
-    ('/demo_' + LanguageCode + '/', LanguagesHomeHandler),
-    ('/' + LanguageCode + '/convertUI/', ConvertUIHandler),
-    ('/' + LanguageCode + '/downloads/', Downloads),
-    ('/' + LanguageCode + '/converter/', ConvertHandler),
-    ('/' + LanguageCode + '/encodingRules/', EncodingRules),
+    ('/' + languageTemplate.LanguageCode + '/',
+     languageTemplate.LanguagesHomeHandler),
+    ('/' + languageTemplate.LanguageCode + '/downloads/',
+     languageTemplate.Downloads),
+    ('/' + languageTemplate.LanguageCode + '/converter/',
+     languageTemplate.ConvertHandler),
+    ('/' + languageTemplate.LanguageCode + '/downloads/',
+     languageTemplate.Downloads),
+    ('/' + languageTemplate.LanguageCode + '/encodingRules/',
+     languageTemplate.EncodingRules),
 ], debug=True)
