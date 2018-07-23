@@ -56,7 +56,11 @@ unicode_font_list = [
 
 kb_list = [
   {'shortName': LanguageCode + '3',
-   'longName': Language + ' Unicode V3'
+   'longName': Language + ' Unicode V3',
+   'instructions':
+   'This version uses modifier keys to add accents to the vowels ' +
+   'a, e, i, o, u, and ʌ. Use the key at the top left to accent a vowel.' +
+   'To add a bar under a single letter, type it and then add the bar with the key at the right in the second row. To type a longer phrase with the underbar, touch "CapsLock" to enter the "underbar" mode. To return to normal typing, turn off the CapsLock.'
    },
   {'shortName': LanguageCode + '2',
    'longName': Language + ' Unicode V2'
