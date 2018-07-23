@@ -83,7 +83,7 @@ links = [
 
 diacritic_list = [unichr(x) for x in range(0x1be6, 0x1bf3)]
 
-base_consonant = u'\u1bc6'
+default_base_consonant = u'\u1bc3'
 
 # Shows keyboards
 class IndigenousHomeHandler(webapp2.RequestHandler):
@@ -227,13 +227,18 @@ class Downloads(webapp2.RequestHandler):
 
 class DiacriticHandler(webapp2.RequestHandler):
   def get(self):
+    global default_base_consonant
+
     # Generate combinations of base + diacritic pairs
+    base_consonant = unicode(self.request.get('base', default_base_consonant))
     combos = []
     table = []
-    for x in diacritic_list:
-      row = [x + ' (%4x)' %ord(x[0])]
-      for y in diacritic_list:
-        text = base_consonant + x + y
+    singles = [' ', 'none']
+    for y in diacritic_list:
+      row = [y + ' (%4x)' %ord(y[0])]
+      singles.append(base_consonant + y);
+      for x in diacritic_list:
+        text = base_consonant + y + x
         combos.append({'text': text,
                        'codes': ['%4x ' % ord(c) for c in text]})
         row.append(text)
@@ -245,6 +250,7 @@ class DiacriticHandler(webapp2.RequestHandler):
         'base_hex': ['%4x' % ord(x) for x in base_consonant],
         'diacritics': [x for x in diacritic_list],
         'diacritics_hex': ['%4x ' % ord(y[0]) for y in diacritic_list],
+        'singles': singles,
         'combinations': combos,
         'table': table,
         'unicode_font_list': unicode_font_list,
