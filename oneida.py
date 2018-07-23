@@ -58,21 +58,33 @@ kb_list = [
   {'shortName': LanguageCode + '3',
    'longName': Language + ' Unicode V3',
    'instructions':
-   'This version uses modifier keys to add accents to the vowels ' +
-   'a, e, i, o, u, and ʌ. Use the key at the top left to accent a vowel.' +
+   'This keyboard version uses modifier keys to add accents to the vowels ' +
+   'a, e, i, o, u, and ʌ.Use the key at the top left to accent a vowel. \u00a0' +
    'To add a bar under a single letter, type it and then add the bar with the key at the right in the second row. To type a longer phrase with the underbar, touch "CapsLock" to enter the "underbar" mode. To return to normal typing, turn off the CapsLock.'
    },
   {'shortName': LanguageCode + '2',
-   'longName': Language + ' Unicode V2'
+   'longName': Language + ' Unicode V2',
+   'instructions':
+   'This layout has accented vowels in the top row. Bar below after any character is added with ' +
+   'the underbar in the 2nd row at the right. QWERTY is accessed by CapsLock.'
    },
   {'shortName': LanguageCode,
-   'longName': Language + ' Unicode V1'
+   'longName': Language + ' Unicode V1',
+   'instructions':
+   'This layout has accented lower case vowels in the top row of the shifted layer. ' +
+   'Bar below is not supported, and also no upper case accented vowels. ' +
+   'QWERTY is accessed by CapsLock.'
    },
   {'shortName': LanguageCode + '4',
-   'longName': Language + ' Unicode V4'
-   },
+   'longName': Language + ' Unicode V4',
+   'instructions':
+   'V4 has accented vowels in the top row in both lower and upper case. Digits are split '+
+   'into two layers. Underbar is on the right of the 2nd row, and with CapsLock.'
+  },
   {'shortName': LanguageCode + 'mobile',
-   'longName': Language + ' Unicode Mobile'
+   'longName': Language + ' Unicode Mobile',
+   'instructions':
+   'This is a prototype layout for exploring possible arrangement of keys for a mobile device.'
    },
 ]
 
