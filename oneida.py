@@ -55,14 +55,14 @@ unicode_font_list = [
 ]
 
 kb_list = [
-  {'shortName': LanguageCode,
-   'longName': Language + ' Unicode V1'
+  {'shortName': LanguageCode + '3',
+   'longName': Language + ' Unicode V3'
    },
   {'shortName': LanguageCode + '2',
    'longName': Language + ' Unicode V2'
    },
-  {'shortName': LanguageCode + '3',
-   'longName': Language + ' Unicode V3'
+  {'shortName': LanguageCode,
+   'longName': Language + ' Unicode V1'
    },
   {'shortName': LanguageCode + '4',
    'longName': Language + ' Unicode V4'
