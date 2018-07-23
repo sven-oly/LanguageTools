@@ -25,6 +25,9 @@ handlers:
 - url: /download
   static_dir: download
 
+- url: /base/.*
+  script: base.app
+
 - url: /demo_ccp/*
   script: chakma.app
 
