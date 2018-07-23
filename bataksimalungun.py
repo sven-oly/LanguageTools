@@ -230,7 +230,15 @@ class DiacriticHandler(webapp2.RequestHandler):
     global default_base_consonant
 
     # Generate combinations of base + diacritic pairs
-    base_consonant = unicode(self.request.get('base', default_base_consonant))
+    inchars = self.request.get('base', None)
+    if not inchars:
+      base_consonant = default_base_consonant
+    elif inchars[0] == 'u':
+      base_consonant = unichr(int(''.join(inchars[1:]), 16))
+    else:
+      # A unicode character
+      base_consonant = inchars
+
     combos = []
     table = []
     singles = [' ', 'none']
