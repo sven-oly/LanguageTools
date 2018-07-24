@@ -16,7 +16,8 @@
 
 from allCherokeeFonts import all_cherokee_unicode_fonts
 
-#import translit
+import base
+
 import transliterate
 import transrule_chr
 
@@ -243,13 +244,23 @@ class AllFontTest(webapp2.RequestHandler):
     path = os.path.join(os.path.dirname(__file__), 'allFonts.html')
     self.response.out.write(template.render(path, template_values))
 
+# Handling Cherokee and other language codes for testing font and conversions.
+class langInfo(base.languageTemplate):
+  def __init__(self):
+    self.LanguageCode = 'chr'
+    self.Language = 'Cherokee'
+    self.Language_native = 'ᏣᎳᎩ'
 
-app = webapp2.WSGIApplication([
-  ('/demo_chr/', CherokeeIndigenousHomeHandler),
-  ('/chr/', CherokeeIndigenousHomeHandler),
-  ('/chr/convertUI/', CherokeeConvertUIHandler),
-  ('/chr/downloads/', CherokeeDownloads),
-  ('/chr/converter/', CherokeeConvertHandler),
-  ('/chr/encodingRules/', CherokeeEncodingRules),
-  ('/chr/AllFonts/', AllFontTest )
-], debug=True)
+
+instance = langInfo()
+app = webapp2.WSGIApplication(
+    [('/chr/', CherokeeIndigenousHomeHandler),
+     ('/chr/convertUI/', CherokeeConvertUIHandler),
+     ('/chr/downloads/', CherokeeDownloads),
+     ('/chr/converter/', CherokeeConvertHandler),
+     ('/chr/encodingRules/', CherokeeEncodingRules),
+     ('/chr/AllFonts/', AllFontTest )
+    ],
+    debug=True,
+    config={'langInfo': instance}
+)

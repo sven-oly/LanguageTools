@@ -14,19 +14,13 @@
 # limitations under the License.
 #
 
-from main import LanguageList
-
-import json
-import logging
-import os
-import urllib
 import webapp2
 
-# TRY THIS to use class structure better
+# Use routines from this base class
 import base
 
-from google.appengine.ext.webapp import template
 
+# Handling Ahom and other language codes for testing font and conversions.
 class langInfo(base.languageTemplate):
   def __init__(self):
     self.LanguageCode = 'aho'
