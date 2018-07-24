@@ -27,123 +27,55 @@ from google.appengine.ext.webapp import template
 
 # A base class for handling the general things needed in a language.
 class languageTemplate():
-  LanguageCode = 'base'
-  Language = 'General'
-  Language_native = 'Name of language'
-
-  encoding_font_list = [
-      { 'font_name': Language + 'Font',
-        'display_name': Language,
-        'font_path': '/fonts/',
-      },
-  ]
-
-  unicode_font_list = [
-      {
-          'source': '/fonts/NotoSans-Regular.ttf',
-          'family': 'NotoSans',
-          'longName': 'Noto Sans',
-      },
-  ]
-
-  lang_list = []
-  links = [
-      {'linkText': 'Keyboard',
-       'ref': '/aho/'
-      },
-      {'linkText': 'Converter',
-       'ref': LanguageCode + '/converter/'},
-      {'linkText': 'Font conversion summary',
-       'ref': LanguageCode + 'encodingRules/'
-      },
-      {'linkText': 'Resources',
-       'ref': LanguageCode + '/downloads/'
-      },
-  ]
-
-  text_file_list = [
-  ]
-
-  baseHexUTF16 = u''
 
   def __init__(self):
+    self.LanguageCode = 'base'
+    self.Language = 'General'
+    self.Language_native = 'Base Language'
+
+    self.encoding_font_list = [
+        { 'font_name': self.Language + 'Font',
+          'display_name': self.Language,
+          'font_path': '/fonts/',
+        },
+    ]
+
+    self.unicode_font_list = [
+        {
+            'source': '/fonts/NotoSans-Regular.ttf',
+            'family': 'NotoSans',
+            'longName': 'Noto Sans',
+        },
+    ]
+
+    self.lang_list = []
+    self.links = [
+        {'linkText': 'Keyboard',
+         'ref': '/aho/'
+        },
+        {'linkText': 'Converter',
+         'ref': self.LanguageCode + '/converter/'},
+        {'linkText': 'Font conversion summary',
+         'ref': self.LanguageCode + 'encodingRules/'
+        },
+        {'linkText': 'Resources',
+         'ref': self.LanguageCode + '/downloads/'
+        },
+    ]
+
+    self.kb_list = [
+        {'shortName':  self.LanguageCode,
+         'longName': self.Language
+        }
+    ]
+
+    self.text_file_list = [
+    ]
+
+    self.baseHexUTF16 = u''
+
     return
 
-
-  # Shows keyboards for Language
-  class LanguagesHomeHandler(webapp2.RequestHandler):
-    def get(self):
-      lang_list = [
-          {'shortName':  'tst',
-           'longName': 'Testing'
-          },
-      ]
-
-      template_values = {
-        'langlist': LanguageList,
-        'language': languageTemplate.Language,
-        'font_list': languageTemplate.unicode_font_list,
-        'lang_list': languageTemplate.lang_list,
-        'kb_list': languageTemplate.lang_list,
-        'links': languageTemplate.links,
-      }
-      path = os.path.join(os.path.dirname(__file__), 'demo_general.html')
-      self.response.out.write(template.render(path, template_values))
-
-
-    # Presents UI for conversions from font encoding to Unicode.
-  class ConvertUIHandler(webapp2.RequestHandler):
-    def get(self):
-
-      # All old characters
-      oldChars = (u'\u0001 !"\u0023\u0024%&\'()*+,-./' +
-                  '0123456789:;<=>?@' +
-                  'ABCDEFGHIJKLMNOPQRSTUVWXYZ[ \\ ]^_`' +
-                  'abcdefghijklmnopqrstuvwxyz{|}~')
-      text = self.request.get('text', oldChars)
-      font = self.request.get('font')
-      testStringList = [
-          {'name': 'Test 1', # Note: must escape the single quote.
-           'string': u'\u0004\u0005\u0006\u0007\u0008\u0009' +
-           '\u000a\u000b'},
-      ]
-
-      oldInput = u''
-      for i in xrange(0x23, 0xf1):
-        oldInput += unichr(i)
-
-      unicodeChars = '\ud804\udd00'
-      unicodeChars += '\ud804\udd03'
-      unicodeChars += '\ud804\udd04'
-      unicodeChars += '\ud804\udd05'
-      unicodeChars += '\ud804\udd06'
-
-      unicodeCombiningChars = getCombiningCombos(baseHexUTF16)
-      kb_list = [
-        {'shortName':  'aho',
-         'longName': ''
-        }
-      ]
-
-      template_values = {
-          'font': font,
-          'language': Language,
-          'langTag': LanguageCode,
-          'encodingList': encoding_font_list,
-
-          'kb_list': kb_list,
-          'unicodeFonts': unicode_font_list,
-          'links': links,
-          'oldChars': oldChars,
-          'oldInput': oldInput,
-          'text': text,
-          'textStrings': testStringList,
-          'showTools': self.request.get('tools', None),
-          'unicodeChars': unicodeChars,
-          'combiningChars': unicodeCombiningChars,
-      }
-      path = os.path.join(os.path.dirname(__file__), 'translit_general.html')
-      self.response.out.write(template.render(path, template_values))
 
   # AJAX handler for  converter
   class ConvertHandler(webapp2.RequestHandler):
@@ -151,6 +83,8 @@ class languageTemplate():
       # TODO: Get the text values
       # Call transliterator
       # Return JSON structure with values.
+
+      langInfo = self.app.config.get('langInfo')
 
       transliterator = transliterate.Transliterate(
         transrule_aho.TRANS_LIT_RULES,
@@ -173,67 +107,229 @@ class languageTemplate():
       self.response.out.write(json.dumps(result))
 
 
-  class EncodingRules(webapp2.RequestHandler):
-    def get(self):
+# Explicity NOT PART OF THE CLASS
 
-      kb_list = [
-        {'shortName':  LanguageCode,
-         'longName': Language
-        }
-      ]
-      template_values = {
-        'converterJS': "/js/' + LanguageCode + 'Converter.js",
+# Shows keyboards for Language
+class LanguagesHomeHandler(webapp2.RequestHandler):
+  def get(self):
+    langInfo = self.app.config.get('langInfo')
+    lang_list = [
+        {'shortName':  'tst',
+         'longName': 'Testing'
+        },
+    ]
+
+    template_values = {
+        #        'langlist': LanguageList,
+        'language': langInfo.Language,
+        'font_list': langInfo.unicode_font_list,
+        'lang_list': langInfo.lang_list,
+        'kb_list': langInfo.lang_list,
+        'links': langInfo.links,
+    }
+    path = os.path.join(os.path.dirname(__file__), 'demo_general.html')
+    self.response.out.write(template.render(path, template_values))
+
+
+# AJAX handler for  converter
+class ConvertHandler(webapp2.RequestHandler):
+  def get(self):
+    # TODO: Get the text values
+    # Call transliterator
+    # Return JSON structure with values.
+
+    langInfo = self.app.config.get('langInfo')
+
+    if langInfo.transliterator:
+      transliterator = transliterate.Transliterate(
+          transrule_aho.TRANS_LIT_RULES,
+          transrule_aho.DESCRIPTION
+      )
+
+    outText = '\u11103\u11101\u11103'
+    message = 'TBD'
+    error = ''
+
+    result = {
+        'outText' : outText,
+        'message' : message,
+        'error': error,
         'language': Language,
-        'encoding_list': encoding_font_list,
-        'unicode_list': unicode_font_list,
-        'kb_list': kb_list,
-        'links': links,
-      }
-      path = os.path.join(os.path.dirname(__file__), 'fontsView.html')
-      self.response.out.write(template.render(path, template_values))
+        'langTag': LanguageCode,
+        'showTools': self.request.get('tools', None),
+        'summary' : transliterator.getSummary(),
+    }
+    self.response.out.write(json.dumps(result))
 
-  class RenderPage(webapp2.RequestHandler):
-    def get(self):
 
-      kb_list = [
-        {'shortName':  languageTemplate.LanguageCode,
-         'longName': languageTemplate.Language + ' Unicode',
+class DiacriticHandler(webapp2.RequestHandler):
+  def get(self):
+    langInfo = self.app.config.get('langInfo')
+
+    # Generate combinations of base + diacritic pairs
+    combos = []
+    table = []
+    for x in langInfo.diacritic_list:
+      row = [x + ' (%4x)' %ord(x)]
+      for y in langInfo.diacritic_list:
+        text = langInfo.base_consonant + x + y
+        combos.append({'text': text,
+                       'codes': ['%4x ' % ord(c) for c in text]})
+        row.append(text)
+      table.append(row)
+
+    template_values = {
+        'language': langInfo.Language,
+        'base_char': langInfo.base_consonant.encode('utf-8'),
+        'base_hex': ['%4x' % ord(x) for x in langInfo.base_consonant],
+        'diacritics': [x for x in langInfo.diacritic_list],
+        'diacritics_hex': ['%4x ' % ord(y) for y in langInfo.diacritic_list],
+        'combinations': combos,
+        'table': table,
+        'unicode_font_list': langInfo.unicode_font_list,
+    }
+    path = os.path.join(os.path.dirname(__file__), 'diacritics.html')
+
+    self.response.out.write(template.render(path, template_values))
+
+
+# Presents UI for conversions from font encoding to Unicode.
+class ConvertUIHandler(webapp2.RequestHandler):
+  def get(self):
+
+    langInfo = self.app.config.get('langInfo')
+
+    # All old characters
+    oldChars = (u'\u0001 !"\u0023\u0024%&\'()*+,-./' +
+                '0123456789:;<=>?@' +
+                'ABCDEFGHIJKLMNOPQRSTUVWXYZ[ \\ ]^_`' +
+                'abcdefghijklmnopqrstuvwxyz{|}~')
+    text = self.request.get('text', oldChars)
+    font = self.request.get('font')
+    testStringList = [
+        {'name': 'Test 1', # Note: must escape the single quote.
+         'string': u'\u0004\u0005\u0006\u0007\u0008\u0009' +
+         '\u000a\u000b'},
+    ]
+
+    oldInput = u''
+    for i in xrange(0x23, 0xf1):
+      oldInput += unichr(i)
+
+    unicodeChars = '\ud804\udd00'
+    unicodeChars += '\ud804\udd03'
+    unicodeChars += '\ud804\udd04'
+    unicodeChars += '\ud804\udd05'
+    unicodeChars += '\ud804\udd06'
+
+    unicodeCombiningChars = getCombiningCombos(
+        langInfo.baseHexUTF16, langInfo.diacritic_list)
+    kb_list = [
+        {'shortName':  'aho',
+         'longName': ''
         }
-      ]
-      template_values = {
-        'converterJS': "/js/' + LanguageCode + 'Converter.js",
-        'language': Language,
-        'encoding_list': encoding_font_list,
-        'unicode_list': unicode_font_list,
-        'kb_list': kb_list,
-        'links': links,
+    ]
+
+    template_values = {
+        'font': font,
+        'language': langInfo.Language,
+        'langTag': langInfo.LanguageCode,
+        'encodingList': langInfo.encoding_font_list,
+        'kb_list': langInfo.kb_list,
+        'unicodeFonts': langInfo.unicode_font_list,
+        'links': langInfo.links,
+        'oldChars': oldChars,
+        'oldInput': oldInput,
+        'text': text,
+        'textStrings': testStringList,
+        'showTools': self.request.get('tools', None),
+        'unicodeChars': unicodeChars,
+        'combiningChars': unicodeCombiningChars,
+    }
+    path = os.path.join(os.path.dirname(__file__), 'translit_general.html')
+    self.response.out.write(template.render(path, template_values))
+
+# Create a string with combinations of the combining characters,
+# following the given base character.
+# TODO: Finish this.
+def getCombiningCombos(baseHexChar, diacritic_list):
+
+  combineOffsets = range(0x1d, 0x1e, 0x1f).append(range(0x20, 0x2b))
+
+  testString = u''
+  for c0 in diacritic_list:
+    for c1 in diacritic_list:
+      testString += baseHexChar + c0 + c1 + ' '
+    testString += '\u000a'
+  return testString
+
+
+class EncodingRules(webapp2.RequestHandler):
+  def get(self):
+
+    langInfo = self.app.config.get('langInfo')
+
+    template_values = {
+        'converterJS': '/js/' + langInfo.LanguageCode + 'Converter.js',
+        'language': langInfo.Language,
+        'encoding_list': langInfo.encoding_font_list,
+        'unicode_list': langInfo.unicode_font_list,
+        'kb_list': langInfo.kb_list,
+        'links': langInfo.links,
+    }
+    path = os.path.join(os.path.dirname(__file__), 'fontsView.html')
+    self.response.out.write(template.render(path, template_values))
+
+
+class Downloads(webapp2.RequestHandler):
+  def get(self):
+
+    langInfo = self.app.config.get('langInfo')
+    template_values = {
+        'language': langInfo.Language,
+        'language_native': langInfo.Language_native,
+        'unicode_font_list': langInfo.unicode_font_list,
+        'file_list': langInfo.text_file_list,
+    }
+    path = os.path.join(os.path.dirname(__file__), 'downloads.html')
+    self.response.out.write(template.render(path, template_values))
+
+class RenderPage(webapp2.RequestHandler):
+  def get(self):
+
+    langInfo = self.app.config.get('langInfo')
+
+    kb_list = [
+      {'shortName':  langInfo.LanguageCode,
+       'longName': langInfo.Language + ' Unicode',
       }
-      path = os.path.join(os.path.dirname(__file__), 'renderCombos.html')
-      self.response.out.write(template.render(path, template_values))
+    ]
+    template_values = {
+      'converterJS': "/js/' + LanguageCode + 'Converter.js",
+      'language': langInfo.Language,
+      'encoding_list': langInfo.encoding_font_list,
+      'unicode_list': langInfo.unicode_font_list,
+      'kb_list': langInfo.kb_list,
+      'links': langInfo.links,
+    }
+    path = os.path.join(os.path.dirname(__file__), 'renderCombos.html')
+    self.response.out.write(template.render(path, template_values))
 
 
-  class Downloads(webapp2.RequestHandler):
-    def get(self):
+# Create an instance of the template and add to configuration.
+# so values can be passed to the classes
+instance = languageTemplate()
+#print('BASE INSTANCE = %s' % instance)
+basePath = '/' + instance.LanguageCode
+app = webapp2.WSGIApplication(
+    [
+        (basePath + '/converter/',
+         instance.ConvertHandler),
+    ],
+    debug=True,
+    config={'langInfo': instance}
+)
 
-      template_values = {
-          'language': languageTemplate.Language,
-          'language_native': languageTemplate.Language_native,
-          'unicode_font_list': unicode_font_list,
-          'file_list': text_file_list,
-      }
-      path = os.path.join(os.path.dirname(__file__), 'downloads.html')
-      self.response.out.write(template.render(path, template_values))
-
-
-app = webapp2.WSGIApplication([
-    ('/' + languageTemplate.LanguageCode + '/',
-     languageTemplate.LanguagesHomeHandler),
-    ('/' + languageTemplate.LanguageCode + '/downloads/',
-     languageTemplate.Downloads),
-    ('/' + languageTemplate.LanguageCode + '/converter/',
-     languageTemplate.ConvertHandler),
-    ('/' + languageTemplate.LanguageCode + '/downloads/',
-     languageTemplate.Downloads),
-    ('/' + languageTemplate.LanguageCode + '/encodingRules/',
-     languageTemplate.EncodingRules),
-], debug=True)
+app.router.add((basePath + '/downloads/', Downloads))
+app.router.add((basePath + '/encodingRules/', EncodingRules))
+app.router.add((basePath + '/', LanguagesHomeHandler))
