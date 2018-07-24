@@ -76,37 +76,6 @@ class languageTemplate():
 
     return
 
-
-  # AJAX handler for  converter
-  class ConvertHandler(webapp2.RequestHandler):
-    def get(self):
-      # TODO: Get the text values
-      # Call transliterator
-      # Return JSON structure with values.
-
-      langInfo = self.app.config.get('langInfo')
-
-      transliterator = transliterate.Transliterate(
-        transrule_aho.TRANS_LIT_RULES,
-        transrule_aho.DESCRIPTION
-      )
-
-      outText = '\u11103\u11101\u11103'
-      message = 'TBD'
-      error = ''
-
-      result = {
-        'outText' : outText,
-        'message' : message,
-        'error': error,
-        'language': Language,
-        'langTag': LanguageCode,
-        'showTools': self.request.get('tools', None),
-        'summary' : transliterator.getSummary(),
-      }
-      self.response.out.write(json.dumps(result))
-
-
 # Explicity NOT PART OF THE CLASS
 
 # Shows keyboards for Language
@@ -142,8 +111,8 @@ class ConvertHandler(webapp2.RequestHandler):
 
     if langInfo.transliterator:
       transliterator = transliterate.Transliterate(
-          transrule_aho.TRANS_LIT_RULES,
-          transrule_aho.DESCRIPTION
+          langInfo.transliterator.TRANS_LIT_RULES,
+          langInfo.transliterator.DESCRIPTION
       )
 
     outText = '\u11103\u11101\u11103'
@@ -224,11 +193,6 @@ class ConvertUIHandler(webapp2.RequestHandler):
 
     unicodeCombiningChars = getCombiningCombos(
         langInfo.baseHexUTF16, langInfo.diacritic_list)
-    kb_list = [
-        {'shortName':  'aho',
-         'longName': ''
-        }
-    ]
 
     template_values = {
         'font': font,
@@ -319,12 +283,10 @@ class RenderPage(webapp2.RequestHandler):
 # Create an instance of the template and add to configuration.
 # so values can be passed to the classes
 instance = languageTemplate()
-#print('BASE INSTANCE = %s' % instance)
 basePath = '/' + instance.LanguageCode
+
 app = webapp2.WSGIApplication(
     [
-        (basePath + '/converter/',
-         instance.ConvertHandler),
     ],
     debug=True,
     config={'langInfo': instance}

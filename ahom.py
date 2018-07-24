@@ -116,6 +116,9 @@ class langInfo(base.languageTemplate):
         {'linkText': 'Font conversion summary',
          'ref': '/' + self.LanguageCode + '/encodingRules/'
         },
+        {'linkText': 'Ahom Unicode block',
+         'ref': 'https://www.unicode.org/charts/PDF/U11700.pdf'
+        },
         {'linkText': 'Resources',
          'ref': '/' + self.LanguageCode + '/downloads/'
         },
@@ -132,12 +135,13 @@ class langInfo(base.languageTemplate):
     self.baseHexUTF16 = u'\ud805\udf00'
     self.base_consonant = u'\ud805\udf00'
 
+    self.unicodeChars = [unichr(x) for x in range(0x11700, 0x1173f)]
     self.diacritic_list = [unichr(x) for x in range(0x1171d, 0x1172c)]
 
     # Python-based transliteration tool.
     self.transliterator = None
 
-    # Test data for showing in converter.
+   # Test data for showing in converter.
     self.test_data = ["""'𑜱𑜴𑜳𑜴𑜵𑜶𑜷𑜸𑜹𑜰
 𑜫 ‌𑜦 𑜍 𑜄 𑜊 𑜥 𑜩 𑜢 𑜨 𑜆 𑜂 𑜧
 𑜡 𑜏 𑜓 𑜇 𑜖 𑜑 𑜩 𑜀 𑜎 𑜠 '
@@ -147,7 +151,7 @@ class langInfo(base.languageTemplate):
 𑜒​𑜞​𑜔​𑜕​𑜗​𑜿​𑜙​𑜕
 𑜘𑜐
 """
-                      ]
+    ]
 
     return
 

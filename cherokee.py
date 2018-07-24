@@ -244,6 +244,7 @@ class AllFontTest(webapp2.RequestHandler):
     path = os.path.join(os.path.dirname(__file__), 'allFonts.html')
     self.response.out.write(template.render(path, template_values))
 
+
 # Handling Cherokee and other language codes for testing font and conversions.
 class langInfo(base.languageTemplate):
   def __init__(self):
