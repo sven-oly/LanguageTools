@@ -268,9 +268,11 @@ function intArrayFromHexString(inString) {
   var newString = inString.replace(/(U\+)|(u\+)|(0x)|(0X)|( 0x)|( 0X)|\\u|\\U/g, " ")
   var hStrings = newString.split(" ");
   var intList = [];
+  var outIndex = 0;
   for (var i=0; i < hStrings.length; i ++) {
-    if (hStrings[i] != "") {
-      intList[i] = parseInt(hStrings[i], 16);
+    if (hStrings[i] != "" && hStrings[i] != "\u0000") {
+      intList[outIndex] = parseInt(hStrings[i], 16);
+      outIndex ++;
     }
   }
   return intList;
