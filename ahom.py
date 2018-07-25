@@ -21,7 +21,8 @@ import base
 
 
 # Handling Ahom and other language codes for testing font and conversions.
-class langInfo(base.languageTemplate):
+# Should this be inherited from base.languageTemplate?
+class langInfo():
   def __init__(self):
     self.LanguageCode = 'aho'
     self.Language = 'Tai Ahom'

@@ -246,11 +246,13 @@ class AllFontTest(webapp2.RequestHandler):
 
 
 # Handling Cherokee and other language codes for testing font and conversions.
-class langInfo(base.languageTemplate):
+class langInfo():
   def __init__(self):
     self.LanguageCode = 'chr'
     self.Language = 'Cherokee'
     self.Language_native = 'ᏣᎳᎩ'
+    self.unicodeChars = [unichr(x) for x in range(0x13a0, 0x13fd)]
+    self.unicodeChars.extend([unichr(x) for x in range(0xaa70, 0xabbf)])
 
 
 instance = langInfo()
