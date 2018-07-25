@@ -29,7 +29,7 @@ from google.appengine.ext.webapp import template
 # English name, language code, name in the language.
 LanguageList = [
     (u'A\u1e49angu Yol\u014bu', 'en_anangu', 'Aṉangu-Yolngu'),
-    ('Ahom/Tai/Aiton/Phake', 'tai'),
+    ('Ahom/Tai/Aiton/Phake', 'aho'),
     ('Batak Sinalungun', 'bts'),
     ('Chakma', 'ccp'),
     ('Cherokee', 'chr'),
@@ -134,19 +134,34 @@ class DownloadKBText(webapp2.RequestHandler):
     template_values = {
       'infile': infile,
       'outfile': outfile,
-    }    
+    }
     path = os.path.join(os.path.dirname(__file__), 'download/keyboardTemplate.html')
     self.response.out.write(template.render(path, template_values))
 
-app = webapp2.WSGIApplication([
-    ('/', MainHandler),
-    ('/bo/', TibetanHomeHandler),
-    ('/tmh/', TamashekHomeHandler),
-    ('/omq/', OtomangueanHomeHandler),
-    ('/en_anangu/', AnanuguYolnguHomeHandler),
 
-    # ('/downloadsTest/', DownloadKBText),
-    ('/transliterate/', translit.TranslitUIHandler),
-    ('/dotransliterate/', translit.DoTranslitHandler),
+# Error catching
+def handle_404(request, response, exception):
+    logging.exception(exception)
+    response.write('Sorry, but we do not have that page. Please try again.')
+    response.set_status(404)
 
-], debug=True)
+def handle_500(request, response, exception):
+    logging.exception(exception)
+    response.write('A server error occurred!')
+    response.set_status(500)
+
+
+app = webapp2.WSGIApplication(
+    [
+        ('/', MainHandler),
+        ('/bo/', TibetanHomeHandler),
+        ('/tmh/', TamashekHomeHandler),
+        ('/omq/', OtomangueanHomeHandler),
+        ('/en_anangu/', AnanuguYolnguHomeHandler),
+        ('/transliterate/', translit.TranslitUIHandler),
+        ('/dotransliterate/', translit.DoTranslitHandler),
+    ],
+    debug=True)
+
+app.error_handlers[404] = handle_404
+app.error_handlers[500] = handle_500

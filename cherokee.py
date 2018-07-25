@@ -33,6 +33,15 @@ Language = 'Cherokee'
 Language_native = 'ᏣᎳᎩ'
 LanguageTag = 'chr'
 
+# Handling Cherokee and other language codes for testing font and conversions.
+class langInfo():
+  def __init__(self):
+    self.LanguageCode = 'chr'
+    self.Language = 'Cherokee'
+    self.Language_native = 'ᏣᎳᎩ'
+    self.unicodeChars = [unichr(x) for x in range(0x13a0, 0x13fd)]
+    self.unicodeChars.extend([unichr(x) for x in range(0xaa70, 0xabbf)])
+
 encoding_font_list = [
     {
       'font_path':'/fonts/Cherokee/CherokeeOLD.ttf',
@@ -243,16 +252,6 @@ class AllFontTest(webapp2.RequestHandler):
 
     path = os.path.join(os.path.dirname(__file__), 'allFonts.html')
     self.response.out.write(template.render(path, template_values))
-
-
-# Handling Cherokee and other language codes for testing font and conversions.
-class langInfo():
-  def __init__(self):
-    self.LanguageCode = 'chr'
-    self.Language = 'Cherokee'
-    self.Language_native = 'ᏣᎳᎩ'
-    self.unicodeChars = [unichr(x) for x in range(0x13a0, 0x13fd)]
-    self.unicodeChars.extend([unichr(x) for x in range(0xaa70, 0xabbf)])
 
 
 instance = langInfo()

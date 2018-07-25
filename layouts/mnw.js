@@ -10,7 +10,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-// Implements Shan keyboard based on ...
+// Implements Mon keyboard based on ...
 // TODO: Add reference
 
 var MNW_LAYOUT = {

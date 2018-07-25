@@ -10,8 +10,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-// Implements Shan keyboard based on ...
-// TODO: Add reference
+// Implements Shan keyboard based on Keyman Shan implementation.
 
 var SHN2_LAYOUT = {
   'id': 'shn_keyman',
