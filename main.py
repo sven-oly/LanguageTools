@@ -16,10 +16,6 @@
 # limitations under the License.
 #
 
-import burmese
-import chakma
-import cherokee
-
 import translit
 
 import json
@@ -149,8 +145,7 @@ app = webapp2.WSGIApplication([
     ('/omq/', OtomangueanHomeHandler),
     ('/en_anangu/', AnanuguYolnguHomeHandler),
 
-    ('/downloads/', Downloads),
-    ('/downloadsTest/', DownloadKBText),
+    # ('/downloadsTest/', DownloadKBText),
     ('/transliterate/', translit.TranslitUIHandler),
     ('/dotransliterate/', translit.DoTranslitHandler),
 

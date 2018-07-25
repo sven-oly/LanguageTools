@@ -14,7 +14,6 @@
 # limitations under the License.
 #
 
-from main import LanguageList
 import transliterate
 
 import json
@@ -89,7 +88,6 @@ class LanguagesHomeHandler(webapp2.RequestHandler):
     ]
 
     template_values = {
-        #        'langlist': LanguageList,
         'language': langInfo.Language,
         'font_list': langInfo.unicode_font_list,
         'lang_list': langInfo.lang_list,
