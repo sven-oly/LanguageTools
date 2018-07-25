@@ -14,7 +14,8 @@
 # limitations under the License.
 #
 
-#import translit
+import base
+
 import transliterate
 import transrule_ccp
 
@@ -26,6 +27,39 @@ import webapp2
 
 from google.appengine.ext.webapp import template
 
+class langInfo():
+  def __init__(self):
+    self.LanguageCode = 'ccp'
+    self.Language = 'Chakma'
+    self.Language_native = '𑄌𑄋𑄴𑄟𑄳𑄦'
+
+    self.diacritic_list = [unichr(x) for x in range(0x11100, 0x11103)]
+    self.diacritic_list.extend([unichr(x) for x in range(0x11127, 0x11133)])
+    self.diacritic_list.extend([unichr(x) for x in range(0x11134, 0x11135)])
+
+    self.base_consonant = u'\ud804\udd0e'
+
+    self.text_file_list = []
+    self.unicode_font_list = [
+        { 'family': 'RibengUni2018018',
+          'longName': 'RibengUni 2018-06-18',
+          'source': '/fonts/RibengUni-Regular_20180618.ttf',
+        },
+        { 'family': 'NotoSansChakma',
+          'longName': 'NotoSans Chakma',
+          'source': '/fonts/NotoSansChakma-Regular.ttf',
+        },
+        { 'family': 'extendedNotoSansChakma',
+          'longName': 'extended NotoSans Chakma',
+          'source': '/fonts/extendedNotoSansChakma-Regular.ttf',
+        },
+    ]
+
+
+# Global in this file.
+langInstance = langInfo()
+
+LanguageCode = 'ccp'
 Language = 'Chakma'
 Language_native = '𑄌𑄋𑄴𑄟𑄳𑄦'
 
@@ -272,9 +306,9 @@ class ChakmaDownloads(webapp2.RequestHandler):
     def get(self):
 
       template_values = {
-          'language': Language,
-          'language_native': Language_native,
-          'unicode_font_list': unicode_font_list,
+          'language': langInstance.Language,
+          'language_native': langInstance.Language_native,
+          'unicode_font_list': langInstance.unicode_font_list,
       }
       path = os.path.join(os.path.dirname(__file__), 'downloads.html')
       self.response.out.write(template.render(path, template_values))
@@ -327,12 +361,14 @@ class DiacriticHandler(webapp2.RequestHandler):
     self.response.out.write(template.render(path, template_values))
 
 
-app = webapp2.WSGIApplication([
-  ('/demo_ccp/', ChakmaIndigenousHomeHandler),
-  ('/ccp/', ChakmaIndigenousHomeHandler),
-  ('/ccp/convertUI/', ChakmaConvertUIHandler),
-  ('/ccp/downloads/', ChakmaDownloads),
-  ('/ccp/converter/', ChakmaConvertHandler),
-  ('/ccp/encodingRules/', ChakmaEncodingRules),
-  ('/ccp/diacritic/', DiacriticHandler),
-], debug=True)
+app = webapp2.WSGIApplication(
+    [('/demo_ccp/', ChakmaIndigenousHomeHandler),
+     ('/ccp/', ChakmaIndigenousHomeHandler),
+     ('/ccp/convertUI/', ChakmaConvertUIHandler),
+     ('/ccp/downloads/', base.Downloads),
+     ('/ccp/converter/', ChakmaConvertHandler),
+     ('/ccp/encodingRules/', ChakmaEncodingRules),
+     ('/ccp/diacritic/', DiacriticHandler),
+    ], debug=True,
+    config={'langInfo': langInstance}
+)

@@ -157,7 +157,7 @@ class langInfo():
     return
 
 
-ahomInstance = langInfo()
+langInstance = langInfo()
 app = webapp2.WSGIApplication(
     [
         ('/aho/', base.LanguagesHomeHandler),
@@ -170,5 +170,5 @@ app = webapp2.WSGIApplication(
         ('/aho/render/', base.EncodingRules),
     ],
     debug=True,
-    config={'langInfo': ahomInstance}
+    config={'langInfo': langInstance}
 )
