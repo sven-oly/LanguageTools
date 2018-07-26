@@ -31,18 +31,36 @@ Language_native = 'Need native name'
 LanguageCode = 'bts'
 
 encoding_font_list = [
-  {
-    'font_path': '/fonts/NotoSansBatak-Regular.ttf',
-    'font_name': 'NotoSansBatak',
-    'display_name': 'Noto Sans Batak',
-  },
+    # Source: https://ulikozok.com/aksara-batak/batak-font/
+    {
+        'font_path': '/fonts/batak/MANDAILI.TTF',
+        'font_name': 'MANDAILI',
+        'display_name': 'Mandaili',
+    },
+    {
+        'font_path': '/fonts/batak/VARIANTS.TTF',
+        'font_name': 'VARIANTS',
+        'display_name': 'Variants',
+    },
+    {
+        'font_path': '/fonts/batak/TOBA____.TTF',
+        'font_name': 'TOBA',
+        'display_name': 'Toba',
+    },
 ]
 
 unicode_font_list = [
-  {'family': 'NotoSansBatak',
-   'longName': 'Noto Batak Sans',
-   'source': '/fonts/NotoSansBatak-Regular.ttf',
-   },
+    {
+        'family': 'NotoSansBatak',
+        'longName': 'Noto Batak Sans',
+        'source': '/fonts/NotoSansBatak-Regular.ttf',
+    },
+    {
+        # Source: https://ulikozok.com/aksara-batak/batak-font/
+        'family': 'Batak Unicode',
+        'longName': 'Batak Unicode',
+        'source': '/fonts/batak/Batak-Unicode-Regular.otf',
+    }
 ]
 
 kb_list = [
