@@ -64,6 +64,9 @@ handlers:
 - url: /tai/.*
   script: ahom.app
 
+- url: /kb/.*
+  script: keyboard.app
+
 - url: /test/*
   script: test.app
 
