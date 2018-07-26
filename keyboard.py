@@ -50,10 +50,23 @@ class CreateKeyboardHandler(webapp2.RequestHandler):
     crow = ' '
     rows.append(list(crow))
 
+    # The possible keyboard layer codes.
+    layers = [
+      ('', 'default'),
+      ('s', 'shift'),
+      ('c', 'ctrl-alt'),
+      ('sc', 'shift-ctrl-alt'),
+      ('l', 'capslock'),
+      ('ls', 'shift-lock'),
+      ('lc', 'ctrl-alt-lock'),
+      ('lsc', 'shift-ctr-alt-lock')
+    ]
+
     langCode = self.request.get("langCode", "xyz")
     template_values = {
       'charsets': characterSets,
       'langCode': langCode,
+      'layers': layers,
       'rows': rows,
     }
     path = os.path.join(os.path.dirname(__file__), 'create_keyboard.html')
