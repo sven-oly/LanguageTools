@@ -138,7 +138,6 @@ class DownloadKBText(webapp2.RequestHandler):
     path = os.path.join(os.path.dirname(__file__), 'download/keyboardTemplate.html')
     self.response.out.write(template.render(path, template_values))
 
-
 # Error catching
 def handle_404(request, response, exception):
     logging.exception(exception)
