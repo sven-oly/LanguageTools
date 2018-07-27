@@ -236,7 +236,14 @@ function convertEncodingToUnicode(inbox, outbox, encodingIndex) {
   // Move some code points in context to get proper Unicode ordering.
   // Vowel sign to right of consonants:
 
-  // TODO: Reordering?
+  // TODO: Reordering as needed.
+  patternEAF2 = /([\u1BE9\u1BEA\u1BEC])\u1BF2/gi;
+  replaceEAF2 = "\u1BF2$1";
+  newText = newText.replace(patternEAF2, replaceEAF2);
+
+  patternEESwap = /\u1bee\u1be6/gi;
+  replaceEESwap = "\u1be6\u1bee";
+  TODO: newText = newText.replace(patternEESwap, replaceEESwap);
 
   if (outarea) {
     outarea.innerHTML = outarea.value = newText;
