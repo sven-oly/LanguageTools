@@ -241,8 +241,8 @@ function convertEncodingToUnicode(inbox, outbox, encodingIndex) {
   replaceEAF2 = "\u1BF2$1";
   newText = newText.replace(patternEAF2, replaceEAF2);
 
-  patternEESwap = /\u1bee\u1be6/gi;
-  replaceEESwap = "\u1be6\u1bee";
+  patternEESwap = /\u1bee([\u1be6\u1be9])/gi;
+  replaceEESwap = "$1\u1bee";
   TODO: newText = newText.replace(patternEESwap, replaceEESwap);
 
   if (outarea) {
