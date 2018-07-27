@@ -35,7 +35,7 @@ encoding_font_list = [
     {
         'font_path': '/fonts/batak/MANDAILI.TTF',
         'font_name': 'MANDAILI',
-        'display_name': 'Mandaili',
+        'display_name': 'Mandailing',
     },
     {
         'font_path': '/fonts/batak/VARIANTS.TTF',
