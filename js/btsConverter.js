@@ -237,7 +237,7 @@ function convertEncodingToUnicode(inbox, outbox, encodingIndex) {
   // Vowel sign to right of consonants:
 
   // TODO: Reordering as needed.
-  patternEAF2 = /([\u1BE9\u1BEA\u1BEC])\u1BF2/gi;
+  patternEAF2 = /([\u1BE9\u1BEA\u1BEC\u1bee])\u1BF2/gi;
   replaceEAF2 = "\u1BF2$1";
   newText = newText.replace(patternEAF2, replaceEAF2);
 
