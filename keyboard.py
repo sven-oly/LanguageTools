@@ -54,12 +54,12 @@ class CreateKeyboardHandler(webapp2.RequestHandler):
     layers = [
       ('', 'default'),
       ('s', 'shift'),
-      ('c', 'ctrl-alt'),
-      ('sc', 'shift-ctrl-alt'),
-      ('l', 'capslock'),
-      ('ls', 'shift-lock'),
-      ('lc', 'ctrl-alt-lock'),
-      ('lsc', 'shift-ctr-alt-lock')
+      # ('c', 'ctrl_alt'),
+      # ('sc', 'shift_ctrl_alt'),
+      # ('l', 'capslock'),
+      # ('ls', 'shift_lock'),
+      # ('lc', 'ctrl_alt_lock'),
+      # ('lsc', 'shift_ctr_alt_lock')
     ]
 
     langCode = self.request.get("langCode", "xyz")
@@ -71,6 +71,17 @@ class CreateKeyboardHandler(webapp2.RequestHandler):
     }
     path = os.path.join(os.path.dirname(__file__), 'create_keyboard.html')
     self.response.out.write(template.render(path, template_values))
+
+
+# Does something reasonable with newly defined KB.
+class UpdateKeyboardHandler(webapp2.RequestHandler):
+
+  def get(self):
+    # TODO: Finish
+
+    # Get name, kb data, update info, user info(?)
+
+    return
 
 # Error catching
 def handle_404(request, response, exception):
@@ -87,6 +98,8 @@ def handle_500(request, response, exception):
 app = webapp2.WSGIApplication(
     [
         ('/kb/',CreateKeyboardHandler),
+        ('/kb/update/', UpdateKeyboardHandler),
+
     ],
     debug=True)
 

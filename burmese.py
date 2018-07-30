@@ -122,6 +122,12 @@ class IndigenousHomeHandler(webapp2.RequestHandler):
         {'shortName':  'shn',
          'longName': 'Shan'
         },
+        {'shortName': 'mnw',
+         'longName': 'Mon Unicode'
+         },
+        {'shortName': 'mnw_mul',
+         'longName': 'MUL Unicode, Mon/Burmese'
+         },
       ]
       template_values = {
         'language': Language,

@@ -13,19 +13,19 @@
 // Implements Mon keyboard based on:
 // https://storage.googleapis.com/google-code-archive-downloads/v2/code.google.com/mon2uni/Mon%20Unicode%20Keyboard.pdf
 
-var MNW_LAYOUT = {
-  'id': 'mnw',
-  'title': "Mon Unicode",
+var MNW__MUL_LAYOUT = {
+  'id': 'mnw_mul',
+  'title': "MUL Unicode Mono/Burmese - in progress",
   'mappings': {
     '': {
-      '': '\u100b\u1041\u1042\u1043\u1044\u1045\u1046\u1047\u1048\u1049\u1040\u1028\u1025' +
-          '\u101e\u101d\u1031\u101b\u1010\u101a' +
-          '\u102f\u102d\u1001\u1015\u103c\u1013\u1011' +
+      '': '?\u1041\u1042\u1043\u1044\u1045\u1046\u1047\u1048\u1049\u1040\u1028\u1025' +
+          '\u101b\u1010\u1014\u1019\u1021\u1025' +
+          '\u1000\u101e\u1005\u102f\u106c\u1011' +
           '\u1021\u1005\u1012\u1016\u1002\u101f\u103a\u1000\u101c\u100d\u104a' +
           '\u1007\u1006\u105a\u1018\u1017\u1014\u1019\u1036\u102c\u105c'
     },
     's, sc': {
-      '': '\u103f\u100b\u1003\u100c\u100f\u1008\u1029\u105d\u1034()\u1027\u1023' +
+      '': '\u104e\u103f\u1003\u100c\u100f\u1008\u1029\u105d\u1034()\u1027\u1023' +
           '\u1009\u103d{{\u1035\u102f}}\u100a{{\u1039\u1010}}\u1032\u1030\u1033' +
           '{{\u1039\u1001}}{{\u1039\u1015}}\u103b{{\u1039\u1013}}\u100e' +
           '{{\u1039\u1021}}{{\u1039\u1005}}{{\u1039\u1012}}\u1039{{\u1039\u1002}}' +
@@ -55,4 +55,4 @@ var MNW_LAYOUT = {
 };
 
 // Load the layout and inform the keyboard to switch layout if necessary.
-google.elements.keyboard.loadme(MNW_LAYOUT);
+google.elements.keyboard.loadme(MNW__MUL_LAYOUT);

@@ -4,15 +4,15 @@
     <title>Create a virtual keyboard layout</title>
 
 
-  <link rel="stylesheet" href="/css/blueprint/screen.css" type="text/css" media="screen">
-  <link rel="stylesheet" href="/css/blueprint/print.css" type="text/css" media="print">
+    <link rel="stylesheet" href="/css/blueprint/screen.css" type="text/css" media="screen">
+    <link rel="stylesheet" href="/css/blueprint/print.css" type="text/css" media="print">
 
-  <!--[if lt IE 8]>
+    <!--[if lt IE 8]>
     <link rel="stylesheet" href="/css/blueprint/ie.css" type="text/css" media="screen, projection">
-  <![endif]-->
+    <![endif]-->
 
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
     <style>
    {% for font in font_list %}
@@ -29,7 +29,7 @@
     .key { display:inline-block; border:1px solid red; padding:10px;margin-bottom:5px; }
     </style>
 
-  <link rel="stylesheet" type="text/css" href="/css/fonts.css">
+    <link rel="stylesheet" type="text/css" href="/css/fonts.css">
 
     <style>
       .default-font {
@@ -48,9 +48,9 @@
     textarea {font-size:18; height:400px;}
     </style>
 
-  <script src="/js/utils.js"></script>
-  <script src="/js/vk-debug.js"></script>
-  <script>
+    <script src="/js/utils.js"></script>
+    <script src="/js/vk-debug.js"></script>
+    <script>
     var diff_list = [];  // needed for utils.js
 
     var controller, visible = true;
@@ -69,10 +69,13 @@
           function() { visible = false; });
       input.focus();
 
-      setFontFamily(document.getElementById("fontSelector").value);
+      // TODO: Implement?
+      // setFontFamily(document.getElementById("fontSelector").value);
 
       var selector = document.getElementById("setLayout");
-      onLayoutSelected(selector.value);
+      if (selector) {
+        onLayoutSelected(selector.value);
+      }
     }
 
     function onLayoutSelected(layoutCode) {
@@ -140,16 +143,44 @@
         {%endfor%}
     };
 
+  var clickedKey = null;
+  var clickedChar = null;
+
   function layerClick(layer) {
     alert('Layer ' + layer);
    }
 
-  function keyClick(key) {
-    alert('Key ' + key);
+  function keyClick(key, in_buffer) {
+    var keyCell = document.getElementById(key);
+    // alert('Key ' + key);
+    if (clickedChar) {
+      var source = document.getElementById(in_buffer)
+      keyCell.innerHTML = keyCell.value = source.value;
+      clickedKey = keyCell;
+      clearAreas(['in_buffer', 'keycap_buffer']);
+      clickedChar = null;
+    }
   }
 
-  function charClick(c) {
-    alert('Char ' + c);
+  function clearAreas(area_list) {
+    for (var i in area_list) {
+      var obj = document.getElementById(area_list[i]);
+      obj.value = obj.innerHTML = '';
+    }
+  }
+
+  function charClick(c, in_buffer) {
+    // alert('Char ' + c);
+    var in_buf = document.getElementById(in_buffer);
+    if (in_buf) in_buf.value = in_buf.value + c;
+    clickedChar = c;
+  }
+
+  function moveText(srcId, destId) {
+    var src_buf = document.getElementById(srcId);
+    var dest_buf = document.getElementById(destId);
+    dest_buf.value = dest_buf.innerHTML = src_buf.value;
+    clearAreas([srcId]);
   }
 
   // Concepts for setting up a keyboard:
@@ -169,6 +200,56 @@
     this.rules = [];  // patterns and replacement
   }
 
+ function saveDraft() {
+    // Get keyboard language and name.
+    var saveName = prompt("Add new keyboard name:", "default name");
+
+    if (saveName == null) {
+      return;
+    }
+    // TODO: Get the data and make a XHTML call to the backend.
+
+	if (window.XMLHttpRequest) {
+	  // code for IE7+, Firefox, Chrome, Opera, Safari
+	  xmlhttp=new XMLHttpRequest();
+	} else {
+	  // code for IE6, IE5
+	  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+	}
+
+    // Deal with the results
+    xmlhttp.onreadystatechange=function() {
+	  if(xmlhttp.readyState==4) {
+	    // The callback.
+        var returned_json = xmlhttp.responseText
+        // TODO: Handle returned values
+
+        return;
+      }
+	}
+
+	// Set up the call with the data to update/save.
+	json_kbdata = JSON.stringify(KbLayout.kb_layout_info);
+	var target = "/kb/update/?kbid=" + saveName;
+    // Additional parameters + "&type=" + type +
+	// "&noreturn=1";
+	xmlhttp.open("GET", target, true);
+
+	xmlhttp.send(null);
+  }
+
+  // Global kb data object
+  function KbLayout(Object) {
+    this.kb_layout_info = {
+    {% for layer in layers %}
+      {{layer.1}} : {
+      {% for row in rows %}
+ //        {% for c in row %}{{c}}:"{{c}}", {% endfor %}
+      {% endfor %} },
+    {% endfor %}
+    };
+  }
+
 </script>
 
 <body onload="onPageLoaded()">
@@ -180,24 +261,51 @@
             {% endfor %}
         </div>
 
-        <div class="keyboard">
+        <div class="kb_layer">
             {% for row in rows %}
             <div class="keyboardRow">
                 {% for c in row %}
-                <span class="key" id='{{c}}' onclick="keyClick('{{c}}');">{{c}}</span>
+                <span class="key" id='{{c}}' onclick="keyClick('{{c}}', 'in_buffer');">{{c}}</span>
                 {% endfor %}
             </div>
             {% endfor %}
         </div>
 
+        <div>
+            <textarea id="t1"></textarea>
+        </div>
     </div>
 
     <div class="span-8 last">
-        <p>Table of characters</p>
-        {% for c in charsets %}
-        <span onclick="charClick('{{c}}');">{{c}}</span>
-        {% endfor %}
-    </div>
+        <p id='char_table'>Table of characters</p>
+        <div id="character_array">
+            {% for c in charsets %}
+            <span onclick="charClick('{{c}}', 'in_buffer');">{{c}}</span>
+            {% endfor %}
+        </div>
+        <div id='edit_area'>
+            <input type="button" value="Clear"
+                   onclick="clearAreas(['in_buffer', 'keycap_buffer']);">
+            Key content: <input type="text" id='in_buffer'></input>
 
+            <input type="button" value="To keycap"
+                   onclick="moveText('in_buffer', 'keycap_buffer');">
+            Keycap text: <input type="text" id='keycap_buffer'></input>
+            <hr />
+            <input type="button" value="Save keyboard"
+                   onclick="saveDraft();">
+        </div>
+    </div>
+    <div>
+        </select>
+        Size: <select onchange="onSizeSelected(this.value, 'edit_area');" id="sizeSelector">
+        <option value="10px" select>10</option>
+        <option value="14px" >14</option>
+        <option value="18px" selected>18</option>
+        <option value="24px" ">24</option>
+        <option value="32px" >32</option>
+        <option value="48px" >48</option>
+    </select>
+    </div>
 </body>
 </html>
