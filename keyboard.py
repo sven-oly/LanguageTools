@@ -94,6 +94,34 @@ class UpdateKeyboardHandler(webapp2.RequestHandler):
 
   def get(self):
     # TODO: Finish
+    kbid = self.request.get('kbid', 'DEFAULT')
+    json_kbdata = self.request.get('kbLayout', None);
+    logging.info('json_kbdata = %s' % json_kbdata)
+    langCode = self.request.get('langCode', None);
+    json_rules = self.request.get('rules', None);
+
+    # kbdata = json.loads(json_kbdata)
+
+    #logging.info('kbdata = %s' % kbdata)
+
+    qdb = KeyboardDB.all()
+    qdb.filter('kbName =', kbid)
+    results = qdb.run()
+
+    logging.info('results = %s' % results)
+
+    if not results:
+      obj = KeyboardDB(
+        index= 1,
+        kbName = kbid,
+        langCode = langCode,
+        jsonKbData = json_kbdata,
+        jsonRules = json_rules,
+        creatorId = 'who',
+      )
+      # Add to the database
+      obj.put()
+      logging.info('obj = %s' % obj)
 
     # Get name, kb data, update info, user info(?)
 

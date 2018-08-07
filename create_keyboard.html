@@ -232,12 +232,17 @@
 	// Set up the call with the data to update/save.
 	var json_kbdata = JSON.stringify(KbLayout);
 	var target = "/kb/update/?kbid=" + saveName;
+	 target += "&kbLayout=" + json_kbdata;
+	 target += "&langCode=" + languageCode + "&scriptCode=" + scriptCode;
 	xmlhttp.open("GET", target, true);
 
 	xmlhttp.send(null);
   }
 
-  // Global kb data object
+  // Global data:
+  var languageCode = "xyz";
+  var scriptCode = "myam";
+  // kb data object
   var KbLayout = {
     {% for layer in layers %}
       {{layer.1}} : {
