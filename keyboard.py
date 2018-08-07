@@ -26,6 +26,8 @@ import webapp2
 
 from google.appengine.ext.webapp import template
 
+from google.appengine.ext import db
+
 # Functions to create and save keyboard layouts
 class CreateKeyboardHandler(webapp2.RequestHandler):
   def get(self):
@@ -39,13 +41,13 @@ class CreateKeyboardHandler(webapp2.RequestHandler):
       characterSets.extend(cset)
 
     rows = []
-    crow = '`1234567890-='
+    crow = u'`1234567890-='
     rows.append(list(crow))
-    crow = 'qwertyuiop[]\\'
+    crow = u'qwertyuiop[]¡'  # Temporary stand in for backslash
     rows.append(list(crow))
-    crow = 'asdfghjkl;\''
+    crow = u'asdfghjkl;\''
     rows.append(list(crow))
-    crow = 'zxcvbnm,./'
+    crow = u'zxcvbnm,./'
     rows.append(list(crow))
     crow = ' '
     rows.append(list(crow))
@@ -54,8 +56,8 @@ class CreateKeyboardHandler(webapp2.RequestHandler):
     layers = [
       ('', 'default'),
       ('s', 'shift'),
-      # ('c', 'ctrl_alt'),
-      # ('sc', 'shift_ctrl_alt'),
+      ('c', 'ctrl_alt'),
+      ('sc', 'shift_ctrl_alt'),
       # ('l', 'capslock'),
       # ('ls', 'shift_lock'),
       # ('lc', 'ctrl_alt_lock'),
@@ -71,6 +73,20 @@ class CreateKeyboardHandler(webapp2.RequestHandler):
     }
     path = os.path.join(os.path.dirname(__file__), 'create_keyboard.html')
     self.response.out.write(template.render(path, template_values))
+
+class KeyboardDB(db.Model):
+  index = db.IntegerProperty()
+  kbName = db.StringProperty(u'')
+  langCode = db.StringProperty(u'')
+  lastUpdate = db.DateTimeProperty(auto_now=True, auto_now_add=True)
+  jsonKbData = db.Text(u'')
+  jsonRules = db.Text(u'')
+  creatorId = db.StringProperty(u'')
+
+class SaveKbData(webapp2.RequestHandler):
+  def get(self):
+    # TODO: Finish saving
+    return
 
 
 # Does something reasonable with newly defined KB.

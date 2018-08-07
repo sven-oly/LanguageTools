@@ -157,6 +157,7 @@
       var source = document.getElementById(in_buffer)
       keyCell.innerHTML = keyCell.value = source.value;
       clickedKey = keyCell;
+      KbLayout[currentLayer][key] = keyCell.value;
       clearAreas(['in_buffer', 'keycap_buffer']);
       clickedChar = null;
     }
@@ -229,27 +230,51 @@
 	}
 
 	// Set up the call with the data to update/save.
-	json_kbdata = JSON.stringify(KbLayout.kb_layout_info);
+	var json_kbdata = JSON.stringify(KbLayout);
 	var target = "/kb/update/?kbid=" + saveName;
-    // Additional parameters + "&type=" + type +
-	// "&noreturn=1";
 	xmlhttp.open("GET", target, true);
 
 	xmlhttp.send(null);
   }
 
   // Global kb data object
-  function KbLayout(Object) {
-    this.kb_layout_info = {
+  var KbLayout = {
     {% for layer in layers %}
       {{layer.1}} : {
       {% for row in rows %}
- //        {% for c in row %}{{c}}:"{{c}}", {% endfor %}
+        {% for c in row %}"{{c}}":"{{c}}", {% endfor %}
       {% endfor %} },
     {% endfor %}
-    };
+  };
+
+
+  var currentLayer = "default";
+
+  // Function to controll output from virtual KB
+  function keyDown(area) {
+    var out = document.getElementById(area);
+    var e = event;  // Global?
+    //e.preventDefault();
   }
 
+  // Function to controll output from virtual KB
+  function keyPress(area) {
+    var out = document.getElementById(area);
+    var e = event;  // Global?
+    var key = e.key;
+    var newVal = KbLayout[currentLayer][key];
+    if (newVal !== undefined) {
+     out.value += newVal;
+      e.preventDefault();
+    }
+  }
+
+  // Function to controll output from virtual KB
+  function keyUp(area) {
+    var out = document.getElementById(area);
+    var e = event;  // Global?
+    //e.preventDefault();
+  }
 </script>
 
 <body onload="onPageLoaded()">
@@ -272,7 +297,8 @@
         </div>
 
         <div>
-            <textarea id="t1"></textarea>
+            <textarea id="t1" onkeydown="keyDown('t1');" onkeypress="keyPress('t1');"
+            onkeyup="keyUp('t1');"></textarea>
         </div>
     </div>
 
@@ -302,10 +328,11 @@
         <option value="10px" select>10</option>
         <option value="14px" >14</option>
         <option value="18px" selected>18</option>
-        <option value="24px" ">24</option>
+        <option value="24px" >24</option>
         <option value="32px" >32</option>
         <option value="48px" >48</option>
     </select>
     </div>
+</div>
 </body>
 </html>
