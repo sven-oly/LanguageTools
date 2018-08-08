@@ -83,6 +83,30 @@ class KeyboardDB(db.Model):
   jsonRules = db.Text(u'')
   creatorId = db.StringProperty(u'')
 
+class SetUpKeyboardHandler(webapp2.RequestHandler):
+  def get(self):
+    # Get all defined keyboards
+    qdb = KeyboardDB.all()
+
+    results = qdb.run()
+    entries = [r for r in results]
+    names = [e.kbName for e in entries]
+    logging.info('results = %s' % names)
+
+    for e in entries:
+      logging.info('Entry: %s %s' % (e.kbName, e.langCode))
+      logging.info('  data: %s' % e.jsonKbData)
+      logging.info('  update: %s' % e.lastUpdate)
+
+    template_values = {
+      'kboards': entries,
+    }
+
+    path = os.path.join(os.path.dirname(__file__), 'setup_keyboard.html')
+    self.response.out.write(template.render(path, template_values))
+    return
+
+
 class SaveKbData(webapp2.RequestHandler):
   def get(self):
     # TODO: Finish saving
@@ -95,12 +119,14 @@ class UpdateKeyboardHandler(webapp2.RequestHandler):
   def get(self):
     # TODO: Finish
     kbid = self.request.get('kbid', 'DEFAULT')
-    json_kbdata = self.request.get('kbLayout', None);
-    logging.info('json_kbdata = %s' % json_kbdata)
+    layoutInfo = self.request.get('kbLayout', None);
+    logging.info('layoutInfo = %s' % layoutInfo)
     langCode = self.request.get('langCode', None);
     json_rules = self.request.get('rules', None);
 
-    # kbdata = json.loads(json_kbdata)
+    logging.info('langCode = %s' % langCode)
+
+    #kbdata = json.loads(layoutInfo)
 
     #logging.info('kbdata = %s' % kbdata)
 
@@ -108,22 +134,31 @@ class UpdateKeyboardHandler(webapp2.RequestHandler):
     qdb.filter('kbName =', kbid)
     results = qdb.run()
 
-    logging.info('results = %s' % results)
+    all_current = [r for r in results]
+    logging.info('results = %s' % all_current)
 
-    if not results:
+    saved = 'KB %s already entered' % kbid
+    if not all_current:
       obj = KeyboardDB(
         index= 1,
         kbName = kbid,
         langCode = langCode,
-        jsonKbData = json_kbdata,
+        jsonKbData = layoutInfo,
         jsonRules = json_rules,
         creatorId = 'who',
       )
       # Add to the database
       obj.put()
       logging.info('obj = %s' % obj)
+      logging.info('SAVED. data = %s' % obj.jsonKbData)
+      saved = 'New KB %s saved' % kbid
+
+    returnObj = {
+      'saved': saved,
+    }
 
     # Get name, kb data, update info, user info(?)
+    self.response.out.write(json.dumps(returnObj))
 
     return
 
@@ -141,7 +176,8 @@ def handle_500(request, response, exception):
 
 app = webapp2.WSGIApplication(
     [
-        ('/kb/',CreateKeyboardHandler),
+        ('/kb/setup/', SetUpKeyboardHandler),
+        ('/kb/', CreateKeyboardHandler),
         ('/kb/update/', UpdateKeyboardHandler),
 
     ],

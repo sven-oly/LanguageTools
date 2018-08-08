@@ -1,7 +1,7 @@
-<!DOCTYPE html>
+                              <!DOCTYPE html>
 <!-- saved from url=(0052)https://x20web.corp.google.com/~shuchen/vk/demo.html -->
 <html><head>
-    <title>Create a virtual keyboard layout</title>
+    <title>Setup for a virtual keyboard layout</title>
 
 
     <link rel="stylesheet" href="/css/blueprint/screen.css" type="text/css" media="screen">
@@ -232,15 +232,15 @@
 	// Set up the call with the data to update/save.
 	var json_kbdata = JSON.stringify(KbLayout);
 	var target = "/kb/update/?kbid=" + saveName;
-	target += "&langCode=" + languageCode + "&scriptCode=" + scriptCode;
-	target += "&kbLayout=" + KbLayout;
+	 target += "&kbLayout=" + json_kbdata;
+	 target += "&langCode=" + languageCode + "&scriptCode=" + scriptCode;
 	xmlhttp.open("GET", target, true);
 
 	xmlhttp.send(null);
   }
 
   // Global data:
-  var languageCode = "my";
+  var languageCode = "xyz";
   var scriptCode = "myam";
   // kb data object
   var KbLayout = {
@@ -286,17 +286,15 @@
 <div class="container">
     <div class="span-16">
         <h2>Prototype keyboard tool</h2>
-        <div id="layers">{% for layer in layers%}
-            <span onclick="layerClick('{{layer.0}}');">{{layer.1}}</span>
-            {% endfor %}
-        </div>
 
-        <div class="kb_layer">
-            {% for row in rows %}
-            <div class="keyboardRow">
-                {% for c in row %}
-                <span class="key" id='{{c}}' onclick="keyClick('{{c}}', 'in_buffer');">{{c}}</span>
-                {% endfor %}
+
+        <div class="keyboards">
+            Keyboards:
+            {% for kb in kboards %}
+            <div class="">
+                <p>{{kb.kbName}}</p>
+                <p>{{kb.langCode}}</p>
+                <p>{{kb.jsonKbData}}</p>
             </div>
             {% endfor %}
         </div>
@@ -307,26 +305,6 @@
         </div>
     </div>
 
-    <div class="span-8 last">
-        <p id='char_table'>Table of characters</p>
-        <div id="character_array">
-            {% for c in charsets %}
-            <span onclick="charClick('{{c}}', 'in_buffer');">{{c}}</span>
-            {% endfor %}
-        </div>
-        <div id='edit_area'>
-            <input type="button" value="Clear"
-                   onclick="clearAreas(['in_buffer', 'keycap_buffer']);">
-            Key content: <input type="text" id='in_buffer'></input>
-
-            <input type="button" value="To keycap"
-                   onclick="moveText('in_buffer', 'keycap_buffer');">
-            Keycap text: <input type="text" id='keycap_buffer'></input>
-            <hr />
-            <input type="button" value="Save keyboard"
-                   onclick="saveDraft();">
-        </div>
-    </div>
     <div>
         </select>
         Size: <select onchange="onSizeSelected(this.value, 'edit_area');" id="sizeSelector">
