@@ -47,10 +47,44 @@ var SHN2_LAYOUT = {
     }
   },
   'transform' : {
-    // Reorder vowel E after consonant
-    '\u200c([\u1031\u1084])([\u1000-\u102a\u103f\u104e])': '$2$1',
+    // NEW 13-Aug-2018.
+    // Reorder e-vowel + medial ra after consonant.
+    '\u200c([\u1031\u1084])\u103c': '\u200c\u103c$1',
+    '\u200c\u103c([\u1031\u1084])\u001d?([\u1000-\u102a\u103f\u104e])': '$2\u103c$1',
 
-    // TODO: reorder others, including 103c
+    // Reorder medial ra after consonant.
+    '\u103c([\u1000-\u102a\u103f\u104e])': '$1\u103c',
+
+    // Reorder vowel E after consonant
+    '\u200c\u1031([\u1000-\u102a\u103f\u104e])': '$1\u1031',
+
+    // Keep E after medials
+    '([\u103c-\u103e]*([\u1031\u1084]))\u001d\u103b': '\u103b$1$2',
+    '([\u103b]*)([\u103d-\u103e]*)\u1031\u001d\u103c': '$1\u103c$2\u1031',
+    '([\u103b\u103c]*)([\u103e]*)\u1031\u001d\u103d': '$1\u103d$2\u1031',
+    '([\u103b-\u103d]*)\u1031\u001d\u103e': '$1\u103e\u1031',
+
+    // Reorder medials without E vowel
+    '([\u103c-\u103e]+)\u001d?\u103b': '\u103b$1',
+    '([\u103b]*)([\u103d-\u103e]+)\u001d?\u103c': '$1\u103c$2',
+    '([\u103b\u103c]*)([\u103e]+)\u001d?\u103d': '$1\u103d$2',
+
+    // Move E after kinzi in steps.
+    '\u1004\u1031\u001d\u103a': '\u1004\u103a\u1031',
+    '\u1004\u103a\u1031\u001d\u1039': '\u1004\u103a\u1039\u1031',
+    '\u1004\u103a\u1039\u1031\u001d([\u1000-\u102a\u103f\u104e])':
+    '\u1004\u103a\u1039$1\u1031',
+
+    // Move E after subscripted consonant in two steps.
+    '([\u1000-\u102a\u103f\u104e])\u1031\u001d\u1039': '$1\u1039\u1031',
+    '\u1039\u1031\u001d([\u1000-\u1019\u101c\u101e\u1020\u1021])' :
+    '\u1039$1\u1031',
+
+    // Move vowel anusvara relative to vowel signs
+    '\u1036([\u102d|\u102e\u1030|\u102f|\u1030])': '$1\u1036',
+
+    // Move vowel anusvara relative to medials signs
+    '\u1036([\u103b|\u103c\u103d|\u103e])': '$1\u1036'
   }
 };
 
