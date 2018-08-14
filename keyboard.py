@@ -20,6 +20,7 @@ import translit
 
 import json
 import logging
+import re
 import os
 import urllib
 import webapp2
@@ -28,17 +29,36 @@ from google.appengine.ext.webapp import template
 
 from google.appengine.ext import db
 
+# https://codereview.stackexchange.com/questions/101497/
+#   parsing-a-list-of-single-numbers-and-number-ranges
+# Change to hex.
+def expand_ranges(s):
+  # b = re.sub()
+  return re.sub(
+    r'(0?x?[0-9a-fA-F]+)-(0?x?[0-9a-fA-F]+)',
+    lambda match: ','.join(
+      str(i) for i in range(
+        int(match.group(1),16),
+        int(match.group(2),16) + 1
+      )
+    ),
+    s
+  )
+
 # Functions to create and save keyboard layouts
 class CreateKeyboardHandler(webapp2.RequestHandler):
   def get(self):
 
-    # Character codes to place
-    cranges = [(0x1000, 0x109f), (0xAA60, 0xAA7f), (0xA9E0, 0xA9fe)]
-    characterSets = []
-    for rng in cranges:
-      print('Range = %s to %s' % (rng[0], rng[1]+1))
-      cset = [unichr(c) for c in xrange(rng[0], rng[1]+1)]
-      characterSets.extend(cset)
+    coderanges = self.request.get('coderanges', None)
+
+    if coderanges:
+      cranges = expand_ranges(coderanges)
+      logging.info("&&& %s" % cranges)
+    else:
+      # Character codes to place
+      cranges = expand_ranges('0x1000- 0x109f, 0xAA60-0xAA7f), 0xA9E0-0xA9fe')
+
+    characterSets = [unichr(int(c)) for c in cranges.split(',')]
 
     rows = []
     crow = u'`1234567890-='
@@ -56,15 +76,15 @@ class CreateKeyboardHandler(webapp2.RequestHandler):
     layers = [
       ('', 'default'),
       ('s', 'shift'),
-      ('c', 'ctrl_alt'),
-      ('sc', 'shift_ctrl_alt'),
+      #('c', 'ctrl_alt'),
+      #('sc', 'shift_ctrl_alt'),
       # ('l', 'capslock'),
       # ('ls', 'shift_lock'),
       # ('lc', 'ctrl_alt_lock'),
       # ('lsc', 'shift_ctr_alt_lock')
     ]
 
-    langCode = self.request.get("langCode", "xyz")
+    langCode = self.request.get("langcode", "xyz")
     template_values = {
       'charsets': characterSets,
       'langCode': langCode,
@@ -79,7 +99,8 @@ class KeyboardDB(db.Model):
   kbName = db.StringProperty(u'')
   langCode = db.StringProperty(u'')
   lastUpdate = db.DateTimeProperty(auto_now=True, auto_now_add=True)
-  jsonKbData = db.Text(u'')
+  jsonKbData = db.Text(u'DEFAULT')
+  kbdata = db.Text(u'intialized')
   jsonRules = db.Text(u'')
   creatorId = db.StringProperty(u'')
 
@@ -95,7 +116,7 @@ class SetUpKeyboardHandler(webapp2.RequestHandler):
 
     for e in entries:
       logging.info('Entry: %s %s' % (e.kbName, e.langCode))
-      logging.info('  data: %s' % e.jsonKbData)
+      logging.info('  data: >%s<' % e.jsonKbData)
       logging.info('  update: %s' % e.lastUpdate)
 
     template_values = {
@@ -126,7 +147,7 @@ class UpdateKeyboardHandler(webapp2.RequestHandler):
 
     logging.info('langCode = %s' % langCode)
 
-    #kbdata = json.loads(layoutInfo)
+    #kbdata = urllib.unquote(layoutInfo)
 
     #logging.info('kbdata = %s' % kbdata)
 
@@ -137,19 +158,25 @@ class UpdateKeyboardHandler(webapp2.RequestHandler):
     all_current = [r for r in results]
     logging.info('results = %s' % all_current)
 
+    layoutStr = unicode(layoutInfo)
+    logging.info('str(layoutInfo)= %s' % layoutStr)
+
     saved = 'KB %s already entered' % kbid
     if not all_current:
       obj = KeyboardDB(
         index= 1,
         kbName = kbid,
         langCode = langCode,
-        jsonKbData = layoutInfo,
+        jsonKbData = layoutStr,
         jsonRules = json_rules,
         creatorId = 'who',
+        kbdata = layoutStr,
       )
       # Add to the database
       obj.put()
       logging.info('obj = %s' % obj)
+      logging.info('obj.langCode = %s' % obj.langCode)
+
       logging.info('SAVED. data = %s' % obj.jsonKbData)
       saved = 'New KB %s saved' % kbid
 
@@ -161,6 +188,25 @@ class UpdateKeyboardHandler(webapp2.RequestHandler):
     self.response.out.write(json.dumps(returnObj))
 
     return
+
+class ClearDBHandler(webapp2.RequestHandler):
+  def get(self):
+    query = KeyboardDB.all(keys_only=True)
+    entries = query.fetch(1000)
+    db.delete(entries)
+    self.response.write('All %s items from keyboard database were removed.' % len(entries))
+
+class ShowDBHandler(webapp2.RequestHandler):
+  def get(self):
+    query = KeyboardDB.all()
+    entries = query.fetch(1000)
+    self.response.write('All %s items from keyboard database.' % len(entries))
+    for entry in entries:
+      self.response.write('\n  Items %s.' % entry.kbName)
+      self.response.write('      %s.' % entry.langCode)
+      self.response.write('      %s.' % entry.jsonKbData)
+      self.response.write('      %s.' % entry.kbdata)
+
 
 # Error catching
 def handle_404(request, response, exception):
@@ -179,6 +225,8 @@ app = webapp2.WSGIApplication(
         ('/kb/setup/', SetUpKeyboardHandler),
         ('/kb/', CreateKeyboardHandler),
         ('/kb/update/', UpdateKeyboardHandler),
+        ('/kb/cleardb/', ClearDBHandler),
+        ('/kb/showdb/', ShowDBHandler),
 
     ],
     debug=True)

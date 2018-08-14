@@ -289,16 +289,21 @@
 
 
         <div class="keyboards">
-            Keyboards:
+            <h3>Keyboards:</h3>
             {% for kb in kboards %}
             <div class="">
-                <p>{{kb.kbName}}</p>
-                <p>{{kb.langCode}}</p>
-                <p>{{kb.jsonKbData}}</p>
+                <p>{{kb.kbName}}, {{kb.langCode}} {{kb.jsonKbData}}</p>
             </div>
             {% endfor %}
         </div>
-
+        <h3>Define input parameters</h3>
+        <p>Hex code ranges, e.g, 0x40-1ab</p>
+        <form action="/kb/">
+        Character ranges (hex):
+        <input type="text" name="coderanges"></input>
+        Language code: <input type="text" name="langcode"></input>
+              <input type="submit" value="Submit">
+        </form>
         <div>
             <textarea id="t1" onkeydown="keyDown('t1');" onkeypress="keyPress('t1');"
             onkeyup="keyUp('t1');"></textarea>

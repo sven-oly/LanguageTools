@@ -27,6 +27,8 @@
      /* https://stackoverflow.com/questions/21909994/css-keyboard-layout */
     .keyboardRow { text-align:center }
     .key { display:inline-block; border:1px solid red; padding:10px;margin-bottom:5px; }
+
+    .bigtext {font-size:20px;}
     </style>
 
     <link rel="stylesheet" type="text/css" href="/css/fonts.css">
@@ -157,7 +159,7 @@
       var source = document.getElementById(in_buffer)
       keyCell.innerHTML = keyCell.value = source.value;
       clickedKey = keyCell;
-      KbLayout[currentLayer][key] = keyCell.value;
+      KbLayout[currentLayer][key]['code'] = keyCell.value;
       clearAreas(['in_buffer', 'keycap_buffer']);
       clickedChar = null;
     }
@@ -230,24 +232,24 @@
 	}
 
 	// Set up the call with the data to update/save.
-	var json_kbdata = JSON.stringify(KbLayout);
+	var json_kbdata = encodeURIComponent(JSON.stringify(KbLayout));
 	var target = "/kb/update/?kbid=" + saveName;
-	target += "&langCode=" + languageCode + "&scriptCode=" + scriptCode;
-	target += "&kbLayout=" + KbLayout;
+	var langcode = document.getElementById("LanguageCode").value;
+	target += "&langCode=" + langcode + "&scriptCode=" + scriptCode;
+	target += "&kbLayout=" + json_kbdata;
 	xmlhttp.open("GET", target, true);
 
 	xmlhttp.send(null);
   }
 
   // Global data:
-  var languageCode = "my";
   var scriptCode = "myam";
   // kb data object
   var KbLayout = {
     {% for layer in layers %}
       {{layer.1}} : {
       {% for row in rows %}
-        {% for c in row %}"{{c}}":"{{c}}", {% endfor %}
+        {% for c in row %}"{{c}}": { "codes": "{{c}}", }, {% endfor %}
       {% endfor %} },
     {% endfor %}
   };
@@ -267,7 +269,7 @@
     var out = document.getElementById(area);
     var e = event;  // Global?
     var key = e.key;
-    var newVal = KbLayout[currentLayer][key];
+    var newVal = KbLayout[currentLayer][key]['code'];
     if (newVal !== undefined) {
      out.value += newVal;
       e.preventDefault();
@@ -306,12 +308,13 @@
             onkeyup="keyUp('t1');"></textarea>
         </div>
     </div>
-
     <div class="span-8 last">
-        <p id='char_table'>Table of characters</p>
+        Language Code: <input id="LanguageCode" type="text" value="{{langCode}}" />
+        <br />
+        <h3 id='char_table'>Table of characters:</h3>
         <div id="character_array">
             {% for c in charsets %}
-            <span onclick="charClick('{{c}}', 'in_buffer');">{{c}}</span>
+            <span class='bigtext' onclick="charClick('{{c}}', 'in_buffer');">{{c}}</span>
             {% endfor %}
         </div>
         <div id='edit_area'>
