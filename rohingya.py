@@ -16,8 +16,8 @@
 
 import base
 
-import transliterate
-import transrule_ccp
+# import transliterate
+# import transrule_ccp
 
 import json
 import logging
@@ -31,7 +31,7 @@ class langInfo():
   def __init__(self):
     self.LanguageCode = 'rhg'
     self.Language = 'Rohingya'
-    self.Language_native = '𑄌𑄋𑄴𑄟𑄳𑄦'
+    self.Language_native = '𐴀𐴁𐴂𐴃'
 
     self.diacritic_list = [unichr(x) for x in range(0x10D22, 0x10D27)]
 
@@ -53,6 +53,7 @@ LanguageCode = 'rhg'
 Language = 'Rohingya'
 Language_native = ''
 
+# https://fontlibrary.org/en/font/rohingya-gonya-leyka-noories
 encoding_font_list = [
     {
       'font_path':'/fonts/Rohingya Gonya Leyka Noories.ttf',
@@ -64,11 +65,6 @@ encoding_font_list = [
       'font_name':'RohingyaKunaLeyka',
       'display_name': 'Kuna Leyka Noories',
     },
-    {
-      'display_name': 'Alaam',
-      'font_name': 'Alaam',
-      'font_path': '/fonts/Alaam.ttf',
-   },
 ]
 
 unicode_font_list = [
@@ -104,23 +100,22 @@ links = [
 ]
 
 
-diacritic_list = [unichr(x) for x in range(0x11100, 0x11103)]
-diacritic_list.extend([unichr(x) for x in range(0x11127, 0x11133)])
-diacritic_list.extend([unichr(x) for x in range(0x11134, 0x11135)])
+diacritic_list = [unichr(x) for x in range(0x10D22, 0x10D27)]
 
-base_consonant = u'\ud804\udd0e'
+
+base_consonant = u'\u10D01'
 
 # Shows keyboard
-class ChakmaIndigenousHomeHandler(webapp2.RequestHandler):
+class IndigenousHomeHandler(webapp2.RequestHandler):
     def get(self):
 
       kb_list = [
-        {'shortName':  'ccp',
-         'longName': 'Chakma Unicode'
+        {'shortName':  LanguageCode,
+         'longName': 'Hanific Rohigya Unicode'
         }
       ]
       template_values = {
-        'language': 'Chakma',
+        'language': Language,
         'font_list': unicode_font_list,
         'lang_list': None,
         'kb_list': kb_list,
@@ -143,39 +138,6 @@ class ChakmaConvertUIHandler(webapp2.RequestHandler):
       testStringList = [
           {'name': 'Test 1', # Note: must escape the single quote.
            'string': u'CVMmH picMCinM\\u0027 blobo vlikM velonM Fag 1409 b`l slitM'},
-          {'name': 'Test 2',
-           'string': 'Fag hIoayZ$` trar FitalayZ valde'},
-          {'name': 'Test 3',
-           'string': 'cVMmH alGy bodolnyM : gZnisnMti vnMat \\\\ kqR'},
-          {'name': 'Test ordering',
-           'string': 'Ti\`Z goI toIbc cniZ\` \u005c VyuI'},
-          {'name': '7-June-2017',
-           'string': 'jureH acI lG KcMc`ZVo pde'},
-          {'name': 'long test',
-           'string':
-"""suneanI diZboan tirtVire koI FudelkM : nebo veal nebo, jamI nebo$ as ajar tr deboan apkM rGad vlikM brM trrM asI apkM Dbne  gEtMo agal-Fo asI ni adKZ mnucMo FilirM$ trM kini ri-si anI$\
-bucZ t JeborM ribo sunelo$ at tirtVire kili"""
-          },
-          {'name': 'Sujoyan test a-d',
-           'string': u'¡ ¢ £ ¥ § © ª ¬ ® ° ± ´ µ ¶ · º ¿ À Ã Ä Å Ç É Ñ Õ Ö Ø Ü ß'},
-          {'name': 'Sujoyan test e-f',
-           'string': u'\u00e0 á â ã ä å æ ç è é ê ë ì í î ï ð ñ ò ó ô õ ö ÷ ø ù ú û ü ý þ ÿ'},
-          {'name': 'Sujoyan test other',
-           'string': u'\u0152 \u0153 \u0178 \u0192 \u2013 \u2014 \u2018 \u2019 \u201a \u201c \u201d' +
-            u'\u201e \u2020 \u2021 \u2022 \u2030 \u2039 \u203a \u2044 \u20ac \u2122 \u2126 \u2202 \u220f' +
-            u'\u2044 \u221a \u221e \u222b \u2248 \u2260 \u2264 \u2265'},
-          {'name': 'Alaam test1',
-           'string':
-           u'g„y Ag Nvivi; †eMv PwMIb; †f…eI| gvZ;Zzb; Agvbvi;'
-           + u'fPmwNwei; AvgvKv`v ac; ‡Ajv| ‡mbvZ;‡Z¨ g„y gv g@'
-           + u'Agvbvi; fP; Mv‡g `‡j„ mwNw j©qIO;| gy„ PO;gk †jN'
-           + u'A¸yi; Mviw Aviv Av‡i„ g‡`„ civO; A@ †jNw'
-           + u'civO;| mvg‡i g„y Aë‡iRx A@ esj K‰© civO;| g„y PO;gk'
-           + u'AmwKw A@ PO;gk AwpybwKIZ; d«vb;U; e‡bqIO;| mvg‡i g„y'
-           + u'PO;gk KweIZ;AI e‡bqIO;| g„y bv ms gv g@ fP; Av‡jnv‡b'
-           + u'‡AK;`wb; Awqb;'
-           + u'nSwRIK;|'
-          },
       ]
 
       oldInput = 'CVMmH picMCinM\' blobo vlikM velonM Fag 1409 b`l slitM'
@@ -185,17 +147,17 @@ bucZ t JeborM ribo sunelo$ at tirtVire kili"""
       unicodeChars += '\ud804\udd05'
       unicodeChars += '\ud804\udd06'
 
-      unicodeCombiningChars = chakmaCombiningCombos(u'\ud804\udd07')
+      unicodeCombiningChars = CombiningCombos(u'\ud803\udd01', diacritic_list)
       kb_list = [
-        {'shortName':  'ccp',
-         'longName': 'Chakma'
+        {'shortName':  LanguageCode,
+         'longName': Language
         }
       ]
 
       template_values = {
           'font': font,
-          'language': 'Chakma',
-          'langTag': 'ccp',
+          'language': Language,
+          'langTag': LanguageCode,
           'encodingList': encoding_font_list,
           'encoding': {
               'font_path':'/fonts/ArjCN__.TTF',
@@ -216,7 +178,7 @@ bucZ t JeborM ribo sunelo$ at tirtVire kili"""
       self.response.out.write(template.render(path, template_values))
 
 # AJAX handler for Chakma converter
-class ChakmaConvertHandler(webapp2.RequestHandler):
+class ConvertHandler(webapp2.RequestHandler):
     def get(self):
       # TODO: Get the text values
       # Call transliterator
@@ -235,8 +197,8 @@ class ChakmaConvertHandler(webapp2.RequestHandler):
         'outText' : outText,
         'message' : message,
         'error': error,
-        'language': 'Chakma',
-        'langTag': 'ccp',
+        'language': Language,
+        'langTag': LanguageCode,
         'showTools': self.request.get('tools', None),
         'summary' : transCcp.getSummary(),
       }
@@ -253,7 +215,7 @@ class EncodingRules(webapp2.RequestHandler):
       ]
       template_values = {
         'converterJS': "/js/rhgConverter.js",
-        'language': 'Chakma',
+        'language': Language,
         'encoding_list': encoding_font_list,
         'unicode_list': unicode_font_list,
         'kb_list': kb_list,
@@ -266,13 +228,13 @@ class ChakmaRenderPage(webapp2.RequestHandler):
     def get(self):
 
       kb_list = [
-        {'shortName':  'ccp',
-         'longName': 'Chakma Unicode'
+        {'shortName':  LanguageCode,
+         'longName': Language + ' Unicode'
         }
       ]
       template_values = {
-        'converterJS': "/js/ccpConverter.js",
-        'language': 'Chakma',
+        'converterJS': "/js/rhgConverter.js",
+        'language': Language,
         'encoding_list': encoding_font_list,
         'unicode_list': unicode_font_list,
         'kb_list': kb_list,
@@ -282,7 +244,7 @@ class ChakmaRenderPage(webapp2.RequestHandler):
       self.response.out.write(template.render(path, template_values))
 
 
-class ChakmaDownloads(webapp2.RequestHandler):
+class Downloads(webapp2.RequestHandler):
     def get(self):
 
       template_values = {
@@ -296,15 +258,8 @@ class ChakmaDownloads(webapp2.RequestHandler):
 
 # Create a string with combinations of the combining characters,
 # following the given base character.
-def chakmaCombiningCombos(baseHexChar):
+def CombiningCombos(baseHexChar, combiners):
 
-  combiners = [u'\ud804\udd00', u'\ud804\udd01', u'\ud804\udd02',
-               u'\ud804\udd27', u'\ud804\udd28', u'\ud804\udd29',
-               u'\ud804\udd2a',
-               u'\ud804\udd2b', u'\ud804\udd2c', u'\ud804\udd2d',
-               u'\ud804\udd2e', u'\ud804\udd2f',
-               u'\ud804\udd30', u'\ud804\udd31', u'\ud804\udd32',
-               u'\ud804\udd33', u'\ud804\udd34']
   testString = u''
   for c0 in combiners:
     for c1 in combiners:
@@ -342,11 +297,10 @@ class DiacriticHandler(webapp2.RequestHandler):
 
 
 app = webapp2.WSGIApplication(
-    [('/demo_ccp/', ChakmaIndigenousHomeHandler),
-     ('/rhg/', ChakmaIndigenousHomeHandler),
-     ('/rhg/convertUI/', ChakmaConvertUIHandler),
+    [('/rhg/', IndigenousHomeHandler),
+     ('/rhg/convertUI/', ConvertUIHandler),
      ('/rhg/downloads/', base.Downloads),
-     ('/rhg/converter/', ChakmaConvertHandler),
+     ('/rhg/converter/', ConvertHandler),
      ('/rhg/encodingRules/', EncodingRules),
      ('/rhg/diacritic/', DiacriticHandler),
     ], debug=True,
