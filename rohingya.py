@@ -61,7 +61,7 @@ encoding_font_list = [
       'display_name': 'Gonya Leyka Noories',
     },
     {
-      'font_path':'/fonts/Rohingya Kuna Leyka Noories.tt',
+      'font_path':'/fonts/Rohingya Kuna Leyka Noories.ttf',
       'font_name':'RohingyaKunaLeyka',
       'display_name': 'Kuna Leyka Noories',
     },
@@ -125,7 +125,7 @@ class IndigenousHomeHandler(webapp2.RequestHandler):
       self.response.out.write(template.render(path, template_values))
 
 # Presents UI for conversions from font encoding to Unicode.
-class ChakmaConvertUIHandler(webapp2.RequestHandler):
+class ConvertUIHandler(webapp2.RequestHandler):
     def get(self):
 
       # All old characters
@@ -177,7 +177,7 @@ class ChakmaConvertUIHandler(webapp2.RequestHandler):
       path = os.path.join(os.path.dirname(__file__), 'translit_general.html')
       self.response.out.write(template.render(path, template_values))
 
-# AJAX handler for Chakma converter
+# AJAX handler for the converter
 class ConvertHandler(webapp2.RequestHandler):
     def get(self):
       # TODO: Get the text values
@@ -224,7 +224,7 @@ class EncodingRules(webapp2.RequestHandler):
       path = os.path.join(os.path.dirname(__file__), 'fontsView.html')
       self.response.out.write(template.render(path, template_values))
 
-class ChakmaRenderPage(webapp2.RequestHandler):
+class RenderPage(webapp2.RequestHandler):
     def get(self):
 
       kb_list = [
