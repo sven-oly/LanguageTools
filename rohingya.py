@@ -52,6 +52,7 @@ kb_list = [
     {'shortName':  LanguageCode,
      'longName': 'Hanific Rohigya Unicode',
      'jsName': 'rhg',
+     'instructions': None,
     }
 ]
 
@@ -113,6 +114,7 @@ class langInfo():
     self.base_consonant = u'\u10D01'
     self.baseHexUTF16 = u'\ud803\udd01'
 
+    self.lang_list = 'rhg'
     self.encoding_font_list = encoding_font_list
     self.kb_list = kb_list
     self.links = links
@@ -147,68 +149,8 @@ class IndigenousHomeHandler(webapp2.RequestHandler):
       self.response.out.write(template.render(path, template_values))
 
 
-# AJAX handler for the converter
-class ConvertHandler(webapp2.RequestHandler):
-    def get(self):
-      # TODO: Get the text values
-      # Call transliterator
-      # Return JSON structure with values.
-
-      transCcp = transliterate.Transliterate(
-        transrule_ccp.TRANS_LIT_RULES,
-        transrule_ccp.DESCRIPTION
-      )
-
-      outText = '\u11103\u11101\u11103'
-      message = 'TBD'
-      error = ''
-
-      result = {
-        'outText' : outText,
-        'message' : message,
-        'error': error,
-        'language': Language,
-        'langTag': LanguageCode,
-        'showTools': self.request.get('tools', None),
-        'summary' : transCcp.getSummary(),
-      }
-      self.response.out.write(json.dumps(result))
-
-
-class EncodingRules(webapp2.RequestHandler):
-    def get(self):
-
-      kb_list = [
-        {'shortName':  'rhc',
-         'longName': 'Rohingya Unicode'
-        }
-      ]
-      template_values = {
-        'converterJS': "/js/rhgConverter.js",
-        'language': Language,
-        'encoding_list': encoding_font_list,
-        'unicode_list': unicode_font_list,
-        'kb_list': kb_list,
-        'links': links,
-      }
-      path = os.path.join(os.path.dirname(__file__), 'fontsView.html')
-      self.response.out.write(template.render(path, template_values))
-
-
-# Create a string with combinations of the combining characters,
-# following the given base character.
-def CombiningCombos(baseHexChar, combiners):
-
-  testString = u''
-  for c0 in combiners:
-    for c1 in combiners:
-      testString += baseHexChar + c0 + c1 + ' '
-    testString += '\u000a'
-  return testString
-
-
 app = webapp2.WSGIApplication(
-    [('/rhg/', IndigenousHomeHandler),
+    [('/rhg/', base.LanguagesHomeHandler),
      ('/rhg/convertUI/', base.ConvertUIHandler),
      ('/rhg/downloads/', base.Downloads),
      ('/rhg/converter/', base.ConvertHandler),
