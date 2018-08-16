@@ -1276,7 +1276,7 @@ NameList: AGL For New Fonts
 DisplaySize: -72
 AntiAlias: 1
 FitToEm: 0
-WinInfo: 144 8 10
+WinInfo: 152 8 10
 BeginChars: 65540 530
 
 StartChar: .notdef
@@ -18439,7 +18439,7 @@ EndChar
 StartChar: ain
 Encoding: 1593 68891 184
 Width: 826
-Flags: WO
+Flags: W
 LayerCount: 2
 Fore
 SplineSet
@@ -18787,7 +18787,7 @@ Substitution2: "'fina' Terminal Forms in Arabic lookup 3 subtable" hehfinal
 EndChar
 
 StartChar: waw
-Encoding: 1608 1608 194
+Encoding: 1608 68886 194
 Width: 1027
 Flags: W
 LayerCount: 2
@@ -18818,12 +18818,12 @@ SplineSet
  836 1157 836 1157 774 1057 c 1,26,27
 EndSplineSet
 Validated: 41
-Substitution2: "'fina' Terminal Forms in Arabic lookup 3 subtable" wawfinal
 Substitution2: "'isol' Isolated Forms in Arabic lookup 0 subtable" wa
+Substitution2: "'fina' Terminal Forms in Arabic lookup 3 subtable" wawfinal
 EndChar
 
 StartChar: alefmaksura
-Encoding: 1609 1609 195
+Encoding: 1609 68889 195
 Width: 803
 Flags: W
 LayerCount: 2
@@ -18844,12 +18844,12 @@ SplineSet
  560 -40 560 -40 576 -268 c 1,16,17
 EndSplineSet
 Validated: 41
-Substitution2: "'fina' Terminal Forms in Arabic lookup 3 subtable" alefmaksura.fina
 Substitution2: "'isol' Isolated Forms in Arabic lookup 0 subtable" alefmaksuraisolated
+Substitution2: "'fina' Terminal Forms in Arabic lookup 3 subtable" alefmaksura.fina
 EndChar
 
 StartChar: yeh
-Encoding: 1610 1610 196
+Encoding: 1610 68888 196
 Width: 798
 Flags: W
 LayerCount: 2
@@ -18875,14 +18875,14 @@ SplineSet
  565 1341 565 1341 645 1194 c 1,21,22
 EndSplineSet
 Validated: 41
-Substitution2: "'fina' Terminal Forms in Arabic lookup 3 subtable" yehfinal
-Substitution2: "'medi' Medial Forms in Arabic lookup 2 subtable" yehmedial
-Substitution2: "'init' Initial Forms in Arabic lookup 1 subtable" yehinitial
 Substitution2: "'isol' Isolated Forms in Arabic lookup 0 subtable" yehisolated
+Substitution2: "'init' Initial Forms in Arabic lookup 1 subtable" yehinitial
+Substitution2: "'medi' Medial Forms in Arabic lookup 2 subtable" yehmedial
+Substitution2: "'fina' Terminal Forms in Arabic lookup 3 subtable" yehfinal
 EndChar
 
 StartChar: fathatan
-Encoding: 1611 1611 197
+Encoding: 1611 68899 197
 Width: 408
 Flags: W
 LayerCount: 2
@@ -18902,7 +18902,7 @@ Substitution2: "Single Substitution lookup 7 subtable" fathatanisolated
 EndChar
 
 StartChar: dammatan
-Encoding: 1612 1612 198
+Encoding: 1612 68898 198
 Width: 651
 Flags: W
 LayerCount: 2
@@ -18922,12 +18922,12 @@ SplineSet
  568 620 568 620 510 526 c 1,5,-1
 EndSplineSet
 Validated: 41
-Substitution2: "Single Substitution lookup 8 subtable" dammatanlow
 Substitution2: "Single Substitution lookup 7 subtable" dammatanisolated
+Substitution2: "Single Substitution lookup 8 subtable" dammatanlow
 EndChar
 
 StartChar: kasratan
-Encoding: 1613 1613 199
+Encoding: 1613 68900 199
 Width: 330
 Flags: W
 LayerCount: 2
@@ -18956,12 +18956,12 @@ SplineSet
  308 1962 308 1962 341 1958 c 1,0,1
 EndSplineSet
 Validated: 1
-Substitution2: "Single Substitution lookup 11 subtable" kasratanlow
 Substitution2: "Single Substitution lookup 10 subtable" kasratanisolated
+Substitution2: "Single Substitution lookup 11 subtable" kasratanlow
 EndChar
 
 StartChar: fatha
-Encoding: 1614 1614 200
+Encoding: 1614 68901 200
 Width: 915
 Flags: W
 LayerCount: 2
@@ -18977,14 +18977,14 @@ SplineSet
  895 2080 l 1,0,-1
 EndSplineSet
 Validated: 41
-Substitution2: "Single Substitution lookup 8 subtable" fathalow
 Substitution2: "Single Substitution lookup 7 subtable" fathaisolated
+Substitution2: "Single Substitution lookup 8 subtable" fathalow
 EndChar
 
 StartChar: damma
 Encoding: 1615 1615 201
 Width: 951
-Flags: W
+Flags: WO
 LayerCount: 2
 Fore
 SplineSet
@@ -19095,7 +19095,7 @@ Substitution2: "Single Substitution lookup 7 subtable" sukunisolated
 EndChar
 
 StartChar: arabicindicdigitzero
-Encoding: 1632 1632 205
+Encoding: 1632 68912 205
 Width: 994
 Flags: W
 LayerCount: 2
@@ -19120,7 +19120,7 @@ Validated: 41
 EndChar
 
 StartChar: arabicindicdigitone
-Encoding: 1633 1633 206
+Encoding: 1633 68913 206
 Width: 499
 Flags: W
 LayerCount: 2
@@ -19136,7 +19136,7 @@ Validated: 41
 EndChar
 
 StartChar: arabicindicdigittwo
-Encoding: 1634 1634 207
+Encoding: 1634 68914 207
 Width: 1024
 Flags: W
 LayerCount: 2
@@ -19158,7 +19158,7 @@ Validated: 41
 EndChar
 
 StartChar: arabicindicdigitthree
-Encoding: 1635 1635 208
+Encoding: 1635 68915 208
 Width: 1429
 Flags: W
 LayerCount: 2
@@ -19185,7 +19185,7 @@ Validated: 41
 EndChar
 
 StartChar: arabicindicdigitfour
-Encoding: 1636 1636 209
+Encoding: 1636 68916 209
 Width: 1384
 Flags: W
 LayerCount: 2
@@ -19218,7 +19218,7 @@ Validated: 41
 EndChar
 
 StartChar: arabicindicdigitfive
-Encoding: 1637 1637 210
+Encoding: 1637 68917 210
 Width: 1478
 Flags: W
 LayerCount: 2
@@ -19254,7 +19254,7 @@ Validated: 41
 EndChar
 
 StartChar: arabicindicdigitsix
-Encoding: 1638 1638 211
+Encoding: 1638 68918 211
 Width: 1328
 Flags: W
 LayerCount: 2
@@ -19281,7 +19281,7 @@ Validated: 41
 EndChar
 
 StartChar: arabicindicdigitseven
-Encoding: 1639 1639 212
+Encoding: 1639 68919 212
 Width: 1307
 Flags: W
 LayerCount: 2
@@ -19306,7 +19306,7 @@ Validated: 41
 EndChar
 
 StartChar: arabicindicdigiteight
-Encoding: 1640 1640 213
+Encoding: 1640 68920 213
 Width: 1296
 Flags: W
 LayerCount: 2
@@ -19337,7 +19337,7 @@ Validated: 41
 EndChar
 
 StartChar: arabicindicdigitnine
-Encoding: 1641 1641 214
+Encoding: 1641 68921 214
 Width: 1204
 Flags: W
 LayerCount: 2
