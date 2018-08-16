@@ -5,22 +5,22 @@ var map_encoding_names = [
   'Kuna Leyka', 'Gonya Leyka'];
 
 var private_use_map_combined = {
-  '\u0621': ['\ud804\udd1d', '\u0000'],  // null
-  '\u0622': ['\ud804\udd00', '\u0009'],  // horizontal tab
-  '\u0623': ['\ud804\udd00', '\u0009'],  // horizontal tab
-  '\u000D': ['\u000D', '\u0000'],  // Carriage return
-  '\u0020': [' ', ' ', ' '],  // Space
-  '\u0023': ['\uD803\uDD42', '\u003b', '\uD803\uDD33\uD803\uDD05'],  // #
-  '\u0024': ['\uD803\uDD41', ' ', '\uD803\uDD14'],  // $
-  '\u0025': ['\u0025', '\u0025', '\ud803\udd33\ud803\udd22\ud803\udd2a'],  // %
-  '\u0026': ['\uD803\uDD00', '\u0026'],  // &
-  '\u0027': ['\u0027', '\u0027', '\u0027'],  // '
-  '\u002a': ['\uD803\uDD33\uD803\uDD23', '\u0000',
-	     '\uD803\uDD33\uD803\uDD05'],  // *
-  '\u0030': ['\uD803\uDD36', '\uD803\uDD36', '\uD803\uDD36'],  // 0
-  '\u0031': ['\uD803\uDD37', '\uD803\uDD37', '\uD803\uDD37'],  // 1
-  '\u0032': ['\uD803\uDD38', '\uD803\uDD38', '\uD803\uDD38'],  // 2
-  '\u0033': ['\uD803\uDD39', '\uD803\uDD39', '\uD803\uDD39'],  // 3
+  '\u0621': ['\ud803\udd1d', '\u0000'],  // null
+  '\u0622': ['\ud803\udd00', '\u0009'],  // horizontal tab
+  '\u0623': ['\ud803\udd00', '\u0009'],  // horizontal tab
+  '\u0624': ['\ud803\udd1d', '\u0000'],  // Carriage return
+  '\u0625': ['\ud803\udd00', ' ', ' '],  // Space
+  '\u0626': ['\ud803\udd21', '\u003b', '\uD803\uDD33\uD803\uDD05'],  // #
+  '\u0627': ['\ud803\udd00', ' ', '\uD803\uDD14'],  // $
+  '\u0628': ['\ud803\udd01', '\u0025', '\ud803\udd33\ud803\udd22\ud803\udd2a'],  // %
+  '\u0629': ['\ud803\udd17', '\u0026'],  // &
+  '\u062a': ['\ud803\udd03', '\u0027', '\u0027'],  // '
+  '\u062b': ['\ud803\udd02', '\u0000', '\uD803\uDD33\uD803\uDD05'],  // *
+  '\u062c': ['\ud803\udd05', '\uD803\uDD36', '\uD803\uDD36'],  // 0
+  '\u062d': ['\ud803\udd06', '\uD803\uDD37', '\uD803\uDD37'],  // 1
+  '\u062e': ['\ud803\udd08', '\uD803\uDD38', '\uD803\uDD38'],  // 2
+  '\u062f': ['\ud803\udd0a', '\uD803\uDD39', '\uD803\uDD39'],  // 3
+  // TO BE CONTINUED
   '\u0034': ['\uD803\uDD3a', '\uD803\uDD3a', '\uD803\uDD3a'],  // 4
   '\u0035': ['\uD803\uDD3b', '\uD803\uDD3b', '\uD803\uDD3b'],  // 5
   '\u0036': ['\uD803\uDD3c', '\uD803\uDD3c', '\uD803\uDD3c'],  // 6

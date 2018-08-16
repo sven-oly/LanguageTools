@@ -350,7 +350,7 @@
            onclick="fillWithUnicodeText('Unicode_font_output_text',
                     'new_hex');"
            value="Unicode chars" />
-    Select font: <select onchange="onFontSelected(this, 'Unicode_font_output_text');" id="selectFont">
+       Select font: <select onchange="onFontSelected(this, 'Unicode_font_output_text');" id="selectFont">
       {% for font in unicodeFonts %}
       <option value="{{font.family}}">{{font.longName}}</option>
       {% endfor %}

@@ -91,7 +91,7 @@ class LanguagesHomeHandler(webapp2.RequestHandler):
         'language': langInfo.Language,
         'font_list': langInfo.unicode_font_list,
         'lang_list': langInfo.lang_list,
-        'kb_list': langInfo.lang_list,
+        'kb_list': langInfo.kb_list,
         'links': langInfo.links,
     }
     path = os.path.join(os.path.dirname(__file__), 'demo_general.html')
@@ -128,6 +128,8 @@ class ConvertHandler(webapp2.RequestHandler):
     }
     self.response.out.write(json.dumps(result))
 
+def surrogate_to_utf32(high, low):
+    return (high << 10) + low - 0x35fdc00
 
 class DiacriticHandler(webapp2.RequestHandler):
   def get(self):
@@ -136,8 +138,14 @@ class DiacriticHandler(webapp2.RequestHandler):
     # Generate combinations of base + diacritic pairs
     combos = []
     table = []
+    row_names = []
     for x in langInfo.diacritic_list:
-      row = [x + ' (%4x)' %ord(x)]
+      if len(x) > 1:
+        utf32 = surrogate_to_utf32(ord(x[0]), ord(x[1]))
+        row = ['%s (0x%x)' % (x, utf32)]
+      else:
+        row = [x + ' (%4x)' % ord(x)]
+      row_names.append(row[0])
       for y in langInfo.diacritic_list:
         text = langInfo.base_consonant + x + y
         combos.append({'text': text,
@@ -150,7 +158,7 @@ class DiacriticHandler(webapp2.RequestHandler):
         'base_char': langInfo.base_consonant.encode('utf-8'),
         'base_hex': ['%4x' % ord(x) for x in langInfo.base_consonant],
         'diacritics': [x for x in langInfo.diacritic_list],
-        'diacritics_hex': ['%4x ' % ord(y) for y in langInfo.diacritic_list],
+        'diacritics_hex': row_names,  #['%4x ' % ord(y) for y in langInfo.diacritic_list],
         'combinations': combos,
         'table': table,
         'unicode_font_list': langInfo.unicode_font_list,
@@ -167,6 +175,14 @@ class ConvertUIHandler(webapp2.RequestHandler):
     langInfo = self.app.config.get('langInfo')
 
     # All old characters
+    try:
+      oldInput = langInfo.test_chars[0]
+      test_char_list = langInfo.test_chars
+    except AttributeError:
+      oldInput = u''
+      for i in xrange(0x23, 0xf1):
+        oldInput += unichr(i)
+
     oldChars = (u'\u0001 !"\u0023\u0024%&\'()*+,-./' +
                 '0123456789:;<=>?@' +
                 'ABCDEFGHIJKLMNOPQRSTUVWXYZ[ \\ ]^_`' +
@@ -179,10 +195,6 @@ class ConvertUIHandler(webapp2.RequestHandler):
          '\u000a\u000b'},
     ]
 
-    oldInput = u''
-    for i in xrange(0x23, 0xf1):
-      oldInput += unichr(i)
-
     unicodeChars = '\ud804\udd00'
     unicodeChars += '\ud804\udd03'
     unicodeChars += '\ud804\udd04'
@@ -191,6 +203,8 @@ class ConvertUIHandler(webapp2.RequestHandler):
 
     unicodeCombiningChars = getCombiningCombos(
         langInfo.baseHexUTF16, langInfo.diacritic_list)
+
+    logging.info('kb_list: %s' % langInfo.kb_list)
 
     template_values = {
         'font': font,
@@ -267,7 +281,7 @@ class RenderPage(webapp2.RequestHandler):
       }
     ]
     template_values = {
-      'converterJS': "/js/' + LanguageCode + 'Converter.js",
+      'converterJS': "/js/' + langInfo.LanguageCode + 'Converter.js",
       'language': langInfo.Language,
       'encoding_list': langInfo.encoding_font_list,
       'unicode_list': langInfo.unicode_font_list,

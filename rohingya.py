@@ -28,11 +28,6 @@ import webapp2
 
 from google.appengine.ext.webapp import template
 
-
-LanguageCode = 'rhg'
-Language = 'Rohingya'
-Language_native = ''
-
 encoding_font_list = [
     {
       'font_path':'/fonts/Rohingya Kuna Leyka Noories.ttf',
@@ -48,19 +43,11 @@ encoding_font_list = [
     },
 ]
 
-kb_list = [
-    {'shortName':  LanguageCode,
-     'longName': 'Hanific Rohigya Unicode',
-     'jsName': 'rhg',
-     'instructions': None,
-    }
-]
-
 unicode_font_list = [
   {
       'family': 'KunaLeykaNooriesUnicode',
-      'long_name': 'Unicode hack',
-      'source': '/fonts/Rohingya Kuna Leyka Noories_Unicode.ttf',
+      'longName': 'Unicode hack',
+      'source': '/fonts/RohingyaKunaLeykaNoories_Unicode.ttf',
   },
 ]
 
@@ -88,66 +75,45 @@ links = [
      },
 ]
 
-
-if sys.maxunicode > 0x1000:
-  logging.info('WIDE SYSTEM BUILD!!!')
-  diacritic_list = [unichr(x) for x in range(0x10D22, 0x10D27)]
-else:
-  logging.info('NARRO SYSTEM BUILD!!!')
-  diacritic_list = [unichr(0xd803) + unichr(0xdd + x) for x in range(0x22, 0x27)]
-
-
-base_consonant = u'\u10D01'
-
-
 class langInfo():
   def __init__(self):
     self.LanguageCode = 'rhg'
     self.Language = 'Rohingya'
     self.Language_native = '𐴀𐴁𐴂𐴃'
 
-    if sys.maxunicode > 0x1000:
+    if sys.maxunicode >= 0x10000:
+      logging.info('WIDE SYSTEM BUILD!!!')
       self.diacritic_list = [unichr(x) for x in range(0x10D22, 0x10D27)]
     else:
-      self.diacritic_list = [unichr(0xd803) + unichr(0xdd + x) for x in range(0x22, 0x27)]
+      logging.info('NARROW SYSTEM BUILD!!!')
+      self.diacritic_list = [unichr(0xd803) + unichr(0xdd00 + x) for x in range(0x22, 0x27)]
 
     self.base_consonant = u'\u10D01'
     self.baseHexUTF16 = u'\ud803\udd01'
 
-    self.lang_list = 'rhg'
+    self.lang_list = [
+      { 'shortName': self.LanguageCode,
+        'longName': self.Language,
+        }
+    ]
     self.encoding_font_list = encoding_font_list
-    self.kb_list = kb_list
+    self.kb_list = [
+      {
+        'shortName': self.LanguageCode,
+        'longName': 'Hanific Rohigya Unicode',
+        'jsName': self.LanguageCode,
+        'instructions': None,
+      }
+    ]
     self.links = links
     self.text_file_list = []
-    self.unicode_font_list = [
-        { 'family': 'None',
-          'longName': 'None',
-          'source': '/fonts/None',
-        },
-    ]
+    self.unicode_font_list = unicode_font_list
+
+    # Lists of test characters for the various encodings
+    self.test_chars = [' '.join([unichr(x) for x in range(0x620, 0x6f9)])]
 
 # Global in this file.
 langInstance = langInfo()
-
-# Shows keyboard
-class IndigenousHomeHandler(webapp2.RequestHandler):
-    def get(self):
-
-      kb_list = [
-        {'shortName':  LanguageCode,
-         'longName': 'Hanific Rohigya Unicode'
-        }
-      ]
-      template_values = {
-        'language': Language,
-        'font_list': unicode_font_list,
-        'lang_list': None,
-        'kb_list': kb_list,
-        'links': links,
-      }
-      path = os.path.join(os.path.dirname(__file__), 'demo_general.html')
-      self.response.out.write(template.render(path, template_values))
-
 
 app = webapp2.WSGIApplication(
     [('/rhg/', base.LanguagesHomeHandler),

@@ -22,46 +22,11 @@ import transrule_ccp
 import json
 import logging
 import os
+import sys
 import urllib
 import webapp2
 
 from google.appengine.ext.webapp import template
-
-class langInfo():
-  def __init__(self):
-    self.LanguageCode = 'ccp'
-    self.Language = 'Chakma'
-    self.Language_native = '𑄌𑄋𑄴𑄟𑄳𑄦'
-
-    self.diacritic_list = [unichr(x) for x in range(0x11100, 0x11103)]
-    self.diacritic_list.extend([unichr(x) for x in range(0x11127, 0x11133)])
-    self.diacritic_list.extend([unichr(x) for x in range(0x11134, 0x11135)])
-
-    self.base_consonant = u'\ud804\udd0e'
-
-    self.text_file_list = []
-    self.unicode_font_list = [
-        { 'family': 'RibengUni2018018',
-          'longName': 'RibengUni 2018-06-18',
-          'source': '/fonts/RibengUni-Regular_20180618.ttf',
-        },
-        { 'family': 'NotoSansChakma',
-          'longName': 'NotoSans Chakma',
-          'source': '/fonts/NotoSansChakma-Regular.ttf',
-        },
-        { 'family': 'extendedNotoSansChakma',
-          'longName': 'extended NotoSans Chakma',
-          'source': '/fonts/extendedNotoSansChakma-Regular.ttf',
-        },
-    ]
-
-
-# Global in this file.
-langInstance = langInfo()
-
-LanguageCode = 'ccp'
-Language = 'Chakma'
-Language_native = '𑄌𑄋𑄴𑄟𑄳𑄦'
 
 encoding_font_list = [
     {
@@ -81,8 +46,17 @@ encoding_font_list = [
    },
 ]
 
-unicode_font_list = [
+kb_list = [
+  {'shortName': 'ccp',
+   'longName': 'Chakma Unicode'
+   }
+]
 
+LanguageCode = 'ccp'
+Language = 'Chakma'
+Language_native = '𑄌𑄋𑄴𑄟𑄳𑄦'
+
+unicode_font_list = [
   { 'family': 'RibengUni2018018',
     'longName': 'RibengUni 2018-06-18',
     'source': '/fonts/RibengUni-Regular_20180618.ttf',
@@ -123,22 +97,50 @@ links = [
      },
 ]
 
-
-diacritic_list = [unichr(x) for x in range(0x11100, 0x11103)]
-diacritic_list.extend([unichr(x) for x in range(0x11127, 0x11133)])
-diacritic_list.extend([unichr(x) for x in range(0x11134, 0x11135)])
-
 base_consonant = u'\ud804\udd0e'
+
+class langInfo():
+  def __init__(self):
+    self.LanguageCode = 'ccp'
+    self.Language = 'Chakma'
+    self.Language_native = '𑄌𑄋𑄴𑄟𑄳𑄦'
+
+    if sys.maxunicode >= 0x10000:
+      logging.info('WIDE SYSTEM BUILD!!!')
+      self.diacritic_list = [unichr(x) for x in range(0x11100, 0x11103)]
+      self.diacritic_list.extend([unichr(x) for x in range(0x11127, 0x11133)])
+      self.diacritic_list.extend([unichr(x) for x in range(0x11134, 0x11135)])
+    else:
+      logging.info('NARROW SYSTEM BUILD!!!')
+      self.diacritic_list = [unichr(0xd804) + unichr(0xdd00 + x) for x in range(0x00, 0x04)]
+      self.diacritic_list.extend(unichr(0xd804) + unichr(0xdd00 + x) for x in range(0x27, 0x33))
+      self.diacritic_list.extend(unichr(0xd804) + unichr(0xdd00 + x) for x in range(0x34, 0x35))
+
+    self.encoding_font_list = encoding_font_list
+    self.base_consonant = u'\ud804\udd0e'
+
+    self.kb_list = kb_list
+    self.links = links
+
+    self.text_file_list = []
+    self.unicode_font_list = [
+        { 'family': 'RibengUni2018018',
+          'longName': 'RibengUni 2018-06-18',
+          'source': '/fonts/RibengUni-Regular_20180618.ttf',
+        },
+        { 'family': 'NotoSansChakma',
+          'longName': 'NotoSans Chakma',
+          'source': '/fonts/NotoSansChakma-Regular.ttf',
+        },
+        { 'family': 'extendedNotoSansChakma',
+          'longName': 'extended NotoSans Chakma',
+          'source': '/fonts/extendedNotoSansChakma-Regular.ttf',
+        },
+    ]
 
 # Shows keyboard for Chakma
 class ChakmaIndigenousHomeHandler(webapp2.RequestHandler):
     def get(self):
-
-      kb_list = [
-        {'shortName':  'ccp',
-         'longName': 'Chakma Unicode'
-        }
-      ]
       template_values = {
         'language': 'Chakma',
         'font_list': unicode_font_list,
@@ -333,33 +335,8 @@ def chakmaCombiningCombos(baseHexChar):
   return testString
 
 
-class DiacriticHandler(webapp2.RequestHandler):
-  def get(self):
-    # Generate combinations of base + diacritic pairs
-    combos = []
-    table = []
-    for x in diacritic_list:
-      row = [x + ' (%4x)' %ord(x)]
-      for y in diacritic_list:
-        text = base_consonant + x + y
-        combos.append({'text': text,
-                       'codes': ['%4x ' % ord(c) for c in text]})
-        row.append(text)
-      table.append(row)
-
-    template_values = {
-        'language': Language,
-        'base_char': base_consonant.encode('utf-8'),
-        'base_hex': ['%4x' % ord(x) for x in base_consonant],
-        'diacritics': [x for x in diacritic_list],
-        'diacritics_hex': ['%4x ' % ord(y) for y in diacritic_list],
-        'combinations': combos,
-        'table': table,
-        'unicode_font_list': unicode_font_list,
-    }
-    path = os.path.join(os.path.dirname(__file__), 'diacritics.html')
-    self.response.out.write(template.render(path, template_values))
-
+# Global in this file.
+langInstance = langInfo()
 
 app = webapp2.WSGIApplication(
     [('/demo_ccp/', ChakmaIndigenousHomeHandler),
@@ -367,8 +344,8 @@ app = webapp2.WSGIApplication(
      ('/ccp/convertUI/', ChakmaConvertUIHandler),
      ('/ccp/downloads/', base.Downloads),
      ('/ccp/converter/', ChakmaConvertHandler),
-     ('/ccp/encodingRules/', ChakmaEncodingRules),
-     ('/ccp/diacritic/', DiacriticHandler),
+     ('/ccp/encodingRules/', base.EncodingRules),
+     ('/ccp/diacritic/', base.DiacriticHandler),
     ], debug=True,
     config={'langInfo': langInstance}
 )
