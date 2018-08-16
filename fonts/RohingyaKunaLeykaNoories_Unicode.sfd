@@ -1276,7 +1276,7 @@ NameList: AGL For New Fonts
 DisplaySize: -72
 AntiAlias: 1
 FitToEm: 0
-WinInfo: 80 8 17
+WinInfo: 144 8 10
 BeginChars: 65540 530
 
 StartChar: .notdef
@@ -17873,10 +17873,10 @@ SplineSet
  246 1287 246 1287 292 1201 c 1,1,-1
 EndSplineSet
 Validated: 41
-Substitution2: "'isol' Isolated Forms in Arabic lookup 0 subtable" B
-Substitution2: "'init' Initial Forms in Arabic lookup 1 subtable" behinitial
-Substitution2: "'medi' Medial Forms in Arabic lookup 2 subtable" behmedial
 Substitution2: "'fina' Terminal Forms in Arabic lookup 3 subtable" behfinal
+Substitution2: "'medi' Medial Forms in Arabic lookup 2 subtable" behmedial
+Substitution2: "'init' Initial Forms in Arabic lookup 1 subtable" behinitial
+Substitution2: "'isol' Isolated Forms in Arabic lookup 0 subtable" B
 EndChar
 
 StartChar: tehmarbuta
@@ -17905,8 +17905,8 @@ SplineSet
  400 1320 400 1320 288 1189 c 1,19,20
 EndSplineSet
 Validated: 41
-Substitution2: "'isol' Isolated Forms in Arabic lookup 0 subtable" kinna ya
 Substitution2: "'fina' Terminal Forms in Arabic lookup 3 subtable" tehmarbutafinal
+Substitution2: "'isol' Isolated Forms in Arabic lookup 0 subtable" kinna ya
 EndChar
 
 StartChar: teh
@@ -17932,14 +17932,14 @@ SplineSet
  194 833 l 1,0,1
 EndSplineSet
 Validated: 41
-Substitution2: "'isol' Isolated Forms in Arabic lookup 0 subtable" T
-Substitution2: "'init' Initial Forms in Arabic lookup 1 subtable" tehinitial
-Substitution2: "'medi' Medial Forms in Arabic lookup 2 subtable" tehmedial
 Substitution2: "'fina' Terminal Forms in Arabic lookup 3 subtable" tehfinal
+Substitution2: "'medi' Medial Forms in Arabic lookup 2 subtable" tehmedial
+Substitution2: "'init' Initial Forms in Arabic lookup 1 subtable" tehinitial
+Substitution2: "'isol' Isolated Forms in Arabic lookup 0 subtable" T
 EndChar
 
 StartChar: theh
-Encoding: 1579 1579 170
+Encoding: 1579 68866 170
 Width: 1003
 Flags: W
 LayerCount: 2
@@ -17979,7 +17979,7 @@ Substitution2: "'isol' Isolated Forms in Arabic lookup 0 subtable" PA
 EndChar
 
 StartChar: jeem
-Encoding: 1580 1580 171
+Encoding: 1580 68869 171
 Width: 1248
 Flags: W
 LayerCount: 2
@@ -18027,7 +18027,7 @@ Substitution2: "'isol' Isolated Forms in Arabic lookup 0 subtable" JA
 EndChar
 
 StartChar: hah
-Encoding: 1581 1581 172
+Encoding: 1581 68870 172
 Width: 1138
 Flags: W
 LayerCount: 2
@@ -18051,14 +18051,14 @@ SplineSet
  945 302 945 302 868 186 c 1,16,17
 EndSplineSet
 Validated: 41
-Substitution2: "'fina' Terminal Forms in Arabic lookup 3 subtable" hahfinal
-Substitution2: "'medi' Medial Forms in Arabic lookup 2 subtable" hahmedial
-Substitution2: "'init' Initial Forms in Arabic lookup 1 subtable" hahinitial
 Substitution2: "'isol' Isolated Forms in Arabic lookup 0 subtable" CHA
+Substitution2: "'init' Initial Forms in Arabic lookup 1 subtable" hahinitial
+Substitution2: "'medi' Medial Forms in Arabic lookup 2 subtable" hahmedial
+Substitution2: "'fina' Terminal Forms in Arabic lookup 3 subtable" hahfinal
 EndChar
 
 StartChar: khah
-Encoding: 1582 1582 173
+Encoding: 1582 68872 173
 Width: 1050
 Flags: W
 LayerCount: 2
@@ -18077,14 +18077,14 @@ SplineSet
  190 858 l 1,0,1
 EndSplineSet
 Validated: 41
-Substitution2: "'fina' Terminal Forms in Arabic lookup 3 subtable" khahfinal
-Substitution2: "'medi' Medial Forms in Arabic lookup 2 subtable" khahmedial
-Substitution2: "'init' Initial Forms in Arabic lookup 1 subtable" khahinitial
 Substitution2: "'isol' Isolated Forms in Arabic lookup 0 subtable" KHA
+Substitution2: "'init' Initial Forms in Arabic lookup 1 subtable" khahinitial
+Substitution2: "'medi' Medial Forms in Arabic lookup 2 subtable" khahmedial
+Substitution2: "'fina' Terminal Forms in Arabic lookup 3 subtable" khahfinal
 EndChar
 
 StartChar: dal
-Encoding: 1583 1583 174
+Encoding: 1583 68874 174
 Width: 1122
 Flags: W
 LayerCount: 2
@@ -18105,12 +18105,12 @@ SplineSet
  423 740 423 740 555 638 c 1,1,-1
 EndSplineSet
 Validated: 41
-Substitution2: "'fina' Terminal Forms in Arabic lookup 3 subtable" dalfinal
 Substitution2: "'isol' Isolated Forms in Arabic lookup 0 subtable" dalisolated
+Substitution2: "'fina' Terminal Forms in Arabic lookup 3 subtable" dalfinal
 EndChar
 
 StartChar: thal
-Encoding: 1584 1584 175
+Encoding: 1584 1101856 175
 Width: 806
 Flags: W
 LayerCount: 2
@@ -18136,12 +18136,12 @@ SplineSet
  721 309 721 309 674 130 c 1,19,20
 EndSplineSet
 Validated: 41
-Substitution2: "'fina' Terminal Forms in Arabic lookup 3 subtable" thalfinal
 Substitution2: "'isol' Isolated Forms in Arabic lookup 0 subtable" thalisolated
+Substitution2: "'fina' Terminal Forms in Arabic lookup 3 subtable" thalfinal
 EndChar
 
 StartChar: reh
-Encoding: 1585 1585 176
+Encoding: 1585 68876 176
 Width: 851
 Flags: W
 LayerCount: 2
@@ -18167,12 +18167,12 @@ SplineSet
  1113 1327 1113 1327 1136 1171 c 1,20,21
 EndSplineSet
 Validated: 41
-Substitution2: "'fina' Terminal Forms in Arabic lookup 3 subtable" rehfinal
 Substitution2: "'isol' Isolated Forms in Arabic lookup 0 subtable" rehisolated
+Substitution2: "'fina' Terminal Forms in Arabic lookup 3 subtable" rehfinal
 EndChar
 
 StartChar: zain
-Encoding: 1586 1586 177
+Encoding: 1586 68878 177
 Width: 1201
 Flags: W
 LayerCount: 2
@@ -18198,12 +18198,12 @@ SplineSet
  629 1233 629 1233 708 1134 c 1,21,-1
 EndSplineSet
 Validated: 41
-Substitution2: "'fina' Terminal Forms in Arabic lookup 3 subtable" zainfinal
 Substitution2: "'isol' Isolated Forms in Arabic lookup 0 subtable" zainisolated
+Substitution2: "'fina' Terminal Forms in Arabic lookup 3 subtable" zainfinal
 EndChar
 
 StartChar: seen
-Encoding: 1587 1587 178
+Encoding: 1587 68879 178
 Width: 975
 Flags: W
 LayerCount: 2
@@ -18226,14 +18226,14 @@ SplineSet
  260 889 260 889 293 656 c 1,1,2
 EndSplineSet
 Validated: 41
-Substitution2: "'fina' Terminal Forms in Arabic lookup 3 subtable" seenfinal
-Substitution2: "'medi' Medial Forms in Arabic lookup 2 subtable" seenmedial
-Substitution2: "'init' Initial Forms in Arabic lookup 1 subtable" seeninitial
 Substitution2: "'isol' Isolated Forms in Arabic lookup 0 subtable" SA
+Substitution2: "'init' Initial Forms in Arabic lookup 1 subtable" seeninitial
+Substitution2: "'medi' Medial Forms in Arabic lookup 2 subtable" seenmedial
+Substitution2: "'fina' Terminal Forms in Arabic lookup 3 subtable" seenfinal
 EndChar
 
 StartChar: sheen
-Encoding: 1588 1588 179
+Encoding: 1588 68880 179
 Width: 1016
 Flags: W
 LayerCount: 2
@@ -18275,14 +18275,14 @@ SplineSet
  419 800 l 1,0,1
 EndSplineSet
 Validated: 41
-Substitution2: "'fina' Terminal Forms in Arabic lookup 3 subtable" sheenfinal
-Substitution2: "'medi' Medial Forms in Arabic lookup 2 subtable" sheenmedial
-Substitution2: "'init' Initial Forms in Arabic lookup 1 subtable" sheeninitial
 Substitution2: "'isol' Isolated Forms in Arabic lookup 0 subtable" SHA
+Substitution2: "'init' Initial Forms in Arabic lookup 1 subtable" sheeninitial
+Substitution2: "'medi' Medial Forms in Arabic lookup 2 subtable" sheenmedial
+Substitution2: "'fina' Terminal Forms in Arabic lookup 3 subtable" sheenfinal
 EndChar
 
 StartChar: sad
-Encoding: 1589 1589 180
+Encoding: 1589 68877 180
 Width: 1423
 Flags: W
 LayerCount: 2
@@ -18312,14 +18312,14 @@ SplineSet
  776 561 776 561 1105 570 c 1,25,26
 EndSplineSet
 Validated: 41
-Substitution2: "'fina' Terminal Forms in Arabic lookup 3 subtable" sadfinal
-Substitution2: "'medi' Medial Forms in Arabic lookup 2 subtable" sadmedial
-Substitution2: "'init' Initial Forms in Arabic lookup 1 subtable" sadinitial
 Substitution2: "'isol' Isolated Forms in Arabic lookup 0 subtable" RRA
+Substitution2: "'init' Initial Forms in Arabic lookup 1 subtable" sadinitial
+Substitution2: "'medi' Medial Forms in Arabic lookup 2 subtable" sadmedial
+Substitution2: "'fina' Terminal Forms in Arabic lookup 3 subtable" sadfinal
 EndChar
 
 StartChar: dad
-Encoding: 1590 1590 181
+Encoding: 1590 68875 181
 Width: 1646
 Flags: W
 LayerCount: 2
@@ -18349,14 +18349,14 @@ SplineSet
  1267 599 1267 599 1410.5 525.5 c 128,-1,20
 EndSplineSet
 Validated: 41
-Substitution2: "'fina' Terminal Forms in Arabic lookup 3 subtable" dadfinal
-Substitution2: "'medi' Medial Forms in Arabic lookup 2 subtable" dadmedial
-Substitution2: "'init' Initial Forms in Arabic lookup 1 subtable" dadinitial
 Substitution2: "'isol' Isolated Forms in Arabic lookup 0 subtable" dda
+Substitution2: "'init' Initial Forms in Arabic lookup 1 subtable" dadinitial
+Substitution2: "'medi' Medial Forms in Arabic lookup 2 subtable" dadmedial
+Substitution2: "'fina' Terminal Forms in Arabic lookup 3 subtable" dadfinal
 EndChar
 
 StartChar: tah
-Encoding: 1591 1591 182
+Encoding: 1591 68868 182
 Width: 696
 Flags: W
 LayerCount: 2
@@ -18377,14 +18377,14 @@ SplineSet
  546 1182 546 1182 518 1017 c 1,1,-1
 EndSplineSet
 Validated: 9
-Substitution2: "'fina' Terminal Forms in Arabic lookup 3 subtable" tahfinal
-Substitution2: "'medi' Medial Forms in Arabic lookup 2 subtable" tahmedial
-Substitution2: "'init' Initial Forms in Arabic lookup 1 subtable" tahinitial
 Substitution2: "'isol' Isolated Forms in Arabic lookup 0 subtable" tahisolated
+Substitution2: "'init' Initial Forms in Arabic lookup 1 subtable" tahinitial
+Substitution2: "'medi' Medial Forms in Arabic lookup 2 subtable" tahmedial
+Substitution2: "'fina' Terminal Forms in Arabic lookup 3 subtable" tahfinal
 EndChar
 
 StartChar: zah
-Encoding: 1592 1592 183
+Encoding: 1592 68873 183
 Width: 1187
 Flags: W
 LayerCount: 2
@@ -18437,9 +18437,9 @@ Substitution2: "'isol' Isolated Forms in Arabic lookup 0 subtable" zahisolated
 EndChar
 
 StartChar: ain
-Encoding: 1593 1593 184
+Encoding: 1593 68891 184
 Width: 826
-Flags: W
+Flags: WO
 LayerCount: 2
 Fore
 SplineSet
@@ -18458,14 +18458,14 @@ SplineSet
  588 450 l 1,0,1
 EndSplineSet
 Validated: 41
-Substitution2: "'fina' Terminal Forms in Arabic lookup 3 subtable" ainfinal
-Substitution2: "'medi' Medial Forms in Arabic lookup 2 subtable" ainmedial
-Substitution2: "'init' Initial Forms in Arabic lookup 1 subtable" aininitial
 Substitution2: "'isol' Isolated Forms in Arabic lookup 0 subtable" NAYA
+Substitution2: "'init' Initial Forms in Arabic lookup 1 subtable" aininitial
+Substitution2: "'medi' Medial Forms in Arabic lookup 2 subtable" ainmedial
+Substitution2: "'fina' Terminal Forms in Arabic lookup 3 subtable" ainfinal
 EndChar
 
 StartChar: ghain
-Encoding: 1594 1594 185
+Encoding: 1594 68882 185
 Width: 1248
 Flags: W
 LayerCount: 2
@@ -18503,10 +18503,10 @@ SplineSet
  275 842 275 842 469 200 c 1,1,2
 EndSplineSet
 Validated: 41
-Substitution2: "'fina' Terminal Forms in Arabic lookup 3 subtable" ghainfinal
-Substitution2: "'medi' Medial Forms in Arabic lookup 2 subtable" ghainmedial
-Substitution2: "'init' Initial Forms in Arabic lookup 1 subtable" ghaininitial
 Substitution2: "'isol' Isolated Forms in Arabic lookup 0 subtable" ghainisolated
+Substitution2: "'init' Initial Forms in Arabic lookup 1 subtable" ghaininitial
+Substitution2: "'medi' Medial Forms in Arabic lookup 2 subtable" ghainmedial
+Substitution2: "'fina' Terminal Forms in Arabic lookup 3 subtable" ghainfinal
 EndChar
 
 StartChar: tatweel
@@ -18563,10 +18563,10 @@ SplineSet
  843 815 843 815 852 872 c 0,26,27
 EndSplineSet
 Validated: 41
-Substitution2: "'fina' Terminal Forms in Arabic lookup 3 subtable" fehfinal
-Substitution2: "'medi' Medial Forms in Arabic lookup 2 subtable" fehmedial
-Substitution2: "'init' Initial Forms in Arabic lookup 1 subtable" fehinitial
 Substitution2: "'isol' Isolated Forms in Arabic lookup 0 subtable" fehisolated
+Substitution2: "'init' Initial Forms in Arabic lookup 1 subtable" fehinitial
+Substitution2: "'medi' Medial Forms in Arabic lookup 2 subtable" fehmedial
+Substitution2: "'fina' Terminal Forms in Arabic lookup 3 subtable" fehfinal
 EndChar
 
 StartChar: qaf
@@ -18597,14 +18597,14 @@ SplineSet
  828 475 828 475 836 252 c 1,23,24
 EndSplineSet
 Validated: 41
-Substitution2: "'fina' Terminal Forms in Arabic lookup 3 subtable" qaffinal
-Substitution2: "'medi' Medial Forms in Arabic lookup 2 subtable" qafmedial
-Substitution2: "'init' Initial Forms in Arabic lookup 1 subtable" qafinitial
 Substitution2: "'isol' Isolated Forms in Arabic lookup 0 subtable" gna
+Substitution2: "'init' Initial Forms in Arabic lookup 1 subtable" qafinitial
+Substitution2: "'medi' Medial Forms in Arabic lookup 2 subtable" qafmedial
+Substitution2: "'fina' Terminal Forms in Arabic lookup 3 subtable" qaffinal
 EndChar
 
 StartChar: arabickaf
-Encoding: 1603 1603 189
+Encoding: 1603 68881 189
 Width: 1509
 Flags: W
 LayerCount: 2
@@ -18633,14 +18633,14 @@ SplineSet
  710 270 l 1,20,-1
 EndSplineSet
 Validated: 37
-Substitution2: "'fina' Terminal Forms in Arabic lookup 3 subtable" arabickaffinal
-Substitution2: "'medi' Medial Forms in Arabic lookup 2 subtable" kafmedial
-Substitution2: "'init' Initial Forms in Arabic lookup 1 subtable" kafinitial
 Substitution2: "'isol' Isolated Forms in Arabic lookup 0 subtable" kafisolated
+Substitution2: "'init' Initial Forms in Arabic lookup 1 subtable" kafinitial
+Substitution2: "'medi' Medial Forms in Arabic lookup 2 subtable" kafmedial
+Substitution2: "'fina' Terminal Forms in Arabic lookup 3 subtable" arabickaffinal
 EndChar
 
 StartChar: lam
-Encoding: 1604 1604 190
+Encoding: 1604 68883 190
 Width: 950
 Flags: W
 LayerCount: 2
@@ -18661,14 +18661,14 @@ SplineSet
  715 915 715 915 711 490 c 1,1,2
 EndSplineSet
 Validated: 41
-Substitution2: "'fina' Terminal Forms in Arabic lookup 3 subtable" lamfinal
-Substitution2: "'medi' Medial Forms in Arabic lookup 2 subtable" lammedial
-Substitution2: "'init' Initial Forms in Arabic lookup 1 subtable" laminitial
 Substitution2: "'isol' Isolated Forms in Arabic lookup 0 subtable" lamisolated
+Substitution2: "'init' Initial Forms in Arabic lookup 1 subtable" laminitial
+Substitution2: "'medi' Medial Forms in Arabic lookup 2 subtable" lammedial
+Substitution2: "'fina' Terminal Forms in Arabic lookup 3 subtable" lamfinal
 EndChar
 
 StartChar: meem
-Encoding: 1605 1605 191
+Encoding: 1605 68892 191
 Width: 1047
 Flags: W
 LayerCount: 2
@@ -18703,14 +18703,14 @@ SplineSet
  1006 279 1006 279 965.5 380 c 128,-1,22
 EndSplineSet
 Validated: 33
-Substitution2: "'fina' Terminal Forms in Arabic lookup 3 subtable" meemfinal
-Substitution2: "'medi' Medial Forms in Arabic lookup 2 subtable" meemmedial
-Substitution2: "'init' Initial Forms in Arabic lookup 1 subtable" meeminitial
 Substitution2: "'isol' Isolated Forms in Arabic lookup 0 subtable" meemisolated
+Substitution2: "'init' Initial Forms in Arabic lookup 1 subtable" meeminitial
+Substitution2: "'medi' Medial Forms in Arabic lookup 2 subtable" meemmedial
+Substitution2: "'fina' Terminal Forms in Arabic lookup 3 subtable" meemfinal
 EndChar
 
 StartChar: noon
-Encoding: 1606 1606 192
+Encoding: 1606 68885 192
 Width: 1373
 Flags: W
 LayerCount: 2
@@ -18744,10 +18744,10 @@ SplineSet
  940 304 940 304 930 255.5 c 128,-1,28
 EndSplineSet
 Validated: 41
-Substitution2: "'fina' Terminal Forms in Arabic lookup 3 subtable" noonfinal
-Substitution2: "'medi' Medial Forms in Arabic lookup 2 subtable" noonmedial
-Substitution2: "'init' Initial Forms in Arabic lookup 1 subtable" nooninitial
 Substitution2: "'isol' Isolated Forms in Arabic lookup 0 subtable" noonisolated
+Substitution2: "'init' Initial Forms in Arabic lookup 1 subtable" nooninitial
+Substitution2: "'medi' Medial Forms in Arabic lookup 2 subtable" noonmedial
+Substitution2: "'fina' Terminal Forms in Arabic lookup 3 subtable" noonfinal
 EndChar
 
 StartChar: heh
@@ -18780,10 +18780,10 @@ SplineSet
  783 392 783 392 772 203 c 1,27,28
 EndSplineSet
 Validated: 41
-Substitution2: "'fina' Terminal Forms in Arabic lookup 3 subtable" hehfinal
-Substitution2: "'medi' Medial Forms in Arabic lookup 2 subtable" hehmedial
-Substitution2: "'init' Initial Forms in Arabic lookup 1 subtable" hehinitial
 Substitution2: "'isol' Isolated Forms in Arabic lookup 0 subtable" hehisolated
+Substitution2: "'init' Initial Forms in Arabic lookup 1 subtable" hehinitial
+Substitution2: "'medi' Medial Forms in Arabic lookup 2 subtable" hehmedial
+Substitution2: "'fina' Terminal Forms in Arabic lookup 3 subtable" hehfinal
 EndChar
 
 StartChar: waw
@@ -32914,7 +32914,7 @@ EndSplineSet
 Validated: 41
 EndChar
 
-StartChar: kinna ya
+StartChar: kinna
 Encoding: 65171 65171 423
 Width: 946
 Flags: W
