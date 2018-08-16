@@ -5,8 +5,9 @@ var map_encoding_names = [
   'Kuna Leyka', 'Gonya Leyka'];
 
 var private_use_map_combined = {
-  '\u0000': ['\u0020', '\u0000', '\u0000'],  // null
-  '\u0009': ['\u0009', '\u0009'],  // horizontal tab
+  '\u0621': ['\ud804\udd1d', '\u0000'],  // null
+  '\u0622': ['\ud804\udd00', '\u0009'],  // horizontal tab
+  '\u0623': ['\ud804\udd00', '\u0009'],  // horizontal tab
   '\u000D': ['\u000D', '\u0000'],  // Carriage return
   '\u0020': [' ', ' ', ' '],  // Space
   '\u0023': ['\uD803\uDD42', '\u003b', '\uD803\uDD33\uD803\uDD05'],  // #
