@@ -1276,7 +1276,7 @@ NameList: AGL For New Fonts
 DisplaySize: -72
 AntiAlias: 1
 FitToEm: 0
-WinInfo: 56 8 17
+WinInfo: 80 8 17
 BeginChars: 65540 530
 
 StartChar: .notdef
@@ -1297,6 +1297,7 @@ SplineSet
  128 1322 l 1,7,-1
  128 128 l 1,4,-1
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: .null
@@ -1304,6 +1305,8 @@ Encoding: 65537 -1 1
 Width: 0
 Flags: W
 LayerCount: 2
+Fore
+Validated: 1
 EndChar
 
 StartChar: nonmarkingreturn
@@ -1311,6 +1314,8 @@ Encoding: 65538 -1 2
 Width: 500
 Flags: W
 LayerCount: 2
+Fore
+Validated: 1
 EndChar
 
 StartChar: space
@@ -1318,6 +1323,8 @@ Encoding: 32 32 3
 Width: 500
 Flags: W
 LayerCount: 2
+Fore
+Validated: 1
 EndChar
 
 StartChar: exclam
@@ -1347,6 +1354,7 @@ SplineSet
  326 231 326 231 352.5 204 c 128,-1,26
  379 177 379 177 379 139 c 0,15,16
 EndSplineSet
+Validated: 33
 EndChar
 
 StartChar: quotedbl
@@ -1418,6 +1426,7 @@ SplineSet
  119 1341 119 1341 168 1341 c 0,20,21
  218 1341 218 1341 218 1273 c 0,11,12
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: numbersign
@@ -1613,6 +1622,7 @@ SplineSet
  868 586 l 1,31,-1
  952 991 l 1,28,-1
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: dollar
@@ -1882,6 +1892,7 @@ SplineSet
  411 142 411 142 474 142 c 0,80,81
  492 142 492 142 512 143 c 1,75,-1
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: percent
@@ -2072,6 +2083,7 @@ SplineSet
  162 772 162 772 309 772 c 0,50,51
  459 772 459 772 459 1087 c 0,44,45
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: ampersand
@@ -2256,6 +2268,7 @@ SplineSet
  593 203 593 203 698 260 c 0,72,73
  797 313 797 313 860 389 c 1,63,64
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: quotesingle
@@ -2274,6 +2287,7 @@ SplineSet
  870 1905 870 1905 920 2080 c 1,9,-1
  895 2080 l 1,0,-1
 EndSplineSet
+Validated: 41
 EndChar
 
 StartChar: parenleft
@@ -2313,6 +2327,7 @@ SplineSet
  345 796 345 796 510 903 c 1,15,-1
  526 891 l 1,0,1
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: parenright
@@ -2355,6 +2370,7 @@ SplineSet
  234 790 234 790 317 694 c 0,14,15
  492 492 492 492 492 262 c 0,0,1
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: asterisk
@@ -2591,6 +2607,7 @@ SplineSet
  379 1066 379 1066 379 1102 c 0,102,103
 348 791 m 1024,110,-1
 EndSplineSet
+Validated: 33
 EndChar
 
 StartChar: plus
@@ -2660,6 +2677,7 @@ SplineSet
  835 535 l 1,11,-1
  835 452 l 1,0,-1
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: comma
@@ -2702,6 +2720,7 @@ SplineSet
  316 234 316 234 347.5 194 c 128,-1,14
  379 154 379 154 379 90 c 0,0,1
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: hyphenminus
@@ -2733,6 +2752,7 @@ SplineSet
  835 535 l 1,3,-1
  835 452 l 1,0,-1
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: period
@@ -2768,6 +2788,7 @@ SplineSet
  322 231 322 231 348.5 204.5 c 128,-1,11
  375 178 375 178 375 141 c 256,0,1
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: slash
@@ -2805,6 +2826,7 @@ SplineSet
  442 1425 l 1,3,-1
  508 1425 l 1,0,-1
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: zero
@@ -2934,6 +2956,7 @@ SplineSet
  703 139 703 139 751 427 c 0,31,32
  774 565 774 565 774 766 c 0,17,18
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: one
@@ -3003,6 +3026,7 @@ SplineSet
  782 168 l 1,20,-1
  782 129 l 1,0,-1
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: two
@@ -3130,6 +3154,7 @@ SplineSet
  870 343 870 343 887 416 c 1,35,-1
  920 416 l 1,0,-1
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: three
@@ -3314,6 +3339,7 @@ SplineSet
  769 915 769 915 854 753 c 0,58,59
  897 671 897 671 897 580 c 0,0,1
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: four
@@ -3404,6 +3430,7 @@ SplineSet
  168 604 l 1,13,-1
  596 604 l 1,11,-1
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: five
@@ -3564,6 +3591,7 @@ SplineSet
  631 956 631 956 753 833 c 0,36,37
  877 707 877 707 877 537 c 0,0,1
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: six
@@ -3684,6 +3712,7 @@ SplineSet
  654 135 654 135 717 258 c 0,39,40
  766 353 766 353 766 496 c 0,25,26
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: seven
@@ -3749,6 +3778,7 @@ SplineSet
  901 1403 l 1,11,-1
  901 1360 l 1,0,-1
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: eight
@@ -3938,6 +3968,7 @@ SplineSet
  661 137 661 137 737 277 c 0,49,50
  772 342 772 342 772 420 c 0,37,38
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: nine
@@ -4072,6 +4103,7 @@ SplineSet
  607 692 607 692 748 817 c 1,38,39
  758 862 758 862 758 942 c 0,24,25
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: colon
@@ -4132,6 +4164,7 @@ SplineSet
  322 231 322 231 348.5 204.5 c 128,-1,23
  375 178 375 178 375 141 c 256,12,13
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: semicolon
@@ -4197,6 +4230,7 @@ SplineSet
  316 297 316 297 356 243 c 0,31,32
  393 195 393 195 393 127 c 0,11,12
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: less
@@ -4240,6 +4274,7 @@ SplineSet
  1219 391 l 1,6,-1
  1219 289 l 1,0,-1
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: equal
@@ -4291,6 +4326,7 @@ SplineSet
  836 448 l 1,7,-1
  836 362 l 1,4,-1
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: greater
@@ -4328,6 +4364,7 @@ SplineSet
  1221 825 l 1,6,-1
  1221 743 l 1,0,-1
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: question
@@ -4430,6 +4467,7 @@ SplineSet
  213 297 213 297 317 297 c 0,40,41
  422 297 422 297 422 201 c 0,32,33
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: at
@@ -4579,6 +4617,7 @@ SplineSet
  897 281 897 281 1039.5 479.5 c 128,-1,84
  1182 678 1182 678 1182 899 c 0,68,69
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: glyph36
@@ -4780,6 +4819,7 @@ SplineSet
  477 784 l 1,35,-1
  831 784 l 1,33,-1
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: glyph37
@@ -5000,6 +5040,7 @@ SplineSet
  528 184 528 184 651 184 c 0,54,55
  999 184 999 184 999 512 c 0,44,45
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: C
@@ -5114,6 +5155,7 @@ SplineSet
  1207 147 1207 147 1376 451 c 1,45,-1
  1415 451 l 1,0,1
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: D
@@ -5254,6 +5296,7 @@ SplineSet
  1115 322 1115 322 1201 516 c 0,42,43
  1251 631 1251 631 1251 776 c 0,28,29
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: E
@@ -5405,6 +5448,7 @@ SplineSet
  1063 343 1063 343 1090 434 c 1,44,-1
  1126 434 l 1,0,-1
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: F
@@ -5539,6 +5583,7 @@ SplineSet
  1006 1403 l 1,38,-1
  1006 1161 l 1,0,-1
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: G
@@ -5674,6 +5719,7 @@ SplineSet
  1466 676 l 1,43,-1
  1466 639 l 1,0,1
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: H
@@ -5838,6 +5884,7 @@ SplineSet
  1563 168 l 1,56,-1
  1563 129 l 1,0,-1
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: I
@@ -5913,6 +5960,7 @@ SplineSet
  521 168 521 168 590 168 c 1,23,-1
  590 129 l 1,0,-1
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: J
@@ -5995,6 +6043,7 @@ SplineSet
  559 1403 l 1,29,-1
  559 1364 l 1,0,1
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: K
@@ -6184,6 +6233,7 @@ SplineSet
  1264 168 1264 168 1432 168 c 1,67,-1
  1432 129 l 1,0,-1
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: L
@@ -6291,6 +6341,7 @@ SplineSet
  1002 326 1002 326 1077 428 c 1,28,-1
  1114 428 l 1,0,-1
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: M
@@ -6480,6 +6531,7 @@ SplineSet
  1719 168 1719 168 1835 168 c 1,41,-1
  1835 129 l 1,0,-1
 EndSplineSet
+Validated: 33
 EndChar
 
 StartChar: N
@@ -6621,6 +6673,7 @@ SplineSet
  1630 1403 l 1,31,-1
  1630 1364 l 1,0,1
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: O
@@ -6748,6 +6801,7 @@ SplineSet
  1205 147 1205 147 1329 448 c 0,32,33
  1384 583 1384 583 1384 733 c 0,17,18
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: P
@@ -6894,6 +6948,7 @@ SplineSet
  746 707 746 707 842 881 c 0,41,42
  887 963 887 963 887 1065 c 0,32,33
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: Q
@@ -7081,6 +7136,7 @@ SplineSet
  1205 149 1205 149 1329 450 c 0,47,48
  1384 585 1384 585 1384 733 c 0,32,33
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: R
@@ -7286,6 +7342,7 @@ SplineSet
  443 702 443 702 535 702 c 0,63,64
  911 702 911 702 911 1044 c 0,54,55
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: S
@@ -7432,6 +7489,7 @@ SplineSet
  732 759 732 759 799 692 c 0,56,57
  911 578 911 578 911 446 c 0,0,1
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: glyph55
@@ -7531,6 +7589,7 @@ SplineSet
  1288 1434 l 1,35,-1
  1321 1102 l 1,0,-1
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: U
@@ -7665,6 +7724,7 @@ SplineSet
  1597 1403 l 1,39,-1
  1597 1364 l 1,0,1
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: V
@@ -7792,6 +7852,7 @@ SplineSet
  1389 1403 l 1,28,-1
  1389 1364 l 1,0,1
 EndSplineSet
+Validated: 33
 EndChar
 
 StartChar: W
@@ -8071,6 +8132,7 @@ SplineSet
  1075 1051 l 1,57,-1
  1167 1276 l 2,47,48
 EndSplineSet
+Validated: 33
 EndChar
 
 StartChar: X
@@ -8316,6 +8378,7 @@ SplineSet
  1446 176 1446 176 1530 168 c 1,55,-1
  1530 129 l 1,0,-1
 EndSplineSet
+Validated: 33
 EndChar
 
 StartChar: Y
@@ -8486,6 +8549,7 @@ SplineSet
  1407 1403 l 1,41,-1
  1407 1364 l 1,0,1
 EndSplineSet
+Validated: 33
 EndChar
 
 StartChar: Z
@@ -8604,6 +8668,7 @@ SplineSet
  1222 366 1222 366 1251 500 c 1,19,-1
  1288 500 l 1,0,-1
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: bracketleft
@@ -8633,6 +8698,7 @@ SplineSet
  724 496 l 1,23,12
  596 707 596 707 477 501 c 1,13,-1
 EndSplineSet
+Validated: 41
 EndChar
 
 StartChar: backslash
@@ -8665,6 +8731,7 @@ SplineSet
  182 1434 l 1,3,-1
  844 100 l 1,0,-1
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: bracketright
@@ -8694,6 +8761,7 @@ SplineSet
  731 496 l 1,23,12
  603 707 603 707 484 501 c 1,13,-1
 EndSplineSet
+Validated: 41
 EndChar
 
 StartChar: asciicircum
@@ -8725,6 +8793,7 @@ SplineSet
  199 1962 199 1962 290 1962 c 0,32,33
  314 1962 314 1962 347 1958 c 1,0,1
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: underscore
@@ -8756,6 +8825,7 @@ SplineSet
  1040 -25 l 1,3,-1
  1040 -127 l 1,0,-1
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: grave
@@ -8789,6 +8859,7 @@ SplineSet
  273 1479 273 1479 338 1389 c 2,8,-1
  526 1128 l 1,0,-1
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: a
@@ -9020,6 +9091,7 @@ SplineSet
  275 176 275 176 326 176 c 0,58,59
  370 176 370 176 498 266 c 1,48,-1
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: b
@@ -9157,6 +9229,7 @@ SplineSet
  651 164 651 164 729 272 c 0,35,36
  799 368 799 368 799 510 c 0,23,24
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: c
@@ -9295,6 +9368,7 @@ SplineSet
  664 188 664 188 770 336 c 1,30,-1
  801 317 l 1,0,1
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: d
@@ -9481,6 +9555,7 @@ SplineSet
  367 192 367 192 492 192 c 0,41,42
  588 192 588 192 733 295 c 1,30,-1
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: e
@@ -9633,6 +9708,7 @@ SplineSet
  295 924 295 924 240 702 c 1,31,-1
  659 702 l 1,25,26
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: f
@@ -9774,6 +9850,7 @@ SplineSet
  741 1505 741 1505 814 1448 c 0,39,40
  844 1424 844 1424 844 1409 c 256,0,1
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: g
@@ -10026,6 +10103,7 @@ SplineSet
  686 -291 686 -291 792 -167 c 0,91,92
  840 -110 840 -110 840 -47 c 0,74,75
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: h
@@ -10175,6 +10253,7 @@ SplineSet
  975 168 975 168 1038 168 c 1,41,-1
  1038 129 l 1,0,-1
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: i
@@ -10270,6 +10349,7 @@ SplineSet
  344 168 344 168 492 168 c 1,30,-1
  492 129 l 1,12,-1
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: j
@@ -10373,6 +10453,7 @@ SplineSet
  344 973 l 1,36,-1
  344 92 l 2,12,13
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: k
@@ -10530,6 +10611,7 @@ SplineSet
  942 169 942 169 1016 168 c 1,47,-1
  1016 129 l 1,0,-1
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: l
@@ -10602,6 +10684,7 @@ SplineSet
  473 168 l 1,19,-1
  473 129 l 1,0,-1
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: m
@@ -10861,6 +10944,7 @@ SplineSet
  1620 168 l 1,70,-1
  1620 129 l 1,0,-1
 EndSplineSet
+Validated: 33
 EndChar
 
 StartChar: n
@@ -11028,6 +11112,7 @@ SplineSet
  1042 168 l 1,45,-1
  1042 129 l 1,0,-1
 EndSplineSet
+Validated: 33
 EndChar
 
 StartChar: o
@@ -11170,6 +11255,7 @@ SplineSet
  704 154 704 154 783 309 c 0,28,29
  821 383 821 383 821 481 c 0,16,17
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: p
@@ -11343,6 +11429,7 @@ SplineSet
  692 178 692 178 760 329 c 0,43,44
  791 399 791 399 791 483 c 0,32,33
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: q
@@ -11519,6 +11606,7 @@ SplineSet
  381 199 381 199 514 199 c 0,43,44
  633 199 633 199 737 303 c 1,30,-1
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: r
@@ -11628,6 +11716,7 @@ SplineSet
  551 950 551 950 596 932 c 1,36,-1
  702 901 l 1,0,-1
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: s
@@ -11775,6 +11864,7 @@ SplineSet
  450 539 450 539 490 494 c 0,47,48
  553 424 553 424 553 338 c 0,0,1
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: t
@@ -11870,6 +11960,7 @@ SplineSet
  493 201 493 201 551 303 c 1,25,-1
  584 272 l 1,0,1
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: u
@@ -12010,6 +12101,7 @@ SplineSet
  1018 225 l 1,33,-1
  1018 188 l 1,0,-1
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: v
@@ -12143,6 +12235,7 @@ SplineSet
  969 940 l 1,23,-1
  969 903 l 1,0,1
 EndSplineSet
+Validated: 33
 EndChar
 
 StartChar: w
@@ -12314,6 +12407,7 @@ SplineSet
  1507 940 l 1,39,-1
  1507 903 l 1,0,1
 EndSplineSet
+Validated: 33
 EndChar
 
 StartChar: x
@@ -12500,6 +12594,7 @@ SplineSet
  925 170 925 170 991 170 c 1,48,-1
  991 129 l 1,0,-1
 EndSplineSet
+Validated: 33
 EndChar
 
 StartChar: y
@@ -12624,6 +12719,7 @@ SplineSet
  950 940 l 1,41,-1
  950 903 l 1,0,1
 EndSplineSet
+Validated: 33
 EndChar
 
 StartChar: z
@@ -12751,6 +12847,7 @@ SplineSet
  741 280 741 280 770 352 c 1,24,-1
  807 352 l 1,0,-1
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: braceleft
@@ -12867,6 +12964,7 @@ SplineSet
  671 -302 671 -302 768 -311 c 1,47,-1
  768 -348 l 1,0,1
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: bar
@@ -12899,6 +12997,7 @@ SplineSet
  567 1434 l 1,3,-1
  567 -348 l 1,0,-1
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: braceright
@@ -13011,6 +13110,7 @@ SplineSet
  682 613 682 613 770 596 c 1,48,-1
  770 561 l 1,0,1
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: asciitilde
@@ -13034,6 +13134,7 @@ SplineSet
  723 284 723 284 801 427 c 1,13,8
  957 523 957 523 1034 406.5 c 128,-1,9
 EndSplineSet
+Validated: 41
 EndChar
 
 StartChar: delete
@@ -13238,6 +13339,7 @@ SplineSet
  392 198 392 198 433 239 c 0,42,43
  492 298 492 298 492 427 c 0,33,34
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: nonbreakingspace
@@ -13245,6 +13347,8 @@ Encoding: 160 160 99
 Width: 500
 Flags: W
 LayerCount: 2
+Fore
+Validated: 1
 EndChar
 
 StartChar: exclamdown
@@ -13311,6 +13415,7 @@ SplineSet
  308 581 308 581 342 391 c 0,24,25
  375 205 375 205 375 136 c 0,12,13
 EndSplineSet
+Validated: 33
 EndChar
 
 StartChar: cent
@@ -13447,6 +13552,7 @@ SplineSet
  231 381 231 381 338 262 c 1,41,-1
  586 874 l 1,33,34
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: sterling
@@ -13652,6 +13758,7 @@ SplineSet
  1403 1481 1403 1481 1475 1408 c 0,82,83
  1507 1374 1507 1374 1507 1335 c 0,0,1
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: currency
@@ -13739,6 +13846,7 @@ SplineSet
  831 428 831 428 935.5 533.5 c 128,-1,42
  1040 639 1040 639 1040 784 c 0,28,29
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: yen
@@ -13939,6 +14047,7 @@ SplineSet
  547 725 l 1,58,-1
  707 997 l 1,56,-1
 EndSplineSet
+Validated: 33
 EndChar
 
 StartChar: brokenbar
@@ -13986,6 +14095,7 @@ SplineSet
  567 408 l 1,7,-1
  567 -348 l 1,4,-1
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: section
@@ -14109,6 +14219,7 @@ SplineSet
  693 2 693 2 707 -82 c 1,72,73
  774 18 774 18 774 145 c 0,53,54
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: dieresis
@@ -14137,6 +14248,7 @@ SplineSet
  181 1364 181 1364 207 1338 c 128,-1,23
  233 1312 233 1312 233 1274 c 256,12,13
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: copyright
@@ -14261,6 +14373,7 @@ SplineSet
  1012 418 1012 418 1126 580 c 1,62,-1
  1165 561 l 1,31,32
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: ordfeminine
@@ -14363,6 +14476,7 @@ SplineSet
  152 971 152 971 215 971 c 0,50,51
  236 971 236 971 313 1018 c 1,43,-1
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: guillemotleft
@@ -14422,6 +14536,7 @@ SplineSet
  225 410 l 1,11,-1
  471 10 l 1,6,-1
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: logicalnot
@@ -14460,6 +14575,7 @@ SplineSet
  1221 1075 l 1,5,-1
  1221 498 l 1,0,-1
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: sfthyphen
@@ -14491,6 +14607,7 @@ SplineSet
  1221 829 l 1,3,-1
  1221 739 l 1,0,-1
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: registered
@@ -14516,6 +14633,7 @@ SplineSet
  406 346 l 1,19,0
  311 571 311 571 206 339 c 1,1,-1
 EndSplineSet
+Validated: 41
 EndChar
 
 StartChar: macron
@@ -14547,6 +14665,7 @@ SplineSet
  623 1335 l 1,3,-1
  623 1216 l 1,0,-1
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: degree
@@ -14605,6 +14724,7 @@ SplineSet
  534 907 534 907 599 1019 c 0,26,27
  629 1070 629 1070 629 1130 c 0,14,15
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: plusminus
@@ -14692,6 +14812,7 @@ SplineSet
  835 258 l 1,15,-1
  835 175 l 1,12,-1
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: twosuperior
@@ -14788,6 +14909,7 @@ SplineSet
  527 863 527 863 535 915 c 1,32,-1
  578 915 l 1,0,-1
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: threesuperior
@@ -14959,6 +15081,7 @@ SplineSet
  509 1159 509 1159 556 1078 c 0,45,46
  578 1039 578 1039 578 991 c 0,0,1
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: acute
@@ -14992,6 +15115,7 @@ SplineSet
  397 1479 397 1479 463 1479 c 0,7,8
  526 1479 526 1479 526 1419 c 0,0,1
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: micro
@@ -15111,6 +15235,7 @@ SplineSet
  955 209 955 209 973 332 c 1,47,-1
  1016 332 l 1,0,1
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: paragraph
@@ -15182,6 +15307,7 @@ SplineSet
  930 1403 l 1,17,-1
  930 1348 l 1,0,-1
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: periodcentered
@@ -15215,6 +15341,7 @@ SplineSet
  162 887 162 887 266 887 c 0,8,9
  371 887 371 887 371 791 c 0,0,1
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: cedilla
@@ -15287,6 +15414,7 @@ SplineSet
  430 31 430 31 471 -44 c 0,22,23
  492 -82 492 -82 492 -123 c 0,0,1
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: onesuperior
@@ -15350,6 +15478,7 @@ SplineSet
  487 788 l 1,16,-1
  487 756 l 1,0,-1
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: ordmasculine
@@ -15411,6 +15540,7 @@ SplineSet
  441 958 441 958 484 1017 c 0,30,31
  522 1070 522 1070 522 1145 c 0,16,17
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: guillemotright
@@ -15474,6 +15604,7 @@ SplineSet
  111 803 l 1,11,-1
  459 399 l 1,6,-1
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: onequarter
@@ -15626,6 +15757,7 @@ SplineSet
  834 383 l 1,34,-1
  1057 383 l 1,32,-1
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: onehalf
@@ -15794,6 +15926,7 @@ SplineSet
  487 788 l 1,54,-1
  487 756 l 1,38,-1
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: threequarters
@@ -15990,6 +16123,7 @@ SplineSet
  868 383 l 1,65,-1
  1092 383 l 1,62,-1
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: questiondown
@@ -16085,6 +16219,7 @@ SplineSet
  478 -178 478 -178 504 -178 c 0,41,42
  621 -178 621 -178 621 -252 c 0,10,11
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: Agrave
@@ -16095,6 +16230,7 @@ LayerCount: 2
 Fore
 Refer: 36 65 N 1 0 0 1 0 0 2
 Refer: 67 96 N 1 0 0 1 352 436 2
+Validated: 1
 EndChar
 
 StartChar: multiply
@@ -16161,6 +16297,7 @@ SplineSet
  523 497 l 1,11,-1
  802 219 l 1,0,-1
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: agrave
@@ -16171,6 +16308,7 @@ LayerCount: 2
 Fore
 Refer: 68 97 N 1 0 0 1 0 0 2
 Refer: 67 96 N 1 0 0 1 66 0 2
+Validated: 1
 EndChar
 
 StartChar: acircumflex
@@ -16181,6 +16319,7 @@ LayerCount: 2
 Fore
 Refer: 68 97 N 1 0 0 1 0 0 2
 Refer: 155 710 N 1 0 0 1 24 0 2
+Validated: 1
 EndChar
 
 StartChar: ccedilla
@@ -16326,6 +16465,7 @@ SplineSet
  664 188 664 188 770 336 c 1,53,-1
  801 317 l 1,0,1
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: egrave
@@ -16336,6 +16476,7 @@ LayerCount: 2
 Fore
 Refer: 72 101 N 1 0 0 1 0 0 2
 Refer: 67 96 N 1 0 0 1 109 0 2
+Validated: 1
 EndChar
 
 StartChar: eacute
@@ -16346,6 +16487,7 @@ LayerCount: 2
 Fore
 Refer: 72 101 N 1 0 0 1 0 0 2
 Refer: 119 180 N 1 0 0 1 109 0 2
+Validated: 1
 EndChar
 
 StartChar: ecircumflex
@@ -16356,6 +16498,7 @@ LayerCount: 2
 Fore
 Refer: 72 101 N 1 0 0 1 0 0 2
 Refer: 155 710 N 1 0 0 1 138 0 2
+Validated: 1
 EndChar
 
 StartChar: edieresis
@@ -16366,6 +16509,7 @@ LayerCount: 2
 Fore
 Refer: 72 101 N 1 0 0 1 0 0 2
 Refer: 107 168 N 1 0 0 1 109 0 2
+Validated: 1
 EndChar
 
 StartChar: icircumflex
@@ -16376,6 +16520,7 @@ LayerCount: 2
 Fore
 Refer: 148 305 N 1 0 0 1 0 0 2
 Refer: 155 710 N 1 0 0 1 -107 0 2
+Validated: 1
 EndChar
 
 StartChar: idieresis
@@ -16386,6 +16531,7 @@ LayerCount: 2
 Fore
 Refer: 148 305 N 1 0 0 1 0 0 2
 Refer: 107 168 N 1 0 0 1 -88 0 2
+Validated: 1
 EndChar
 
 StartChar: ocircumflex
@@ -16396,6 +16542,7 @@ LayerCount: 2
 Fore
 Refer: 82 111 N 1 0 0 1 0 0 2
 Refer: 155 710 N 1 0 0 1 157 0 2
+Validated: 1
 EndChar
 
 StartChar: divide
@@ -16480,6 +16627,7 @@ SplineSet
  501 300 501 300 525 275.5 c 128,-1,27
  549 251 549 251 549 215 c 256,16,17
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: ugrave
@@ -16490,6 +16638,7 @@ LayerCount: 2
 Fore
 Refer: 88 117 N 1 0 0 1 0 0 2
 Refer: 67 96 N 1 0 0 1 193 0 2
+Validated: 1
 EndChar
 
 StartChar: ucircumflex
@@ -16500,6 +16649,7 @@ LayerCount: 2
 Fore
 Refer: 88 117 N 1 0 0 1 0 0 2
 Refer: 155 710 N 1 0 0 1 169 0 2
+Validated: 1
 EndChar
 
 StartChar: udieresis
@@ -16510,6 +16660,7 @@ LayerCount: 2
 Fore
 Refer: 88 117 N 1 0 0 1 0 0 2
 Refer: 107 168 N 1 0 0 1 193 0 2
+Validated: 1
 EndChar
 
 StartChar: ydieresis
@@ -16520,6 +16671,7 @@ LayerCount: 2
 Fore
 Refer: 92 121 N 1 0 0 1 0 0 2
 Refer: 107 168 N 1 0 0 1 139 0 2
+Validated: 1
 EndChar
 
 StartChar: dotlessi
@@ -16591,6 +16743,7 @@ SplineSet
  344 168 344 168 492 168 c 1,18,-1
  492 129 l 1,0,-1
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: OE
@@ -16792,6 +16945,7 @@ SplineSet
  957 166 957 166 1033 274 c 0,64,65
  1077 337 1077 337 1077 448 c 2,49,-1
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: oe
@@ -17008,6 +17162,7 @@ SplineSet
  692 154 692 154 746 306 c 0,57,58
  772 380 772 380 772 483 c 0,43,44
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: Scaron
@@ -17018,6 +17173,7 @@ LayerCount: 2
 Fore
 Refer: 54 83 N 1 0 0 1 0 0 2
 Refer: 156 711 N 1 0 0 1 162 432 2
+Validated: 1
 EndChar
 
 StartChar: scaron
@@ -17028,6 +17184,7 @@ LayerCount: 2
 Fore
 Refer: 86 115 N 1 0 0 1 0 0 2
 Refer: 156 711 N 1 0 0 1 -50 0 2
+Validated: 1
 EndChar
 
 StartChar: Ydieresis
@@ -17038,6 +17195,7 @@ LayerCount: 2
 Fore
 Refer: 60 89 N 1 0 0 1 0 0 2
 Refer: 107 168 N 1 0 0 1 385 436 2
+Validated: 1
 EndChar
 
 StartChar: florin
@@ -17148,6 +17306,7 @@ SplineSet
  925 1507 925 1507 968 1484 c 0,45,46
  1020 1456 1020 1456 1020 1409 c 0,0,1
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: circumflex
@@ -17221,6 +17380,7 @@ SplineSet
  590 1159 l 1,6,-1
  590 1124 l 1,0,-1
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: caron
@@ -17255,6 +17415,7 @@ SplineSet
  588 1528 l 1,6,-1
  588 1493 l 1,0,-1
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: arabiccomma
@@ -17300,6 +17461,7 @@ SplineSet
  367 264 367 264 397.5 232 c 128,-1,17
  428 200 428 200 428 158 c 0,0,1
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: arabicsemicolon
@@ -17370,6 +17532,7 @@ SplineSet
  344 231 344 231 370.5 204.5 c 128,-1,29
  397 178 397 178 397 141 c 256,18,19
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: arabicquestionmark
@@ -17487,10 +17650,11 @@ SplineSet
  381 231 381 231 407.5 204.5 c 128,-1,51
  434 178 434 178 434 141 c 256,40,41
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: hamza
-Encoding: 1569 1569 160
+Encoding: 1569 68893 160
 Width: 717
 Flags: W
 LayerCount: 2
@@ -17515,11 +17679,12 @@ SplineSet
  723 496 l 1,19,8
  595 707 595 707 476 501 c 1,9,-1
 EndSplineSet
+Validated: 41
 Substitution2: "'isol' Isolated Forms in Arabic lookup 0 subtable" hamzaisolated
 EndChar
 
 StartChar: alefwithmaddaabove
-Encoding: 1570 1570 161
+Encoding: 1570 68864 161
 Width: 809
 Flags: W
 LayerCount: 2
@@ -17541,6 +17706,7 @@ SplineSet
  481 1254 l 1,17,12
  537 1416 537 1416 590 1260 c 1,13,-1
 EndSplineSet
+Validated: 41
 Substitution2: "'fina' Terminal Forms in Arabic lookup 3 subtable" alefwithmaddaabovefinal
 Substitution2: "'isol' Isolated Forms in Arabic lookup 0 subtable" alefwithmaddaaboveisolated
 EndChar
@@ -17568,8 +17734,9 @@ SplineSet
  487 1254 l 1,17,12
  543 1416 543 1416 596 1260 c 1,13,-1
 EndSplineSet
-Substitution2: "'fina' Terminal Forms in Arabic lookup 3 subtable" alefwithhamzaabovefinal
+Validated: 41
 Substitution2: "'isol' Isolated Forms in Arabic lookup 0 subtable" alefwithhamzaaboveisolated
+Substitution2: "'fina' Terminal Forms in Arabic lookup 3 subtable" alefwithhamzaabovefinal
 EndChar
 
 StartChar: wawwithhamzaabove
@@ -17598,8 +17765,9 @@ SplineSet
  726 496 l 1,19,8
  598 707 598 707 479 501 c 1,9,-1
 EndSplineSet
-Substitution2: "'fina' Terminal Forms in Arabic lookup 3 subtable" wawwithhamzaabovefinal
+Validated: 41
 Substitution2: "'isol' Isolated Forms in Arabic lookup 0 subtable" wawwithhamzaaboveisolated
+Substitution2: "'fina' Terminal Forms in Arabic lookup 3 subtable" wawwithhamzaabovefinal
 EndChar
 
 StartChar: alefwithhamzabelow
@@ -17625,12 +17793,13 @@ SplineSet
  477 1254 l 1,17,12
  533 1416 533 1416 586 1260 c 1,13,-1
 EndSplineSet
-Substitution2: "'fina' Terminal Forms in Arabic lookup 3 subtable" alefwithhamzabelowfinal
+Validated: 41
 Substitution2: "'isol' Isolated Forms in Arabic lookup 0 subtable" alefwithhamzabelowisolated
+Substitution2: "'fina' Terminal Forms in Arabic lookup 3 subtable" alefwithhamzabelowfinal
 EndChar
 
 StartChar: yehwithhamzaabove
-Encoding: 1574 1574 165
+Encoding: 1574 68897 165
 Width: 723
 Flags: W
 LayerCount: 2
@@ -17647,10 +17816,11 @@ SplineSet
  729 496 l 1,11,0
  601 707 601 707 482 501 c 1,1,-1
 EndSplineSet
-Substitution2: "'fina' Terminal Forms in Arabic lookup 3 subtable" yehwithhamzaabovefinal
-Substitution2: "'medi' Medial Forms in Arabic lookup 2 subtable" yehwithhamzaabovemedial
-Substitution2: "'init' Initial Forms in Arabic lookup 1 subtable" yehwithhamzaaboveinitial
+Validated: 41
 Substitution2: "'isol' Isolated Forms in Arabic lookup 0 subtable" yehwithhamzaaboveisolated
+Substitution2: "'init' Initial Forms in Arabic lookup 1 subtable" yehwithhamzaaboveinitial
+Substitution2: "'medi' Medial Forms in Arabic lookup 2 subtable" yehwithhamzaabovemedial
+Substitution2: "'fina' Terminal Forms in Arabic lookup 3 subtable" yehwithhamzaabovefinal
 EndChar
 
 StartChar: arabicalef
@@ -17676,12 +17846,13 @@ SplineSet
  498 1254 l 1,17,12
  554 1416 554 1416 607 1260 c 1,13,-1
 EndSplineSet
-Substitution2: "'fina' Terminal Forms in Arabic lookup 3 subtable" aleffinal
+Validated: 41
 Substitution2: "'isol' Isolated Forms in Arabic lookup 0 subtable" A
+Substitution2: "'fina' Terminal Forms in Arabic lookup 3 subtable" aleffinal
 EndChar
 
 StartChar: beh
-Encoding: 1576 1576 167
+Encoding: 1576 68865 167
 Width: 843
 Flags: W
 LayerCount: 2
@@ -17701,14 +17872,15 @@ SplineSet
  188 1395 l 1,16,0
  246 1287 246 1287 292 1201 c 1,1,-1
 EndSplineSet
-Substitution2: "'fina' Terminal Forms in Arabic lookup 3 subtable" behfinal
-Substitution2: "'medi' Medial Forms in Arabic lookup 2 subtable" behmedial
-Substitution2: "'init' Initial Forms in Arabic lookup 1 subtable" behinitial
+Validated: 41
 Substitution2: "'isol' Isolated Forms in Arabic lookup 0 subtable" B
+Substitution2: "'init' Initial Forms in Arabic lookup 1 subtable" behinitial
+Substitution2: "'medi' Medial Forms in Arabic lookup 2 subtable" behmedial
+Substitution2: "'fina' Terminal Forms in Arabic lookup 3 subtable" behfinal
 EndChar
 
 StartChar: tehmarbuta
-Encoding: 1577 1577 168
+Encoding: 1577 68887 168
 Width: 936
 Flags: W
 LayerCount: 2
@@ -17732,12 +17904,13 @@ SplineSet
  95 1194 95 1194 224 1309 c 1,21,18
  400 1320 400 1320 288 1189 c 1,19,20
 EndSplineSet
-Substitution2: "'fina' Terminal Forms in Arabic lookup 3 subtable" tehmarbutafinal
+Validated: 41
 Substitution2: "'isol' Isolated Forms in Arabic lookup 0 subtable" kinna ya
+Substitution2: "'fina' Terminal Forms in Arabic lookup 3 subtable" tehmarbutafinal
 EndChar
 
 StartChar: teh
-Encoding: 1578 1578 169
+Encoding: 1578 68867 169
 Width: 843
 Flags: W
 LayerCount: 2
@@ -17758,10 +17931,11 @@ SplineSet
  281 1564 281 1564 193 1211 c 1,18,-1
  194 833 l 1,0,1
 EndSplineSet
-Substitution2: "'fina' Terminal Forms in Arabic lookup 3 subtable" tehfinal
-Substitution2: "'medi' Medial Forms in Arabic lookup 2 subtable" tehmedial
-Substitution2: "'init' Initial Forms in Arabic lookup 1 subtable" tehinitial
+Validated: 41
 Substitution2: "'isol' Isolated Forms in Arabic lookup 0 subtable" T
+Substitution2: "'init' Initial Forms in Arabic lookup 1 subtable" tehinitial
+Substitution2: "'medi' Medial Forms in Arabic lookup 2 subtable" tehmedial
+Substitution2: "'fina' Terminal Forms in Arabic lookup 3 subtable" tehfinal
 EndChar
 
 StartChar: theh
@@ -17797,6 +17971,7 @@ SplineSet
  728 813 728 813 766.5 829 c 128,-1,33
  805 845 805 845 814 896 c 0,22,23
 EndSplineSet
+Validated: 33
 Substitution2: "'fina' Terminal Forms in Arabic lookup 3 subtable" thehfinal
 Substitution2: "'medi' Medial Forms in Arabic lookup 2 subtable" thehmedial
 Substitution2: "'init' Initial Forms in Arabic lookup 1 subtable" thehinitial
@@ -17844,6 +18019,7 @@ SplineSet
  556 388 556 388 866 466 c 1,42,-1
  983 427 l 1,38,39
 EndSplineSet
+Validated: 41
 Substitution2: "'fina' Terminal Forms in Arabic lookup 3 subtable" jeemfinal
 Substitution2: "'medi' Medial Forms in Arabic lookup 2 subtable" jeemmedial
 Substitution2: "'init' Initial Forms in Arabic lookup 1 subtable" jeeminitial
@@ -17874,6 +18050,7 @@ SplineSet
  607 372 607 372 777 394 c 1,20,15
  945 302 945 302 868 186 c 1,16,17
 EndSplineSet
+Validated: 41
 Substitution2: "'fina' Terminal Forms in Arabic lookup 3 subtable" hahfinal
 Substitution2: "'medi' Medial Forms in Arabic lookup 2 subtable" hahmedial
 Substitution2: "'init' Initial Forms in Arabic lookup 1 subtable" hahinitial
@@ -17899,6 +18076,7 @@ SplineSet
  1065 1506 l 1,13,-1
  190 858 l 1,0,1
 EndSplineSet
+Validated: 41
 Substitution2: "'fina' Terminal Forms in Arabic lookup 3 subtable" khahfinal
 Substitution2: "'medi' Medial Forms in Arabic lookup 2 subtable" khahmedial
 Substitution2: "'init' Initial Forms in Arabic lookup 1 subtable" khahinitial
@@ -17926,6 +18104,7 @@ SplineSet
  1183 919 1183 919 560 812 c 1,16,0
  423 740 423 740 555 638 c 1,1,-1
 EndSplineSet
+Validated: 41
 Substitution2: "'fina' Terminal Forms in Arabic lookup 3 subtable" dalfinal
 Substitution2: "'isol' Isolated Forms in Arabic lookup 0 subtable" dalisolated
 EndChar
@@ -17956,6 +18135,7 @@ SplineSet
  463 132 463 132 549 315 c 1,21,18
  721 309 721 309 674 130 c 1,19,20
 EndSplineSet
+Validated: 41
 Substitution2: "'fina' Terminal Forms in Arabic lookup 3 subtable" thalfinal
 Substitution2: "'isol' Isolated Forms in Arabic lookup 0 subtable" thalisolated
 EndChar
@@ -17986,6 +18166,7 @@ SplineSet
  812 1208 812 1208 880 1297 c 1,24,19
  1113 1327 1113 1327 1136 1171 c 1,20,21
 EndSplineSet
+Validated: 41
 Substitution2: "'fina' Terminal Forms in Arabic lookup 3 subtable" rehfinal
 Substitution2: "'isol' Isolated Forms in Arabic lookup 0 subtable" rehisolated
 EndChar
@@ -18016,6 +18197,7 @@ SplineSet
  550 1140 l 1,25,20
  629 1233 629 1233 708 1134 c 1,21,-1
 EndSplineSet
+Validated: 41
 Substitution2: "'fina' Terminal Forms in Arabic lookup 3 subtable" zainfinal
 Substitution2: "'isol' Isolated Forms in Arabic lookup 0 subtable" zainisolated
 EndChar
@@ -18043,6 +18225,7 @@ SplineSet
  1078 1015 1078 1015 580 990 c 1,22,0
  260 889 260 889 293 656 c 1,1,2
 EndSplineSet
+Validated: 41
 Substitution2: "'fina' Terminal Forms in Arabic lookup 3 subtable" seenfinal
 Substitution2: "'medi' Medial Forms in Arabic lookup 2 subtable" seenmedial
 Substitution2: "'init' Initial Forms in Arabic lookup 1 subtable" seeninitial
@@ -18091,6 +18274,7 @@ SplineSet
  784 1175 784 1175 469 872 c 1,44,-1
  419 800 l 1,0,1
 EndSplineSet
+Validated: 41
 Substitution2: "'fina' Terminal Forms in Arabic lookup 3 subtable" sheenfinal
 Substitution2: "'medi' Medial Forms in Arabic lookup 2 subtable" sheenmedial
 Substitution2: "'init' Initial Forms in Arabic lookup 1 subtable" sheeninitial
@@ -18127,6 +18311,7 @@ SplineSet
  565 256 l 1,28,29
  776 561 776 561 1105 570 c 1,25,26
 EndSplineSet
+Validated: 41
 Substitution2: "'fina' Terminal Forms in Arabic lookup 3 subtable" sadfinal
 Substitution2: "'medi' Medial Forms in Arabic lookup 2 subtable" sadmedial
 Substitution2: "'init' Initial Forms in Arabic lookup 1 subtable" sadinitial
@@ -18163,6 +18348,7 @@ SplineSet
  926 411 926 411 1096.5 505 c 128,-1,19
  1267 599 1267 599 1410.5 525.5 c 128,-1,20
 EndSplineSet
+Validated: 41
 Substitution2: "'fina' Terminal Forms in Arabic lookup 3 subtable" dadfinal
 Substitution2: "'medi' Medial Forms in Arabic lookup 2 subtable" dadmedial
 Substitution2: "'init' Initial Forms in Arabic lookup 1 subtable" dadinitial
@@ -18190,6 +18376,7 @@ SplineSet
  751 1260 l 1,15,0
  546 1182 546 1182 518 1017 c 1,1,-1
 EndSplineSet
+Validated: 9
 Substitution2: "'fina' Terminal Forms in Arabic lookup 3 subtable" tahfinal
 Substitution2: "'medi' Medial Forms in Arabic lookup 2 subtable" tahmedial
 Substitution2: "'init' Initial Forms in Arabic lookup 1 subtable" tahinitial
@@ -18242,6 +18429,7 @@ SplineSet
  910 813 910 813 949.5 829 c 128,-1,52
  989 845 989 845 997 898 c 0,41,42
 EndSplineSet
+Validated: 33
 Substitution2: "'fina' Terminal Forms in Arabic lookup 3 subtable" zahfinal
 Substitution2: "'medi' Medial Forms in Arabic lookup 2 subtable" zahmedial
 Substitution2: "'init' Initial Forms in Arabic lookup 1 subtable" zahinitial
@@ -18269,6 +18457,7 @@ SplineSet
  686 1512 686 1512 590 1307 c 1,15,-1
  588 450 l 1,0,1
 EndSplineSet
+Validated: 41
 Substitution2: "'fina' Terminal Forms in Arabic lookup 3 subtable" ainfinal
 Substitution2: "'medi' Medial Forms in Arabic lookup 2 subtable" ainmedial
 Substitution2: "'init' Initial Forms in Arabic lookup 1 subtable" aininitial
@@ -18313,6 +18502,7 @@ SplineSet
  1241 1026 1241 1026 732 942 c 1,38,0
  275 842 275 842 469 200 c 1,1,2
 EndSplineSet
+Validated: 41
 Substitution2: "'fina' Terminal Forms in Arabic lookup 3 subtable" ghainfinal
 Substitution2: "'medi' Medial Forms in Arabic lookup 2 subtable" ghainmedial
 Substitution2: "'init' Initial Forms in Arabic lookup 1 subtable" ghaininitial
@@ -18332,6 +18522,7 @@ SplineSet
  503 198 l 1,3,-1
  503 2 l 1,0,-1
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: feh
@@ -18371,6 +18562,7 @@ SplineSet
  758 780 758 780 800.5 797.5 c 128,-1,37
  843 815 843 815 852 872 c 0,26,27
 EndSplineSet
+Validated: 41
 Substitution2: "'fina' Terminal Forms in Arabic lookup 3 subtable" fehfinal
 Substitution2: "'medi' Medial Forms in Arabic lookup 2 subtable" fehmedial
 Substitution2: "'init' Initial Forms in Arabic lookup 1 subtable" fehinitial
@@ -18404,6 +18596,7 @@ SplineSet
  501 360 501 360 619 421 c 1,27,22
  828 475 828 475 836 252 c 1,23,24
 EndSplineSet
+Validated: 41
 Substitution2: "'fina' Terminal Forms in Arabic lookup 3 subtable" qaffinal
 Substitution2: "'medi' Medial Forms in Arabic lookup 2 subtable" qafmedial
 Substitution2: "'init' Initial Forms in Arabic lookup 1 subtable" qafinitial
@@ -18439,6 +18632,7 @@ SplineSet
  1454 487 1454 487 1209 270 c 1,24,-1
  710 270 l 1,20,-1
 EndSplineSet
+Validated: 37
 Substitution2: "'fina' Terminal Forms in Arabic lookup 3 subtable" arabickaffinal
 Substitution2: "'medi' Medial Forms in Arabic lookup 2 subtable" kafmedial
 Substitution2: "'init' Initial Forms in Arabic lookup 1 subtable" kafinitial
@@ -18466,6 +18660,7 @@ SplineSet
  849 1578 849 1578 706 1363 c 1,17,0
  715 915 715 915 711 490 c 1,1,2
 EndSplineSet
+Validated: 41
 Substitution2: "'fina' Terminal Forms in Arabic lookup 3 subtable" lamfinal
 Substitution2: "'medi' Medial Forms in Arabic lookup 2 subtable" lammedial
 Substitution2: "'init' Initial Forms in Arabic lookup 1 subtable" laminitial
@@ -18507,6 +18702,7 @@ SplineSet
  918 179 l 1,29,21
  1006 279 1006 279 965.5 380 c 128,-1,22
 EndSplineSet
+Validated: 33
 Substitution2: "'fina' Terminal Forms in Arabic lookup 3 subtable" meemfinal
 Substitution2: "'medi' Medial Forms in Arabic lookup 2 subtable" meemmedial
 Substitution2: "'init' Initial Forms in Arabic lookup 1 subtable" meeminitial
@@ -18547,6 +18743,7 @@ SplineSet
  878 389 878 389 909 346.5 c 128,-1,27
  940 304 940 304 930 255.5 c 128,-1,28
 EndSplineSet
+Validated: 41
 Substitution2: "'fina' Terminal Forms in Arabic lookup 3 subtable" noonfinal
 Substitution2: "'medi' Medial Forms in Arabic lookup 2 subtable" noonmedial
 Substitution2: "'init' Initial Forms in Arabic lookup 1 subtable" nooninitial
@@ -18582,6 +18779,7 @@ SplineSet
  600 561 600 561 768 467 c 1,31,26
  783 392 783 392 772 203 c 1,27,28
 EndSplineSet
+Validated: 41
 Substitution2: "'fina' Terminal Forms in Arabic lookup 3 subtable" hehfinal
 Substitution2: "'medi' Medial Forms in Arabic lookup 2 subtable" hehmedial
 Substitution2: "'init' Initial Forms in Arabic lookup 1 subtable" hehinitial
@@ -18619,6 +18817,7 @@ SplineSet
  640 1163 640 1163 731 1178 c 1,30,25
  836 1157 836 1157 774 1057 c 1,26,27
 EndSplineSet
+Validated: 41
 Substitution2: "'fina' Terminal Forms in Arabic lookup 3 subtable" wawfinal
 Substitution2: "'isol' Isolated Forms in Arabic lookup 0 subtable" wa
 EndChar
@@ -18644,6 +18843,7 @@ SplineSet
  234 -158 234 -158 355 -95 c 1,20,15
  560 -40 560 -40 576 -268 c 1,16,17
 EndSplineSet
+Validated: 41
 Substitution2: "'fina' Terminal Forms in Arabic lookup 3 subtable" alefmaksura.fina
 Substitution2: "'isol' Isolated Forms in Arabic lookup 0 subtable" alefmaksuraisolated
 EndChar
@@ -18674,6 +18874,7 @@ SplineSet
  308 1166 308 1166 405 1258 c 1,25,20
  565 1341 565 1341 645 1194 c 1,21,22
 EndSplineSet
+Validated: 41
 Substitution2: "'fina' Terminal Forms in Arabic lookup 3 subtable" yehfinal
 Substitution2: "'medi' Medial Forms in Arabic lookup 2 subtable" yehmedial
 Substitution2: "'init' Initial Forms in Arabic lookup 1 subtable" yehinitial
@@ -18695,6 +18896,7 @@ SplineSet
  195 1795 195 1795 70 1820 c 1,9,-1
  70 1370 l 1,0,1
 EndSplineSet
+Validated: 41
 Substitution2: "Single Substitution lookup 8 subtable" fathatanlow
 Substitution2: "Single Substitution lookup 7 subtable" fathatanisolated
 EndChar
@@ -18719,6 +18921,7 @@ SplineSet
  652 528 l 1,11,4
  568 620 568 620 510 526 c 1,5,-1
 EndSplineSet
+Validated: 41
 Substitution2: "Single Substitution lookup 8 subtable" dammatanlow
 Substitution2: "Single Substitution lookup 7 subtable" dammatanisolated
 EndChar
@@ -18752,6 +18955,7 @@ SplineSet
  193 1962 193 1962 284 1962 c 0,32,33
  308 1962 308 1962 341 1958 c 1,0,1
 EndSplineSet
+Validated: 1
 Substitution2: "Single Substitution lookup 11 subtable" kasratanlow
 Substitution2: "Single Substitution lookup 10 subtable" kasratanisolated
 EndChar
@@ -18772,6 +18976,7 @@ SplineSet
  870 1905 870 1905 920 2080 c 1,9,-1
  895 2080 l 1,0,-1
 EndSplineSet
+Validated: 41
 Substitution2: "Single Substitution lookup 8 subtable" fathalow
 Substitution2: "Single Substitution lookup 7 subtable" fathaisolated
 EndChar
@@ -18800,6 +19005,7 @@ SplineSet
  971 557 l 1,21,0
  834 705 834 705 750 550 c 1,1,-1
 EndSplineSet
+Validated: 41
 Substitution2: "Single Substitution lookup 8 subtable" dammalow
 Substitution2: "Single Substitution lookup 7 subtable" dammaisolated
 EndChar
@@ -18836,6 +19042,7 @@ SplineSet
  395 1218 395 1218 391 1193 c 0,27,16
  386 1160 386 1160 361 1150 c 128,-1,17
 EndSplineSet
+Validated: 37
 Substitution2: "Single Substitution lookup 11 subtable" kasralow
 Substitution2: "Single Substitution lookup 10 subtable" kasraisolated
 EndChar
@@ -18857,6 +19064,7 @@ SplineSet
  137 1873 137 1873 0 1912 c 1,10,-1
  0 1550 l 1,0,-1
 EndSplineSet
+Validated: 41
 Substitution2: "Single Substitution lookup 8 subtable" shaddalow
 Substitution2: "Single Substitution lookup 7 subtable" shaddaisolated
 EndChar
@@ -18881,6 +19089,7 @@ SplineSet
  647 528 l 1,11,4
  563 620 563 620 505 526 c 1,5,-1
 EndSplineSet
+Validated: 41
 Substitution2: "Single Substitution lookup 8 subtable" sukunlow
 Substitution2: "Single Substitution lookup 7 subtable" sukunisolated
 EndChar
@@ -18907,6 +19116,7 @@ SplineSet
  380 1151 380 1151 504 1148.5 c 128,-1,10
  628 1146 628 1146 660 1005 c 1,11,-1
 EndSplineSet
+Validated: 41
 EndChar
 
 StartChar: arabicindicdigitone
@@ -18922,6 +19132,7 @@ SplineSet
  396 1198 l 1,4,5
  247 1348 247 1348 127 1198 c 1,0,-1
 EndSplineSet
+Validated: 41
 EndChar
 
 StartChar: arabicindicdigittwo
@@ -18943,6 +19154,7 @@ SplineSet
  834 1351 834 1351 446 1304 c 1,16,0
  245 1212 245 1212 150 1068 c 1,1,2
 EndSplineSet
+Validated: 41
 EndChar
 
 StartChar: arabicindicdigitthree
@@ -18969,6 +19181,7 @@ SplineSet
  395 495 395 495 544 545 c 1,21,14
  697 541 697 541 715 392 c 1,15,16
 EndSplineSet
+Validated: 41
 EndChar
 
 StartChar: arabicindicdigitfour
@@ -19001,6 +19214,7 @@ SplineSet
  365 505 365 505 500 556 c 1,34,27
  659 535 659 535 665 401 c 1,28,29
 EndSplineSet
+Validated: 41
 EndChar
 
 StartChar: arabicindicdigitfive
@@ -19036,6 +19250,7 @@ SplineSet
  915 1162 915 1162 1029 1210 c 1,42,35
  1137 1208 1137 1208 1196 1163 c 1,36,37
 EndSplineSet
+Validated: 41
 EndChar
 
 StartChar: arabicindicdigitsix
@@ -19062,6 +19277,7 @@ SplineSet
  367 519 367 519 549 602 c 1,26,19
  701 570 701 570 765 449 c 1,20,21
 EndSplineSet
+Validated: 41
 EndChar
 
 StartChar: arabicindicdigitseven
@@ -19086,6 +19302,7 @@ SplineSet
  1145 1267 1145 1267 959 1319 c 1,22,23
  551 1355 551 1355 217 1319 c 1,0,1
 EndSplineSet
+Validated: 41
 EndChar
 
 StartChar: arabicindicdigiteight
@@ -19116,6 +19333,7 @@ SplineSet
  629 416 629 416 777 454 c 1,29,22
  862 430 862 430 908 354 c 1,23,24
 EndSplineSet
+Validated: 41
 EndChar
 
 StartChar: arabicindicdigitnine
@@ -19144,6 +19362,7 @@ SplineSet
  442 1129 442 1129 553 1150 c 1,28,21
  630 1119 630 1119 673 1058 c 1,22,23
 EndSplineSet
+Validated: 41
 EndChar
 
 StartChar: arabicpercentsign
@@ -19177,6 +19396,7 @@ SplineSet
  785 135 785 135 809.5 109.5 c 128,-1,27
  834 84 834 84 834 47 c 0,16,17
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: arabicfivepointedstar
@@ -19219,6 +19439,7 @@ SplineSet
  494 1190 l 1,9,-1
  765 1190 l 1,0,-1
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: superscriptalef
@@ -19240,6 +19461,7 @@ SplineSet
  163 1269 l 2,15,16
  170 1214 170 1214 170 1180 c 0,0,1
 EndSplineSet
+Validated: 33
 EndChar
 
 StartChar: alefwasla
@@ -19343,6 +19565,7 @@ SplineSet
  228 1263 l 2,41,42
  315 1263 315 1263 315 1321 c 0,36,37
 EndSplineSet
+Validated: 1
 Substitution2: "'fina' Terminal Forms in Arabic lookup 3 subtable" alefwaslafinal
 Substitution2: "'isol' Isolated Forms in Arabic lookup 0 subtable" alefwaslaisolated
 EndChar
@@ -19376,6 +19599,7 @@ SplineSet
  201 1962 201 1962 292 1962 c 0,32,33
  316 1962 316 1962 349 1958 c 1,0,1
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: peh
@@ -19517,6 +19741,7 @@ SplineSet
  772 -226 l 1,40,-1
  874 -290 l 1,37,-1
 EndSplineSet
+Validated: 1
 Substitution2: "'fina' Terminal Forms in Arabic lookup 3 subtable" pehfinal
 Substitution2: "'medi' Medial Forms in Arabic lookup 2 subtable" pehmedial
 Substitution2: "'init' Initial Forms in Arabic lookup 1 subtable" pehinitial
@@ -19669,6 +19894,7 @@ SplineSet
  529 -133 l 1,41,-1
  631 -197 l 1,38,-1
 EndSplineSet
+Validated: 1
 Substitution2: "'fina' Terminal Forms in Arabic lookup 3 subtable" tchehfinal
 Substitution2: "'medi' Medial Forms in Arabic lookup 2 subtable" tchehmedial
 Substitution2: "'init' Initial Forms in Arabic lookup 1 subtable" tchehinitial
@@ -19711,6 +19937,7 @@ SplineSet
  536 851 l 1,32,-1
  641 784 l 1,25,-1
 EndSplineSet
+Validated: 1
 Substitution2: "'fina' Terminal Forms in Arabic lookup 3 subtable" jehfinal
 Substitution2: "'isol' Isolated Forms in Arabic lookup 0 subtable" jehisolated
 EndChar
@@ -19922,6 +20149,7 @@ SplineSet
  1168 1145 l 1,57,-1
  1272 1075 l 1,50,-1
 EndSplineSet
+Validated: 1
 Substitution2: "'fina' Terminal Forms in Arabic lookup 3 subtable" vehfinal
 Substitution2: "'medi' Medial Forms in Arabic lookup 2 subtable" vehmedial
 Substitution2: "'init' Initial Forms in Arabic lookup 1 subtable" vehinitial
@@ -20038,6 +20266,7 @@ SplineSet
  845 883 845 883 1000 965 c 0,42,43
  1248 1096 1248 1096 1706 1245 c 1,0,-1
 EndSplineSet
+Validated: 1
 Substitution2: "'fina' Terminal Forms in Arabic lookup 3 subtable" kehehfinal
 Substitution2: "'medi' Medial Forms in Arabic lookup 2 subtable" kehehmedial
 Substitution2: "'init' Initial Forms in Arabic lookup 1 subtable" kehehinitial
@@ -20184,6 +20413,7 @@ SplineSet
  825 1126 825 1126 1124 1275 c 0,53,54
  1416 1420 1416 1420 1677 1502 c 1,44,-1
 EndSplineSet
+Validated: 1
 Substitution2: "'fina' Terminal Forms in Arabic lookup 3 subtable" gaffinal
 Substitution2: "'medi' Medial Forms in Arabic lookup 2 subtable" gafmedial
 Substitution2: "'init' Initial Forms in Arabic lookup 1 subtable" gafinitial
@@ -20209,6 +20439,7 @@ SplineSet
  1095 445 1095 445 1096 906 c 1,12,13
  926 1147 926 1147 813 906 c 1,4,-1
 EndSplineSet
+Validated: 41
 Substitution2: "'fina' Terminal Forms in Arabic lookup 3 subtable" farsiyehfinal
 Substitution2: "'isol' Isolated Forms in Arabic lookup 0 subtable" farsiyehisolated
 EndChar
@@ -20283,6 +20514,7 @@ SplineSet
  309 264 309 264 353 284.5 c 128,-1,25
  397 305 397 305 397 336 c 0,14,15
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: smallhighmadda
@@ -20301,6 +20533,7 @@ SplineSet
  870 1905 870 1905 920 2080 c 1,9,-1
  895 2080 l 1,0,-1
 EndSplineSet
+Validated: 41
 EndChar
 
 StartChar: extendedarabicindicdigitzero
@@ -20320,6 +20553,7 @@ SplineSet
  485 475 485 475 885 775 c 1,11,8
  1235 500 1235 500 885 275 c 1,9,10
 EndSplineSet
+Validated: 41
 EndChar
 
 StartChar: extendedarabicindicdigitone
@@ -20336,6 +20570,7 @@ SplineSet
  387 1200 387 1200 337 1425 c 1,7,0
  237 1300 237 1300 187 1175 c 1,1,-1
 EndSplineSet
+Validated: 41
 EndChar
 
 StartChar: extendedarabicindicdigittwo
@@ -20355,6 +20590,7 @@ SplineSet
  1240 1526 1240 1526 440 1476 c 1,14,0
  -210 901 -210 901 340 776 c 1,1,2
 EndSplineSet
+Validated: 41
 EndChar
 
 StartChar: extendedarabicindicdigitthree
@@ -20383,6 +20619,7 @@ SplineSet
  270 75 270 75 570 750 c 1,26,23
  795 525 795 525 1020 450 c 1,24,25
 EndSplineSet
+Validated: 41
 EndChar
 
 StartChar: extendedarabicindicdigitfour
@@ -20408,6 +20645,7 @@ SplineSet
  516 550 l 1,18,16
  641 225 641 225 391 425 c 1,17,-1
 EndSplineSet
+Validated: 41
 EndChar
 
 StartChar: extendedarabicindicdigitfive
@@ -20434,6 +20672,7 @@ SplineSet
  832 275 832 275 982 400 c 1,23,20
  1107 275 1107 275 982 150 c 1,21,22
 EndSplineSet
+Validated: 41
 EndChar
 
 StartChar: extendedarabicindicdigitsix
@@ -20456,6 +20695,7 @@ SplineSet
  791 714 791 714 891 839 c 1,15,11
  1016 114 1016 114 716 364 c 1,12,-1
 EndSplineSet
+Validated: 41
 EndChar
 
 StartChar: extendedarabicindicdigitseven
@@ -20479,6 +20719,7 @@ SplineSet
  383 1269 l 1,13,0
  133 869 133 869 858 969 c 1,1,-1
 EndSplineSet
+Validated: 41
 EndChar
 
 StartChar: extendedarabicindicdigiteight
@@ -20505,6 +20746,7 @@ SplineSet
  665 463 665 463 761 538 c 1,23,20
  800 363 800 363 684 288 c 1,21,22
 EndSplineSet
+Validated: 41
 EndChar
 
 StartChar: extendedarabicindicdigitnine
@@ -20530,6 +20772,7 @@ SplineSet
  174 1225 174 1225 524 1375 c 1,21,18
  774 1150 774 1150 474 1050 c 1,19,20
 EndSplineSet
+Validated: 41
 EndChar
 
 StartChar: zeronojoin
@@ -20560,6 +20803,7 @@ SplineSet
  45 1628 l 1,3,-1
  45 0 l 1,0,-1
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: zerojoin
@@ -20618,6 +20862,7 @@ SplineSet
  53 1603 l 1,14,-1
  160 1496 l 1,0,-1
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: lefttoright
@@ -20671,6 +20916,7 @@ SplineSet
  166 1741 l 1,10,-1
  303 1604 l 1,0,-1
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: righttoleft
@@ -20722,6 +20968,7 @@ SplineSet
  45 1628 l 1,10,-1
  45 0 l 1,0,-1
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: endash
@@ -20753,6 +21000,7 @@ SplineSet
  1036 684 l 1,3,-1
  1036 594 l 1,0,-1
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: quotedash
@@ -20784,6 +21032,7 @@ SplineSet
  2060 684 l 1,3,-1
  2060 594 l 1,0,-1
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: quoteleft
@@ -20807,6 +21056,7 @@ SplineSet
  293 1202 293 1202 301 1202 c 0,19,20
  393 1202 393 1202 393 1110 c 0,0,1
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: quoteright
@@ -20858,6 +21108,7 @@ SplineSet
  316 1481 316 1481 356 1427 c 0,20,21
  393 1379 393 1379 393 1311 c 0,0,1
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: quotesinglbase
@@ -20909,6 +21160,7 @@ SplineSet
  316 297 316 297 356 243 c 0,20,21
  393 195 393 195 393 127 c 0,0,1
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: quotedblleft
@@ -20989,6 +21241,7 @@ SplineSet
  277 1202 277 1202 285 1202 c 0,42,43
  377 1202 377 1202 377 1110 c 0,23,24
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: quotedblright
@@ -21074,6 +21327,7 @@ SplineSet
  316 1481 316 1481 356 1427 c 0,42,43
  393 1379 393 1379 393 1311 c 0,22,23
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: quotedblbase
@@ -21159,6 +21413,7 @@ SplineSet
  316 297 316 297 356 243 c 0,42,43
  393 195 393 195 393 127 c 0,22,23
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: dagger
@@ -21262,6 +21517,7 @@ SplineSet
  971 1026 971 1026 971 971 c 2,29,-1
  971 887 l 2,0,1
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: daggerdbl
@@ -21423,6 +21679,7 @@ SplineSet
  991 253 991 253 991 205 c 2,47,-1
  991 117 l 2,0,1
 EndSplineSet
+Validated: 33
 EndChar
 
 StartChar: bullet
@@ -21458,6 +21715,7 @@ SplineSet
  535 1018 535 1018 596 866 c 0,12,13
  614 819 614 819 614 768 c 0,0,1
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: ellipsis
@@ -21532,6 +21790,7 @@ SplineSet
  238 297 238 297 342 297 c 256,25,26
  446 297 446 297 446 201 c 0,18,19
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: perthousand
@@ -21688,6 +21947,7 @@ SplineSet
  147 772 147 772 295 772 c 0,74,75
  444 772 444 772 444 1087 c 0,68,69
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: guilsinglleft
@@ -21724,6 +21984,7 @@ SplineSet
  213 578 l 1,5,-1
  408 201 l 1,0,-1
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: guilsinglright
@@ -21763,6 +22024,7 @@ SplineSet
  98 954 l 1,5,-1
  399 578 l 1,0,-1
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: trademark
@@ -21958,6 +22220,7 @@ SplineSet
  780 1485 l 1,72,-1
  803 1284 l 1,44,-1
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: fathalow
@@ -21976,6 +22239,7 @@ SplineSet
  870 1886 870 1886 920 2061 c 1,9,-1
  895 2061 l 1,0,-1
 EndSplineSet
+Validated: 41
 EndChar
 
 StartChar: dammalow
@@ -22002,6 +22266,7 @@ SplineSet
  991 1961 l 1,21,0
  854 2109 854 2109 770 1954 c 1,1,-1
 EndSplineSet
+Validated: 41
 EndChar
 
 StartChar: sukunlow
@@ -22024,6 +22289,7 @@ SplineSet
  654 528 l 1,11,4
  570 620 570 620 512 526 c 1,5,-1
 EndSplineSet
+Validated: 41
 EndChar
 
 StartChar: fathatanlow
@@ -22041,6 +22307,7 @@ SplineSet
  185 1844 185 1844 60 1869 c 1,9,-1
  60 1419 l 1,0,1
 EndSplineSet
+Validated: 41
 EndChar
 
 StartChar: dammatanlow
@@ -22072,6 +22339,7 @@ SplineSet
  201 1962 201 1962 292 1962 c 0,32,33
  316 1962 316 1962 349 1958 c 1,0,1
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: shaddalow
@@ -22091,6 +22359,7 @@ SplineSet
  137 1985 137 1985 0 2024 c 1,10,-1
  0 1662 l 1,0,-1
 EndSplineSet
+Validated: 41
 EndChar
 
 StartChar: kasralow
@@ -22125,6 +22394,7 @@ SplineSet
  675 1218 675 1218 671 1193 c 0,27,16
  666 1160 666 1160 641 1150 c 128,-1,17
 EndSplineSet
+Validated: 37
 EndChar
 
 StartChar: kasratanlow
@@ -22148,6 +22418,7 @@ SplineSet
  635 292 635 292 713 435 c 1,13,8
  869 531 869 531 946 414.5 c 128,-1,9
 EndSplineSet
+Validated: 41
 EndChar
 
 StartChar: shaddawithfathaisolatedlow
@@ -22237,6 +22508,7 @@ SplineSet
  406 1359 l 1,29,30
  420 1304 420 1304 420 1263 c 0,7,8
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: shaddawithdammaisolatedlow
@@ -22362,6 +22634,7 @@ SplineSet
  273 1601 273 1601 338 1557 c 1,51,52
  344 1577 344 1577 344 1591 c 0,44,45
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: shaddawithfathatanisolatedlow
@@ -22468,6 +22741,7 @@ SplineSet
  406 1359 l 1,36,37
  420 1304 420 1304 420 1263 c 0,14,15
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: shaddawithdammatanisolatedlow
@@ -22626,6 +22900,7 @@ SplineSet
  326 1608 326 1608 389 1564 c 1,65,66
  393 1576 393 1576 393 1603 c 0,59,60
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: shaddawithkasraisolatedlow
@@ -22721,6 +22996,7 @@ SplineSet
  96 1108 96 1108 136 1131 c 2,30,-1
  408 1288 l 1,24,25
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: lamwithmeemwithjeeminitial
@@ -22770,6 +23046,7 @@ SplineSet
  950 376 l 1,44,-1
  1100 376 l 1,41,42
 EndSplineSet
+Validated: 37
 Ligature2: "'liga' Standard Ligatures in Arabic lookup 4 subtable" laminitial meemmedial jeemmedial
 EndChar
 
@@ -22805,6 +23082,7 @@ SplineSet
  475 150 475 150 775 700 c 1,25,-1
  875 575 l 1,22,-1
 EndSplineSet
+Validated: 41
 Ligature2: "'liga' Standard Ligatures in Arabic lookup 4 subtable" behinitial hehmedial
 EndChar
 
@@ -23002,6 +23280,7 @@ SplineSet
  359 369 l 1,64,65
  428 405 428 405 428 453 c 0,55,56
 EndSplineSet
+Validated: 1
 Ligature2: "'liga' Standard Ligatures in Arabic lookup 4 subtable" pehinitial hehmedial
 EndChar
 
@@ -23038,6 +23317,7 @@ SplineSet
  475 165 475 165 775 715 c 1,27,-1
  875 590 l 1,24,-1
 EndSplineSet
+Validated: 37
 Ligature2: "'liga' Standard Ligatures in Arabic lookup 4 subtable" tehinitial hehmedial
 EndChar
 
@@ -23073,6 +23353,7 @@ SplineSet
  475 150 475 150 775 700 c 1,27,-1
  875 575 l 1,24,-1
 EndSplineSet
+Validated: 37
 Ligature2: "'liga' Standard Ligatures in Arabic lookup 4 subtable" nooninitial hehmedial
 EndChar
 
@@ -23259,6 +23540,7 @@ SplineSet
  501 779 501 779 527 561 c 128,-1,88
  553 343 553 343 553 257 c 0,58,59
 EndSplineSet
+Validated: 1
 Ligature2: "'liga' Standard Ligatures in Arabic lookup 4 subtable" rehisolated yehmedial aleffinal lamisolated
 EndChar
 
@@ -23451,6 +23733,7 @@ SplineSet
  492 262 492 262 507 262 c 0,64,65
  521 262 521 262 521 281 c 0,50,51
 EndSplineSet
+Validated: 1
 Ligature2: "'liga' Standard Ligatures in Arabic lookup 4 subtable" tchehinitial meemmedial
 EndChar
 
@@ -23557,6 +23840,7 @@ SplineSet
  408 1747 l 1,35,36
  414 1714 414 1714 414 1673 c 0,12,13
 EndSplineSet
+Validated: 1
 Substitution2: "Single Substitution lookup 8 subtable" shaddawithfathatanisolatedlow
 Substitution2: "Single Substitution lookup 7 subtable" shaddawithfathatanisolated
 Ligature2: "'liga' Standard Ligatures in Arabic lookup 5 subtable" shadda fathatan
@@ -23666,6 +23950,7 @@ SplineSet
  90 1100 90 1100 142 1122 c 2,35,-1
  412 1236 l 1,30,31
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: fathaonhamza
@@ -23746,6 +24031,7 @@ SplineSet
  285 1525 285 1525 347 1525 c 0,31,32
  372 1525 372 1525 425 1539 c 1,6,7
 EndSplineSet
+Validated: 1
 Ligature2: "'liga' Standard Ligatures in Arabic lookup 4 subtable" highhamza fatha
 EndChar
 
@@ -23843,6 +24129,7 @@ SplineSet
  285 1525 285 1525 347 1525 c 0,37,38
  372 1525 372 1525 425 1539 c 1,12,13
 EndSplineSet
+Validated: 1
 Ligature2: "'liga' Standard Ligatures in Arabic lookup 4 subtable" highhamza fathatan
 EndChar
 
@@ -23946,6 +24233,7 @@ SplineSet
  141 1834 141 1834 233 1834 c 0,45,46
  311 1834 311 1834 311 1871 c 0,38,39
 EndSplineSet
+Validated: 1
 Ligature2: "'liga' Standard Ligatures in Arabic lookup 4 subtable" highhamza sukun
 EndChar
 
@@ -23991,6 +24279,7 @@ SplineSet
  285 1921 285 1921 344 1884 c 1,56,57
  353 1908 353 1908 353 1927 c 0,50,51
 EndSplineSet
+Validated: 1
 Ligature2: "'liga' Standard Ligatures in Arabic lookup 4 subtable" highhamza damma
 EndChar
 
@@ -24042,6 +24331,7 @@ SplineSet
  334 1934 334 1934 381 1902 c 1,68,69
  395 1928 395 1928 395 1941 c 0,62,63
 EndSplineSet
+Validated: 1
 Ligature2: "'liga' Standard Ligatures in Arabic lookup 4 subtable" highhamza dammatan
 EndChar
 
@@ -24068,6 +24358,7 @@ SplineSet
  491 1254 l 1,17,12
  547 1416 547 1416 600 1260 c 1,13,-1
 EndSplineSet
+Validated: 41
 EndChar
 
 StartChar: alefwaslafinal
@@ -24093,6 +24384,7 @@ SplineSet
  520 1254 l 1,17,12
  576 1416 576 1416 629 1260 c 1,13,-1
 EndSplineSet
+Validated: 41
 EndChar
 
 StartChar: pehisolated
@@ -24234,6 +24526,7 @@ SplineSet
  772 -226 l 1,40,-1
  874 -290 l 1,37,-1
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: pehfinal
@@ -24386,6 +24679,7 @@ SplineSet
  692 -246 l 1,36,-1
  794 -310 l 1,33,-1
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: pehinitial
@@ -24505,6 +24799,7 @@ SplineSet
  196 -186 l 1,30,-1
  298 -250 l 1,27,-1
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: pehmedial
@@ -24640,6 +24935,7 @@ SplineSet
  237 -226 l 1,29,-1
  339 -290 l 1,26,-1
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: vehisolated
@@ -24849,6 +25145,7 @@ SplineSet
  1168 1145 l 1,57,-1
  1272 1075 l 1,50,-1
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: vehfinal
@@ -25048,6 +25345,7 @@ SplineSet
  1244 931 l 1,60,-1
  1348 861 l 1,53,-1
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: vehinitial
@@ -25213,6 +25511,7 @@ SplineSet
  291 1021 l 1,46,-1
  395 951 l 1,39,-1
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: vehmedial
@@ -25396,6 +25695,7 @@ SplineSet
  380 931 l 1,48,-1
  484 861 l 1,41,-1
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: tchehisolated
@@ -25544,6 +25844,7 @@ SplineSet
  529 -133 l 1,41,-1
  631 -197 l 1,38,-1
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: tchehfinal
@@ -25725,6 +26026,7 @@ SplineSet
  529 -133 l 1,54,-1
  631 -197 l 1,51,-1
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: tchehinitial
@@ -25850,6 +26152,7 @@ SplineSet
  514 -81 l 1,43,-1
  616 -145 l 1,40,-1
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: tchehmedial
@@ -26006,6 +26309,7 @@ SplineSet
  514 -81 l 1,56,-1
  616 -145 l 1,53,-1
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: jehisolated
@@ -26144,6 +26448,7 @@ SplineSet
  536 851 l 1,32,-1
  641 784 l 1,25,-1
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: jehfinal
@@ -26285,6 +26590,7 @@ SplineSet
  519 674 l 1,29,-1
  624 607 l 1,22,-1
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: kehehisolated
@@ -26397,6 +26703,7 @@ SplineSet
  845 883 845 883 1000 965 c 0,42,43
  1248 1096 1248 1096 1706 1245 c 1,0,-1
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: kehehfinal
@@ -26529,6 +26836,7 @@ SplineSet
  1730 250 l 1,55,-1
  1730 129 l 1,0,-1
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: kehehinitial
@@ -26629,6 +26937,7 @@ SplineSet
  95 883 95 883 250 965 c 0,30,31
  498 1096 498 1096 956 1245 c 1,0,-1
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: kehehmedial
@@ -26745,6 +27054,7 @@ SplineSet
  1044 250 l 1,43,-1
  1044 129 l 1,0,-1
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: gafisolated
@@ -26888,6 +27198,7 @@ SplineSet
  825 1126 825 1126 1124 1275 c 0,55,56
  1416 1420 1416 1420 1677 1502 c 1,46,-1
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: gaffinal
@@ -27050,6 +27361,7 @@ SplineSet
  724 1181 724 1181 1038 1403 c 0,65,66
  1345 1620 1345 1620 1507 1695 c 1,56,-1
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: gafinitial
@@ -27186,6 +27498,7 @@ SplineSet
  75 1126 75 1126 374 1275 c 0,41,42
  666 1420 666 1420 927 1502 c 1,32,-1
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: gafmedial
@@ -27336,6 +27649,7 @@ SplineSet
  24 1181 24 1181 300 1370 c 0,53,54
  569 1554 569 1554 816 1671 c 1,44,-1
 EndSplineSet
+Validated: 33
 EndChar
 
 StartChar: farsiyehisolated
@@ -27357,6 +27671,7 @@ SplineSet
  1095 445 1095 445 1096 906 c 1,12,13
  926 1147 926 1147 813 906 c 1,4,-1
 EndSplineSet
+Validated: 41
 EndChar
 
 StartChar: farsiyehfinal
@@ -27378,6 +27693,7 @@ SplineSet
  1074 445 1074 445 1075 906 c 1,12,13
  905 1147 905 1147 792 906 c 1,4,-1
 EndSplineSet
+Validated: 41
 EndChar
 
 StartChar: behwithmeemisolated
@@ -27410,6 +27726,7 @@ SplineSet
  776 473 776 473 876 573 c 1,24,19
  1176 473 1176 473 976 248 c 1,20,21
 EndSplineSet
+Validated: 37
 Ligature2: "'liga' Standard Ligatures in Arabic lookup 4 subtable" behinitial meemfinal
 EndChar
 
@@ -27454,6 +27771,7 @@ SplineSet
  807 -336 807 -336 707 -211 c 1,36,-1
  732 -186 l 1,33,-1
 EndSplineSet
+Validated: 41
 Ligature2: "'liga' Standard Ligatures in Arabic lookup 4 subtable" behinitial alefmaksura.fina
 EndChar
 
@@ -27492,6 +27810,7 @@ SplineSet
  503 1156 503 1156 528 1231 c 1,30,27
  853 1156 853 1156 528 1081 c 1,28,29
 EndSplineSet
+Validated: 37
 Ligature2: "'liga' Standard Ligatures in Arabic lookup 4 subtable" behinitial yehfinal
 EndChar
 
@@ -27526,6 +27845,7 @@ SplineSet
  792 458 792 458 892 558 c 1,26,21
  1192 458 1192 458 992 233 c 1,22,23
 EndSplineSet
+Validated: 37
 Ligature2: "'liga' Standard Ligatures in Arabic lookup 4 subtable" tehinitial meemfinal
 EndChar
 
@@ -27565,6 +27885,7 @@ SplineSet
  585 1102 585 1102 610 1177 c 1,32,29
  935 1102 935 1102 610 1027 c 1,30,31
 EndSplineSet
+Validated: 37
 Ligature2: "'liga' Standard Ligatures in Arabic lookup 4 subtable" tehinitial yehfinal
 EndChar
 
@@ -27600,6 +27921,7 @@ SplineSet
  793 470 793 470 893 570 c 1,26,21
  1193 470 1193 470 993 245 c 1,22,23
 EndSplineSet
+Validated: 37
 Ligature2: "'liga' Standard Ligatures in Arabic lookup 4 subtable" thehinitial meemfinal
 EndChar
 
@@ -27656,6 +27978,7 @@ SplineSet
  -377 -382 -377 -382 -477 -257 c 1,47,-1
  -452 -232 l 1,44,-1
 EndSplineSet
+Validated: 37
 Ligature2: "'liga' Standard Ligatures in Arabic lookup 4 subtable" fehinitial alefmaksura.fina
 EndChar
 
@@ -27706,6 +28029,7 @@ SplineSet
  443 1060 443 1060 468 1135 c 1,41,38
  793 1060 793 1060 468 985 c 1,39,40
 EndSplineSet
+Validated: 37
 Ligature2: "'liga' Standard Ligatures in Arabic lookup 4 subtable" fehinitial yehfinal
 EndChar
 
@@ -27744,6 +28068,7 @@ SplineSet
  927 419 l 1,30,-1
  1077 419 l 1,27,28
 EndSplineSet
+Validated: 37
 Ligature2: "'liga' Standard Ligatures in Arabic lookup 4 subtable" laminitial jeemfinal
 EndChar
 
@@ -27777,6 +28102,7 @@ SplineSet
  816 379 l 1,22,20
  1191 229 1191 229 791 229 c 1,21,-1
 EndSplineSet
+Validated: 37
 Ligature2: "'liga' Standard Ligatures in Arabic lookup 4 subtable" laminitial hahfinal
 EndChar
 
@@ -27815,6 +28141,7 @@ SplineSet
  1505 1463 l 1,26,-1
  1430 1413 l 1,7,-1
 EndSplineSet
+Validated: 37
 Ligature2: "'liga' Standard Ligatures in Arabic lookup 4 subtable" laminitial khahfinal
 EndChar
 
@@ -27846,6 +28173,7 @@ SplineSet
  782 436 782 436 882 536 c 1,20,15
  1182 436 1182 436 982 211 c 1,16,17
 EndSplineSet
+Validated: 37
 Ligature2: "'liga' Standard Ligatures in Arabic lookup 4 subtable" laminitial meemfinal
 EndChar
 
@@ -27888,6 +28216,7 @@ SplineSet
  853 -325 853 -325 753 -200 c 1,32,-1
  778 -175 l 1,29,-1
 EndSplineSet
+Validated: 37
 Ligature2: "'liga' Standard Ligatures in Arabic lookup 4 subtable" laminitial alefmaksura.fina
 EndChar
 
@@ -27924,6 +28253,7 @@ SplineSet
  432 1125 432 1125 457 1200 c 1,26,23
  782 1125 782 1125 457 1050 c 1,24,25
 EndSplineSet
+Validated: 41
 Ligature2: "'liga' Standard Ligatures in Arabic lookup 4 subtable" laminitial yehfinal
 EndChar
 
@@ -27957,6 +28287,7 @@ SplineSet
  790 445 790 445 890 545 c 1,26,21
  1190 445 1190 445 990 220 c 1,22,23
 EndSplineSet
+Validated: 37
 Ligature2: "'liga' Standard Ligatures in Arabic lookup 4 subtable" nooninitial meemfinal
 EndChar
 
@@ -28001,6 +28332,7 @@ SplineSet
  915 -336 915 -336 815 -211 c 1,38,-1
  840 -186 l 1,35,-1
 EndSplineSet
+Validated: 37
 Ligature2: "'liga' Standard Ligatures in Arabic lookup 4 subtable" nooninitial alefmaksura.fina
 EndChar
 
@@ -28039,6 +28371,7 @@ SplineSet
  471 1135 471 1135 496 1210 c 1,32,29
  821 1135 821 1135 496 1060 c 1,30,31
 EndSplineSet
+Validated: 41
 Ligature2: "'liga' Standard Ligatures in Arabic lookup 4 subtable" nooninitial yehfinal
 EndChar
 
@@ -28079,6 +28412,7 @@ SplineSet
  872 465 872 465 972 565 c 1,33,28
  1272 465 1272 465 1072 240 c 1,29,30
 EndSplineSet
+Validated: 37
 Ligature2: "'liga' Standard Ligatures in Arabic lookup 4 subtable" yehinitial meemfinal
 EndChar
 
@@ -28130,6 +28464,7 @@ SplineSet
  1086 -335 1086 -335 986 -210 c 1,45,-1
  1011 -185 l 1,42,-1
 EndSplineSet
+Validated: 41
 Ligature2: "'liga' Standard Ligatures in Arabic lookup 4 subtable" yehinitial alefmaksura.fina
 EndChar
 
@@ -28284,6 +28619,7 @@ SplineSet
  334 1934 334 1934 381 1902 c 1,66,67
  395 1928 395 1928 395 1941 c 0,60,61
 EndSplineSet
+Validated: 1
 Substitution2: "Single Substitution lookup 8 subtable" shaddawithdammatanisolatedlow
 Substitution2: "Single Substitution lookup 7 subtable" shaddawithdammatanisolated
 Ligature2: "'liga' Standard Ligatures in Arabic lookup 5 subtable" shadda dammatan
@@ -28393,6 +28729,7 @@ SplineSet
  90 1520 90 1520 142 1542 c 2,35,-1
  412 1656 l 1,30,31
 EndSplineSet
+Validated: 1
 Substitution2: "Single Substitution lookup 8 subtable" shaddawithkasratanisolatedlow
 Substitution2: "Single Substitution lookup 7 subtable" shaddawithkasratanisolated
 Ligature2: "'liga' Standard Ligatures in Arabic lookup 5 subtable" shadda kasratan
@@ -28485,6 +28822,7 @@ SplineSet
  408 1747 l 1,29,30
  414 1714 414 1714 414 1673 c 0,6,7
 EndSplineSet
+Validated: 1
 Substitution2: "Single Substitution lookup 8 subtable" shaddawithfathaisolatedlow
 Substitution2: "Single Substitution lookup 7 subtable" shaddawithfathaisolated
 Ligature2: "'liga' Standard Ligatures in Arabic lookup 5 subtable" shadda fatha
@@ -28612,6 +28950,7 @@ SplineSet
  285 1921 285 1921 344 1884 c 1,50,51
  353 1908 353 1908 353 1927 c 0,44,45
 EndSplineSet
+Validated: 1
 Substitution2: "Single Substitution lookup 8 subtable" shaddawithdammaisolatedlow
 Substitution2: "Single Substitution lookup 7 subtable" shaddawithdammaisolated
 Ligature2: "'liga' Standard Ligatures in Arabic lookup 5 subtable" shadda damma
@@ -28705,6 +29044,7 @@ SplineSet
  98 1523 98 1523 156 1549 c 2,29,-1
  412 1663 l 1,24,25
 EndSplineSet
+Validated: 1
 Substitution2: "Single Substitution lookup 8 subtable" shaddawithkasraisolatedlow
 Substitution2: "Single Substitution lookup 7 subtable" shaddawithkasraisolated
 Ligature2: "'liga' Standard Ligatures in Arabic lookup 5 subtable" shadda kasra
@@ -28745,6 +29085,7 @@ SplineSet
  985 1267 l 1,28,26
  1310 1142 1310 1142 960 1142 c 1,27,-1
 EndSplineSet
+Validated: 37
 Ligature2: "'liga' Standard Ligatures in Arabic lookup 4 subtable" behmedial rehfinal
 EndChar
 
@@ -28776,6 +29117,7 @@ SplineSet
  558 911 l 1,23,-1
  558 286 l 1,11,12
 EndSplineSet
+Validated: 37
 Ligature2: "'liga' Standard Ligatures in Arabic lookup 4 subtable" behmedial noonfinal
 EndChar
 
@@ -28820,6 +29162,7 @@ SplineSet
  846 -310 846 -310 746 -185 c 1,36,-1
  771 -160 l 1,33,-1
 EndSplineSet
+Validated: 37
 Ligature2: "'liga' Standard Ligatures in Arabic lookup 4 subtable" behmedial alefmaksura.fina
 EndChar
 
@@ -28858,6 +29201,7 @@ SplineSet
  505 1117 505 1117 530 1192 c 1,30,27
  855 1117 855 1117 530 1042 c 1,28,29
 EndSplineSet
+Validated: 37
 Ligature2: "'liga' Standard Ligatures in Arabic lookup 4 subtable" behmedial yehfinal
 EndChar
 
@@ -28890,6 +29234,7 @@ SplineSet
  542 933 l 1,25,-1
  542 308 l 1,13,14
 EndSplineSet
+Validated: 37
 Ligature2: "'liga' Standard Ligatures in Arabic lookup 4 subtable" tehmedial noonfinal
 EndChar
 
@@ -28935,6 +29280,7 @@ SplineSet
  931 -333 931 -333 831 -208 c 1,38,-1
  856 -183 l 1,35,-1
 EndSplineSet
+Validated: 41
 Ligature2: "'liga' Standard Ligatures in Arabic lookup 4 subtable" tehmedial alefmaksura.fina
 EndChar
 
@@ -28974,6 +29320,7 @@ SplineSet
  458 1125 458 1125 483 1200 c 1,32,29
  808 1125 808 1125 483 1050 c 1,30,31
 EndSplineSet
+Validated: 37
 Ligature2: "'liga' Standard Ligatures in Arabic lookup 4 subtable" tehmedial yehfinal
 EndChar
 
@@ -29013,6 +29360,7 @@ SplineSet
  929 1260 l 1,30,28
  1254 1135 1254 1135 904 1135 c 1,29,-1
 EndSplineSet
+Validated: 37
 Ligature2: "'liga' Standard Ligatures in Arabic lookup 4 subtable" noonmedial zainfinal
 EndChar
 
@@ -29057,6 +29405,7 @@ SplineSet
  908 -336 908 -336 808 -211 c 1,38,-1
  833 -186 l 1,35,-1
 EndSplineSet
+Validated: 37
 Ligature2: "'liga' Standard Ligatures in Arabic lookup 4 subtable" noonmedial alefmaksura.fina
 EndChar
 
@@ -29090,6 +29439,7 @@ SplineSet
  808 445 808 445 908 545 c 1,26,21
  1208 445 1208 445 1008 220 c 1,22,23
 EndSplineSet
+Validated: 37
 Ligature2: "'liga' Standard Ligatures in Arabic lookup 4 subtable" noonmedial yehfinal
 EndChar
 
@@ -29135,6 +29485,7 @@ SplineSet
  945 1260 l 1,37,35
  1270 1135 1270 1135 920 1135 c 1,36,-1
 EndSplineSet
+Validated: 37
 Ligature2: "'liga' Standard Ligatures in Arabic lookup 4 subtable" yehmedial rehfinal
 EndChar
 
@@ -29173,6 +29524,7 @@ SplineSet
  557 941 l 1,32,-1
  557 316 l 1,20,21
 EndSplineSet
+Validated: 37
 Ligature2: "'liga' Standard Ligatures in Arabic lookup 4 subtable" yehmedial noonfinal
 EndChar
 
@@ -29224,6 +29576,7 @@ SplineSet
  875 -335 875 -335 775 -210 c 1,45,-1
  800 -185 l 1,42,-1
 EndSplineSet
+Validated: 41
 Ligature2: "'liga' Standard Ligatures in Arabic lookup 4 subtable" yehmedial alefmaksura.fina
 EndChar
 
@@ -29264,6 +29617,7 @@ SplineSet
  964 423 l 1,34,-1
  1114 423 l 1,31,32
 EndSplineSet
+Validated: 37
 Ligature2: "'liga' Standard Ligatures in Arabic lookup 4 subtable" behinitial jeemmedial
 EndChar
 
@@ -29299,6 +29653,7 @@ SplineSet
  900 415 l 1,26,24
  1275 265 1275 265 875 265 c 1,25,-1
 EndSplineSet
+Validated: 37
 Ligature2: "'liga' Standard Ligatures in Arabic lookup 4 subtable" behinitial hahmedial
 EndChar
 
@@ -29339,6 +29694,7 @@ SplineSet
  1500 1459 l 1,30,-1
  1425 1409 l 1,11,-1
 EndSplineSet
+Validated: 37
 Ligature2: "'liga' Standard Ligatures in Arabic lookup 4 subtable" behinitial khahmedial
 EndChar
 
@@ -29372,6 +29728,7 @@ SplineSet
  800 458 800 458 900 558 c 1,24,19
  1200 458 1200 458 1000 233 c 1,20,21
 EndSplineSet
+Validated: 37
 Ligature2: "'liga' Standard Ligatures in Arabic lookup 4 subtable" behinitial meemmedial
 EndChar
 
@@ -29413,6 +29770,7 @@ SplineSet
  950 438 l 1,36,-1
  1100 438 l 1,33,34
 EndSplineSet
+Validated: 37
 Ligature2: "'liga' Standard Ligatures in Arabic lookup 4 subtable" tehinitial jeemmedial
 EndChar
 
@@ -29449,6 +29807,7 @@ SplineSet
  850 368 l 1,28,26
  1225 218 1225 218 825 218 c 1,27,-1
 EndSplineSet
+Validated: 37
 Ligature2: "'liga' Standard Ligatures in Arabic lookup 4 subtable" tehinitial hahmedial
 EndChar
 
@@ -29490,6 +29849,7 @@ SplineSet
  1500 1420 l 1,32,-1
  1425 1370 l 1,13,-1
 EndSplineSet
+Validated: 37
 Ligature2: "'liga' Standard Ligatures in Arabic lookup 4 subtable" tehinitial khahmedial
 EndChar
 
@@ -29524,6 +29884,7 @@ SplineSet
  800 442 800 442 900 542 c 1,26,21
  1200 442 1200 442 1000 217 c 1,22,23
 EndSplineSet
+Validated: 37
 Ligature2: "'liga' Standard Ligatures in Arabic lookup 4 subtable" tehinitial meemmedial
 EndChar
 
@@ -29559,6 +29920,7 @@ SplineSet
  800 503 800 503 900 603 c 1,26,21
  1200 503 1200 503 1000 278 c 1,22,23
 EndSplineSet
+Validated: 37
 Ligature2: "'liga' Standard Ligatures in Arabic lookup 4 subtable" thehinitial meemmedial
 EndChar
 
@@ -29601,6 +29963,7 @@ SplineSet
  800 513 800 513 900 613 c 1,37,32
  1200 513 1200 513 1000 288 c 1,33,34
 EndSplineSet
+Validated: 37
 Ligature2: "'liga' Standard Ligatures in Arabic lookup 4 subtable" jeeminitial meemmedial
 EndChar
 
@@ -29638,6 +30001,7 @@ SplineSet
  800 466 800 466 900 566 c 1,29,24
  1200 466 1200 466 1000 241 c 1,25,26
 EndSplineSet
+Validated: 37
 Ligature2: "'liga' Standard Ligatures in Arabic lookup 4 subtable" hahinitial meemmedial
 EndChar
 
@@ -29680,6 +30044,7 @@ SplineSet
  800 498 800 498 900 598 c 1,33,28
  1200 498 1200 498 1000 273 c 1,29,30
 EndSplineSet
+Validated: 37
 Ligature2: "'liga' Standard Ligatures in Arabic lookup 4 subtable" khahinitial meemmedial
 EndChar
 
@@ -29715,6 +30080,7 @@ SplineSet
  800 465 800 465 900 566 c 1,28,23
  1200 465 1200 465 1000 240 c 1,24,25
 EndSplineSet
+Validated: 37
 Ligature2: "'liga' Standard Ligatures in Arabic lookup 4 subtable" seeninitial meemmedial
 EndChar
 
@@ -29753,6 +30119,7 @@ SplineSet
  950 400 l 1,30,-1
  1100 400 l 1,27,28
 EndSplineSet
+Validated: 37
 Ligature2: "'liga' Standard Ligatures in Arabic lookup 4 subtable" laminitial jeemmedial
 EndChar
 
@@ -29786,6 +30153,7 @@ SplineSet
  836 352 l 1,22,20
  1211 202 1211 202 811 202 c 1,21,-1
 EndSplineSet
+Validated: 37
 Ligature2: "'liga' Standard Ligatures in Arabic lookup 4 subtable" laminitial hahmedial
 EndChar
 
@@ -29824,6 +30192,7 @@ SplineSet
  1500 1451 l 1,26,-1
  1425 1401 l 1,7,-1
 EndSplineSet
+Validated: 37
 Ligature2: "'liga' Standard Ligatures in Arabic lookup 4 subtable" laminitial khahmedial
 EndChar
 
@@ -29855,6 +30224,7 @@ SplineSet
  778 477 778 477 878 577 c 1,20,15
  1178 477 1178 477 978 252 c 1,16,17
 EndSplineSet
+Validated: 37
 Ligature2: "'liga' Standard Ligatures in Arabic lookup 4 subtable" laminitial meemmedial
 EndChar
 
@@ -29888,6 +30258,7 @@ SplineSet
  457 151 457 151 757 701 c 1,21,-1
  857 576 l 1,18,-1
 EndSplineSet
+Validated: 37
 Ligature2: "'liga' Standard Ligatures in Arabic lookup 4 subtable" laminitial hehmedial
 EndChar
 
@@ -29930,6 +30301,7 @@ SplineSet
  950 430 l 1,37,-1
  1100 430 l 1,34,35
 EndSplineSet
+Validated: 37
 Ligature2: "'liga' Standard Ligatures in Arabic lookup 4 subtable" meeminitial jeemmedial
 EndChar
 
@@ -29967,6 +30339,7 @@ SplineSet
  868 383 l 1,29,27
  1243 233 1243 233 843 233 c 1,28,-1
 EndSplineSet
+Validated: 37
 Ligature2: "'liga' Standard Ligatures in Arabic lookup 4 subtable" meeminitial hahmedial
 EndChar
 
@@ -30009,6 +30382,7 @@ SplineSet
  1492 1436 l 1,33,-1
  1417 1386 l 1,14,-1
 EndSplineSet
+Validated: 37
 Ligature2: "'liga' Standard Ligatures in Arabic lookup 4 subtable" meeminitial khahmedial
 EndChar
 
@@ -30068,6 +30442,7 @@ SplineSet
  2136 450 2136 450 2236 550 c 1,55,50
  2536 450 2536 450 2336 225 c 1,51,52
 EndSplineSet
+Validated: 37
 Ligature2: "'liga' Standard Ligatures in Arabic lookup 4 subtable" meeminitial meemmedial
 EndChar
 
@@ -30108,6 +30483,7 @@ SplineSet
  950 392 l 1,36,-1
  1100 392 l 1,33,34
 EndSplineSet
+Validated: 37
 Ligature2: "'liga' Standard Ligatures in Arabic lookup 4 subtable" nooninitial jeemmedial
 EndChar
 
@@ -30143,6 +30519,7 @@ SplineSet
  475 135 475 135 775 685 c 1,27,-1
  875 560 l 1,24,-1
 EndSplineSet
+Validated: 37
 Ligature2: "'liga' Standard Ligatures in Arabic lookup 4 subtable" nooninitial hahmedial
 EndChar
 
@@ -30183,6 +30560,7 @@ SplineSet
  1500 1439 l 1,32,-1
  1425 1389 l 1,13,-1
 EndSplineSet
+Validated: 37
 Ligature2: "'liga' Standard Ligatures in Arabic lookup 4 subtable" nooninitial khahmedial
 EndChar
 
@@ -30216,6 +30594,7 @@ SplineSet
  800 445 800 445 900 545 c 1,26,21
  1200 445 1200 445 1000 220 c 1,22,23
 EndSplineSet
+Validated: 37
 Ligature2: "'liga' Standard Ligatures in Arabic lookup 4 subtable" nooninitial meemmedial
 EndChar
 
@@ -30253,6 +30632,7 @@ SplineSet
  800 460 800 460 900 560 c 1,28,23
  1200 460 1200 460 1000 235 c 1,24,25
 EndSplineSet
+Validated: 37
 Ligature2: "'liga' Standard Ligatures in Arabic lookup 4 subtable" hehinitial meemmedial
 EndChar
 
@@ -30300,6 +30680,7 @@ SplineSet
  950 392 l 1,43,-1
  1100 392 l 1,40,41
 EndSplineSet
+Validated: 37
 Ligature2: "'liga' Standard Ligatures in Arabic lookup 4 subtable" yehinitial jeemmedial
 EndChar
 
@@ -30342,6 +30723,7 @@ SplineSet
  850 367 l 1,35,33
  1225 217 1225 217 825 217 c 1,34,-1
 EndSplineSet
+Validated: 37
 Ligature2: "'liga' Standard Ligatures in Arabic lookup 4 subtable" yehinitial hahmedial
 EndChar
 
@@ -30389,6 +30771,7 @@ SplineSet
  1500 1451 l 1,39,-1
  1425 1401 l 1,20,-1
 EndSplineSet
+Validated: 37
 Ligature2: "'liga' Standard Ligatures in Arabic lookup 4 subtable" yehinitial khahmedial
 EndChar
 
@@ -30429,6 +30812,7 @@ SplineSet
  800 435 800 435 900 535 c 1,33,28
  1200 435 1200 435 1000 210 c 1,29,30
 EndSplineSet
+Validated: 37
 Ligature2: "'liga' Standard Ligatures in Arabic lookup 4 subtable" yehinitial meemmedial
 EndChar
 
@@ -30537,6 +30921,7 @@ SplineSet
  1354 250 l 1,34,-1
  1354 129 l 1,31,-1
 EndSplineSet
+Validated: 1
 Ligature2: "'liga' Standard Ligatures in Arabic lookup 4 subtable" tatweel shadda fatha
 EndChar
 
@@ -30681,6 +31066,7 @@ SplineSet
  1354 250 l 1,56,-1
  1354 129 l 1,53,-1
 EndSplineSet
+Validated: 1
 Ligature2: "'liga' Standard Ligatures in Arabic lookup 4 subtable" tatweel shadda damma
 EndChar
 
@@ -30797,6 +31183,7 @@ SplineSet
  1354 250 l 1,34,-1
  1354 129 l 1,31,-1
 EndSplineSet
+Validated: 1
 Ligature2: "'liga' Standard Ligatures in Arabic lookup 4 subtable" tatweel shadda kasra
 EndChar
 
@@ -30835,6 +31222,7 @@ SplineSet
  800 450 800 450 900 550 c 1,31,26
  1200 450 1200 450 1000 225 c 1,27,28
 EndSplineSet
+Validated: 37
 Ligature2: "'liga' Standard Ligatures in Arabic lookup 4 subtable" sheeninitial meemmedial
 EndChar
 
@@ -30861,6 +31249,7 @@ SplineSet
  506 1254 l 1,17,12
  562 1416 562 1416 615 1260 c 1,13,-1
 EndSplineSet
+Validated: 41
 Ligature2: "'liga' Standard Ligatures in Arabic lookup 4 subtable" aleffinal fathatan
 EndChar
 
@@ -30887,6 +31276,7 @@ SplineSet
  506 1254 l 1,17,12
  562 1416 562 1416 615 1260 c 1,13,-1
 EndSplineSet
+Validated: 41
 Ligature2: "'liga' Standard Ligatures in Arabic lookup 4 subtable" A fathatan
 EndChar
 
@@ -31227,6 +31617,7 @@ SplineSet
  490 68 490 68 535 72 c 1,167,168
  672 -359 672 -359 1001 -571 c 1,147,148
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: ornaterightparenthesis
@@ -31554,6 +31945,7 @@ SplineSet
  727 102 727 102 749.5 105.5 c 128,-1,167
  772 109 772 109 772 121 c 1,145,-1
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: lamwithmeemwithhahinitial
@@ -31598,6 +31990,7 @@ SplineSet
  850 399 l 1,36,34
  1225 249 1225 249 825 249 c 1,35,-1
 EndSplineSet
+Validated: 37
 Ligature2: "'liga' Standard Ligatures in Arabic lookup 4 subtable" laminitial meemmedial hahmedial
 EndChar
 
@@ -31668,6 +32061,7 @@ SplineSet
  243 293 243 293 289 293 c 0,93,94
  316 293 316 293 362 313 c 1,86,-1
 EndSplineSet
+Validated: 37
 Ligature2: "'liga' Standard Ligatures in Arabic lookup 4 subtable" laminitial lammedial hehfinal
 EndChar
 
@@ -31686,6 +32080,7 @@ SplineSet
  185 1844 185 1844 60 1869 c 1,9,-1
  60 1419 l 1,0,1
 EndSplineSet
+Validated: 41
 EndChar
 
 StartChar: fathatanontatweel
@@ -31720,6 +32115,7 @@ SplineSet
  675 1218 675 1218 671 1193 c 0,27,16
  666 1160 666 1160 641 1150 c 128,-1,17
 EndSplineSet
+Validated: 37
 Ligature2: "'liga' Standard Ligatures in Arabic lookup 4 subtable" tatweel fathatan
 EndChar
 
@@ -31752,6 +32148,7 @@ SplineSet
  201 1962 201 1962 292 1962 c 0,32,33
  316 1962 316 1962 349 1958 c 1,0,1
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: kasratanisolated
@@ -31788,6 +32185,7 @@ SplineSet
  936 174 l 1,27,20
  1024 264 1024 264 936 430 c 1,21,-1
 EndSplineSet
+Validated: 33
 EndChar
 
 StartChar: fathaisolated
@@ -31806,6 +32204,7 @@ SplineSet
  870 1905 870 1905 920 2080 c 1,9,-1
  895 2080 l 1,0,-1
 EndSplineSet
+Validated: 41
 EndChar
 
 StartChar: fathahontatweel
@@ -31824,6 +32223,7 @@ SplineSet
  870 1905 870 1905 920 2080 c 1,9,-1
  895 2080 l 1,0,-1
 EndSplineSet
+Validated: 41
 Ligature2: "'liga' Standard Ligatures in Arabic lookup 4 subtable" tatweel fatha
 EndChar
 
@@ -31851,6 +32251,7 @@ SplineSet
  991 1961 l 1,21,0
  854 2109 854 2109 770 1954 c 1,1,-1
 EndSplineSet
+Validated: 41
 EndChar
 
 StartChar: dammahontatweel
@@ -31877,6 +32278,7 @@ SplineSet
  991 1961 l 1,21,0
  854 2109 854 2109 770 1954 c 1,1,-1
 EndSplineSet
+Validated: 41
 Ligature2: "'liga' Standard Ligatures in Arabic lookup 4 subtable" tatweel damma
 EndChar
 
@@ -31906,6 +32308,7 @@ SplineSet
  719 496 l 1,19,8
  591 707 591 707 472 501 c 1,9,-1
 EndSplineSet
+Validated: 41
 EndChar
 
 StartChar: kasrahontatweel
@@ -31934,6 +32337,7 @@ SplineSet
  716 496 l 1,19,8
  588 707 588 707 469 501 c 1,9,-1
 EndSplineSet
+Validated: 41
 Ligature2: "'liga' Standard Ligatures in Arabic lookup 4 subtable" tatweel kasra
 EndChar
 
@@ -31959,6 +32363,7 @@ SplineSet
  38 1956 38 1956 0 1912 c 1,15,-1
  0 1550 l 1,0,-1
 EndSplineSet
+Validated: 41
 EndChar
 
 StartChar: shaddahontatweel
@@ -31983,6 +32388,7 @@ SplineSet
  38 2007 38 2007 0 1963 c 1,15,-1
  0 1601 l 1,0,-1
 EndSplineSet
+Validated: 41
 Ligature2: "'liga' Standard Ligatures in Arabic lookup 4 subtable" tatweel shadda
 EndChar
 
@@ -32006,6 +32412,7 @@ SplineSet
  654 528 l 1,11,4
  570 620 570 620 512 526 c 1,5,-1
 EndSplineSet
+Validated: 41
 EndChar
 
 StartChar: sukunontatweel
@@ -32028,6 +32435,7 @@ SplineSet
  660 528 l 1,11,4
  576 620 576 620 518 526 c 1,5,-1
 EndSplineSet
+Validated: 41
 Ligature2: "'liga' Standard Ligatures in Arabic lookup 4 subtable" tatweel sukun
 EndChar
 
@@ -32057,6 +32465,7 @@ SplineSet
  716 496 l 1,19,8
  588 707 588 707 469 501 c 1,9,-1
 EndSplineSet
+Validated: 41
 EndChar
 
 StartChar: alefwithmaddaaboveisolated
@@ -32082,6 +32491,7 @@ SplineSet
  496 1254 l 1,17,12
  552 1416 552 1416 605 1260 c 1,13,-1
 EndSplineSet
+Validated: 41
 EndChar
 
 StartChar: alefwithmaddaabovefinal
@@ -32107,6 +32517,7 @@ SplineSet
  506 1254 l 1,17,12
  562 1416 562 1416 615 1260 c 1,13,-1
 EndSplineSet
+Validated: 41
 EndChar
 
 StartChar: alefwithhamzaaboveisolated
@@ -32132,6 +32543,7 @@ SplineSet
  506 1254 l 1,17,12
  562 1416 562 1416 615 1260 c 1,13,-1
 EndSplineSet
+Validated: 41
 EndChar
 
 StartChar: alefwithhamzaabovefinal
@@ -32157,6 +32569,7 @@ SplineSet
  506 1254 l 1,17,12
  562 1416 562 1416 615 1260 c 1,13,-1
 EndSplineSet
+Validated: 41
 EndChar
 
 StartChar: wawwithhamzaaboveisolated
@@ -32185,6 +32598,7 @@ SplineSet
  723 496 l 1,19,8
  595 707 595 707 476 501 c 1,9,-1
 EndSplineSet
+Validated: 41
 EndChar
 
 StartChar: wawwithhamzaabovefinal
@@ -32213,6 +32627,7 @@ SplineSet
  723 496 l 1,19,8
  595 707 595 707 476 501 c 1,9,-1
 EndSplineSet
+Validated: 41
 EndChar
 
 StartChar: alefwithhamzabelowisolated
@@ -32238,6 +32653,7 @@ SplineSet
  506 1254 l 1,17,12
  562 1416 562 1416 615 1260 c 1,13,-1
 EndSplineSet
+Validated: 41
 EndChar
 
 StartChar: alefwithhamzabelowfinal
@@ -32263,6 +32679,7 @@ SplineSet
  520 1254 l 1,17,12
  576 1416 576 1416 629 1260 c 1,13,-1
 EndSplineSet
+Validated: 41
 EndChar
 
 StartChar: yehwithhamzaaboveisolated
@@ -32283,6 +32700,7 @@ SplineSet
  727 496 l 1,11,0
  599 707 599 707 480 501 c 1,1,-1
 EndSplineSet
+Validated: 41
 EndChar
 
 StartChar: yehwithhamzaabovefinal
@@ -32303,6 +32721,7 @@ SplineSet
  725 496 l 1,11,0
  597 707 597 707 478 501 c 1,1,-1
 EndSplineSet
+Validated: 41
 EndChar
 
 StartChar: yehwithhamzaaboveinitial
@@ -32323,6 +32742,7 @@ SplineSet
  723 496 l 1,11,0
  595 707 595 707 476 501 c 1,1,-1
 EndSplineSet
+Validated: 41
 EndChar
 
 StartChar: yehwithhamzaabovemedial
@@ -32343,6 +32763,7 @@ SplineSet
  731 496 l 1,11,0
  603 707 603 707 484 501 c 1,1,-1
 EndSplineSet
+Validated: 41
 EndChar
 
 StartChar: A
@@ -32368,6 +32789,7 @@ SplineSet
  511 1254 l 1,17,12
  567 1416 567 1416 620 1260 c 1,13,-1
 EndSplineSet
+Validated: 41
 EndChar
 
 StartChar: aleffinal
@@ -32393,6 +32815,7 @@ SplineSet
  511 1254 l 1,17,12
  567 1416 567 1416 620 1260 c 1,13,-1
 EndSplineSet
+Validated: 41
 EndChar
 
 StartChar: B
@@ -32416,6 +32839,7 @@ SplineSet
  179 1395 l 1,16,0
  237 1287 237 1287 283 1201 c 1,1,-1
 EndSplineSet
+Validated: 41
 EndChar
 
 StartChar: behfinal
@@ -32439,6 +32863,7 @@ SplineSet
  162 1395 l 1,16,0
  220 1287 220 1287 266 1201 c 1,1,-1
 EndSplineSet
+Validated: 41
 EndChar
 
 StartChar: behinitial
@@ -32462,6 +32887,7 @@ SplineSet
  175 1395 l 1,16,0
  233 1287 233 1287 279 1201 c 1,1,-1
 EndSplineSet
+Validated: 41
 EndChar
 
 StartChar: behmedial
@@ -32485,6 +32911,7 @@ SplineSet
  171 1395 l 1,16,0
  229 1287 229 1287 275 1201 c 1,1,-1
 EndSplineSet
+Validated: 41
 EndChar
 
 StartChar: kinna ya
@@ -32512,6 +32939,7 @@ SplineSet
  95 1194 95 1194 224 1309 c 1,21,18
  400 1320 400 1320 288 1189 c 1,19,20
 EndSplineSet
+Validated: 553
 EndChar
 
 StartChar: tehmarbutafinal
@@ -32539,6 +32967,7 @@ SplineSet
  95 1194 95 1194 224 1309 c 1,21,18
  400 1320 400 1320 288 1189 c 1,19,20
 EndSplineSet
+Validated: 41
 EndChar
 
 StartChar: T
@@ -32563,6 +32992,7 @@ SplineSet
  334 1564 334 1564 246 1211 c 1,18,-1
  247 833 l 1,0,1
 EndSplineSet
+Validated: 41
 EndChar
 
 StartChar: tehfinal
@@ -32587,6 +33017,7 @@ SplineSet
  334 1564 334 1564 246 1211 c 1,18,-1
  247 833 l 1,0,1
 EndSplineSet
+Validated: 41
 EndChar
 
 StartChar: tehinitial
@@ -32611,6 +33042,7 @@ SplineSet
  334 1564 334 1564 246 1211 c 1,18,-1
  247 833 l 1,0,1
 EndSplineSet
+Validated: 41
 EndChar
 
 StartChar: tehmedial
@@ -32635,6 +33067,7 @@ SplineSet
  334 1564 334 1564 246 1211 c 1,18,-1
  247 833 l 1,0,1
 EndSplineSet
+Validated: 41
 EndChar
 
 StartChar: PA
@@ -32670,6 +33103,7 @@ SplineSet
  728 813 728 813 766.5 829 c 128,-1,33
  805 845 805 845 814 896 c 0,22,23
 EndSplineSet
+Validated: 33
 EndChar
 
 StartChar: thehfinal
@@ -32705,6 +33139,7 @@ SplineSet
  712 813 712 813 750.5 829 c 128,-1,33
  789 845 789 845 798 896 c 0,22,23
 EndSplineSet
+Validated: 33
 EndChar
 
 StartChar: thehinitial
@@ -32740,6 +33175,7 @@ SplineSet
  728 813 728 813 766.5 829 c 128,-1,33
  805 845 805 845 814 896 c 0,22,23
 EndSplineSet
+Validated: 33
 EndChar
 
 StartChar: thehmedial
@@ -32775,6 +33211,7 @@ SplineSet
  720 813 720 813 758.5 829 c 128,-1,33
  797 845 797 845 806 896 c 0,22,23
 EndSplineSet
+Validated: 33
 EndChar
 
 StartChar: JA
@@ -32818,6 +33255,7 @@ SplineSet
  571 388 571 388 881 466 c 1,42,-1
  998 427 l 1,38,39
 EndSplineSet
+Validated: 41
 EndChar
 
 StartChar: jeemfinal
@@ -32861,6 +33299,7 @@ SplineSet
  550 388 550 388 860 466 c 1,42,-1
  977 427 l 1,38,39
 EndSplineSet
+Validated: 41
 EndChar
 
 StartChar: jeeminitial
@@ -32904,6 +33343,7 @@ SplineSet
  555 388 555 388 865 466 c 1,42,-1
  982 427 l 1,38,39
 EndSplineSet
+Validated: 41
 EndChar
 
 StartChar: jeemmedial
@@ -32947,6 +33387,7 @@ SplineSet
  529 388 529 388 839 466 c 1,42,-1
  956 427 l 1,38,39
 EndSplineSet
+Validated: 41
 EndChar
 
 StartChar: CHA
@@ -32973,6 +33414,7 @@ SplineSet
  597 372 597 372 767 394 c 1,20,15
  935 302 935 302 858 186 c 1,16,17
 EndSplineSet
+Validated: 41
 EndChar
 
 StartChar: hahfinal
@@ -32999,6 +33441,7 @@ SplineSet
  578 372 578 372 748 394 c 1,20,15
  916 302 916 302 839 186 c 1,16,17
 EndSplineSet
+Validated: 41
 EndChar
 
 StartChar: hahinitial
@@ -33025,6 +33468,7 @@ SplineSet
  597 372 597 372 767 394 c 1,20,15
  935 302 935 302 858 186 c 1,16,17
 EndSplineSet
+Validated: 41
 EndChar
 
 StartChar: hahmedial
@@ -33051,6 +33495,7 @@ SplineSet
  597 372 597 372 767 394 c 1,20,15
  935 302 935 302 858 186 c 1,16,17
 EndSplineSet
+Validated: 41
 EndChar
 
 StartChar: KHA
@@ -33072,6 +33517,7 @@ SplineSet
  1046 1506 l 1,13,-1
  171 858 l 1,0,1
 EndSplineSet
+Validated: 41
 EndChar
 
 StartChar: khahfinal
@@ -33093,6 +33539,7 @@ SplineSet
  1042 1506 l 1,13,-1
  167 858 l 1,0,1
 EndSplineSet
+Validated: 41
 EndChar
 
 StartChar: khahinitial
@@ -33114,6 +33561,7 @@ SplineSet
  1056 1506 l 1,13,-1
  181 858 l 1,0,1
 EndSplineSet
+Validated: 41
 EndChar
 
 StartChar: khahmedial
@@ -33135,6 +33583,7 @@ SplineSet
  1056 1506 l 1,13,-1
  181 858 l 1,0,1
 EndSplineSet
+Validated: 41
 EndChar
 
 StartChar: dalisolated
@@ -33158,6 +33607,7 @@ SplineSet
  1183 919 1183 919 560 812 c 1,16,0
  423 740 423 740 555 638 c 1,1,-1
 EndSplineSet
+Validated: 41
 EndChar
 
 StartChar: dalfinal
@@ -33181,6 +33631,7 @@ SplineSet
  1183 919 1183 919 560 812 c 1,16,0
  423 740 423 740 555 638 c 1,1,-1
 EndSplineSet
+Validated: 41
 EndChar
 
 StartChar: thalisolated
@@ -33209,6 +33660,7 @@ SplineSet
  443 132 443 132 529 315 c 1,21,18
  701 309 701 309 654 130 c 1,19,20
 EndSplineSet
+Validated: 41
 EndChar
 
 StartChar: thalfinal
@@ -33237,6 +33689,7 @@ SplineSet
  456 132 456 132 542 315 c 1,21,18
  714 309 714 309 667 130 c 1,19,20
 EndSplineSet
+Validated: 41
 EndChar
 
 StartChar: rehisolated
@@ -33265,6 +33718,7 @@ SplineSet
  804 1208 804 1208 872 1297 c 1,24,19
  1105 1327 1105 1327 1128 1171 c 1,20,21
 EndSplineSet
+Validated: 41
 EndChar
 
 StartChar: rehfinal
@@ -33293,6 +33747,7 @@ SplineSet
  802 1208 802 1208 870 1297 c 1,24,19
  1103 1327 1103 1327 1126 1171 c 1,20,21
 EndSplineSet
+Validated: 41
 EndChar
 
 StartChar: zainisolated
@@ -33321,6 +33776,7 @@ SplineSet
  565 1140 l 1,25,20
  644 1233 644 1233 723 1134 c 1,21,-1
 EndSplineSet
+Validated: 41
 EndChar
 
 StartChar: zainfinal
@@ -33349,6 +33805,7 @@ SplineSet
  565 1140 l 1,25,20
  644 1233 644 1233 723 1134 c 1,21,-1
 EndSplineSet
+Validated: 41
 EndChar
 
 StartChar: SA
@@ -33374,6 +33831,7 @@ SplineSet
  1063 1015 1063 1015 565 990 c 1,22,0
  245 889 245 889 278 656 c 1,1,2
 EndSplineSet
+Validated: 41
 EndChar
 
 StartChar: seenfinal
@@ -33399,6 +33857,7 @@ SplineSet
  1069 1015 1069 1015 571 990 c 1,22,0
  251 889 251 889 284 656 c 1,1,2
 EndSplineSet
+Validated: 41
 EndChar
 
 StartChar: seeninitial
@@ -33424,6 +33883,7 @@ SplineSet
  1072 1015 1072 1015 574 990 c 1,22,0
  254 889 254 889 287 656 c 1,1,2
 EndSplineSet
+Validated: 41
 EndChar
 
 StartChar: seenmedial
@@ -33449,6 +33909,7 @@ SplineSet
  1066 1015 1066 1015 568 990 c 1,22,0
  248 889 248 889 281 656 c 1,1,2
 EndSplineSet
+Validated: 41
 EndChar
 
 StartChar: SHA
@@ -33493,6 +33954,7 @@ SplineSet
  791 1175 791 1175 476 872 c 1,44,-1
  426 800 l 1,0,1
 EndSplineSet
+Validated: 41
 EndChar
 
 StartChar: sheenfinal
@@ -33537,6 +33999,7 @@ SplineSet
  791 1175 791 1175 476 872 c 1,44,-1
  426 800 l 1,0,1
 EndSplineSet
+Validated: 41
 EndChar
 
 StartChar: sheeninitial
@@ -33581,6 +34044,7 @@ SplineSet
  784 1175 784 1175 469 872 c 1,44,-1
  419 800 l 1,0,1
 EndSplineSet
+Validated: 41
 EndChar
 
 StartChar: sheenmedial
@@ -33625,6 +34089,7 @@ SplineSet
  791 1175 791 1175 476 872 c 1,44,-1
  426 800 l 1,0,1
 EndSplineSet
+Validated: 41
 EndChar
 
 StartChar: RRA
@@ -33657,6 +34122,7 @@ SplineSet
  647 256 l 1,28,29
  858 561 858 561 1187 570 c 1,25,26
 EndSplineSet
+Validated: 41
 EndChar
 
 StartChar: sadfinal
@@ -33689,6 +34155,7 @@ SplineSet
  647 256 l 1,28,29
  858 561 858 561 1187 570 c 1,25,26
 EndSplineSet
+Validated: 41
 EndChar
 
 StartChar: sadinitial
@@ -33721,6 +34188,7 @@ SplineSet
  647 256 l 1,28,29
  858 561 858 561 1187 570 c 1,25,26
 EndSplineSet
+Validated: 41
 EndChar
 
 StartChar: sadmedial
@@ -33753,6 +34221,7 @@ SplineSet
  597 256 l 1,28,29
  808 561 808 561 1137 570 c 1,25,26
 EndSplineSet
+Validated: 41
 EndChar
 
 StartChar: dda
@@ -33785,6 +34254,7 @@ SplineSet
  930 411 930 411 1100.5 505 c 128,-1,19
  1271 599 1271 599 1414.5 525.5 c 128,-1,20
 EndSplineSet
+Validated: 41
 EndChar
 
 StartChar: dadfinal
@@ -33817,6 +34287,7 @@ SplineSet
  920 411 920 411 1090.5 505 c 128,-1,19
  1261 599 1261 599 1404.5 525.5 c 128,-1,20
 EndSplineSet
+Validated: 41
 EndChar
 
 StartChar: dadinitial
@@ -33849,6 +34320,7 @@ SplineSet
  910 411 910 411 1080.5 505 c 128,-1,19
  1251 599 1251 599 1394.5 525.5 c 128,-1,20
 EndSplineSet
+Validated: 41
 EndChar
 
 StartChar: dadmedial
@@ -33881,6 +34353,7 @@ SplineSet
  925 411 925 411 1095.5 505 c 128,-1,19
  1266 599 1266 599 1409.5 525.5 c 128,-1,20
 EndSplineSet
+Validated: 41
 EndChar
 
 StartChar: tahisolated
@@ -33904,6 +34377,7 @@ SplineSet
  797 1260 l 1,15,0
  592 1182 592 1182 564 1017 c 1,1,-1
 EndSplineSet
+Validated: 9
 EndChar
 
 StartChar: tahfinal
@@ -33927,6 +34401,7 @@ SplineSet
  797 1260 l 1,15,0
  592 1182 592 1182 564 1017 c 1,1,-1
 EndSplineSet
+Validated: 9
 EndChar
 
 StartChar: tahinitial
@@ -33950,6 +34425,7 @@ SplineSet
  797 1260 l 1,15,0
  592 1182 592 1182 564 1017 c 1,1,-1
 EndSplineSet
+Validated: 9
 EndChar
 
 StartChar: tahmedial
@@ -33973,6 +34449,7 @@ SplineSet
  772 1260 l 1,15,0
  567 1182 567 1182 539 1017 c 1,1,-1
 EndSplineSet
+Validated: 9
 EndChar
 
 StartChar: zahisolated
@@ -34021,6 +34498,7 @@ SplineSet
  934 813 934 813 973.5 829 c 128,-1,52
  1013 845 1013 845 1021 898 c 0,41,42
 EndSplineSet
+Validated: 33
 EndChar
 
 StartChar: zahfinal
@@ -34069,6 +34547,7 @@ SplineSet
  934 813 934 813 973.5 829 c 128,-1,52
  1013 845 1013 845 1021 898 c 0,41,42
 EndSplineSet
+Validated: 33
 EndChar
 
 StartChar: zahinitial
@@ -34117,6 +34596,7 @@ SplineSet
  934 813 934 813 973.5 829 c 128,-1,52
  1013 845 1013 845 1021 898 c 0,41,42
 EndSplineSet
+Validated: 33
 EndChar
 
 StartChar: zahmedial
@@ -34165,6 +34645,7 @@ SplineSet
  934 813 934 813 973.5 829 c 128,-1,52
  1013 845 1013 845 1021 898 c 0,41,42
 EndSplineSet
+Validated: 33
 EndChar
 
 StartChar: NAYA
@@ -34188,6 +34669,7 @@ SplineSet
  715 1512 715 1512 619 1307 c 1,15,-1
  617 450 l 1,0,1
 EndSplineSet
+Validated: 41
 EndChar
 
 StartChar: ainfinal
@@ -34211,6 +34693,7 @@ SplineSet
  715 1512 715 1512 619 1307 c 1,15,-1
  617 450 l 1,0,1
 EndSplineSet
+Validated: 41
 EndChar
 
 StartChar: aininitial
@@ -34234,6 +34717,7 @@ SplineSet
  715 1512 715 1512 619 1307 c 1,15,-1
  617 450 l 1,0,1
 EndSplineSet
+Validated: 41
 EndChar
 
 StartChar: ainmedial
@@ -34257,6 +34741,7 @@ SplineSet
  715 1512 715 1512 619 1307 c 1,15,-1
  617 450 l 1,0,1
 EndSplineSet
+Validated: 41
 EndChar
 
 StartChar: ghainisolated
@@ -34297,6 +34782,7 @@ SplineSet
  1267 1026 1267 1026 758 942 c 1,38,0
  301 842 301 842 495 200 c 1,1,2
 EndSplineSet
+Validated: 41
 EndChar
 
 StartChar: ghainfinal
@@ -34337,6 +34823,7 @@ SplineSet
  1257 1026 1257 1026 748 942 c 1,38,0
  291 842 291 842 485 200 c 1,1,2
 EndSplineSet
+Validated: 41
 EndChar
 
 StartChar: ghaininitial
@@ -34377,6 +34864,7 @@ SplineSet
  1257 1026 1257 1026 748 942 c 1,38,0
  291 842 291 842 485 200 c 1,1,2
 EndSplineSet
+Validated: 41
 EndChar
 
 StartChar: ghainmedial
@@ -34417,6 +34905,7 @@ SplineSet
  1273 1026 1273 1026 764 942 c 1,38,0
  307 842 307 842 501 200 c 1,1,2
 EndSplineSet
+Validated: 41
 EndChar
 
 StartChar: fehisolated
@@ -34456,6 +34945,7 @@ SplineSet
  768 780 768 780 810.5 797.5 c 128,-1,37
  853 815 853 815 862 872 c 0,26,27
 EndSplineSet
+Validated: 41
 EndChar
 
 StartChar: fehfinal
@@ -34495,6 +34985,7 @@ SplineSet
  740 780 740 780 782.5 797.5 c 128,-1,37
  825 815 825 815 834 872 c 0,26,27
 EndSplineSet
+Validated: 41
 EndChar
 
 StartChar: fehinitial
@@ -34534,6 +35025,7 @@ SplineSet
  749 780 749 780 791.5 797.5 c 128,-1,37
  834 815 834 815 843 872 c 0,26,27
 EndSplineSet
+Validated: 41
 EndChar
 
 StartChar: fehmedial
@@ -34573,6 +35065,7 @@ SplineSet
  749 780 749 780 791.5 797.5 c 128,-1,37
  834 815 834 815 843 872 c 0,26,27
 EndSplineSet
+Validated: 41
 EndChar
 
 StartChar: gna
@@ -34602,6 +35095,7 @@ SplineSet
  501 360 501 360 619 421 c 1,27,22
  828 475 828 475 836 252 c 1,23,24
 EndSplineSet
+Validated: 41
 EndChar
 
 StartChar: qaffinal
@@ -34631,6 +35125,7 @@ SplineSet
  501 360 501 360 619 421 c 1,27,22
  828 475 828 475 836 252 c 1,23,24
 EndSplineSet
+Validated: 41
 EndChar
 
 StartChar: qafinitial
@@ -34660,6 +35155,7 @@ SplineSet
  501 360 501 360 619 421 c 1,27,22
  828 475 828 475 836 252 c 1,23,24
 EndSplineSet
+Validated: 41
 EndChar
 
 StartChar: qafmedial
@@ -34689,6 +35185,7 @@ SplineSet
  501 360 501 360 619 421 c 1,27,22
  828 475 828 475 836 252 c 1,23,24
 EndSplineSet
+Validated: 41
 EndChar
 
 StartChar: kafisolated
@@ -34720,6 +35217,7 @@ SplineSet
  1488 487 1488 487 1243 270 c 1,24,-1
  744 270 l 1,20,-1
 EndSplineSet
+Validated: 37
 EndChar
 
 StartChar: arabickaffinal
@@ -34751,6 +35249,7 @@ SplineSet
  1442 487 1442 487 1197 270 c 1,24,-1
  698 270 l 1,20,-1
 EndSplineSet
+Validated: 37
 EndChar
 
 StartChar: kafinitial
@@ -34782,6 +35281,7 @@ SplineSet
  1447 487 1447 487 1202 270 c 1,24,-1
  703 270 l 1,20,-1
 EndSplineSet
+Validated: 37
 EndChar
 
 StartChar: kafmedial
@@ -34813,6 +35313,7 @@ SplineSet
  1448 487 1448 487 1203 270 c 1,24,-1
  704 270 l 1,20,-1
 EndSplineSet
+Validated: 37
 EndChar
 
 StartChar: lamisolated
@@ -34836,6 +35337,7 @@ SplineSet
  849 1578 849 1578 706 1363 c 1,17,0
  715 915 715 915 711 490 c 1,1,2
 EndSplineSet
+Validated: 41
 EndChar
 
 StartChar: lamfinal
@@ -34859,6 +35361,7 @@ SplineSet
  849 1578 849 1578 706 1363 c 1,17,0
  715 915 715 915 711 490 c 1,1,2
 EndSplineSet
+Validated: 41
 EndChar
 
 StartChar: laminitial
@@ -34882,6 +35385,7 @@ SplineSet
  849 1578 849 1578 706 1363 c 1,17,0
  715 915 715 915 711 490 c 1,1,2
 EndSplineSet
+Validated: 41
 EndChar
 
 StartChar: lammedial
@@ -34905,6 +35409,7 @@ SplineSet
  849 1578 849 1578 706 1363 c 1,17,0
  715 915 715 915 711 490 c 1,1,2
 EndSplineSet
+Validated: 41
 EndChar
 
 StartChar: meemisolated
@@ -34942,6 +35447,7 @@ SplineSet
  918 179 l 1,29,21
  1006 279 1006 279 965.5 380 c 128,-1,22
 EndSplineSet
+Validated: 33
 EndChar
 
 StartChar: meemfinal
@@ -34979,6 +35485,7 @@ SplineSet
  918 179 l 1,29,21
  1006 279 1006 279 965.5 380 c 128,-1,22
 EndSplineSet
+Validated: 33
 EndChar
 
 StartChar: meeminitial
@@ -35016,6 +35523,7 @@ SplineSet
  918 179 l 1,29,21
  1006 279 1006 279 965.5 380 c 128,-1,22
 EndSplineSet
+Validated: 33
 EndChar
 
 StartChar: meemmedial
@@ -35053,6 +35561,7 @@ SplineSet
  884 179 l 1,29,21
  972 279 972 279 931.5 380 c 128,-1,22
 EndSplineSet
+Validated: 33
 EndChar
 
 StartChar: noonisolated
@@ -35089,6 +35598,7 @@ SplineSet
  766 389 766 389 797 346.5 c 128,-1,27
  828 304 828 304 818 255.5 c 128,-1,28
 EndSplineSet
+Validated: 41
 EndChar
 
 StartChar: noonfinal
@@ -35125,6 +35635,7 @@ SplineSet
  786 389 786 389 817 346.5 c 128,-1,27
  848 304 848 304 838 255.5 c 128,-1,28
 EndSplineSet
+Validated: 41
 EndChar
 
 StartChar: nooninitial
@@ -35161,6 +35672,7 @@ SplineSet
  778 389 778 389 809 346.5 c 128,-1,27
  840 304 840 304 830 255.5 c 128,-1,28
 EndSplineSet
+Validated: 41
 EndChar
 
 StartChar: noonmedial
@@ -35197,6 +35709,7 @@ SplineSet
  802 389 802 389 833 346.5 c 128,-1,27
  864 304 864 304 854 255.5 c 128,-1,28
 EndSplineSet
+Validated: 41
 EndChar
 
 StartChar: hehisolated
@@ -35228,6 +35741,7 @@ SplineSet
  609 561 609 561 777 467 c 1,31,26
  792 392 792 392 781 203 c 1,27,28
 EndSplineSet
+Validated: 41
 EndChar
 
 StartChar: hehfinal
@@ -35259,6 +35773,7 @@ SplineSet
  615 561 615 561 783 467 c 1,31,26
  798 392 798 392 787 203 c 1,27,28
 EndSplineSet
+Validated: 41
 EndChar
 
 StartChar: hehinitial
@@ -35290,6 +35805,7 @@ SplineSet
  612 561 612 561 780 467 c 1,31,26
  795 392 795 392 784 203 c 1,27,28
 EndSplineSet
+Validated: 41
 EndChar
 
 StartChar: hehmedial
@@ -35321,6 +35837,7 @@ SplineSet
  609 561 609 561 777 467 c 1,31,26
  792 392 792 392 781 203 c 1,27,28
 EndSplineSet
+Validated: 41
 EndChar
 
 StartChar: wa
@@ -35354,6 +35871,7 @@ SplineSet
  619 1163 619 1163 710 1178 c 1,30,25
  815 1157 815 1157 753 1057 c 1,26,27
 EndSplineSet
+Validated: 41
 EndChar
 
 StartChar: wawfinal
@@ -35387,6 +35905,7 @@ SplineSet
  617 1163 617 1163 708 1178 c 1,30,25
  813 1157 813 1157 751 1057 c 1,26,27
 EndSplineSet
+Validated: 41
 EndChar
 
 StartChar: alefmaksuraisolated
@@ -35410,6 +35929,7 @@ SplineSet
  185 -158 185 -158 306 -95 c 1,20,15
  511 -40 511 -40 527 -268 c 1,16,17
 EndSplineSet
+Validated: 41
 EndChar
 
 StartChar: alefmaksura.fina
@@ -35433,6 +35953,7 @@ SplineSet
  185 -158 185 -158 306 -95 c 1,20,15
  511 -40 511 -40 527 -268 c 1,16,17
 EndSplineSet
+Validated: 41
 EndChar
 
 StartChar: yehisolated
@@ -35461,6 +35982,7 @@ SplineSet
  216 1166 216 1166 313 1258 c 1,25,20
  473 1341 473 1341 553 1194 c 1,21,22
 EndSplineSet
+Validated: 41
 EndChar
 
 StartChar: yehfinal
@@ -35489,6 +36011,7 @@ SplineSet
  225 1166 225 1166 322 1258 c 1,25,20
  482 1341 482 1341 562 1194 c 1,21,22
 EndSplineSet
+Validated: 41
 EndChar
 
 StartChar: yehinitial
@@ -35517,6 +36040,7 @@ SplineSet
  230 1166 230 1166 327 1258 c 1,25,20
  487 1341 487 1341 567 1194 c 1,21,22
 EndSplineSet
+Validated: 41
 EndChar
 
 StartChar: yehmedial
@@ -35545,6 +36069,7 @@ SplineSet
  212 1166 212 1166 309 1258 c 1,25,20
  469 1341 469 1341 549 1194 c 1,21,22
 EndSplineSet
+Validated: 41
 EndChar
 
 StartChar: lamwithalefmaddaaboveisolatedd
@@ -35565,6 +36090,7 @@ SplineSet
  561 496 l 1,11,0
  433 707 433 707 314 501 c 1,1,-1
 EndSplineSet
+Validated: 41
 Ligature2: "'liga' Standard Ligatures in Arabic lookup 4 subtable" laminitial alefwithmaddaabovefinal
 EndChar
 
@@ -35589,6 +36115,7 @@ SplineSet
  691 284 691 284 769 427 c 1,13,8
  925 523 925 523 1002 406.5 c 128,-1,9
 EndSplineSet
+Validated: 41
 Ligature2: "'liga' Standard Ligatures in Arabic lookup 4 subtable" lammedial alefwithmaddaabovefinal
 EndChar
 
@@ -35613,6 +36140,7 @@ SplineSet
  691 284 691 284 769 427 c 1,13,8
  925 523 925 523 1002 406.5 c 128,-1,9
 EndSplineSet
+Validated: 41
 Ligature2: "'liga' Standard Ligatures in Arabic lookup 4 subtable" laminitial alefwithhamzaabovefinal
 EndChar
 
@@ -35637,6 +36165,7 @@ SplineSet
  695 284 695 284 773 427 c 1,13,8
  929 523 929 523 1006 406.5 c 128,-1,9
 EndSplineSet
+Validated: 41
 Ligature2: "'liga' Standard Ligatures in Arabic lookup 4 subtable" lammedial alefwithhamzaabovefinal
 EndChar
 
@@ -35661,6 +36190,7 @@ SplineSet
  695 284 695 284 773 427 c 1,13,8
  929 523 929 523 1006 406.5 c 128,-1,9
 EndSplineSet
+Validated: 41
 Ligature2: "'liga' Standard Ligatures in Arabic lookup 4 subtable" laminitial alefwithhamzabelowfinal
 EndChar
 
@@ -35685,6 +36215,7 @@ SplineSet
  695 284 695 284 773 427 c 1,13,8
  929 523 929 523 1006 406.5 c 128,-1,9
 EndSplineSet
+Validated: 41
 Ligature2: "'liga' Standard Ligatures in Arabic lookup 4 subtable" lammedial alefwithhamzabelowfinal
 EndChar
 
@@ -35709,6 +36240,7 @@ SplineSet
  693 284 693 284 771 427 c 1,13,8
  927 523 927 523 1004 406.5 c 128,-1,9
 EndSplineSet
+Validated: 41
 Ligature2: "'liga' Standard Ligatures in Arabic lookup 4 subtable" laminitial aleffinal
 EndChar
 
@@ -35733,6 +36265,7 @@ SplineSet
  697 284 697 284 775 427 c 1,13,8
  931 523 931 523 1008 406.5 c 128,-1,9
 EndSplineSet
+Validated: 41
 Ligature2: "'liga' Standard Ligatures in Arabic lookup 4 subtable" lammedial aleffinal
 EndChar
 
@@ -35741,6 +36274,8 @@ Encoding: 65279 65279 529
 Width: 0
 Flags: W
 LayerCount: 2
+Fore
+Validated: 1
 EndChar
 EndChars
 EndSplineFont
