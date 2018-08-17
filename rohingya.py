@@ -31,13 +31,13 @@ from google.appengine.ext.webapp import template
 encoding_font_list = [
     {
       'font_path':'/fonts/Rohingya Kuna Leyka Noories.ttf',
-      'font_name':'RohingyaKunaLeyka',
+      'font_name':'RohingyaKunaLeykaNoories',
       'display_name': 'Kuna Leyka Noories',
       'Source location':' http://fontlibrary.org/en/font/rohingya-kuna-leyka-noories',
     },
     {
       'font_path':'/fonts/Rohingya Gonya Leyka Noories.ttf',
-      'font_name':'RohingyaGonyaLeyka',
+      'font_name':'RohingyaGonyaLeykaNoories',
       'display_name': 'Gonya Leyka Noories',
       'Source location': 'http://fontlibrary.org/en/font/rohingya-gonya-leyka-noories',
     },
@@ -45,7 +45,7 @@ encoding_font_list = [
 
 unicode_font_list = [
   {
-      'family': 'KunaLeykaNooriesUnicode',
+      'family': 'RohingyaKunaLeykaNooriesUnicode',
       'longName': 'Unicode hack',
       'source': '/fonts/RohingyaKunaLeykaNoories_Unicode.ttf',
   },
