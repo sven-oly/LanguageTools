@@ -148,18 +148,26 @@
   var clickedKey = null;
   var clickedChar = null;
 
+  var allChars = [
+    {% for c in allchars %} "{{c}}", {% endfor %}
+  ];
   function layerClick(layer) {
     alert('Layer ' + layer);
    }
 
-  function keyClick(key, in_buffer) {
+  function keyClick(key, in_buffer, keycap_buffer) {
     var keyCell = document.getElementById(key);
     // alert('Key ' + key);
     if (clickedChar) {
-      var source = document.getElementById(in_buffer)
+      var source = document.getElementById(in_buffer);
+      var keycap = document.getElementById(keycap_buffer).value;
       keyCell.innerHTML = keyCell.value = source.value;
       clickedKey = keyCell;
       KbLayout[currentLayer][key]['code'] = keyCell.value;
+      if (keycap && keycap != '') {
+        KbLayout[currentLayer][key]['keycap'] = keycap;
+        keyCell.innerHTML = keyCell.value = keycap;
+      }
       clearAreas(['in_buffer', 'keycap_buffer']);
       clickedChar = null;
     }
@@ -244,10 +252,15 @@
 
   // Global data:
   var scriptCode = "myam";
+  var layers = {
+    {% for layer in layers %}
+      "{{layer.0}}": "{{layer.1}}",
+    {% endfor %}
+  };
   // kb data object
   var KbLayout = {
     {% for layer in layers %}
-      {{layer.1}} : {
+      "{{layer.1}}" : {
       {% for row in rows %}
         {% for c in row %}"{{c}}": { "codes": "{{c}}", }, {% endfor %}
       {% endfor %} },
@@ -261,7 +274,6 @@
   function keyDown(area) {
     var out = document.getElementById(area);
     var e = event;  // Global?
-    //e.preventDefault();
   }
 
   // Function to controll output from virtual KB
@@ -271,7 +283,7 @@
     var key = e.key;
     var newVal = KbLayout[currentLayer][key]['code'];
     if (newVal !== undefined) {
-     out.value += newVal;
+      out.value += newVal;
       e.preventDefault();
     }
   }
@@ -280,24 +292,58 @@
   function keyUp(area) {
     var out = document.getElementById(area);
     var e = event;  // Global?
-    //e.preventDefault();
   }
+
+  function setLayerKeyCaps(newLayer) {
+    // For all keys, set the keycap.
+    for (index in allChars) {
+      var c = allChars[index];
+      var out = document.getElementById(c);
+      var item = KbLayout[newLayer][c];
+      if (item == undefined) {
+          alert("item " + c + " = " + item);
+      } else {
+      if (item["keycap"] != undefined) {
+        out.value = out.innerHTML = item["keycap"];
+      } else {
+        if (item["codes"] != undefined) {
+          out.value = out.innerHTML = item["codes"];
+        } else {
+          alert("item codes undefined: " + c + " = " + item);
+        }
+      }
+      }
+    }
+  }
+
+  function onLayerSelected() {
+    currentLayer = document.getElementById("layerSelector").value;
+    document.getElementById("currentLayerName").value = currentLayer;
+
+    setLayerKeyCaps(currentLayer);
+  }
+
 </script>
 
 <body onload="onPageLoaded()">
 <div class="container">
     <div class="span-16">
         <h2>Prototype keyboard tool</h2>
-        <div id="layers">{% for layer in layers%}
-            <span onclick="layerClick('{{layer.0}}');">{{layer.1}}</span>
-            {% endfor %}
-        </div>
+        Current layer: <span id="currentLayerName"></span>
 
+        <div>
+        Keyboard layer: <select onchange="onLayerSelected(this.value, 'edit_area');" id="layerSelector">
+        {% for layer in layers%}
+            <option value="{{layer.1}}">{{layer.1}}</option>
+            {% endfor %}
+        </select>
+        </div>
         <div class="kb_layer">
             {% for row in rows %}
             <div class="keyboardRow">
                 {% for c in row %}
-                <span class="key" id='{{c}}' onclick="keyClick('{{c}}', 'in_buffer');">{{c}}</span>
+                <span class="key" id='{{c}}'
+                      onclick="keyClick('{{c}}', 'in_buffer', 'keycap_buffer');">{{c}}</span>
                 {% endfor %}
             </div>
             {% endfor %}

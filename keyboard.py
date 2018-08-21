@@ -33,9 +33,8 @@ from google.appengine.ext import db
 #   parsing-a-list-of-single-numbers-and-number-ranges
 # Change to hex.
 def expand_ranges(s):
-  # b = re.sub()
   return re.sub(
-    r'(0?x?[0-9a-fA-F]+)-(0?x?[0-9a-fA-F]+)',
+    r'\s*(0?x?[0-9a-fA-F]+)\s*-\s*(0?x?[0-9a-fA-F]+)\s*',
     lambda match: ','.join(
       str(i) for i in range(
         int(match.group(1),16),
@@ -53,10 +52,10 @@ class CreateKeyboardHandler(webapp2.RequestHandler):
 
     if coderanges:
       cranges = expand_ranges(coderanges)
-      logging.info("&&& %s" % cranges)
     else:
       # Character codes to place
-      cranges = expand_ranges('0x1000- 0x109f, 0xAA60-0xAA7f), 0xA9E0-0xA9fe')
+      cranges = expand_ranges('0x1000- 0x109f, 0xAA60-0xAA7f, 0xA9E0-0xA9fe')
+    logging.info("&&& %s" % cranges)
 
     characterSets = [unichr(int(c)) for c in cranges.split(',')]
 
@@ -72,20 +71,23 @@ class CreateKeyboardHandler(webapp2.RequestHandler):
     crow = ' '
     rows.append(list(crow))
 
+    allChars = [val for sublist in rows for val in sublist]
+
     # The possible keyboard layer codes.
     layers = [
-      ('', 'default'),
+      ('d', 'default'),
       ('s', 'shift'),
-      #('c', 'ctrl_alt'),
-      #('sc', 'shift_ctrl_alt'),
-      # ('l', 'capslock'),
-      # ('ls', 'shift_lock'),
-      # ('lc', 'ctrl_alt_lock'),
-      # ('lsc', 'shift_ctr_alt_lock')
+      ('c', 'ctrl_alt'),
+      ('sc', 'shift_ctrl_alt'),
+       ('l', 'capslock'),
+       ('ls', 'shift_lock'),
+       ('lc', 'ctrl_alt_lock'),
+       ('lsc', 'shift_ctr_alt_lock')
     ]
 
     langCode = self.request.get("langcode", "xyz")
     template_values = {
+      'allchars': allChars,
       'charsets': characterSets,
       'langCode': langCode,
       'layers': layers,
