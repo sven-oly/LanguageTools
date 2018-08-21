@@ -10,19 +10,15 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-// TODO: decide if there should be capital letters with accents,
-// capital turned V (and with accent), or others.
-// Perhaps on cntr-alt level?
-
 var ONE3_LAYOUT = {
   'id': 'one3',
   'title': 'Onʌyoteʔa·ká· V3',
   'mappings': {
     ',': {
       '': '\u03011234567890\u00b7=' +
-          'qwertyuiop-\u0332/' +   // Combining low line ??
+          'qwertyuiop\u0332\u0242\\' +
           'asdfghjkl;\'' +
-          'zxcvbnmʌ\u0242.'
+          'zxcvbnmʌ\u0241.'
     },
     'c': {
       '': '`{{}}{{}}{{}}{{}}{{}}{{}}{{}}{{}}{{}}{{}}{{}}{{}}' +
@@ -31,7 +27,7 @@ var ONE3_LAYOUT = {
     },
     's,sc': {
       '': '~!@#$%^&*()_+' +
-          'QWERTYUIOP{}\u0320' +
+          'QWERTYUIOP-\u02C0/' +
           'ASDFGHJKL:"' +
           'ZXCVBNM\u0245?,'
     },
