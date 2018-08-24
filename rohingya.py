@@ -30,6 +30,12 @@ from google.appengine.ext.webapp import template
 
 encoding_font_list = [
     {
+      'font_path':'/fonts/Rohingya Guanya Leyka.ttf',
+      'font_name':'RohingyaGuynaLeykaNoories',
+      'display_name': 'Guanya Leyka Noories',
+      'Source location': 'https://sellfy.com/p/OXDH/',
+    },
+    {
       'font_path':'/fonts/Rohingya Kuna Leyka Noories.ttf',
       'font_name':'RohingyaKunaLeykaNoories',
       'display_name': 'Kuna Leyka Noories',
@@ -46,9 +52,13 @@ encoding_font_list = [
 unicode_font_list = [
   {
       'family': 'RohingyaKunaLeykaNooriesUnicode',
-      'longName': 'Unicode hack',
-      'source': '/fonts/RohingyaKunaLeykaNoories_Unicode.ttf',
+      'longName': 'Unifont (unifoundry.com)',
+      'source': '/fonts/unifont_upper-11.0.02.ttf',
   },
+#  {      'family': 'RohingyaKunaLeykaNooriesUnicode',
+#      'longName': 'Unicode hack',
+#      'source': '/fonts/RohingyaKunaLeykaNoories_Unicode.ttf',
+#  },
 ]
 
 links = [
