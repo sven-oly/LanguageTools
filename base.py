@@ -87,7 +87,13 @@ class LanguagesHomeHandler(webapp2.RequestHandler):
         },
     ]
 
+    try:
+      text_direction = langInfo.direction
+    except AttributeError:
+      text_direction = 'ltr'
+
     template_values = {
+        'direction': text_direction,
         'language': langInfo.Language,
         'font_list': langInfo.unicode_font_list,
         'lang_list': langInfo.lang_list,
@@ -195,6 +201,11 @@ class ConvertUIHandler(webapp2.RequestHandler):
          '\u000a\u000b'},
     ]
 
+    try:
+      text_direction = langInfo.direction
+    except AttributeError:
+      text_direction = 'ltr'
+
     unicodeChars = '\ud804\udd00'
     unicodeChars += '\ud804\udd03'
     unicodeChars += '\ud804\udd04'
@@ -212,6 +223,7 @@ class ConvertUIHandler(webapp2.RequestHandler):
         'langTag': langInfo.LanguageCode,
         'encodingList': langInfo.encoding_font_list,
         'kb_list': langInfo.kb_list,
+        'direction': text_direction,
         'unicodeFonts': langInfo.unicode_font_list,
         'links': langInfo.links,
         'oldChars': oldChars,
@@ -280,8 +292,14 @@ class RenderPage(webapp2.RequestHandler):
        'longName': langInfo.Language + ' Unicode',
       }
     ]
+    try:
+      text_direction = langInfo.direction
+    except AttributeError:
+      text_direction = 'ltr'
+
     template_values = {
       'converterJS': "/js/' + langInfo.LanguageCode + 'Converter.js",
+      'direction': text_direction,
       'language': langInfo.Language,
       'encoding_list': langInfo.encoding_font_list,
       'unicode_list': langInfo.unicode_font_list,

@@ -286,7 +286,8 @@
     <h3>Old {{language}} font data</h3>
     <textarea class="{{encodingList.0.font_name}}" id="old_font_input_text"
               columns="60" rows="3" style="font-size: 28px;"
-              onchange="updateHex('old_font_input_text', 'old_hex');">{{oldInput}}</textarea>
+              onchange="updateHex('old_font_input_text', 'old_hex');"
+              dir="{{direction}}">{{oldInput}}</textarea>
     <br />
 
     <input type="button" value="Clear"
@@ -342,7 +343,9 @@
     <h3>{%if outputFont %}{{outputFont}}{%else%}Unicode{%endif%} {{language}} text</h3>
     <textarea class="{{unicodeFonts.0.family}}" id="Unicode_font_output_text"
      onchange="updateHex('Unicode_font_output_text', 'new_hex');"
-              cols="50" rows="3" style="font-size: 28px;" lang="{{langTag}}">{{unicodeInput}}</textarea>
+              cols="50" rows="3" style="font-size: 28px;" lang="{{langTag}}"
+              dir="{{direction}}"
+              >{{unicodeInput}}</textarea>
     <br />
     <input type="button" value="Clear"
            onclick="clearArea('Unicode_font_output_text', 'new_hex');">

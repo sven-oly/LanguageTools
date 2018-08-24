@@ -90,6 +90,7 @@ class langInfo():
     self.LanguageCode = 'rhg'
     self.Language = 'Rohingya'
     self.Language_native = '𐴀𐴁𐴂𐴃'
+    self.direction = 'rtl'
 
     if sys.maxunicode >= 0x10000:
       logging.info('WIDE SYSTEM BUILD!!!')

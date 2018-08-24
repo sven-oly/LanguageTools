@@ -174,7 +174,7 @@
 
   <!-- If an original encoding area is needed. -->
   {% if encoded_div %} 
-  <textarea id="encodeArea" class='default-font' style="width:600px;height:300px;" rows="10"></textarea>
+  <textarea id="encodeArea" class='default-font' style="width:600px;height:300px;" rows="10" dir="{{direction}}"></textarea>
   <br />
   <input type="button" value="Convert to Unicode text"
     onclick="convertToUnicode('encodeArea', 't1');">
@@ -184,7 +184,8 @@
   <div id="t1_div">
     <textarea id="t1" style="width:600px;font-family:{{font.family.0}};"
       rows="10"
-      style="font-size:18px;" lang="{%if lang_list.0.shortName %}{{lang_list.0.shortName}}{%endif%}{%if langTag %}{{langTag}}{%endif%}"></textarea>
+      style="font-size:18px;" lang="{%if lang_list.0.shortName %}{{lang_list.0.shortName}}{%endif%}{%if langTag %}{{langTag}}{%endif%}"
+      dir="{{direction}}"></textarea>
   </div>
 
   <div id="codepoint_div">
