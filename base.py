@@ -19,6 +19,7 @@ import transliterate
 import json
 import logging
 import os
+import sys
 import urllib
 import webapp2
 
@@ -159,7 +160,13 @@ class DiacriticHandler(webapp2.RequestHandler):
         row.append(text)
       table.append(row)
 
+    try:
+      text_direction = langInfo.direction
+    except AttributeError:
+      text_direction = 'ltr'
+
     template_values = {
+        'direction': text_direction,
         'language': langInfo.Language,
         'base_char': langInfo.base_consonant.encode('utf-8'),
         'base_hex': ['%4x' % ord(x) for x in langInfo.base_consonant],

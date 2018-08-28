@@ -83,6 +83,9 @@ links = [
     {'linkText': 'Combiners',
      'ref': '/rhg/diacritic/'
      },
+    {'linkText': 'Download simple font',
+     'ref': 'http://unifoundry.com/pub/unifont/unifont-11.0.02/font-builds/unifont_upper-11.0.02.ttf'
+     },
 ]
 
 class langInfo():
@@ -99,7 +102,7 @@ class langInfo():
       logging.info('NARROW SYSTEM BUILD!!!')
       self.diacritic_list = [unichr(0xd803) + unichr(0xdd00 + x) for x in range(0x22, 0x27)]
 
-    self.base_consonant = u'\u10D01'
+    self.base_consonant = u'\ud803\udd01'
     self.baseHexUTF16 = u'\ud803\udd01'
 
     self.lang_list = [

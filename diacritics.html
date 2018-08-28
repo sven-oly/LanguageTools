@@ -77,27 +77,27 @@
     <br />
     <h3>Base + combining code points</h3>
     <p>First combiner is the row and 2nd is the column
-    <table id="combo_table">
-      <th>
+    <table id="combo_table" dir='{{direction}}'>
+      <th  dir='{{direction}}'>
         <td></td>
         {% for d in diacritics_hex %}
-        <td>
+        <td  dir='{{direction}}'>
           {{d}}
         </td>
         {%endfor%}
       </th>
       <tr>
       {% for single in singles %}
-      <td>{{single}}</td>
+      <td  dir='{{direction}}'>{{single}}</td>
       {% endfor %}
       </tr>
     {% for row in table%}
       <tr>
-        <td>
+        <td dir='{{direction}}'>
           {{diacritics_hex.forloop.counter0}}
           </td>
         {% for item in row %}
-        <td>
+        <td dir='{{direction}}'>
         {{item}}
         </td>
         {% endfor %}
