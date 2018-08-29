@@ -192,7 +192,7 @@ class EncodingRules(webapp2.RequestHandler):
     def get(self):
 
       template_values = {
-        'converterJS': "/js/' + LanguageCode + 'Converter.js",
+        'converterJS': '/js/' + LanguageCode + 'Converter.js',
         'language': Language,
         'langTag': LanguageCode,
         'encoding_list': encoding_font_list,

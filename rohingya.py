@@ -51,17 +51,16 @@ encoding_font_list = [
 
 unicode_font_list = [
   {
+      'family': 'MNitaRohingyaTraced',
+      'longName': 'MNita Rohingya Traced',
+      'source': '/fonts/RohingyaTraced.ttf',
+      'attribution': 'Created by Mihai Nita 2018-08-29',
+  },
+  {
       'family': 'UniFoundaryUpper',
       'longName': 'Unifont (unifoundry.com)',
       'source': '/fonts/unifont_upper-11.0.02.ttf',
   },
-
-#  {
-#      'family': 'AsciiAndRohingya',
-#      'longName': 'Font Hack from Unicode Std',
-#      'source': '/fonts/AsciiAndRohingya.ttf',
-#  },
-
 ]
 
 links = [
