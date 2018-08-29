@@ -44,7 +44,7 @@ encoding_font_list = [
     'display_name': 'Verdana Navajo',
   },
   {
-    'font_path':'/fonts/Navajo/CENTGN__.ttf',
+    'font_path':'/fonts/Navajo/CENTGN__.TTF',
     'font_name':'CenturyGothicNavajo',
     'display_name': 'Century Gothic Navajo',
   },
