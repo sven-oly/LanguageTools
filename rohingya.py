@@ -51,14 +51,17 @@ encoding_font_list = [
 
 unicode_font_list = [
   {
-      'family': 'RohingyaKunaLeykaNooriesUnicode',
+      'family': 'UniFoundaryUpper',
       'longName': 'Unifont (unifoundry.com)',
       'source': '/fonts/unifont_upper-11.0.02.ttf',
   },
-#  {      'family': 'RohingyaKunaLeykaNooriesUnicode',
-#      'longName': 'Unicode hack',
-#      'source': '/fonts/RohingyaKunaLeykaNoories_Unicode.ttf',
+
+#  {
+#      'family': 'AsciiAndRohingya',
+#      'longName': 'Font Hack from Unicode Std',
+#      'source': '/fonts/AsciiAndRohingya.ttf',
 #  },
+
 ]
 
 links = [
@@ -83,6 +86,9 @@ links = [
     {'linkText': 'Combiners',
      'ref': '/rhg/diacritic/'
      },
+    {'linkText': 'Keyboard layout suggestion',
+     'ref': 'https://rohingyaciki.wordpress.com/2018/03/08/rohingya-zuban-hanifi-fonts/amp/'},
+
     {'linkText': 'Download simple font',
      'ref': 'http://unifoundry.com/pub/unifont/unifont-11.0.02/font-builds/unifont_upper-11.0.02.ttf'
      },

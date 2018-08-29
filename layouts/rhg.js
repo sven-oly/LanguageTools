@@ -18,7 +18,7 @@ var RHG_LAYOUT = {
 	        '{{\uD803\uDD13}}{{\uD803\uDD00}}{{\uD803\uDD07}}{{\uD803\uDD15}}' +
 	        '{{\uD803\uDD1d}}{{\uD803\uDD11}}{{\uD803\uDD04}}' +
           '{{\uD803\uDD22}}{{\uD803\uDD20}}{{\uD803\uDD1e}}{{\uD803\uDD0c}}' +
-	        '{{\uD803\uDD1d}}{{??}}{{\uD803\uDD03}}{{\uD803\uDD16}}' +
+	        '{{\uD803\uDD1d}}{{\uD803\uDD1f\u065c}}{{\uD803\uDD03}}{{\uD803\uDD16}}' +
             '{{\uD803\uDD0e}}{{\uD803\uDD09}}'
     },
     's,sc': {
