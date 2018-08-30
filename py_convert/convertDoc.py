@@ -57,7 +57,7 @@ def fixElementAndParent(textElement, parent, newText, oldFontList, unicodeFont):
 # batch, and remove the empty elements.
 # Should I reset the font in this function, too?
 def processCollectedText(collectedText, textElementList, parent_map, superscriptNode,
-                         converter, formatTextInfo):
+                         converter, formatTextInfo, fontIndex):
   # type: (object, object, object, object, object, object) -> object
   clearedTextElements = []
   global debug_output
@@ -66,8 +66,7 @@ def processCollectedText(collectedText, textElementList, parent_map, superscript
   if debug_output:
     print('** CONVERTING %s to Unicode. ' % collectedText.encode('utf-8'))
 
-  # ctext = converter.convertText(collectedText)
-  convertedText = converter.convertText(collectedText, fontTextInfo=formatTextInfo)
+  convertedText = converter.convertText(collectedText, fontTextInfo=formatTextInfo, fontIndex=fontIndex)
   # TODO: Add case conversion, if desired.
 
   convertedCount = 0
@@ -171,7 +170,10 @@ def parseDocXML(docfile_name, path_to_doc, converter,
                 elif re.search('}rFonts', rprchild.tag):
                   # Font info.
                   fontFound = True
-                  if isOldFontNode(rprchild, converter.oldFonts):
+                  fontIndex = isOldFontNode(rprchild, converter.oldFonts)
+                  if debug_output:
+                    print('175: ### fontIndex = %s' % fontIndex)
+                  if fontIndex >= 0:
                     # In font encoded node
                     inEncodedFont = True
                   else:
@@ -184,7 +186,7 @@ def parseDocXML(docfile_name, path_to_doc, converter,
                                                                                     parent_map,
                                                                                     superscriptNode,
                                                                                     converter,
-                                                                                    formatTextInfo)
+                                                                                    formatTextInfo, fontIndex)
                         convertCount += newConvertedCount
                         allEmptiedTextElements.append(emptiedElements)
                       collectedText = ''
@@ -214,7 +216,7 @@ def parseDocXML(docfile_name, path_to_doc, converter,
                                                                   textElements,
                                                                   parent_map, superscriptNode,
                                                                   converter,
-                                                                  formatTextInfo)
+                                                                  formatTextInfo, fontIndex)
       convertCount += newConvertedCount
       collectedText = ''
       textElements = []
@@ -262,12 +264,15 @@ def removeOldTextElements(allElementsToRemove, parent_map):
 
 def isOldFontNode(node, oldFontList):
   # Look for "rFonts", and check if any font contains one of the old fonts
+  # Returns index of font if found, else -1
   if re.search('}rFonts', node.tag):
     for key in node.attrib:
+      fontIndex = 0
       for oldFont in oldFontList:
         if re.search(oldFont, node.attrib[key]):
-          return True
-  return False
+          return fontIndex
+      fontIndex += 1
+  return -1
 
 
 def parseFontTable(docXML, oldFontList, unicodeFont):
