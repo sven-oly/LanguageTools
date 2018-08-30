@@ -55,27 +55,6 @@
 
     var controller, visible = true;
     function onPageLoaded() {
-      var input = document.getElementById('t1');
-      controller = new i18n.input.keyboard.Keyboard();
-      onSizeSelected(document.getElementById("sizeSelector").value, 't1');
-      {% for kb in kb_list %}
-      controller.loadLayout('{{kb.shortName}}');
-      {% endfor %}
-      controller.reposition(input, 3, 4, [5, 0, 0, 0]);
-      controller.activateLayout('{{kb_list.0.shortName}}');
-      controller.register(input);
-      controller.addEventListener(
-          'kc',
-          function() { visible = false; });
-      input.focus();
-
-      // TODO: Implement?
-      // setFontFamily(document.getElementById("fontSelector").value);
-
-      var selector = document.getElementById("setLayout");
-      if (selector) {
-        onLayoutSelected(selector.value);
-      }
     }
 
     function onLayoutSelected(layoutCode) {
@@ -304,10 +283,7 @@
         Language code: <input type="text" name="langcode"></input>
               <input type="submit" value="Submit">
         </form>
-        <div>
-            <textarea id="t1" onkeydown="keyDown('t1');" onkeypress="keyPress('t1');"
-            onkeyup="keyUp('t1');"></textarea>
-        </div>
+
     </div>
 
     <div>

@@ -71,6 +71,11 @@ class CreateKeyboardHandler(webapp2.RequestHandler):
     crow = ' '
     rows.append(list(crow))
 
+    shiftRows = [u'~!@#$%^&*()_+']
+    shiftRows.append(u'QWERTYUIOP{}|')
+    shiftRows.append(u'ASDFGHJKL:\"')
+    shiftRows.append(u'ZXCVBNM<>?')
+
     allChars = [val for sublist in rows for val in sublist]
 
     # The possible keyboard layer codes.
@@ -79,12 +84,23 @@ class CreateKeyboardHandler(webapp2.RequestHandler):
       ('s', 'shift'),
       ('c', 'ctrl_alt'),
       ('sc', 'shift_ctrl_alt'),
-       ('l', 'capslock'),
+       ('l', 'lock'),
        ('ls', 'shift_lock'),
        ('lc', 'ctrl_alt_lock'),
        ('lsc', 'shift_ctr_alt_lock')
     ]
-
+    unshiftedLayers = [
+      ('d', 'default'),
+      ('c', 'ctrl_alt'),
+       ('l', 'lock'),
+       ('lc', 'ctrl_alt_lock'),
+    ]
+    shiftedLayers = [
+      ('s', 'shift'),
+      ('sc', 'shift_ctrl_alt'),
+      ('ls', 'shift_lock'),
+      ('lsc', 'shift_ctr_alt_lock')
+    ]
     langCode = self.request.get("langcode", "xyz")
     template_values = {
       'allchars': allChars,
@@ -92,6 +108,9 @@ class CreateKeyboardHandler(webapp2.RequestHandler):
       'langCode': langCode,
       'layers': layers,
       'rows': rows,
+      'shiftRows': shiftRows,
+      'unshiftedLayers': unshiftedLayers,
+      'shiftedLayers': shiftedLayers,
     }
     path = os.path.join(os.path.dirname(__file__), 'create_keyboard.html')
     self.response.out.write(template.render(path, template_values))

@@ -258,22 +258,59 @@
     {% endfor %}
   };
   // kb data object
+  // TODO: Set shifted layers to caps values.
   var KbLayout = {
-    {% for layer in layers %}
+    {% for layer in unshiftedLayers %}
       "{{layer.1}}" : {
       {% for row in rows %}
         {% for c in row %}"{{c}}": { "codes": "{{c}}", }, {% endfor %}
       {% endfor %} },
     {% endfor %}
-  };
+    {% for layer in shiftedLayers %}
+      "{{layer.1}}" : {
+      {% for row in rows %}
+        {% for c in row %}"{{c}}": { "codes": "{{c}}", }, {% endfor %}
+      {% endfor %} },
+    {% endfor %}  };
 
 
   var currentLayer = "default";
+
+  var inCapsLock = false;
 
   // Function to controll output from virtual KB
   function keyDown(area) {
     var out = document.getElementById(area);
     var e = event;  // Global?
+    if (e.code == "CapsLock") {
+      inCapsLock = true;
+    }
+  }
+
+  function eventPropToLayerCode(e) {
+    var level = "default";
+    if (!e.shiftKey) {
+      if (!e.ctrlKey) {
+        level = "default";
+      } else {
+        level = "ctrl_alt";
+      }
+    } else {
+      // Shifted
+      if (!e.ctrlKey) {
+        level = "shift";
+      } else {
+        level = "shift_ctrl_alt";
+      }
+    }
+    if (inCapsLock) {
+      if (level == "default") {
+        level = "lock";
+      } else {
+        level += "_lock";
+      }
+    }
+    return level;
   }
 
   // Function to controll output from virtual KB
@@ -281,17 +318,21 @@
     var out = document.getElementById(area);
     var e = event;  // Global?
     var key = e.key;
-    var newVal = KbLayout[currentLayer][key]['code'];
+    var layer = eventPropToLayerCode(e);
+    var newVal = KbLayout[layer][key]['code'];
     if (newVal !== undefined) {
       out.value += newVal;
       e.preventDefault();
     }
   }
 
-  // Function to controll output from virtual KB
+  // Function to control output from virtual KB
   function keyUp(area) {
     var out = document.getElementById(area);
     var e = event;  // Global?
+    if (e.code == "CapsLock") {
+      inCapsLock = false;
+    }
   }
 
   function setLayerKeyCaps(newLayer) {

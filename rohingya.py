@@ -61,6 +61,12 @@ unicode_font_list = [
       'longName': 'Unifont (unifoundry.com)',
       'source': '/fonts/unifont_upper-11.0.02.ttf',
   },
+  {
+    'family': 'ScheherazadeRohingya',
+    'longName': 'ScheherazadeRohingya',
+    'source': '/fonts/ScheherazadeRohingya-R.ttf',
+    'attribution': 'https://sites.google.com/site/rohingyafonna/',
+  },
 ]
 
 links = [
@@ -122,6 +128,14 @@ class langInfo():
         'longName': 'Hanific Rohigya Unicode',
         'jsName': self.LanguageCode,
         'instructions': None,
+        'font': 'MNitaRohingyaTraced',
+      },
+      {
+        'shortName': self.LanguageCode + '_arab',
+        'longName': 'Hanific Arabic Unicode',
+        'jsName': self.LanguageCode + '_arab',
+        'instructions': None,
+        'font': 'ScheherazadeRohingya',
       }
     ]
     self.links = links
