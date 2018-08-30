@@ -26,10 +26,10 @@ class converter():
         u'\u0027': ['\\', '\\', '\\'],
         u'\u0028': [u'\u00cd\u0328', u'\u00cd\u0328', u'\u00cd\u0328'],
         u'\u0029': [u'\u00d3', u'\u00d3', u'\u00d3'],
-        u'\u002a': ['I\u0328', 'I\u0328', 'I\u0328'],
+        u'\u002a': [u'I\u0328', u'I\u0328', u'I\u0328'],
         u'\u002b': [u'\u00d3\u0328', u'\u00d3\u0328', u'\u00d3\u0328'],
         u'\u002c': [',', ',', ','],
-        u'\u002d': ['o\u0328', 'o\u0328', 'o\u0328'],
+        u'\u002d': [u'o\u0328', u'o\u0328', u'o\u0328'],
         u'\u002e': ['.', '.', '.'],
         u'\u002f': ['/', '/', '/'],
 
@@ -38,10 +38,10 @@ class converter():
         u'\u0032': [u'\u0105', u'\u0105', u'\u0105'],
         u'\u0033': [u'\u00e1\u0328', u'\u00e1\u0328', u'\u00e1\u0328'],
         u'\u0034': [u'\u00e9', u'\u00e9', u'\u00e9'],
-        u'\u0035': ['e\u0328', 'e\u0328', 'e\u0328'],
+        u'\u0035': [u'e\u0328', u'e\u0328', u'e\u0328'],
         u'\u0036': [u'\u00e9\u0328', u'\u00e9\u0328', u'\u00e9\u0328'],
         u'\u0037': [u'\u00ed', u'\u00ed', u'\u00ed'],
-        u'\u0038': ['i\u0328', 'i\u0328', 'i\u0328'],
+        u'\u0038': [u'i\u0328', u'i\u0328', u'i\u0328'],
         u'\u0039': [u'\u00ed\u0328', u'\u00ed\u0328', u'\u00ed\u0328'],
         u'\u003d': [u'\u00f3\u0328', u'\u00f3\u0328', u'\u00f3\u0328'],
         u'\u0040': [u'\u0104', u'\u0104', u'\u0104'],
@@ -50,7 +50,7 @@ class converter():
         u'\u005c': ['\\', '\\', '\\'],
         u'\u005d': [u'\u0144', u'\u0144', u'\u0144'],
         u'\u005e': [u'\u00c9\u0328', u'\u00c9\u0328', u'\u00c9\u0328'],
-        u'\u005f': ['O\u0328', 'O\u0328', 'O\u0328'],
+        u'\u005f': [u'O\u0328', u'O\u0328', u'O\u0328'],
 
         u'\u007b': [u'\u0141', u'\u0141', u'\u0141'],
         u'\u007c': ['|', '|', '|'],
@@ -93,7 +93,7 @@ class converter():
         convertList = []
         for item in fontTextInfo:
             if self.debug:
-               print('++ text = %s' % item[0])
+               print('++ text = %s' % item[0].encode('utf-8'))
 
             tags = []
             for fmt in item[1]:
@@ -107,6 +107,7 @@ class converter():
             # Convert this one, and return the result
             if self.debug:
               print('++++ item = %s' % item)
+              print('++++ font index = %s' % fontIndex)
             convertList.append(self.convertString(item[0], tags, fontIndex, convertToLower))
 
         print('***** CONVERT LIST = %s' % u''.join(convertList).encode('utf-8'))
@@ -119,7 +120,7 @@ class converter():
         convertResult = u''
 
         if self.debug:
-          print('$$$$$ text = %s, fontInfo = %s' % (textIn, fontInfo))
+          print('$$$$$ text = %s, fontInfo = %s' % (textIn.encode('utf-8'), fontInfo))
 
         for index in xrange(len(textIn)):
           c = textIn[index];
@@ -131,7 +132,7 @@ class converter():
           else:
             if self.debug:
               print('----- character %s (%s) not found' %
-                    (c, ord(c)))
+                    (c.encode('utf-8'), ord(c)))
 
           # Special case for handling underlined text
           convertedList.append(out)
@@ -148,7 +149,7 @@ class converter():
             convertResult = lowerResult
 
         if self.debug:
-          print('!!!!!!!!!!!!! convertedResult = %s' % convertResult)
+          print('!!!!!!!!!!!!! convertedResult = %s' % convertResult.encode('utf-8'))
 
         return convertResult
 
