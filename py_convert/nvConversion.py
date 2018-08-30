@@ -5,7 +5,7 @@ import re
 
 # Convert Chakmak encoded text to Unicode.
 
-debug = True  #False
+debug = False
 
 # Mappings for both arjyban, sujoyan, alaam, etc. encodings.
 FONTS_TO_CONVERT = {
@@ -66,7 +66,7 @@ class converter():
       return inText
 
     def __init__(self, oldFontList, newFont=None):
-      self.debug = True
+      self.debug = False
       # The fonts detected for conversion
       self.oldFonts = oldFontList
       # Name of the substitute Unicode font, if provided
@@ -109,8 +109,6 @@ class converter():
               print('++++ item = %s' % item)
               print('++++ font index = %s' % fontIndex)
             convertList.append(self.convertString(item[0], tags, fontIndex, convertToLower))
-
-        print('***** CONVERT LIST = %s' % u''.join(convertList).encode('utf-8'))
 
         return u''.join(convertList)
 

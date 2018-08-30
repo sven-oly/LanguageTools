@@ -19,7 +19,7 @@ TIMESTAMP = "Version 2018-06-28"
 # https://docs.python.org/2/library/xml.etree.elementtree.html
 # https://docs.python.org/2/library/zipfile.html
 
-debug_output = True  # False
+debug_output = False
 
 # Flag controls if the conversion removes
 # structure from replaced text when drawings are found
@@ -72,9 +72,11 @@ def processCollectedText(collectedText, textElementList, parent_map, superscript
   convertedCount = 0
   if convertedText != collectedText:
     convertedCount = 1
-    print('  ++++ Converted: %s' % convertedText.encode('utf-8'))
+    if debug_output:
+      print('  ++++ Converted: %s' % convertedText.encode('utf-8'))
   else:
-    print('  ---- Not converted: %s' % collectedText.encode('utf-8'))
+    if debug_output:
+      print('  ---- Not converted: %s' % collectedText.encode('utf-8'))
 
   # 1. Reset text in first element
   if not textElementList:
