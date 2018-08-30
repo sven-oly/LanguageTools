@@ -26,8 +26,11 @@ def processTable(shape, converter):
                           # TODO: Simplify this logic
                           if run.font:
                             fontObj = run.font
+                          fontIndex = -1
+                          if fontObj.name in converter.FONTS_TO_CONVERT:
+                            fontIndex = converter.FONTS_TO_CONVERT[fontObj.name]
                           if fontObj and fontObj.name in converter.oldFonts:
-                              tryResult = converter.convertText(run.text, None)
+                              tryResult = converter.convertText(run.text, None, fontIndex=fontIndex)
                               if tryResult != run.text:
                                 conversionCount += 1
                                 run.text = tryResult
