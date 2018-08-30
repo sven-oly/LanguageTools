@@ -52,6 +52,9 @@ handlers:
 - url: /aho/.*
   script: ahom.app
 
+- url: /mez/.*
+  script: menoninee.app
+
 - url: /my/.*
   script: burmese.app
 

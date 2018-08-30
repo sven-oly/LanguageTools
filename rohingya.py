@@ -31,27 +31,27 @@ from google.appengine.ext.webapp import template
 encoding_font_list = [
     {
       'font_path':'/fonts/Rohingya Guanya Leyka.ttf',
-      'font_name':'RohingyaGuynaLeykaNoories',
+      'font_name':'GuynaLeykaNoories',
       'display_name': 'Guanya Leyka Noories',
       'Source location': 'https://sellfy.com/p/OXDH/',
     },
     {
       'font_path':'/fonts/Rohingya Kuna Leyka Noories.ttf',
-      'font_name':'RohingyaKunaLeykaNoories',
+      'font_name':'KunaLeykaNoories',
       'display_name': 'Kuna Leyka Noories',
       'Source location':' http://fontlibrary.org/en/font/rohingya-kuna-leyka-noories',
     },
-    {
-      'font_path':'/fonts/Rohingya Gonya Leyka Noories.ttf',
-      'font_name':'RohingyaGonyaLeykaNoories',
-      'display_name': 'Gonya Leyka Noories',
-      'Source location': 'http://fontlibrary.org/en/font/rohingya-gonya-leyka-noories',
-    },
+    # {  # This font does not seem to have usable code points.
+    #   'font_path':'/fonts/Rohingya Gonya Leyka Noories.ttf',
+    #   'font_name':'RohingyaGonyaLeykaNoories',
+    #   'display_name': 'Gonya Leyka Noories',
+    #   'Source location': 'http://fontlibrary.org/en/font/rohingya-gonya-leyka-noories',
+    # },
 ]
 
 unicode_font_list = [
   {
-      'family': 'MNitaRohingyaTraced',
+      'family': 'MNitaRohingya Traced',
       'longName': 'MNita Rohingya Traced',
       'source': '/fonts/RohingyaTraced.ttf',
       'attribution': 'Created by Mihai Nita 2018-08-29',

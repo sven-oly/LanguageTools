@@ -41,7 +41,7 @@
       {% endfor %}
 
     input {font-size:14px;}
-    textarea {font-size:18; height:400px;}
+    textarea {font-size:18; height:400px; resize: vertical;}
     </style>
 
   <script src="/js/utils.js"></script>
@@ -182,7 +182,7 @@
   {% endif %}
 
   <div id="t1_div">
-    <textarea id="t1" style="width:600px;font-family:{{font.family.0}};"
+    <textarea id="t1" style="width:600px;font-family:{{font.family.0}};resize:vertical;"
       rows="10"
       style="font-size:18px;" lang="{%if lang_list.0.shortName %}{{lang_list.0.shortName}}{%endif%}{%if langTag %}{{langTag}}{%endif%}"
       dir="{{direction}}"></textarea>
@@ -193,7 +193,7 @@
     <input type="button" value="Code points" onclick="showCodePoints()">
     <br />
     <textarea id="codepoints" class='default-font'
-     style="width:600px;height:100px;"
+     style="width:600px;height:100px;resize:vertical;"
      rows="5"></textarea>
   </div>
     <input type="button" value="-> Unicode text" onclick="hexToOutput('codepoints', 't1');">
