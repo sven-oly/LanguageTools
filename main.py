@@ -39,6 +39,7 @@ LanguageList = [
     ('Navajo', 'nv', 'Diné bizaad'),
     ('Oneida', 'one', 'Onʌyoteʔa·ká·'),
     ('Otomanguean phonetic', 'omq'),
+    ('Rohingya', 'rhg', ),
     ('Tamashek', 'tmh', 'ⵜⴰⵎⴰⵌⴰⵆ'),
     ('Tibetan', 'bo'),
 ]

@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+
+    <title>{{language}} word search generator</title>
+
+    <link rel="stylesheet" href="/css/blueprint/screen.css" type="text/css" media="screen">
+    <link rel="stylesheet" href="/css/blueprint/print.css" type="text/css" media="print">
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="/css/blueprint/ie.css" type="text/css" media="screen, projection">
+    <![endif]-->
+
+    <link rel="stylesheet" type="text/css" href="/css/fonts.css">
+
+    <script src="/js/osage_utils.js"></script>
+
+    <script src="/js/vk-debug.js"></script>
+
+    <style>
+    @media print {
+      .noprint {display:none;}
+    }
+    @media screen {
+    }
+    </style>
+    <style>
+        p, table {
+        border: 2px solid #cccccc;
+        padding: 5px;
+        font-size: 24px;
+        font-variant-ligatures: normal;
+        }
+        .default {
+          font-family: "Courier New";
+        }
+        td, th {
+          border: dashed 1px #dddddd;
+          text-align: center;
+        }
+        textarea {
+          font-size: 24px;
+
+        }
+        li {
+          font-size: 24px;
+        }
+        input {
+          font-size: 14px;
+        }
+        button {
+          font-size: 20px;
+        }
+    </style>
+<script>
+
+  function sendTestWords(resultArea, answerArea, useDfs) {
+    var wordData = ['𐓷𐓣𐓟𐓣𐓟', '𐓨𐓘𐓻𐓣͘', '𐓷𐓘𐓻𐓘𐓻𐓟', '𐓣𐓟𐓷𐓣͘ ', '𐓰𐓣𐓵𐓟', '𐓡𐓪𐓷𐓟͘𐓤𐓣',
+           '𐓯𐓰𐓪͘𐓬𐓘𐓬𐓟', '𐓘̄𐓵𐓣𐓟𐓸𐓟̄𐓛𐓣̄𐓬', '𐓤𐓘𐓮𐓣𐓰𐓘͘', '𐓷𐓘𐓯𐓝𐓣͘𐓧𐓘'];
+           //           '𐒻𐓏𐒻𐒼𐒻', '𐓂𐓍𐒰𐒰𐒾𐓎𐓓𐓎𐒼𐒰'];
+    return sendWords(wordData, resultArea, answerArea, useDfs);
+  }
+
+  function sendRegionWords(wordSrc, resultArea, answerArea, useDfs) {
+    var inputArea = document.getElementById(wordSrc);
+    var wordData = inputArea.value;
+    return sendWords(wordData, resultArea, answerArea, useDfs);
+  }
+
+  // The variables of the data.
+  var whole_grid = null;
+  var all_answers = null;
+  var all_words = null;
+
+  // Code to request {{language}} data at index with optional filter.
+  // Direction indicates previous (-1) or next (+1)
+  function sendWords(wordData, resultArea, answerArea, useDfs) {
+    // Prepare for the call to the backendvar xmlhttp;
+	if (window.XMLHttpRequest) { // code for IE7+, Firefox, Chrome, Opera, Safari
+	  xmlhttp=new XMLHttpRequest();
+	} else { // code for IE6, IE5
+	  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+	}
+
+    // Deal with the results
+    xmlhttp.onreadystatechange=function() {
+	  if(xmlhttp.readyState==4) {
+        // Handle results
+        var returned_json = xmlhttp.responseText;
+        var json_obj = JSON.parse(returned_json);
+        if (json_obj.grid == null) {
+          alert("Cannot build a grid of size " + json_obj.grid_width);
+          return;
+        }
+        var outputArea = document.getElementById(resultArea);
+        var answersArea = document.getElementById(answerArea);
+
+        words = json_obj.answers;  // get the keys
+
+        grid_width = json_obj.grid_width;
+
+        // Globals
+        whole_grid = json_obj.grid;
+        all_words = words;
+        all_answers = json_obj.answers;
+
+        createGameGrid(json_obj.grid, grid_width, words, json_obj.answers);
+      }
+    }
+
+    if (useDfs) {
+      target = "/games/generatewordsearchDFS/";
+      target += "?words=" + wordData;
+      target += "&size=" + document.getElementById("grid_size").value;
+
+    } else {
+      // Prepare and send data.
+      target = "/games/generatewordsearch/";
+      target += "?words=" + wordData;
+    }
+
+    xmlhttp.open("GET", target, true);
+	var size = target.length;
+	xmlhttp.send(null);
+  }
+
+function createGameGrid(grid, grid_width, words, answers) {
+    // Create table.
+    var table = document.getElementById('gridTable');
+    clearTableRows('gridTable');
+
+    // Insert New Row for table at index '0'.
+
+    for (var row = 0; row < grid_width; row ++) {
+      var row1 = table.insertRow(row);
+      // Insert New Columns for Row1 at index '0'.
+      for (var col = 0; col < grid_width; col ++) {
+        var row1col1 = row1.insertCell(col);
+        if (Array.isArray(grid[row][col])) {
+          row1col1.innerHTML = "\u00a0" + grid[row][col][0] + "\u00a0";
+         } else {
+          row1col1.innerHTML = "\u00a0" + grid[row][col] + "\u00a0";
+         }
+      }
+    }
+
+    // Add the words to find.
+    var wordArea = document.getElementById('wordsToFind');
+    var wordList = "";
+    for (word in words) {
+        wordList += " " + word + "\u00a0\u00a0\u00a0";
+    }
+    wordArea.innerHTML = wordList;
+
+    // Prepare answers region
+    clearChildNodes('answerList');
+    var answerArea = document.getElementById('answerList');
+
+    for (var word in words) {
+      var answer = answers[word];
+      var positions = answer[0].concat();
+      var li = document.createElement("li");
+      var btn = document.createElement("button");
+      var t = document.createTextNode(word);
+      var this_word = word;
+      // Test smarter casing.
+      var this_lower = word.toLocaleLowerCase('osa-osge');
+      btn.append(t);
+      btn.onclick = onAnswerClickEvent;
+
+      li.appendChild(btn);
+      var ans_text = document.createTextNode(" : (" + positions[0] + ') (' + answer[3] + ')');
+      li.appendChild(ans_text);
+      answerArea.appendChild(li);
+
+    }
+
+    showAnswerGrid('gridTable');
+  }
+
+  function onAnswerClickEvent(e) {
+    var x = e;
+    var text = e.target.innerHTML;
+    var positions = all_answers[text][0];
+
+    highlightAnswer(e.target.innerHTML, positions);
+  }
+
+
+  function showAnswerGrid(tableId) {
+
+    var colorTheGrid = false;
+        if (colorTheGrid) {
+        var table = document.getElementById(tableId);
+        var rows = table.getElementsByTagName("tr")
+        var grid = whole_grid;
+        var grid_width = grid_width;
+        var answer = all_answers;
+
+        for (var row = 0; row < grid_width; row ++) {
+          // Insert New Columns for Row1 at index '0'.
+          row1 = rows[row];
+
+          for (var col = 0; col < grid_width; col ++) {
+            var row1col1 = row1.cells[col];
+            row1col1.bgColor = "gray"
+          }
+        }
+
+        // Set all the background to gray.
+        // Then highlight each answer, with color on the first letter.
+        for (var answer in all_answers) {
+          // Get each cell and highlight.
+          var cells = all_answers[answer][0];
+          for (var i = 0; i < cells.length; i++) {
+            row1 = rows[cells[i][0]];
+            if (cells[i][1].isArray()) {
+              rowcol = row1.cells[cells[i][1][0]];
+            } else {
+              rowcol = row1.cells[cells[i][1]];
+            }
+            rowcol.bgColor = "white";
+            if (i == 0) {
+              rowcol.bgColor = "yellow";
+            }
+
+          }
+        }
+      }
+      drawLines(all_answers);
+  }
+
+  function drawLines(answers) {
+    var grid = whole_grid;
+    var grid_size = grid_width;
+
+    var canvas = document.getElementById('myCanvas');
+    var ctx = canvas.getContext("2d");
+    ctx.font = "30px Pawhuska";
+    var xfactor = 50; xoff = 15; xlineoff = 25;
+    var yfactor = 50; yoff = 35; ylineoff = 25;
+
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    ctx.beginPath();
+
+    // Draw the outline:
+    ctx.strokeStyle="#FF0000";
+    ctx.moveTo(0, 0);
+    ctx.lineTo(xfactor * grid_size, 0);
+    ctx.lineTo(xfactor * grid_size, yfactor * grid_size);
+    ctx.lineTo(0, yfactor * grid_size);
+    ctx.lineTo(0, 0);
+
+    ctx.strokeStyle= "#DCDCDC";
+    for (var i = 1; i < grid_size; i ++) {
+      ctx.moveTo(i * xfactor, 0);
+      ctx.lineTo(i * xfactor, yfactor * grid_size);
+    }
+    for (var i = 1; i < grid_size; i ++) {
+      ctx.moveTo(0, i * yfactor);
+      ctx.lineTo(xfactor * grid_size, i * yfactor);
+    }
+    ctx.strokeStyle="#000000";
+
+    for (var answer in all_answers) {
+      // Get each cell and highlight.
+      var cells = all_answers[answer][0];
+      var word = all_answers[answer][2];
+      var last = cells.length - 1;
+      var y = cells[0][0] * yfactor;
+      var x = cells[0][1] * xfactor;
+      ctx.moveTo(cells[last][1] * xfactor + xlineoff, cells[last][0] * yfactor + ylineoff);
+      ctx.lineTo(x + xlineoff, y + ylineoff);
+      ctx.stroke();
+
+      word = all_words[answer];
+      for (var i = 0; i < cells.length; i++) {
+        var row = cells[i][0];
+        var col = cells[i][1];
+        var text;
+        if (Array.isArray(grid[row][col])) {
+          text = grid[row][col][0];
+        } else {
+          text = grid[row][col];
+        }
+        var y = cells[i][0] * yfactor;
+        var x = cells[i][1] * xfactor;
+        ctx.fillText(text, x + xoff, y+yoff);
+      }
+    }
+  }
+
+
+  function clearTableRows(tableId) {
+    var table = document.getElementById(tableId);
+    var rows = table.getElementsByTagName("tr")
+
+    // Clear all rows first.
+    while (rows.length > 0) {
+      table.deleteRow(0);
+    }
+  }
+
+  function clearChildNodes(regionId) {
+    // Prepare answers region
+    var answerArea = document.getElementById(regionId);
+    // Remove old entries
+    while (answerArea.children.length > 0) {
+      answerArea.removeChild(answerArea.childNodes[0]);
+    }
+  }
+
+
+  function clearArea(id) {
+    var obj = document.getElementById(id);
+    obj.innerHTML = obj.value = '';
+  }
+
+  function toggle(id, toggle) {
+
+    var obj = document.getElementById(id);
+    var checkBox = document.getElementById(toggle);
+    var showIt = checkBox.checked;
+    if(showIt)
+      obj.style.display = 'block';
+    else
+      obj.style.display = 'none';
+  }
+
+  function highlightAnswer(word, answer) {
+    // Clear the highlighting of 'gridTable';
+    var table = document.getElementById('gridTable');
+    var rows = table.getElementsByTagName("tr")
+
+    clearGridHighlighting(table);
+
+    var this_answer = all_answers[word][0];
+    // For each position in the answer, highlight the cell with a color.
+    var count = this_answer.length;
+    for (var i = 0; i < count; i++) {
+      pos = answer[i];
+      var x = pos[0];
+      var y = pos[1];
+      var row = rows[x];
+      var col = row.cells[y];
+      col.style.backgroundColor = "yellow";
+    }
+  }
+
+  function clearGridHighlighting(table) {
+    var rows = table.getElementsByTagName("tr");
+    for (var rownum  = 0; rownum < rows.length; rownum ++) {
+      var row = rows[rownum];
+      for (var col = 0; col < row.cells.length; col++) {
+        var column = row.cells[col];
+        if (column) {
+          column.style.backgroundColor = "white";
+        }
+      }
+    }
+
+  }
+
+  // --------------------------------------------------------------
+  // Handle Keyboard
+  var controller, visible = true;
+  function initKeyboard(textAreaID) {
+      var input = document.getElementById(textAreaID);
+      controller = new i18n.input.keyboard.Keyboard();
+      controller.loadLayout('osa_traditional');
+      controller.loadLayout('osa');
+      controller.reposition(input, 2, 0, [1, 0, 0, 0]);
+      controller.register(input);
+      controller.addEventListener('kc', function() { visible = false; });
+      input.focus();
+      var selector = document.getElementById('selectKeyboard');
+      onLayoutSelected(selector, null, textAreaID);
+
+      var selector = document.getElementById('selectFont');
+      onFontSelected(selector, 't1');
+
+      var kbd = document.getElementById(textAreaID);
+      if (kbd) {
+        kbd.style.fontFamily = 'Noto Sans Osage';
+        visible = true;
+      }
+    }
+
+  function onLayoutSelected(selector, this_controller, outputId) {
+    var layoutCode = selector.value;
+    if (this_controller) {
+      this_controller.activateLayout(layoutCode);
+    } else {  // The global.
+      controller.activateLayout(layoutCode);
+    }
+    document.getElementById(outputId).focus();
+  }
+
+  function toggleKeyboard() {
+    if (controller) {
+      controller.setVisible(visible = !visible);
+    }
+  }
+
+  function onFontSelected(selected) {
+    var fontFam = selected.value + ", Arial, Osage";
+
+    var output_text = document.getElementById('wordlist');
+    output_text.style.fontFamily = fontFam;
+
+    var output_text = document.getElementById('wordsToFind');
+    output_text.style.fontFamily = fontFam;
+
+    var output_text = document.getElementById('gridTable');
+    output_text.style.fontFamily = fontFam;
+
+    var output_text = document.getElementById('answers');
+    output_text.style.fontFamily = fontFam;
+ }
+
+  function printPage() {
+    // Don't print keyboard
+    var wasVisible = visible;
+    if (controller) {
+          controller.setVisible(false);
+    }
+    window.print();
+    if (controller) {
+          controller.setVisible(wasVisible);
+    }
+  }
+
+  function onPageLoaded() {
+    initKeyboard("wordlist");
+
+    var doc = document;
+
+
+    if (controller) {
+      controller.className += " noprint";
+    }
+  }
+  </script>
+</head>
+
+
+<body onload="onPageLoaded();">
+<div class="container">
+
+    <div class="span-16">
+
+        <div class="noprint" id="uiOnly">
+          Select font: <select onchange="onFontSelected(this);" id="selectFont">
+            {% for font in fontFamilies %}
+            <option value="{{font}}">{{font}}</option>
+            {% endfor %}
+          </select>
+
+            Keyboard: <select onchange="onLayoutSelected(this, null, 'UnicodeOsageTools');" id="selectKeyboard">
+            <option value="osa">{{language}} Unicode</option>
+            </select>
+                        <input type='button' value='Toggle keyboard'
+                onClick="toggleKeyboard(); return false;" />
+                        <input type='button' value='Print page'
+                onClick="printPage(); return false;" />            <div>
+                {{language}} Words:<br />
+                <textarea id="wordlist"></textarea>
+            </div>
+            <input type="button" value="Clear words and solution"
+                   onclick="clearArea('wordlist');clearArea('wordList');clearChildNodes('answerList');clearTableRows('gridTable');">
+            <input type="button" value="Submit words from box above"
+                   onclick="sendRegionWords('wordlist', 'Grid', 'Answers', false);">
+            <br />
+            <br />
+            <input type="button" value="Generate grid from sample words"
+                   onclick="sendTestWords('Grid', 'Answers', false);">
+        </div>
+
+    <div id="printGamearea">
+        <div id="divTable">
+            <table id="gridTable">
+
+            </table>
+        </div>
+        <div>
+            <h2>Words to find:</h2>
+            <p id="wordsToFind">
+            </p>
+        </div>
+    </div>
+
+    <p style="page-break-before: always; border:none;"> </p>
+    <input type="checkbox" id="toggleAnswers"
+                   onclick="toggle('answers', 'toggleAnswers');"/>Show answers?
+        <div id="answers" style="display: none;">
+
+            <div id="answerBlock">
+                <ul id="answerList">
+                </ul>
+            </div>
+            <canvas id="myCanvas" width="800" height="800"></canvas>
+        </div>
+
+    </div>
+  <div class="span-4 last">
+    {% if user_nickname %}
+    <h4>Welcome {{user_nickname}}
+    {% if user_logout %}
+    <a href={{user_logout}}>Logout</a>
+    {% endif %}
+    {% else %}
+    <a href='{{user_login_url}}'>Log in</a>
+    {% endif %}
+    <br />
+    <br />
+    <input type="button" value="Submit words from box to left"
+                   onclick="sendRegionWords('wordlist', 'Grid', 'Answers', true);">
+    <br />
+    <br />
+
+    <input type="button" value="DFS: Generate grid from sample words"
+                   onclick="sendTestWords('Grid', 'Answers', true);">
+
+    Grid size:
+    <input id='grid_size' type=text value='' size=''/>
+    Max tries:
+    <input id='max_tries' type=text value='' size=''/>
+    Num solutions:
+    <input id='num_solutions type=text value='' size=''/>
+
+  </div>
+    </div>
+
+</body>
