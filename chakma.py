@@ -110,14 +110,17 @@ class langInfo():
       self.diacritic_list = [unichr(x) for x in range(0x11100, 0x11103)]
       self.diacritic_list.extend([unichr(x) for x in range(0x11127, 0x11133)])
       self.diacritic_list.extend([unichr(x) for x in range(0x11134, 0x11135)])
+      self.diacritic_list.extend([unichr(x) for x in range(0x11145, 0x11147)])
+      self.base_consonant = unichr(0x1110e)
     else:
       logging.info('NARROW SYSTEM BUILD!!!')
       self.diacritic_list = [unichr(0xd804) + unichr(0xdd00 + x) for x in range(0x00, 0x04)]
       self.diacritic_list.extend(unichr(0xd804) + unichr(0xdd00 + x) for x in range(0x27, 0x33))
       self.diacritic_list.extend(unichr(0xd804) + unichr(0xdd00 + x) for x in range(0x34, 0x35))
+      self.diacritic_list.extend(unichr(0xd804) + unichr(0xdd00 + x) for x in range(0x45, 0x47))
+      self.base_consonant = u'\ud804\udd0e'
 
     self.encoding_font_list = encoding_font_list
-    self.base_consonant = u'\ud804\udd0e'
 
     self.kb_list = kb_list
     self.links = links
@@ -326,7 +329,9 @@ def chakmaCombiningCombos(baseHexChar):
                u'\ud804\udd2b', u'\ud804\udd2c', u'\ud804\udd2d',
                u'\ud804\udd2e', u'\ud804\udd2f',
                u'\ud804\udd30', u'\ud804\udd31', u'\ud804\udd32',
-               u'\ud804\udd33', u'\ud804\udd34']
+               u'\ud804\udd33', u'\ud804\udd34',
+               u'\ud804\udd45', u'\ud804\udd46',
+  ]
   testString = u''
   for c0 in combiners:
     for c1 in combiners:
