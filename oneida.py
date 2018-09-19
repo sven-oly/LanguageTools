@@ -60,7 +60,8 @@ kb_list = [
    'instructions':
    'This keyboard version uses modifier keys to add accents to the vowels ' +
    'a, e, i, o, u, and ʌ.Use the key at the top left to accent a vowel. \u00a0' +
-   'To add a bar under a single letter, type it and then add the bar with the key at the right in the second row. To type a longer phrase with the underbar, touch "CapsLock" to enter the "underbar" mode. To return to normal typing, turn off the CapsLock.'
+   'To add a bar under a single letter, type it and then add the bar with the key at the right in the second row. Some characters such as <, >, and [ are on ' +
+   'the ctrl+Alt layer.'
    },
   {'shortName': LanguageCode + '2',
    'longName': Language + ' Unicode V2',
