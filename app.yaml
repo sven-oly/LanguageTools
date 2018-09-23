@@ -31,6 +31,9 @@ handlers:
 - url: /demo_ccp/*
   script: chakma.app
 
+- url: /bax/.*
+  script: bamum.app
+
 - url: /bts/.*
   script: bataksimalungun.app
 
@@ -72,6 +75,9 @@ handlers:
 
 - url: /kb/.*
   script: keyboard.app
+
+- url: /games/.*
+  script: games.app
 
 - url: /test/*
   script: test.app
