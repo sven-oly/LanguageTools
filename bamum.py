@@ -51,11 +51,11 @@ links = [
     {'linkText': 'Keyboard',
      'ref': '/' + LanguageCode + '/'
     },
-    {'linkText': 'Converter',
-     'ref': '/' + LanguageCode + '/convertUI/'},
-    {'linkText': 'Font conversion summary',
-      'ref': '/' + LanguageCode + '/encodingRules/'
-    },
+    # {'linkText': 'Converter',
+    # 'ref': '/' + LanguageCode + '/convertUI/'},
+    #{'linkText': 'Font conversion summary',
+    #  'ref': '/' + LanguageCode + '/encodingRules/'
+    #},
     {'linkText': 'Resources',
       'ref': '/' + LanguageCode + '/downloads/'
     },
