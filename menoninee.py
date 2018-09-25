@@ -45,6 +45,16 @@ class langInfo():
        },
     ]
 
+    self.kb_list = [
+        {'shortName':  'mez2',
+         'longName': 'Menominee Simple',
+        },
+        {'shortName':  'mez',
+         'longName': 'Menominee',
+         'reference': '//http://www.languagegeek.com/algon/keyboards/keymap_menominee.html',
+        },
+
+      ]
     self.lang_list = [
         {'shortName':  'mez',
          'longName': 'Menominee',
@@ -70,8 +80,6 @@ class langInfo():
          'ref': '/' + self.LanguageCode + '/downloads/'
         },
     ]
-
-    self.kb_list = self.lang_list
 
     # Resource files
     self.text_file_list = [
