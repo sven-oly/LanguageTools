@@ -82,7 +82,7 @@ class langInfo():
          'ref': '/' + self.LanguageCode + '/encodingRules/'
         },
         {'linkText': 'Myanmar Unicode block',
-         'ref': 'https://www.unicode.org/charts/PDF/U11700.pdf'
+         'ref': 'http://www.unicode.org/charts/PDF/U1000.pdf'
         },
         {'linkText': 'Myanmar Unicode extension A block',
          'ref': 'https://www.unicode.org/charts/PDF/UAA60.pdf'
