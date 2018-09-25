@@ -155,7 +155,18 @@ private_use_map_combined = {
   '\u00f5': ['\u1004\u103a\u1039\u102d'],
   '\u00f6': ['\u102d\u1036'],
   '\u00f7': ['\u00f7'],
-  '\u00f8': ['\u1004\u103a\u1039\u1036'],  }
+  '\u00f8': ['\u1004\u103a\u1039\u1036'],  };
+
+// TODO: Add reverse Unicode to KNU
+private_use_map_combined = {
+  // TODO: Finish
+  '\u1000': ['\u0020'],
+  '\u1001': ['\u100a'],
+
+  };
+
+function convertUnicodeToEncoding(inbox, outbox, encodingIndex) {
+}
 
 function convertEncodingToUnicode(inbox, outbox, encodingIndex) {
   var inarea = document.getElementById(inbox);
