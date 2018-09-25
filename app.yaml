@@ -67,6 +67,9 @@ handlers:
 - url: /one/.*
   script: oneida.app
 
+- url: /phk/.*
+  script: phake.app
+
 - url: /rhg/.*
   script: rohingya.app
 

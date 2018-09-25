@@ -25,58 +25,30 @@ import base
 # Should this be inherited from base.languageTemplate?
 class langInfo():
   def __init__(self):
-    self.LanguageCode = 'aho'
-    self.Language = 'Tai Ahom'
-    self.Language_native = 'Language in Tai Ahom'
+    self.LanguageCode = 'phk'
+    self.Language = 'Tai Phake'
+    self.Language_native = 'Language in Tai Phake'
 
     self.encoding_font_list = [
-        { 'font_name': 'AhomFont',
-          'display_name': 'Ahom',
-          'font_path': '/fonts/ahom_aiton/AHOMFONT.TTF',
-        },
-        {
-            'font_path':'/fonts/ahom_aiton/Ahom_Manuscript.ttf',
-            'font_name':'AhomManuscript',
-            'display_name': 'Ahom Manuscript',
-        },
-        {
+      {
+        'font_path': '/fonts/ahom_aiton/PHAKE.TTF',
+        'font_name': 'Phake',
+        'display_name': 'Phake',
+      },
+      {
+        'font_path': '/fonts/ahom_aiton/PHAKERAM.TTF',
+        'font_name': 'Phakeram',
+        'display_name': 'Phake Ram',
+      },
+      {
             'font_path': '/fonts/ahom_aiton/AITON.TTF',
             'font_name': 'Aiton',
             'display_name': 'Aiton',
         },
-        {
-            'font_path': '/fonts/ahom_aiton/PHAKE.TTF',
-            'font_name': 'Phake',
-            'display_name': 'Phake',
-        },
-        {
-            'font_path': '/fonts/ahom_aiton/PHAKERAM.TTF',
-            'font_name': 'Phakeram',
-            'display_name': 'Phake Ram',
-        },
+
     ]
 
     self.unicode_font_list = [
-        { 'source': '/fonts/ahom_aiton/NotoSerifAhom-Regular.ttf',
-          'family': 'NotoSerifAhom',
-          'longName': 'Noto Serif Ahom',
-        },
-        { 'family': 'AhomFontUnicode',
-          'longName': 'Ahom Unicode',
-          'source': '/fonts/ahom_aiton/AHOMFONT_Unicode.TTF',
-        },
-        { 'family': 'AhomUnicode',
-          'longName': 'Ahom Manuscript Unicode',
-          'source': '/fonts/ahom_aiton/AhomUnicode.ttf',
-        },
-        { 'source': '/fonts/ahom_aiton/Aitongr.ttf',
-          'family': 'Aitongr',
-          'longName': 'Aiton Gr',
-        },
-        { 'source': '/fonts/ahom_aiton/AitonUni.gr_2.ttf',
-          'family': 'Aitongr2',
-          'longName': 'Aiton Uni Gr2',
-        },
         { 'source': '/fonts/Padauk-Regular.ttf',
           'family': 'Padauk',
           'longName': 'Padauk',
@@ -88,25 +60,16 @@ class langInfo():
     ]
 
     self.lang_list = [
-        {'shortName':  'aho',
-         'longName': 'Tai Ahom'
-        },
-        {'shortName':  'aio',
-         'longName': 'Aiton'
-        },
-        {'shortName':  'kht',
-         'longName': 'Khamti'
-        },
-        {'shortName':  'phk',
-         'longName': 'Phake'
-        },
-        {'shortName':  'shn',
-         'longName': 'Shan'
-        },
-        {'shortName':  'ksw',
-         'longName': 'S\'gaw Karen'
-        },
-      ]
+      {'shortName': 'phk',
+       'longName': 'Phake'
+       },
+       {'shortName':  'aio',
+        'longName': 'Aiton'
+       },
+       {'shortName':  'kht',
+        'longName': 'Khamti'
+       },
+    ]
 
     self.links = [
         {'linkText': 'Keyboard',
@@ -118,9 +81,12 @@ class langInfo():
         {'linkText': 'Font conversion summary',
          'ref': '/' + self.LanguageCode + '/encodingRules/'
         },
-        {'linkText': 'Ahom Unicode block',
+        {'linkText': 'Myanmar Unicode block',
          'ref': 'https://www.unicode.org/charts/PDF/U11700.pdf'
         },
+        {'linkText': 'Myanmar Unicode extension A block',
+         'ref': 'https://www.unicode.org/charts/PDF/UAA60.pdf'
+         },
         {'linkText': 'Resources',
          'ref': '/' + self.LanguageCode + '/downloads/'
         },
@@ -149,15 +115,7 @@ class langInfo():
     self.transliterator = None
 
    # Test data for showing in converter.
-    self.test_data = ["""'𑜱𑜴𑜳𑜴𑜵𑜶𑜷𑜸𑜹𑜰
-𑜫 ‌𑜦 𑜍 𑜄 𑜊 𑜥 𑜩 𑜢 𑜨 𑜆 𑜂 𑜧
-𑜡 𑜏 𑜓 𑜇 𑜖 𑜑 𑜩 𑜀 𑜎 𑜠 '
- 𑜁 𑜋 𑜌 𑜈 𑜃 𑜉 𑜼 𑜽
-𑜾
-𑜝 ​𑜣  𑜥
-𑜒​𑜞​𑜔​𑜕​𑜗​𑜿​𑜙​𑜕
-𑜘𑜐
-"""
+    self.test_data = ["ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz"
     ]
 
     return
@@ -166,14 +124,14 @@ class langInfo():
 langInstance = langInfo()
 app = webapp2.WSGIApplication(
     [
-        ('/aho/', base.LanguagesHomeHandler),
-        ('/aho/keyboard/', base.LanguagesHomeHandler),
-        ('/aho/convertUI/', base.ConvertUIHandler),
-        ('/aho/downloads/', base.Downloads),
-        ('/aho/converter/', base.ConvertUIHandler),
-        ('/aho/encodingRules/', base.EncodingRules),
-        ('/aho/diacritic/', base.DiacriticHandler),
-        ('/aho/render/', base.EncodingRules),
+        ('/phk/', base.LanguagesHomeHandler),
+        ('/phk/keyboard/', base.LanguagesHomeHandler),
+        ('/phk/convertUI/', base.ConvertUIHandler),
+        ('/phk/downloads/', base.Downloads),
+        ('/phk/converter/', base.ConvertUIHandler),
+        ('/phk/encodingRules/', base.EncodingRules),
+        ('/phk/diacritic/', base.DiacriticHandler),
+        ('/phk/render/', base.EncodingRules),
     ],
     debug=True,
     config={'langInfo': langInstance}
