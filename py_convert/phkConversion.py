@@ -9,12 +9,13 @@ debug = False
 
 # Mappings for both arjyban, sujoyan, alaam, etc. encodings.
 FONTS_TO_CONVERT = {
-    'Times (Phake Script)': 0,
+    'Phake Script': 0,
     'Verdana Navajo': 1,
   }
 
 class converter():
-  private_use_map = {
+    description = 'Converts Phake font encodings to Unicode'
+    private_use_map = {
       "A": [u"ဢ", ''],
       "J": [u"ို", ''],
       "R": [u"ြ", ''],
@@ -30,7 +31,7 @@ class converter():
       "m": [u"မ", ''],
       "n": [u"ꩫ", ''],
       "p": [u"ပ", ''],
-      "s": [u"ꩢ", ''],
+      "s": [u"\uaa6c", ''],
       "t": [u"တ", ''],
       "v": [u"ထ", ''],
       "w": [u"ဝ", ''],
@@ -68,7 +69,6 @@ class converter():
       "0": [u"၀", ''],
       u'\u0020': [u'\u0020', u'\u0020'],
     }
-    description = 'Converts Phake font encodings to Unicode'
 
     oldFonts = FONTS_TO_CONVERT.keys()
     # Converts Phake upper case characters

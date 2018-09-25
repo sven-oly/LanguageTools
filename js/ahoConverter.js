@@ -3,7 +3,7 @@
 // Mappings for Ahom old ASCII encoding to Unicode font
 // Source: Stephen Morey
 // Started 8-Nov-2017
-var map_encoding_names = ['Ahom'];
+var map_encoding_names = ['Ahom', 'AhomManuscript', 'Aiton', 'Phake', 'Phakeram'];
 
 // 11700
 var private_use_map_combined = {

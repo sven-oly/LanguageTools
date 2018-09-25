@@ -23,11 +23,11 @@ def main(argv):
   paths_to_doc = args.filenames
 
   FONTS_TO_CONVERT = [
-      'Times (Phake Script)',
+      'Phake Script',
       'Verdana Navajo',
   ]
 
-  converter = nvConversion.converter(FONTS_TO_CONVERT, newUnicodeFont)
+  converter = phkConversion.converter(FONTS_TO_CONVERT, newUnicodeFont)
 
   for input in paths_to_doc:
     convertOffice.convertOffice(input, args.output_dir, converter)
