@@ -13,7 +13,6 @@ import phkConversion
 
 import convertUtil
 
-
 def main(argv):
 
   args = convertUtil.parseArgs()

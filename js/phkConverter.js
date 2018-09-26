@@ -116,10 +116,6 @@ function convertEncodingToUnicode(inbox, outbox, encodingIndex) {
   eReplace = "$2$1";
   newText = outtext.replace(ePattern, eReplace);
 
-  /*raPattern = /\u103c([\u1000-\u1029\uaa60-\uaa76])/gi;
-  raReplace = "$1\u103c";
-  newText = newText.replace(raPattern, raReplace);
-  */
   spaceCombPattern = / ([\u102f\u103d]`)/gi;
   spaceCombReplace = "$1 ";
   newText = newText.replace(spaceCombPattern, spaceCombReplace);

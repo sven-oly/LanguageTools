@@ -170,8 +170,6 @@ class converter():
 
           # Special case for handling underlined text
           convertedList.append(out)
-          if fontInfo and 'u' in fontInfo:
-            convertedList.append(self.combiningLowerLine)
 
         if self.debug:
           print('!!!!!!!!!!!!! convertedList = %s' % convertedList)
@@ -184,6 +182,19 @@ class converter():
 
         if self.debug:
           print('!!!!!!!!!!!!! convertedResult = %s' % convertResult.encode('utf-8'))
+
+        # Handle more complex replacements.
+        ePattern = r'([\u1031\u103c\u103d])([\u1000-\u1029\u1075-\u1081\uaa60-\uaa76])'
+        eReplace = r'$2$1'
+        convertResult = re.sub(ePattern, eReplace, convertResult)
+
+        spaceCombPattern = r' ([\u102f\u103d]`)'
+        spaceCombReplace = r'$1 '
+        convertResult = re.sub(spaceCombPattern, spaceCombReplace, convertResult)
+
+        spaceCombPattern = r'\u103d \u102f'
+        spaceCombReplace = r'\u103d\u102f'
+        convertResult = re.sub(spaceCombPattern, spaceCombReplace, convertResult)
 
         return convertResult
 
