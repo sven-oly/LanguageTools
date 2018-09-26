@@ -14,6 +14,7 @@ FONTS_TO_CONVERT = {
   }
 
 class converter():
+
     description = 'Converts Phake font encodings to Unicode'
     private_use_map = {
         "A": [u"ဢ", ""],
@@ -71,7 +72,7 @@ class converter():
         "@": [u"", ""],
         "/": [u"\u104b", ""],
         "\\": [u"\u104a", ""],
-        "[u": [u"\u103c", ""],
+        "[": [u"\u103c", ""],
         "]": [u"\u103c", ""],
         "{": [u"\u103c", ""],
         "}": [u"", ""],
@@ -149,54 +150,43 @@ class converter():
         return u''.join(convertList)
 
     def convertString(self, textIn, fontInfo, fontIndex, convertToLower=False):
-        # type: (object, object, object) -> object
-        convertedList = []
-        convertResult = u''
+      # type: (object, object, object) -> object
+      convertedList = []
+      convertResult = u''
 
-        if self.debug:
-          print('$$$$$ text = %s, fontInfo = %s' % (textIn.encode('utf-8'), fontInfo))
+      if self.debug:
+        print('$$$$$ text = %s, fontInfo = %s' % (textIn.encode('utf-8'), fontInfo))
 
-        for index in xrange(len(textIn)):
-          c = textIn[index];
-          # Special handling if needed
+      for index in xrange(len(textIn)):
+        c = textIn[index];
 
-          out = c
-          if c in self.private_use_map:
-            out = self.private_use_map[c][fontIndex]
-          else:
-            if self.debug:
-              print('----- character %s (%s) not found' %
-                    (c.encode('utf-8'), ord(c)))
+        out = c
+        if c in self.private_use_map:
+          out = self.private_use_map[c][fontIndex]
+        else:
+          if self.debug:
+            print('----- character %s (%s) not found' %
+                  (c.encode('utf-8'), ord(c)))
 
-          # Special case for handling underlined text
-          convertedList.append(out)
+        convertedList.append(out)
 
-        if self.debug:
-          print('!!!!!!!!!!!!! convertedList = %s' % convertedList)
         convertResult = ''.join(convertedList)
 
-        if convertToLower:
-          lowerResult = self.toLower(convertResult)
-          if lowerResult != convertResult:
-            convertResult = lowerResult
+      re.UNICODE
+      # Handle more complex replacements.
+      ePattern = ur'([\u1031\u103c\u103d])([\u1000-\u1029\u1048\u1075-\u1081\uaa60-\uaa7a\uaa7e\uaa7f])'
+      eReplace = r'\2\1'
+      convertResult = re.sub(ePattern, eReplace, convertResult)
 
-        if self.debug:
-          print('!!!!!!!!!!!!! convertedResult = %s' % convertResult.encode('utf-8'))
+      spaceCombPattern = ur' ([\u102f\u103d]`)'
+      spaceCombReplace = r'\1 '
+      convertResult = re.sub(spaceCombPattern, spaceCombReplace, convertResult)
 
-        # Handle more complex replacements.
-        ePattern = r'([\u1031\u103c\u103d])([\u1000-\u1029\u1075-\u1081\uaa60-\uaa76])'
-        eReplace = r'$2$1'
-        convertResult = re.sub(ePattern, eReplace, convertResult)
+      spaceCombPattern = ur'\u103d \u102f'
+      spaceCombReplace = ur'\u103d\u102f'
+      convertResult = re.sub(spaceCombPattern, spaceCombReplace, convertResult)
 
-        spaceCombPattern = r' ([\u102f\u103d]`)'
-        spaceCombReplace = r'$1 '
-        convertResult = re.sub(spaceCombPattern, spaceCombReplace, convertResult)
-
-        spaceCombPattern = r'\u103d \u102f'
-        spaceCombReplace = r'\u103d\u102f'
-        convertResult = re.sub(spaceCombPattern, spaceCombReplace, convertResult)
-
-        return convertResult
+      return convertResult
 
 def testConvert():
   return
