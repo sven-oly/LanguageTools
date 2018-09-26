@@ -2,7 +2,9 @@
 
 // Mappings for Navajo font encodings
 var map_encoding_names = [
-  'Times New Roman Navajo', 'Century Gothic Navajo', 'Verdana Navajo'];
+      'Phake Script',
+      'Phake Ramayana',
+];
 
 var private_use_map_combined = {
       "A": ["ဢ", ""],

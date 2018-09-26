@@ -10,7 +10,7 @@ debug = False
 # Mappings for both arjyban, sujoyan, alaam, etc. encodings.
 FONTS_TO_CONVERT = {
     'Phake Script': 0,
-    'Verdana Navajo': 1,
+    'Phake Ramayana': 1,
   }
 
 class converter():

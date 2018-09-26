@@ -24,7 +24,7 @@ def main(argv):
 
   FONTS_TO_CONVERT = [
       'Phake Script',
-      'Verdana Navajo',
+      'Phake Ramayana',
   ]
 
   converter = phkConversion.converter(FONTS_TO_CONVERT, newUnicodeFont)
