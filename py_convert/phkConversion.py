@@ -92,8 +92,8 @@ class converter():
         "^": [u"\u102c", ""],
         "_": [u"\u103a\u105e", ""],
         "}": [u"\u103a\u103d", ""],
-        # "%": [u"\u103a\u1036", ""],
-        # "&": [u"\u103a\u1036", ""],
+        "%": [u"\u00a0\u103a", ""],
+        "&": [u"\u00a0\u109d", ""],
     }
 
     oldFonts = FONTS_TO_CONVERT.keys()
@@ -175,16 +175,38 @@ class converter():
       re.UNICODE
       # Handle more complex replacements.
       ePattern = ur'([\u1031\u103c\u103d])([\u1000-\u1029\u1048\u1075-\u1081\uaa60-\uaa7a\uaa7e\uaa7f])'
-      eReplace = r'\2\1'
+      eReplace = ur'\2\1'
       convertResult = re.sub(ePattern, eReplace, convertResult)
 
       spaceCombPattern = ur' ([\u102f\u103d]`)'
-      spaceCombReplace = r'\1 '
+      spaceCombReplace = ur'\1 '
       convertResult = re.sub(spaceCombPattern, spaceCombReplace, convertResult)
 
-      spaceCombPattern = ur'\u103d \u102f'
-      spaceCombReplace = ur'\u103d\u102f'
+      spaceCombPattern = ur'([\u103b\u103d]) \u102f'
+      spaceCombReplace = ur'\1\u102f '
       convertResult = re.sub(spaceCombPattern, spaceCombReplace, convertResult)
+
+      # Doubled combiners
+      pattern = ur'\u103a\u103a'
+      replacement = ur'\u103a\u00a0\u103a'
+      convertResult = re.sub(pattern, replacement, convertResult)
+
+      pattern = ur'\u102e\u102e'
+      replacement = ur'\u102e\u00a0\u102e'
+      convertResult = re.sub(pattern, replacement, convertResult)
+
+      pattern = ur'\u1036\u1036'
+      replacement = ur'\u1036\u00a0\u1036'
+      convertResult = re.sub(pattern, replacement, convertResult)
+
+      pattern = ur'\u109d\u109d'
+      replacement = ur'\u109d\u00a0\u109d'
+      convertResult = re.sub(pattern, replacement, convertResult)
+
+      # Ellipsis
+      pattern = ur'\.\.\.'
+      replacement = ur'\u2026'
+      convertResult = re.sub(pattern, replacement, convertResult)
 
       return convertResult
 

@@ -82,8 +82,8 @@ var private_use_map_combined = {
       "^": ["\u102c", ""],
       "_": ["\u103a\u105e", ""],
       "}": ["\u103a\u103d", ""],
-      // "%": ["\u103a\u1036", ""],
-      // "&": ["\u103a\u1036", ""],
+      "%": ["\u00a0\u103a", ""],
+      "&": ["\u00a0\u109d", ""],
 };
 
 function toLower(instring) {
@@ -120,10 +120,33 @@ function convertEncodingToUnicode(inbox, outbox, encodingIndex) {
   spaceCombReplace = "$1 ";
   newText = newText.replace(spaceCombPattern, spaceCombReplace);
 
-  spaceCombPattern = /\u103d \u102f/gi;
-  spaceCombReplace = "\u103d\u102f";
+  spaceCombPattern = /([\u103b\u103d]) \u102f/gi;
+  spaceCombReplace = "$1\u102f ";
   newText = newText.replace(spaceCombPattern, spaceCombReplace);
 
+  // Doubled combiners
+  pattern = /\u103a\u103a/gi;
+  replacement = "\u103a\u00a0\u103a";
+  newText = newText.replace(pattern, replacement);
+
+  pattern = /\u102e\u102e/gi;
+  replacement = "\u102e\u00a0\u102e";
+  newText = newText.replace(pattern, replacement);
+
+  pattern = /\u1036\u1036/gi;
+  replacement = "\u1036\u00a0\u1036";
+  newText = newText.replace(pattern, replacement);
+
+  pattern = /\u109d\u109d/gi;
+  replacement = "\u109d\u00a0\u109d";
+  newText = newText.replace(pattern, replacement);
+
+  // Ellipsis
+  pattern = /\.\.\./gi;
+  replacement = "\u2026";
+  newText = newText.replace(pattern, replacement);
+
+  // Consider doubled combiners, e.g., 103a twice.
   if (outarea) {
     outarea.innerHTML = outarea.value = newText;
   }
