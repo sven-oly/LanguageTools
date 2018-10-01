@@ -33,7 +33,7 @@ var ONE3_LAYOUT = {
           'ZXCVBNM\u0245,?'
     },
     'l,sl': {  // Capslock with the diacritics
-      '': '\u0301!@#$%^&*()\u00b7\u0242' +
+      '': '`1234567890-=' +
           'QWERTYUIOP\u0332]\\' +
           'ASDFGHJKL;\'' +
           'ZXCVBNM\u0245.\u0241'
