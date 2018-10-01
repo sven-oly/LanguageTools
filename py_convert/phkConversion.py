@@ -5,7 +5,7 @@ import re
 
 # Convert Chakmak encoded text to Unicode.
 
-debug = False
+debug = True  #False
 
 # Mappings for both arjyban, sujoyan, alaam, etc. encodings.
 FONTS_TO_CONVERT = {
@@ -70,6 +70,8 @@ class converter():
         "y": [u"ယ", ""],
         "z": [u"ႃ", ""],
         "@": [u"", ""],
+        "(": ["(", ""],
+        ")": [")", ""],
         "/": [u"\u104b", ""],
         "\\": [u"\u104a", ""],
         "[": [u"\u103c", ""],
@@ -86,7 +88,7 @@ class converter():
         "8": [u"၈", ""],
         "9": [u"၉", ""],
         "0": [u"၀", ""],
-        "\u0020": [u"\u0020", "\u0020"],
+        " ": [u"\u0020", "\u0020"],
         "#": [u"\u1036", ""],
         "$": [u"\u102e", ""],
         "^": [u"\u102c", ""],
@@ -103,7 +105,7 @@ class converter():
       return inText
 
     def __init__(self, oldFontList, newFont=None):
-      self.debug = False
+      self.debug = True  # False
       # The fonts detected for conversion
       self.oldFonts = oldFontList
       # Name of the substitute Unicode font, if provided
@@ -135,16 +137,12 @@ class converter():
             tags = []
             for fmt in item[1]:
                 loc = fmt.tag.find('}')
-                if self.debug:
-                  print('  loc = %s' % loc)
                 tags.append(fmt.tag[loc + 1:])
-                if self.debug:
-                    print(' %s ' % fmt.tag[loc + 1:])
 
             # Convert this one, and return the result
-            if self.debug:
-              print('++++ item = %s' % item)
-              print('++++ font index = %s' % fontIndex)
+            #if self.debug:
+            #  print('++++ item = %s' % item)
+              # print('++++ font index = %s' % fontIndex)
             convertList.append(self.convertString(item[0], tags, fontIndex, convertToLower))
 
         return u''.join(convertList)
@@ -154,8 +152,8 @@ class converter():
       convertedList = []
       convertResult = u''
 
-      if self.debug:
-        print('$$$$$ text = %s, fontInfo = %s' % (textIn.encode('utf-8'), fontInfo))
+      #if self.debug:
+      #  print('$$$$$ text = %s, fontInfo = %s' % (textIn.encode('utf-8'), fontInfo))
 
       for index in xrange(len(textIn)):
         c = textIn[index];
@@ -165,7 +163,7 @@ class converter():
           out = self.private_use_map[c][fontIndex]
         else:
           if self.debug:
-            print('----- character %s (%s) not found' %
+            print('----- character %s (%x) not found' %
                   (c.encode('utf-8'), ord(c)))
 
         convertedList.append(out)
