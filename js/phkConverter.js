@@ -2,8 +2,10 @@
 
 // Mappings for Navajo font encodings
 var map_encoding_names = [
-      'Phake Script',
-      'Phake Ramayana',
+  'Phake Script',
+  'Phake Ramayana',
+  'Aiton Script',
+  'Shan'
 ];
 
 var private_use_map_combined = {
@@ -58,7 +60,7 @@ var private_use_map_combined = {
       "w": ["ဝ", ""],
       "x": ["ၵ", ""],
       "y": ["ယ", ""],
-      "z": ["ႃ", ""],
+  "z": ["ႃ", "", u'\uaa78"],
       "@": ["", ""],
       "/": ["\u104b", ""],
       "\\": ["\u104a", ""],

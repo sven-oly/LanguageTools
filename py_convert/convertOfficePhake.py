@@ -24,6 +24,7 @@ def main(argv):
   FONTS_TO_CONVERT = [
       'Phake Script',
       'Phake Ramayana',
+      'Aiton Script',
   ]
 
   converter = phkConversion.converter(FONTS_TO_CONVERT, newUnicodeFont)
