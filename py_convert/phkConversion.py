@@ -127,6 +127,9 @@ class converter():
         if not fontTextInfo:
             # Only raw text, without formatting or structure information.
             return self.convertString(textIn, None, fontIndex, convertToLower)
+        # TODO: Remove the test
+        if textIn.find('yW ka / kW tX') >= 0:
+          x = 1
 
         # Take the data from the fontTextInfo field.
         convertList = []
@@ -168,7 +171,7 @@ class converter():
 
         convertedList.append(out)
 
-        convertResult = ''.join(convertedList)
+      convertResult = ''.join(convertedList)
 
       re.UNICODE
       # Handle more complex replacements.

@@ -96,6 +96,7 @@ def processCollectedText(collectedText, textElementList, parent_map, superscript
     element.text = ''
     clearedTextElements.append(element)
 
+  # TODO: Consider removing cleared elements.
   return convertedCount, clearedTextElements
 
 
@@ -172,12 +173,13 @@ def parseDocXML(docfile_name, path_to_doc, converter,
                 elif re.search('}rFonts', rprchild.tag):
                   # Font info.
                   fontFound = True
-                  fontIndex = isOldFontNode(rprchild, converter.oldFonts)
+                  newFontIndex = isOldFontNode(rprchild, converter.oldFonts)
                   if debug_output:
                     print('175: ### fontIndex = %s' % fontIndex)
-                  if fontIndex >= 0:
+                  if newFontIndex >= 0:
                     # In font encoded node
                     inEncodedFont = True
+                    fontIndex = newFontIndex
                   else:
                     # Check if we are switching out. If so, handle accumulated text
                     if inEncodedFont:
