@@ -37,15 +37,14 @@ class langInfo():
       },
       {
         'font_path': '/fonts/ahom_aiton/PHAKERAM.TTF',
-        'font_name': 'Phakeram',
-        'display_name': 'Phake Ram',
+        'font_name': 'Phakeramayana',
+        'display_name': 'Phake Ramayana',
       },
       {
-            'font_path': '/fonts/ahom_aiton/AITON.TTF',
-            'font_name': 'Aiton',
-            'display_name': 'Aiton',
-        },
-
+         'font_path': '/fonts/ahom_aiton/AITON.TTF',
+         'font_name': 'Aiton',
+         'display_name': 'Aiton',
+      },
     ]
 
     self.unicode_font_list = [
