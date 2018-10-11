@@ -85,6 +85,9 @@ handlers:
 - url: /test/*
   script: test.app
 
+- url: /feedback/*
+  script: feedback.app
+
 - url: .*
   script: main.app
 

@@ -9,6 +9,8 @@ import random
 import sys
 from random import randint
 
+import unicodedata
+
 # Set up fill letters, including those with diacritics.
 # Should we done something with statistics?
 # Check for bad words?

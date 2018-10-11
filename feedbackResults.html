@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+ <head>
+   <meta charset="utf-8"> 
+  <title>Feedback results from Zawgyi-Unicode Test</title>
+  
+  <link rel="stylesheet" href="/css/blueprint/screen.css" type="text/css" media="screen, projection">
+  <link rel="stylesheet" href="/css/blueprint/print.css" type="text/css" media="print"> 
+  <!--[if lt IE 8]>
+    <link rel="stylesheet" href="/css/blueprint/ie.css" type="text/css" media="screen, projection">
+  <![endif]-->
+  
+  <link rel="stylesheet" type="text/css" href="/css/fonts.css">
+
+ </head>
+
+ <body>
+{{numResults}} comments so far.
+
+<ul>
+  {% for r in results %}
+  <li>
+    {{r.language}} {{r.encoding}}
+    <div class='{{r.font}}'> {{r.sampleText}} </div>
+    <br />
+    {{r.comment}}
+    <br />
+    {{r.submitterName}} {{r.datetime}}
+</li>
+{% endfor %}
+</ul>
+
+ </body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"> 
+
+  <link rel="stylesheet" type="text/css" href="/css/fonts.css">
+
+  <title>Feedback on Zawgyi-Unicode Test</title>
+ </head>
+ <body>
+ <form action="/feedback/" method="post">
+  
+  <!-- Simple text field -->
+ <label for="Your name">Name </label> 
+ <input type="text" name="name"/>
+ <br/>
+  
+  <!-- Email -->
+ <label for="Your email">Email </label> 
+ <input type="email" name="email"/>
+ <br/>
+  
+  <!-- Textarea -->
+ <label for="description">Description of issue or comment.</label> 
+ <br/>
+ <textarea  name="description" cols="50" rows="5">Type your comment here</textarea>
+ <br/>
+ <br/>
+
+ <!-- Data for the problem -->
+Language: <input name="language" cols="10" rows="5" value='{{language}}'>
+Font: <input  name="encoding" cols="10" value='{{font}}'><br/>
+   <!-- Textarea -->
+ <label for="sampleText">Sample text: </label> 
+ <textarea  name="sampleText" cols="50" rows="5" class={{font}}>{{sampleText}}</textarea>
+ <br/>
+
+
+ <input type="submit" name="submit" value="Send Request"/>
+ </form>
+ </body>
+</html>

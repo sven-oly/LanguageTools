@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"> 
+  <title>Sent feedback</title>
+ </head>
+ <body>
+ 
+ {% ifequal result "OK"%}
+Thank you for your comments. Your feedback has been sent.
+{% else %}
+There was some sort of problem. Result = {{result}}.
+{% endifequal %}
+</body>
+</html>

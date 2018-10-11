@@ -148,7 +148,14 @@
     <textarea id="codepoints" class="default-font" classstyle="width:600px;" rows="10"></textarea>
     <br>
   </div>
-
+      <br />
+  <div>
+    <form id='mon_form' action="/feedback/" method="get">
+      <input type="submit" value="Send feedback" />
+      <input type="hidden" name='language' value='{{language}}'>
+      <input type="hidden" name='font' value=''>
+    </form>
+  </div>
   </div> <!-- span-16 last -->
   </div> <!-- container -->
 </body></html>

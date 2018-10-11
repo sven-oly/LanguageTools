@@ -428,6 +428,15 @@
           <li><a href="/db/resetDbEntries/">Reset Database Entries</a>
         </ul>
         {% endif %}
+        <br />
+      <div>
+    <form id='mon_form' action="/feedback/" method="get">
+      <input type="submit" value="Send feedback" />
+      <input type="hidden" name='language' value='{{language}}'>
+      <input type="hidden" name='font' value=''>
+    </form>
+  </div>
+
     </div>
   </div> <!-- container -->
 

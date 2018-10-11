@@ -76,7 +76,14 @@
     </ul>
     {% endif %}
 
-  </div> <!-- span-16 -->
+    <br />
+      <div>
+    <form id='mon_form' action="/feedback/" method="get">
+      <input type="submit" value="Send feedback" />
+      <input type="hidden" name='language' value='{{language}}'>
+      <input type="hidden" name='font' value=''>
+    </form>
+  </div>  </div> <!-- span-16 -->
   </div> <!-- container -->
 
 </body>
