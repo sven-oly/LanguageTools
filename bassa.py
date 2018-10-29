@@ -30,10 +30,10 @@ from google.appengine.ext.webapp import template
 
 encoding_font_list = [
     # {
-    #   'font_path':'/fonts/Bassa Gonya Leyka Noories.ttf',
-    #   'font_name':'BassaGonyaLeykaNoories',
-    #   'display_name': 'Gonya Leyka Noories',
-    #   'Source location': 'http://fontlibrary.org/en/font/rohingya-gonya-leyka-noories',
+    #   'font_path':'/fonts/*.ttf',
+    #   'font_name':'*',
+    #   'display_name': '*',
+    #   'Source location': 'http://',
     # },
 ]
 
@@ -81,10 +81,10 @@ class langInfo():
       self.diacritic_list = [unichr(x) for x in range(0x16af0, 0x16af4)]
     else:
       logging.info('NARROW SYSTEM BUILD!!!')
-      self.diacritic_list = [unichr(0xd803) + unichr(0xdd00 + x) for x in range(0x22, 0x27)]
+      self.diacritic_list = [unichr(0xd81a) + unichr(0xde00 + x) for x in range(0xf0, 0xf4)]
 
-    self.base_consonant = u'\ud803\udd01'
-    self.baseHexUTF16 = u'\ud803\udd01'
+    self.base_consonant = u'\ud81a\uded0'
+    self.baseHexUTF16 = u'\ud81a\uded0'
 
     self.lang_list = [
       { 'shortName': self.LanguageCode,

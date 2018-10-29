@@ -4,34 +4,26 @@
 
 // Prototype for Bassa, 29-Oct-2018
 var BSQ_LAYOUT = {
-  'id': 'BSQ',
+  'id': 'bsq',
   'title': 'Bassa in Bassa Vah - Work in progress',
   'mappings': {
     ',c': {
-      '': '{{\ud803\udd21}}{{\ud803\udd31}}{{\ud803\udd32}}{{\ud803\udd33}}{{\ud803\udd34}}' +
-	        '{{\ud803\udd35}}{{\ud803\udd36}}{{\ud803\udd37}}{{\ud803\udd38}}' +
-	        '{{\ud803\udd39}}{{\ud803\udd30}}-=' +
-          '{{\uD803\uDD0B}}{{\uD803\uDD0d}}{{\uD803\uDD02}}{{\uD803\uDD1a}}' +
-	        '{{\uD803\uDD09}}{{\uD803\uDD12}}{{\uD803\uDD18}}{{\uD803\uDD07}}' +
-	        '{{\uD803\uDD08}}{{\uD803\uDD06}}{{\uD803\uDD05}}{{\uD803\uDD0a}}\\' +
-          '{{\uD803\uDD10}}{{\uD803\uDD0f}}{{\uD803\uDD18}}{{\uD803\uDD01}}' +
-	        '{{\uD803\uDD13}}{{\uD803\uDD00}}{{\uD803\uDD07}}{{\uD803\uDD15}}' +
-	        '{{\uD803\uDD1d}}{{\uD803\uDD11}}{{\uD803\uDD04}}' +
-          '{{\uD803\uDD22}}{{\uD803\uDD20}}{{\uD803\uDD1e}}{{\uD803\uDD0c}}' +
-	        '{{\uD803\uDD1d}}{{\uD803\uDD1f\u065c}}{{\uD803\uDD03}}{{\uD803\uDD16}}' +
-            '{{\uD803\uDD0e}}{{\uD803\uDD09}}'
+      '':  '`1234567890-=' +
+          '{{\uD81A\uded8}}{{\uD81A\udedb}}{{\uD81A\udee6}}{{\uD81A\udeed}}' +
+	        '{{\uD81A\udee1}}{{\uD81A\uded5}}{{\uD81A\udeea}}{{\uD81A\udeed}}' +
+	        '{{\uD81A\udee9}}{{\uD81A\udee5}}{{\uD81A\udeec}}{{\uD81A\udee0}}\\' +
+          '{{\uD81A\udee7}}{{}}{{\uD81A\udedd}}{{\uD81A\uded3}}' +
+	        '{{\uD81A\uded6}}{{\uD81A\udee4}}{{\uD81A\uded9}}{{\uD81A\uded1}}' +
+	        '{{\uD81A\udede}}{{\uD81A\uded7}}{{\uD81A\udee8}}' +
+          '{{\uD81A\udedc}}{{\uD81A\udee6}}{{\uD81A\udedf}}{{\uD81A\udee3}}' +
+	        '{{\uD81A\udee2}}{{\uD81A\uded0}}{{\uD81A\uded4}},' +
+            '{{\uD81A\udef5}}/'
     },
     's,sc': {
-      '': '{{\ud803\udd1f}}\u0021\u0040\u0023\u0024\u0025^&' +
-            '\u002a\u0028\u0029\u005f\u003b' +
-          '{{\uD803\uDD26}}{{\uD803\uDD24}}{{\uD803\uDD1f}}{{\uD803\uDD23}}' +
-	        '{{}}{{}}{{}}{{}}' +
-	        '{{}}{{}}\u007b\u007d|' +
-          '{{\uD803\uDD14}}{{\uD803\uDD25}}{{\uD803\uDD23}}{{\uD803\uDD19}}' +
-            '{{\uD803\uDD1d}}{{}}{{}}{{}}' +
-            '{{}};\u0022' +
-          '{{}}{{}}{{}}{{}}' +
-            '{{}}{{}}{{}}<>?'
+      '': '~!@#$%^&*()_+' +
+          'QWERTYUIOP{}|' +
+          'ASDFGHJKL:"' +
+          'ZXCVBNM<>?'
     },
     'l': {
       '': '`1234567890-=' +
@@ -44,10 +36,8 @@ var BSQ_LAYOUT = {
           'QWERTYUIOP{}|' +
           'ASDFGHJKL:"' +
           'ZXCVBNM<>?'
-    }
+    },
   },
-  'transform': {
-  }
 }
 
 // Load the layout and inform the keyboard to switch layout if necessary.
