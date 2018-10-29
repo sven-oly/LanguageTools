@@ -34,6 +34,9 @@ handlers:
 - url: /bax/.*
   script: bamum.app
 
+- url: /bsq/.*
+  script: bassa.app
+
 - url: /bts/.*
   script: bataksimalungun.app
 
