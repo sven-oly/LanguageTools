@@ -12,7 +12,7 @@ var BSQ_LAYOUT = {
           '{{\uD81A\uded8}}{{\uD81A\udedb}}{{\uD81A\udee6}}{{\uD81A\udeed}}' +
 	        '{{\uD81A\udee1}}{{\uD81A\uded5}}{{\uD81A\udeea}}{{\uD81A\udeed}}' +
 	        '{{\uD81A\udee9}}{{\uD81A\udee5}}{{\uD81A\udeec}}{{\uD81A\udee0}}\\' +
-          '{{\uD81A\udee7}}{{}}{{\uD81A\udedd}}{{\uD81A\uded3}}' +
+          '{{\uD81A\udee7}}{{\ud81a\uded2}}{{\uD81A\udedd}}{{\uD81A\uded3}}' +
 	        '{{\uD81A\uded6}}{{\uD81A\udee4}}{{\uD81A\uded9}}{{\uD81A\uded1}}' +
 	        '{{\uD81A\udede}}{{\uD81A\uded7}}{{\uD81A\udee8}}' +
           '{{\uD81A\udedc}}{{\uD81A\udee6}}{{\uD81A\udedf}}{{\uD81A\udee3}}' +
@@ -22,7 +22,7 @@ var BSQ_LAYOUT = {
     's,sc': {
       '': '~!@#$%^&*()_+' +
           '{{}}{{}}{{}}{{}}{{}}{{}}{{}}{{}}{{}}{{}}{{}}{{}}{{}}' +
-          '{{}}{{}}{{}}{{\ud81a\udef2}}!{{\ud81a\udef4}}{{\ud81a\udef0}}{{\ud81a\udef1}}{{\ud81a\udef3}}{{}}{{}}' +
+          '{{}}{{}}{{}}{{\ud81a\udef2}}{{\ud81a\udef3}}{{\ud81a\udef4}}{{\ud81a\udef0}}{{\ud81a\udef1}}{{}}{{}}{{}}' +
           '{{}}{{}}{{}}{{}}{{}}{{}}{{}}{{}}{{}}{{}}'
     },
     'l': {

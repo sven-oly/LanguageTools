@@ -73,7 +73,7 @@ class langInfo():
   def __init__(self):
     self.LanguageCode = 'bsq'
     self.Language = 'Bassa'
-    self.Language_native = u'\u16AE2 ??'
+    self.Language_native = u''
     self.direction = 'ltr'
 
     if sys.maxunicode >= 0x10000:

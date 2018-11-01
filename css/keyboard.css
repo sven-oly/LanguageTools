@@ -19,7 +19,6 @@
   -webkit-user-select: none;
   -khtml-user-select: none;
   -moz-user-select: none;
-  font-family: NotoTifi,MonlamBodyig,arial,sans-serif;
 }
 .vk-box { /* vk outerbox */
   height: auto;
@@ -28,7 +27,6 @@
   /* @alternate */ border: 1px solid #B8B8B8;
   /* @alternate */ border: 1px solid rgba(0,0,0,0.3);
   z-index: 2147483644;
-  font-family: NotoTifi,MonlamBodyig,arial,sans-serif;
   font-size: 14px;
   position: fixed;
   box-shadow: 0 4px 16px rgba(0,0,0,0.2);
@@ -46,7 +44,6 @@
 .vk-btn { /* vk key button in normal state */
   /* @alternate */ border: 1px solid #DCDCDC;
   /* @alternate */ border: 1px solid rgba(0,0,0,0.1);
-  font-family: NotoTifi,MonlamBodyig,Osage,arial,sans-serif;
   width: 29px;
   height: 29px;
   margin: 2px;
@@ -125,7 +122,6 @@
 }
 .vk-cap, .vk-t {
   font-size: 14px;
-  font-family: Pawhuska,Osage, arial, sans-serif;
   font-weight: normal;
   line-height: 25px;
 }

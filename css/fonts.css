@@ -100,9 +100,7 @@ font-family: 'Noto Sans', sans-serif;
     /* Bassa Vah */
     @font-face{
       font-family:"NotoSansBassaVah";
-      src:url("/fonts/NotoSamsBassaVah-Regular.ttf");
+      src:url("/fonts/NotoSansBassaVah-Regular.ttf");
       font-weight:normal;
       font-style:normal;
     }
-
-    
