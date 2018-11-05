@@ -5,7 +5,7 @@
 // Prototype for Bassa, 29-Oct-2018
 var BSQ_LAYOUT = {
   'id': 'bsq',
-  'title': '𖫔𖫧𖫒𖫨𖫨-𖫪𖫱𖫞𖫪𖫱 (Ɓǎsɔ́ɔ̀-wùɖù)',
+  'title': '𖫔𖫧𖫳𖫒𖫨𖫰𖫨𖫱-𖫛𖫪𖫱𖫞𖫪𖫱 (Ɓǎsɔ́ɔ̀-wùɖù)',
   'mappings': {
     ',c': {
       '':  '`1234567890-=' +
