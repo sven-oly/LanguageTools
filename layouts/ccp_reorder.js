@@ -3,9 +3,9 @@
 // All Rights Reserved.
 
 // Prototype for Chakma, 3-May-2017
-var CCP_LAYOUT = {
-  'id': 'ccp',
-  'title': '\ud804\udd0c\ud804\udd0b\ud804\udd34\ud804\udd1f\ud804\udd33\ud804\udd26',
+var CCP_REORDER_LAYOUT = {
+  'id': 'ccp_reorder',
+  'title': '\ud804\udd0c\ud804\udd0b\ud804\udd34\ud804\udd1f\ud804\udd33\ud804\udd26 (reorder)',
   'mappings': {
     ',c': {
       '': '`{{\ud804\udd37}}{{\ud804\udd38}}{{\ud804\udd39}}{{\ud804\udd3a}}' +
@@ -46,7 +46,22 @@ var CCP_LAYOUT = {
           'ZXCVBNM<>?'
     }
   },
+  'transform': {
+    // consonants, independent vowels, and E
+    // Doubled ekaara
+    '\uD804\uDD2c\uD804\uDD2c\uD804([\uDD03-\uDD26])': '\uD804$1\uD804\uDD2c\uD804\uDD2c',
+    '\uD804\uDD2c\uD804([\uDD03-\uDD26])': '\uD804$1\uD804\uDD2c',
+    // Move E after the virama/consonant. \u001d marks the end point of a previous output.
+    '\uD804\uDD2c\uD804\uDD2c\u001d\uD804\uDD33\uD804([\uDD03-\uDD26])': '\uD804\uDD33\uD804$1\uD804\uDD2c\uD804\uDD2c',
+    '\uD804\uDD2c\u001d\uD804\uDD33\uD804([\uDD03-\uDD26])': '\uD804\uDD33\uD804$1\uD804\uDD2c',
+    // Reorder upper vs. lower diacritics
+    '\ud804([\udd2a\udd2b\udd31\udd32])\ud804([\udd27-\udd29\udd2d\udd30\udd34])':
+      '\ud804$2\ud804$1',
+    // Question: Should we convert doubled signs to the separate Unicode values?
+    // e.g., 11127 11127 -> 11127 11134?
+    '\uD804\uDD27\uD804\udd27': '\uD804\udd27\uD804\uDD34',
+  }
 };
 
 // Load the layout and inform the keyboard to switch layout if necessary.
-google.elements.keyboard.loadme(CCP_LAYOUT);
+google.elements.keyboard.loadme(CCP_REORDER_LAYOUT);

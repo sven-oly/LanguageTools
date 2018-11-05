@@ -114,10 +114,10 @@ class IndigenousHomeHandler(webapp2.RequestHandler):
 
       kb_list = [
         {'shortName':  'my',
-         'longName': 'Myanmar Unicode'
+         'longName': 'Burmese Unicode'
         },
         {'shortName': 'shn_keyman',
-         'longName': 'Shan Keyman'
+         'longName': 'Shan Keyman layout'
         },
         {'shortName':  'shn',
          'longName': 'Shan'

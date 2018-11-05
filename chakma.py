@@ -49,7 +49,10 @@ encoding_font_list = [
 kb_list = [
   {'shortName': 'ccp',
    'longName': 'Chakma Unicode'
-   }
+  },
+  {'shortName': 'ccp_reorder',
+   'longName': 'Chakma Unicode with reordering'
+  }
 ]
 
 LanguageCode = 'ccp'
@@ -211,11 +214,6 @@ bucZ t JeborM ribo sunelo$ at tirtVire kili"""
       unicodeChars += '\ud804\udd06'
 
       unicodeCombiningChars = chakmaCombiningCombos(u'\ud804\udd07')
-      kb_list = [
-        {'shortName':  'ccp',
-         'longName': 'Chakma'
-        }
-      ]
 
       template_values = {
           'font': font,
@@ -271,11 +269,6 @@ class ChakmaConvertHandler(webapp2.RequestHandler):
 class ChakmaEncodingRules(webapp2.RequestHandler):
     def get(self):
 
-      kb_list = [
-        {'shortName':  'ccp',
-         'longName': 'Chakma Unicode'
-        }
-      ]
       template_values = {
         'converterJS': "/js/ccpConverter.js",
         'language': 'Chakma',
@@ -290,11 +283,6 @@ class ChakmaEncodingRules(webapp2.RequestHandler):
 class ChakmaRenderPage(webapp2.RequestHandler):
     def get(self):
 
-      kb_list = [
-        {'shortName':  'ccp',
-         'longName': 'Chakma Unicode'
-        }
-      ]
       template_values = {
         'converterJS': "/js/ccpConverter.js",
         'language': 'Chakma',
