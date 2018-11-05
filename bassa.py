@@ -43,6 +43,11 @@ unicode_font_list = [
       'longName': 'Noto Sans Bassa Vah',
       'source': '/fonts/NotoSansBassaVah-Regular.ttf',
   },
+  {
+      'family': 'JGBassaVahRegular',
+      'longName': 'JG Bassa Vah',
+      'source': '/fonts/JGBassaVahUnicode-UpdateRegular.ttf',
+  },
 ]
 
 links = [
