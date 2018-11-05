@@ -58,7 +58,7 @@ links = [
       'ref': '/bsq/downloads/'
     },
     {'linkText': 'Unicode Page',
-     'ref': 'https://www.unicode.org/charts/PDF/U16AD0'
+     'ref': 'https://www.unicode.org/charts/PDF/U16AD0.pdf'
   },
     {'linkText': 'Language Wikipedia',
      'ref': 'https://en.wikipedia.org/wiki/Bassa_language'
