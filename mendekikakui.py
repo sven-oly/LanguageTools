@@ -39,52 +39,43 @@ encoding_font_list = [
 
 unicode_font_list = [
   {
-      'family': 'NotoSansBassaVah',
-      'longName': 'Noto Sans Bassa Vah',
-      'source': '/fonts/NotoSansBassaVah-Regular.ttf',
-  },
-  {
-      'family': 'JGBassaVahRegular',
-      'longName': 'JG Bassa Vah',
-      'source': '/fonts/JGBassaVahUnicode-UpdateRegular.ttf',
-  },
-  {
-      'family': 'JGBassaOrig',
-      'longName': 'JG Bassa Vah original',
-      'source': '/fonts/JG Bassa Vah.ttf',
+      'family': 'NotoSansMendeKikakui',
+      'longName': 'Noto Sans Mende Kikakui',
+      'source': '/fonts/NotoSansMenduKikakui-Regular.ttf',
   },
 ]
 
 links = [
     {'linkText': 'Keyboard',
-     'ref': '/bsq/'
+     'ref': '/men/'
     },
     {'linkText': 'Converter',
-     'ref': '/bsq/convertUI/'},
+     'ref': '/men/convertUI/'
+    },
     {'linkText': 'Font conversion summary',
-      'ref': '/bsq/encodingRules/'
+      'ref': '/men/encodingRules/'
     },
     {'linkText': 'Resources',
-      'ref': '/bsq/downloads/'
+      'ref': '/men/downloads/'
     },
     {'linkText': 'Unicode Page',
-     'ref': 'https://www.unicode.org/charts/PDF/U16AD0.pdf'
+     'ref': 'https://www.unicode.org/charts/PDF/U1E800.pdf'
   },
     {'linkText': 'Language Wikipedia',
-     'ref': 'https://en.wikipedia.org/wiki/Bassa_language'
+     'ref': 'https://en.wikipedia.org/wiki/Mende_language'
     },
 
-    {'linkText': 'Combiners',
-     'ref': '/bsq/diacritic/'
-    },
+    #{'linkText': 'Combiners',
+    # 'ref': '/men/diacritic/'
+    #},
 ]
 
 class langInfo():
   def __init__(self):
-    self.LanguageCode = 'bsq'
-    self.Language = 'Bassa'
+    self.LanguageCode = 'men'
+    self.Language = 'Mende'
     self.Language_native = u''
-    self.direction = 'ltr'
+    self.direction = 'rtl'
 
     if sys.maxunicode >= 0x10000:
       logging.info('WIDE SYSTEM BUILD!!!')
@@ -93,7 +84,7 @@ class langInfo():
       logging.info('NARROW SYSTEM BUILD!!!')
       self.diacritic_list = [unichr(0xd81a) + unichr(0xde00 + x) for x in range(0xf0, 0xf5)]
 
-    self.base_consonant = u'𖫧'
+    self.base_consonant = u'𞠀'
     self.baseHexUTF16 = u'\ud81a\udee7'
 
     self.lang_list = [
@@ -105,10 +96,10 @@ class langInfo():
     self.kb_list = [
       {
         'shortName': self.LanguageCode,
-        'longName': 'Bassa',
+        'longName': 'Mende',
         'jsName': self.LanguageCode,
         'instructions': None,
-        'font': 'NotoSansBassaVah',
+        'font': 'NotoSansMendeKikakui',
       },
     ]
     self.links = links
@@ -122,12 +113,12 @@ class langInfo():
 langInstance = langInfo()
 
 app = webapp2.WSGIApplication(
-    [('/bsq/', base.LanguagesHomeHandler),
-     ('/bsq/convertUI/', base.ConvertUIHandler),
-     ('/bsq/downloads/', base.Downloads),
-     ('/bsq/converter/', base.ConvertHandler),
-     ('/bsq/encodingRules/', base.EncodingRules),
-     ('/bsq/diacritic/', base.DiacriticHandler),
+    [('/men/', base.LanguagesHomeHandler),
+     ('/men/convertUI/', base.ConvertUIHandler),
+     ('/men/downloads/', base.Downloads),
+     ('/men/converter/', base.ConvertHandler),
+     ('/men/encodingRules/', base.EncodingRules),
+     ('/men/diacritic/', base.DiacriticHandler),
     ], debug=True,
     config={'langInfo': langInstance}
 )

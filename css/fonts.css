@@ -104,3 +104,10 @@ font-family: 'Noto Sans', sans-serif;
       font-weight:normal;
       font-style:normal;
     }
+
+    @font-face {
+      font-family: 'NotoSansMendeKikakui';
+      src:url("/fonts/NotoSansMenduKikakui-Regular.ttf");
+      font-weight:normal;
+      font-style:normal;
+    }

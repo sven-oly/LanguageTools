@@ -58,6 +58,9 @@ handlers:
 - url: /aho/.*
   script: ahom.app
 
+- url: /men/.*
+  script: mendekikakui.app
+
 - url: /mez/.*
   script: menoninee.app
 
