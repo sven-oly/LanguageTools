@@ -41,7 +41,7 @@ unicode_font_list = [
   {
       'family': 'NotoSansMendeKikakui',
       'longName': 'Noto Sans Mende Kikakui',
-      'source': '/fonts/NotoSansMenduKikakui-Regular.ttf',
+      'source': '/fonts/NotoSansMendeKikakui-Regular.ttf',
   },
 ]
 
