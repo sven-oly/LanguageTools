@@ -40,6 +40,9 @@ handlers:
 - url: /bts/.*
   script: bataksimalungun.app
 
+- url: /cja/.*
+  script: cham.app
+
 - url: /ccp/.*
   script: chakma.app
 
@@ -57,6 +60,9 @@ handlers:
 
 - url: /aho/.*
   script: ahom.app
+
+- url: /lep/.*
+  script: lepcha.app
 
 - url: /men/.*
   script: mendekikakui.app
@@ -78,6 +84,9 @@ handlers:
 
 - url: /rhg/.*
   script: rohingya.app
+
+- url: /syl/.*
+  script: sylheti.app
 
 - url: /tai/.*
   script: ahom.app
