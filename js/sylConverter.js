@@ -81,9 +81,9 @@ var private_use_map_combined = {
     '\u0071': ['\ua80b'],
     '\u0072': ['\u1c1b'],
     '\u0073': ['\u1c20'],
-    '\u0074': ['\u1c0a'],
+    '\u0074': ['\u0000'],   // Diacritics for these?
     '\u0075': ['\u1c2a'],
-    '\u0076': ['\u1c1f'],
+    '\u0076': ['*'],  // Should this be another symbol?
     '\u0077': ['\ua828'],
     '\u0078': ['\ua829'],
     '\u0079': ['\ua82a'],
@@ -158,7 +158,19 @@ function convertEncodingToUnicode(inbox, outbox, encodingIndex) {
   var outarea = document.getElementById(outbox);
 
   // First, replace all single characters with their Unicode equivalents.
-  var intext = inarea.value;
+  // First, replace all single characters with their Unicode equivalents.
+  var start = inarea.selectionStart;
+  // obtain the index of the last selected character
+  var finish = inarea.selectionEnd;
+  // obtain the selected text
+
+  if (finish != 0) {
+    var intext = inarea.value.substring(start, finish);
+  } else {
+    // Otherwise, the whole text.
+    var intext = inarea.value;
+  }
+
   var outtext = "";
   var out;
   for (var index = 0; index < intext.length; index ++) {

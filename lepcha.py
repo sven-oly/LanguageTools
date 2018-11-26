@@ -121,7 +121,7 @@ class ConvertUIHandler(webapp2.RequestHandler):
            '\u000a\u000b'},
       ]
 
-      oldInput = oldChars
+      oldInput = text
 
       unicodeChars = ''
       unicodeCombiningChars = ''

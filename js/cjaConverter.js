@@ -115,7 +115,19 @@ function convertEncodingToUnicode(inbox, outbox, encodingIndex) {
   var outarea = document.getElementById(outbox);
 
   // First, replace all single characters with their Unicode equivalents.
-  var intext = inarea.value;
+  // First, replace all single characters with their Unicode equivalents.
+  var start = inarea.selectionStart;
+  // obtain the index of the last selected character
+  var finish = inarea.selectionEnd;
+  // obtain the selected text
+
+  if (finish != 0) {
+    var intext = inarea.value.substring(start, finish);
+  } else {
+    // Otherwise, the whole text.
+    var intext = inarea.value;
+  }
+
   var outtext = "";
   var out;
   for (var index = 0; index < intext.length; index ++) {

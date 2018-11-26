@@ -81,6 +81,7 @@ function utf16common(text, prefix, suffix, asciitoo, highlight_list)
 
   function uplus(text)
   {
+    return utf16common(text, "", " ", true, diff_list)
     return utf16common(text, "u+", " ", true, diff_list)
   }
 

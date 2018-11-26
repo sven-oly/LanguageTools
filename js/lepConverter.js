@@ -13,12 +13,12 @@ var private_use_map_combined = {
     '\u0025': ['\u1c29\u1c31'],
     '\u0026': ['\u1c29\u1c32'],
     '\u0027': ['\u1c29\u1c33'],
-    '\u0028': ['\u1c36\u1c3d'],
-    '\u0029': ['\u1c36\u1c2e'],
+    '\u0028': ['\u1c2d\u1c36'],
+    '\u0029': ['\u1c2e\u1c36'],
     '\u002a': ['\u1c36\u1c2f'],
     '\u002b': ['\u1c36\u1c30'],
     '\u002c': ['\u1c25'],
-    '\u002d': ['\u1c36\u1c31'],
+    '\u002d': ['\u1c31\u1c36'],
     '\u002e': ['\u1c3f'],
     '\u0030': ['\u1c40'],
     '\u0031': ['\u1c41'],
@@ -39,7 +39,7 @@ var private_use_map_combined = {
     '\u0042': ['\u1c31'],
     '\u0043': ['\u1c07'],
     '\u0044': ['\u1c33'],
-    '\u0045': ['\u1c13'],
+    '\u0045': ['\u1c14'],
     '\u0046': ['\u1c12'],
     '\u0047': ['\u1c05'],
     '\u0048': ['\u1c1e'],
@@ -56,16 +56,16 @@ var private_use_map_combined = {
     '\u0052': ['\u1c32'],
     '\u0053': ['\u1c21'],
     '\u0054': ['\u1c0b'],
-    '\u0055': ['\u1c26'],
+    '\u0055': ['\u1c2b'],
     '\u0056': ['\u1c35'],
     '\u0057': ['\u1c01'],
     '\u0058': ['\u1c2d'],
     '\u0059': ['\u1c0f'],
     '\u005a': ['\u1c34'],
-    '\u005e': ['\u1c35\u1c36'],
+    '\u005e': ['\u1c33\u1c36'],
     '\u005f': ['\u1c36'],
 
-    '\u0061': ['\u1c26'],
+    '\u0061': ['\u1c28'],
     '\u0062': ['\u1c13'],
     '\u0063': ['\u1c06'],
     '\u0064': ['\u1c0c'],
@@ -76,6 +76,8 @@ var private_use_map_combined = {
     '\u0069': ['\u1c27'],
     '\u006a': ['\u1c08'],
     '\u006b': ['\u1c00'],
+    '\u006c': ['\u1c1c'],
+    '\u006d': ['\u1c15'],
     '\u006e': ['\u1c0d'],
     '\u006f': ['\u1c29'],
 
@@ -146,7 +148,17 @@ function convertEncodingToUnicode(inbox, outbox, encodingIndex) {
   var outarea = document.getElementById(outbox);
 
   // First, replace all single characters with their Unicode equivalents.
-  var intext = inarea.value;
+  var start = inarea.selectionStart;
+  // obtain the index of the last selected character
+  var finish = inarea.selectionEnd;
+  // obtain the selected text
+
+  if (start != finish && finish != 0) {
+    var intext = inarea.value.substring(start, finish);
+  } else {
+    // Otherwise, the whole text.
+    var intext = inarea.value;
+  }
   var outtext = "";
   var out;
   for (var index = 0; index < intext.length; index ++) {
@@ -163,6 +175,57 @@ function convertEncodingToUnicode(inbox, outbox, encodingIndex) {
 
   // Insert more complex replacements here.
   var newText = outtext;
+
+  pattern = /([\u1c27-\u1c29\u1c34\u1c35])([\u1c2c\u1c2a-\u1c37])/gi;
+  replace = "$2$1";
+  newText = outtext.replace(pattern, replace);
+  outtext = newText;
+
+  // Move diacritics to right of letter
+  ePattern = /([\u1c27-\u1c37]+)([\u1c00-\u1c23\u1c40-\u1c49])/gi;
+  eReplace = "$2$1";
+  newText = outtext.replace(ePattern, eReplace);
+  outtext = newText;
+
+  // Move left side diacritics to left of others
+  pattern = /([\u1c24-\u1c26\u1c2a-\u1c37]*)([\u1c27-\u1c2ab]+)/gi;
+  replace = "$2$1";
+  newText = outtext.replace(pattern, replace);
+  outtext = newText;
+
+  // General reordering - needs to be made clearer
+  pattern = /([\u1c26]+)(\u1c2f)/gi;
+  replace = "$2$1";
+  newText = outtext.replace(pattern, replace);
+  outtext = newText;
+
+  pattern = /([\u1c36]+)(\u1c2f)/gi;
+  replace = "$2$1";
+  newText = outtext.replace(pattern, replace);
+  outtext = newText;
+
+  pattern = /([\u1c28]+)(\u1c27)/gi;
+  replace = "$2$1";
+  newText = outtext.replace(pattern, replace);
+  outtext = newText;
+
+  pattern = /([\u1c27]+)(\u1c29)/gi;
+  replace = "$2$1";
+  newText = outtext.replace(pattern, replace);
+  outtext = newText;
+
+  pattern = /([\u1c36]+)([\u1c2e\u1c32])/gi;
+  replace = "$2$1";
+  newText = outtext.replace(pattern, replace);
+  outtext = newText;
+
+  // Fix diacritics after space.
+  pattern = /\u0020([\u1c2c-\u1c2f\u1c31\u1c33])/gi;
+  replace = "$1";
+  newText = outtext.replace(pattern, replace);
+  outtext = newText;
+
+  // Diacritics at start of the text??
 
   if (outarea) {
     outarea.innerHTML = outarea.value = newText;
