@@ -115,7 +115,7 @@ class ConvertUIHandler(webapp2.RequestHandler):
 
       # All old characters
       oldCharList = [unichr(x) + ' ' for x in xrange(0x20, 0x7f)] + \
-                    [unichr(x) + ' ' for x in xrange(0xc0, 0xf4)]
+                    [unichr(x) + ' ' for x in xrange(0xc0, 0xf5)]
       oldChars = ''.join(oldCharList)
       text = self.request.get('text', oldChars)
       font = self.request.get('font')
