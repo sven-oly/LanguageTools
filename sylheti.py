@@ -40,10 +40,16 @@ encoding_font_list = [
 
 unicode_font_list = [
     {
-        'family': 'SurmaUnicode',
-        'longName': 'Surma Unicode',
-        'source': '/fonts/Surma-Regular.ttf',
+        'family': 'NotoSansSylotiNagri',
+        'longName': 'Noto Sans Syloti Nagri',
+        'source': '/fonts/NotoSansSylotiNagri-Regular.ttf',
     },
+  {
+    'family': 'SurmaUnicode',
+    'longName': 'Surma Unicode',
+    'source': '/fonts/Surma-Regular.ttf',
+  },
+
 ]
 
 kb_list = [
