@@ -44,6 +44,11 @@ unicode_font_list = [
         'longName': 'Noto Sans Cham',
         'source': '/fonts/NotoSansCham-Regular.ttf',
     },
+    {
+        'family': 'ChamOITangin',
+        'longName': 'Cham OI Trangin (extended Unicode)',
+        'source': '/fonts/Cham\ OI_Tangin_0.ttf',
+    },
 ]
 
 kb_list = [
