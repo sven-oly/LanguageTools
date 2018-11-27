@@ -2,6 +2,7 @@
 font-family: 'Noto Serif', serif;
 font-family: 'Noto Sans', sans-serif;
 
+text-rendering: optimizeLegibility;
 
 /* Fonts for Anangu-Yolngu font-encoded output. */
     @font-face{
@@ -111,3 +112,13 @@ font-family: 'Noto Sans', sans-serif;
       font-weight:normal;
       font-style:normal;
     }
+     @font-face {
+      font-family: NotoSansSylotiNagri;
+      src:url("/fonts/NotoSansSylotiNagri-Regular.ttf");
+      font-weight:normal;
+      font-style:normal;
+      text-rendering: optimizeLegibility;
+    }
+
+
+

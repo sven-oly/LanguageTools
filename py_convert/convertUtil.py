@@ -7,7 +7,7 @@ def infileToList(fileIn):
   # Return list of content for each line.
   infile = open(fileIn, 'r')
   result = [path.strip() for path in infile]
-  print '%d FILES: %s' % (len(result), result)
+  print('%d FILES: %s' % (len(result), result))
   infile.close()
   return result
 
@@ -16,7 +16,7 @@ def infileToList2(infile):
   # Reads filenames from input, one file per line.
   # Return list of content for each line.
   result = [path.strip() for path in infile]
-  print '%d FILES: %s' % (len(result), result)
+  print('%d FILES: %s' % (len(result), result))
   infile.close()
   return result
 
@@ -40,7 +40,7 @@ def parseArgs():
 
   # Get the filenames from the input file list, if available.
   if args.file_list:
-    print '*****FILE LIST'
+    print('*****FILE LIST')
     args.filenames = infileToList2(args.file_list)
 
   return args

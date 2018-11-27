@@ -17,7 +17,7 @@ def main(argv):
 
   args = convertUtil.parseArgs()
   newUnicodeFont = args.font  # "NotoSans-Regular"
-  print '** args = %s' % args
+  print('** args = %s' % args)
 
   paths_to_doc = args.filenames
 

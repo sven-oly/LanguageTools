@@ -164,7 +164,7 @@ function convertEncodingToUnicode(inbox, outbox, encodingIndex) {
   var finish = inarea.selectionEnd;
   // obtain the selected text
 
-  if (finish != 0) {
+  if (start != finish || finish != 0) {
     var intext = inarea.value.substring(start, finish);
   } else {
     // Otherwise, the whole text.
