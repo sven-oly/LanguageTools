@@ -30,7 +30,7 @@ var private_use_map_combined = {
     '\u0037': ['\u1c47'],
     '\u0038': ['\u1c48'],
     '\u0039': ['\u1c49'],
-    '\u003a': ['\u1c37'],
+    '\u003a': ['\u1c27\u1c2d'],
     '\u003b': ['\u1c37'],
     '\u003f': ['\u1c25'],
 
@@ -62,6 +62,7 @@ var private_use_map_combined = {
     '\u0058': ['\u1c2d'],
     '\u0059': ['\u1c0f'],
     '\u005a': ['\u1c34'],
+    '\u005c': ['\u0000'],
     '\u005e': ['\u1c33\u1c36'],
     '\u005f': ['\u1c36'],
 
@@ -163,11 +164,15 @@ function convertEncodingToUnicode(inbox, outbox, encodingIndex) {
   var out;
   for (var index = 0; index < intext.length; index ++) {
     var c = intext[index];
-    out = c;
+    var out = c;
     if (c in private_use_map_combined) {
       var result = private_use_map_combined[c][encodingIndex];
       if (result) {
+	if (result == '\u0000') {
+          out = '';
+        } else {
 	out = result;
+        }
       }
     }
     outtext += out;
@@ -176,19 +181,19 @@ function convertEncodingToUnicode(inbox, outbox, encodingIndex) {
   // Insert more complex replacements here.
   var newText = outtext;
 
-  pattern = /([\u1c27-\u1c29\u1c34\u1c35])([\u1c2c\u1c2a-\u1c37])/gi;
+  // Move diacritics to right of letter
+  pattern = /([\u1c26-\u1c37])([\u1c00-\u1c23\u1c2a-\u1c37])/gi;
   replace = "$2$1";
   newText = outtext.replace(pattern, replace);
   outtext = newText;
 
-  // Move diacritics to right of letter
-  ePattern = /([\u1c27-\u1c37]+)([\u1c00-\u1c23\u1c40-\u1c49])/gi;
+/*  ePattern = /([\u1c27-\u1c37]+)([\u1c00-\u1c23\u1c40-\u1c49])/gi;
   eReplace = "$2$1";
   newText = outtext.replace(ePattern, eReplace);
   outtext = newText;
-
+*/
   // Move left side diacritics to left of others
-  pattern = /([\u1c24-\u1c26\u1c2a-\u1c37]*)([\u1c27-\u1c2ab]+)/gi;
+  pattern = /([\u1c26-\u1c26\u1c2a-\u1c37]*)([\u1c24-\u1c2b]+)/gi;
   replace = "$2$1";
   newText = outtext.replace(pattern, replace);
   outtext = newText;
@@ -199,7 +204,17 @@ function convertEncodingToUnicode(inbox, outbox, encodingIndex) {
   newText = outtext.replace(pattern, replace);
   outtext = newText;
 
-  pattern = /([\u1c36]+)(\u1c2f)/gi;
+  pattern = /([\u1c36]+)[\u1c24\u1c25\u1c2f]/gi;
+  replace = "$2$1";
+  newText = outtext.replace(pattern, replace);
+  outtext = newText;
+
+  pattern = /([\u1c27\u1c2d\u1c2e]+)([\u1c24\u1c25]+)/gi;
+  replace = "$2$1";
+  newText = outtext.replace(pattern, replace);
+  outtext = newText;
+
+  pattern = /([\u1c28]+)(\u1c27)/gi;
   replace = "$2$1";
   newText = outtext.replace(pattern, replace);
   outtext = newText;
@@ -214,13 +229,18 @@ function convertEncodingToUnicode(inbox, outbox, encodingIndex) {
   newText = outtext.replace(pattern, replace);
   outtext = newText;
 
+  pattern = /([\u1c2e]+)(\u1c2c)/gi;
+  replace = "$2$1";
+  newText = outtext.replace(pattern, replace);
+  outtext = newText;
+
   pattern = /([\u1c36]+)([\u1c2e\u1c32])/gi;
   replace = "$2$1";
   newText = outtext.replace(pattern, replace);
   outtext = newText;
 
   // Fix diacritics after space.
-  pattern = /\u0020([\u1c2c-\u1c2f\u1c31\u1c33])/gi;
+  pattern = /\u0020([\u1c24-\u1c2f\u1c31\u1c33])/gi;
   replace = "$1";
   newText = outtext.replace(pattern, replace);
   outtext = newText;
