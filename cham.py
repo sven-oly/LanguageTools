@@ -40,14 +40,14 @@ encoding_font_list = [
 
 unicode_font_list = [
     {
-        'family': 'NotoSansCham',
-        'longName': 'Noto Sans Cham',
-        'source': '/fonts/NotoSansCham-Regular.ttf',
-    },
-    {
         'family': 'ChamOITangin',
         'longName': 'Cham OI Trangin (extended Unicode)',
         'source': '/fonts/Cham\ OI_Tangin_0.ttf',
+    },
+    {
+        'family': 'NotoSansCham',
+        'longName': 'Noto Sans Cham',
+        'source': '/fonts/NotoSansCham-Regular.ttf',
     },
 ]
 
@@ -79,10 +79,10 @@ links = [
      'ref': 'https://en.wikipedia.org/wiki/Cham_language'
     },
     {'linkText': 'Ethnolog',
-     'ref': 'https://www.ethnologue.com/language/lep'
+     'ref': 'https://www.ethnologue.com/language/cja'
     },
     {'linkText': 'Combiners',
-     'ref': '/lep/diacritic/'
+     'ref': '/cja/diacritic/'
      },
 ]
 
@@ -90,7 +90,7 @@ links = [
 diacritic_list = [unichr(x) for x in range(0xaa29, 0xaa37)] + \
   [unichr(x) for x in range(0xaa43, 0xaa44)] + \
   [unichr(x) for x in range(0xaa4c, 0xaa4e)]
-default_base_consonant = u'\uaa29'
+default_base_consonant = u'\uaa06'
 
 # Shows keyboards
 class IndigenousHomeHandler(webapp2.RequestHandler):
