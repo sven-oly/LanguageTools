@@ -44,6 +44,11 @@ unicode_font_list = [
         'longName': 'Noto Sans Lepcha',
         'source': '/fonts/NotoSansLepcha-Regular.ttf',
     },
+    {
+        'family': 'MingzatLepcha',
+        'longName': 'Mingzat (SIL)',
+        'source': '/fonts/Mingzat-R.woff',
+    },
 ]
 
 kb_list = [

@@ -26,6 +26,23 @@
   }
   </style>
 
+  <style>
+    {% for font in unicode_font_list %}
+    @font-face{
+      font-family:'{{font.family}}';
+      src:url('{{font.source}}');
+      font-weight:normal;
+      font-style:normal;
+      font-size: 32px;
+    }
+
+    .{{font.family}} {
+      font-family:{{font.family}};
+      font-size: 32px;
+    }
+    {% endfor %}
+  </style>
+  
   <script>
    function onFontSelected(selected, area) {
      var output_text = document.getElementById(area);
