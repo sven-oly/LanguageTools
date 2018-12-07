@@ -211,6 +211,7 @@
     if (encodeSelectorName) {
       // TODO: Generalize this
       var encodeSelector = document.getElementById(encodeSelectorName);
+      var encodingIndex = encodeSelector.selectedIndex;
       if (encodeSelector.value == 'Sujoyan' || encodeSelector.value == 'AhomManuscript') {
         encodingIndex = 1;
       }

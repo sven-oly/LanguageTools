@@ -32,6 +32,11 @@ LanguageCode = 'lep'
 
 encoding_font_list = [
   {
+    'font_path': '/fonts/Shipmoo.ttf',
+    'font_name': 'Shipmoo',
+    'display_name': 'Shipmoo Lepcha',
+  },
+  {
     'font_path': '/fonts/JG_Lepcha.ttf',
     'font_name': 'JGLepcha',
     'display_name': 'JG Lepcha',
