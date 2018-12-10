@@ -188,8 +188,14 @@ function convertEncodingToUnicode(inbox, outbox, encodingIndex) {
   // Insert more complex replacements here.
   var newText = outtext;
 
+  // Fix AA sign before letter to O sign
+  pattern = /\u1c26([\u1c00-\u1c2d])/gi;
+  replace = "\u1c28$1";
+  newText = outtext.replace(pattern, replace);
+  outtext = newText;
+
   // Move diacritics to right of letter
-  pattern = /([\u1c26-\u1c37])([\u1c00-\u1c23\u1c2a-\u1c37])/gi;
+  pattern = /([\u1c27-\u1c29\u1c2c-\u1c37])([\u1c00-\u1c23\u1c2a-\u1c37])/gi;
   replace = "$2$1";
   newText = outtext.replace(pattern, replace);
   outtext = newText;
@@ -216,17 +222,7 @@ function convertEncodingToUnicode(inbox, outbox, encodingIndex) {
   newText = outtext.replace(pattern, replace);
   outtext = newText;
 
-  pattern = /([\u1c27\u1c2d\u1c2e]+)([\u1c24\u1c25]+)/gi;
-  replace = "$2$1";
-  newText = outtext.replace(pattern, replace);
-  outtext = newText;
-
-  pattern = /([\u1c28]+)(\u1c27)/gi;
-  replace = "$2$1";
-  newText = outtext.replace(pattern, replace);
-  outtext = newText;
-
-  pattern = /([\u1c28]+)(\u1c27)/gi;
+  pattern = /([\u1c28]+)([\u1c24\u1c27]+)/gi;
   replace = "$2$1";
   newText = outtext.replace(pattern, replace);
   outtext = newText;
@@ -236,13 +232,29 @@ function convertEncodingToUnicode(inbox, outbox, encodingIndex) {
   newText = outtext.replace(pattern, replace);
   outtext = newText;
 
-  pattern = /([\u1c2e]+)(\u1c2c)/gi;
+  pattern = /([\u1c36]+)([\u1c30]+)/gi;
+  replace = "$2$1";
+  newText = outtext.replace(pattern, replace);
+  outtext = newText;
+
+  pattern = /([\u1c2e]+)([\u1c25\u1c2c]+)/gi;
+  replace = "$2$1";
+  newText = outtext.replace(pattern, replace);
+  outtext = newText;
+
+  pattern = /([\u1c33]+)([\u1c2c])/gi;
   replace = "$2$1";
   newText = outtext.replace(pattern, replace);
   outtext = newText;
 
   pattern = /([\u1c36]+)([\u1c2e\u1c32])/gi;
   replace = "$2$1";
+  newText = outtext.replace(pattern, replace);
+  outtext = newText;
+
+  // 1C27 1C36 1C37
+  pattern = /(\u1c27)(\u1c36)(\u1c37)/gi;
+  replace = "$3$1$2";
   newText = outtext.replace(pattern, replace);
   outtext = newText;
 
