@@ -91,7 +91,7 @@ links = [
      },
 ]
 
-diacritic_list = [unichr(x) for x in range(0x1c24, 0x1c37)]
+diacritic_list = [unichr(x) for x in range(0x1c24, 0x1c38)]
 
 default_base_consonant = u'\u1c00'
 
