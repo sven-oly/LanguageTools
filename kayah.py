@@ -31,7 +31,16 @@ Language_native = 'ᰛᰩᰵ་ᰛᰵᰧᰶ'
 LanguageCode = 'kyu'
 
 encoding_font_list = [
-  {}
+  {
+    'font_path': '/fonts/kayahli.ttf',
+    'font_name': 'KayahLi',
+    'display_name': 'Kayah Li',
+  },
+  {
+    'font_path': '/fonts/karenni2.ttf',
+    'font_name': 'Karenni2',
+    'display_name': 'Karenni2',
+  },
 ]
 
 unicode_font_list = [
@@ -40,7 +49,66 @@ unicode_font_list = [
         'longName': 'Noto Sans Kayah Li',
         'source': '/fonts/NotoSansKayahLi-Regular.ttf',
     },
+  {
+    'family': 'KeyBogyi',
+    'source': '/fonts/kyebogyi_sil1.ttf',
+    'longName': 'KeyBogyi SIL',
+  },
 ]
+
+kb_list = [
+  {'shortName': LanguageCode,
+   'longName': LanguageCode,
+   },
+]
+
+links = [
+    {'linkText': 'Keyboard',
+     'ref': '/' + LanguageCode + '/'
+    },
+    {'linkText': 'Converter',
+     'ref': '/' + LanguageCode + '/convertUI/'},
+    {'linkText': 'Font conversion summary',
+      'ref': '/' + LanguageCode + '/encodingRules/'
+    },
+    {'linkText': 'Resources',
+      'ref': '/' + LanguageCode + '/downloads/'
+    },
+    {'linkText': 'Unicode page',
+     'ref': 'https://www.unicode.org/charts/PDF/U1C00.pdf'
+    },
+    {'linkText': 'Lepcha script',
+     'ref': 'https://en.wikipedia.org/wiki/Lepcha_alphabet'
+    },
+    {'linkText': 'Wikipedi page',
+     'ref': 'https://en.wikipedia.org/wiki/Lepcha_language'
+    },
+    {'linkText': 'Ethnolog',
+     'ref': 'https://www.ethnologue.com/language/lep'
+    },
+    {'linkText': 'Combiners',
+     'ref': '/lep/diacritic/'
+     },
+]
+
+diacritic_list = [unichr(x) for x in range(0x1c24, 0x1c37)]
+
+default_base_consonant = u'\u1c00'
+
+# Shows keyboards
+class IndigenousHomeHandler(webapp2.RequestHandler):
+    def get(self):
+      template_values = {
+        'language': Language,
+        'langTag': LanguageCode,
+        'font_list': unicode_font_list,
+        'lang_list': None,
+        'kb_list': kb_list,
+        'links': links,
+      }
+      path = os.path.join(os.path.dirname(__file__), 'demo_general.html')
+      self.response.out.write(template.render(path, template_values))
+
 
 kb_list = [
   {'shortName': LanguageCode,
