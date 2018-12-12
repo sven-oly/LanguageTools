@@ -13,23 +13,23 @@
 // Implements Ahom keyboard based on ...
 // TODO: Add reference
 
-var AIO_LAYOUT = {
+var _LAYOUT = {
   'id': 'aio',
   'title': "Aiton *** NOT STARTED!!!",
   'mappings': {
     '': {
-      '': '`\u1041\u1042\u1043\u1044\u1045\u1046\u1047\u1048\u1049\u1040-=' +
-          '\u1006\u1010\u1014\u1019\u1021\u101a' +
-          '\u101b\u101E\u1005\u101F{\\' +
-          '\u1037\u1036\u1062\u102e\u102d\u1032\u1015\u1063\u1064\u1062\u1038\u1012' +
-          '\u1004\u1011\u1001\u1018\u1003\u1016\u102c,./'
+      '': '`\ua841\ua842\ua843\ua844\ua845\ua846\ua847\ua848\ua849\ua840-=' +
+          '\ua806\ua810\ua814\ua819\ua821\ua81a' +
+          '\ua81b\ua81E\ua805\ua81F{\\' +
+          '\ua837\ua836\ua862\ua82e\ua82d\ua832\ua815\ua863\ua864\ua862\ua838\ua812' +
+          '\ua804\ua811\ua801\ua818\ua803\ua816\ua82c,./'
     },
     's, sc': {
       '': '~!@#$%^&*()_+' +
-          '\u25CC\u00A3\u20AC\u0E3F' +
-          'TY\u1000\u101c\u101D\u1061\u1027}|' +
-          '\u103c\u103e\u103b\u1060\u103dH\u102f\u1030\u102b:"' +
-          '\u1007XCVB\u100aM<>?' + '\u200b'
+          '\ua804\ua804\ua804\ua804' +
+          '\ua804\ua804\ua804\ua81c\ua81D\ua861\ua827}|' +
+          '\ua83c\ua83e\ua83b\ua860\ua83dH\ua82f\ua830\ua82b:"' +
+          '\ua807XCVB\ua80aM<>?'
     },
     'c': {
       '': '`1234567890-=' +
