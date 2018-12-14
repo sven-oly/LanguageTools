@@ -4,6 +4,11 @@ font-family: 'Noto Sans', sans-serif;
 
 text-rendering: optimizeLegibility;
 
+/* To enable ligratures */
+element.style {
+  font-feature-settings: "dlig";
+}
+
 /* Fonts for Anangu-Yolngu font-encoded output. */
     @font-face{
       font-family:'AYolNTU';
