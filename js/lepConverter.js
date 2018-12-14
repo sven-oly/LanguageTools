@@ -147,7 +147,7 @@ var private_use_map_combined = {
 
 
 function toLower(instring) {
-  return instring.toLowerCase();  // Check if this actually works for CHR.
+  return instring.toLowerCase();
 }
 
 function convertEncodingToUnicode(inbox, outbox, encodingIndex) {
@@ -166,6 +166,15 @@ function convertEncodingToUnicode(inbox, outbox, encodingIndex) {
     // Otherwise, the whole text.
     var intext = inarea.value;
   }
+
+  var newText = convertEncoding(intext, encodingIndex);
+  if (outarea) {
+    outarea.innerHTML = outarea.value = newText;
+  }
+  return newText;
+};
+
+function convertEncoding(intext, encodingIndex) {
   var outtext = "";
   var out;
   for (var index = 0; index < intext.length; index ++) {
@@ -188,16 +197,22 @@ function convertEncodingToUnicode(inbox, outbox, encodingIndex) {
   var newText = outtext;
 
   // Fix AA sign before letter to O sign
-  pattern = /\u1c26([\u1c00-\u1c2d])/gi;
+  pattern = /\u1c26([\u1c00-\u1c23])/gi;
   replace = "\u1c28$1";
   newText = outtext.replace(pattern, replace);
-  outtext = newText;  // Fix left letters before space
+  outtext = newText;
 
+  // Fix left modifiers before space
   pattern = /([\u1c27-\u1c29\u1c34-\u1c35]+)(u0020)/gi;
   replace = "$1";
   newText = outtext.replace(pattern, replace);
   outtext = newText;
 
+  // Fix right letters after space before comma
+  pattern = /(\u0020)([\u1c24-\u1c26]+)(\u002c)/gi;
+  replace = "$2$3";
+  newText = outtext.replace(pattern, replace);
+  outtext = newText;
   // Fix right letters after space
   pattern = /(\u0020)([\u1c24-\u1c26]+)/gi;
   replace = "$2$1";
@@ -205,7 +220,7 @@ function convertEncodingToUnicode(inbox, outbox, encodingIndex) {
   outtext = newText;
 
   // Move left diacritics to right of letter
-  pattern = /([\u1c27-\u1c29\u1c30-\u1c35]+)([\u1c00-\u1c23\u1c4d-\u1c4f]+)/gi;
+  pattern = /([\u1c27-\u1c29\u1c34-\u1c35]+)([\u1c00-\u1c23\u1c4d-\u1c4f])/gi;
   replace = "$2$1";
   newText = outtext.replace(pattern, replace);
   outtext = newText;
@@ -245,64 +260,54 @@ function convertEncodingToUnicode(inbox, outbox, encodingIndex) {
   replace = "$2$1";
   newText = outtext.replace(pattern, replace);
   outtext = newText;
-    /*
-  // General reordering - needs to be made clearer
-  pattern = /([\u1c26]+)(\u1c2f)/gi;
-  replace = "$2$1";
-  newText = outtext.replace(pattern, replace);
-  outtext = newText;
 
-  pattern = /([\u1c36]+)[\u1c24\u1c25\u1c2f]/gi;
-  replace = "$2$1";
-  newText = outtext.replace(pattern, replace);
-  outtext = newText;
-
-  pattern = /([\u1c28]+)([\u1c24\u1c27]+)/gi;
-  replace = "$2$1";
-  newText = outtext.replace(pattern, replace);
-  outtext = newText;
-
-  pattern = /([\u1c27]+)(\u1c29)/gi;
-  replace = "$2$1";
-  newText = outtext.replace(pattern, replace);
-  outtext = newText;
-
-  pattern = /([\u1c36]+)([\u1c30]+)/gi;
-  replace = "$2$1";
-  newText = outtext.replace(pattern, replace);
-  outtext = newText;
-
-  pattern = /([\u1c2e]+)([\u1c25\u1c2c]+)/gi;
-  replace = "$2$1";
-  newText = outtext.replace(pattern, replace);
-  outtext = newText;
-
-  pattern = /([\u1c33]+)([\u1c2c])/gi;
-  replace = "$2$1";
-  newText = outtext.replace(pattern, replace);
-  outtext = newText;
-
-  pattern = /([\u1c36]+)([\u1c2e\u1c32])/gi;
-  replace = "$2$1";
-  newText = outtext.replace(pattern, replace);
-  outtext = newText;
-
-  // 1C27 1C36 1C37
-  pattern = /(\u1c27)(\u1c36)(\u1c37)/gi;
-  replace = "$3$1$2";
-  newText = outtext.replace(pattern, replace);
-  outtext = newText;
-*/
   // Fix diacritics after space.
   pattern = /\u0020([\u1c24-\u1c2f\u1c31\u1c33])/gi;
   replace = "$1";
   newText = outtext.replace(pattern, replace);
   outtext = newText;
 
-  // Diacritics at start of the text
+  return outtext;
+};
 
-  if (outarea) {
-    outarea.innerHTML = outarea.value = newText;
-  }
-  return newText;
-}
+
+// Things to test when a change is made.
+// TODO: Add tests for different encoding indices.
+var  regression_tests = [
+    ["AcUgkc ]W&cAc Zi:]kh ]Igk>cVi:* dY[cZ.",
+     "ᰀᰚᰨᰪᰠᰦ ᰜᰤᰵᰀᰨᰦ ᰡᰬᰮᰠᰫᰵ ᰊᰪᰵᰠᰰᰛᰤᰨᰬᰮ ᰟᰧᰭᰡᰨ."],
+    ["dH>a QdH>, W[g A_c, dPeCh Hi_, dX[ k: ), IdC\\e)",
+     "ᰉᰧᰰᰶ ᰕᰉᰧᰰ, ᰜᰪᰭ ᰀᰦᰳ, ᰓᰧᰶᰃᰫ ᰉᰬᰳ, ᰝᰧᰭ ᰠᰥᰮ, ᰊᰃ᰷ᰥᰧᰶ"],
+    ["OdWe, dWe ODh, AfA[&Ji< ODh k]dVe, fC&A_c WccY.",
+      "ᰑᰜᰧᰶ, ᰜᰧᰶ ᰑᰅᰫ, ᰀᰀᰤᰩᰭᰋᰬᰱ ᰑᰅᰫ ᰠᰛᰧᰵᰶ, ᰃᰤᰩᰀᰦᰳ ᰜᰦᰟᰨ."],
+     ["]fEWc, V*hWc, V:*cWc, fT[Wc, kJcWc, wcjW,",
+       "ᰆᰩᰵᰜᰦ, ᰛᰤᰫᰜᰦ, ᰛᰤᰮᰜᰨᰦ, ᰙᰩᰭᰜᰦ, ᰠᰋᰜᰨᰦ, ᰣᰦᰜᰴ,"],
+     ["I[aWc, wccW>, kPc, cwdPe, wfP_ wcViIi_",
+      "ᰊᰭᰶᰜᰦ, ᰣᰦᰜᰨᰰ, ᰠᰓᰦ, ᰣᰨᰓᰧᰶ, ᰣᰓᰩᰳ ᰣᰛᰨᰬᰊᰬᰳ"],
+      ["I[aWc, wccW>, kPc, cwdPe, wfP_ wcViIi_",
+      "ᰊᰭᰶᰜᰦ, ᰣᰦᰜᰨᰰ, ᰠᰓᰦ, ᰣᰨᰓᰧᰶ, ᰣᰓᰩᰳ ᰣᰛᰨᰬᰊᰬᰳ"],
+      ["(]fA&k:c), (A\\)h OdWe ), (wcY?c), (wecY;), (A<\\)hdGe ), (dMVcdC\\)), A?g, I[gfL:, cdC\\)), MV.",
+      "(ᰀᰤᰩᰵᰠᰥᰦᰮ, (ᰀ᰷ᰥᰫ ᰑᰜᰥᰧᰶ, (ᰣᰟᰥᰨᰦᰲ, (ᰣᰶᰟᰥᰨᰯ, (ᰀ᰷ᰥᰫᰱᰈᰥᰧᰶ, (ᰎᰧᰛᰦᰃ᰷ᰥᰥᰧ, ᰀᰪᰲ, ᰊᰪᰭᰍᰩᰮ,ᰦ ᰃ᰷ᰥᰥᰧ, ᰎᰛ."],
+      ["wcJ[&c, wcdQ[, wccA, wc]cJ, IfP[, A?gCh, I[gM:h, I[gI[h, I[gfL:, ]dI]dCe,I[gdZ:, AgfG:, wfH?, wcdY[.",
+        "ᰣᰋᰤᰨᰦᰭ, ᰣᰦᰕᰧᰭ, ᰣᰦᰀᰨ, ᰣᰦᰋᰨᰵ, ᰊᰓᰩᰭ, ᰀᰪᰲᰃᰫ, ᰊᰪᰭᰎᰫᰮ, ᰊᰪᰭᰊᰫᰭ, ᰊᰪᰭᰍᰩᰮ, ᰊᰧᰵᰃᰧᰵᰶ,ᰊᰪᰭᰡᰧᰮ, ᰀᰪᰈᰩᰮ, ᰣᰉᰩᰲ, ᰣᰦᰟᰧᰭ."],
+      ["XicW, XcU, CgC\\) fQ?]dLe.",
+        "ᰝᰬᰜᰨ, ᰝᰚᰨ, ᰃᰪᰃ᰷ᰥ ᰕᰩᰲᰍᰧᰵᰶ."]
+
+    ];
+
+// TODO: add details about the test failure. Add encoding index, too.
+function regression(encodingIndex) {
+   // test each of these
+   var passing = 0;
+   for (var i=0; i < regression_tests.length; i++) {
+     var result = convertEncoding(regression_tests[i][0], encodingIndex);
+     if (result != regression_tests[i][1]) {
+       alert("test " + i + " fails!\r" + regression_tests[i][1] + "  Expected"+
+       "\r" +
+        result + "  Actual");
+     } else {
+       passing ++;
+     }
+   }
+   alert(passing + " tests pass out of " + regression_tests.length);
+ }

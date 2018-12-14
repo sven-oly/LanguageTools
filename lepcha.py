@@ -157,6 +157,7 @@ class ConvertUIHandler(webapp2.RequestHandler):
           'showTools': self.request.get('tools', None),
           'unicodeChars': unicodeChars,
           'combiningChars': unicodeCombiningChars,
+          'regressionTest': True,
       }
       path = os.path.join(os.path.dirname(__file__), 'translit_general.html')
       self.response.out.write(template.render(path, template_values))
