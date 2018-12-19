@@ -124,6 +124,12 @@ element.style {
       font-style:normal;
       text-rendering: optimizeLegibility;
     }
-
+     @font-face {
+      font-family: NotoSansKayah;
+      src:url("/fonts/NotoSansKayah-Regular.ttf");
+      font-weight:normal;
+      font-style:normal;
+      text-rendering: optimizeLegibility;
+    }
 
 

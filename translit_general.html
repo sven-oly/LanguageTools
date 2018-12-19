@@ -299,7 +299,7 @@
       <option value="{{encoding.font_name}}">{{encoding.display_name}}</option>
       {% endfor %}
     </select>
-    <!-- TODO: Provide the selected encoding font -->
+
     <input type="button" value="Convert to {% if outputFont %}{{outputFont}}{% else %}Unicode{% endif %}"
            onclick="callConvertEncodingToUnicode('old_font_input_text',
                     'Unicode_font_output_text', 'selectEncodingFont');">
@@ -381,6 +381,10 @@
       >
       <input type="button" value="Show hex values"
            onclick="updateHex('Unicode_font_output_text', 'new_hex');">
+        {%if regressionTest %}
+      <input type="button" value="Regression test"
+           onclick="regression(0);">  <!-- TODO: Pass the encoding index -->
+        {% endif %}
     <input type="button"
            onclick="fillWithUnicodeCombiners('Unicode_font_output_text',
                     'new_hex');"

@@ -141,7 +141,7 @@ links = [
      'ref': 'https://www.ethnologue.com/language/kyu'
     },
     {'linkText': 'Combiners',
-     'ref': '/lep/diacritic/'
+     'ref': '/kyu/diacritic/'
      },
 ]
 
