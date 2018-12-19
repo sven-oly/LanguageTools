@@ -110,6 +110,13 @@ class langInfo():
         'instructions': None,
         'font': 'NotoSansBassaVah',
       },
+      {
+        'shortName': self.LanguageCode + "2",
+        'longName': 'Bassa2',
+        'jsName': self.LanguageCode + "2",
+        'instructions': None,
+        'font': 'NotoSansBassaVah',
+      },
     ]
     self.links = links
     self.text_file_list = []
