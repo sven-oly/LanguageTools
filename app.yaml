@@ -55,6 +55,9 @@ handlers:
 - url: /demo_win/*
   script: hochunk.app
 
+- url: /tavt/.*
+  script: taivietscript.app
+
 - url: /win/.*
   script: hochunk.app
 

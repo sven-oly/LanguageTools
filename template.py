@@ -19,34 +19,25 @@ import webapp2
 
 from google.appengine.ext.webapp import template
 
-Language = 'Karenni'
-Language_native = 'ᰛᰩᰵ་ᰛᰵᰧᰶ'
-LanguageCode = 'kyu'
+Language = 'TBD'
+Language_native = '???ᰶ'
+LanguageCode = 'TBD'
+ScriptCode = 'tbd'
 
 encoding_font_list = [
   {
-    'font_path': '/fonts/kayahli.ttf',
-    'font_name': 'KayahLi',
-    'display_name': 'Kayah Li',
-  },
-  {
-    'font_path': '/fonts/karenni2.ttf',
-    'font_name': 'Karenni2',
-    'display_name': 'Karenni2',
+    'font_path': '/fonts/xyz.ttf',
+    'font_name': 'xyz',
+    'display_name': 'xyz',
   },
 ]
 
 unicode_font_list = [
     {
-        'family': 'NotoSansKayayLi',
-        'longName': 'Noto Sans Kayah Li',
-        'source': '/fonts/NotoSansKayahLi-Regular.ttf',
+        'family': 'NotoSansxyz',
+        'longName': 'Noto Sans xyz',
+        'source': '/fonts/NotoSansxyz-Regular.ttf',
     },
-  {
-    'family': 'KeyBogyi',
-    'source': '/fonts/kyebogyi_sil1.ttf',
-    'longName': 'KeyBogyi SIL',
-  },
 ]
 
 kb_list = [
@@ -84,8 +75,9 @@ links = [
      },
 ]
 
+# TODO: Fill in with diacritics
 diacritic_list = [unichr(x) for x in range(0x1c24, 0x1c37)]
-
+#TODO: Fill in base consonant
 default_base_consonant = u'\u1c00'
 
 # Shows keyboards
@@ -109,35 +101,6 @@ kb_list = [
    },
 ]
 
-links = [
-    {'linkText': 'Keyboard',
-     'ref': '/' + LanguageCode + '/'
-    },
-    {'linkText': 'Converter',
-     'ref': '/' + LanguageCode + '/convertUI/'},
-    {'linkText': 'Font conversion summary',
-      'ref': '/' + LanguageCode + '/encodingRules/'
-    },
-    {'linkText': 'Resources',
-      'ref': '/' + LanguageCode + '/downloads/'
-    },
-    {'linkText': 'Unicode page',
-     'ref': 'https://www.unicode.org/charts/PDF/U1C00.pdf'
-    },
-    {'linkText': 'Kayah Li script',
-     'ref': 'https://en.wikipedia.org/wiki/Kayah_Li_alphabet'
-    },
-    {'linkText': 'Wikipedi page',
-     'ref': 'https://en.wikipedia.org/wiki/Red_Karen_language'
-    },
-    {'linkText': 'Ethnolog',
-     'ref': 'https://www.ethnologue.com/language/kyu'
-    },
-    {'linkText': 'Combiners',
-     'ref': '/kyu/diacritic/'
-     },
-]
-
 diacritic_list = [unichr(x) for x in range(0xa926, 0xa92d)]
 
 default_base_consonant = u'\u1c00'
@@ -156,19 +119,18 @@ class IndigenousHomeHandler(webapp2.RequestHandler):
       path = os.path.join(os.path.dirname(__file__), 'demo_general.html')
       self.response.out.write(template.render(path, template_values))
 
+encodedRanges = [
+  (0x20, 2x7b),
+]
 # Presents UI for conversions from font encoding to Unicode.
 class ConvertUIHandler(webapp2.RequestHandler):
     def get(self):
 
       # All old characters
-      oldCharList = [unichr(x) + ' ' for x in xrange(0x20, 0x7b)] + \
-                    [unichr(x) + ' ' for x in xrange(0xc0, 0xc6)] + \
-                    [unichr(x) + ' ' for x in xrange(0xc8, 0xcf)] + \
-                    [unichr(x) + ' ' for x in xrange(0xd2, 0xd7)] + \
-                    [unichr(x) + ' ' for x in xrange(0xd9, 0xde)] + \
-                    [unichr(x) + ' ' for x in xrange(0xe0, 0xe6)] + \
-                    [unichr(x) + ' ' for x in xrange(0xe8, 0xf0)] + \
-                    [unichr(x) + ' ' for x in xrange(0xf2, 0xf4)]
+      oldCharList = []
+      for run in encodedRanges:
+        oldCharList.extend([unichr(x) + ' ' for x in xrange(run[0], run[1]))
+
       oldChars = ''.join(oldCharList)
       text = self.request.get('text', oldChars)
       font = self.request.get('font')

@@ -19,33 +19,34 @@ import webapp2
 
 from google.appengine.ext.webapp import template
 
-Language = 'Karenni'
-Language_native = 'ᰛᰩᰵ་ᰛᰵᰧᰶ'
-LanguageCode = 'kyu'
+Language = 'tavt'  # Actually the script code
+Language_native = 'tavt'
+LanguageCode = 'tavt'
+ScriptCode = 'tavt'
 
 encoding_font_list = [
   {
-    'font_path': '/fonts/kayahli.ttf',
-    'font_name': 'KayahLi',
-    'display_name': 'Kayah Li',
+    'font_path': '/fonts/blt/songpet.ttf',
+    'font_name': 'SongPet',
+    'display_name': 'Song Pet',
   },
   {
-    'font_path': '/fonts/karenni2.ttf',
-    'font_name': 'Karenni2',
-    'display_name': 'Karenni2',
+    'font_path': '/fonts/blt/whitetai.ttf',
+    'font_name': 'WhiteTai',
+    'display_name': 'White Tai',
   },
 ]
 
 unicode_font_list = [
     {
-        'family': 'NotoSansKayayLi',
-        'longName': 'Noto Sans Kayah Li',
-        'source': '/fonts/NotoSansKayahLi-Regular.ttf',
+        'family': 'NotoSansTaiViet',
+        'longName': 'Noto Sans TaiViet',
+        'source': '/fonts/blt/NotoSansTaiViet-Regular.ttf',
     },
   {
-    'family': 'KeyBogyi',
-    'source': '/fonts/kyebogyi_sil1.ttf',
-    'longName': 'KeyBogyi SIL',
+    'family': 'TaiHeritagePro',
+    'longName': 'Tai Heritage Pro',
+    'source': '/fonts/blt/TaiHeritagePro-Regular.ttf',
   },
 ]
 
@@ -70,22 +71,26 @@ links = [
     {'linkText': 'Unicode page',
      'ref': 'https://www.unicode.org/charts/PDF/U1C00.pdf'
     },
-    {'linkText': 'Lepcha script',
-     'ref': 'https://en.wikipedia.org/wiki/Lepcha_alphabet'
+    {'linkText': 'Tai Viet script',
+     'ref': 'https://en.wikipedia.org/wiki/https://en.wikipedia.org/wiki/https://en.wikipedia.org/wiki/Tai_Viet'
     },
-    {'linkText': 'Wikipedi page',
-     'ref': 'https://en.wikipedia.org/wiki/Lepcha_language'
+    {'linkText': 'Tai Dam language',
+     'ref': 'https://en.wikipedia.org/wiki/Tai_Dam_language'
     },
-    {'linkText': 'Ethnolog',
-     'ref': 'https://www.ethnologue.com/language/lep'
+    {'linkText': 'Tai Dón language',
+      'ref': 'https://en.wikipedia.org/wiki/Tai_D%C3%B3n_language'
+    },
+    {'linkText': 'Thai Song language',
+      'ref': 'https://en.wikipedia.org/wiki/Thai_Song_language'
     },
     {'linkText': 'Combiners',
      'ref': '/lep/diacritic/'
      },
 ]
 
+# TODO: Fill in with diacritics
 diacritic_list = [unichr(x) for x in range(0x1c24, 0x1c37)]
-
+#TODO: Fill in base consonant
 default_base_consonant = u'\u1c00'
 
 # Shows keyboards
@@ -107,35 +112,6 @@ kb_list = [
   {'shortName': LanguageCode,
    'longName': LanguageCode,
    },
-]
-
-links = [
-    {'linkText': 'Keyboard',
-     'ref': '/' + LanguageCode + '/'
-    },
-    {'linkText': 'Converter',
-     'ref': '/' + LanguageCode + '/convertUI/'},
-    {'linkText': 'Font conversion summary',
-      'ref': '/' + LanguageCode + '/encodingRules/'
-    },
-    {'linkText': 'Resources',
-      'ref': '/' + LanguageCode + '/downloads/'
-    },
-    {'linkText': 'Unicode page',
-     'ref': 'https://www.unicode.org/charts/PDF/U1C00.pdf'
-    },
-    {'linkText': 'Kayah Li script',
-     'ref': 'https://en.wikipedia.org/wiki/Kayah_Li_alphabet'
-    },
-    {'linkText': 'Wikipedi page',
-     'ref': 'https://en.wikipedia.org/wiki/Red_Karen_language'
-    },
-    {'linkText': 'Ethnolog',
-     'ref': 'https://www.ethnologue.com/language/kyu'
-    },
-    {'linkText': 'Combiners',
-     'ref': '/kyu/diacritic/'
-     },
 ]
 
 diacritic_list = [unichr(x) for x in range(0xa926, 0xa92d)]
@@ -156,19 +132,18 @@ class IndigenousHomeHandler(webapp2.RequestHandler):
       path = os.path.join(os.path.dirname(__file__), 'demo_general.html')
       self.response.out.write(template.render(path, template_values))
 
+encodedRanges = [
+  (0x20, 0x7b),
+]
 # Presents UI for conversions from font encoding to Unicode.
 class ConvertUIHandler(webapp2.RequestHandler):
     def get(self):
 
       # All old characters
-      oldCharList = [unichr(x) + ' ' for x in xrange(0x20, 0x7b)] + \
-                    [unichr(x) + ' ' for x in xrange(0xc0, 0xc6)] + \
-                    [unichr(x) + ' ' for x in xrange(0xc8, 0xcf)] + \
-                    [unichr(x) + ' ' for x in xrange(0xd2, 0xd7)] + \
-                    [unichr(x) + ' ' for x in xrange(0xd9, 0xde)] + \
-                    [unichr(x) + ' ' for x in xrange(0xe0, 0xe6)] + \
-                    [unichr(x) + ' ' for x in xrange(0xe8, 0xf0)] + \
-                    [unichr(x) + ' ' for x in xrange(0xf2, 0xf4)]
+      oldCharList = []
+      for run in encodedRanges:
+        oldCharList.extend([unichr(x) + ' ' for x in xrange(run[0], run[1])])
+
       oldChars = ''.join(oldCharList)
       text = self.request.get('text', oldChars)
       font = self.request.get('font')
