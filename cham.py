@@ -56,6 +56,11 @@ unicode_font_list = [
         'longName': 'Noto Sans Cham',
         'source': '/fonts/NotoSansCham-Regular.ttf',
     },
+    {
+        'family': 'ChamOIKulbleng',
+        'longName': 'Cham OI Kulbleng (extended Unicode)',
+        'source': 'fonts/Cham OI_Kulbleng.ttf',
+    },
 ]
 
 kb_list = [
