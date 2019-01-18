@@ -59,7 +59,7 @@ unicode_font_list = [
     {
         'family': 'ChamOIKulbleng',
         'longName': 'Cham OI Kulbleng (extended Unicode)',
-        'source': 'fonts/Cham OI_Kulbleng.ttf',
+        'source': '/fonts/Cham OI_Kulbleng.ttf'
     },
 ]
 
