@@ -110,6 +110,41 @@ function toLower(instring) {
   return instring.toLowerCase();  // Check if this actually works for CHR.
 }
 
+/**
+ * Fix issues with Unicode text including:
+ * 1. Remove U+200b, zero width space
+ * 2. Remove null bytes
+ * 3. Reorder combining characters.
+ */
+function normalizeUnicodeBoxes(inbox, outbox) {
+  var inarea = document.getElementById(inbox);
+  var outarea = document.getElementById(outbox);
+
+  var intext = inarea.value;
+
+  var newText = intext;
+
+  // Remove ZWS and null characters.
+  pattern = /[\u200b\u0000]/gi;
+  replace = "";
+  newText = intext.replace(pattern, replace);
+  intext = newText;
+
+  // Move some diacritics
+  // Fix vowel ordering
+  pattern = /([\uaa29\uaa32])([\uaa2a-\uaa2c\uaa2e-\uaa36])/gi;
+  replace = "$2$1";
+  newText = intext.replace(pattern, replace);
+  intext = newText;  // Fix vowel ordering
+
+  pattern = /([\uaa43\uaa4c\uaa4d])([\uaa29-\uaa36])/gi;
+  replace = "$2$1";
+  newText = intext.replace(pattern, replace);
+  intext = newText;
+
+  outarea.value = outarea.InnerHTML = intext;
+}
+
 function convertEncodingToUnicode(inbox, outbox, encodingIndex) {
   var inarea = document.getElementById(inbox);
   var outarea = document.getElementById(outbox);

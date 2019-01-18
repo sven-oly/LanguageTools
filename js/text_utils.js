@@ -100,13 +100,20 @@ function utf16common(text, prefix, suffix, asciitoo, highlight_list)
   function  uhexToChars(textinput) {
    // blanks delimit
    var removed_uslash = textinput.replace(/\\u/g, " ");
+   // ignore multiple spaces
+   removed_uslash = removed_uslash.replace(/\u0020\u0020+/g, " ");
+   removed_uslash = removed_uslash.replace(/$\u0020+/, "");
+   //
+   removed_uslash = removed_uslash.replace(/\u0000/g, "");
    var hexSplit = removed_uslash.split(" ");
    // var hexSplit = textinput.split(" ");
    var charsOut = new Array(hexSplit.length);
    for (i = 0; i < hexSplit.length; i++) {
-     var hex = hexSplit[i].replace("u+", "").trim();
-     var charCode = parseInt(hex, 16);
-     charsOut[i] = String.fromCharCode(charCode);
+     if (hexSplit[i] != "") {
+       var hex = hexSplit[i].replace("u+", "").trim();
+       var charCode = parseInt(hex, 16);
+       charsOut[i] = String.fromCharCode(charCode);
+     }
    }
    size = textinput.length
    return charsOut.join("");

@@ -389,6 +389,12 @@
            onclick="fillWithUnicodeCombiners('Unicode_font_output_text',
                     'new_hex');"
            value="Unicode combining chars" />
+      {% if showNormalize %}
+      <input type="button"
+             onclick="normalizeUnicodeBoxes('Unicode_font_output_text', 'Unicode_font_output_text');"
+             value="Normalize" id="normalizeText" />
+      {% endif %}
+
     <br />
     Hex values:
     <textarea id="new_hex" cols="80" rows="3" style="font-family:'Courier New';font-size:14px;"></textarea>

@@ -99,6 +99,8 @@ links = [
 ]
 
 
+codepoint_list = [unichr(x) for x in range(0xaa00, 0xaa5f)]
+
 diacritic_list = [unichr(x) for x in range(0xaa29, 0xaa37)] + \
   [unichr(x) for x in range(0xaa43, 0xaa44)] + \
   [unichr(x) for x in range(0xaa4c, 0xaa4e)]
@@ -135,8 +137,11 @@ class ConvertUIHandler(webapp2.RequestHandler):
 
       oldInput = text
 
-      unicodeChars = ''
-      unicodeCombiningChars = ''
+      unicodeChars = [unichr(x) for x in xrange(0xaa2, 0xaa37)]
+      combineList = [unichr(x) for x in xrange(0xaa2, 0xaa37)]
+      combineList = [unichr(x) for x in xrange(0xa43, 0xaa44)]
+      combineList = [unichr(x) for x in xrange(0xa4c, 0xaa4d)]
+      unicodeCombiningChars = ' '.join(diacritic_list)
       kb_list = [
         {'shortName':  LanguageCode,
          'longName': Language
@@ -157,8 +162,9 @@ class ConvertUIHandler(webapp2.RequestHandler):
           'text': text,
           'textStrings': testStringList,
           'showTools': self.request.get('tools', None),
-          'unicodeChars': unicodeChars,
+          'unicodeChars': ' '.join(codepoint_list),
           'combiningChars': unicodeCombiningChars,
+          'showNormalize': True,
       }
       path = os.path.join(os.path.dirname(__file__), 'translit_general.html')
       self.response.out.write(template.render(path, template_values))
