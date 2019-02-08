@@ -47,14 +47,14 @@ encoding_font_list = [
 
 unicode_font_list = [
     {
-        'family': 'ChamOITangin',
-        'longName': 'Cham OI Trangin (extended Unicode)',
-        'source': '/fonts/Cham\ OI_Tangin_0.ttf',
-    },
-    {
         'family': 'NotoSansCham',
         'longName': 'Noto Sans Cham',
         'source': '/fonts/NotoSansCham-Regular.ttf',
+    },
+    {
+        'family': 'ChamOITangin',
+        'longName': 'Cham OI Trangin (extended Unicode)',
+        'source': '/fonts/Cham\ OI_Tangin_0.ttf',
     },
     {
         'family': 'ChamOIKulbleng',
