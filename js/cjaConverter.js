@@ -156,7 +156,7 @@ function convertEncodingToUnicode(inbox, outbox, encodingIndex) {
   var finish = inarea.selectionEnd;
   // obtain the selected text
 
-  if (start != finish || finish != 0) {
+  if (start != finish && finish != 0) {
     var intext = inarea.value.substring(start, finish);
   } else {
     // Otherwise, the whole text.
@@ -179,6 +179,48 @@ function convertEncodingToUnicode(inbox, outbox, encodingIndex) {
 
   // Insert more complex replacements here.
   var newText = outtext;
+  // Next, move some code points in context to get proper Unicode ordering.
+  // Vowel sign to right of consonants:
+  ePattern = /([\uaa2f\uaa30\uaa34]+)([\uaa00-\uaa28])/gi;
+  eReplace = "$2$1";
+  newText = outtext.replace(ePattern, eReplace);
+
+  // Rearrange some vowel signs
+  outtext = newText;
+  ePattern = /([\uaa2d]+)([\uaa2e]+)/gi;
+  eReplace = "$2$1";
+  newText = outtext.replace(ePattern, eReplace);
+
+  outtext = newText;
+  ePattern = /([\uaa2f]+)([\uaa33-\uaa35]+)/gi;
+  eReplace = "$2$1";
+  newText = outtext.replace(ePattern, eReplace);
+
+  outtext = newText;
+  ePattern = /([\uaa4c]+)([\uaa2d]+)/gi;
+  eReplace = "$2$1";
+  newText = outtext.replace(ePattern, eReplace);
+
+  outtext = newText;
+  ePattern = /([\uaa36]+)([\uaa44]+)/gi;
+  eReplace = "$2$1";
+  newText = outtext.replace(ePattern, eReplace);
+
+  outtext = newText;
+  ePattern = /([\uaa30]+)([\uaa31-\uaa36]+)/gi;
+  eReplace = "$2$1";
+  newText = outtext.replace(ePattern, eReplace);
+
+  outtext = newText;
+  ePattern = /([\uaa29-\uaa2c])+([\uaa2d-\uaa2e\uaa31-\uaa36]+)/gi;
+  eReplace = "$2$1";
+  newText = outtext.replace(ePattern, eReplace);
+
+  // Convert double 0x27!
+  outtext = newText;
+  ePattern = /\u0027\u0027/gi;
+  eReplace = "\uaa5e";
+  newText = outtext.replace(ePattern, eReplace);
 
   if (outarea) {
     outarea.innerHTML = outarea.value = newText;
