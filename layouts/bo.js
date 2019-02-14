@@ -33,7 +33,7 @@ var BO_UNICODE_LAYOUT = {
 	    '{{\u0F63}}{{\u0F4D}}{{\u0F60}}' +
 	  '{{\u0F5F}}{{\u0F59}}{{\u0F45}}{{\u0F4C}}' +
 	    '{{\u0F56}}{{\u0F53}}{{\u0F58}}{{\u0FB1}}' +
-	    '{{\u0FB2}}{{\u0F0D}}{{\u0F0C}}'
+	    '{{\u0FB2}}{{\u0F0D}}{{\u0F0B}}'
     },
     's': {
       '': '{{\u0F38}}{{\u0F11}}{{\u0F04}}{{\u0F05}}{{\u201C}}{{\u201D}}{{\u0F08}}{{\u0F3C}}{{\u0F3D}}{{\u0028}}{{\u0029}}{{\u0F81}}{{\u0F83}}' +
@@ -42,7 +42,7 @@ var BO_UNICODE_LAYOUT = {
 	  '{{\u0F71}}{{\u0F5E}}{{\u0F5A}}{{\u0F46}}{{\u0F4E}}{{\u0F57}}{{\u0F49}}{{\u0F65}}{{\u2019}}{{\u0FB3}}{{\u201E}}'
     },
     'c': {  // alt-control and shift-alt-control
-      '':  ''
+      ' ':  '\u0F0C'
     },
     'sc': {  // alt-control and shift-alt-control
     },
