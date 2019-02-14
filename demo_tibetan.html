@@ -16,34 +16,44 @@
 
     @font-face{
       font-family:'MonlamBodyig';
-      src:url('/fonts/monlam bodyig.ttf');
+      src:url('/fonts/tibetan/monlam bodyig.ttf');
       font-weight:normal;
       font-style:normal;
-      font-size: 32px;
+      font-size: 24px;
     }
 
     @font-face{
       font-family:'NotoSansTibetan';
-      src:url('/fonts/NotoSansTibetan-Regular.ttf');
+      src:url('/fonts/tibetan/NotoSansTibetan-Regular.ttf');
       font-weight:normal;
       font-style:normal;
-      font-size: 32px;
+      font-size: 24px;
     }
+
 
     .notoTibetan {
       font-family:'NotoSansTibetan';
-      font-size: 32px;
+      font-size: 24px;
     }
 
     .monlam {
       font-family:'MonlamBodyig';
-      font-size: 32px;
+      font-size: 24px;
     }
 
     .default-font {
       font-family: MonlamBodyig, Times New Roman, Arial, Helvetica;
-      font-size:24px;
+      font-size:16px;
       }
+
+   {% for font in font_list %}
+    @font-face{
+      font-family:"{{font.family}}";
+      src:url("{{font.source}}");
+      font-weight:normal;
+      font-style:normal;
+    }
+    {% endfor %}
 
     {font-family:Monlam Arial;}
     
@@ -105,6 +115,13 @@
       dest_field.value = code_text;
       document.getElementById('t1').focus();
     }
+
+    function setFontFamily(newFontFamily, area) {
+       var output_field = document.getElementById(area);
+
+      output_field.className = newFontFamily;
+      output_field.style.fontFamily = newFontFamily; //  + ",Arial";
+    }
   </script>
 
   <script>window["_GOOG_TRANS_EXT_VER"] = "1";</script>
@@ -132,21 +149,26 @@
     <textarea id="t1" dir="ltr" class="monlam" classstyle="width:600px;" rows="10"></textarea>
   </div>
 
-  <input type="button" value="Noto Sans Tibetan" 
-    onclick="toggleVisible('notosans_div');copyText('t1', 'notoSansArea');">
-  <div id="notosans_div" style="display: none">
-    <input type="button" value="Copy text" 
-      onclick="copyText('t1', 'notoSansArea');">
-    <textarea id="notoSansArea" dir="ltr" class="notoTibetan" classstyle="width:600px;" rows="10"></textarea>
+    <input type="button" value="Copy text"
+      onclick="copyText('t1', 'fontArea');">  <select onchange="setFontFamily(this.value, 'fontArea');" id="fontSelector">
+    {% for font in font_list %}
+    <option value="{{font.family}}">{{font.longName}}</option>
+    {% endfor %}
+    <option value="Arial">Arial</option>
+  </select>
+
+  <div id="font_div">
+    <textarea id="fontArea" dir="ltr" class="notoTibetan" classstyle="width:600px;" rows="10"></textarea>
   </div>  
   <br />
-  <br />
   <input type="button" value="Show code points" onclick="showCodePoints();toggleVisible('codepoint_block');">
-  <br />
+  <input type="button" value="-> Unicode text"
+             onclick="hexToOutput('codepoints', 'fontArea');hexToOutput('codepoints', 't1');">  <br />
   <div id="codepoint_block" style="display: none">
     <br />
     <textarea id="codepoints" class="default-font" classstyle="width:600px;" rows="10"></textarea>
     <br>
+
   </div>
       <br />
   <div>

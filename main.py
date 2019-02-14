@@ -56,7 +56,30 @@ class MainHandler(webapp2.RequestHandler):
 
 class TibetanHomeHandler(webapp2.RequestHandler):
     def get(self):
+      font_list = [
+        {
+          'source': '/fonts/tibetan/NotoSansTibetan-Regular.ttf',
+          'family': 'NotoSansTibetan',
+          'longName': 'Noto Sans Tibetan',
+        },
+        {
+          'source': '/fonts/tibetan/BabelStoneTibetan.ttf',
+          'family': 'BabelStoneTibetan',
+          'longName': 'Babel Stone Tibetan',
+        },
+        {
+          'source': '/fonts/tibetan/Jomolhari-alpha3c-0605331.ttf',
+          'family': 'Jomolhari',
+          'longName': 'Jomolhari-alpha3c',
+        },
+        {
+          'source': '/fonts/tibetan/TibMachUni-1.901b.ttf',
+          'family': 'TibMachUni',
+          'longName': 'TibMachUni - 1.901b',
+        },
+      ]
       template_values = {
+        'font_list': font_list,
         'langlist': LanguageList,
       }
       path = os.path.join(os.path.dirname(__file__), 'demo_tibetan.html')
