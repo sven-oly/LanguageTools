@@ -161,10 +161,10 @@
     <textarea id="fontArea" dir="ltr" class="notoTibetan" classstyle="width:600px;" rows="10"></textarea>
   </div>  
   <br />
-  <input type="button" value="Show code points" onclick="showCodePoints();toggleVisible('codepoint_block');">
+  <input type="button" value="Show code points" onclick="showCodePoints();">
   <input type="button" value="-> Unicode text"
              onclick="hexToOutput('codepoints', 'fontArea');hexToOutput('codepoints', 't1');">  <br />
-  <div id="codepoint_block" style="display: none">
+  <div id="codepoint_block">
     <br />
     <textarea id="codepoints" class="default-font" classstyle="width:600px;" rows="10"></textarea>
     <br>
