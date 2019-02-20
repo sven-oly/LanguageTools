@@ -38,7 +38,7 @@ unicode_font_list = [
     {
         'family': 'NotoSansTibetan',
         'longName': 'Noto Sans Tibetan',
-        'source': '/fonts/NotoSansTibetan-Regular.ttf',
+        'source': '/fonts/tibetan/NotoSansTibetan-Regular.ttf',
     },
 ]
 
@@ -314,7 +314,8 @@ class TibetanHomeHandler(webapp2.RequestHandler):
 
 
 app = webapp2.WSGIApplication([
-  ('/' + LanguageCode + '/', TibetanHomeHandler),
+  ('/' + LanguageCode + '/', IndigenousHomeHandler),
+  ('/' + LanguageCode + '/compare/', TibetanHomeHandler),
   ('/' + LanguageCode + '/convertUI/', ConvertUIHandler),
   ('/' + LanguageCode + '/downloads/', Downloads),
   ('/' + LanguageCode + '/encodingRules/', EncodingRules),

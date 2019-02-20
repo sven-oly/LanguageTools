@@ -180,9 +180,9 @@ def handle_500(request, response, exception):
 app = webapp2.WSGIApplication(
     [
         ('/', MainHandler),
-        ('/bo/', TibetanHomeHandler),
-        ('/bod/', tibetan.IndigenousHomeHandler),
-        ('/bod/diacritic/', tibetan.DiacriticHandler),
+#        ('/bo/', TibetanHomeHandler),
+ #       ('/bod/', tibetan.IndigenousHomeHandler),
+  #      ('/bod/diacritic/', tibetan.DiacriticHandler),
         ('/tmh/', TamashekHomeHandler),
         ('/omq/', OtomangueanHomeHandler),
         ('/en_anangu/', AnanuguYolnguHomeHandler),
