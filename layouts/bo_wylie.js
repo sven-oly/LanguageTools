@@ -15,13 +15,13 @@
 
 
 var BO_WYLIE_LAYOUT = {
-  'id': 'bo_wyline',
+  'id': 'bo_wylie',
   'title': 'Tibetan Wylie input', // Revise this
   'mappings': {
     ',c': {
       '': '`1234567890-=' +
           'qwertyuiop{}|' +
-          '{{ཨ}}sdfghjkl:"' +
+          '{{a}}sdfghjkl:"' +
           'zxcvbnm<>?'
     },
     's,sc': {
@@ -67,7 +67,7 @@ var BO_WYLIE_LAYOUT = {
     'wa': 'ཝ',
     'zha': 'ཞ',
     'za': 'ཟ',
-    "'a": 'འ',
+    '\'a': 'འ',
     'ya': 'ཡ',
     'ra': 'ར',
     'la': 'ལ',
@@ -75,16 +75,20 @@ var BO_WYLIE_LAYOUT = {
     'sa': 'ས',
     'ha': 'ཧ',
     'a': 'ཨ',
-    'i': 'ི',
-    'u': 'ུ',
-    'e': 'ེ',
-    'o': 'ོ',
-    'y', 'ྱ'
+    'i': '\u0F72',
+    'u': '\u0F74',
+    'e': '\u0F7A',
+    'o': '\u0F7C',
+    'y': '\u0FB1',
+    '\u0F7a\u001d?e': '\u0F7b',
+    '\u0F7C\u001d?o': '\u0F7D',
+    '\u0F72\u001di': '\u0f71\u0f72',
+    '\u0F74\u001du': '\u0f71\u0f74',
+
     // TODO: Handle y, gy, g, 'g.y'??
-    // Handle doubled ee and oo
 
   }
 };
 
 // Load the layout and inform the keyboard to switch layout if necessary.
-google.elements.keyboard.loadme(BO_UNICODE_LAYOUT);
+google.elements.keyboard.loadme(BO_WYLIE_LAYOUT);

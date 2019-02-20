@@ -19,6 +19,7 @@ import base
 import json
 import logging
 import os
+import sys
 import urllib
 import webapp2
 
@@ -26,7 +27,7 @@ from google.appengine.ext.webapp import template
 
 Language = 'Tibetan'
 Language_native = 'Tibetan language'
-LanguageCode = 'bo'
+LanguageCode = 'bod'
 
 encoding_font_list = [
   {
@@ -42,9 +43,13 @@ unicode_font_list = [
 ]
 
 kb_list = [
-  {'shortName': LanguageCode,
-   'longName': LanguageCode,
+  {'shortName': 'bo' + '_wylie',
+   'longName': 'Tibetan' + ' Wylie',
    },
+  {'shortName': 'bo',
+   'longName': Language,
+   },
+
 ]
 
 links = [
@@ -85,13 +90,13 @@ class langInfo():
   def __init__(self):
     self.LanguageCode = 'bo'
     self.Language = 'Tibetan'
-    self.Language_native = u''
+    self.Language_native = u'བོད་སྐད།'
     self.direction = 'ltr'
 
     self.diacritic_list = diacritic_list
 
     self.base_consonant = u'𖫧'
-    self.baseHexUTF16 = u'\ud81a\udee7'
+    self.baseHexUTF16 = self.base_consonant
 
     self.lang_list = [
       { 'shortName': self.LanguageCode,
@@ -126,6 +131,7 @@ codepoint_list = [unichr(x) for x in range(0x0f00, 0x0fdb)]
 
 default_base_consonant = u'\u0f41'
 
+
 # Shows keyboards
 class IndigenousHomeHandler(webapp2.RequestHandler):
     def get(self):
@@ -139,6 +145,7 @@ class IndigenousHomeHandler(webapp2.RequestHandler):
       }
       path = os.path.join(os.path.dirname(__file__), 'demo_general.html')
       self.response.out.write(template.render(path, template_values))
+
 
 # Presents UI for conversions from font encoding to Unicode.
 class ConvertUIHandler(webapp2.RequestHandler):
@@ -275,9 +282,39 @@ class DiacriticHandler(webapp2.RequestHandler):
     path = os.path.join(os.path.dirname(__file__), 'diacritics.html')
     self.response.out.write(template.render(path, template_values))
 
+class TibetanHomeHandler(webapp2.RequestHandler):
+    def get(self):
+      font_list = [
+        {
+          'source': '/fonts/tibetan/NotoSansTibetan-Regular.ttf',
+          'family': 'NotoSansTibetan',
+          'longName': 'Noto Sans Tibetan',
+        },
+        {
+          'source': '/fonts/tibetan/BabelStoneTibetan.ttf',
+          'family': 'BabelStoneTibetan',
+          'longName': 'Babel Stone Tibetan',
+        },
+        {
+          'source': '/fonts/tibetan/Jomolhari-alpha3c-0605331.ttf',
+          'family': 'Jomolhari',
+          'longName': 'Jomolhari-alpha3c',
+        },
+        {
+          'source': '/fonts/tibetan/TibMachUni-1.901b.ttf',
+          'family': 'TibMachUni',
+          'longName': 'TibMachUni - 1.901b',
+        },
+      ]
+      template_values = {
+        'font_list': font_list,
+      }
+      path = os.path.join(os.path.dirname(__file__), 'demo_tibetan.html')
+      self.response.out.write(template.render(path, template_values))
+
 
 app = webapp2.WSGIApplication([
-  ('/' + LanguageCode + '/', ConvertUIHandler),
+  ('/' + LanguageCode + '/', TibetanHomeHandler),
   ('/' + LanguageCode + '/convertUI/', ConvertUIHandler),
   ('/' + LanguageCode + '/downloads/', Downloads),
   ('/' + LanguageCode + '/encodingRules/', EncodingRules),

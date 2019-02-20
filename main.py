@@ -16,6 +16,8 @@
 # limitations under the License.
 #
 
+import tibetan
+
 import translit
 
 import json
@@ -179,6 +181,8 @@ app = webapp2.WSGIApplication(
     [
         ('/', MainHandler),
         ('/bo/', TibetanHomeHandler),
+        ('/bod/', tibetan.IndigenousHomeHandler),
+        ('/bod/diacritic/', tibetan.DiacriticHandler),
         ('/tmh/', TamashekHomeHandler),
         ('/omq/', OtomangueanHomeHandler),
         ('/en_anangu/', AnanuguYolnguHomeHandler),
