@@ -35,11 +35,31 @@ encoding_font_list = [
 ]
 
 unicode_font_list = [
-    {
-        'family': 'NotoSansTibetan',
-        'longName': 'Noto Sans Tibetan',
-        'source': '/fonts/tibetan/NotoSansTibetan-Regular.ttf',
-    },
+  {
+    'source': '/fonts/tibetan/NotoSansTibetan-Regular.ttf',
+    'family': 'NotoSansTibetan',
+    'longName': 'Noto Sans Tibetan',
+  },
+  {
+    'source': '/fonts/tibetan/BabelStoneTibetan.ttf',
+    'family': 'BabelStoneTibetan',
+    'longName': 'Babel Stone Tibetan',
+  },
+  {
+    'source': '/fonts/tibetan/Jomolhari-alpha3c-0605331.ttf',
+    'family': 'Jomolhari',
+    'longName': 'Jomolhari-alpha3c',
+  },
+  {
+    'source': '/fonts/tibetan/TibMachUni-1.901b.ttf',
+    'family': 'TibMachUni',
+    'longName': 'TibMachUni - 1.901b',
+  },
+  {
+    'family': 'MonlamBodyig',
+    'source': '/fonts/tibetan/monlam bodyig.ttf',
+    'longName': 'Monlam',
+  }
 ]
 
 kb_list = [

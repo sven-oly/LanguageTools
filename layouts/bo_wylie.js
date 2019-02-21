@@ -21,7 +21,7 @@ var BO_WYLIE_LAYOUT = {
     ',c': {
       '': '`1234567890-=' +
           'qwertyuiop{}|' +
-          '{{a}}sdfghjkl:"' +
+          '{{a}}sdfghjkl:\'' +
           'zxcvbnm<>?'
     },
     's,sc': {
@@ -44,12 +44,11 @@ var BO_WYLIE_LAYOUT = {
     }
   },
   'transform': {
-    'k' : 'ཀ',
-    'c' : 'ཅ',
+    'ka' : 'ཀ',
+    'ca' : 'ཅ',
     'ཀ\u001d?h': 'ཁ',  // kh
-    'g': 'ག',
+    'ga': 'ག',
     'ན\u001d?g': 'ང',  // ng
-    'c': 'ཅ',
     'ch': 'ཆ',
     'j': 'ཇ',
     'ན\u001d?y': 'ཉ',  // ny
