@@ -51,6 +51,12 @@ encoding_font_list = [
 
 unicode_font_list = [
   {
+      'family': 'Rohingya Noories One',
+      'longName': 'Rohingya Noories One',
+      'source': '/fonts/Rohingya Noories One.otf',
+      'attribution': 'From MD Noor 25-Feb-2019',
+  },
+ {
       'family': 'MNitaRohingya Traced',
       'longName': 'MNita Rohingya Traced',
       'source': '/fonts/RohingyaTraced.ttf',
