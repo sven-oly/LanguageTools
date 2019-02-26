@@ -75,14 +75,15 @@
   <div class="container">
     <div class="span-1">  
     </div>
-  <div class="span-16 last">
+  <div class="span-24 last">
     <h1>Download {{language}} fonts</h1>
 
     <ul>
       {% for font in unicode_font_list %}
-      <li>
+      <li style="font-size:24px;"> {{font.longName}} 
+           <span style="font-family:{{font.family}};font-size:30px;">{{language_native}}</span>:
         <a href="{{font.source}}" download
-           style="font-family:{{font.family}};font-size:30px;">{{font.longName}} ({{language_native}})</a>
+           style="font-family:{{font.family}};font-size:24px;">{{font.longName}}</a>
       </li>
       {% endfor %}
     </ul>

@@ -27,7 +27,7 @@ import webapp2
 from google.appengine.ext.webapp import template
 
 Language = 'Lepcha'
-Language_native = 'ᰛᰩᰵ་ᰛᰵᰧᰶ'
+Language_native = 'ᰛᰩᰵ་ᰛᰵᰛᰧᰶ'
 LanguageCode = 'lep'
 
 encoding_font_list = [

@@ -26,7 +26,7 @@ import webapp2
 from google.appengine.ext.webapp import template
 
 Language = 'Tibetan'
-Language_native = 'Tibetan language'
+Language_native = 'བོད་སྐྲད་'
 LanguageCode = 'bod'
 
 encoding_font_list = [
