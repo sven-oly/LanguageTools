@@ -2,4 +2,6 @@
 *.pyc
 *~
 *.save
+py_convert/*
+CLDR/*
 #*
