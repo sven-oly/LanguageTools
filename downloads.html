@@ -13,6 +13,32 @@
 
   <link rel="stylesheet" type="text/css" href="/css/fonts.css">
 
+    <style>
+      {% for font in unicode_font_list %}
+      @font-face{
+          font-family:"{{font.family}}";
+          src:url("{{font.source}}");
+          font-weight:normal;
+          font-style:normal;
+      }
+      {% endfor %}
+
+      {% for font in unicode_font_list %}
+      .{{font.family}} {
+          font-family: "{{font.family}},Arial";
+          font-size:20px;
+      }
+      {% endfor %}
+      
+      .default-font {
+          font-family: "Arial,Helvetica";
+          font-size:12px;
+      }
+      
+      input {font-size:18px;}
+      textarea {font-size:20px; height:400px; resize: vertical;}
+    </style>
+
   <style>
   textarea {
     width: 600px;
@@ -26,8 +52,6 @@
   }
   </style>
   <script src="/js/utils.js"></script>
-  <script src="/js/osageConverter.js"></script>
-  <script src="/js/osage_utils.js"></script>
   <script>
 
   function toggle(id, toggle) {
@@ -58,7 +82,7 @@
       {% for font in unicode_font_list %}
       <li>
         <a href="{{font.source}}" download
-           style="font-family:{{font.family}};font-size:24px;">{{font.longName}} ({{language_native}})</a>
+           style="font-family:{{font.family}};font-size:30px;">{{font.longName}} ({{language_native}})</a>
       </li>
       {% endfor %}
     </ul>
