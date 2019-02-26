@@ -40,8 +40,8 @@
       font-size:12px;
       }
 
-    input {font-size:14px;}
-    textarea {font-size:18; height:400px; resize: vertical;}
+    input {font-size:18px;}
+    textarea {font-size:18px; height:400px; resize: vertical;}
     </style>
 
   <script src="/js/utils.js"></script>
@@ -71,7 +71,9 @@
 
       controller.addEventListener(
           'lat',
-          function () { setFontFamily('NotoSansBassaVah');});
+          function () {
+              setFontFamily('{{font_list.0.family}}');
+          });
       input.focus();
 
 
@@ -180,12 +182,13 @@
     <option value="Arial">Arial</option>
   </select>
   Size: <select onchange="onSizeSelected(this.value, 't1');" id="sizeSelector">
-    <option value="10px" select>10</option>
-    <option value="14px" >14</option>
-    <option value="18px" selected>18</option>
-    <option value="24px" ">24</option>
-    <option value="32px" >32</option>
-    <option value="48px" >48</option>
+    <option value="10px">10</option>
+    <option value="14px">14</option>
+    <option value="18px">18</option>
+    <option value="24px" selected>24</option>
+    <option value="32px">32</option>
+    <option value="48px">48</option>
+    <option value="48px">60</option>
   </select>
   <input type="button" value="Clear text" onclick="clearText()">
   <br />
