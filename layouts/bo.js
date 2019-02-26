@@ -57,6 +57,9 @@ var BO_UNICODE_LAYOUT = {
     }
   },
   'transform': {
+    // Replace doubled vowels with equivalent long forms.
+    '\u0f7a\u0f7a': '\u0f7b',  // EE
+    '\u0f7c\u0f7c': '\u0f7d',  // OO
     // 'a' is the dead key for transformations.
     '\u21d3\u0f40' : '\u0f90',
     '\u21d3\u0f41' : '\u0f91',

@@ -80,8 +80,8 @@ var BO_WYLIE_LAYOUT = {
     'e': '\u0F7A',
     'o': '\u0F7C',
     'y': '\u0FB1',
-    '\u0F7a\u001d?e': '\u0F7b',
-    '\u0F7C\u001d?o': '\u0F7D',
+    '\u0F7a\u001d?e': '\u0F7b',  // Doubled E
+    '\u0F7C\u001d?o': '\u0F7D',  // Doubled O
     '\u0F72\u001di': '\u0f71\u0f72',
     '\u0F74\u001du': '\u0f71\u0f74',
 
