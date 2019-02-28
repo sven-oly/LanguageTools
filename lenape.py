@@ -77,6 +77,9 @@ links = [
     {'linkText': 'Delware Tribe',
      'ref': 'http://delawaretribe.org/'
     },
+    {'linkText': 'Lenape Talking Dictionary',
+     'ref': 'http://www.talk-lenape.org/'
+    },
 ]
 
 # Shows keyboards
