@@ -130,15 +130,22 @@ class langInfo():
     self.encoding_font_list = encoding_font_list
     self.kb_list = [
       {
+        'shortName': self.LanguageCode + '2',
+        'longName': 'Rohigya 2 layout',
+        'jsName': self.LanguageCode,
+        'instructions': None,
+        'font': 'MNitaRohingyaTraced',
+      },
+      {
         'shortName': self.LanguageCode,
-        'longName': 'Hanific Rohigya Unicode',
+        'longName': 'Hanifi Rohigya Unicode',
         'jsName': self.LanguageCode,
         'instructions': None,
         'font': 'MNitaRohingyaTraced',
       },
       {
         'shortName': self.LanguageCode + '_arab',
-        'longName': 'Hanific Arabic Unicode',
+        'longName': 'Hanifi Arabic Unicode',
         'jsName': self.LanguageCode + '_arab',
         'instructions': None,
         'font': 'ScheherazadeRohingya',
