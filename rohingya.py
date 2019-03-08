@@ -56,12 +56,13 @@ unicode_font_list = [
       'source': '/fonts/Rohingya Noories One.otf',
       'attribution': 'From MD Noor 25-Feb-2019',
   },
- {
-      'family': 'MNitaRohingyaTraced',
-      'longName': 'MNita Rohingya Traced',
-      'source': '/fonts/RohingyaTraced.ttf',
-      'attribution': 'Created by Mihai Nita 2018-08-29',
-  },
+
+ #{
+ #     'family': 'MNitaRohingyaTraced',
+ #     'longName': 'MNita Rohingya Traced',
+ #     'source': '/fonts/RohingyaTraced.ttf',
+ #     'attribution': 'Created by Mihai Nita 2018-08-29',
+ # },
   {
       'family': 'UniFoundaryUpper',
       'longName': 'Unifont (unifoundry.com)',
@@ -84,7 +85,7 @@ links = [
     {'linkText': 'Font conversion summary',
       'ref': '/rhg/encodingRules/'
     },
-    {'linkText': 'Resources',
+    {'linkText': 'Resources / Downloads',
       'ref': '/rhg/downloads/'
     },
     {'linkText': 'Unicode Page',
@@ -99,10 +100,6 @@ links = [
      },
     {'linkText': 'Keyboard layout suggestion',
      'ref': 'https://rohingyaciki.wordpress.com/2018/03/08/rohingya-zuban-hanifi-fonts/amp/'},
-
-    {'linkText': 'Download simple font',
-     'ref': 'http://unifoundry.com/pub/unifont/unifont-11.0.02/font-builds/unifont_upper-11.0.02.ttf'
-     },
 ]
 
 class langInfo():
@@ -134,14 +131,14 @@ class langInfo():
         'longName': 'Rohigya 2 layout',
         'jsName': self.LanguageCode,
         'instructions': None,
-        'font': 'MNitaRohingyaTraced',
+        'font': 'RohingyaNooriesOne',
       },
       {
         'shortName': self.LanguageCode,
         'longName': 'Hanifi Rohigya Unicode',
         'jsName': self.LanguageCode,
         'instructions': None,
-        'font': 'MNitaRohingyaTraced',
+        'font': 'RohingyaNooriesOne',
       },
       {
         'shortName': self.LanguageCode + '_arab',
