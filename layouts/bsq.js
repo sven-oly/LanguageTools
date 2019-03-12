@@ -9,8 +9,8 @@ var BSQ_LAYOUT = {
   'mappings': {
     ',c': {
       '':  '`1234567890-=' +
-          '{{\uD81A\uded8}}{{\uD81A\udedb}}{{\uD81A\udee6}}{{\uD81A\udeed}}' +
-	        '{{\uD81A\udee1}}{{\uD81A\uded5}}{{\uD81A\udeea}}{{\uD81A\udeed}}' +
+          '{{\uD81A\uded8}}{{\uD81A\udedb}}{{\uD81A\udee8}}{{\uD81A\udeed}}' +
+	        '{{\uD81A\udee1}}{{\uD81A\uded5}}{{\uD81A\udeea}}{{\uD81A\udeda}}' +
 	        '{{\uD81A\udee9}}{{\uD81A\udee5}}{{\uD81A\udeec}}{{\uD81A\udee0}}\\' +
           '{{\uD81A\udee7}}{{\ud81a\uded2}}{{\uD81A\udedd}}{{\uD81A\uded3}}' +
 	        '{{\uD81A\uded6}}{{\uD81A\udee4}}{{\uD81A\uded9}}{{\uD81A\uded1}}' +
