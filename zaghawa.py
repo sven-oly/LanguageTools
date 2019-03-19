@@ -32,18 +32,18 @@ encoding_font_list = [
     {
       'font_path':'/fonts/zawghawa/ZaghawaBeria.otf',
       'font_name':'ZaghawaBeriaASCII',
-      'display_name': 'Zawhawa Beria ASCIi',
+      'display_name': 'Zaghawa Beria ASCIi',
       'Source location': 'https://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&id=ZaghawaBeria_Hom/',
     },
 ]
 
 unicode_font_list = [
-#  {
-#      'family': 'RohingyaNooriesOne',
-#      'longName': 'Rohingya Noories One',
-#      'source': '/fonts/Rohingya Noories One.otf',
-#      'attribution': 'From MD Noor 25-Feb-2019',
-#  },
+  {
+      'family': 'ZaghawaBeriaASCIIPUA',
+      'longName': 'Zaghawa Beria PUA',
+      'source': '/fonts/zawghawa/ZaghawaBeria_PUA.otf',
+      'attribution': 'Modified Zaghawa Beria',
+  },
 ]
 
 links = [
@@ -110,7 +110,17 @@ class langInfo():
     self.unicode_font_list = unicode_font_list
 
     # Lists of test characters for the various encodings
-    self.test_chars = [' '.join([unichr(x) for x in range(0x620, 0x6f9)])]
+    test_range = [unichr(x) for x in xrange(0x0020, 0x007f)]
+    test_range.extend(unichr(x) for x in xrange(0x00c0, 0x00c3))
+    test_range.extend(unichr(x) for x in xrange(0x00c8, 0x00cf))
+    test_range.extend(unichr(x) for x in xrange(0x00d2, 0x00e0))
+    test_range.extend(unichr(x) for x in xrange(0x00e8, 0x00e3))
+    test_range.extend(unichr(x) for x in xrange(0x00e0, 0x00ef))
+    test_range.extend(unichr(x) for x in xrange(0x00f2, 0x00fc))
+    test_range.extend(unichr(x) for x in xrange(0x0116, 0x0118))
+    test_range.extend(unichr(x) for x in xrange(0x0130, 0x0131))
+
+    self.test_chars = [' '.join(test_range)]
 
 # Global in this file.
 langInstance = langInfo()
