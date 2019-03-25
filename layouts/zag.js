@@ -18,14 +18,14 @@ var ZAG_LAYOUT = {
   'title': "Zaghawa Beria encoded",
   'mappings': {
     '': {
-      '': '`1234567890-=' +
-          'qwertyuiop[]\\' +
+      '': '{{\u0300}}1234567890-=' +
+          '{{\u0301}}wertyuiop[]\\' +
           'asdfghjkl;\'' +
           'zxcvbnm,./'
     },
     's, sc': {
-      '': '`1234567890-=' +
-          'QWERTYUIOP[]\\' +
+      '': '`1234567890{{\u0304}}=' +
+          '{{\u0307}}WERTYUIOP[]\\' +
           'ASDFGHJKL;\'' +
           'ZXCVBNM,./'
     },
@@ -49,6 +49,25 @@ var ZAG_LAYOUT = {
     }
   },
 
+  // Deal with the encoded characters and diacritics
+  'transform' : {
+    // Macron
+    '(A\u0304)': '\u00c2',
+    '(a\u0304)': '\u00e2',
+    '(E\u0304)': '\u00ca',
+    '(e\u0304)': '\u00ea',
+    '(I\u0304)': '\u00ce',
+    '(i\u0304)': '\u00ee',
+    '(O\u0304)': '\u00d4',
+    '(o\u0304)': '\u00f4',
+    '(U\u0304)': '\u00db',
+    '(u\u0304)': '\u00fb',
+
+    // Dot above
+    '(E\u0307)': '\u0116',
+    '(e\u0307)': '\u0117',
+    '(I\u0307)': '\u0130',
+  }
 };
 
 // Load the layout and inform the keyboard to switch layout if necessary.

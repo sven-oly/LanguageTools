@@ -77,7 +77,7 @@ class langInfo():
     self.LanguageCode = 'zag'
     self.Language = 'Zaghawa'
     self.Language_native = ''
-    self.direction = 'rtl'
+    self.direction = 'ltr'
 
     # NOT DEFINED YET
     if sys.maxunicode >= 0x10000:
