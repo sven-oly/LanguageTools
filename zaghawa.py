@@ -35,11 +35,23 @@ encoding_font_list = [
       'display_name': 'Zaghawa Beria ASCIi',
       'Source location': 'https://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&id=ZaghawaBeria_Hom/',
     },
+    {
+      'font_path':'/fonts/zawghawa/ZaghawaBeria_PUA.otf',
+      'font_name':'ZaghawaBeria PUA',
+      'display_name': 'Zaghawa Beria PUA',
+      'Source location': 'https://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&id=ZaghawaBeria_Hom/',
+    },
 ]
 
+# These are not actually Unicode, but still the font encoding.
 unicode_font_list = [
-  {
-      'family': 'ZaghawaBeriaASCIIPUA',
+    {
+        'family': 'ZaghawaBeriaASCII',
+        'longName': 'Zaghawa Beria ASCII',
+        'source': '/fonts/zawghawa/ZaghawaBeria.otf',
+    },
+    {
+      'family': 'ZaghawaBeriaPUA',
       'longName': 'Zaghawa Beria PUA',
       'source': '/fonts/zawghawa/ZaghawaBeria_PUA.otf',
       'attribution': 'Modified Zaghawa Beria',
@@ -103,6 +115,13 @@ class langInfo():
         'jsName': self.LanguageCode,
         'instructions': None,
         'font': 'ZaghawaBeriaASCII',
+      },
+      {
+        'shortName': self.LanguageCode + '_PUA',
+        'longName': 'Zaghawa Beria PUA',
+        'jsName': self.LanguageCode + '_pua',
+        'instructions': None,
+        'font': 'ZaghawaBeria PUA',
       },
     ]
     self.links = links

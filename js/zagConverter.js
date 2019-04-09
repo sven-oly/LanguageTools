@@ -1,6 +1,8 @@
 // Converters from Non-Unicode Burmese encodings to Unicode.
 
 // From ZaghawBeria
+// TODO: fill these in with actual code points when the output range is
+// defined.
 private_use_map_combined = {
   '\u0020': ['\u0020'],
   '\u0021': ['\u100a'],
@@ -181,4 +183,10 @@ function convertEncodingToUnicode(inbox, outbox, encodingIndex) {
     outarea.innerHTML = outarea.value = newText;
   }
   return newText;
+}
+
+
+// Converts Beria text to all lower case in the PUA
+function lowerCasePUA(intext) {
+
 }
