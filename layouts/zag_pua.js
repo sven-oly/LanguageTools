@@ -25,8 +25,8 @@ var ZAG_PUA_LAYOUT = {
     },
     's, sc': {
       '': '`1234567890{{\u0304}}=' +
-          '{{\u0307}}WERTYUIOP[]\\' +
-          'AS{{\uef18}}FGHJKL;\'' +
+          '{{\u0307}}W{{\uef16}}RTYUIOP[]\\' +
+          '{{\uef10}}S{{\uef18}}FGHJKL;\'' +
           'ZX{{\uef26}}V{{\uef12}}NM,./'
     },
     'c': {

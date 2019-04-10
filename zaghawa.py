@@ -117,7 +117,7 @@ class langInfo():
         'font': 'ZaghawaBeriaASCII',
       },
       {
-        'shortName': self.LanguageCode + '_PUA',
+        'shortName': self.LanguageCode + '_pua',
         'longName': 'Zaghawa Beria PUA',
         'jsName': self.LanguageCode + '_pua',
         'instructions': None,
