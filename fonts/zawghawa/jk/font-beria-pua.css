@@ -1,0 +1,11 @@
+@font-face {
+  font-family: "ZaghawaBeria";
+  src: url("ZaghawaBeria_PUA.woff")
+}
+body { 
+   font-family: 'ZaghawaBeria'; 
+}
+input, textarea { 
+   font-family: 'ZaghawaBeria'; 
+   font-size: 18px; 
+}

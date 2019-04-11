@@ -116,7 +116,7 @@ handlers:
 - url: /games/.*
   script: games.app
 
-- url: /test/*
+- url: /test/.*
   script: test.app
 
 - url: /feedback/*

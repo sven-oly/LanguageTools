@@ -35,7 +35,17 @@ class testHandler(webapp2.RequestHandler):
       path = os.path.join(os.path.dirname(__file__), 'test_burmese.html')
       self.response.out.write(template.render(path, template_values))
 
+class testLocaleHandler(webapp2.RequestHandler):
+    def get(self):
+      template_values = {
+          'value': 1,
+      }
+
+      path = os.path.join(os.path.dirname(__file__), 'testLocales.html')
+      self.response.out.write(template.render(path, template_values))
+
 
 app = webapp2.WSGIApplication([
     ('/test/', testHandler),
+    ('/test/testLocale/', testLocaleHandler),
 ], debug=True)
