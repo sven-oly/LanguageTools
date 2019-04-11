@@ -29,16 +29,16 @@ import webapp2
 from google.appengine.ext.webapp import template
 
 encoding_font_list = [
+    # {
+    #   'font_path':'/fonts/zawghawa/jk/ZaghawaBeria_PUA.otf',
+    #   'font_name':'ZaghawaBeriaPUA',
+    #   'display_name': 'Zaghawa Beria PUA',
+    #   'Source location': 'JK-created version of this starting at U+f0041',
+    # },
     {
       'font_path':'/fonts/zawghawa/ZaghawaBeria.otf',
       'font_name':'ZaghawaBeriaASCII',
-      'display_name': 'Zaghawa Beria ASCIi',
-      'Source location': 'https://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&id=ZaghawaBeria_Hom/',
-    },
-    {
-      'font_path':'/fonts/zawghawa/ZaghawaBeria_PUA.otf',
-      'font_name':'ZaghawaBeria PUA',
-      'display_name': 'Zaghawa Beria PUA',
+      'display_name': 'Zaghawa Beria ASCII',
       'Source location': 'https://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&id=ZaghawaBeria_Hom/',
     },
 ]
@@ -46,16 +46,16 @@ encoding_font_list = [
 # These are not actually Unicode, but still the font encoding.
 unicode_font_list = [
     {
-        'family': 'ZaghawaBeriaASCII',
-        'longName': 'Zaghawa Beria ASCII',
-        'source': '/fonts/zawghawa/ZaghawaBeria.otf',
-    },
-    {
-      'family': 'ZaghawaBeriaPUA',
+      'family': 'ZaghawaBeriaPUAJK',
       'longName': 'Zaghawa Beria PUA',
-      'source': '/fonts/zawghawa/ZaghawaBeria_PUA.otf',
+      'source': '/fonts/zawghawa/jk/ZaghawaBeria_PUA.woff',
       'attribution': 'Modified Zaghawa Beria',
   },
+    # {
+    #     'family': 'ZaghawaBeriaASCII',
+    #     'longName': 'Zaghawa Beria ASCII',
+    #     'source': '/fonts/zawghawa/ZaghawaBeria.otf',
+    # },
 ]
 
 links = [
@@ -68,7 +68,7 @@ links = [
       'ref': '/zag/encodingRules/'
     },
 #    {'linkText': 'Resources / Downloads',
-#      'ref': '/zae/downloads/'
+#      'ref': '/zag/downloads/'
 #    },
 #    {'linkText': 'Unicode Page',
 #    'ref': 'https://www.unicode.org/charts/PDF/???.pdf'
@@ -110,18 +110,18 @@ class langInfo():
     self.encoding_font_list = encoding_font_list
     self.kb_list = [
       {
+        'shortName': self.LanguageCode + '_pua',
+        'longName': 'Zaghawa Beria PUA',
+        'jsName': self.LanguageCode + '_pua',
+        'instructions': None,
+        'font': 'ZaghawaBeriaPUAJK',
+      },
+      {
         'shortName': self.LanguageCode,
         'longName': 'Zaghawa Beria',
         'jsName': self.LanguageCode,
         'instructions': None,
         'font': 'ZaghawaBeriaASCII',
-      },
-      {
-        'shortName': self.LanguageCode + '_pua',
-        'longName': 'Zaghawa Beria PUA',
-        'jsName': self.LanguageCode + '_pua',
-        'instructions': None,
-        'font': 'ZaghawaBeria PUA',
       },
     ]
     self.links = links
