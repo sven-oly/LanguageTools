@@ -26,7 +26,7 @@ var ZAG_LAYOUT = {
     's, sc': {
       '': '`1234567890{{\u0304}}=' +
           '{{\u0307}}WERTYUIOP[]\\' +
-          'ASDFGHJKL;\'' +
+          '{{\uef10}}S{{\uef18}}FGHJKL;\'' +
           'ZXCVBNM,./'
     },
     'c': {

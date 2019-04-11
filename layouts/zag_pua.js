@@ -14,20 +14,30 @@
 // TODO: Add reference
 
 var ZAG_PUA_LAYOUT = {
-  'id': 'zag',
-  'title': "Zaghawa Beria encoded",
+  'id': 'zag_pua',
+  'title': "Zaghawa Beria Private Use Area",
   'mappings': {
     '': {
       '': '{{\u0300}}1234567890-=' +
-          '{{\u0301}}wertyuiop[]\\' +
-          'asdfghjkl;\'' +
-          'zxcvbnm,./'
+          '{{\u0301}}{{\udb80\udc77}}{{\udb80\udc65}}{{\udb80\udc72}}' +
+	    '{{\udb80\udc74}}{{\udb80\udc78}}{{\udb80\udc75}}{{\udb80\udc69}}' +
+	    '{{\udb80\udc6f}}{{\udb80\udc70}}[]\\' +
+          '{{\udb80\udc61}}{{\udb80\udc73}}{{\udb80\udc64}}{{\udb80\udc66}}' +
+	    '{{\udb80\udc67}}{{\udb80\udc68}}{{\udb80\udc6a}}{{\udb80\udc6b}}' +
+	    '{{\udb80\udc6c}};\'' +
+          '{{\udb80\udc79}}{{\udb80\udc78}}{{\udb80\udc63}}{{\udb80\udc76}}' +
+	    '{{\udb80\udc62}}{{\udb80\udc6e}}{{\udb80\udc6d}},./'
     },
     's, sc': {
-      '': '`1234567890{{\u0304}}=' +
-          '{{\u0307}}W{{\uef16}}RTYUIOP[]\\' +
-          '{{\uef10}}S{{\uef18}}FGHJKL;\'' +
-          'ZX{{\uef26}}V{{\uef12}}NM,./'
+      '': '~!@#$%^&*(){{\u0304}}+' +
+          '{{\u0307}}{{\udb80\udc57}}{{\udb80\udc45}}{{\udb80\udc52}}' +
+	    '{{\udb80\udc54}}{{\udb80\udc58}}{{\udb80\udc55}}{{\udb80\udc49}}' +
+	    '{{\udb80\udc4f}}{{\udb80\udc50}}[]\\' +
+          '{{\udb80\udc41}}{{\udb80\udc53}}{{\udb80\udc44}}{{\udb80\udc46}}' +
+	    '{{\udb80\udc47}}{{\udb80\udc48}}{{\udb80\udc4a}}{{\udb80\udc4b}}' +
+	    '{{\udb80\udc4c}};\'' +
+          '{{\udb80\udc59}}{{\udb80\udc58}}{{\udb80\udc43}}{{\udb80\udc56}}' +
+	    '{{\udb80\udc42}}{{\udb80\udc4e}}{{\udb80\udc4d}}<>?'
     },
     'c': {
       '': '`1234567890-=' +
@@ -35,13 +45,13 @@ var ZAG_PUA_LAYOUT = {
           'asdfghjkl;\'' +
           'zxcvbnm,./'
     },
-    'l,cl': {
+    'sl,scl': {
       '': '`1234567890-=' +
           'QWERTYUIOP[]\\' +
           'ASDFGHJKL;\'' +
           'ZXCVBNM,./'
     },
-    'sl,scl': {
+    'l,cl': {
       '': '~!@#$%^&*()_+' +
           'qwertyuiop{}|' +
           'asdfghjkl:"' +
@@ -51,19 +61,55 @@ var ZAG_PUA_LAYOUT = {
 
   // Deal with the encoded characters and diacritics
   'transform' : {
-    // Macron
-    '(A\u0304)': '\u00c2',
-    '(a\u0304)': '\u00e2',
-    '(E\u0304)': '\u00ca',
-    '(e\u0304)': '\u00ea',
-    '(I\u0304)': '\u00ce',
-    '(i\u0304)': '\u00ee',
-    '(O\u0304)': '\u00d4',
-    '(o\u0304)': '\u00f4',
-    '(U\u0304)': '\u00db',
-    '(u\u0304)': '\u00fb',
+    // Special representations of acute/accent/macron/
+    // These should really be using base character + modifier in the font
+    // A
+    '\udb80\udc41\u0300': '\udb80\udcc0',
+    '\udb80\udc41\u0301': '\udb80\udcc1',
+    '\udb80\udc41\u0304': '\udb80\udcc2',
 
-    // Dot above
+    '\udb80\udc61\u0300': '\udb80\udce0',
+    '\udb80\udc61\u0301': '\udb80\udce1',
+    '\udb80\udc61\u0304': '\udb80\udce2',
+
+    // E
+    '\udb80\udc45\u0300': '\udb80\udcc8',
+    '\udb80\udc45\u0301': '\udb80\udcc9',
+    '\udb80\udc45\u0304': '\udb80\udcca',
+
+    '\udb80\udc65\u0301': '\udb80\udce8',
+    '\udb80\udc65\u0302': '\udb80\udce9',
+    '\udb80\udc65\u0304': '\udb80\udcea',
+
+    // I
+    '\udb80\udc49\u0300': '\udb80\udccc',
+    '\udb80\udc49\u0301': '\udb80\udccd',
+    '\udb80\udc49\u0304': '\udb80\udcce',
+
+    '\udb80\udc69\u0300': '\udb80\udcec',
+    '\udb80\udc69\u0301': '\udb80\udced',
+    '\udb80\udc69\u0304': '\udb80\udcee',
+
+    // O
+    '\udb80\udc4f\u0300': '\udb80\udcd2',
+    '\udb80\udc4f\u0301': '\udb80\udcd3',
+    '\udb80\udc4f\u0304': '\udb80\udcd4',
+
+    '\udb80\udc6f\u0300': '\udb80\udcf2',
+    '\udb80\udc6f\u0301': '\udb80\udcf3',
+    '\udb80\udc6f\u0304': '\udb80\udcf4',
+
+    // U
+    '\udb80\udc55\u0300': '\udb80\udcd9',  // ??
+    '\udb80\udc55\u0301': '\udb80\udcda',
+    '\udb80\udc55\u0304': '\udb80\udcdb',
+
+    '\udb80\udc75\u0300': '\udb80\udcf9',
+    '\udb80\udc75\u0301': '\udb80\udcfa',
+    '\udb80\udc75\u0304': '\udb80\udcfb',
+
+
+    // Dot above - Not done yet
     '(A\u0307)': '\u00a5',
     '(a\u0307)': '\u00a6',
     '(E\u0307)': '\u0089',
