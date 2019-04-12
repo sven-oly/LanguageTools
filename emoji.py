@@ -46,9 +46,15 @@ unicode_font_list = [
   },
   {
       'family': 'EmojiOneColor',
-      'longName': 'Adobe EmojiOne Color',
+      'longName': 'Adobe EmojiOne',
       'source': '/fonts/EmojiOneColor.otf',
       'attribution': 'https://github.com/adobe-fonts/emojione-color',
+  },
+  {
+      'family': 'blobmojiNotoColorEmoji',
+      'longName': 'blobmoji',
+      'source': '/fonts/blobmoji_NotoColorEmoji.ttf',
+      'attribution': 'https://github.com/C1710/blobmoji/blob/master/fonts/NotoColorEmoji.ttf',
   },
 ]
 
@@ -56,26 +62,26 @@ links = [
     {'linkText': 'Keyboard',
      'ref': '/emoji/'
     },
-#    {'linkText': 'Converter',
-#     'ref': '/emoji/convertUI/'},
-#    {'linkText': 'Font conversion summary',
-#      'ref': '/emoji/encodingRules/'
-#    },
-#    {'linkText': 'Resources / Downloads',
-#      'ref': '/zae/downloads/'
-#    },
-#    {'linkText': 'Unicode Page',
-#    'ref': 'https://www.unicode.org/charts/PDF/???.pdf'
-#    },
+    {'linkText': 'Emoji copy',
+     'ref': 'https://www.emojicopy.com/',
+    },
+    {'linkText': 'Emoji Tracker',
+     'ref': 'http://www.emojitracker.com/'},
+    {'linkText': 'Full emoji list',
+     'ref': 'http://www.unicode.org/emoji/charts/full-emoji-list.html'
+    },
+    {'linkText': 'Released',
+     'ref': 'http://www.unicode.org/emoji/charts/emoji-released.html'
+    },
+    {'linkText': 'Unicode Emoji FAQ',
+     'ref': 'http://unicode.org/faq/emoji_dingbats.html'
+    },
+    {'linkText': 'Adopt a Character',
+     'ref': 'https://unicode.org/consortium/adopt-a-character.html'
+    },
     {'linkText': 'Emoji Wikipedia',
      'ref': 'https://en.wikipedia.org/wiki/Emoji#Unicode_blocks'
     },
-
-#    {'linkText': 'Combiners',
-#     'ref': '/rhg/diacritic/'
-#     },
-#    {'linkText': 'Keyboard layout suggestion',
-#     'ref': '',
 ]
 
 class langInfo():
