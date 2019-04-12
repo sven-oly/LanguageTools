@@ -19,10 +19,11 @@ var EMOJI_LAYOUT = {
       '': '`12345{{\uD83C\uDFFF}}{{\uD83C\uDFFE}}{{\uD83C\uDFFD}}{{\uD83C\uDFFC}}{{\uD83C\uDFFB}}-=' +
           '{{\uD83D\uDC08}}{{\uD83D\uDC15}}{{\uD83D\uDC01}}{{\uD83D\uDC3F}}' +
 	  'tyuiop{}|' +
-          'asdfghjkl:"' +
+          '{{\uD83D\uDC77}}{{\uD83D\uDC6E}}dfghjkl:{{\uD83D\uDE00}}' +
           '{{\uD83D\uDC76}}{{\uD83D\uDC67}}' +
 	  '{{\uD83E\uDDD2}}{{\uD83D\uDC66}}' +
-	  '{{\uD83D\uDC69}}{{\uD83E\uDDD1}}{{\uD83D\uDC68}}'
+	  '{{\uD83D\uDC69}}{{\uD83E\uDDD1}}{{\uD83D\uDC68}}' +
+	  '{{\u200d}}\u2642\u2640'
     },
     's,sc': {
       '': '~!@#$%^&*()_+' +
