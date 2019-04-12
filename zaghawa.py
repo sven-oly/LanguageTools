@@ -47,15 +47,21 @@ encoding_font_list = [
 unicode_font_list = [
     {
       'family': 'ZaghawaBeriaPUAJK',
-      'longName': 'Zaghawa Beria PUA',
-      'source': '/fonts/zawghawa/jk/ZaghawaBeria_PUA.woff',
-      'attribution': 'Modified Zaghawa Beria',
+      'longName': 'Zaghawa Beria PUA new',
+      'source': '/fonts/zawghawa/jk/ZaghawaBeria_PUA_new.ttf',
+      'attribution': 'Modified Zaghawa Beria PUA2',
   },
-    # {
-    #     'family': 'ZaghawaBeriaASCII',
-    #     'longName': 'Zaghawa Beria ASCII',
-    #     'source': '/fonts/zawghawa/ZaghawaBeria.otf',
-    # },
+  {
+    'family': 'ZaghawaBeriaPUAJK',
+    'longName': 'Zaghawa Beria PUA',
+    'source': '/fonts/zawghawa/jk/ZaghawaBeria_PUA.woff',
+    'attribution': 'Modified Zaghawa Beria',
+  },
+  {
+    'family': 'ZaghawaBeriaASCII',
+    'longName': 'Zaghawa Beria ASCII',
+    'source': '/fonts/zawghawa/ZaghawaBeria.otf',
+  },
 ]
 
 links = [
