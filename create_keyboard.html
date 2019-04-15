@@ -279,9 +279,9 @@
   var inCapsLock = false;
 
   // Function to controll output from virtual KB
-  function keyDown(area) {
-    var out = document.getElementById(area);
+  function keyDown(event) {
     var e = event;  // Global?
+    var out = e.srcElement;
     if (e.code == "CapsLock") {
       inCapsLock = true;
     }
@@ -314,8 +314,7 @@
   }
 
   // Function to controll output from virtual KB
-  function keyPress(area) {
-    var out = document.getElementById(area);
+  function keyPress(event) {
     var e = event;  // Global?
     var key = e.key;
     var layer = eventPropToLayerCode(e);
@@ -327,9 +326,9 @@
   }
 
   // Function to control output from virtual KB
-  function keyUp(area) {
-    var out = document.getElementById(area);
+  function keyUp(event) {
     var e = event;  // Global?
+    var out = e.srcElement;
     if (e.code == "CapsLock") {
       inCapsLock = false;
     }
@@ -391,8 +390,8 @@
         </div>
 
         <div>
-            <textarea id="t1" onkeydown="keyDown('t1');" onkeypress="keyPress('t1');"
-            onkeyup="keyUp('t1');"></textarea>
+            <textarea id="t1" onkeydown="keyDown(event);" onkeypress="keyPress(event);"
+            onkeyup="keyUp(event);"></textarea>
         </div>
     </div>
     <div class="span-8 last">
