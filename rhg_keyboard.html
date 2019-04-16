@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<!-- saved from url=(0052)https://x20web.corp.google.com/~shuchen/vk/demo.html -->
+<html>
+<head>
+    <title>Create a virtual keyboard layout</title>
+
+
+    <link rel="stylesheet" href="/css/blueprint/screen.css" type="text/css" media="screen">
+    <link rel="stylesheet" href="/css/blueprint/print.css" type="text/css" media="print">
+
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="/css/blueprint/ie.css" type="text/css" media="screen, projection">
+    <![endif]-->
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <style>
+   {% for font in font_list %}
+    @font-face{
+      font-family:"{{font.family}}";
+      src:url("{{font.source}}");
+      font-weight:normal;
+      font-style:normal;
+    }
+    {% endfor %}
+
+    <style>
+      .default-font {
+      font-family: "Arial,Helvetica";
+      font-size:24px;
+      }
+
+     {% for font in font_list %}
+      .{{font.family}} {
+      font-family: "{{font.family}},Arial";
+      font-size:24px;
+      }
+      {% endfor %}
+
+    input {font-size:24px;}
+    textarea {font-size:24; height:400px;}
+    </style>
+
+    <script src="/js/rhgmap.js"></script>
+
+    <script>
+    function onSizeSelected(newSize, textArea) {
+      var t1_element = document.getElementById(textArea);
+      t1_element.style.fontSize = newSize;
+    }
+
+    function onPageLoaded() {
+    }
+  </script>
+</head>
+
+<body onload="onPageLoaded()">
+<div class="container">
+    <div class="span-16">
+        <h2>Rohingya prototype keyboard tool</h2>
+
+               <div>
+                     Size: <select onchange="onSizeSelected(this.value, 't1');" id="sizeSelector">
+    <option value="10px">10</option>
+    <option value="14px">14</option>
+    <option value="18px">18</option>
+    <option value="24px" selected>24</option>
+    <option value="32px">32</option>
+    <option value="48px">48</option>
+    <option value="48px">60</option>
+    <option value="72px">72</option>
+    <option value="96px">96</option>
+    <option value="120px">120</option>
+    <option value="240px">240</option>
+  </select>
+                   <br />
+
+            <textarea id="t1" class="RohingyaNooriesOne" onkeydown="keyDown(event);" onkeypress="keyPress(event);"
+            onkeyup="keyUp(event);" dir="rtl"></textarea>
+        </div>
+    </div>
+    <div class="span-8 last">
+    </div>
+</div>
+</body>
+</html>

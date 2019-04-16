@@ -155,6 +155,33 @@ class langInfo():
     # Lists of test characters for the various encodings
     self.test_chars = [' '.join([unichr(x) for x in range(0x620, 0x6f9)])]
 
+
+class NewKBHandler(webapp2.RequestHandler):
+  def get(self):
+    langInfo = self.app.config.get('langInfo')
+    lang_list = [
+        {'shortName':  'tst',
+         'longName': 'Testing'
+        },
+    ]
+
+    try:
+      text_direction = langInfo.direction
+    except AttributeError:
+      text_direction = 'ltr'
+
+    template_values = {
+        'direction': text_direction,
+        'language': langInfo.Language,
+        'font_list': langInfo.unicode_font_list,
+        'lang_list': langInfo.lang_list,
+        'kb_list': langInfo.kb_list,
+        'links': langInfo.links,
+    }
+    path = os.path.join(os.path.dirname(__file__), 'rhg_keyboard.html')
+    self.response.out.write(template.render(path, template_values))
+
+
 # Global in this file.
 langInstance = langInfo()
 
@@ -165,6 +192,9 @@ app = webapp2.WSGIApplication(
      ('/rhg/converter/', base.ConvertHandler),
      ('/rhg/encodingRules/', base.EncodingRules),
      ('/rhg/diacritic/', base.DiacriticHandler),
-    ], debug=True,
+
+     ('/rhg/newkb/', NewKBHandler),
+
+     ], debug=True,
     config={'langInfo': langInstance}
 )
