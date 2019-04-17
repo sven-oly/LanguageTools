@@ -127,6 +127,18 @@ class langInfo():
     self.encoding_font_list = encoding_font_list
     self.kb_list = [
       {
+        'shortName': self.LanguageCode + '3',
+        'longName': 'Rohigya doubled chars',
+        'jsName': self.LanguageCode,
+        'instructions':
+        'doubled s adds tassi\u000a' +
+        'doubled n adds tana\u000a' +
+        'doubled h adds haraby\u000a' +
+        'doubled t adds tahala\u000a' +
+        'doubled space adds sakin',
+        'font': 'RohingyaNooriesOne',
+      },
+      {
         'shortName': self.LanguageCode + '2',
         'longName': 'Rohigya 2 layout',
         'jsName': self.LanguageCode,
