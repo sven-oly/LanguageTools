@@ -1,5 +1,4 @@
-//javascript/keyboard/api/layouts/cpp.js
-// Copyright 2017 Google Inc.
+// Copyright 2019 Google Inc.
 // All Rights Reserved.
 
 // Arabic punctuation marks?  Comma (60c), semicolon (61b), question mark (61f), full stop (6d4)
@@ -9,6 +8,7 @@
 var RHG_LAYOUT3 = {
   'id': 'rhg3',
   'title': 'Rohingya',
+  'direction': 'rtl',
   'mappings': {
     '': {
       '': '{{\ud803\udd22}}{{\ud803\udd31}}{{\ud803\udd32}}{{\ud803\udd33}}{{\ud803\udd34}}' +

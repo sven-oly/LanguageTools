@@ -6,6 +6,7 @@
 var RHG_LAYOUT = {
   'id': 'rhg',
   'title': 'Rohingya Hanifi - Work in progress',
+  'direction': 'rtl',
   'mappings': {
     ',c': {
       '': '{{\ud803\udd21}}{{\ud803\udd31}}{{\ud803\udd32}}{{\ud803\udd33}}{{\ud803\udd34}}' +

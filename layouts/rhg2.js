@@ -9,6 +9,7 @@
 var RHG_LAYOUT2 = {
   'id': 'rhg2',
   'title': 'Rohingya',
+  'direction': 'rtl',
   'mappings': {
     ',c': {
       '': '{{\ud803\udd22}}{{\ud803\udd31}}{{\ud803\udd32}}{{\ud803\udd33}}{{\ud803\udd34}}' +

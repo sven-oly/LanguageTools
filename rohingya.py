@@ -130,13 +130,14 @@ class langInfo():
         'shortName': self.LanguageCode + '3',
         'longName': 'Rohigya doubled chars',
         'jsName': self.LanguageCode,
-        'instructions':
-        'doubled s adds tassi\u000a' +
-        'doubled n adds tana\u000a' +
-        'doubled h adds haraby\u000a' +
-        'doubled t adds tahala\u000a' +
-        'doubled space adds sakin',
         'font': 'RohingyaNooriesOne',
+        'instructions': ('Special instructions: ss -> tassi; '
+                         +  'nn-> tana; '
+                         + 'hh -> harabhay; '
+                         + 'tt -> tahala; '
+                         + 'shift-space -> sakin'
+                         + 'doubled consonant -> tassi'
+        ),
       },
       {
         'shortName': self.LanguageCode + '2',

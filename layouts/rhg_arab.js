@@ -5,6 +5,7 @@
 var RHG_ARAB_LAYOUT = {
   'id': 'rhg_arab',
   'title': 'Rohingya Arab',
+  'direction': 'rtl',
   'mappings': {
     ',c': {
       '': '`{{\u06f1}}{{\u06f2}}{{\u06f3}}{{\u06f4}}{{\u06f5}}' +
