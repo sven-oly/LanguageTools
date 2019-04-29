@@ -31,10 +31,10 @@ var RHG_LAYOUT3 = {
 	    '{{\uD803\uDD25}}{{}}{{}}{{}}{{}}' +
 	        '{{}}\u007b\u007d|' +
           '{{\uD803\uDD26}}{{}}{{}}{{}}' +
-            '{{}}{{\uD803\uDD24}}{{}}{{}}{{}}' +
-            ';\u0022' +
+            '{{}}{{\uD803\uDD24}}{{}}{{}}\u061b' +
+            ':\u0022' +
           '{{}}{{}}{{}}{{}}' +
-          '{{}}{{}}{{}}<>?' +
+          '{{}}{{}}{{}}\u060C\u06d4\u061f' +
 	  '{{\ud803\udd22}}'  // Shift-space -> sakin
     },
     'l,c': {
@@ -53,7 +53,8 @@ var RHG_LAYOUT3 = {
   'transform': {
     // Try suggestions made 16-Apr-2019
     // letter + 'ss' -> letter + tassi  U+10D27
-    '\uD803([\uDD00-\uDD1C])\uD803\uDD0F\uD803\uDD0F': '\uD803$1\uD803\uDD27',
+    // Update to all letters, including vowels
+    '\uD803([\uDD00-\uDD21])\uD803\uDD0F\uD803\uDD0F': '\uD803$1\uD803\uDD27',
 
     // vowel + 'hh' -> vowel + haraby  U+10D24
     '\uD803([\uDd1d-\uDD21])\uD803\uDD07\uD803\uDD07': '\uD803$1\uD803\uDD24',
