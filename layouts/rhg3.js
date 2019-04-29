@@ -7,7 +7,7 @@
 // Prototype for Rohingya, April 2019
 var RHG_LAYOUT3 = {
   'id': 'rhg3',
-  'title': 'Rohingya',
+  'title': '𐴌𐴟𐴇𐴥𐴝𐴚𐴒𐴙𐴝',
   'direction': 'rtl',
   'mappings': {
     '': {
@@ -53,7 +53,7 @@ var RHG_LAYOUT3 = {
   'transform': {
     // Try suggestions made 16-Apr-2019
     // letter + 'ss' -> letter + tassi  U+10D27
-    '\uD803([\uDD01-\uDD1C])\uD803\uDD0F\uD803\uDD0F': '\uD803$1\uD803\uDD27',
+    '\uD803([\uDD00-\uDD1C])\uD803\uDD0F\uD803\uDD0F': '\uD803$1\uD803\uDD27',
 
     // vowel + 'hh' -> vowel + haraby  U+10D24
     '\uD803([\uDd1d-\uDD21])\uD803\uDD07\uD803\uDD07': '\uD803$1\uD803\uDD24',
@@ -65,10 +65,8 @@ var RHG_LAYOUT3 = {
     // double space -> sakin  U+10D22
     '\u0020\u001d\u0020': '\uD803\uDD22',
 
-    // double space -> sakin  U+10D22
-    '\u0020\u001d\u0020': '\uD803\uDD22',
-
     // doubled consonants to consonant + gemination
+    '\uD803(\uDD00)\uD803\uDD00': '\uD803$1\uD803\uDD27',
     '\uD803(\uDD01)\uD803\uDD01': '\uD803$1\uD803\uDD27',
     '\uD803(\uDD02)\uD803\uDD02': '\uD803$1\uD803\uDD27',
     '\uD803(\uDD03)\uD803\uDD03': '\uD803$1\uD803\uDD27',
