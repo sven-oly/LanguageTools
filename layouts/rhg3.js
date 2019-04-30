@@ -51,21 +51,21 @@ var RHG_LAYOUT3 = {
     }
   },
   'transform': {
-    // Try suggestions made 16-Apr-2019
     // letter + 'ss' -> letter + tassi  U+10D27
     // Update to all letters, including vowels
     '\uD803([\uDD00-\uDD21])\uD803\uDD0F\uD803\uDD0F': '\uD803$1\uD803\uDD27',
 
     // vowel + 'hh' -> vowel + haraby  U+10D24
-    '\uD803([\uDd1d-\uDD21])\uD803\uDD07\uD803\uDD07': '\uD803$1\uD803\uDD24',
+    '\uD803([\uDd00-\uDD21])\uD803\uDD07\uD803\uDD07': '\uD803$1\uD803\uDD24',
     // vowel + 'nn' -> vowel + tana  U+10D26
-    '\uD803([\uDd1d-\uDD21])\uD803\uDD15\uD803\uDD15': '\uD803$1\uD803\uDD26',
+    '\uD803([\uDd00-\uDD21])\uD803\uDD15\uD803\uDD15': '\uD803$1\uD803\uDD26',
     // vowel + 'tt' -> vowel + tahala  U+10D25
-    '\uD803([\uDd1d-\uDD21])\uD803\uDD04\uD803\uDD04': '\uD803$1\uD803\uDD25',
+    '\uD803([\uDd00-\uDD21])\uD803\uDD04\uD803\uDD04': '\uD803$1\uD803\uDD25',
 
     // double space -> sakin  U+10D22
     '\u0020\u001d\u0020': '\uD803\uDD22',
 
+/*
     // doubled consonants to consonant + gemination
     '\uD803(\uDD00)\uD803\uDD00': '\uD803$1\uD803\uDD27',
     '\uD803(\uDD01)\uD803\uDD01': '\uD803$1\uD803\uDD27',
@@ -96,6 +96,7 @@ var RHG_LAYOUT3 = {
     '\uD803(\uDD1a)\uD803\uDD1a': '\uD803$1\uD803\uDD27',
     '\uD803(\uDD1b)\uD803\uDD1b': '\uD803$1\uD803\uDD27',
     '\uD803(\uDD1c)\uD803\uDD1c': '\uD803$1\uD803\uDD27',
+*/
   }
 };
 
