@@ -53,7 +53,7 @@ unicode_font_list = [
   {
       'family': 'RohingyaNooriesOne',
       'longName': 'Rohingya Noories One',
-      'source': '/fonts/Rohingya Noories One.otf',
+      'source': '/fonts/Rohingya Noories One.ttf',
       'attribution': 'From MD Noor 25-Feb-2019',
   },
 
