@@ -147,15 +147,14 @@
     };
 
   </script>
-  <style>
-    {% for font in font_list %}{% if forloop.first %}
-    .vk-box, .vk-btn, .vk-cap, .vk-t-btn: {
+  <link rel="stylesheet" type="text/css" href="/css/keyboard.css" />
+
+  <style>{% for font in font_list %}{% if forloop.first %}
+    .vk-box, .vk-btn, .vk-cap, .vi-cap-i, .vk-sf-h, .vk-t, .vk-t-btn {
         font-family: {{font.family}};
-    }{% endif %}
-    {% endfor %}
+    }{% endif %}{% endfor %}
     </style>
 
-  <link rel="stylesheet" type="text/css" href="/css/keyboard.css" />
   
   </head>
 <body onload="onPageLoaded()">
