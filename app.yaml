@@ -76,6 +76,9 @@ handlers:
 - url: /kyu/.*
   script: kayah.app
 
+- url: /lampung/.*
+  script: lampung.app
+
 - url: /lep/.*
   script: lepcha.app
 
