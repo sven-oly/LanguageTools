@@ -40,6 +40,11 @@ encoding_font_list = [
 ]
 
 unicode_font_list = [
+  {
+    'family': 'LampungPUA',
+    'longName': 'Lampung PUA',
+    'source': '/fonts/lampung/kaganga_lampung_21_pua.ttf',
+  },
 ]
 
 kb_list = [
