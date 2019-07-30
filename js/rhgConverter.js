@@ -1,6 +1,7 @@
-// Convert from old font-encoding ROhingya Kuna Leyka Noories to Unicode forms:
+// Convert from old font-encoding Rohingya Kuna Leyka and Gonya Lekka
+// Noories to Unicode forms:
 
-// Mappings for both arjyban, sujoyan, alaam, etc. encodings.
+// Mappings for both encodings.
 var map_encoding_names = [
   'Kuna Leyka', 'Gonya Leyka'];
 
@@ -9,7 +10,7 @@ var private_use_map_combined = {
   '\u0622': ['\ud803\udd00', '\u0009'],  // horizontal tab
   '\u0623': ['\ud803\udd00', '\u0009'],  // horizontal tab
   '\u0624': ['\ud803\udd1e', '\u0000'],  // Carriage return
-  '\u0625': ['\ud803\udd00', ' ', ' '],  // Space
+  '\u0625': ['\ud803\udd00', ' '],  // Space
   '\u0626': ['\ud803\udd22', '\u003b', '\uD803\uDD33\uD803\uDD05'],  // #
   '\u0627': ['\ud803\udd00', ' ', '\uD803\uDD14'],  // $
   '\u0628': ['\ud803\udd01', '\u0025', '\ud803\udd33\ud803\udd22\ud803\udd2a'],  // %

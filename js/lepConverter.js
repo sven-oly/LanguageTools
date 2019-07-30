@@ -197,7 +197,7 @@ function convertEncoding(intext, encodingIndex) {
   var newText = outtext;
 
   // Fix AA sign before letter to O sign
-  pattern = /\u1c26([\u1c00-\u1c23])/gi;
+  pattern = /\u1c26([\u1c00-\u1c23\u1c27\u1c29])/gi;
   replace = "\u1c28$1";
   newText = outtext.replace(pattern, replace);
   outtext = newText;
