@@ -85,7 +85,7 @@ NameList: AGL For New Fonts
 DisplaySize: -96
 AntiAlias: 1
 FitToEm: 0
-WinInfo: 16 8 12
+WinInfo: 184 8 8
 BeginChars: 65538 236
 
 StartChar: .notdef
@@ -1346,7 +1346,7 @@ Validated: 1
 EndChar
 
 StartChar: zero
-Encoding: 48 48 19
+Encoding: 59568 59568 19
 Width: 799
 GlyphClass: 2
 Flags: W
@@ -1380,7 +1380,7 @@ Validated: 1
 EndChar
 
 StartChar: one
-Encoding: 49 49 20
+Encoding: 59569 59569 20
 Width: 657
 GlyphClass: 2
 Flags: W
@@ -1424,7 +1424,7 @@ Validated: 1
 EndChar
 
 StartChar: two
-Encoding: 50 50 21
+Encoding: 59570 59570 21
 Width: 1014
 GlyphClass: 2
 Flags: W
@@ -1466,7 +1466,7 @@ Validated: 1
 EndChar
 
 StartChar: three
-Encoding: 51 51 22
+Encoding: 59571 59571 22
 Width: 1014
 GlyphClass: 2
 Flags: W
@@ -1517,7 +1517,7 @@ Validated: 1
 EndChar
 
 StartChar: four
-Encoding: 52 52 23
+Encoding: 59572 59572 23
 Width: 1219
 GlyphClass: 2
 Flags: W
@@ -1564,7 +1564,7 @@ Validated: 1
 EndChar
 
 StartChar: five
-Encoding: 53 53 24
+Encoding: 59573 59573 24
 Width: 976
 GlyphClass: 2
 Flags: W
@@ -1608,7 +1608,7 @@ Validated: 1
 EndChar
 
 StartChar: six
-Encoding: 54 54 25
+Encoding: 59574 59574 25
 Width: 882
 GlyphClass: 2
 Flags: W
@@ -1649,7 +1649,7 @@ Validated: 1
 EndChar
 
 StartChar: seven
-Encoding: 55 55 26
+Encoding: 59575 59575 26
 Width: 1107
 GlyphClass: 2
 Flags: W
@@ -1681,7 +1681,7 @@ Validated: 1
 EndChar
 
 StartChar: eight
-Encoding: 56 56 27
+Encoding: 59576 59576 27
 Width: 1142
 GlyphClass: 2
 Flags: W
@@ -1720,7 +1720,7 @@ Validated: 1
 EndChar
 
 StartChar: nine
-Encoding: 57 57 28
+Encoding: 59577 59577 28
 Width: 953
 GlyphClass: 2
 Flags: W
@@ -3577,7 +3577,7 @@ Validated: 1
 EndChar
 
 StartChar: Vowels_sig_au
-Encoding: 87 952858 58
+Encoding: 59562 59562 58
 Width: 24
 GlyphClass: 2
 Flags: W
