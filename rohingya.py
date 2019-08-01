@@ -64,9 +64,14 @@ unicode_font_list = [
  #     'attribution': 'Created by Mihai Nita 2018-08-29',
  # },
   {
-      'family': 'UniFoundaryUpper',
-      'longName': 'Unifont (unifoundry.com)',
-      'source': '/fonts/unifont_upper-11.0.02.ttf',
+      'family': 'NotoSansRohingya',
+      'longName': 'Noto Sans Rohingya',
+      'source': '/fonts/NotoSansHanifiRohingya-Regular.otf',
+  },
+  {
+    'family': 'UniFoundaryUpper',
+    'longName': 'Unifont (unifoundry.com)',
+    'source': '/fonts/unifont_upper-11.0.02.ttf',
   },
   {
     'family': 'ScheherazadeRohingya',
