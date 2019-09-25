@@ -1,17 +1,12 @@
 // Convert from old font-encoding of Ahom text to Unicode forms:
 
 // Mappings for Ahom old ASCII encoding to Unicode font
-3e// Source: Stephen Morey
+// Source: Stephen Morey
 // Started 8-Nov-2017
 var map_encoding_names = ['Ahom', 'AhomManuscript', 'Aiton', 'Phake', 'Phakeram'];
 
 // 11700
 var private_use_map_combined = {
-  //'XYZ': ['\ud805\udf05'],  // TODO: Find the key for this, if any
-  //'XYZ2': ['\ud805\udf16'], // TODO: FIX
-  //'XYZ3': ['\ud805\udf1F'], // TODO: Fix
-  //'XYZ4': ['\ud805\udf3B'], // FIX
-
   'a': ['\ud805\udf21', '\ud805\udf12'],
   'b': ['\ud805\udf08', '\ud805\udf08'],
   'c': ['\ud805\udf0B', '\ud805\udf0B'],
@@ -90,7 +85,7 @@ var private_use_map_combined = {
   '\u003b': ['\ud805\udf20', '\ud805\udf20', '\ud805\udf34'],  // semicolon
   '\u003c': ['\u003c', '\ud805\udf01\ud805\udf1f', '<'],  // <
   '\u003d': ['\u003d', '\u003d', '='],  // =
-  '\u003e': ['\u003e', '', '>'],  // >
+  '\u003e': ['\u003e', ' ', '>'],  // >
   '\u003f': ['?', '\ud805\udf10\ud805\udf1f', '?'],  // ?
 
   '\u0040': ['@', '\ud805\udf3e', '\uaa79'],  // @
