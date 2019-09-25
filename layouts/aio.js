@@ -13,7 +13,7 @@
 // Implements Ahom keyboard based on ...
 // TODO: Add reference
 
-var _LAYOUT = {
+var AIO_LAYOUT = {
   'id': 'aio',
   'title': "Aiton *** NOT STARTED!!!",
   'mappings': {
