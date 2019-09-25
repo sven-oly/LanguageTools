@@ -1,7 +1,7 @@
 // Convert from old font-encoding of Ahom text to Unicode forms:
 
 // Mappings for Ahom old ASCII encoding to Unicode font
-// Source: Stephen Morey
+3e// Source: Stephen Morey
 // Started 8-Nov-2017
 var map_encoding_names = ['Ahom', 'AhomManuscript', 'Aiton', 'Phake', 'Phakeram'];
 
@@ -90,7 +90,7 @@ var private_use_map_combined = {
   '\u003b': ['\ud805\udf20', '\ud805\udf20', '\ud805\udf34'],  // semicolon
   '\u003c': ['\u003c', '\ud805\udf01\ud805\udf1f', '<'],  // <
   '\u003d': ['\u003d', '\u003d', '='],  // =
-  '\u003e': ['\u003e', '\ud805\udf12', '>'],  // >
+  '\u003e': ['\u003e', '', '>'],  // >
   '\u003f': ['?', '\ud805\udf10\ud805\udf1f', '?'],  // ?
 
   '\u0040': ['@', '\ud805\udf3e', '\uaa79'],  // @
