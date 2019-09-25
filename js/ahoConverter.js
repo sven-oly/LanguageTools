@@ -233,7 +233,7 @@ function convertEncodingToUnicode(inbox, outbox, encodingIndex) {
   eReplace = "\uD805$2\uD805$1";
    newText = outtext = newText.replace(ePattern, eReplace);
 
-  ePattern = /\ud805(\udf24)\ud805([\udf22\udf2b])/gi;
+  ePattern = /\ud805(\udf24)\ud805([\udf22\udf2b\udf2a])/gi;
   eReplace = "\uD805$2\uD805$1";
   newText = outtext = newText.replace(ePattern, eReplace);
 
