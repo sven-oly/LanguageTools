@@ -121,11 +121,11 @@ var private_use_map_combined = {
   '\u0067': ['\ud805\udf15', '\ud805\udf16', '\ud805\udf33\ud805\udf05'],  // @
 
   '\u0077': ['\ud805\udf1f', '\ud805\udf1f', ''],  // w
-  '\u0077': ['\ud805\udf08\ud805\udf2b', '\ud805\udf30\ud805\udf2b', ''],  // w
-  '\u007b': ['{', '{', '\ud805\udf33\ud805\udf05'],  // @
-  '\u007c': ['|', '|', '\ud805\udf33\ud805\udf05'],  // @
-  '\u007d': ['}', '}', '\ud805\udf33\ud805\udf05'],  // @
-  '\u007e': ['~', '~', '\ud805\udf33\ud805\udf05'],  // @
+  '\u0077': ['\ud805\udf08\ud805\udf2b', '\ud805\udf30\ud805\udf2b'],  // w
+  '\u007b': ['{', '{'],  // @
+  '\u007c': ['|', '|'],  // @
+  '\u007d': ['}', '}'],  // @
+  '\u007e': ['~', '~'],  // @
 
   '\u00a1': ['\ud805\udf00', '\ud805\udf00', '\ud805\udf33\ud805\udf05'],  // @
   '\u00a2': ['\ud805\udf01', '\ud805\udf01', '\ud805\udf33\ud805\udf05'],  // @
@@ -169,7 +169,7 @@ var private_use_map_combined = {
   '\u00d4': ['\ud805\udf22', '\ud805\udf22', '\ud805\udf33\ud805\udf05'],  // @
   '\u00d5': ['\ud805\udf23', '\ud805\udf23', '\ud805\udf33\ud805\udf05'],  // @
   '\u00d6': ['\ud805\udf28\ud805\udf29', '\ud805\udf28\ud805\udf29', '\ud805\udf33\ud805\udf05'],  // @
-  '\u00d7': ['\ud805\udf2b', '', '\ud805\udf33\ud805\udf05'],  // @
+  '\u00d7': ['\ud805\udf2b', '\ud805\udf30\ud805\udf21', '\ud805\udf33\ud805\udf05'],  // @
   '\u00d8': ['\ud805\udf24', '\ud805\udf24', '\ud805\udf33\ud805\udf05'],  // @
   '\u00d9': ['\ud805\udf25', '\ud805\udf25-', '\ud805\udf33\ud805\udf05'],  // @
 
@@ -179,7 +179,7 @@ var private_use_map_combined = {
   '\u00e3': ['\ud805\udf27', '\ud805\udf27', '\ud805\udf33\ud805\udf05'],  // @
   '\u00e4': ['\ud805\udf29', '\ud805\udf29', '\ud805\udf33\ud805\udf05'],  // @
 
-  '\u00f1': ['\ud805\udf31', '\ud805\udf31-', '\ud805\udf33\ud805\udf05'],  // @
+  '\u00f1': ['\ud805\udf31', '\ud805\udf31', '\ud805\udf33\ud805\udf05'],  // @
   
   '\u0112': ['.', '.', '\ud805\udf33\ud805\udf05'],  // @
   '\u0160': ['\u030c', '\u030c', '\ud805\udf33\ud805\udf05'],  // @
