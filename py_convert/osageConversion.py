@@ -378,7 +378,7 @@ def preParseOldOsage(instring):
     return outList;
 
 def oldOsageToUnicode(textIn, convertToLower=True, convertLatin=True,
-                      clearOsageDot=True):
+                      clearOsageDot=True, fontIndex=0):
   convertResult = u''
   outputIsUTF16 = True
 
