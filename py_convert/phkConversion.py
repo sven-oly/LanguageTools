@@ -124,7 +124,8 @@ class converter():
 
     # Consider the font information if relevant, e.g., underlining.
     # fontInfo: a list of font data for this code, including formatting for each piece.
-    def convertText(self, textIn, convertToLower=False, fontTextInfo=None, fontIndex=0):
+    def convertText(self, textIn, convertToLower=False, fontTextInfo=None, fontIndex=0,
+                    fontIndex=0):
         if not isinstance(textIn, basestring):
            return textIn
 

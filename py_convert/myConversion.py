@@ -32,7 +32,7 @@ class myConvert():
         self.unicodeFont = 'NotoSansMyanmar'
       return
 
-  def convertText(self, textIn):
+  def convertText(self, textIn, fontIndex=0):
     self.convertText(textIn, False, None)
 
   def toLower(self, inText):
@@ -40,7 +40,7 @@ class myConvert():
 
   # Consider the font information if relevant, e.g., underlining.
   # fontInfo: a list of font data for this code, including formatting for each piece.
-  def convertText(self, textIn, fontTextInfo):
+  def convertText(self, textIn, fontTextInfo, fontIndex=0):
 
     if not isinstance(textIn, basestring):
       return textIn

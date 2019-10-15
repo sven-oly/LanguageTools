@@ -26,7 +26,7 @@ def parseArgs():
   parser = argparse.ArgumentParser(description='Convert font-encoded text in Office documents to Unicode')
   parser.add_argument('filenames', nargs='*', default=[],  # Zero or more
                       help='names of files to convert')
-  parser.add_argument('-font', metavar='unicodeFont', nargs='?', default='NotoSans-Regular',
+  parser.add_argument('-font', metavar='unicodeFont', nargs='?', default='',
                       help='The name of a Unicode font for the converted text')
   parser.add_argument('-file_list', metavar='filelist', type=argparse.FileType('r'), nargs='?',
                       help='File containing filenames to be converted, one per line')
@@ -36,6 +36,8 @@ def parseArgs():
                       help='Show debug info if given.')
   parser.add_argument('-encoding', metavar='encoding', nargs='?', default=None,
                       help='The expected encoding of the input data.')
+  parser.add_argument('-lower', metavar='lower', nargs='?', default=None, help='Convert to lower')
+  parser.add_argument('-sentence', metavar='sentence', nargs='?', default=None, help='Convert sentence casing')
   args = parser.parse_args()
 
   # Get the filenames from the input file list, if available.

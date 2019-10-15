@@ -239,7 +239,8 @@ def preParseOld(instring):
     outList = instring
     return outList
 
-def oldEncodingToUnicode(textIn, encodingFont):
+
+def oldEncodingToUnicode(textIn, encodingFont, fontIndex=0):
   convertResult = u''
   outputIsUTF16 = True
 
