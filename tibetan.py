@@ -97,7 +97,7 @@ links = [
      'ref': 'https://www.ethnologue.com/language/bod'
     },
     {'linkText': 'Combiners',
-     'ref': '/bo/diacritic/'
+     'ref': '/bod/diacritic/'
      },
 ]
 

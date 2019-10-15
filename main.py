@@ -44,7 +44,7 @@ LanguageList = [
     ('Otomanguean phonetic', 'omq'),
     ('Rohingya', 'rhg', ),
     ('Tamashek', 'tmh', 'ⵜⴰⵎⴰⵌⴰⵆ'),
-    ('Tibetan', 'bo'),
+    ('Tibetan', 'bod'),
 ]
 
 class MainHandler(webapp2.RequestHandler):
@@ -180,7 +180,7 @@ def handle_500(request, response, exception):
 app = webapp2.WSGIApplication(
     [
         ('/', MainHandler),
-#        ('/bo/', TibetanHomeHandler),
+#        ('/bod/', TibetanHomeHandler),
  #       ('/bod/', tibetan.IndigenousHomeHandler),
   #      ('/bod/diacritic/', tibetan.DiacriticHandler),
         ('/tmh/', TamashekHomeHandler),
