@@ -90,33 +90,13 @@ function utf16common(text, prefix, suffix, asciitoo, highlight_list)
   function convertToText(textInputId, textOutputId) {
     var textinput = document.getElementById(textInputId);
     var textoutput = document.getElementById(textOutputId);
-    var inChars = textinput.value;
-    var outCharacters = uhexToChars(inChars)
+
+    var textHex = intArrayFromHexString(textinput.value);
+    var outCharacters = fromCodePointHex(textHex);
+
     textoutput.innerHTML = outCharacters;
     textoutput.value = outCharacters;
     return outCharacters;
-  }
-
-  function  uhexToChars(textinput) {
-   // blanks delimit
-   var removed_uslash = textinput.replace(/\\u/g, " ");
-   // ignore multiple spaces
-   removed_uslash = removed_uslash.replace(/\u0020\u0020+/g, " ");
-   removed_uslash = removed_uslash.replace(/$\u0020+/, "");
-   //
-   removed_uslash = removed_uslash.replace(/\u0000/g, "");
-   var hexSplit = removed_uslash.split(" ");
-   // var hexSplit = textinput.split(" ");
-   var charsOut = new Array(hexSplit.length);
-   for (i = 0; i < hexSplit.length; i++) {
-     if (hexSplit[i] != "") {
-       var hex = hexSplit[i].replace("u+", "").trim();
-       var charCode = parseInt(hex, 16);
-       charsOut[i] = String.fromCharCode(charCode);
-     }
-   }
-   size = textinput.length
-   return charsOut.join("");
   }
 
   function allConvertDiffs() {
@@ -262,4 +242,33 @@ function matchG3Conversion(text) {
     }
   }
   return detect_diffs;
+}
+
+// Input is string of hex values, separated by spaces.
+// Also accept 0x, u+, and \u for each hex value.
+function intArrayFromHexString(inString) {
+  // Remove U+ or 0x. Split at space.
+  var newString = inString.replace(/(U\+)|(u\+)|(0x)|(0X)|( 0x)|( 0X)|\\u|\\U/g, " ")
+  var hStrings = newString.split(" ");
+  var intList = [];
+  var outIndex = 0;
+  for (var i=0; i < hStrings.length; i ++) {
+    if (hStrings[i] != "" && hStrings != "\u0000") {
+      intList[outIndex] = parseInt(hStrings[i], 16);
+      outIndex ++;
+    }
+  }
+  return intList;
+}
+
+// Create Unicode chars from array of hex characters.
+function fromCodePointHex(arguments) {
+  var chars = [], point, offset, units, i;
+  for (i = 0; i < arguments.length; ++i) {
+    point = arguments[i];
+    offset = point - 0x10000;
+    units = point > 0xFFFF ? [0xD800 + (offset >> 10), 0xDC00 + (offset & 0x3FF)] : [point];
+    chars.push(String.fromCharCode.apply(null, units));
+  }
+  return chars.join("");
 }
