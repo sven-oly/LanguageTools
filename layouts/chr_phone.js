@@ -228,7 +228,7 @@ var CHR_PHONE_LAYOUT = {
     'W[uU]' : '\u13ED',  // Ꮽ
     'wv' : '\uabbE',  // Ꮾ
     'W[vV]' : '\u13EE',  // Ꮾ
-    'ya' : '\uab9A',  // Ꮿ
+    'ya' : '\uabbf',  // Ꮿ
     'Y[aA]' : '\u13EF',  // Ꮿ
     'ye' : '\u13f8',  // Ᏸ
     'Y[eE]' : '\u13F0',  // Ᏸ
