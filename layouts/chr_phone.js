@@ -1,4 +1,4 @@
-ar CHR_PHONE_LAYOUT = {
+var CHR_PHONE_LAYOUT = {
   'id': 'chr_phone',
   'title': 'ᏣᎳᎩ ᏗᎧᏁᎢᏍᏗ ᏚᏃᏴᎬ',
   'mappings': {
@@ -154,7 +154,7 @@ ar CHR_PHONE_LAYOUT = {
     'Q[uU][iI]' : '\u13C8',  // Ꮘ
     'quo' : '\uab99',  // Ꮙ
     'Q[uU][oO]' : '\u13C9',  // Ꮙ
-    'quu' : '\uab9A',  // Ꮚ
+    'quu' : '\uab9a',  // Ꮚ
     'Q[uU][uU]' :'\u13CA',  // Ꮚ
     'quv' : '\uab9B',  // Ꮛ
     'Q[uU][vV]' : '\u13CB',  // Ꮛ
@@ -234,7 +234,7 @@ ar CHR_PHONE_LAYOUT = {
     'Y[eE]' : '\u13F0',  // Ᏸ
     'yi' : '\u13F9',  // Ᏹ
     'Y[iI]' : '\u13F1',  // Ᏹ
-    'yo' : '\uab92',  // Ᏺ
+    'yo' : '\u13fa',  // Ᏺ
     'Y[oO]' : '\u13F2',  // Ᏺ
     'yu' : '\u13fB',  // Ᏻ
     'Y[uU]' : '\u13f3',  // Ᏻ

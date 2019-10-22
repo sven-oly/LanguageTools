@@ -51,6 +51,10 @@ encoding_font_list = [
 ]
 
 unicode_font_list = [
+    { 'family': 'NotoSansCheronee',
+      'longName': 'Noto Sans Cherokee',
+      'source': '/fonts/Cherokee/NotoSansCherokee-Regular.ttf'
+    },
 ]
 
 for f in all_cherokee_unicode_fonts:
@@ -84,6 +88,9 @@ class CherokeeIndigenousHomeHandler(webapp2.RequestHandler):
       kb_list = [
         {'shortName':  'chr',
          'longName': 'Cherokee Unicode'
+        },
+        {'shortName':  'chr_phone',
+         'longName': 'Cherokee Phonetic'
         }
       ]
       template_values = {
@@ -129,6 +136,9 @@ class CherokeeConvertUIHandler(webapp2.RequestHandler):
       kb_list = [
         {'shortName':  'chr',
          'longName': 'Cherokee'
+        },
+        {'shortName':  'chr_phone',
+         'longName': 'Cherokee Phonetic'
         }
       ]
 
