@@ -16,16 +16,17 @@ var HNJ_LAYOUT = {
   'title': 'Green Hmong',
   'mappings': {
     ',c': {
-      '': '`1234567890-=' +
-          'qwertyuiop{}|' +
-          'asdfghjkl:"' +
-          'zxcvbnm<>?'
+      '': '`{{\ud838\udd41}}{{\ud838\udd42}}{{\ud838\udd43}}{{\ud838\udd44}}{{\ud838\udd45}}{{\ud838\udd46}}{{\ud838\udd47}}{{\ud838\udd48}}{{\ud838\udd49}}{{\ud838\udd40}}-=' +
+          'qwertyuiop{}\\' +
+          '{{\ud838\udd24}}{{\ud838\udd26}}{{\ud838\udd0f}}{{-}}{' +
+	    '{\ud838\udd01}}{{\ud838\udd04}}{{\ud838\udd14}}{{\ud838\udd0e}}{{\ud838\udd09}};{{\ud838\udd39}}' +
+          '{{\ud838\udd6b}}x{{\ud838\udd08}}{{\ud838\udd12}}{{\ud838\udd1c}}n{{\ud838\udd00}},./'
     },
     's,sc': {
-      '': '~!@#$%^&*()_+' +
-          'QWERTYUIOP[]\\' +
-          'ASDFGHJKL;\'' +
-          'ZXCVBNM,./'
+      '': '~!{{\ud838\udd4f}}#{{\ud838\udd4e}}%^&*()_+' +
+          'QWERTYUIOP{{\ud838\udd3a}}{{\ud838\udd3b}}\\' +
+          '{{\ud838\udd25}}{{\ud838\uddba}}{{\ud838\udd1d}}{{\ud838\udd35}}{{\ud838\udd13}}{{\ud838\udd1f}}{{\ud838\udd0d}}{{\ud838\udd07}}{{\ud838\udd23}};\"' +
+          '{{\ud838\udd38}}XC{{\ud838\udd15}}{{\ud838\udd1e}}{{\ud838\udd22}}{{\ud838\udd20}}{{\ud838\udd37}}{{\ud838\udd3c}}?'
     },
     'l,cl': {
       '': '`1234567890-=' +

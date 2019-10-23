@@ -78,7 +78,7 @@ links = [
 class langInfo():
   def __init__(self):
     self.LanguageCode = 'hnj'  # or mww for White Hmong
-    self.Language = 'Nyiakeng Puahcue Hmong'
+    self.Language = 'Nyiakeng Puachue Hmong'
     self.Language_native = ''
     self.direction = 'ltr'
 
