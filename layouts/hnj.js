@@ -17,16 +17,16 @@ var HNJ_LAYOUT = {
   'mappings': {
     ',c': {
       '': '`{{\ud838\udd41}}{{\ud838\udd42}}{{\ud838\udd43}}{{\ud838\udd44}}{{\ud838\udd45}}{{\ud838\udd46}}{{\ud838\udd47}}{{\ud838\udd48}}{{\ud838\udd49}}{{\ud838\udd40}}-=' +
-          'qwertyuiop{}\\' +
-          '{{\ud838\udd24}}{{\ud838\udd26}}{{\ud838\udd0f}}{{-}}{' +
+          '{{\ud838\udd17}}{{\ud838\udd2c}}{{\ud838\udd30}}{{\ud838\udd16}}{{\ud838\udd03}}{{\ud838\udd18}}{{\ud838\udd27}}{{\ud838\udd33}}{{\ud838\udd28}}{{\ud838\udd1a}}{{\ud838\udd3d}}{{\ud838\udd36}}\\' +
+          '{{\ud838\udd24}}{{\ud838\udd26}}{{\ud838\udd0f}}{{\ud838\udd34}}{' +
 	    '{\ud838\udd01}}{{\ud838\udd04}}{{\ud838\udd14}}{{\ud838\udd0e}}{{\ud838\udd09}};{{\ud838\udd39}}' +
-          '{{\ud838\udd6b}}x{{\ud838\udd08}}{{\ud838\udd12}}{{\ud838\udd1c}}n{{\ud838\udd00}},./'
+          '{{\ud838\udd6b}}{{\ud838\udd06}}{{\ud838\udd08}}{{\ud838\udd12}}{{\ud838\udd1c}}{{\ud838\udd05}}{{\ud838\udd00}},./'
     },
     's,sc': {
       '': '~!{{\ud838\udd4f}}#{{\ud838\udd4e}}%^&*()_+' +
-          'QWERTYUIOP{{\ud838\udd3a}}{{\ud838\udd3b}}\\' +
-          '{{\ud838\udd25}}{{\ud838\uddba}}{{\ud838\udd1d}}{{\ud838\udd35}}{{\ud838\udd13}}{{\ud838\udd1f}}{{\ud838\udd0d}}{{\ud838\udd07}}{{\ud838\udd23}};\"' +
-          '{{\ud838\udd38}}XC{{\ud838\udd15}}{{\ud838\udd1e}}{{\ud838\udd22}}{{\ud838\udd20}}{{\ud838\udd37}}{{\ud838\udd3c}}?'
+          '{{\ud838\udd19}}{{\ud838\udd2a}}{{\ud838\udd32}}{{\ud838\udd11}}{{\ud838\udd02}}{{\ud838\udd10}}{{\ud838\udd2b}}{{\ud838\udd31}}{{\ud838\udd29}}{{\ud838\udd21}}{{\ud838\udd3a}}{{\ud838\udd3b}}\\' +
+          '{{\ud838\udd25}}{{\ud838\udd0a}}{{\ud838\udd1d}}{{\ud838\udd35}}{{\ud838\udd13}}{{\ud838\udd1f}}{{\ud838\udd0d}}{{\ud838\udd07}}{{\ud838\udd23}};\"' +
+          '{{\ud838\udd38}}{{\ud838\udd1b}}{{\ud838\udd0c}}{{\ud838\udd15}}{{\ud838\udd1e}}{{\ud838\udd22}}{{\ud838\udd20}}{{\ud838\udd37}}{{\ud838\udd3c}}?'
     },
     'l,cl': {
       '': '`1234567890-=' +
