@@ -91,6 +91,9 @@ handlers:
 - url: /my/.*
   script: burmese.app
 
+- url: /nyiakeng/.*
+  script: nyiakeng_hmong.app
+
 - url: /nnp/.*
   script: wancho.app
 

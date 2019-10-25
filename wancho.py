@@ -76,10 +76,10 @@ class langInfo():
 
     if sys.maxunicode >= 0x10000:
       logging.info('WIDE SYSTEM BUILD!!!')
-      self.diacritic_list = [unichr(x) for x in range(0x1e100, 0x1e14f)]
+      self.diacritic_list = [unichr(x) for x in range(0x1e2c0, 0x1e2fa)]
     else:
       logging.info('NARROW SYSTEM BUILD!!!')
-      self.diacritic_list = [unichr(0xd803) + unichr(0xdd00 + x) for x in range(0x22, 0x27)]
+      self.diacritic_list = [unichr(0xd838) + unichr(0xde00 + x) for x in range(0xc0, 0xfa)]
 
     self.base_consonant = u'\ud838\udd00'
     self.baseHexUTF16 = u'\ud838\udd01'

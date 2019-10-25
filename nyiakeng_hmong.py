@@ -99,7 +99,7 @@ class langInfo():
       self.diacritic_list = [unichr(x) for x in range(0x1e100, 0x1e14f)]
     else:
       logging.info('NARROW SYSTEM BUILD!!!')
-      self.diacritic_list = [unichr(0xd803) + unichr(0xdd00 + x) for x in range(0x22, 0x27)]
+      self.diacritic_list = [unichr(0xd838) + unichr(0xdd00 + x) for x in range(0x00, 0x4f)]
 
     self.base_consonant = u'\ud838\udd00'
     self.baseHexUTF16 = u'\ud838\udd01'
