@@ -62,7 +62,7 @@ unicode_font_list = [
   {
       'family': 'Mong0_Unicode',
       'longName': 'Mong0 Unicode prototype',
-      'source':'/fonts/NyiakengPuacheHmong/Mong_unicode.ttf',
+      'source':'/fonts/NyiakengPuacheHmong/Mong0_unicode.ttf',
   },
 ]
 
