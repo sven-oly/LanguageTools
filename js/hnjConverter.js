@@ -1,6 +1,4 @@
-// Convert from old font-encoding of Cherokee text to Unicode forms:
-
-// Mappings for both Old Cherokee font
+// Mappings for Nyiakeng font
 var map_encoding_names = [
   'Green Hmong'];
 
