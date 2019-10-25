@@ -31,12 +31,12 @@ from google.appengine.ext.webapp import template
 encoding_font_list = [
     {
         'display_name': 'Mong0_ASCII',
-        'font_name': 'Mong0 fixed',
+        'font_name': 'Mong0_fixed',
         'font_path':'/fonts/NyiakengPuacheHmong/Mong0_ASCII_fixed.ttf',
     },
     {
         'display_name': 'Mong4_ASCII',
-        'font_name': 'Mong4 fixed',
+        'font_name': 'Mong4_fixed',
         'font_path':'/fonts/NyiakengPuacheHmong/Mong_NE4_ASCII_fixed.ttf',
     },
     # {
