@@ -124,7 +124,8 @@ function convertEncodingToUnicode(inbox, outbox, encodingIndex) {
     var c = intext[index];
     out = c;
     if (c in private_use_map_combined) {
-      var result = private_use_map_combined[c][encodingIndex];
+      // Only one mapping is implemented as of 25-Oct-2019
+      var result = private_use_map_combined[c];  // [encodingIndex];
       if (result) {
 	out = result;
       }

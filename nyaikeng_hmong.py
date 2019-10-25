@@ -30,15 +30,17 @@ from google.appengine.ext.webapp import template
 
 encoding_font_list = [
     {
-        'display_name': 'Mong0_ASCII',
+        'display_name': 'Mong0 ASCII',
         'font_name': 'Mong0_fixed',
         'font_path':'/fonts/NyiakengPuacheHmong/Mong0_ASCII_fixed.ttf',
     },
     {
-        'display_name': 'Mong4_ASCII',
+        'display_name': 'Mong NE4 ASCII',
         'font_name': 'Mong4_fixed',
         'font_path':'/fonts/NyiakengPuacheHmong/Mong_NE4_ASCII_fixed.ttf',
     },
+    # The original fonts did not load correctly. After regenerating
+    # from fontforge, they work much better.
     # {
     #   'font_path': '/fonts/NyiakengPuacheHmong/MONG_0.ttf',
     #   'font_name': 'Mong_0',
