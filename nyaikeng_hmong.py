@@ -30,15 +30,25 @@ from google.appengine.ext.webapp import template
 
 encoding_font_list = [
     {
-      'font_path': '/fonts/NyiakengPuacheHmong/MONG_0.TTF',
-      'font_name': 'Mong_0',
-      'display_name': 'Mong 0',
+        'display_name': 'Mong0_ASCII',
+        'font_name': 'Mong0 fixed',
+        'font_path':'/fonts/NyiakengPuacheHmong/Mong0_ASCII_fixed.ttf',
     },
     {
-      'font_path': '/fonts/NyiakengPuacheHmong/MONG_NE4.TTF',
-      'font_name': 'MONG_NE4',
-      'display_name': 'Mong NE4',
+        'display_name': 'Mong4_ASCII',
+        'font_name': 'Mong4 fixed',
+        'font_path':'/fonts/NyiakengPuacheHmong/Mong_NE4_ASCII_fixed.ttf',
     },
+    # {
+    #   'font_path': '/fonts/NyiakengPuacheHmong/MONG_0.ttf',
+    #   'font_name': 'Mong_0',
+    #   'display_name': 'Mong 0',
+    # },
+    # {
+    #   'font_path': '/fonts/NyiakengPuacheHmong/MONG_NE4.TTF',
+    #   'font_name': 'MONG_NE4',
+    #   'display_name': 'Mong NE4',
+    # },
 ]
 
 unicode_font_list = [
