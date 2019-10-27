@@ -55,14 +55,14 @@ encoding_font_list = [
 
 unicode_font_list = [
   {
-      'family': 'MATD',
-      'longName': 'MATD_TP70',
-      'source':'/fonts/NyiakengPuacheHmong/MATD-TamaraPilz-Regular-A-70.otf',
-  },
-  {
       'family': 'Mong0_Unicode',
       'longName': 'Mong0 Unicode prototype',
       'source':'/fonts/NyiakengPuacheHmong/Mong0_unicode.ttf',
+  },
+  {
+      'family': 'MATD',
+      'longName': 'MATD_TP70',
+      'source':'/fonts/NyiakengPuacheHmong/MATD-TamaraPilz-Regular-A-70.otf',
   },
 ]
 

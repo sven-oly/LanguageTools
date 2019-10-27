@@ -4,7 +4,7 @@ var map_encoding_names = [
 
 var private_use_map_combined = {
   '\u0020': [' '],
-  '\u0021`': ['!'],
+  '\u0021': ['!'],
   '\u0022': ['\"'],
   '\u0023': ['#'],
   '\u0024': ['\ud838\udd4e'],
@@ -17,7 +17,7 @@ var private_use_map_combined = {
   '\u002b': ['+'],
   '\u002c': [','],
   '\u002d': ['-'],
-  '\u002e': [',.'],
+  '\u002e': ['.'],
   '\u002f': ['/'],
 
   '\u0030': ['\ud838\udd40'],
@@ -100,7 +100,7 @@ var private_use_map_combined = {
   '\u007a': ['\ud838\udd0b'],
   '\u007b': ['\ud838\udd3a'],
   '\u007c': ['\u2190'],
-  '\u007d': ['\ud838\udd38'],
+  '\u007d': ['\ud838\udd3b'],
   '\u007e': ['~'],
 };
 
