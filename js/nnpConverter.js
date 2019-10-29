@@ -3,6 +3,7 @@ var map_encoding_names = [
   'Wancho'];
 
 var private_use_map_combined = {
+  '\u0024':  ['\ud838\udeFF'],
   'a':  ['\ud838\udeC0'],
   'A':  ['\ud838\udeC1'],
   'b':  ['\ud838\udeC2'],
@@ -61,7 +62,6 @@ var private_use_map_combined = {
   '7':  ['\ud838\udeF7'],
   '8':  ['\ud838\udeF8'],
   '9':  ['\ud838\udeF9'],
-  '\u0024':  ['\ud838\udeFF'],
 };
 
 function toLower(instring) {
