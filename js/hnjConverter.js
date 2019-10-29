@@ -99,7 +99,7 @@ var private_use_map_combined = {
   '\u0079': ['\ud838\udd18'],
   '\u007a': ['\ud838\udd0b'],
   '\u007b': ['\ud838\udd3a'],
-  '\u007c': ['\u2190'],
+  '\u007c': ['\u007c'],
   '\u007d': ['\ud838\udd3b'],
   '\u007e': ['~'],
 };
