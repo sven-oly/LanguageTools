@@ -61,7 +61,7 @@ var private_use_map_combined = {
   '7':  ['\ud838\udeF7'],
   '8':  ['\ud838\udeF8'],
   '9':  ['\ud838\udeF9'],
-  '':  ['\ud838\udeFF'],
+  '\u0024':  ['\ud838\udeFF'],
 };
 
 function toLower(instring) {

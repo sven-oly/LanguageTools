@@ -38,9 +38,14 @@ encoding_font_list = [
 
 unicode_font_list = [
   {
-      'family': 'NotoSansWancho',
-      'longName': 'NotoSansWancho',
-      'source':'/fonts/Wancho/NotoSansWancho.ttf',
+      'family': 'WanchoDipangkarUnicode',
+      'longName': 'Wancho Dipangkar Unicode',
+      'source':'/fonts/Wancho/WanchoDipangkar_Unicode.ttf',
+  },
+  {
+    'family': 'NotoSansWancho',
+    'longName': 'NotoSansWancho',
+    'source': '/fonts/Wancho/NotoSansWancho.ttf',
   },
 ]
 
