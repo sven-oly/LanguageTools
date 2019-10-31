@@ -40,7 +40,7 @@ unicode_font_list = [
   {
     'family': 'NotoSansWancho',
     'longName': 'NotoSansWancho',
-    'source': '/fonts/Wancho/NotoSansWancho-Regular.otf',
+    'source': '/fonts/Wancho/NotoSansWancho-Regular.ttf',
   },
   {
       'family': 'WanchoDipangkarUnicode',
