@@ -54,7 +54,11 @@ class FeedbackHandler(webapp2.RequestHandler):
     comment = self.request.get('commment', 'DEFAULT COMMENT')
     sampleText = self.request.get('sampleText', 'SAMPLE TEXT')
 
-    logging.info('Feedback input = %s %s %s' % (lang, font, sampleText))
+    logging.info('Feedback input = %s %s' % (lang, font))
+    logging.info('Feedback comment: %s sampleText: %s' % (comment, sampleText))
+    logging.info('Feedback Sender: %s (%s)\n' % (sender_name, sender_email))
+    logging.info("Feedback Description received = '%s'\n" % description)
+    logging.info("Feedback language = '%s'\n" % lang)
 
     # Create the ErrorReport
     newReport = ErrorReport()
@@ -68,13 +72,10 @@ class FeedbackHandler(webapp2.RequestHandler):
     
     # Write to datastore.
     newReport.put()
-    
-    logging.info('Feedback Sender: %s (%s)\n' % (sender_name, sender_email))
-    logging.info("Feedback Description received = '%s'\n" % description)
-    logging.info("Feedback language = '%s'\n" % lang)
 
-    email_body = ('sender: %s (%s)\n \nDescription: %s\nLanguage: %s\nReport %s' %
-                   (sender_name, sender_email, description, lang, newReport))
+    email_body = (
+        'sender: %s (%s)\n\nDescription: %s\nLanguage: %s\nComment: %s\nEncoding: %s font: %s\n' %
+                   (sender_name, sender_email, description, lang, comment, encoding, font))
 
     result = sendmail.send_mail('smtpauth.earthlink.net',
          None, 'cwcornelius@gmail.com','cwcornelius@gmail.com',
