@@ -21,6 +21,7 @@ class ErrorReport(ndb.Model):
     submitterMail = ndb.StringProperty(indexed=False)
     language = ndb.StringProperty(indexed=False)
     encoding = ndb.StringProperty(indexed=False)
+    description = ndb.StringProperty(indexed=False)
     font = ndb.StringProperty(indexed=False)
     sampleText = ndb.StringProperty(indexed=False)
     comment = ndb.StringProperty(indexed=False)
@@ -31,7 +32,7 @@ class FeedbackHandler(webapp2.RequestHandler):
   def get(self):
   
     template_values = {
-      'language': self.request.get('language', 'burmese'),
+      'language': self.request.get('language', 'Unknown'),
       'sampleText': self.request.get('sampleText', 'SAMPLE TEXT'),
       'font': self.request.get('font', 'notosans'),
     }
@@ -44,10 +45,10 @@ class FeedbackHandler(webapp2.RequestHandler):
   def post(self):
     # Handle response to feedback data.  
 
-    sender_name = self.request.get('name')
-    description = self.request.get('description')
-    sender_email = self.request.get('email')
-    lang = self.request.get('language', 'burmese')
+    sender_name = self.request.POST['name']
+    description = self.request.POST['description']
+    sender_email = self.request.POST['email']
+    lang = self.request.get('language', 'Unspecified language')
     encoding = self.request.get('encoding', 'DEFAULT ENCODING')
     font = self.request.get('font', 'notosans')
     comment = self.request.get('commment', 'DEFAULT COMMENT')
@@ -68,11 +69,14 @@ class FeedbackHandler(webapp2.RequestHandler):
     # Write to datastore.
     newReport.put()
     
-    logging.info('Sender: %s (%s)\n' % (sender_name, sender_email))
-    logging.info("Description received = '%s'\n" % description)
+    logging.info('Feedback Sender: %s (%s)\n' % (sender_name, sender_email))
+    logging.info("Feedback Description received = '%s'\n" % description)
+    logging.info("Feedback language = '%s'\n" % lang)
 
-    email_body = ('sender: %s (%s)\n \nDescription: %s\n' %
-                   (sender_name, sender_email, description))
+    email_body = ('sender: %s (%s)\n \nDescription: %s\nLanguage: %s\nReport %s' %
+                   (sender_name, sender_email, description, lang, newReport))
+
+    email_body
 
     result = sendmail.send_mail('smtpauth.earthlink.net',
          None, 'cwcornelius@gmail.com','cwcornelius@gmail.com',
@@ -94,11 +98,11 @@ class FeedbackHandler(webapp2.RequestHandler):
 class SubmitErrorHandler(webapp2.RequestHandler):
   # Show feedback form.
   def get(self):
-    text = self.request.get("text", "")
+    text = self.request.params("text", "")
     template_values = {
-      'input': self.request.get("text", ""),
-      'converted': self.request.get("converted", ""),
-      'type': self.request.get("type", "")
+      'input': self.request.params("text", ""),
+      'converted': self.request.params("converted", ""),
+      'type': self.request.params("type", "")
     }
 
     logging.info('Submit error: %s' % text)
@@ -110,7 +114,7 @@ class SubmitErrorHandler(webapp2.RequestHandler):
 class StoreErrorHandler(webapp2.RequestHandler):
   # Show feedback form.
   def get(self):
-    text = self.request.get("text", "")
+    text = self.request.params("text", "")
     template_values = SetDefaultTemplate(text)
 
     logging.info('StoreErrorHandle error: %s' % text)
