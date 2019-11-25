@@ -78,14 +78,15 @@ class FeedbackHandler(webapp2.RequestHandler):
         'sender: %s (%s)\n\nDescription: %s\nLanguage: %s\nComment: %s\nEncoding: %s font: %s\n' %
                    (sender_name, sender_email, description, lang, comment, encoding, font))
 
-    result = mail.send_mail('feedback@languagetools-153419.appspot.com',
+    result = "OK"
+    try:
+      result = mail.send_mail('feedback-%s@languagetools-153419.appspotmail.com' % lang,
                             'cwcornelius@gmail.com',
                             'Feedback on %s' % lang,
                             email_body)
-    #result = sendmail.send_mail('smtpauth.earthlink.net',
-    #     None, 'cwcornelius@gmail.com','cwcornelius@gmail.com',
-    #     'Feedback', email_body, False)
-      
+    except InvalidEmailError:
+      result = "Bad email address"
+
     template_values = {
       'language': lang,
       'sampleText': sampleText,
