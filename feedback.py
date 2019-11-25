@@ -76,8 +76,6 @@ class FeedbackHandler(webapp2.RequestHandler):
     email_body = ('sender: %s (%s)\n \nDescription: %s\nLanguage: %s\nReport %s' %
                    (sender_name, sender_email, description, lang, newReport))
 
-    email_body
-
     result = sendmail.send_mail('smtpauth.earthlink.net',
          None, 'cwcornelius@gmail.com','cwcornelius@gmail.com',
          'Feedback', email_body, False)
