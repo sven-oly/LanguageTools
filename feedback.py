@@ -13,7 +13,7 @@ from google.appengine.ext.webapp import template
 
 from google.appengine.ext import ndb
 
-import sendmail
+from google.appengine.api import mail
 
 class ErrorReport(ndb.Model):
     """A main model for representing an individual ErrorReport entry."""
@@ -78,9 +78,13 @@ class FeedbackHandler(webapp2.RequestHandler):
         'sender: %s (%s)\n\nDescription: %s\nLanguage: %s\nComment: %s\nEncoding: %s font: %s\n' %
                    (sender_name, sender_email, description, lang, comment, encoding, font))
 
-    result = sendmail.send_mail('smtpauth.earthlink.net',
-         None, 'cwcornelius@gmail.com','cwcornelius@gmail.com',
-         'Feedback', email_body, False)
+    result = mail.send_mail('feedback@languagetools-153419.appspot.com',
+                            'cwcornelius@gmail.com',
+                            'Feedback on %s' % lang,
+                            email_body)
+    #result = sendmail.send_mail('smtpauth.earthlink.net',
+    #     None, 'cwcornelius@gmail.com','cwcornelius@gmail.com',
+    #     'Feedback', email_body, False)
       
     template_values = {
       'language': lang,
