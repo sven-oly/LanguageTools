@@ -68,6 +68,7 @@ class FeedbackHandler(webapp2.RequestHandler):
     newReport.language = lang
     newReport.comment = comment
     newReport.font = font
+    newReport.description = description
     newReport.sampleText = sampleText
     
     # Write to datastore.
