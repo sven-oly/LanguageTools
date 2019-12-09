@@ -88,6 +88,9 @@ handlers:
 - url: /mez/.*
   script: menoninee.app
 
+- url: /mor/.*
+  script: moro.app
+
 - url: /my/.*
   script: burmese.app
 

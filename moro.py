@@ -24,26 +24,11 @@ import webapp2
 
 from google.appengine.ext.webapp import template
 
-Language = 'Navajo'
-Language_native = 'Diné Bizaad'
-LanguageCode = 'nv'
+Language = 'Moro'
+Language_native = 'Moro family'
+LanguageCode = 'mor'
 
 encoding_font_list = [
-  {
-    'font_path': '/fonts/Navajo/Timenrn_.ttf',
-    'font_name': 'TimesNewRomanNavajo',
-    'display_name': 'Times New Roman Navajo',
-  },
-  {
-    'font_path': '/fonts/Navajo/VERDN___.TTF',
-    'font_name': 'VerdanaNavajo',
-    'display_name': 'Verdana Navajo',
-  },
-  {
-    'font_path':'/fonts/Navajo/CENTGN__.TTF',
-    'font_name':'CenturyGothicNavajo',
-    'display_name': 'Century Gothic Navajo',
-  },
 ]
 
 unicode_font_list = [
@@ -55,18 +40,11 @@ unicode_font_list = [
    'longName': 'Noto Serif',
    'source': '/fonts/NotoSerif-Regular.ttf',
    },
-  #{'family': 'Roboto',
-  # 'longName': 'Roboto',
-  # 'source': 'https://fonts.googleapis.com/css?family=Roboto',
-  # },
 ]
 
 kb_list = [
   {'shortName': LanguageCode,
-   'longName': Language + ' Modern'
-   },
-  {'shortName': LanguageCode + '_std',
-   'longName': Language + ' Traditional'
+   'longName': Language
    },
 ]
 
@@ -75,25 +53,22 @@ links = [
     {'linkText': 'Keyboard',
      'ref': '/' + LanguageCode + '/'
     },
-    {'linkText': 'Converter',
-     'ref': '/' + LanguageCode + '/convertUI/'},
-    {'linkText': 'Font conversion summary',
-      'ref': '/' + LanguageCode + '/encodingRules/'
-    },
-    {'linkText': 'Resources',
-      'ref': '/' + LanguageCode + '/downloads/'
-    },
-    {'linkText': 'Diné Bizaad Navajo',
-      'ref': 'http://www.lapahie.com/Dine_Bizaad.cfm'
-    },
-    {'linkText': 'Diné College IT',
-     'ref': 'http://www.dinecollege.edu/current/it.php'
+    # {'linkText': 'Converter',
+    #  'ref': '/' + LanguageCode + '/convertUI/'},
+    # {'linkText': 'Font conversion summary',
+    #   'ref': '/' + LanguageCode + '/encodingRules/'
+    # },
+    # {'linkText': 'Resources',
+    #   'ref': '/' + LanguageCode + '/downloads/'
+    # },
+    {'linkText': 'Wikipedia',
+      'ref': 'https://en.wikipedia.org/wiki/Moro_language'
     },
 ]
 
 
 # Shows keyboards
-class NajavjoIndigenousHomeHandler(webapp2.RequestHandler):
+class IndigenousHomeHandler(webapp2.RequestHandler):
     def get(self):
       template_values = {
         'language': Language,
@@ -231,11 +206,9 @@ class Downloads(webapp2.RequestHandler):
       self.response.out.write(template.render(path, template_values))
 
 
-
-
 app = webapp2.WSGIApplication([
-  ('/demo_' + LanguageCode + '/', NajavjoIndigenousHomeHandler),
-  ('/' + LanguageCode + '/', NajavjoIndigenousHomeHandler),
+  ('/demo_' + LanguageCode + '/', IndigenousHomeHandler),
+  ('/' + LanguageCode + '/', IndigenousHomeHandler),
   ('/' + LanguageCode + '/convertUI/', ConvertUIHandler),
   ('/' + LanguageCode + '/downloads/', Downloads),
   ('/' + LanguageCode + '/converter/', ConvertHandler),
