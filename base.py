@@ -93,6 +93,12 @@ class LanguagesHomeHandler(webapp2.RequestHandler):
     except AttributeError:
       text_direction = 'ltr'
 
+    try:
+      test_data = langInfo.test_data
+    except AttributeError:
+      test_data = ''
+    logging.info('test_data: %s' % test_data)
+
     template_values = {
         'direction': text_direction,
         'language': langInfo.Language,
@@ -100,6 +106,7 @@ class LanguagesHomeHandler(webapp2.RequestHandler):
         'lang_list': langInfo.lang_list,
         'kb_list': langInfo.kb_list,
         'links': langInfo.links,
+        'test_data': test_data,
     }
     path = os.path.join(os.path.dirname(__file__), 'demo_general.html')
     self.response.out.write(template.render(path, template_values))
@@ -221,8 +228,6 @@ class ConvertUIHandler(webapp2.RequestHandler):
 
     unicodeCombiningChars = getCombiningCombos(
         langInfo.baseHexUTF16, langInfo.diacritic_list)
-
-    logging.info('kb_list: %s' % langInfo.kb_list)
 
     template_values = {
         'font': font,

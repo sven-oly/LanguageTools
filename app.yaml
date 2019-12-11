@@ -52,6 +52,9 @@ handlers:
 - url: /chr/.*
   script: cherokee.app
 
+- url: /cr/.*
+  script: cree.app
+
 - url: /demo_chr/.*
   script: cherokee.app
 

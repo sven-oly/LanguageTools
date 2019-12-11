@@ -11,33 +11,33 @@
 // limitations under the License.
 
 
-var MOR_LAYOUT = {
-  'id': 'mor',
-  'title': 'Moro QWERTY',
+var CR_LAYOUT = {
+  'id': 'cr',
+  'title': 'Cree Central 1',
   'mappings': {
     ',c': {
-      '': '`1234567890-=' +
-          'ëwertyuiopǝɽḏ' +
-          'asdfghṯklŋ"' +
-          'ñxcđbnm,./'
+      '': 'ᐡᐁᐯᑌᑫᒉᒣᓀᓭᔐᔦᐨ᐀' +
+	  'ᐃᐱᑎᑭᒋᒥᓂᓯᔑᔨᐟᔾ' +
+	  'ᐊᐸᑕᑲᒐᒪᓇᓴᔕᔭᐢᒼ' +
+	  'ᐡᐅᐤᐧᑯᐠ˙ᐣ,᙮ᐦ'
     },
     's,sc': {
       '': '~!@#$%^&*()_+' +
-          'ËWERTYUIOPƎⱤḎ' +
-          'ASDFGHṮKLŊ\'' +
-          'ÑXCĐBNM<>?'
+          'QWERTYUIOP{}|' +
+          'ASDFGHJKL;\'' +
+          'ZXCVBNM<>?'
     },
     'l,cl': {
       '': '`1234567890-=' +
-          'qwertyuiop{}|' +
+          'qwertyuiop[]\\' +
           'asdfghjkl:"' +
-          'zxcvbnm<>?'
+          'zxcvbnm,./'
     },
     'sl,scl': {
       '': '~!@#$%^&*()_+' +
-          'QWERTYUIOP[]\\' +
+          'QWERTYUIOP{}|' +
           'ASDFGHJKL;\'' +
-          'ZXCVBNM,./'
+          'ZXCVBNM<>?'
     }
   },
   'transform': {
@@ -46,4 +46,4 @@ var MOR_LAYOUT = {
 };
 
 // Load the layout and inform the keyboard to switch layout if necessary.
-google.elements.keyboard.loadme(MOR_LAYOUT);
+google.elements.keyboard.loadme(CR_LAYOUT);
