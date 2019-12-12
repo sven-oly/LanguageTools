@@ -11,33 +11,33 @@
 // limitations under the License.
 
 
-var EN_LAYOUT = {
-  'id': 'en',
-  'title': 'English QWERTY',
+var MOR_LAYOUT = {
+  'id': 'mor',
+  'title': 'Moro QWERTY',
   'mappings': {
     ',c': {
       '': '`1234567890-=' +
-          'qwertyuiop[]\\' +
-          'asdfghjkl:"' +
-          'zxcvbnm,./'
+          'ëwertyuiopǝɽḏ' +
+          'asdfghṯklŋ"' +
+          'ñxcđbnm,./'
     },
     's,sc': {
       '': '~!@#$%^&*()_+' +
-          'QWERTYUIOP{}|' +
-          'ASDFGHJKL;\'' +
-          'ZXCVBNM<>?'
+          'ËWERTYUIOPƎⱤḎ' +
+          'ASDFGHṮKLŊ\'' +
+          'ÑXCĐBNM<>?'
     },
     'l,cl': {
       '': '`1234567890-=' +
-          'qwertyuiop[]\\' +
+          'qwertyuiop{}|' +
           'asdfghjkl:"' +
-          'zxcvbnm,./'
+          'zxcvbnm<>?'
     },
     'sl,scl': {
       '': '~!@#$%^&*()_+' +
-          'QWERTYUIOP{}|' +
+          'QWERTYUIOP[]\\' +
           'ASDFGHJKL;\'' +
-          'ZXCVBNM<>?'
+          'ZXCVBNM,./'
     }
   },
   'transform': {
@@ -46,4 +46,4 @@ var EN_LAYOUT = {
 };
 
 // Load the layout and inform the keyboard to switch layout if necessary.
-google.elements.keyboard.loadme(EN_LAYOUT);
+google.elements.keyboard.loadme(MOR_LAYOUT);

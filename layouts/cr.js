@@ -11,15 +11,15 @@
 // limitations under the License.
 
 
-var EN_LAYOUT = {
-  'id': 'en',
-  'title': 'English QWERTY',
+var CR_LAYOUT = {
+  'id': 'cr',
+  'title': 'Cree Central 1',
   'mappings': {
     ',c': {
-      '': '`1234567890-=' +
-          'qwertyuiop[]\\' +
-          'asdfghjkl:"' +
-          'zxcvbnm,./'
+      '': 'ᐡᐁᐯᑌᑫᒉᒣᓀᓭᔐᔦᐨ᐀' +
+	  'ᐃᐱᑎᑭᒋᒥᓂᓯᔑᔨᐟᔾ' +
+	  'ᐊᐸᑕᑲᒐᒪᓇᓴᔕᔭᐢᒼ' +
+	  'ᐡᐅᐤᐧᑯᐠ˙ᐣ,᙮ᐦ'
     },
     's,sc': {
       '': '~!@#$%^&*()_+' +
@@ -46,4 +46,4 @@ var EN_LAYOUT = {
 };
 
 // Load the layout and inform the keyboard to switch layout if necessary.
-google.elements.keyboard.loadme(EN_LAYOUT);
+google.elements.keyboard.loadme(CR_LAYOUT);

@@ -40,11 +40,106 @@ unicode_font_list = [
   {
     'family': 'NotoSansWancho',
     'longName': 'NotoSansWancho',
-    'source': '/fonts/Wancho/NotoSansWancho-Regular.otf',
+    'source': '/fonts/Wancho/NotoSansWancho-Regular.ttf',
+  },
+  {
+      'family': 'WanchoDipangkar',
+      'longName': 'Wancho Dipangkar',
+      'source': '/fonts/Wancho/WanchoDipangkar.ttf'
+  },
+  {
+      'family': 'WanchoAnupama',
+      'longName': 'Wancho Anupama',
+      'source': '/fonts/Wancho/WanchoAnupama.ttf'
+  },
+  {
+      'family': 'WanchoAnurag',
+      'longName': 'Wancho Anurag',
+      'source': '/fonts/Wancho/WanchoAnurag.ttf'
+  },
+  {
+      'family': 'WanchoBanwang',
+      'longName': 'Wancho Banwang',
+      'source': '/fonts/Wancho/WanchoBanwang.ttf'
+  },
+  {
+      'family': 'WanchoDipangkarBlack',
+      'longName': 'Wancho DipangkarBlack',
+      'source': '/fonts/Wancho/WanchoDipangkarBlack.ttf'
+  },
+  {
+      'family': 'WanchoDipangkarBoldItalic',
+      'longName': 'Wancho DipangkarBoldItalic',
+      'source': '/fonts/Wancho/WanchoDipangkarBoldItalic.ttf'
+  },
+  {
+      'family': 'WanchoDipangkarBold',
+      'longName': 'Wancho DipangkarBold',
+      'source': '/fonts/Wancho/WanchoDipangkarBold.ttf'
+  },
+  {
+      'family': 'WanchoDipangkarCondensed',
+      'longName': 'Wancho DipangkarCondensed',
+      'source': '/fonts/Wancho/WanchoDipangkarCondensed.ttf'
+  },
+  {
+      'family': 'WanchoDipangkarEngravedBlack',
+      'longName': 'Wancho DipangkarEngravedBlack',
+      'source': '/fonts/Wancho/WanchoDipangkarEngravedBlack.ttf'
+  },
+  {
+      'family': 'WanchoDipangkarEngravedWhite',
+      'longName': 'Wancho DipangkarEngravedWhite',
+      'source': '/fonts/Wancho/WanchoDipangkarEngravedWhite.ttf'
+  },
+  {
+      'family': 'WanchoDipangkarItalic',
+      'longName': 'Wancho DipangkarItalic',
+      'source': '/fonts/Wancho/WanchoDipangkarItalic.ttf'
+  },
+  {
+      'family': 'WanchoGautam.ttf',
+      'longName': 'Wancho Gautam-Bold',
+      'source': '/fonts/Wancho/WanchoGautam-Bold.ttf'
+  },
+  {
+      'family': 'WanchoGautam.ttf',
+      'longName': 'Wancho Gautam-Light',
+      'source': '/fonts/Wancho/WanchoGautam-Light.ttf'
+  },
+  {
+      'family': 'WanchoGautam.ttf',
+      'longName': 'Wancho Gautam-Medium',
+      'source': '/fonts/Wancho/WanchoGautam-Medium.ttf'
+  },
+  {
+      'family': 'WanchoGautam.ttf',
+      'longName': 'Wancho Gautam-Regular',
+      'source': '/fonts/Wancho/WanchoGautam-Regular.ttf'
+  },
+  {
+      'family': 'WanchoGautam.ttf',
+      'longName': 'Wancho Gautam-SemiBold',
+      'source': '/fonts/Wancho/WanchoGautam-SemiBold.ttf'
+  },
+  {
+      'family': 'WanchoLaizi',
+      'longName': 'Wancho Laizi',
+      'source': '/fonts/Wancho/WanchoLaizi.ttf'
+  },
+  {
+      'family': 'WanchoOldSchool',
+      'longName': 'Wancho OldSchool',
+      'source': '/fonts/Wancho/WanchoOldSchool.ttf'
+  },
+  {
+      'family': 'WanchoSenmai',
+      'longName': 'Wancho Senmai',
+      'source': '/fonts/Wancho/WanchoSenmai.ttf'
   },
   {
       'family': 'WanchoDipangkarUnicode',
-      'longName': 'Wancho Dipangkar Unicode',
+      'longName': 'Wancho Dipangkar Unicode cc',
       'source':'/fonts/Wancho/WanchoDipangkar_Unicode.ttf',
   },
 ]

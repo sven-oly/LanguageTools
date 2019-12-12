@@ -52,6 +52,9 @@ handlers:
 - url: /chr/.*
   script: cherokee.app
 
+- url: /cr/.*
+  script: cree.app
+
 - url: /demo_chr/.*
   script: cherokee.app
 
@@ -87,6 +90,9 @@ handlers:
 
 - url: /mez/.*
   script: menoninee.app
+
+- url: /mor/.*
+  script: moro.app
 
 - url: /my/.*
   script: burmese.app
