@@ -121,6 +121,9 @@ handlers:
 - url: /tai/.*
   script: ahom.app
 
+- url: /to/.*
+  script: tongan.app
+
 - url: /zag/.*
   script: zaghawa.app
   

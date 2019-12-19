@@ -11,22 +11,23 @@
 // limitations under the License.
 
 
-var CR_LAYOUT = {
-  'id': 'cr',
-  'title': 'Cree Central 1',
+var TO_LAYOUT = {
+  'id': 'to',
+  'title': 'Tongan Standard',
   'mappings': {
     ',c': {
-      '': 'ᐡᐁᐯᑌᑫᒉᒣᓀᓭᔐᔦᐨ᐀' +
-	  'ᐃᐱᑎᑭᒋᒥᓂᓯᔑᔨᐟᔾᒼ' +
-	  'ᐊᐸᑕᑲᒐᒪᓇᓴᔕᔭᐢ' +
-	  'ᐡᐅᐤᐧᑯᐠ˙ᐣ,᙮ᐦ'
+      '': '{{\u02bb}}1234567890-=' +
+          'qwertyuiop[]\\' +
+          'asdfghjkl:"' +
+          'zxcvbnm,./'
     },
     's,sc': {
-      '': '~!@#$%^&*()_+' +
+      '': '{{\u00af}}!@#$%^&*()_+' +
           'QWERTYUIOP{}|' +
-          'ASDFGHJKL;\'' +
+          'ASDFGHJKL;\\\'' +
           'ZXCVBNM<>?'
     },
+    // TO be completed with ctrl layer for macron and acutes on 5 vowels
     'l,cl': {
       '': '`1234567890-=' +
           'qwertyuiop[]\\' +
@@ -46,4 +47,4 @@ var CR_LAYOUT = {
 };
 
 // Load the layout and inform the keyboard to switch layout if necessary.
-google.elements.keyboard.loadme(CR_LAYOUT);
+google.elements.keyboard.loadme(TO_LAYOUT);
