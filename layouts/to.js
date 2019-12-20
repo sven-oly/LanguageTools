@@ -17,14 +17,14 @@ var TO_LAYOUT = {
   'mappings': {
     ',c': {
       '': '{{\u02bb}}1234567890-=' +
-          'qwertyuiop[]\\' +
-          'asdfghjkl:"' +
+          'qwertyuiop[]{{\u0304}}' +
+          'asdfghjkl:\'' +
           'zxcvbnm,./'
     },
     's,sc': {
       '': '{{\u00af}}!@#$%^&*()_+' +
-          'QWERTYUIOP{}|' +
-          'ASDFGHJKL;\\\'' +
+          'QWERTYUIOP{}{{\u0301}}' +
+          'ASDFGHJKL;"' +
           'ZXCVBNM<>?'
     },
     // TO be completed with ctrl layer for macron and acutes on 5 vowels

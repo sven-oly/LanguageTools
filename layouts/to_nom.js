@@ -12,19 +12,19 @@
 
 
 var TO_NAM_LAYOUT = {
-  'id': 'to_nam',
+  'id': 'to_nom',
   'title': 'Tongan Namoa',
   'mappings': {
     ',c': {
       '': '`1234567890-=' +
-          '{{\u0101}}{{\u0111}}ert{{\u012b}}uiop[]\\' +
-          'asdfgh\u02bbkl:\u02bb"' +
-          '{{\u016b}}{{\u014d}}cv{{\u00b4}}nm,./'
+          '{{\u0101}}{{\u0113}}ert{{\u012b}}uiop[]\\' +
+          'asdfgh\u02bbkl:\'' +
+          '{{\u016b}}{{\u014d}}cv{{\u0301}}nm,./'
     },
     's,sc': {
       '': '~!@#$%^&*()_+' +
           '{{\u0100}}{{\u0112}}ERT\u012aUIOP{}|' +
-          'ASDFGH{{\u02bb}}KL;\'' +
+          'ASDFGH{{\u02bb}}KL;\"' +
           '{{\u016a}}{{\u014c}}CV{{\u00b4}}NM<>?'
     },
     'l,cl': {

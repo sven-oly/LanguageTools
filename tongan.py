@@ -95,9 +95,7 @@ class langInfo():
     self.transliterator = None
 
    # Test data for showing in converter.
-    self.test_data = ["""
-"""
-    ]
+    #self.test_data = ['']
 
     return
 
