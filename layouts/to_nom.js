@@ -11,21 +11,21 @@
 // limitations under the License.
 
 
-var CR_LAYOUT = {
-  'id': 'cr',
-  'title': 'Cree Central 1',
+var TO_NAM_LAYOUT = {
+  'id': 'to_nom',
+  'title': 'Tongan Namoa',
   'mappings': {
     ',c': {
-      '': 'ᐡᐁᐯᑌᑫᒉᒣᓀᓭᔐᔦᐨ᐀' +
-	  'ᐃᐱᑎᑭᒋᒥᓂᓯᔑᔨᐟᔾᒼ' +
-	  'ᐊᐸᑕᑲᒐᒪᓇᓴᔕᔭᐢ' +
-	  'ᐡᐅᐤᐧᑯᐠ˙ᐣ,᙮ᐦ'
+      '': '`1234567890-=' +
+          '{{\u0101}}{{\u0113}}ert{{\u012b}}uiop[]\\' +
+          'asdfgh\u02bbkl:\'' +
+          '{{\u016b}}{{\u014d}}cv{{\u0301}}nm,./'
     },
     's,sc': {
       '': '~!@#$%^&*()_+' +
-          'QWERTYUIOP{}|' +
-          'ASDFGHJKL;\'' +
-          'ZXCVBNM<>?'
+          '{{\u0100}}{{\u0112}}ERT\u012aUIOP{}|' +
+          'ASDFGH{{\u02bb}}KL;\"' +
+          '{{\u016a}}{{\u014c}}CV{{\u00b4}}NM<>?'
     },
     'l,cl': {
       '': '`1234567890-=' +
@@ -46,4 +46,4 @@ var CR_LAYOUT = {
 };
 
 // Load the layout and inform the keyboard to switch layout if necessary.
-google.elements.keyboard.loadme(CR_LAYOUT);
+google.elements.keyboard.loadme(TO_NAM_LAYOUT);
