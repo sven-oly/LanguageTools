@@ -92,10 +92,10 @@
     <h1>Download {{language}} files</h1>
 
     <ul>
-      {% for font in file_list %}
+      {% for item in file_list %}
       <li>
-        <a href="{{font}}" download
-           style="font-family:{{font.family}};font-size:24px;">{{font}} ({{language_native}})</a>
+        <a href="{{item.source}}" download
+           style="font-family:{{font.family}};font-size:24px;">{{item.name}} ({{item.description}})</a>
       </li>
       {% endfor %}
     </ul>

@@ -71,6 +71,15 @@ unicode_font_list = [
   },
 ]
 
+# Resource file list
+resource_list = [
+  {
+    'name': 'KeyMan for Green Hmong',
+    'source': '/resources/nyiakeng/greenhmong.kmp',
+    'description': 'Test for Nyiakeng Puachue Hmong'
+  },
+]
+
 links = [
     {'linkText': 'Keyboard',
      'ref': '/nyiakeng/'
@@ -132,6 +141,7 @@ class langInfo():
     self.links = links
     self.text_file_list = []
     self.unicode_font_list = unicode_font_list
+    self.text_file_list = resource_list
 
     # Lists of test characters for the various encodings
     self.test_chars = [' '.join([unichr(x) for x in range(0x20, 0x7f)])]
