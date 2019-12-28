@@ -25,6 +25,9 @@ handlers:
 - url: /download
   static_dir: download
 
+- url: /resources
+  static_dir: resources
+
 - url: /base/.*
   script: base.app
 
