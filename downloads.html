@@ -93,9 +93,15 @@
 
     <ul>
       {% for item in file_list %}
-      <li>
+      <li style="font-size:24px;">
+        {% if item.source %}
         <a href="{{item.source}}" download
-           style="font-family:{{font.family}};font-size:24px;">{{item.name}} ({{item.description}})</a>
+           style="font-family:{{font.family}};font-size:24px;">{{item.name}}</a>
+           {{item.description}}
+        {% else %}
+        <a href="{{item.link}}" target="_blank"
+           style="font-family:{{font.family}};font-size:24px;">{{item.name}}</a>
+           {{item.description}}        {% endif %}
       </li>
       {% endfor %}
     </ul>

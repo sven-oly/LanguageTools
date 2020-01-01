@@ -76,8 +76,28 @@ resource_list = [
   {
     'name': 'KeyMan for Green Hmong',
     'source': '/resources/nyiakeng/greenhmong.kmp',
-    'description': 'Test for Nyiakeng Puachue Hmong'
+    'description': 'Keyman keyboard for Nyiakeng Puachue Hmong'
   },
+  {
+    'name': 'KeyMan for Green Hmong',
+    'source': '/resources/nyiakeng/keymandesktop-greenhmong.exe',
+    'description': 'Install Windows Keyman + keyboard for Nyiakeng Puachue Hmong'
+  },
+  {
+    'name': 'KeyMan for Green Hmong',
+    'source': '/resources/nyiakeng/greenhmong-source.zip',
+    'description': 'Source to build Keyman for Nyiakeng Puachue Hmong'
+  },
+  {
+    'name': 'KeyMan',
+    'link': 'https://keyman.com/developer/download',
+    'description': 'Link to developer documentation'
+  },
+  {
+    'name': 'KeyMan',
+    'link': 'https://help.keyman.com/developer/12.0/',
+    'description': 'Link to developer support'
+},
 ]
 
 links = [
