@@ -22,7 +22,7 @@ var GON_GUNJALA_LAYOUT = {
             '{{\ud807\udd64}}{{\ud807\udd62}}{{\ud807\udd6A}}{{\ud807\udd85}}{{\ud807\udd78}}[\\' +
           '{{\ud807\udd60}}{{\ud807\udd89}}{{\ud807\udd82}}{{\ud807\udd91}}{{\ud807\udd76}}{{\ud807\udd87}}' +
             '{{\ud807\udd80}}{{\ud807\udd71}}{{\ud807\udd75}};\'' +
-          '{{z}}{{\ud807\udd97}}{{\ud807\udd7B}}{{\ud807\udd6D}}{{\ud807\udd6E}}{{\ud807\udd7A}}{{\ud807\udd70}},./'
+          '{{\ud807\udd93}}{{\ud807\udd97}}{{\ud807\udd7B}}{{\ud807\udd6D}}{{\ud807\udd6E}}{{\ud807\udd7A}}{{\ud807\udd70}},./'
     },
     's,sc': {
       '': '~!@#$%^&*()_+' +

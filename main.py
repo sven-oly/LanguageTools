@@ -35,6 +35,8 @@ LanguageList = [
     ('Bamum', 'bax'),
     ('Batak Sinalungun', 'bts'),
     ('Chakma', 'ccp', u'\ud804\udd0c\ud804\udd0b\ud804\udd34\ud804\udd1f\ud804\udd33\ud804\udd26'),
+    ('Gondi', 'gon', 'Gōndi'),
+    ('Hmong', 'nyiakeng', '𞄀𞄩𞄰𞄁𞄦𞄱𞄂𞄤𞄳𞄬𞄃𞄥𞄳'),
     ('Cherokee', 'chr', 'ᏣᎳᎩ ᎦᏬᏂᎯᏍᏗ'),
     ('Hoocąk (Ho-chunk)', 'win', 'Hoocąk'),
     ('Menoninee', 'mez', 'Oma͞eqnomenew'),

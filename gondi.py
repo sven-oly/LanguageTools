@@ -46,12 +46,42 @@ unicode_font_list = [
 
 kb_list = [
   {'shortName': LanguageCode + '_gunjala',
-   'longName': 'Gondi'  + ' Gunjala',
+   'longName': 'Gondi Gunjala',
    },
   {'shortName': 'gon_masaram',
-   'longName': LanguageCode  + ' Masaram',
+   'longName': 'Gondi Masaram',
+   },
+  {'shortName': 'gon_dev',
+   'longName': 'Gondi Devanagari',
+   },
+  {'shortName': 'gon_telu',
+   'longName': 'Gondi Telugu',
    },
 ]
+
+kb_dev = """
+१234567890-
+तञॆरटयुइऒपद[\
+असडऽगहजकल;'
+श्चवबनम,।/
+
+~!@#$%ॠ&*()ॡ+
+थङेऋठैऊईओफध]ऌ
+आँढ़घःझखळ:"
+ष्‍छौभणं<>?
+"""
+
+kb_tel = """
+౧234567890-
+తఞెరటయుఇఒపద]\
+అసడఽగహజకల;'
+శ్చవబనమ,./
+
+~!@#$%༹༹*()ౡ+
+థྺྺཱེཪཊྻྻཱུཨཱིཨཱོఫధ}ఌ
+ཨཱཱཥཌFఘఃఝఖళ:"
+ష్‍ఛౌభཎཾ<>?྅
+"""
 
 links = [
     {'linkText': 'Keyboard',
@@ -65,24 +95,27 @@ links = [
     {'linkText': 'Resources',
       'ref': '/' + LanguageCode + '/downloads/'
     },
-    {'linkText': 'Unicode page',
-     'ref': 'https://www.unicode.org/charts/PDF/U1C00.pdf'
+    {'linkText': 'Gunjala Unicode',
+     'ref': 'https://www.unicode.org/charts/PDF/U11D60.pdf'
     },
-    {'linkText': 'Gondi Gunjala script',
+    {'linkText': 'Masaram Unicode',
+     'ref': 'https://www.unicode.org/charts/PDF/U11D00.pdf'
+   },
+   {'linkText': 'Gondi Gunjala wiki',
      'ref': 'https://en.wikipedia.org/wiki/Gunjala_Gondi_Lipi'
     },
     {
-      'linkText': 'Gondi Masaram script',
+      'linkText': 'Gondi Masaram wiki',
       'ref': 'https://en.wikipedia.org/wiki/Gondi_writing'
     },
     {'linkText': 'Wikipedi page',
      'ref': 'https://en.wikipedia.org/wiki/Gondi_language'
     },
     {'linkText': 'Ethnolog',
-     'ref': 'https://www.ethnologue.com/language/lep'
+     'ref': 'https://www.ethnologue.com/language/gon'
     },
     {'linkText': 'Combiners',
-     'ref': '/lep/diacritic/'
+     'ref': '/gon/diacritic/'
      },
 ]
 
@@ -105,9 +138,9 @@ class IndigenousHomeHandler(webapp2.RequestHandler):
       path = os.path.join(os.path.dirname(__file__), 'demo_general.html')
       self.response.out.write(template.render(path, template_values))
 
-diacritic_list = [unichr(x) for x in range(0xa926, 0xa92d)]
+diacritic_list = [] # [unichr(x) for x in range(0x11D8A, 0x11D97)]
 
-default_base_consonant = u'\u1c00'
+default_base_consonant = u'\0x11D60'
 
 # Shows keyboards
 class IndigenousHomeHandler(webapp2.RequestHandler):
