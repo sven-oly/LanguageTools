@@ -13,12 +13,12 @@
 // Implements keyboard with phonetic characters for Otomanguean languages.
 // https://en.wikipedia.org/wiki/Oto-Manguean_languages
 
-var OMQ_LAYOUT = {
-  'id': 'omq',
-  'title': 'Otomanguean phonetic',
+var OMQ4_LAYOUT = {
+  'id': 'omq4',
+  'title': 'Chatino capital superscripts',
   'mappings': {
     '': {
-      '': '`1234567890-=' +
+      '': 'ᴬᴮᶜᴰᴱᶠᴳᴴᴵᴶᴷᴸᴹ' +
           'qwertyuiop[]\\' +
           'asdfghjkl;\'' +
           'zxcvbnm,./'
@@ -58,4 +58,4 @@ var OMQ_LAYOUT = {
 };
 
 // Load the layout and inform the keyboard to switch layout if necessary.
-google.elements.keyboard.loadme(OMQ_LAYOUT);
+google.elements.keyboard.loadme(OMQ4_LAYOUT);

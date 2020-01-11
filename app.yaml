@@ -73,6 +73,9 @@ handlers:
 - url: /gon/.*
   script: gondi.app
 
+- url: /omq/.*
+  script: omq.app
+
 - url: /tavt/.*
   script: taivietscript.app
 

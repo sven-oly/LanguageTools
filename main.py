@@ -186,7 +186,7 @@ app = webapp2.WSGIApplication(
  #       ('/bod/', tibetan.IndigenousHomeHandler),
   #      ('/bod/diacritic/', tibetan.DiacriticHandler),
         ('/tmh/', TamashekHomeHandler),
-        ('/omq/', OtomangueanHomeHandler),
+        #('/omq/', OtomangueanHomeHandler),
         ('/en_anangu/', AnanuguYolnguHomeHandler),
         ('/transliterate/', translit.TranslitUIHandler),
         ('/dotransliterate/', translit.DoTranslitHandler),
