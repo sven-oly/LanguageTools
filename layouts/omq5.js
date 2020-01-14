@@ -13,15 +13,16 @@
 // Implements keyboard with phonetic characters for Otomanguean languages.
 // https://en.wikipedia.org/wiki/Oto-Manguean_languages
 
-var OMQ4_LAYOUT = {
-  'id': 'omq4',
-  'title': 'Chatino capital superscripts',
+var OMQ5_LAYOUT = {
+  'id': 'omq5',
+  'title': 'Chatino z-deadkey for superscripts',
   'mappings': {
     '': {
-      '': 'ᴬᴮᶜᴰᴱᶠᴳᴴᴵᴶᴷᴸᴹ' +
+      '': '{{\u0363}}{{\u1de8}}{{\u0368}}{{\u0369}}{{\u0364}}{{\u1deb}}{{\u1dda}}{{\u036a}}' +
+           '{{\u0365}}{{\u0365}}{{\u1ddc}}{{\u1ddd}}{{\u036b}}' +
           'qwertyuiop[]\\' +
           'asdfg{{ch}}jkl;\'' +
-          'zxcvbnm,./'
+          '↑xcvbnm,./'
     },
     's': {
       '': '~!@#$%^&*()_+' +
@@ -54,8 +55,37 @@ var OMQ4_LAYOUT = {
           'ZXCVBNM<>?'
     }
   },
+  'transform': {
+    // Up arrow followed by letter gives superscripted version.
+    '↑a' : 'ᵃ',
+    '↑b': 'ᵇ',
+    '↑c': 'ᶜ',
+    '↑d': 'ᵈ',
+    '↑e': 'ᵉ',
+    '↑f': 'ᶠ',
+    '↑g': 'ᵍ',
+    '↑h': 'ʰ',
+    '↑i': 'ⁱ',
+    '↑j': 'ʲ',
+    '↑k': 'ᵏ',
+    '↑l': 'ˡ',
+    '↑m': 'ᵐ',
+    '↑A': 'ᴬ',
+    '↑B': 'ᴮ',
+    '↑C': 'ᶜ',
+    '↑D': 'ᴰ',
+    '↑E': 'ᴱ',
+    '↑F': 'ᶠ',
+    '↑G': 'ᴳ',
+    '↑H': 'ᴴ',
+    '↑I': 'ᴵ',
+    '↑J': 'ᴶ',
+    '↑K': 'ᴷ',
+    '↑L': 'ᴸ',
+    '↑M': 'ᴹ',
+  }
 
 };
 
 // Load the layout and inform the keyboard to switch layout if necessary.
-google.elements.keyboard.loadme(OMQ4_LAYOUT);
+google.elements.keyboard.loadme(OMQ5_LAYOUT);

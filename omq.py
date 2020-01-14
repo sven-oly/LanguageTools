@@ -65,14 +65,20 @@ kb_list = [
       ' \u00a0'
   },
   {
-    'shortName': 'omq',
-    'longName': 'Chatino trial 1',
+    'shortName': 'omq3',
+    'longName': 'Chatino small alpha diacritics',
     'instructions':
       ' \u00a0'
   },
   {
-    'shortName': 'omq3',
-    'longName': 'Chatino small alpha diacritics',
+    'shortName': 'omq5',
+    'longName': 'Chatino deadkey',
+    'instructions':
+      ' \u00a0'
+  },
+  {
+    'shortName': 'omq',
+    'longName': 'Chatino trial 1',
     'instructions':
       ' \u00a0'
   },
