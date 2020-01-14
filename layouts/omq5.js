@@ -18,7 +18,7 @@ var OMQ5_LAYOUT = {
   'title': 'Chatino z-deadkey for superscripts',
   'mappings': {
     '': {
-      '': '{{\u0363}}{{\u1de8}}{{\u0368}}{{\u0369}}{{\u0364}}{{\u1deb}}{{\u1dda}}{{\u036a}}' +
+      '': '`1234567890-=' +
            '{{\u0365}}{{\u0365}}{{\u1ddc}}{{\u1ddd}}{{\u036b}}' +
           'qwertyuiop[]\\' +
           'asdfg{{ch}}jkl;\'' +
