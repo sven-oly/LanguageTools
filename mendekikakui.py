@@ -41,7 +41,17 @@ unicode_font_list = [
   {
       'family': 'NotoSansMendeKikakui',
       'longName': 'Noto Sans Mende Kikakui',
-      'source': '/fonts/NotoSansMendeKikakui-Regular.ttf',
+      'source': '/fonts/MendeKikakui/NotoSansMendeKikakui-Regular.ttf',
+  },
+  # {
+  #     'family': 'KikakuiSans',
+  #     'longName': 'Kikakui Sans',
+  #     'source': '/fonts/MendeKikakui/KikakuiSans.ot.ttf',
+  # },
+  {
+      'family': 'KikakuiSansPro',
+      'longName': 'Kikakui Sans Pro',
+      'source': '/fonts/MendeKikakui/KikakuiSansPro.ot.ttf',
   },
 ]
 
@@ -94,6 +104,13 @@ class langInfo():
     ]
     self.encoding_font_list = encoding_font_list
     self.kb_list = [
+      {
+        'shortName': self.LanguageCode + "Phone",
+        'longName': 'Mende Phonetic',
+        'jsName': self.LanguageCode + "Phone",
+        'instructions': None,
+        'font': 'NotoSansMendeKikakui',
+      },
       {
         'shortName': self.LanguageCode,
         'longName': 'Mende',
