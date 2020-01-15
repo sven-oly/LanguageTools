@@ -43,11 +43,6 @@ unicode_font_list = [
       'longName': 'Noto Sans Mende Kikakui',
       'source': '/fonts/MendeKikakui/NotoSansMendeKikakui-Regular.ttf',
   },
-  # {
-  #     'family': 'KikakuiSans',
-  #     'longName': 'Kikakui Sans',
-  #     'source': '/fonts/MendeKikakui/KikakuiSans.ot.ttf',
-  # },
   {
       'family': 'KikakuiSansPro',
       'longName': 'Kikakui Sans Pro',
@@ -70,11 +65,13 @@ links = [
     },
     {'linkText': 'Unicode Page',
      'ref': 'https://www.unicode.org/charts/PDF/U1E800.pdf'
-  },
+    },
     {'linkText': 'Language Wikipedia',
      'ref': 'https://en.wikipedia.org/wiki/Mende_language'
     },
-
+    {'linkText': 'Athinkra Character Picker',
+     'ref': 'http://athinkra.github.io/mende-kikakui/tools/#?load=0x1e800-mende_kikakui.json'
+     },
     #{'linkText': 'Combiners',
     # 'ref': '/men/diacritic/'
     #},
