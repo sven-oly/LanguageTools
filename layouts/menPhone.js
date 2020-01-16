@@ -9,10 +9,12 @@ var MEN_PHONE_LAYOUT = {
   'title': 'Mende Kikakui Phonetic',
   'mappings': {
     ',c': {
-      '':  '!{{\uD83A\uDCC7}}{{\uD83A\uDCC8}}{{\uD83A\uDCC9}}{{\uD83A\uDCCa}}{{\uD83A\uDCCb}}{{\uD83A\uDCcc}}{{\uD83A\uDCCd}}{{\uD83A\uDCCe}}{{\uD83A\uDCCf}}0-=' +
-          'qwertyuiop[]\\' +
+      '':  '!{{\uD83A\uDCC7}}{{\uD83A\uDCC8}}{{\uD83A\uDCC9}}{{\uD83A\uDCCa}}' +
+	  '{{\uD83A\uDCCb}}{{\uD83A\uDCcc}}{{\uD83A\uDCCd}}{{\uD83A\uDCCe}}' +
+	   '{{\uD83A\uDCCf}}0-=' +
+          '{{}}wertyuiop[]\\' +
           'asdfghjkl;\'' +
-          'zxcvbnm,./'
+          '{{}}{{}}cvbnm,./'
     },
     's,sc': {
       '': '~!@#$%^&*()_+' +
@@ -20,17 +22,17 @@ var MEN_PHONE_LAYOUT = {
           'ASDFGHJKL:"' +
           'ZXCVBNM<>?'
     },
-    'l': {
+    'l': { // ZWNB Space before signals to not transform
       '': '`1234567890-=' +
-          'qwertyuiop[]\\' +
-          'asdfghjkl;\'' +
-          'zxcvbnm,./'
+          '{{\ufeffq}}{{\ufeffw}}{{\ufeffe}}{{\ufeffr}}{{\ufefft}}{{\ufeffy}}{{\ufeffu}}{{\ufeffi}}{{\ufeffo}}{{\ufeffp}}[]\\' +
+          '{{\ufeffa}}{{\ufeffs}}{{\ufeffd}}{{\ufefff}}{{\ufeffg}}{{\ufeffh}}{{\ufeffj}}{{\ufeffk}}{{\ufeffl}};\'' +
+          '{{\ufeffz}}{{\ufeffx}}{{\ufeffc}}{{\ufeffv}}{{\ufeffb}}{{\ufeffn}}{{\ufeffm}},./'
     },
     'sl': {
       '': '~!@#$%^&*()_+' +
-          'QWERTYUIOP{}|' +
-          'ASDFGHJKL:"' +
-          'ZXCVBNM<>?'
+          '{{\ufeffQ}}{{\ufeffW}}{{\ufeffE}}{{\ufeffR}}{{\ufeffT}}{{\ufeffY}}{{\ufeffU}}{{\ufeffI}}{{\ufeffO}}{{\ufeffP}}{}|' +
+          '{{\ufeffA}}{{\ufeffS}}{{\ufeffD}}{{\ufeffF}}{{\ufeffG}}{{\ufeffH}}{{\ufeffJ}}{{\ufeffK}}{{\ufeffL}}:"' +
+          '{{\ufeffZ}}{{\ufeffX}}{{\ufeffC}}{{\ufeffV}}{{\ufeffB}}{{\ufeffN}}{{\ufeffM}}<>?'
     },
   },
   'transform' : {
@@ -190,27 +192,27 @@ var MEN_PHONE_LAYOUT = {
     'ne':  '\ud83a\udc66',
     'no':  '\ud83a\udc67',
 
-    'h':  '\ud83a\udc68',
-    'hi':  '\ud83a\udc68',
-    'ha':  '\ud83a\udc69',
-    'hu':  '\ud83a\udc6a',
-    'hE':  '\ud83a\udc6b',
-    'hee':  '\ud83a\udc6b',
-    'he':  '\ud83a\udc6c',
-    'hO':  '\ud83a\udc6d',
-    'hoo':  '\ud83a\udc6d',
-    'ho':  '\ud83a\udc6e',
-    'hei':  '\ud83a\udc6f',
-    'hEi':  '\ud83a\udc6f',
-    'heei':  '\ud83a\udc6f',
-    'hOu':  '\ud83a\udc70',
-    'hoou':  '\ud83a\udc70',
-    'hin':  '\ud83a\udc71',
-    'han':  '\ud83a\udc72',
-    'hun':  '\ud83a\udc73',
-    'hen':  '\ud83a\udc74',
-    'hon':  '\ud83a\udc75',
-    'hua':  '\ud83a\udc76',
+    'h':  '\ud83a\udc68',   // HI
+    'hi':  '\ud83a\udc68',  // HI
+    'ha':  '\ud83a\udc69',  // HA
+    'hu':  '\ud83a\udc6a',  // HU
+    'hE':  '\ud83a\udc6b',  // HEE
+    'hee':  '\ud83a\udc6b', // HEE
+    'he':  '\ud83a\udc6c',  // He
+    'hO':  '\ud83a\udc6d',  // HOO
+    'hoo':  '\ud83a\udc6d', // HOO
+    'ho':  '\ud83a\udc6e',  // HO
+    'hei':  '\ud83a\udc6f', // HEI
+    'hEi':  '\ud83a\udc6f', // HEEI
+    'heei':  '\ud83a\udc6f',// HEEI
+    'hOu':  '\ud83a\udc70', // HOOU
+    'hoou':  '\ud83a\udc70',// HOOU
+    'hin':  '\ud83a\udc71', // HIN
+    'han':  '\ud83a\udc72', // HAN
+    'hun':  '\ud83a\udc73', // HUN
+    'hen':  '\ud83a\udc74', // HEN
+    'hon':  '\ud83a\udc75', // HON
+    'hua':  '\ud83a\udc76', // HUAN
 
     'ngg':  '\ud83a\udc77',
     'nggi':  '\ud83a\udc77',
@@ -344,6 +346,9 @@ var MEN_PHONE_LAYOUT = {
     '0D':  '\ud83a\udcd4',  // Combining ten thousands
     '0C':  '\ud83a\udcd5',  // Combining hundred thousands
     '0M':  '\ud83a\udcd6',  // Combining millions
+
+    // Remove ZWNB Space
+    '\ufeff([a-zA-Z0-9])': '$1',
   },
   'historyPruneRegex': 'k|w|we|wo|wu|wv|m|mu|b|be|bo|s|se|so|si|l|le|lo|ll|d|de|do|t|te|to|j|je|jj|jo|y|ye|yo|f|fa|fe|fo|fu|n|h|he|hE|hi|ho|hoo|hO|hee|ha|hu|ngg|ngga|ngge|nggE|nggo|nggO|nggu|g|ge|gu|ng|p|pe|po|mb|mbe|mbo|mbE|mbO|mbu|kp|kpe|kpo|gb|gbe|gbo|nd|nde|ndo|nj|nje|njo|v|ve|vo|ny'
 }
