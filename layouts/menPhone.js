@@ -126,6 +126,8 @@ var MEN_PHONE_LAYOUT = {
     'loo':  '\ud83a\udc3b',
     'lo':  '\ud83a\udc3c',
     'lle':  '\ud83a\udc3d',  // Long Le
+    'Le':  '\ud83a\udc3d',  // Long Le
+    'LE':  '\ud83a\udc3d',  // Long Le
 
     'd':  '\ud83a\udc3e',
     'di':  '\ud83a\udc3e',
@@ -160,6 +162,8 @@ var MEN_PHONE_LAYOUT = {
     'jo':  '\ud83a\udc51',
     'jjo':  '\ud83a\udc52',
     'jol':  '\ud83a\udc52',
+    'Jo':  '\ud83a\udc52',
+    'JO':  '\ud83a\udc52',
 
     'y':  '\ud83a\udc53',
     'yi':  '\ud83a\udc53',
@@ -233,6 +237,10 @@ var MEN_PHONE_LAYOUT = {
     'nggOO':  '\ud83a\udc81',
     'nggOl':  '\ud83a\udc81',
     'nggol':  '\ud83a\udc82',
+    'N[gG][gG]e':  '\ud83a\udc80',
+    'N[gG][gG]O':  '\ud83a\udc81',
+    'N[gG][gG]oo':  '\ud83a\udc81',
+    'N[gG][gG]o':  '\ud83a\udc82',
 
     'g':  '\ud83a\udc83',
     'gi':  '\ud83a\udc83',
@@ -276,6 +284,10 @@ var MEN_PHONE_LAYOUT = {
     'mbOO':  '\ud83a\udc9d',  // Long MBOO
     'mbOl':  '\ud83a\udc9d',  // Long MBOO
     'mbol':  '\ud83a\udc9e',  // Long MBO
+    'M[bB]e':  '\ud83a\udc9c',  // Long MBE
+    'M[bB]O':  '\ud83a\udc9d',  // Long MBOO
+    'M[bB]oo':  '\ud83a\udc9d',  // Long MBOO
+    'M[bB]o':  '\ud83a\udc9e',  // Long MBO
 
     'kp':  '\ud83a\udc9f',
     'kpi':  '\ud83a\udc9f',
@@ -350,7 +362,7 @@ var MEN_PHONE_LAYOUT = {
     // Remove ZWNB Space
     '\ufeff([a-zA-Z0-9])': '$1',
   },
-  'historyPruneRegex': 'k|w|we|wo|wu|wv|m|mu|b|be|bo|s|se|so|si|l|le|lo|ll|d|de|do|t|te|to|j|je|jj|jo|y|ye|yo|f|fa|fe|fo|fu|n|h|he|hE|hi|ho|hoo|hO|hee|ha|hu|ngg|ngga|ngge|nggE|nggo|nggO|nggu|g|ge|gu|ng|p|pe|po|mb|mbe|mbo|mbE|mbO|mbu|kp|kpe|kpo|gb|gbe|gbo|nd|nde|ndo|nj|nje|njo|v|ve|vo|ny'
+  'historyPruneRegex': 'k|w|we|wo|wu|wv|m|mu|b|be|bo|s|se|so|si|l|le|lo|ll|L|d|de|do|t|te|to|j|je|jj|jo|J|y|ye|yo|f|fa|fe|fo|fu|n|h|he|hE|hi|ho|hoo|hO|hee|ha|hu|ngg|ngga|ngge|nggE|nggo|nggO|Ngg|NGg|nggu|g|ge|gu|ng|p|pe|po|mb|mbe|mbo|mbE|mbO|mbu|kp|kpe|kpo|gb|gbe|gbo|nd|nde|ndo|nj|nje|njo|v|ve|vo|ny'
 }
 
 // Load the layout and inform the keyboard to switch layout if necessary.
