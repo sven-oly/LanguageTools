@@ -38,22 +38,32 @@ var MEN_PHONE_LAYOUT = {
     'i' : '\ud83a\udc22',
     'a' : '\ud83a\udc23',
     'u' : '\ud83a\udc24',
-    'ee' : '\ud83a\udc25',  // Doubles Not working yet
     'e' : '\ud83a\udc26',
-    'oo' : '\ud83a\udc27',
+    '\ud83a\udc26\u001De' : '\ud83a\udc25',  // ee
     'o' : '\ud83a\udc28',
-    'ei' : '\ud83a\udc29',
-    'in' : '\ud83a\udc2a',
-    'in!' : '\ud83a\udc2b',
-    'an' : '\ud83a\udc2c',
-    'en' : '\ud83a\udc2cd',
-    // Many more for the syllables.\
+    '\ud83a\udc28\u001Do' : '\ud83a\udc27',  // oo
+    '\ud83a\udc26\u001Di' : '\ud83a\udc29',  // ei
+    '\ud83a\udc22\u001Dn' : '\ud83a\udc2a',  // in
+    '\ud83a\udc2a\u001Dn' : '\ud83a\udc2b',
+    '\ud83a\udc23\u001Dn' : '\ud83a\udc2c',  // an
+    '\ud83a\udc26\u001Dn' : '\ud83a\udc2d',  // en
 
+    // Many more for the consonants and syllables.
     'k':  '\ud83a\udc00',
+    '\ud83a\udc00\u001Di':  '\ud83a\udc00',  // ki
+    '\ud83a\udc00\u001Da':  '\ud83a\udc01',  // ka
+    '\ud83a\udc00\u001Du':  '\ud83a\udc02',  // ku
+    '\ud83a\udc00\u001De':  '\ud83a\udc04',  // ke
+    '\ud83a\udc00\u001Do':  '\ud83a\udc06',  // ko
+    '\ud83a\udc04\u001De':  '\ud83a\udc03',  // kee
+    '\ud83a\udc06\u001Do':  '\ud83a\udc05',  // koo
+    '\ud83a\udc02\u001Da':  '\ud83a\udc07',  // kua
 
-    'w':  '\ud83a\udc08',
+    'w':  '\ud83a\udc08',  // w
 
-    'vw':  '\ud83a\udc11',
+    '\ud83a\udc08\u001Dv':  '\ud83a\udc11',  // wv
+    '\ud83a\udc11\u001Da':  '\ud83a\udc12',  // wva
+    '\ud83a\udc11\u001De':  '\ud83a\udc13',  // wve
 
     'm':  '\ud83a\udc14',
     'b':  '\ud83a\udc1b',
