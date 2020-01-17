@@ -2,7 +2,7 @@
 // Completed January 19/19
 
 var OJS_LAYOUT = {
-  "id":"ojs",  //fc_fortseverncree",
+  "id":"ojs",
   "dir": "ltr",
   "title":"Fort Severn Cree",
 

@@ -111,6 +111,12 @@ class langInfo():
         'jsName': 'ojicree',
         'instructions': 'Oji-Cree keyboard',
       },
+      {
+        'shortName': 'iu_nunavut',
+        'longName': 'Nunavut Inuktitut',
+        'jsName': 'iu_nunavut',
+        'instructions': 'Oji-Cree keyboard',
+      },
     ]
     self.links = links
     self.text_file_list = []
