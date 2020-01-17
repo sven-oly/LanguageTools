@@ -115,6 +115,9 @@ handlers:
 - url: /nv/.*
   script: navajo.app
 
+- url: /oj/.*
+  script: ojibwe.app
+
 - url: /one/.*
   script: oneida.app
 
