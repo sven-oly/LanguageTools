@@ -99,6 +99,18 @@ class langInfo():
         'jsName': 'ojs',
         'instructions': 'Fort Severn keyboard',
       },
+      {
+        'shortName': 'jamesbaycree',
+        'longName': 'James Bay Cree',
+        'jsName': 'jamesbaycree',
+        'instructions': 'James Bay Cree keyboard',
+      },
+      {
+        'shortName': 'ojicree',
+        'longName': 'Oji-Cree',
+        'jsName': 'ojicree',
+        'instructions': 'Oji-Cree keyboard',
+      },
     ]
     self.links = links
     self.text_file_list = []
