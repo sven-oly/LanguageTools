@@ -1,3 +1,6 @@
+// By: Riley Wanakamik, Christyn Koostachin, Gene Mendowegan
+// Completed January 19/19
+
 var OJS_LAYOUT = {
   "id":"ojs",  //fc_fortseverncree",
   "dir": "ltr",
