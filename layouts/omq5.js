@@ -19,7 +19,6 @@ var OMQ5_LAYOUT = {
   'mappings': {
     '': {
       '': '`1234567890-=' +
-           '{{\u0365}}{{\u0365}}{{\u1ddc}}{{\u1ddd}}{{\u036b}}' +
           'qwertyuiop[]\\' +
           'asdfg{{ch}}jkl;\'' +
           '↑xcvbnm,./'
