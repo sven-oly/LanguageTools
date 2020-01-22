@@ -136,6 +136,9 @@ handlers:
 - url: /to/.*
   script: tongan.app
 
+- url: /yo/.*
+  script: yoruba.app
+
 - url: /zag/.*
   script: zaghawa.app
   
@@ -160,3 +163,10 @@ libraries:
   version: "2.5.2"
 - name: django
   version: latest
+
+
+
+
+
+
+
