@@ -1,6 +1,9 @@
 #
 import unicodedata
 
+import chardet  # For character encoding detection
+import tokenize
+
 # Testing normalization of Yoruba strings using built in Python 3
 
 # E with lower dot and grave
@@ -10,10 +13,14 @@ e_nfc = '\u1EB8\u0300'
 e_line_below = 'e̩'
 e_line_below_acute = "é̩"
 
+# Titles of items in the British Library
+brit_lib1 = r'Ifa: imǫlę ré ti is̨e ipilę isin ni ilę Yoruba.'
+brit_lib2 = r"Iwe 'keji awo̩n àrofo-orin ti S̩ób̩̀o Aró-bi-odu. Ti a kojo̩ nipa E. M. Lijadu ... E̩gbã ekini."
+
 def print_details(s, id):
   print('%s (%d): %s' % (id, len(s), s))
   for i in s:
-    print('  %0x, %s' % (ord(i), unicodedata.name(i)))
+    print('  u+%04x  %s' % (ord(i), unicodedata.name(i)))
 
 print_details(e_nfd, 'e_nfd')
 result1 = unicodedata.normalize('NFD', e_nfd)
@@ -48,3 +55,38 @@ print_details(unicodedata.normalize('NFC', e_line_below_acute), 'NFC e_line_belo
 print_details(unicodedata.normalize('NFD', e_line_below_acute), 'NFD e_line_below_acute')
 print_details(unicodedata.normalize('NFKC', e_line_below_acute), 'NFCK e_line_below_acute')
 print_details(unicodedata.normalize('NFKD', e_line_below_acute), 'NFDK e_line_below_acute')
+
+# Try replacing and recomposing item with vertical line below
+print('\nREPLACING old diacritics with new')
+input_nfd = unicodedata.normalize('NFD', e_line_below_acute)
+print_details(input_nfd, 'input_nfd')
+
+output_replace = input_nfd.replace(chr(0x329), chr(0x323))
+print_details(output_replace, 'output_replace')
+
+output_nfc = unicodedata.normalize('NFC', output_replace)
+print_details(output_nfc, 'output_nfc')
+print('The update seems to work, converting line below to dot below')
+
+# Try replacing combining ogonek and tilde
+input_nfd = unicodedata.normalize('NFD', brit_lib1 + '   ' + brit_lib2)
+#print_details(input_nfd, 'input_nfd')
+
+output_replace = input_nfd.replace(
+    chr(0x328), chr(0x323)).replace(chr(0x303),chr(0x301))
+#print_details(output_replace, 'output_replace')
+
+output_nfc = unicodedata.normalize('NFC', output_replace)
+print_details(output_nfc, 'output_nfc')
+print('The update seems to work, converting line below to dot below')
+
+
+# https://riptutorial.com/encoding/example/23227/how-to-detect-the-encoding-of-a-text-file-with-python-
+
+#rawdata = open('brit_lib.txt', "r").read()
+print()
+print('Testing text for encoding')
+f = open('brit_lib.txt', 'rb')
+result = chardet.detect(f.read())
+
+print(result)
