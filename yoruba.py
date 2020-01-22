@@ -29,6 +29,11 @@ Language_native = 'Èdè Yorùbá'
 LanguageCode = 'yo'
 
 encoding_font_list = [
+  {
+    'font_path': '/fonts/yoruba/ariya.ttf',
+    'font_name': 'Ariya',
+    'display_name': 'Ariya',
+  },
 ]
 
 unicode_font_list = [
