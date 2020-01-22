@@ -14,11 +14,7 @@
 # limitations under the License.
 #
 
-from allCherokeeFonts import all_cherokee_unicode_fonts
-
-#import translit
 import transliterate
-# import transrule_nv
 
 import json
 import logging
