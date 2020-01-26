@@ -19,7 +19,7 @@ var YO_LAYOUT = {
       '': '`1234567890-=' +
           'qwertyuiop[]\\' +
           'asdfghjkl:"' +
-          'sdrzxcvbnm,./'
+          'zxcvbnm,./'
     },
     's,sl': {
       '': '~!@#$%^&*()_+' +
