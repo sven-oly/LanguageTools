@@ -81,6 +81,18 @@ unicode_font_list = [
   },
 ]
 
+resource_list = [
+  {
+    'name': 'KeyMan Rohingya Installer',
+    'source': '/resources/rhg/RohingyaInstaller.kmp',
+    'description': '(.kmp) for Rohingya Unicode'
+  },
+  {
+    'name': 'KeyMan Layout',
+    'source': '/resources/rhg/RohingyaKeyboardLayout.kmn',
+    'description': '(.kmn) for Rohingya Unicode'
+  },
+]
 links = [
     {'linkText': 'Keyboard',
      'ref': '/rhg/'
@@ -169,6 +181,7 @@ class langInfo():
     self.links = links
     self.text_file_list = []
     self.unicode_font_list = unicode_font_list
+    self.text_file_list = resource_list
 
     # Lists of test characters for the various encodings
     self.test_chars = [' '.join([unichr(x) for x in range(0x620, 0x6f9)])]
