@@ -35,7 +35,7 @@ encoding_font_list = [
     'display_name': 'Ariya',
   },
   {
-    'font_path': '/fonts/yoruba/YORUBAOK.TTF',
+    'font_path': '/fonts/yoruba/YorubaOK.woff',
     'font_name': 'YorubaOK',
     'display_name': 'YorubaOK',
   },
