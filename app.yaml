@@ -73,6 +73,9 @@ handlers:
 - url: /gon/.*
   script: gondi.app
 
+- url: /hoc/.*
+  script: ho.app
+
 - url: /omq/.*
   script: omq.app
 
