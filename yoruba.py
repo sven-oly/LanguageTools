@@ -34,6 +34,11 @@ encoding_font_list = [
     'font_name': 'Ariya',
     'display_name': 'Ariya',
   },
+  {
+    'font_path': '/fonts/yoruba/YorubaOK.woff',
+    'font_name': 'YorubaOK',
+    'display_name': 'YorubaOK',
+  },
 ]
 
 unicode_font_list = [
@@ -89,13 +94,15 @@ class ConvertUIHandler(webapp2.RequestHandler):
                   '0123456789:;<=>?@' +
                   '!@#$%^&*()_+' +
                   'ABCDEFGHIJKLMNOPQRSTUVWXYZ[ \\ ]^_`' +
-                  'abcdefghijklmnopqrstuvwxyz{|}~')
+                  'abcdefghijklmnopqrstuvwxyz{|}~\u00a4\u00a5\u00a7' +
+                  ' \u02c6 \u02d9 \u2116 \u20a3 \u20a7 \u2116 \u00b7 \u00b9')
       text = self.request.get('text', oldChars)
       font = self.request.get('font')
+      pua_list = [unichr(x) for x in xrange(0xe000, 0xe020)]
       testStringList = [
-          {'name': 'Test 1', # Note: must escape the single quote.
-           'string': u'\u0004\u0005\u0006\u0007\u0008\u0009' +
-           '\u000a\u000b'},
+          {'name': 'Private Use', # Note: must escape the single quote.
+           'string': ''.join(pua_list)
+           },
       ]
 
       oldInput = u''

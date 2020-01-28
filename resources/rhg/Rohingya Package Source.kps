@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Package>
+  <System>
+    <KeymanDeveloperVersion>11.0.1356.0</KeymanDeveloperVersion>
+    <FileVersion>7.0</FileVersion>
+  </System>
+  <Options>
+    <ExecuteProgram></ExecuteProgram>
+    <MSIFileName></MSIFileName>
+    <MSIOptions></MSIOptions>
+  </Options>
+  <StartMenu>
+    <Folder></Folder>
+    <Items/>
+  </StartMenu>
+  <Info>
+    <Version URL="">1.1</Version>
+    <Name URL="">Rohingya Keyboard</Name>
+    <Copyright URL="">@ROCO</Copyright>
+  </Info>
+  <Files>
+    <File>
+      <Name>Rohingya Unicode Keyboard Edit.kmx</Name>
+      <Description>Keyboard Rohingya Keyboard</Description>
+      <CopyLocation>0</CopyLocation>
+      <FileType>.kmx</FileType>
+    </File>
+    <File>
+      <Name>rohingya_unicode_keyboard_edit.js</Name>
+      <Description>File rohingya_unicode_keyboard_edit.js</Description>
+      <CopyLocation>0</CopyLocation>
+      <FileType>.js</FileType>
+    </File>
+  </Files>
+  <Keyboards>
+    <Keyboard>
+      <Name>Rohingya Keyboard</Name>
+      <ID>rohingya_unicode_keyboard_edit</ID>
+      <Version>1.1</Version>
+      <RTL>True</RTL>
+      <Languages/>
+    </Keyboard>
+  </Keyboards>
+  <Strings/>
+</Package>
