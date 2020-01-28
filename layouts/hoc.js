@@ -16,16 +16,25 @@ var HOC_LAYOUT = {
   'title': 'Ho Warang Chiti',
   'mappings': {
     '': {
-      '': '`{{\ud806\udce1}}{{\ud806\udce2}}{{\ud806\udce3}}{{\ud806\udce4}}{{\ud806\udce5}}{{\ud806\udce6}}{{\ud806\udce7}}{{\ud806\udce8}}{{\ud806\udce9}}{{\ud806\udce0}}-=' +
-          '{{\ud806\udcc1}}{{\ud806\udcc1}}{{\ud806\udcc1}}{{\ud806\udcc1}}{{\ud806\udcc1}}{{\ud806\udcc1}}{{\ud806\udcc1}}{{\ud806\udcc1}}{{\ud806\udcc1}}{{\ud806\udcc1}}[]\\' +
-          '{{\ud806\udcc1}}{{\ud806\udcc1}}{{\ud806\udcc1}}{{\ud806\udcc1}}{{\ud806\udcc1}}{{\ud806\udcc1}}{{\ud806\udcc1}}{{\ud806\udcc1}}{{\ud806\udcc1}}:"' +
-          '{{\ud806\udcc1}}{{\ud806\udcc1}}{{\ud806\udcc1}}{{\ud806\udcc1}}{{\ud806\udcc1}}{{\ud806\udcc1}}{{\ud806\udcc1}},./'
+      '': '`{{\ud806\udce1}}{{\ud806\udce2}}{{\ud806\udce3}}{{\ud806\udce4}}{{\ud806\udce5}}' +
+            '{{\ud806\udce6}}{{\ud806\udce7}}{{\ud806\udce8}}{{\ud806\udce9}}{{\ud806\udce0}}' +
+            '-{{\ud806\udcff}}' +
+          '{{\ud806\udcc1}}{{\ud806\udcc1}}{{\ud806\udcc8}}{{\ud806\udcc1}}{{\ud806\udcc1}}' +
+            '{{\ud806\udcc1}}{{\ud806\udcc7}}{{\ud806\udcc6}}{{\ud806\udcc9}}{{\ud806\udcc1}}[]{{\ud806\udcc0}}' +
+          '{{\ud806\udcc1}}{{\ud806\udcc1}}{{\ud806\udcc1}}{{\ud806\udcc1}}{{\ud806\udcc1}}' +
+            '{{\ud806\udcc1}}{{\ud806\udcc1}}{{\ud806\udcc1}}{{\ud806\udcc1}};\'' +
+          '{{\ud806\udcc1}}{{\ud806\udcc1}}{{\ud806\udcc1}}{{\ud806\udcc1}}{{\ud806\udcc1}}' +
+            '{{\ud806\udcc1}}{{\ud806\udcc1}},./'
     },
     's,sc': {
-      '': '~{{\ud806\udcea}}{{\ud806\udceb}}{{\ud806\udcec}}{{\ud806\udced}}{{\ud806\udcee}}{{\ud806\udcef}}{{\ud806\udcf0}}{{\ud806\udcf1}}{{\ud806\udcf2}}{{}}_+' +
-          '{{\ud806\udcc0}}{{\ud806\udcc0}}{{\ud806\udcc0}}{{\ud806\udcc0}}{{\ud806\udcc0}}{{\ud806\udcc0}}{{\ud806\udcc0}}{{\ud806\udcc0}}{{\ud806\udcc0}}{{\ud806\udcc1}}{}|' +
-          '{{\ud806\udcc1}}{{\ud806\udcc1}}{{\ud806\udcc1}}{{\ud806\udcc1}}{{\ud806\udcc1}}{{\ud806\udcc1}}{{\ud806\udcc1}}{{\ud806\udcc1}}{{\ud806\udcc1}};\'' +
-          '{{\ud806\udcc1}}{{\ud806\udcc1}}{{\ud806\udcc1}}{{\ud806\udcc1}}{{\ud806\udcc1}}{{\ud806\udcc1}}{{\ud806\udcc1}}<>?'
+      '': '~{{\ud806\udcea}}{{\ud806\udceb}}{{\ud806\udcec}}{{\ud806\udced}}{{\ud806\udcee}}' +
+            '{{\ud806\udcef}}{{\ud806\udcf0}}{{\ud806\udcf1}}{{\ud806\udcf2}}{{}}_+' +
+          '{{\ud806\udcc0}}{{\ud806\udcc0}}{{\ud806\udca8}}{{\ud806\udcc1}}{{\ud806\udcc0}}' +
+            '{{\ud806\udcc0}}{{\ud806\udca7}}{{\ud806\udca6}}{{\ud806\udca9}}{{\ud806\udcc1}}{}{{\ud806\udca0}}' +
+          '{{\ud806\udca1}}{{\ud806\udcc1}}{{\ud806\udcc1}}{{\ud806\udcc1}}{{\ud806\udcc1}}' +
+            '{{\ud806\udcc1}}{{\ud806\udcc1}}{{\ud806\udcc1}}{{\ud806\udcc1}}:"' +
+          '{{\ud806\udcc1}}{{\ud806\udcc1}}{{\ud806\udcc1}}{{\ud806\udcc1}}{{\ud806\udcc1}}' +
+            '{{\ud806\udcc1}}{{\ud806\udcc1}}<>?'
     },
     'c': { // Currently just lower case
       '': '`1234567890-=' +

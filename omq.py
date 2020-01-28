@@ -86,9 +86,9 @@ kb_list = [
 
 
 links = [
-    {'linkText': 'Keyboard',
-     'ref': '/' + LanguageCode + '/'
-    },
+    # {'linkText': 'Keyboard',
+    #  'ref': '/' + LanguageCode + '/'
+    # },
     #{'linkText': 'Converter',
     # 'ref': '/' + LanguageCode + '/convertUI/'},
     # {'linkText': 'Font conversion summary',
