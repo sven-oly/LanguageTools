@@ -15,19 +15,31 @@ var HOC_LAYOUT = {
   'id': 'hoc',
   'title': 'Ho Warang Chiti',
   'mappings': {
-    ',c': {
-      '': '`1234567890-=' +
-          'qwertyuiop[]\\' +
-          '{{\ud806\udca1}}sdfghjkl:"' +
-          'zxcvbnm,./'
+    '': {
+      '': '`{{\ud806\udce1}}{{\ud806\udce2}}{{\ud806\udce3}}{{\ud806\udce4}}{{\ud806\udce5}}{{\ud806\udce6}}{{\ud806\udce7}}{{\ud806\udce8}}{{\ud806\udce9}}{{\ud806\udce0}}-=' +
+          '{{\ud806\udcc1}}{{\ud806\udcc1}}{{\ud806\udcc1}}{{\ud806\udcc1}}{{\ud806\udcc1}}{{\ud806\udcc1}}{{\ud806\udcc1}}{{\ud806\udcc1}}{{\ud806\udcc1}}{{\ud806\udcc1}}[]\\' +
+          '{{\ud806\udcc1}}{{\ud806\udcc1}}{{\ud806\udcc1}}{{\ud806\udcc1}}{{\ud806\udcc1}}{{\ud806\udcc1}}{{\ud806\udcc1}}{{\ud806\udcc1}}{{\ud806\udcc1}}:"' +
+          '{{\ud806\udcc1}}{{\ud806\udcc1}}{{\ud806\udcc1}}{{\ud806\udcc1}}{{\ud806\udcc1}}{{\ud806\udcc1}}{{\ud806\udcc1}},./'
     },
     's,sc': {
+      '': '~{{\ud806\udcea}}{{\ud806\udceb}}{{\ud806\udcec}}{{\ud806\udced}}{{\ud806\udcee}}{{\ud806\udcef}}{{\ud806\udcf0}}{{\ud806\udcf1}}{{\ud806\udcf2}}{{\ud806\udcc1}}_+' +
+          '{{\ud806\udcc0}}{{\ud806\udcc0}}{{\ud806\udcc0}}{{\ud806\udcc0}}{{\ud806\udcc0}}{{\ud806\udcc0}}{{\ud806\udcc0}}{{\ud806\udcc0}}{{\ud806\udcc0}}{{\ud806\udcc1}}{}|' +
+          '{{\ud806\udcc1}}{{\ud806\udcc1}}{{\ud806\udcc1}}{{\ud806\udcc1}}{{\ud806\udcc1}}{{\ud806\udcc1}}{{\ud806\udcc1}}{{\ud806\udcc1}}{{\ud806\udcc1}};\'' +
+          '{{\ud806\udcc1}}{{\ud806\udcc1}}{{\ud806\udcc1}}{{\ud806\udcc1}}{{\ud806\udcc1}}{{\ud806\udcc1}}{{\ud806\udcc1}}<>?'
+    },
+    'c': { // Currently just lower case
+      '': '`1234567890-=' +
+          'qwertyuiop[]\\' +
+          'asdfghjkl:"' +
+          'zxcvbnm,./'
+    },
+    'sc': { // Currently just upper case
       '': '~!@#$%^&*()_+' +
           'QWERTYUIOP{}|' +
           'ASDFGHJKL;\'' +
           'ZXCVBNM<>?'
     },
-    'l,cl': {
+    'l': {
       '': '`1234567890-=' +
           'qwertyuiop[]\\' +
           'asdfghjkl:"' +
