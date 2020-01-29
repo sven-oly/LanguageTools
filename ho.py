@@ -70,7 +70,7 @@ links = [
 ]
 
 # TODO: Fill in with diacritics
-diacritic_list = [unichr(x) for x in range(0x118a0, 0x118ff)]
+diacritic_list = []  # PYTHON3 [unichr(x) for x in range(0x118a0, 0x118ff)]
 #TODO: Fill in base consonant
 default_base_consonant = u'\u118a0'
 
@@ -95,7 +95,7 @@ kb_list = [
    },
 ]
 
-diacritic_list = [unichr(x) for x in range(0xa926, 0xa92d)]
+diacritic_list = [] # PYTHON# [unichr(x) for x in range(0xa926, 0xa92d)]
 
 default_base_consonant = u'\u1c00'
 
