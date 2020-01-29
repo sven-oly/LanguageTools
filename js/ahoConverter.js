@@ -49,7 +49,6 @@ var private_use_map_combined = {
   // Punctuation
   ',': ['\ud805\udf3C'],
   '.': ['\ud805\udf3D'],
-  '@': ['\ud805\udf3E', '\ud805\udf3E'],
   ';': ['\ud805\udf20', ''],
   '[': ['\ud805\udf02', ''],
   ']': ['\ud805\udf27', ''],
@@ -68,7 +67,7 @@ var private_use_map_combined = {
   '\u002a': ['*', '*', '*'],  // *
   '\u002b': ['+', '+', '????'],  // +
   '\u002c': [',', ',', ','],  // ,
-  '\u002e': ['.', '\ud805\udf3c', '.'],  // .
+  '\u002e': ['\ud805\udf3C', '\ud805\udf3c', '.'],  // .
   '\u002f': ['\u104b', '\ud805\udf3d', '\u104b'],  // /
   
   '\u0030': ['\u1040', '\ud805\udf30', '\u1040'],  // 0
@@ -229,10 +228,19 @@ function convertEncodingToUnicode(inbox, outbox, encodingIndex) {
   eReplace = "\uD805$2\uD805$1";
    newText = outtext = newText.replace(ePattern, eReplace);
 
-  ePattern = /\ud805(\udf24)\ud805([\udf22\udf2b\udf2a])/gi;
+  ePattern = /\ud805(\udf24)\ud805([\udf22\udf29\udf2b\udf2a])/gi;
   eReplace = "\uD805$2\uD805$1";
   newText = outtext = newText.replace(ePattern, eReplace);
 
+  // Diacritics after space - invert order
+  ePattern = /\u0020\ud805([\udf2b])/gi;
+  eReplace = "\uD805$1\u0020";
+  newText = outtext = newText.replace(ePattern, eReplace);
+
+  // Double full stop \ud805\udf3c to \ud805\udf3d
+  ePattern = /\ud805\udf3c\ud805\udf3c/gi;
+  eReplace = "\ud805\udf3d";
+  newText = outtext = newText.replace(ePattern, eReplace);
   if (outarea) {
     outarea.innerHTML = outarea.value = newText;
   }
