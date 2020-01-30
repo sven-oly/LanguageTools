@@ -70,6 +70,8 @@ class langInfo():
        },
     ]
 
+    self.kb_list = self.lang_list
+
     self.links = [
         {'linkText': 'Keyboard',
          'ref': '/aho/'
