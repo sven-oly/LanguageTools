@@ -56,6 +56,10 @@ class langInfo():
           'family': 'NotoSansMyanmar ',
           'longName': 'Noto Sans Myanmar',
         },
+        { 'source': '/fonts/NotoSerif-Regular.ttf',
+          'family': 'NotoSerif',
+          'longName': 'Noto Serif',
+        },
     ]
 
     self.lang_list = [

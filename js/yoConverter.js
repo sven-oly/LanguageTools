@@ -1,9 +1,10 @@
 // Convert from old font-encoding Yoruba Ariya font to Unicode forms:
 
-// Mappings for both arjyban, sujoyan, alaam, etc. encodings.
+// Mappings for old Yoruba non-Unicode forms
 var map_encoding_names = [
   'Ariya', 'YorubaOK'];
 
+// TODO: Fix YorubaOK mappings
 var private_use_map_combined = {
   '\u0000': ['\u0000'],
   '\u0023': ['\u20a6', '$'],
