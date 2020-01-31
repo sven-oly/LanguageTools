@@ -62,19 +62,20 @@ class langInfo():
       {'shortName': 'phk',
        'longName': 'Phake'
        },
-       {'shortName':  'aio',
+      {'shortName': 'kht',
+       'longName': 'Khamti'
+       },
+      {'shortName':  'aio',
         'longName': 'Aiton'
        },
-       {'shortName':  'kht',
-        'longName': 'Khamti'
-       },
+
     ]
 
     self.kb_list = self.lang_list
 
     self.links = [
         {'linkText': 'Keyboard',
-         'ref': '/aho/'
+         'ref': '/phk/'
         },
         {'linkText': 'Converter',
          'ref': '/' + self.LanguageCode + '/convertUI/'
@@ -93,12 +94,8 @@ class langInfo():
         },
     ]
 
-    self.kb_list = self.lang_list
-
     # Resource files
     self.text_file_list = [
-        '/download/aho/3-5-1-1.txt',
-        '/download/aho/nemi_mang_text.txt'
     ]
 
     self.baseHexUTF16 = u'\ud805\udf00'
