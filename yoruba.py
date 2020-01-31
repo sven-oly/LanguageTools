@@ -30,12 +30,17 @@ LanguageCode = 'yo'
 
 encoding_font_list = [
   {
+    'font_path': '/fonts/yoruba/YorubaOK_FF.ttf',
+    'font_name': 'YorubaOK',
+    'display_name': 'Cloned YorubaOK',
+  },
+  {
     'font_path': '/fonts/yoruba/ariya.ttf',
     'font_name': 'Ariya',
     'display_name': 'Ariya',
   },
   {
-    'font_path': '/fonts/yoruba/YorubaOK.woff',
+    'font_path': '/fonts/yoruba/YorubaOK_FF.ttf',
     'font_name': 'YorubaOK',
     'display_name': 'YorubaOK',
   },
