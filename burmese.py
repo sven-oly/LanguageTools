@@ -51,7 +51,12 @@ unicode_font_list = [
   {
     'family': 'NotoSansMyanmar',
     'longName': 'Noto Sans Myanmar',
-    'source': '/fonts/NotoSansMyanmar-Regular.ttf',
+    'source': '/fonts/Myanmar/NotoSansMyanmar-Regular.ttf',
+  },
+  {
+    'family': 'NotoSerifsMyanmar',
+    'longName': 'Noto Serif Myanmar',
+    'source': '/fonts/Myanmar/NotoSerifMyanmar-Regular.ttf',
   },
   {
     'family': 'Padauk',

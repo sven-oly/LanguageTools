@@ -44,7 +44,7 @@ unicode_font_list = [
     {
         'family': 'NotoSansMyanmar',
         'longName': 'Noto Sans Myanmar',
-        'source': '/fonts/NotoSansMyanmar-Regular.ttf',
+        'source': '/fonts/Myanmar/NotoSansMyanmar-Regular.ttf',
     },
 ]
 
@@ -66,7 +66,7 @@ links = [
     {'linkText': 'Resources',
       'ref': '/' + LanguageCode + '/downloads/'
     },
-    {'linkText': 'Unicode S'gaw Karen page',
+    {'linkText': 'Unicode S\'gaw Karen page',
      'ref': 'https://unicode.org/charts/PDF/U1000.pdf'
     },
     {'linkText': 'Wikipedi page',

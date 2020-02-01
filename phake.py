@@ -48,18 +48,43 @@ class langInfo():
     ]
 
     self.unicode_font_list = [
-        { 'source': '/fonts/Padauk-Regular.ttf',
+      {'source': '/fonts/Myanmar/NotoSerifMyanmar-Light.ttf',
+       'family': 'NotoSerif Myanmar Light',
+       'longName': 'Noto Serif Myanmar Light',
+       },
+      { 'source': '/fonts/Padauk-Regular.ttf',
           'family': 'Padauk',
           'longName': 'Padauk',
         },
-        { 'source': '/fonts/NotoSansMyanmar-Regular.ttf',
-          'family': 'NotoSansMyanmar ',
-          'longName': 'Noto Sans Myanmar',
+        { 'source': '/fonts/Myanmar/NotoSansMyanmar-Regular.ttf',
+          'family': 'NotoSansMyanmarRegular',
+          'longName': 'Noto Sans Myanmar Regular',
         },
-        { 'source': '/fonts/NotoSerif-Regular.ttf',
-          'family': 'NotoSerif',
-          'longName': 'Noto Serif',
+      {'source': '/fonts/Myanmar/NotoSansMyanmar-Medium.ttf',
+       'family': 'NotoSansMyanmarMedium',
+       'longName': 'Noto Sans Myanmar Medium',
+       },
+      {'source': '/fonts/Myanmar/NotoSansMyanmar-Light.ttf',
+       'family': 'NotoSansMyanmarLight',
+       'longName': 'Noto Sans Myanmar Light',
+       },
+      {'source': '/fonts/Myanmar/NotoSansMyanmar-Thin.ttf',
+       'family': 'NotoSansMyanmarThin',
+       'longName': 'Noto Sans Myanmar Thin',
+       },
+      { 'source': '/fonts/Myanmar/NotoSerifMyanmar-Regular.ttf',
+          'family': 'NotoSerif Myanmar Regular',
+          'longName': 'Noto Serif Myanmar Regular',
         },
+      {'source': '/fonts/Myanmar/NotoSerifMyanmar-Medium.ttf',
+       'family': 'NotoSerif Myanmar Medium',
+       'longName': 'Noto Serif Myanmar Medium',
+       },
+
+    {'source': '/fonts/Myanmar/NotoSerifMyanmar-Thin.ttf',
+     'family': 'NotoSerif Myanmar Thin',
+     'longName': 'Noto Serif Myanmar Thin',
+     },
     ]
 
     self.lang_list = [
@@ -75,7 +100,14 @@ class langInfo():
 
     ]
 
-    self.kb_list = self.lang_list
+    self.kb_list = [
+      {'shortName': 'phkVar',
+       'longName': 'Phake Variant'
+       },
+      {'shortName': 'phk',
+       'longName': 'Phake'
+       },
+    ]
 
     self.links = [
         {'linkText': 'Keyboard',
@@ -117,8 +149,8 @@ class langInfo():
     self.transliterator = None
 
    # Test data for showing in converter.
-    self.test_data = ["ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz"
-    ]
+    self.test_data = u'V: ဢ︀ꩬ︀ၵ︀ꩡ︀ထ︀ၸ︀တ︀ယ︀ီက︀လ︀\nN: ဢꩬၵꩡထၸတယီကလ'
+
 
     return
 

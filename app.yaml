@@ -88,6 +88,9 @@ handlers:
 - url: /aho/.*
   script: ahom.app
 
+- url: /ksw/.*
+  script: karen.app
+
 - url: /kyu/.*
   script: kayah.app
 

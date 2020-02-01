@@ -81,10 +81,14 @@ class langInfo():
           'family': 'Padauk',
           'longName': 'Padauk',
         },
-        { 'source': '/fonts/NotoSansMyanmar-Regular.ttf',
-          'family': 'NotoSansMyanmar ',
+        { 'source': '/fonts/Myanmar/NotoSansMyanmar-Regular.ttf',
+          'family': 'NotoSansMyanmar',
           'longName': 'Noto Sans Myanmar',
         },
+      {'source': '/fonts/Myanmar/NotoSerifMyanmar-Light.ttf',
+       'family': 'NotoSerifMyanmarLight',
+       'longName': 'Noto Serif Myanmar Light',
+       },
     ]
 
     self.lang_list = [
