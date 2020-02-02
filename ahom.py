@@ -101,14 +101,8 @@ class langInfo():
         {'shortName':  'kht',
          'longName': 'Khamti'
         },
-        {'shortName':  'phk',
-         'longName': 'Phake'
-        },
         {'shortName':  'shn',
          'longName': 'Shan'
-        },
-        {'shortName':  'ksw',
-         'longName': 'S\'gaw Karen'
         },
       ]
 
