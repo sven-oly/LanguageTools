@@ -39,25 +39,25 @@ var HOC_LAYOUT = {
     'c': { // Currently just lower case
       '': '`1234567890-=' +
           'qwertyuiop[]\\' +
-          'asdfghjkl:"' +
+          'asdfghjkl;\'' +
           'zxcvbnm,./'
     },
     'sc': { // Currently just upper case
       '': '~!@#$%^&*()_+' +
           'QWERTYUIOP{}|' +
-          'ASDFGHJKL;\'' +
+          'ASDFGHJKL:"' +
           'ZXCVBNM<>?'
     },
     'l': {
       '': '`1234567890-=' +
           'qwertyuiop[]\\' +
-          'asdfghjkl:"' +
+          'asdfghjkl;\'' +
           'zxcvbnm,./'
     },
     'sl,scl': {
       '': '~!@#$%^&*()_+' +
           'QWERTYUIOP{}|' +
-          'ASDFGHJKL;\'' +
+          'ASDFGHJKL:"' +
           'ZXCVBNM<>?'
     }
   },
@@ -69,8 +69,8 @@ var HOC_LAYOUT = {
     '\ud806\udcdc\ud806\udcdc': '\ud806\udcdb',  // rr
     '\ud806\udcc1\ud806\udcc2': '\ud806\udcc6',  // ai
     '\ud806\udcc1\ud806\udcc3': '\ud806\udcc7',  // au
-    '\ud806\udcd2\ud806\udcd9': '\ud806\udcc5',  // th
-    '\ud806\udcd1\ud806\udcd9': '\ud806\udcc4',  // dh
+    '\ud806\udcd2\ud806\udcd9': '\ud806\udcd5',  // th
+    '\ud806\udcd1\ud806\udcd9': '\ud806\udcd4',  // dh
 
     // Upper case rules
     '\ud806\udcb3\ud806[\udcab\udccb]': '\ud806\udcaa',  // ng
@@ -79,8 +79,8 @@ var HOC_LAYOUT = {
     '\ud806\udcbc\ud806[\udcbc\udcdc]': '\ud806\udcbb',  // rr
     '\ud806\udca1\ud806[\udca2\udcc2]': '\ud806\udca6',  // ai
     '\ud806\udca1\ud806[\udca3\udcc3]': '\ud806\udca7',  // au
-    '\ud806\udcb2\ud806[\udcb9\udcd9]': '\ud806\udca5',  // th
-    '\ud806\udcb1\ud806[\udcb9\udcd9]': '\ud806\udca4',  // dh
+    '\ud806\udcb2\ud806[\udcb9\udcd9]': '\ud806\udcB5',  // th
+    '\ud806\udcb1\ud806[\udcb9\udcd9]': '\ud806\udcB4',  // dh
   }
 };
 
