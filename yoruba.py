@@ -14,6 +14,8 @@
 # limitations under the License.
 #
 
+import base
+
 import transliterate
 
 import json
@@ -32,31 +34,62 @@ encoding_font_list = [
   {
     'font_path': '/fonts/yoruba/ariya.ttf',
     'font_name': 'Ariya',
-    'display_name': 'Ariya',
+    'display_name': 'Ariya      #',
   },
   {
     'font_path': '/fonts/yoruba/YorubaOK_FF.ttf',
     'font_name': 'YorubaOK',
     'display_name': 'Cloned YorubaOK',
   },
-  {
-    'font_path': '/fonts/yoruba/YorubaOK_FF.ttf',
-    'font_name': 'YorubaOK',
-    'display_name': 'YorubaOK',
-  },
 ]
 
 unicode_font_list = [
-  {'family': 'NotoSans',
-   'longName': 'Noto Sans',
-   'source': '/fonts/NotoSans-Regular.ttf',
-   },
-  {'family': 'Noto Serif',
-   'longName': 'Noto Serif',
-   'source': '/fonts/NotoSerif-Regular.ttf',
-   },
+  {
+      'source': '/fonts/NotoSans-Regular.ttf',
+      'family':  'NotoSans-Regular',
+      'longName':  'Noto Sans',
+  },
+  {
+      'source': '/fonts/NotoSerif-Regular.ttf',
+      'family':  'NotoSerif-Regular',
+      'longName':  'Noto Serif',
+  },
+  {
+      'source': '/fonts/yoruba/NotoSans-Regular.ttf',
+      'family':  'Noto fonts NotoSans-Regular',
+      'longName':  'Noto fonts NotoSans-Regular',
+  },
+  {
+      'source': '/fonts/yoruba/Roboto-Light.ttf',
+      'family': 'Roboto-Light',
+      'longName': 'Roboto Light'
+  },
+  {
+      'source': '/fonts/yoruba/Roboto-BlackItalic.ttf',
+      'family': 'Roboto-BlackItalic',
+      'longName': 'Roboto BlackItalic'
+  },
+  {
+      'source': '/fonts/yoruba/Roboto-MediumItalic.ttf',
+      'family': 'Roboto-MediumItalic',
+      'longName': 'Roboto MediumItalic'
+  },
+  {
+      'source': '/fonts/yoruba/Roboto-Black.ttf',
+      'family': 'Roboto-Black',
+      'longName': 'Roboto Black'
+  },
+  {
+      'source': '/fonts/yoruba/Roboto-Medium.ttf',
+      'family': 'Roboto-Medium',
+      'longName': 'Roboto Medium'
+  },
+  {
+      'source': '/fonts/times new roman.ttf',
+      'family': 'TimesNewRoman',
+      'longName': 'Times New Roman'
+  },
 ]
-
 kb_list = [
   {'shortName': LanguageCode,
    'longName': Language,
@@ -75,6 +108,16 @@ links = [
     },
 ]
 
+class langInfo():
+  def __init__(self):
+    self.LanguageCode = LanguageCode
+    self.Language = Language
+    self.Language_native = 'Èdè Yorùbá'
+    self.test_data = u'ẹ ẹ́ ẹ̀ Ẹ Ẹ́ Ẹ̀ ọ ọ́ ọ̀ Ọ́ Ọ̀ ṣ Ṣ ń ǹ n̄ Ń Ǹ N̄ ḿ m̀ m̄ Ḿ M̀ M̄'
+    self.unicode_font_list = unicode_font_list
+    self.lang_list = ['yo']
+    self.kb_list = kb_list
+    self.links = links
 
 # Shows keyboards
 class IndigenousHomeHandler(webapp2.RequestHandler):
@@ -218,11 +261,15 @@ class Downloads(webapp2.RequestHandler):
       self.response.out.write(template.render(path, template_values))
 
 
+langInstance = langInfo()
 app = webapp2.WSGIApplication([
-  ('/demo_' + LanguageCode + '/', IndigenousHomeHandler),
-  ('/' + LanguageCode + '/', IndigenousHomeHandler),
-  ('/' + LanguageCode + '/convertUI/', ConvertUIHandler),
-  ('/' + LanguageCode + '/downloads/', Downloads),
-  ('/' + LanguageCode + '/converter/', ConvertHandler),
-  ('/' + LanguageCode + '/encodingRules/', EncodingRules),
-], debug=True)
+    ('/demo_' + LanguageCode + '/', IndigenousHomeHandler),
+    ('/' + LanguageCode + '/', base.LanguagesHomeHandler),
+    ('/' + LanguageCode + '/convertUI/', ConvertUIHandler),
+    ('/' + LanguageCode + '/downloads/', Downloads),
+    ('/' + LanguageCode + '/converter/', ConvertHandler),
+    ('/' + LanguageCode + '/encodingRules/', EncodingRules),
+    ],
+                              debug=True,
+                              config={'langInfo': langInstance}
+)
