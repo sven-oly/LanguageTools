@@ -18,7 +18,7 @@ var AHO_LAYOUT = {
   'title': "Ahom",
   'mappings': {
     '': {
-      '': '`{{\ud805\udf31}}{{\ud805\udf34}}{{\ud805\udf33}}{{\ud805\udf34}}' +
+      '': '`{{\ud805\udf31}}{{\ud805\udf32}}{{\ud805\udf33}}{{\ud805\udf34}}' +
             '{{\ud805\udf35}}{{\ud805\udf36}}{{\ud805\udf37}}{{\ud805\udf38}}' +
             '{{\ud805\udf39}}{{\ud805\udf30}}-=' +
           '{{\ud805\udf2b}}{{}}{{\u200c\ud805\udf26}}{{\ud805\udf0d}}' +
