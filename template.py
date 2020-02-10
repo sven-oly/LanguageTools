@@ -17,6 +17,8 @@
 import os
 import webapp2
 
+import base
+
 from google.appengine.ext.webapp import template
 
 Language = 'TBD'
@@ -74,6 +76,20 @@ links = [
      'ref': '/lep/diacritic/'
      },
 ]
+
+class langInfo():
+  def __init__(self):
+    self.LanguageCode = LanguageCode
+    self.Language = Language
+    self.Language_native = 'Èdè Yorùbá'
+    self.test_data = u'FILL IN'
+    self.unicode_font_list = unicode_font_list
+    self.encoding_font_list = encoding_font_list
+
+    self.lang_list = [LanguageCode]  # This may be extended
+    self.kb_list = kb_list
+    self.links = links
+    # TODO: Fill in the rest of the common data.
 
 # TODO: Fill in with diacritics
 diacritic_list = [unichr(x) for x in range(0x1c24, 0x1c37)]
@@ -259,10 +275,14 @@ class DiacriticHandler(webapp2.RequestHandler):
     self.response.out.write(template.render(path, template_values))
 
 
+langInstance = langInfo()
+
 app = webapp2.WSGIApplication([
   ('/' + LanguageCode + '/', IndigenousHomeHandler),
   ('/' + LanguageCode + '/convertUI/', ConvertUIHandler),
   ('/' + LanguageCode + '/downloads/', Downloads),
   ('/' + LanguageCode + '/encodingRules/', EncodingRules),
   ('/' + LanguageCode + '/diacritic/', DiacriticHandler),
-], debug=True)
+], debug=True,
+                              config={'langInfo': langInstance}
+)
