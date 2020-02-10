@@ -1,0 +1,27 @@
+﻿c chatino1 generated from template at 2020-01-15 22:24:32
+c with name "Chatino1"
+store(&VERSION) '10.0'
+store(&NAME) 'Chatino1'
+store(&COPYRIGHT) '©'
+store(&KEYBOARDVERSION) '1.0'
+store(&TARGETS) 'any'
+store(&VISUALKEYBOARD) 'chatino1.kvks'
+store(&LAYOUTFILE) 'chatino1.keyman-touch-layout'
+
+begin Unicode > use(main)
+
+group(main) using keys
++ [CTRL K_EQUAL] > 'ᴹ'
++ [CTRL K_HYPHEN] > 'ᴸ'
++ [CTRL K_0] > 'ᴷ'
++ [CTRL K_9] > 'ᴶ'
++ [CTRL K_8] > 'ᴵ'
++ [CTRL K_7] > 'ᴴ'
++ [CTRL K_6] > 'ᴳ'
++ [CTRL K_5] > 'ᶠ'
++ [CTRL K_4] > 'ᴱ'
++ [CTRL K_3] > 'ᴰ'
++ [CTRL K_2] > 'ᶜ'
++ [CTRL K_BKQUOTE] > 'ᴬ'
++ [CTRL K_1] > 'ᴮ'
++ [K_BKQUOTE] > 'ᵃ'

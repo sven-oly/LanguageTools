@@ -18,19 +18,19 @@ var YO_LAYOUT = {
     ',l': {
       '': '`1234567890-=' +
           'qwertyuiop[]\\' +
-          'asdfghjkl:"' +
+          'asdfghjkl;\'' +
           'zxcvbnm,./'
     },
     's,sl': {
       '': '~!@#$%^&*()_+' +
           'QWERTYUIOP{}|' +
-          'ASDFGHJKL;\'' +
+          'ASDFGHJKL:"' +
           'ZXCVBNM<>?'
     },
     'c, cl': {
       '': '`1234567890-=' +
           'qwẹrtyuiọp[]\\' +
-          'aṣd{{\u030c}}g{{\u0301}}jk{{\u0300}}:"' +
+          'aṣd{{\u030c}}g{{\u0301}}jk{{\u0300}}:{{\u0329}}' +
           'zxcvbn{{\u0304}},./'
     },
     'sc, scl': {

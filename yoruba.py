@@ -61,6 +61,9 @@ kb_list = [
   {'shortName': LanguageCode,
    'longName': Language,
    },
+  {'shortName': 'yo1983',
+   'longName': 'Pan-Niegerian 1983',
+   },
 ]
 
 
