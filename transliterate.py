@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+from __future__ import print_function
 import codecs
 import logging
 import re
@@ -54,7 +55,7 @@ class Phase():
     # set up pattern and subst value for each rule
     index = 0
     if debug_output:
-      print '%d rules in rulelist, phase %d' % (len(rulelist), self.phase_id)
+      print('%d rules in rulelist, phase %d' % (len(rulelist), self.phase_id))
     for rule1 in rulelist:
       rule1 = rule1.strip()
       rule = re.sub('\n', '', rule1)
@@ -72,9 +73,9 @@ class Phase():
             print(' appending to RuleList: #%d %s --> %s' %
                   (index, pattern.encode('utf-8'), subst.encode('utf-8')))
           self.RuleList.append(Rule(pattern, subst, index))  # Rule objects
-        except IndexError, e:
-          print 'Error e = %s. Phase %s, %d rule = %s' % (e, self.phase_id, index, rule1)
-          print '  Rule = >>%s<< %d' % (rule, len(rule))
+        except IndexError as e:
+          print('Error e = %s. Phase %s, %d rule = %s' % (e, self.phase_id, index, rule1))
+          print('  Rule = >>%s<< %d' % (rule, len(rule)))
           break
       index += 1
 
@@ -201,23 +202,23 @@ class Transliterate():
 
     if debug_output:
       for phase in self.phaseList:
-        print 'Phase %s' % phase
+        print('Phase %s' % phase)
         for rule in phase.RuleList:
-          print '  rule %s: %s (%s) --> %s' % (
+          print('  rule %s: %s (%s) --> %s' % (
               rule.id, rule.pattern.encode('utf-8'), len(rule.pattern),
-              rule.subst.encode('utf-8'))
+              rule.subst.encode('utf-8')))
 
 
   def printSummary(self):
     # Print the statistics
-    print '%4d raw rules' % len(self.raw_rules)
-    print '%4d shortcuts ' % len(self.shortcuts)
-    print '%4d reduced ' % len(self.reduced)
-    print '%4d phaseStrings ' % len(self.phaseStrings)
-    print '%4d phaseList ' % len(self.phaseList)
+    print('%4d raw rules' % len(self.raw_rules))
+    print('%4d shortcuts ' % len(self.shortcuts))
+    print('%4d reduced ' % len(self.reduced))
+    print('%4d phaseStrings ' % len(self.phaseStrings))
+    print('%4d phaseList ' % len(self.phaseList))
     index = 0
     for phase in self.phaseList:
-      print '  %3d rules in phase %2d' % (len(self.phaseList[index].rules), index)
+      print('  %3d rules in phase %2d' % (len(self.phaseList[index].rules), index))
       index += 1
 
   def getSummary(self):
@@ -236,9 +237,9 @@ class Transliterate():
 
   def applyPhase(self, index, instring,  debug):
     if debug:
-      print 'Applying phase %d to %s' % (index, instring.encode('utf-8'))
-      print '  instring = %s' % uStringToHex(instring)
-      print ' DEBUG LEVEL = %s' % debug
+      print('Applying phase %d to %s' % (index, instring.encode('utf-8')))
+      print('  instring = %s' % uStringToHex(instring))
+      print(' DEBUG LEVEL = %s' % debug)
 
     # It should do:
     #  a. Find rule that matches from the start
@@ -252,8 +253,8 @@ class Transliterate():
 
     currentString = instring
     if debug:
-      print ' Phase %d has %d rules' % (index, len(ruleList))
-      print '  start, limit = %3d %3d' % (self.start, self.limit)
+      print(' Phase %d has %d rules' % (index, len(ruleList)))
+      print('  start, limit = %3d %3d' % (self.start, self.limit))
     matchObj = True
     while self.start <= self.limit:
       # Look for a rule that matches
@@ -270,40 +271,40 @@ class Transliterate():
           # look at the current position.
           matchObj = re_pattern.match(currentString[self.start:])
           # matchObj = re.match(rule.pattern, currentString[self.start:])
-        except TypeError, e:
-          print '***** TypeError EXCEPTION %s in phase %s, rule %s: %s -> %s' % (e,
-            index, ruleIndex, uStringToHex(rule.pattern), uStringToHex(rule.subst))
+        except TypeError as e:
+          print('***** TypeError EXCEPTION %s in phase %s, rule %s: %s -> %s' % (e,
+            index, ruleIndex, uStringToHex(rule.pattern), uStringToHex(rule.subst)))
         except:
           e = sys.exc_info()[0]
-          print '***** EXCEPTION %s in phase %s, rule %s: %s -> %s' % (e,
-            index, ruleIndex, uStringToHex(rule.pattern), uStringToHex(rule.subst))
+          print('***** EXCEPTION %s in phase %s, rule %s: %s -> %s' % (e,
+            index, ruleIndex, uStringToHex(rule.pattern), uStringToHex(rule.subst)))
 
         if matchObj:
           # Do just one substitution!
           foundRule = ruleIndex
           if debug:
-            print ' Matched rule %s. abs start = %d, rel start = %d, end = %d' % (rule.id,
-              self.start, matchObj.start(0), matchObj.end(0) )
+            print(' Matched rule %s. abs start = %d, rel start = %d, end = %d' % (rule.id,
+              self.start, matchObj.start(0), matchObj.end(0) ))
           # Size of last part of old string after the replacement
           cSize = len(currentString) - matchObj.end(0) - self.start  # Last part of old string not matched
           if debug and debug > 1:
-            print ' Rule %d: >%s<  Matched sequence = >%s<' % (rule.id, rule.pattern.encode('utf-8'),
-            matchObj.string[matchObj.start(0):matchObj.end(0)].encode('utf-8'))
+            print(' Rule %d: >%s<  Matched sequence = >%s<' % (rule.id, rule.pattern.encode('utf-8'),
+            matchObj.string[matchObj.start(0):matchObj.end(0)].encode('utf-8')))
           substitution = rule.subst
 
           if debug and debug > 1:
             old_stuff = matchObj.string[matchObj.start(0):matchObj.end(0)]
-            print '  replacing >%s< (%d) with %s' % (
+            print('  replacing >%s< (%d) with %s' % (
                 uStringToHex(old_stuff), len(old_stuff),
-              uStringToHex(substitution))
+              uStringToHex(substitution)))
           if debug >= 2:
-            print '  before: %s' % uStringToHex(currentString)
+            print('  before: %s' % uStringToHex(currentString))
 
           outstring = re.sub(rule.pattern, substitution, currentString[self.start:], 1)
           # Try to advance start.
           newString = currentString[0:self.start] + outstring
           if debug >= 2:
-            print '  after:  %s' % uStringToHex(newString)
+            print('  after:  %s' % uStringToHex(newString))
           self.limit = len(newString) - 1
           # Figure out the new start and limit.
 
@@ -323,11 +324,11 @@ class Transliterate():
   def transliterate(self, instring, debug=None):
     # Apply each phase to the incoming string or string list.
 
-    if type(instring) == types.ListType:
+    if type(instring) == list:
       # Recursive on each list item.
       return [self.transliterate(item, debug) for item in instring]
 
-    if type(instring) != types.StringType and type(instring) != types.UnicodeType:
+    if type(instring) != bytes and type(instring) != str:
       return 'Error: type = %s. String or Unicode required' % type(instring)
 
     for phaseIndex in range(len(self.phaseList)):
@@ -346,15 +347,15 @@ def biggerTest(trans):
   expectedU = u'ကျန်းမာရေး နည်းလမ်း များ'
 
   result1 = trans.transliterate(zString)
-  print 'in = %s' % zString
-  print 'out = %s' % result1
+  print('in = %s' % zString)
+  print('out = %s' % result1)
 
   if result1 == expectedU:
-    print 'ThanLWinSoft title passes'
+    print('ThanLWinSoft title passes')
   else:
-    print 'ThanLWinSoft title fails. result = %s' % result1
-    print ' Expected hex = %s' % uStringToHex(expectedU)
-    print ' Result1  hex = %s' % uStringToHex(result1)
+    print('ThanLWinSoft title fails. result = %s' % result1)
+    print(' Expected hex = %s' % uStringToHex(expectedU))
+    print(' Result1  hex = %s' % uStringToHex(result1))
 
 
 def biggerTest2(trans):
@@ -367,9 +368,9 @@ def biggerTest2(trans):
   # print 'out = %s' % result1
 
   if result1 == expectedU:
-    print 'biggerTest2 passes'
+    print('biggerTest2 passes')
   else:
-    print 'biggerTest2 fails. result = %s' % result1
+    print('biggerTest2 fails. result = %s' % result1)
     # print ' Expected hex = %s' % uStringToHex(expectedU)
     # print ' Result1  hex = %s' % uStringToHex(result1)
 
@@ -378,8 +379,8 @@ def testPhase1a(transliterator):
   z1 = u'\u1002\u103a\u1064\u1005\u1072'
   e1 = u'င်္ဂျင်္စီင်္ဆံ'  # u'\u1004\u103A\u1039\u1002\u1038'
   result1 = transliterator.transliterate(z1)
-  print '  hex = %s' % uStringToHex(result1)
-  print '  text = %s' % result1.encode('utf-8')
+  print('  hex = %s' % uStringToHex(result1))
+  print('  text = %s' % result1.encode('utf-8'))
 
 
 def testPhase1(transliterator):
@@ -387,23 +388,23 @@ def testPhase1(transliterator):
   e1 = 'င်္ဂျင်္စီင်္ဆံ'  # u'\u1004\u103A\u1039\u1002\u1038'
   result1 = transliterator.transliterate(z1)
   if result1 == e1:
-    print 'test#1 passes'
+    print('test#1 passes')
   else:
-    print 'test#1 fails. result = %s' % result1
-    print '  hex = %s' % uStringToHex(result1)
+    print('test#1 fails. result = %s' % result1)
+    print('  hex = %s' % uStringToHex(result1))
 
 
 def testPhase2(transliterator):
   z1 = u'\u1006\u103a\u108c\u1033\u1044\u1039\u1025\u103a\u1036\u103b\u103c\u1004'
   e1 = 'င်္ဆျီု|၎်ဥျံြွင'
   result1 = transliterator.transliterate(z1)
-  print 'testPhase2 gives %s' % uStringToHex(result1)
+  print('testPhase2 gives %s' % uStringToHex(result1))
   if result1 == e1:
-    print 'testPhase2 passes'
+    print('testPhase2 passes')
   else:
-    print 'testPhase2 fails. result = %s' % result1
-    print '  Result hex =   %s' % uStringToHex(result1)
-    print '  Expected hex = %s' % uStringToHex(e1)
+    print('testPhase2 fails. result = %s' % result1)
+    print('  Result hex =   %s' % uStringToHex(result1))
+    print('  Expected hex = %s' % uStringToHex(e1))
 
 
 def testList(transliterator):
@@ -416,34 +417,34 @@ def testList(transliterator):
   eList = [u'င်္ဆျီု|၎်ဥျံြွင', u'င်္ဂျင်္စီင်္ဆံ', u'င်္ဂျင်္စီင်္ဆံ']
   for i in range(len(resultList)):
     if resultList[i] == eList[i]:
-      print '  testList %d passes' % i
+      print('  testList %d passes' % i)
     else:
-      print '  testList %d fails' % 1
-      print '  Z input =      %s' % uStringToHex(zList[i])
-      print '  Result hex =   %s' % uStringToHex(resultList[i])
-      print '  Expected hex = %s' % uStringToHex(eList[i])
+      print('  testList %d fails' % 1)
+      print('  Z input =      %s' % uStringToHex(zList[i]))
+      print('  Result hex =   %s' % uStringToHex(resultList[i]))
+      print('  Expected hex = %s' % uStringToHex(eList[i]))
 
 
 def transliterateFile(trans, encoding, fileName):
   # Open a file, read the text, and transliterate it, line by line.
-  print '** transliterateFile %s for file %s' % (encoding, fileName)
+  print('** transliterateFile %s for file %s' % (encoding, fileName))
   infile = codecs.open(fileName, "rb") #, "utf-8")
-  print 'infile = %s' % (infile)
+  print('infile = %s' % (infile))
   lineNum = 0
   for line in infile:
-    print lineNum
+    print(lineNum)
     outline = trans.transliterate(line)
-    print '%s\t%s' % (lineNum, outline)
+    print('%s\t%s' % (lineNum, outline))
     lineNum += 1
   return
 
 def main(argv=None):
 
   if len(argv) > 1:
-    print argv
+    print(argv)
     inType = argv[1]
     inFile = argv[2]
-    print inType, inFile
+    print(inType, inFile)
 
     if inType == 'knu':
       trans = Transliterate(translit_knu.TRANS_LIT_RULES)
@@ -476,15 +477,15 @@ def main(argv=None):
 
   test1 = u'ေျခႀက'  # 1031 103b 1001 1080 1000
   result1 = trans.transliterate(test1)
-  print 'Output is %s' % result1
+  print('Output is %s' % result1)
 
-  print '-------------\n'
+  print('-------------\n')
   test2 = uStringsToText(u'\u1000\u1064')
   result2 = trans.transliterate(test2)
 
-  print 'Output 2 is %s' % result2
+  print('Output 2 is %s' % result2)
 
-  print '-------------\n'
+  print('-------------\n')
 
   # biggerTest()
 
@@ -492,5 +493,5 @@ def main(argv=None):
 
 
 if __name__ == "__main__":
-    print 'ARGS = %s' % sys.argv
+    print('ARGS = %s' % sys.argv)
     sys.exit(main(sys.argv))

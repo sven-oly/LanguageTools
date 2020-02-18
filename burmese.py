@@ -16,6 +16,7 @@
 
 
 #import translit
+from __future__ import print_function
 import transliterate
 import transrule_my_wwburn
 
@@ -372,7 +373,7 @@ class ConvertHandler(webapp2.RequestHandler):
   def post(self):
     self.response.headers['Content-Type'] = 'text/plain'
 
-    print 'ConvertHandler post received.'
+    print('ConvertHandler post received.')
     self.response.out.write('ConvertHandler post received.\n')
 
   def get(self):

@@ -1,3 +1,4 @@
+from __future__ import print_function
 
 # ----------------- TESTING ------------------
 # TODO: Factor out the tests.
@@ -7,15 +8,15 @@ def biggerTest(trans):
   expectedU = u'ကျန်းမာရေး နည်းလမ်း များ'
 
   result1 = trans.transliterate(zString)
-  print 'in = %s' % zString
-  print 'out = %s' % result1
+  print('in = %s' % zString)
+  print('out = %s' % result1)
   
   if result1 == expectedU:
-    print 'ThanLWinSoft title passes'
+    print('ThanLWinSoft title passes')
   else:
-    print 'ThanLWinSoft title fails. result = %s' % result1
-    print ' Expected hex = %s' % uStringToHex(expectedU)
-    print ' Result1  hex = %s' % uStringToHex(result1)
+    print('ThanLWinSoft title fails. result = %s' % result1)
+    print(' Expected hex = %s' % uStringToHex(expectedU))
+    print(' Result1  hex = %s' % uStringToHex(result1))
 
 
 def biggerTest2(trans):
@@ -28,9 +29,9 @@ def biggerTest2(trans):
   # print 'out = %s' % result1
   
   if result1 == expectedU:
-    print 'biggerTest2 passes'
+    print('biggerTest2 passes')
   else:
-    print 'biggerTest2 fails. result = %s' % result1
+    print('biggerTest2 fails. result = %s' % result1)
     # print ' Expected hex = %s' % uStringToHex(expectedU)
     # print ' Result1  hex = %s' % uStringToHex(result1)
 
@@ -39,8 +40,8 @@ def testPhase1a(transliterator):
   z1 = u'\u1002\u103a\u1064\u1005\u1072'
   e1 = u'င်္ဂျင်္စီင်္ဆံ'  # u'\u1004\u103A\u1039\u1002\u1038'
   result1 = transliterator.transliterate(z1)
-  print '  hex = %s' % uStringToHex(result1)
-  print '  text = %s' % result1.encode('utf-8')
+  print('  hex = %s' % uStringToHex(result1))
+  print('  text = %s' % result1.encode('utf-8'))
 
 
 def testPhase1(transliterator):
@@ -48,23 +49,23 @@ def testPhase1(transliterator):
   e1 = 'င်္ဂျင်္စီင်္ဆံ'  # u'\u1004\u103A\u1039\u1002\u1038'
   result1 = transliterator.transliterate(z1)
   if result1 == e1:
-    print 'test#1 passes'
+    print('test#1 passes')
   else:
-    print 'test#1 fails. result = %s' % result1
-    print '  hex = %s' % uStringToHex(result1)
+    print('test#1 fails. result = %s' % result1)
+    print('  hex = %s' % uStringToHex(result1))
 
 
 def testPhase2(transliterator):
   z1 = u'\u1006\u103a\u108c\u1033\u1044\u1039\u1025\u103a\u1036\u103b\u103c\u1004'
   e1 = 'င်္ဆျီု|၎်ဥျံြွင'
   result1 = transliterator.transliterate(z1)
-  print 'testPhase2 gives %s' % uStringToHex(result1)
+  print('testPhase2 gives %s' % uStringToHex(result1))
   if result1 == e1:
-    print 'testPhase2 passes'
+    print('testPhase2 passes')
   else:
-    print 'testPhase2 fails. result = %s' % result1
-    print '  Result hex =   %s' % uStringToHex(result1)
-    print '  Expected hex = %s' % uStringToHex(e1)
+    print('testPhase2 fails. result = %s' % result1)
+    print('  Result hex =   %s' % uStringToHex(result1))
+    print('  Expected hex = %s' % uStringToHex(e1))
 
 
 def testList(transliterator):
@@ -77,34 +78,34 @@ def testList(transliterator):
   eList = [u'င်္ဆျီု|၎်ဥျံြွင', u'င်္ဂျင်္စီင်္ဆံ', u'င်္ဂျင်္စီင်္ဆံ']
   for i in range(len(resultList)):
     if resultList[i] == eList[i]:
-      print '  testList %d passes' % i
+      print('  testList %d passes' % i)
     else:
-      print '  testList %d fails' % 1
-      print '  Z input =      %s' % uStringToHex(zList[i])
-      print '  Result hex =   %s' % uStringToHex(resultList[i])
-      print '  Expected hex = %s' % uStringToHex(eList[i])    
+      print('  testList %d fails' % 1)
+      print('  Z input =      %s' % uStringToHex(zList[i]))
+      print('  Result hex =   %s' % uStringToHex(resultList[i]))
+      print('  Expected hex = %s' % uStringToHex(eList[i]))    
 
 
 def transliterateFile(trans, encoding, fileName):
   # Open a file, read the text, and transliterate it, line by line.
-  print '** transliterateFile %s for file %s' % (encoding, fileName)
+  print('** transliterateFile %s for file %s' % (encoding, fileName))
   infile = codecs.open(fileName, "rb") #, "utf-8")
-  print 'infile = %s' % (infile)
+  print('infile = %s' % (infile))
   lineNum = 0
   for line in infile:
-    print lineNum
+    print(lineNum)
     outline = trans.transliterate(line)
-    print '%s\t%s' % (lineNum, outline)
+    print('%s\t%s' % (lineNum, outline))
     lineNum += 1
   return
   
 def main(argv=None):
  
   if len(argv) > 1:
-    print argv
+    print(argv)
     inType = argv[1]
     inFile = argv[2]
-    print inType, inFile
+    print(inType, inFile)
 
     if inType == 'knu':
       trans = Transliterate(translit_knu.TRANS_LIT_RULES)
@@ -137,15 +138,15 @@ def main(argv=None):
   
   test1 = u'ေျခႀက'  # 1031 103b 1001 1080 1000
   result1 = trans.transliterate(test1)
-  print 'Output is %s' % result1
+  print('Output is %s' % result1)
 
-  print '-------------\n'
+  print('-------------\n')
   test2 = uStringsToText(u'\u1000\u1064')
   result2 = trans.transliterate(test2)
 
-  print 'Output 2 is %s' % result2
+  print('Output 2 is %s' % result2)
   
-  print '-------------\n'
+  print('-------------\n')
 
   # biggerTest()
   
@@ -153,5 +154,5 @@ def main(argv=None):
 
 
 if __name__ == "__main__":
-    print 'ARGS = %s' % sys.argv 
+    print('ARGS = %s' % sys.argv) 
     sys.exit(main(sys.argv))

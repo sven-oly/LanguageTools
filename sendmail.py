@@ -26,6 +26,6 @@ def send_mail(serverURL='smtpauth.earthlink.net',
   try:
     message.send()
     return "OK"
-  except mail.InvalidSenderError, error_msg:
+  except mail.InvalidSenderError as error_msg:
     logging.info('Cannot send from user %s', sender)
     return 'error for sender <%s>' % sender

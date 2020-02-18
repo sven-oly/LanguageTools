@@ -3,6 +3,7 @@
 
 # Starting with
 #   https://codereview.stackexchange.com/questions/98247/wordsearch-generator
+from __future__ import print_function
 import itertools
 import logging
 import random
@@ -273,15 +274,15 @@ class WordSearch():
     return retval
 
   def printGrid(self):
-    print 'GRID SOLUTION of size %s' % self.size
+    print('GRID SOLUTION of size %s' % self.size)
     for row in self.grid:
       for item in row:
         if type(item) is list:
-          print ' %s%s ' % (item[0].encode('utf-8'), item[1]),
+          print(' %s%s ' % (item[0].encode('utf-8'), item[1]), end=' ')
         else:
           # Put in a flag to print _ in the fill spaces.
-          print ' %s  ' % item,  # '_'.encode('utf-8'),
-      print
+          print(' %s  ' % item, end=' ')  # '_'.encode('utf-8'),
+      print()
 
   def formatAnswers(self):
     answers = {}
@@ -291,20 +292,20 @@ class WordSearch():
     return answers
 
   def printSolution(self):
-    print 'Solution:'
+    print('Solution:')
     for sol in self.solutions_list:
       for pos in sol:
-        print '%s, %s, reversed = %s' % (''.join(pos.tokens),
-          DIR_WORDS[pos.direction], pos.reversed)
-        print '  %s' % pos.positions
+        print('%s, %s, reversed = %s' % (''.join(pos.tokens),
+          DIR_WORDS[pos.direction], pos.reversed))
+        print('  %s' % pos.positions)
 
   def printStats(self):
     # Output information about the last run.
-    print '%s solutions' % len(self.solutions_list)
-    print '%s total tests' % self.total_tests
-    print '%s total backtracks' % self.backtracks
-    print '%s failed insert' % self.failed_inserts
-    print '%s cells filled by words' % self.cells_filled
+    print('%s solutions' % len(self.solutions_list))
+    print('%s total tests' % self.total_tests)
+    print('%s total backtracks' % self.backtracks)
+    print('%s failed insert' % self.failed_inserts)
+    print('%s cells filled by words' % self.cells_filled)
 
 #### THE OLD IMPLEMENTATION.
 
@@ -443,7 +444,7 @@ def insertWord(word, grid, invalid, is_wordsearch):
   # Now generate a starting coordinate from the above.
   num_positions = len(positions)
   if num_positions < 1:
-    print 'only one position'
+    print('only one position')
   rand_pos = randint(0, num_positions - 1)
   x = positions[rand_pos][0]
   y = positions[rand_pos][1]
@@ -530,7 +531,7 @@ def tryPlacingWord(tokens, x, y, direction, grid):
       else:
         return False
     except IndexError:
-      print 'IndexError x,y: [%s, %s]' % (x, y)
+      print('IndexError x,y: [%s, %s]' % (x, y))
 
   return line
 
@@ -573,7 +574,7 @@ def printGrid(grid):
 def printAnswers(answers):
   for answer in answers:
     # print(' %s: %s' % answer, answers[answer])
-    print answer, answers[answer]
+    print(answer, answers[answer])
 
 
 # Runs with an array of words
@@ -650,7 +651,7 @@ def testGrid():
 
 
 def testNewWordSearch(words, args):
-  print 'args = %s' % args
+  print('args = %s' % args)
   if args > 1:
     size = int(args[1])
   else:
@@ -659,12 +660,12 @@ def testNewWordSearch(words, args):
   num_solutions = 1
   ws = generateDFSWordSearch(words, size, max_tries, num_solutions)
 
-  print '%s words = %s' % (len(ws.token_list), [len(x) for x in ws.token_list])
-  print 'max tokens = %s' % ws.size
-  print
+  print('%s words = %s' % (len(ws.token_list), [len(x) for x in ws.token_list]))
+  print('max tokens = %s' % ws.size)
+  print()
   ws.printGrid()
-  print '%s solutions found' % len(ws.solutions_list)
-  print 'Statistics\n'
+  print('%s solutions found' % len(ws.solutions_list))
+  print('Statistics\n')
   ws.printStats()
   ws.printSolution()
 
@@ -689,5 +690,5 @@ def main(args):
 
 
 if __name__ == "__main__":
-  print 'ARGS = %s' % sys.argv
+  print('ARGS = %s' % sys.argv)
   sys.exit(main(sys.argv))
