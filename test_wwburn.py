@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+from __future__ import print_function
 import transrule_my_wwburn
 
 import transliterate
@@ -37,17 +38,17 @@ def compare(result, expected):
 def test1(trans, subst):
   input = 'ta-umif;jycsuf'
   expected = u'အေ—ကာင်းပြချက်'
-  result = apply(input, trans, subst)
+  result = input(*trans, **subst)
   compare(result, expected)
 
   input = '-opa-w;vsm;vlrsKd;'
   expected = u'—သစေ—တးလျားလူမျိုး'
-  result = apply(input, trans, subst)
+  result = input(*trans, **subst)
   compare(result, expected)
 
   input = 'tjyefvufrSwf'
   expected = u'အပြန်လက်မှတ်'
-  result = apply(input, trans, subst)
+  result = input(*trans, **subst)
   compare(result, expected)
 
 
@@ -59,7 +60,7 @@ def main(args):
   test1(trans, subst);
 
 if __name__ == "__main__":
-    print 'ARGS = %s' % sys.argv
+    print('ARGS = %s' % sys.argv)
     print('Testing WW Burn conversions')
 
     sys.exit(main(sys.argv))
