@@ -111,9 +111,6 @@ links = [
     {'linkText': 'Wikipedi page',
      'ref': 'https://en.wikipedia.org/wiki/Gondi_language'
     },
-    {'linkText': 'Ethnolog',
-     'ref': 'https://www.ethnologue.com/language/gon'
-    },
     {'linkText': 'Combiners',
      'ref': '/gon/diacritic/'
      },
