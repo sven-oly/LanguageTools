@@ -25,9 +25,9 @@ LanguageCode = 'gon'
 
 encoding_font_list = [
   {
-    'font_path': '/fonts/xyz.ttf',
-    'font_name': 'xyz',
-    'display_name': 'xyz',
+    'font_path': '/fonts/Gondi/YTJT.otf',
+    'font_name': 'YTJT',
+    'display_name': 'YTJT Masaram',
   },
 ]
 
