@@ -116,11 +116,6 @@ links = [
      },
 ]
 
-# TODO: Fill in with diacritics
-diacritic_list = [unichr(x) for x in range(0x1c24, 0x1c37)]
-#TODO: Fill in base consonant
-default_base_consonant = u'\u1c00'
-
 # Shows keyboards
 class IndigenousHomeHandler(webapp2.RequestHandler):
     def get(self):
@@ -154,7 +149,13 @@ class IndigenousHomeHandler(webapp2.RequestHandler):
       self.response.out.write(template.render(path, template_values))
 
 encodedRanges = [
-  (0x20, 0x7b),
+    (0x20, 0x7f), (0x90, 0x91), (0xa2, 0xa4),
+    (0xa8, 0xac), (0xae, 0xaf), (0xb2, 0xb5), 0xb6, 0xb8,
+    (0xba, 0xc2), (0xc3, 0xd0), (0xd1, 0xd5), 0xd6,
+    (0xd8, 0xf2), 0xf3, (0xf6, 0xfa),
+    0x152, 0x160, 0x192, 0x2c6, 0x2dc, 0x95c,
+    0x2010, (0x2013, 0x2015), 0x2018, 0x2019,
+    (0x2020, 0x2022), 0x2026, 0x2030, 0x2039,
 ]
 # Presents UI for conversions from font encoding to Unicode.
 class ConvertUIHandler(webapp2.RequestHandler):
@@ -163,8 +164,11 @@ class ConvertUIHandler(webapp2.RequestHandler):
       # All old characters
       oldCharList = []
       for run in encodedRanges:
-        oldCharList.extend([unichr(x) + ' ' for x in xrange(encodedRanges[0][0], encodedRanges[0][1])])
-
+        print(run)
+        if type(run) is int:
+          oldCharList.extend(unichr(run) + ' ')
+        else:
+          oldCharList.extend([unichr(x) + ' ' for x in xrange(run[0], run[1])])
       oldChars = ''.join(oldCharList)
       text = self.request.get('text', oldChars)
       font = self.request.get('font')
