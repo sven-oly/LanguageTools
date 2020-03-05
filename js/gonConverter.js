@@ -47,7 +47,7 @@ var private_use_map_combined = {
   '\u0048': ['\ud807\udd23\ud807\udd45', ''],
   '\u0049': ['\ud807\udd20\ud807\udd45', ''],
   '\u004a': ['???', '\u1ecc\u0301'],
-  '\u004b': ['???', '\u1ecc\u0301'],
+  '\u004b': ['\ud807\udd2f', '\u1ecc\u0301'],
   '\u004c': ['\ud807\udd2b\ud807\udd45', '\u1ecc\u0301'],
   '\u004d': ['\ud807\udd18', '\u1ecc\u0301'],
   '\u004e': ['\ud807\udd12', '\u1ecc\u0301'],

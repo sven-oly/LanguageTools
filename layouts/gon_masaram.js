@@ -16,16 +16,20 @@ var GON_MASARAM_LAYOUT = {
   'title': 'Gondi Masaram',
   'mappings': {
     ',c': {
-      '': '`1234567890-=' +
-          'qwertyuiop[]\\' +
-          '{{\ud807\udd00}}sdfghjkl:"' +
-          'zxcvbnm,./'
+      '': '`{{\ud807\udd51}}{{\ud807\udd52}}{{\ud807\udd53}}{{\ud807\udd54}}{{\ud807\udd55}}{{\ud807\udd56}}' +
+            '{{\ud807\udd57}}{{\ud807\udd58}}{{\ud807\udd59}}{{\ud807\udd50}}{{\ud807\udd42}}{{\ud807\udd30}}' +
+          '{{\ud807\udd34}}{{\ud807\udd35}}{{\ud807\udd24\ud807\udd45}}{{\ud807\udd18}}{{\ud807\udd13}}' +
+            '{{\ud807\udd27}}{{\ud807\udd1f}}{{\ud807\udd20}}{{\ud807\udd0d}}{{\ud807\udd11}}{{\ud807\udd0d\ud807\udd45}},?' +
+          '{{\ud807\udd40}}{{\ud807\udd3a}}{{\ud807\udd0c}}{{\ud807\udd32}}{{\ud807\udd2c}}{{\ud807\udd33}}' +
+            '{{\ud807\udd26}}{{\ud807\udd31}}{{\ud807\udd26}}{{\ud807\udd40\ud807\udd45}}{{\ud807\udd29\ud807\udd45}}' +
+          '{{\ud807\udd36}}{{\ud807\udd0e}}{{\ud807\udd22}}{{\ud807\udd00}}{{\ud807\udd02}}{{\ud807\udd1d}}' +
+            '{{\ud807\udd1d}}{{\ud807\udd04}}{{???}}{{\ud807\udd1e}}'
     },
     's,sc': {
-      '': '~!@#$%^&*()_+' +
-          'QWERTYUIOP{}|' +
-          '{{\ud807\udd01}}SDFGHJKL;\'' +
-          'ZXCVBNM<>?'
+      '': '~!\\{{\ud807\udd26\ud807\udd45}}+{{\ud807\udd41}}^-}*()_+' +
+          '{{\ud807\udd21}}{{\ud807\udd21\ud807\udd45}}ERTYUIOP{}|' +
+          '{{\ud807\udd40}}{{\ud807\udd3c}}DFGHJKL;\'' +
+          'ZXCVBNM{{\ud807\udd27\ud807\udd45}}{{\ud807\udd2e}}?'
     },
     'l,cl': {
       '': '`1234567890-=' +
