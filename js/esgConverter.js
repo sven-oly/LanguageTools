@@ -2,9 +2,9 @@
 
 // Mappings for old Yoruba non-Unicode forms
 var map_encoding_names = [
-  'Gunjala', ''];
+  'Masaram Gondi', ''];
 
-// TODO: Fix Gondi Gunjala mappings
+// TODO: Fix Gondi Masaram mappings
 var private_use_map_combined = {
   '\u0000': ['\u0000'],
   '\u0021': ['!', ''],

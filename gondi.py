@@ -14,6 +14,8 @@
 # limitations under the License.
 #
 
+import logging
+
 import os
 import webapp2
 
@@ -31,6 +33,17 @@ encoding_font_list = [
   },
 ]
 
+encoding_font_dict = {
+  'gon': encoding_font_list,
+  'esg': encoding_font_list,
+  'gno': [
+    {
+    'font_path': '/fonts/Gondi/YTJT.otf',
+    'font_name': None,
+    'display_name': 'None',
+  },],
+  'wsg': encoding_font_list,
+}
 unicode_font_list = [
     {
         'family': 'NotoSansGondiGunjala',
@@ -43,6 +56,25 @@ unicode_font_list = [
     'source': '/fonts/Gondi/NotoSansMasaramGondi-Regular.ttf',
   },
 ]
+
+unicode_font_dict = {
+  'gon': unicode_font_list,
+  'esg': [
+    {
+      'family': 'NotoSansGondiMasaram',
+      'longName': 'Noto Sans Masaram',
+      'source': '/fonts/Gondi/NotoSansMasaramGondi-Regular.ttf',
+    },
+  ],
+  'gno': [
+    {
+        'family': 'NotoSansGondiGunjala',
+        'longName': 'Noto Sans Gunjala',
+        'source': '/fonts/Gondi/NotoSansGunjalaGondi-Regular.ttf',
+    },
+  ],
+  'wsg': unicode_font_list,
+}
 
 kb_list = [
   {'shortName': LanguageCode + '_gunjala',
@@ -58,6 +90,20 @@ kb_list = [
    'longName': 'Gondi Telugu',
    },
 ]
+
+kb_list_dict = {
+  'gon': kb_list,
+  'esg': [  {'shortName': 'gon_masaram','longName': 'Gondi Masaram' },],
+  'gno': [{'shortName': 'gon_gunjala', 'longName': 'Gondi Gonjala'}, ],
+  'wsg': [  {'shortName': 'gon_masaram','longName': 'Gondi Masaram' },],
+}
+
+lang_name_dict = {
+  'gon': "Gondi languages",
+  'esg': "Aheri Gondi",
+  'gno': "Southern Gondi",
+  'wsg': "Adilabad Gondi",
+}
 
 kb_dev = """
 १234567890-
@@ -119,12 +165,15 @@ links = [
 # Shows keyboards
 class IndigenousHomeHandler(webapp2.RequestHandler):
     def get(self):
+      req = webapp2.get_request()
+      top_path = req.path.split('/')
+      lang_code = top_path[1]
       template_values = {
-        'language': Language,
-        'langTag': LanguageCode,
-        'font_list': unicode_font_list,
+        'language': lang_name_dict[lang_code],
+        'langTag': lang_code,
+        'font_list': unicode_font_dict[lang_code],
         'lang_list': None,
-        'kb_list': kb_list,
+        'kb_list': kb_list_dict[lang_code],
         'links': links,
       }
       path = os.path.join(os.path.dirname(__file__), 'demo_general.html')
@@ -133,20 +182,6 @@ class IndigenousHomeHandler(webapp2.RequestHandler):
 diacritic_list = [] # [unichr(x) for x in range(0x11D8A, 0x11D97)]
 
 default_base_consonant = u'\0x11D60'
-
-# Shows keyboards
-class IndigenousHomeHandler(webapp2.RequestHandler):
-    def get(self):
-      template_values = {
-        'language': Language,
-        'langTag': LanguageCode,
-        'font_list': unicode_font_list,
-        'lang_list': None,
-        'kb_list': kb_list,
-        'links': links,
-      }
-      path = os.path.join(os.path.dirname(__file__), 'demo_general.html')
-      self.response.out.write(template.render(path, template_values))
 
 encodedRanges = [
     (0x20, 0x7f), (0x90, 0x91), (0xa2, 0xa4),
@@ -160,6 +195,10 @@ encodedRanges = [
 # Presents UI for conversions from font encoding to Unicode.
 class ConvertUIHandler(webapp2.RequestHandler):
     def get(self):
+
+      req = webapp2.get_request()
+      top_path = req.path.split('/')
+      lang_code = top_path[1]
 
       # All old characters
       oldCharList = []
@@ -189,13 +228,13 @@ class ConvertUIHandler(webapp2.RequestHandler):
       ]
 
       template_values = {
-          'font': font,
-          'language': Language,
-          'langTag': LanguageCode,
-          'encodingList': encoding_font_list,
-          'encoding': encoding_font_list[0],
-          'kb_list': kb_list,
-          'unicodeFonts': unicode_font_list,
+        'font': font,
+        'language': lang_name_dict[lang_code],
+        'langTag': lang_code,
+          'encodingList': encoding_font_dict[lang_code],
+          'encoding': encoding_font_dict[lang_code][0],
+          'kb_list': kb_list_dict[lang_code],
+          'unicodeFonts': unicode_font_dict[lang_code],
           'links': links,
           'oldChars': oldChars,
           'oldInput': oldInput,
@@ -210,11 +249,14 @@ class ConvertUIHandler(webapp2.RequestHandler):
 
 class EncodingRules(webapp2.RequestHandler):
     def get(self):
+      req = webapp2.get_request()
+      top_path = req.path.split('/')
+      lang_code = top_path[1]
 
       template_values = {
         'converterJS': '/js/' + LanguageCode + 'Converter.js',
-        'language': Language,
-        'langTag': LanguageCode,
+        'language': lang_name_dict[lang_code],
+        'langTag': lang_code,
         'encoding_list': encoding_font_list,
         'unicode_list': unicode_font_list,
         'kb_list': kb_list,
@@ -298,9 +340,21 @@ class DiacriticHandler(webapp2.RequestHandler):
 
 
 app = webapp2.WSGIApplication([
+  ('/' + 'esg' + '/', IndigenousHomeHandler),
+  ('/' + 'gno' + '/', IndigenousHomeHandler),
+  ('/' + 'wsg' + '/', IndigenousHomeHandler),
   ('/' + LanguageCode + '/', IndigenousHomeHandler),
+
+  ('/' + 'esg' + '/convertUI/', ConvertUIHandler),
+  ('/' + 'gno' + '/convertUI/', ConvertUIHandler),
+  ('/' + 'wsg'+ '/convertUI/', ConvertUIHandler),
   ('/' + LanguageCode + '/convertUI/', ConvertUIHandler),
   ('/' + LanguageCode + '/downloads/', Downloads),
+
+  ('/' + 'esg' + '/encodingRules/', EncodingRules),
+  ('/' + 'gno' + '/encodingRules/', EncodingRules),
+  ('/' + 'wsg' + '/encodingRules/', EncodingRules),
   ('/' + LanguageCode + '/encodingRules/', EncodingRules),
+
   ('/' + LanguageCode + '/diacritic/', DiacriticHandler),
 ], debug=True)

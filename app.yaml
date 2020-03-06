@@ -73,6 +73,15 @@ handlers:
 - url: /gon/.*
   script: gondi.app
 
+- url: /esg/.*
+  script: gondi.app
+
+- url: /gno/.*
+  script: gondi.app
+
+- url: /wsg/.*
+  script: gondi.app
+
 - url: /hoc/.*
   script: ho.app
 

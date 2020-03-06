@@ -81,6 +81,8 @@ class languageTemplate():
 # Shows keyboards for Language
 class LanguagesHomeHandler(webapp2.RequestHandler):
   def get(self):
+    req = webapp2.get_request()
+    # Can use this for additional information
     langInfo = self.app.config.get('langInfo')
     lang_list = [
         {'shortName':  'tst',
