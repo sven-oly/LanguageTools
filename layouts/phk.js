@@ -19,10 +19,10 @@ var PHK_LAYOUT = {
   'mappings': {
     '': {
       '': '`\u1041\u1042\u1043\u1044\u1045\u1046\u1047\u1048\u1049\u1040{{\u1014}}=' +
-          '{{်}}{{ဝ}}{{ေ}}{{\uAA7A}}{{တ}}{{ယ}}{{ု}}' +
-            '{{ိ}}{{ွ}}{{ပ}}{{}}{{\u104a}}|' +
+          '{{်}}{{ဝ}}{{\u1031}}{{\uAA7A}}{{တ}}{{ယ}}{{ု}}' +
+            '{{ိ}}{{ွ}}{{ပ}}{{}}{{}}{{\u104a}}' +
           '{{ႃ}}{{\uaa6c}}{{ဒ}}{{ၸ}}{{င}}{{\uaa6d}}{{\u109d}}{{က}}{{လ}}\u1064\u1062' +
-          '{{\uAA78}}{{ၵ}}{{ꩡ}}{{ထ}}{{ပ}}{{ꩫ}}{{မ}},./'
+          '{{\uAA78}}{{ၵ}}{{ꩡ}}{{ထ}}{{ပ}}{{ꩫ}}{{မ}},.{{\u104b}}'
     },
     's, sc': {
       '': '~{{\uaa78}}{{\uaa79}}{{\u1036\u00a0\u1036}}{{\u102e\u00a0\u102e}}{{\u103a\u00a0\u103a}}{{\u102c}}{{\u109d\u00a0\u109d}}*(){{\u101b}}+' +
@@ -49,7 +49,18 @@ var PHK_LAYOUT = {
           'zxcvbnm<>?'
     }
   },
+  'transform' : {
+    // Not working yet!
+    // Reorder e-vowel + medial ra after consonant.
+    '\u200c\u1031\u103c': '\u200c\u103c\u1031',
+    '\u200c\u103c\u1031\u001d?([\u1000-\u102a\u103f\u104e])': '$1\u103c\u1031',
 
+    // Reorder medial ra after consonant.
+    '\u103c([\u1000-\u102a\u103f\u104e])': '$1\u103c',
+
+    // Reorder vowel E after consonant
+    '\u200c\u1031([\u1000-\u102a\u103f\u104e])': '$1\u1031',
+  }
 };
 
 // Load the layout and inform the keyboard to switch layout if necessary.

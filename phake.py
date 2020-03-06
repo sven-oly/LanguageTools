@@ -107,6 +107,9 @@ class langInfo():
       {'shortName': 'phk',
        'longName': 'Phake'
        },
+      {'shortName': 'aio',
+       'longName': 'Aiton'
+       },
     ]
 
     self.links = [
