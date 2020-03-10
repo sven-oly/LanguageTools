@@ -22,7 +22,7 @@ import webapp2
 from google.appengine.ext.webapp import template
 
 Language = 'gondi'
-Language_native = '???ᰶ'
+Language_native = 'Gondi'
 LanguageCode = 'gon'
 
 encoding_font_list = [
@@ -101,7 +101,7 @@ kb_list_dict = {
 lang_name_dict = {
   'gon': "Gondi languages",
   'esg': "Aheri Gondi",
-  'gno': "Southern Gondi",
+  'gno': "Northern Gondi",
   'wsg': "Adilabad Gondi",
 }
 
@@ -129,14 +129,16 @@ kb_tel = """
 ష్‍ఛౌభཎཾ<>?྅
 """
 
+LanguageCodeStandin = 'xxxx'
+
 links = [
     {'linkText': 'Keyboard',
-     'ref': '/' + LanguageCode + '/'
+     'ref': '/' + LanguageCodeStandin + '/'
     },
     {'linkText': 'Converter',
-     'ref': '/' + LanguageCode + '/convertUI/'},
+     'ref': '/' + LanguageCodeStandin + '/convertUI/'},
     {'linkText': 'Font conversion summary',
-      'ref': '/' + LanguageCode + '/encodingRules/'
+      'ref': '/' + LanguageCodeStandin + '/encodingRules/'
     },
     {'linkText': 'Resources',
       'ref': '/' + LanguageCode + '/downloads/'
@@ -158,9 +160,19 @@ links = [
      'ref': 'https://en.wikipedia.org/wiki/Gondi_language'
     },
     {'linkText': 'Combiners',
-     'ref': '/gon/diacritic/'
+     'ref': '/' + LanguageCodeStandin + '/diacritic/'
      },
 ]
+
+def fixLinks(link_template, langCode):
+  new_links = []
+  for link in links:
+    new_link = {
+      'linkText': link['linkText'],
+      'ref': link['ref'].replace(LanguageCodeStandin, langCode)
+    }
+    new_links.append(new_link)
+  return new_links
 
 # Shows keyboards
 class IndigenousHomeHandler(webapp2.RequestHandler):
@@ -174,14 +186,29 @@ class IndigenousHomeHandler(webapp2.RequestHandler):
         'font_list': unicode_font_dict[lang_code],
         'lang_list': None,
         'kb_list': kb_list_dict[lang_code],
-        'links': links,
+        'links': fixLinks(links, lang_code),
       }
       path = os.path.join(os.path.dirname(__file__), 'demo_general.html')
       self.response.out.write(template.render(path, template_values))
 
-diacritic_list = [] # [unichr(x) for x in range(0x11D8A, 0x11D97)]
+diacritic_lists = {
+  'gno': [u'\U00011D8A', u'\U00011D8B', u'\U00011D8C', u'\U00011D8D', u'\U00011D8E',
+          u'\U00011D90', u'\U00011D91', u'\U00011D93', u'\U00011D94', u'\U00011D95',
+          u'\U00011D96', u'\U00011D97', u'\U00011D90'
+          ],
+  'esg': [u'\U00011D3A', u'\U00011D3c', u'\U00101D3d', u'\U00011D3f', u'\U00011D40',
+          u'\U00011D41', u'\U00011D42', u'\U00011D43', u'\U00011D44', u'\U00011D45',
+          u'\U00011D46', u'\U00011D47', u'\U00011D48'],
+  'gon': [],
+  'wsg': []
+}
 
-default_base_consonant = u'\0x11D60'
+default_base_consonant = {
+  'gon': u'\U00011D00',
+  'gno': u'\U00011D60',
+  'esg': u'\U00011D00',
+  'wsg': u'\U00011D60'
+}
 
 encodedRanges = [
     (0x20, 0x7f), (0x90, 0x91), (0xa2, 0xa4),
@@ -227,6 +254,7 @@ class ConvertUIHandler(webapp2.RequestHandler):
         }
       ]
 
+      new_links = []
       template_values = {
         'font': font,
         'language': lang_name_dict[lang_code],
@@ -235,7 +263,7 @@ class ConvertUIHandler(webapp2.RequestHandler):
           'encoding': encoding_font_dict[lang_code][0],
           'kb_list': kb_list_dict[lang_code],
           'unicodeFonts': unicode_font_dict[lang_code],
-          'links': links,
+          'links': fixLinks(links, lang_code),
           'oldChars': oldChars,
           'oldInput': oldInput,
           'text': text,
@@ -260,7 +288,7 @@ class EncodingRules(webapp2.RequestHandler):
         'encoding_list': encoding_font_list,
         'unicode_list': unicode_font_list,
         'kb_list': kb_list,
-        'links': links,
+        'links': fixLinks(links, lang_code),
       }
       path = os.path.join(os.path.dirname(__file__), 'fontsView.html')
       self.response.out.write(template.render(path, template_values))
@@ -279,7 +307,7 @@ class RenderPage(webapp2.RequestHandler):
         'encoding_list': encoding_font_list,
         'unicode_list': unicode_font_list,
         'kb_list': kb_list,
-        'links': links,
+        'links': fixLinks(links, lang_code),
       }
       path = os.path.join(os.path.dirname(__file__), 'renderCombos.html')
       self.response.out.write(template.render(path, template_values))
@@ -301,10 +329,14 @@ class DiacriticHandler(webapp2.RequestHandler):
   def get(self):
     global default_base_consonant
 
+    req = webapp2.get_request()
+    top_path = req.path.split('/')
+    lang_code = top_path[1]
+
     # Generate combinations of base + diacritic pairs
     inchars = self.request.get('base', None)
     if not inchars:
-      base_consonant = default_base_consonant
+      base_consonant = default_base_consonant[lang_code]
     elif inchars[0] == 'u':
       base_consonant = unichr(int(''.join(inchars[1:]), 16))
     else:
@@ -314,10 +346,10 @@ class DiacriticHandler(webapp2.RequestHandler):
     combos = []
     table = []
     singles = [' ', 'none']
-    for y in diacritic_list:
+    for y in diacritic_lists[lang_code]:
       row = [y + ' (%4x)' %ord(y[0])]
       singles.append(base_consonant + y);
-      for x in diacritic_list:
+      for x in diacritic_lists[lang_code]:
         text = base_consonant + y + x
         combos.append({'text': text,
                        'codes': ['%4x ' % ord(c) for c in text]})
@@ -328,12 +360,12 @@ class DiacriticHandler(webapp2.RequestHandler):
         'language': Language,
         'base_char': base_consonant.encode('utf-8'),
         'base_hex': ['%4x' % ord(x) for x in base_consonant],
-        'diacritics': [x for x in diacritic_list],
-        'diacritics_hex': ['%4x ' % ord(y[0]) for y in diacritic_list],
+        'diacritics': [x for x in diacritic_lists[lang_code]],
+        'diacritics_hex': ['%4x ' % ord(y[0]) for y in diacritic_lists[lang_code]],
         'singles': singles,
         'combinations': combos,
         'table': table,
-        'unicode_font_list': unicode_font_list,
+        'unicode_font_list': unicode_font_dict[lang_code],
     }
     path = os.path.join(os.path.dirname(__file__), 'diacritics.html')
     self.response.out.write(template.render(path, template_values))
@@ -356,5 +388,8 @@ app = webapp2.WSGIApplication([
   ('/' + 'wsg' + '/encodingRules/', EncodingRules),
   ('/' + LanguageCode + '/encodingRules/', EncodingRules),
 
+  ('/' + 'esg' + '/diacritic/', DiacriticHandler),
+  ('/' + 'gno' + '/diacritic/', DiacriticHandler),
+  ('/' + 'wsg' + '/diacritic/', DiacriticHandler),
   ('/' + LanguageCode + '/diacritic/', DiacriticHandler),
 ], debug=True)
