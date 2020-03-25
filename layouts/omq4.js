@@ -20,13 +20,13 @@ var OMQ4_LAYOUT = {
     '': {
       '': 'ᴬᴮᶜᴰᴱᶠᴳᴴᴵᴶᴷᴸᴹ' +
           'qwertyuiop[]\\' +
-          'asdfg{{ch}}jkl;\'' +
+          'asdfghjkl;\'' +
           'zxcvbnm,./'
     },
     's': {
       '': '~!@#$%^&*()_+' +
           'QWERTYUIOP{}|' +
-          'ASDFG{{Ch}}JKL:"' +
+          'ASDFGHJKL:"' +
           'ZXCVBNM<>?'
     },
     'c': {

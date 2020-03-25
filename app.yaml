@@ -37,6 +37,9 @@ handlers:
 - url: /bax/.*
   script: bamum.app
 
+- url: /bete/.*
+  script: bete.app
+
 - url: /bod/.*
   script: tibetan.app
 

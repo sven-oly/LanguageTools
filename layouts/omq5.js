@@ -20,13 +20,13 @@ var OMQ5_LAYOUT = {
     '': {
       '': '`1234567890-=' +
           'qwertyuiop[]\\' +
-          'asdfg{{ch}}jkl;\'' +
+          'asdfghjkl;\'' +
           '↑xcvbnm,./'
     },
     's': {
       '': '~!@#$%^&*()_+' +
           'QWERTYUIOP{}|' +
-          'ASDFG{{Ch}}JKL:"' +
+          'ASDFGHJKL:"' +
           'ZXCVBNM<>?'
     },
     'c': {
