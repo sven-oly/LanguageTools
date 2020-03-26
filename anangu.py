@@ -30,59 +30,44 @@ from google.appengine.ext.webapp import template
 
 encoding_font_list = [
     {
-       'font_path':'/fonts/bete/JGBete4PUA.ttf',
-       'font_name':'JGBete4',
-       'display_name': 'JGBete4',
-    #   'Source location': 'https://www.wfonts.com/font/jg-bete',  # ??
+       'font_path':'/fonts/NotoSans-Regular.ttf',
+       'font_name':'NotoSans-Regular',
+       'display_name': 'NotoSans Regular',
     },
 ]
 
 unicode_font_list = [
     {
-      'family': 'JGBete4',
-      'longName': 'JGBete4 PUA',
-      'source': '/fonts/bete/JGBete4PUA.ttf',
-      'attribution': 'https://www.wfonts.com/font/jg-bete',
+      'family': 'NotoSans',
+      'longName': 'NotoSans Regular',
+      'source': '/fonts/NotoSans-Regular.ttf',
   },
-  # {
-  #     'family': 'KikakuiSansPro',
-  #     'longName': 'Kikakui Sans Pro',
-  #     'source': '/fonts/MendeKikakui/KikakuiSansPro.ot.ttf',
-  # },
 ]
 
 links = [
-    {'linkText': 'Keyboard',
-     'ref': '/bete/'
+    {'linkText': 'Keyboard + Converter',
+      'ref': '/en_anangu/'
     },
-    # {'linkText': 'Converter',
-    #  'ref': '/bete/convertUI/'
-    # },
-    # {'linkText': 'Font conversion summary',
-    #   'ref': '/bete/encodingRules/'
-    # },
-    # {'linkText': 'Resources',
-    #   'ref': '/bete/downloads/'
-    # },
-    # {'linkText': 'Unicode Page',
-    #  'ref': 'https://www.unicode.org/charts/PDF/U1E800.pdf'
-    # },
-    {'linkText': 'Language Wikipedia',
-     'ref': 'https://en.wikipedia.org/wiki/B%C3%A9t%C3%A9_languages'
+    {'linkText': 'Keyman Yolngu keyboard',
+      'ref': 'https://keyman.com/keyboards/el_yolngu'
     },
-    {'linkText': 'Athinkra Character Picker',
-     'ref': 'http://nkoconvert.ho.ua/bete-ime/'
+    {'linkText': 'Yolŋu Studies, Charles Darwin University',
+      'ref': 'http://learnline.cdu.edu.au/yolngustudies/'
+    },
+    {'linkText': 'Aṉangu Wikipedia',
+      'ref': 'https://en.wikipedia.org/wiki/A%E1%B9%89angu'
      },
-    #{'linkText': 'Combiners',
-    # 'ref': '/bete/diacritic/'
-    #},
+    {'linkText': 'Yolŋu Wikipedia',
+      'ref': 'https://en.wikipedia.org/wiki/Yolngu'
+    },
+
 ]
 
 class langInfo():
   def __init__(self):
-    self.LanguageCode = 'bete'
-    self.Language = u'Bété'
-    self.Language_native = u'Bété'
+    self.LanguageCode = 'en_anangu'
+    self.Language = u'Yolŋu'
+    self.Language_native = u'Yolŋu'
     self.direction = 'ltr'
 
     if sys.maxunicode >= 0x10000:
@@ -103,9 +88,9 @@ class langInfo():
     self.encoding_font_list = encoding_font_list
     self.kb_list = [
       {
-        'shortName': self.LanguageCode + "Phone",
-        'longName': 'Bété Phonetic',
-        'jsName': self.LanguageCode + "Phone",
+        'shortName': 'en_anangu',
+        'longName': 'Unicode Aṉangu-Yolŋu',
+        'jsName': self.LanguageCode,
         'instructions': None,
         'font': 'NotoSansMendeKikakui',
       },
@@ -126,14 +111,26 @@ class langInfo():
 # Global in this file.
 langInstance = langInfo()
 
+# Specialized page for Unicode and converting and instructions
+class AnanuguYolnguHomeHandler(webapp2.RequestHandler):
+  def get(self):
+    template_values = {
+      'links': langInstance.links,
+      'kb_list': langInstance.kb_list,
+    }
+    path = os.path.join(os.path.dirname(__file__), 'demo_anangu.html')
+    self.response.out.write(template.render(path, template_values))
+
+
 app = webapp2.WSGIApplication(
-    [('/' + langInstance.LanguageCode+ '/', base.LanguagesHomeHandler),
-     ('/' + langInstance.LanguageCode + '/convertUI/', base.ConvertUIHandler),
-     ('/' + langInstance.LanguageCode+ '/downloads/', base.Downloads),
-     ('/' + langInstance.LanguageCode+ '/converter/', base.ConvertHandler),
-     ('/' + langInstance.LanguageCode+ '/encodingRules/', base.EncodingRules),
-     ('/' + langInstance.LanguageCode+ '/diacritic/', base.DiacriticHandler),
-     ('/' + langInstance.LanguageCode + '/dictionaryInput/', base.DictionaryInput),
-     ], debug=True,
+    [
+      ('/en_anangu/', AnanuguYolnguHomeHandler),
+      ('/' + 'en_anangu' + '/convertUI/', AnanuguYolnguHomeHandler),
+      ('/' + langInstance.LanguageCode+ '/downloads/', base.Downloads),
+      ('/' + langInstance.LanguageCode+ '/converter/', base.ConvertHandler),
+      ('/' + langInstance.LanguageCode+ '/encodingRules/', base.EncodingRules),
+      ('/' + langInstance.LanguageCode+ '/diacritic/', base.DiacriticHandler),
+      ('/' + langInstance.LanguageCode + '/dictionaryInput/', base.DictionaryInput),
+    ], debug=True,
     config={'langInfo': langInstance}
 )

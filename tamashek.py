@@ -30,59 +30,31 @@ from google.appengine.ext.webapp import template
 
 encoding_font_list = [
     {
-       'font_path':'/fonts/bete/JGBete4PUA.ttf',
-       'font_name':'JGBete4',
-       'display_name': 'JGBete4',
-    #   'Source location': 'https://www.wfonts.com/font/jg-bete',  # ??
+       'font_path':'/fonts/NotoSans-Regular.ttf',
+       'font_name':'NotoSans-Regular',
+       'display_name': 'NotoSans Regular',
     },
 ]
 
 unicode_font_list = [
     {
-      'family': 'JGBete4',
-      'longName': 'JGBete4 PUA',
-      'source': '/fonts/bete/JGBete4PUA.ttf',
-      'attribution': 'https://www.wfonts.com/font/jg-bete',
+      'family': 'NotoSansTifinaugh',
+      'longName': 'NotoSans Tifinaugh',
+      'source': '/fonts/NotoSansTifinagh-Regular.ttf',
   },
-  # {
-  #     'family': 'KikakuiSansPro',
-  #     'longName': 'Kikakui Sans Pro',
-  #     'source': '/fonts/MendeKikakui/KikakuiSansPro.ot.ttf',
-  # },
 ]
 
 links = [
-    {'linkText': 'Keyboard',
-     'ref': '/bete/'
-    },
-    # {'linkText': 'Converter',
-    #  'ref': '/bete/convertUI/'
-    # },
-    # {'linkText': 'Font conversion summary',
-    #   'ref': '/bete/encodingRules/'
-    # },
-    # {'linkText': 'Resources',
-    #   'ref': '/bete/downloads/'
-    # },
-    # {'linkText': 'Unicode Page',
-    #  'ref': 'https://www.unicode.org/charts/PDF/U1E800.pdf'
-    # },
-    {'linkText': 'Language Wikipedia',
-     'ref': 'https://en.wikipedia.org/wiki/B%C3%A9t%C3%A9_languages'
-    },
-    {'linkText': 'Athinkra Character Picker',
-     'ref': 'http://nkoconvert.ho.ua/bete-ime/'
+    {'linkText': 'Tamasheq Wikipedia',
+      'ref': 'https://en.wikipedia.org/wiki/Tamasheq_language'
      },
-    #{'linkText': 'Combiners',
-    # 'ref': '/bete/diacritic/'
-    #},
 ]
 
 class langInfo():
   def __init__(self):
-    self.LanguageCode = 'bete'
-    self.Language = u'Bété'
-    self.Language_native = u'Bété'
+    self.LanguageCode = 'tmh'
+    self.Language = u'Tamashek'
+    self.Language_native = u'Tamashek'
     self.direction = 'ltr'
 
     if sys.maxunicode >= 0x10000:
@@ -103,11 +75,11 @@ class langInfo():
     self.encoding_font_list = encoding_font_list
     self.kb_list = [
       {
-        'shortName': self.LanguageCode + "Phone",
-        'longName': 'Bété Phonetic',
-        'jsName': self.LanguageCode + "Phone",
+        'shortName': 'tmh',
+        'longName': 'Tamashek',
+        'jsName': self.LanguageCode,
         'instructions': None,
-        'font': 'NotoSansMendeKikakui',
+        'font': 'NotoSansTifinagh-Regular',
       },
     ]
     self.links = links
@@ -126,14 +98,28 @@ class langInfo():
 # Global in this file.
 langInstance = langInfo()
 
+# Specialized page for Unicode and converting and instructions
+class TamashekHomeHandler(webapp2.RequestHandler):
+  def get(self):
+    template_values = {
+      'font': langInstance.unicode_font_list[0]['longName'],
+      'language': langInstance.Language,
+      'links': langInstance.links,
+      'kb_list': langInstance.kb_list,
+    }
+    path = os.path.join(os.path.dirname(__file__), 'demo_Tamashek.html')
+    self.response.out.write(template.render(path, template_values))
+
+
 app = webapp2.WSGIApplication(
-    [('/' + langInstance.LanguageCode+ '/', base.LanguagesHomeHandler),
-     ('/' + langInstance.LanguageCode + '/convertUI/', base.ConvertUIHandler),
-     ('/' + langInstance.LanguageCode+ '/downloads/', base.Downloads),
-     ('/' + langInstance.LanguageCode+ '/converter/', base.ConvertHandler),
-     ('/' + langInstance.LanguageCode+ '/encodingRules/', base.EncodingRules),
-     ('/' + langInstance.LanguageCode+ '/diacritic/', base.DiacriticHandler),
-     ('/' + langInstance.LanguageCode + '/dictionaryInput/', base.DictionaryInput),
-     ], debug=True,
+    [
+      ('/' + langInstance.LanguageCode + '/', TamashekHomeHandler),
+      ('/' + langInstance.LanguageCode + '/convertUI/', base.ConvertUIHandler),
+      ('/' + langInstance.LanguageCode+ '/downloads/', base.Downloads),
+      ('/' + langInstance.LanguageCode+ '/converter/', base.ConvertHandler),
+      ('/' + langInstance.LanguageCode+ '/encodingRules/', base.EncodingRules),
+      ('/' + langInstance.LanguageCode+ '/diacritic/', base.DiacriticHandler),
+      ('/' + langInstance.LanguageCode + '/dictionaryInput/', base.DictionaryInput),
+    ], debug=True,
     config={'langInfo': langInstance}
 )

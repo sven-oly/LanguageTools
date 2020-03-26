@@ -99,7 +99,7 @@
     <div class="span-16">
     <h2>Tamashek Keyboard</h2>
     <p>Use this virtual keyboard to type Tamashek text. The output is standard
-      Unicode. Text is shown with <em>Noto Sans Tifinagh Regular/em> font.
+      Unicode. Text is shown with <em>Noto Sans Tifinagh Regular</em> font.
 
   <select onchange="onLayoutSelected(this.value)" id="kb_selector" style="display:none;">>
     <option value="tmh">Tamashek</option>
@@ -118,16 +118,26 @@
   <br>
   <br>
   </div>
-      <br />
+    </div>
+ <div class="span-4 last">
+
+  <h4>Useful links</h4>
+     <ul>
+   {% for link in links %}
+      <li>
+        <a href="{{link.ref}}" target="_blank">{{link.linkText}}</a>
+     </li>
+   {% endfor %}
+     </ul>
+    <br />
       <div>
         <form id='mon_form' action="/feedback/" method="get">
           <input type="submit" value="Send feedback" />
           <input type="hidden" name='language' value='{{language}}'>
-          <input type="hidden" name='font' value=''>
+          <input type="hidden" name='font' value='{{font}}'>
         </form>
       </div>
-  
-  </div>
+
   </div> <!-- container -->
 
 </body></html>

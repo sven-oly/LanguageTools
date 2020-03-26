@@ -356,6 +356,17 @@ class DictionaryInput(webapp2.RequestHandler):
 instance = languageTemplate()
 basePath = '/' + instance.LanguageCode
 
+# Error catching
+def handle_404(request, response, exception):
+    logging.exception(exception)
+    response.write('Sorry, but we do not have that page. Please try again.')
+    response.set_status(404)
+
+def handle_500(request, response, exception):
+    logging.exception(exception)
+    response.write('A server error occurred!')
+    response.set_status(500)
+
 app = webapp2.WSGIApplication(
     [
     ],
@@ -366,3 +377,7 @@ app = webapp2.WSGIApplication(
 app.router.add((basePath + '/downloads/', Downloads))
 app.router.add((basePath + '/encodingRules/', EncodingRules))
 app.router.add((basePath + '/', LanguagesHomeHandler))
+app.router.add((basePath + 'dictionaryInput', DictionaryInput))
+
+app.error_handlers[404] = handle_404
+app.error_handlers[500] = handle_500

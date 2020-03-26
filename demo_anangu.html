@@ -142,6 +142,16 @@
   </div>
   
   <div class="span-4 last">
+
+  <h4>Useful links</h4>
+     <ul>
+   {% for link in links %}
+      <li>
+        <a href="{{link.ref}}" target="_blank">{{link.linkText}}</a>
+     </li>
+   {% endfor %}
+     </ul>
+
   <h4>References:</h4>
   <a href="http://www.ausil.org.au/node/3719">AUSIL keyboards</a>
   <br/>

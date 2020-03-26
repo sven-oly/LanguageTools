@@ -73,6 +73,9 @@ handlers:
 - url: /emoji/*
   script: emoji.app
 
+- url: /en_anangu/*
+  script: anangu.app
+
 - url: /gon/.*
   script: gondi.app
 
@@ -150,6 +153,9 @@ handlers:
 
 - url: /tai/.*
   script: ahom.app
+
+- url: /tmh/.*
+  script: tamashek.app
 
 - url: /to/.*
   script: tongan.app
