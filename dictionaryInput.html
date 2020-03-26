@@ -33,6 +33,18 @@ table tr:nth-child(even){background-color: #f2f2f2;}
     font-family: "Courier New";
   }
   </style>
+
+  <style>
+   {% for font in unicodeFontList %}
+    @font-face{
+      font-family:"{{font.family}}";
+      src:url("{{font.source}}");
+      font-weight:normal;
+      font-style:normal;
+    }
+    {% endfor %}
+  </style>
+
   <script src="/js/text_utils.js"></script>
   <script src="/js/utils.js"></script>
 
@@ -133,6 +145,7 @@ function addRow(first_value, second_value) {
   cell2.innerHTML = second_value;
   cell2.contentEditable = true;
   cell2.spellcheck = false;
+  cell2.style.fontFamily = "{{unicodeFontList.0.family}}";
 
   var rows = table.rows;
   var new_row_num = rows.length - 1;
@@ -283,8 +296,8 @@ function submitOnEnter(event){
   </div>
 
   <div class="span-10">
-    <h3>Dictionary {{lang}} text</h3>
-      <textarea id="lang2_input" style="font-family:'Arial';"
+    <h3> {{lang2}} definition</h3>
+      <textarea id="lang2_input" style="font-family:{{unicodeFontList.0.family}};"
                 onkeypress="submitOnEnter(event);" spellcheck="false"></textarea>
   </div>
 
@@ -309,8 +322,8 @@ function submitOnEnter(event){
 
     <table id="output_table">
        <tr>
-           <td width="450px">{{lang1}}Lang1</td>
-           <td width="450px">{{lang2}}Lang2</td>
+           <td width="450px">{{lang1}}</td>
+           <td width="450px">{{lang2}}</td>
            <td width="50px">Edit</td>
        </tr>
     </table>

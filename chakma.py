@@ -83,7 +83,10 @@ links = [
     {'linkText': 'Font conversion summary',
       'ref': '/ccp/encodingRules/'
     },
-    {'linkText': 'Resources',
+  {'linkText': 'Simple dictionary entry',
+   'ref': '/' + LanguageCode + '/dictionaryInput/'
+    },
+{'linkText': 'Resources',
       'ref': '/ccp/downloads/'
     },
     {'linkText': 'Unicode',
@@ -143,6 +146,11 @@ class langInfo():
           'source': '/fonts/extendedNotoSansChakma-Regular.ttf',
         },
     ]
+    # For dictionary
+    self.dictionaryLang1 = "English"
+    self.dictionaryLang2 = self.Language
+    self.kb1 = 'en'
+    self.kb2 = self.kb_list[0]['shortName']
 
 # Shows keyboard for Chakma
 class ChakmaIndigenousHomeHandler(webapp2.RequestHandler):
@@ -339,6 +347,7 @@ app = webapp2.WSGIApplication(
      ('/ccp/converter/', ChakmaConvertHandler),
      ('/ccp/encodingRules/', base.EncodingRules),
      ('/ccp/diacritic/', base.DiacriticHandler),
-    ], debug=True,
+     ('/' + langInstance.LanguageCode + '/dictionaryInput/', base.DictionaryInput),
+     ], debug=True,
     config={'langInfo': langInstance}
 )

@@ -327,6 +327,29 @@ class RenderPage(webapp2.RequestHandler):
     path = os.path.join(os.path.dirname(__file__), 'renderCombos.html')
     self.response.out.write(template.render(path, template_values))
 
+class DictionaryInput(webapp2.RequestHandler):
+    def get(self):
+      req = webapp2.get_request()
+      top_path = req.path.split('/')
+      lang_code = top_path[1]
+
+      langInfo = self.app.config.get('langInfo')
+
+      # user_info = getUserInfo(self.request.url)
+
+      template_values = {
+        'lang': langInfo.Language,
+        'lang1': langInfo.dictionaryLang1,
+        'lang2': langInfo.dictionaryLang2,
+        'kb1': langInfo.kb1,
+        'kb2': langInfo.kb2,
+        'unicodeFontList': langInfo.unicode_font_list,
+
+        'links': langInfo.links,
+      }
+      path = os.path.join(os.path.dirname(__file__), 'dictionaryInput.html')
+      self.response.out.write(template.render(path, template_values))
+
 
 # Create an instance of the template and add to configuration.
 # so values can be passed to the classes

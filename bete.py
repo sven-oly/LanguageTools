@@ -78,35 +78,6 @@ links = [
     #},
 ]
 
-
-class DictionaryInput(webapp2.RequestHandler):
-  def get(self):
-    user_info = getUserInfo(self.request.url)
-
-    oldOsageInput = self.request.get("text", "")
-    unicodeInput = self.request.get("utext", "")
-    latinInput = self.request.get("latintext", "")
-
-    template_values = {
-      'lang': Language,
-      'lang1': "English",
-      'lang2': "Osage Latin",
-      'kb1': 'en',
-      'kb2': 'osa_dict',
-      'osageInput': oldOsageInput,
-      'unicodeInput': unicodeInput,
-      'latinInput': latinInput,
-      'fontFamilies': OsageFonts,
-      'user_nickname': user_info[1],
-      'user_logout': user_info[2],
-      'user_login_url': user_info[3],
-      'isAdmin': user_info[4],
-      'links': links,
-    }
-    path = os.path.join(os.path.dirname(__file__), 'osageLatinInput.html')
-    self.response.out.write(template.render(path, template_values))
-
-
 class langInfo():
   def __init__(self):
     self.LanguageCode = 'bete'
@@ -146,6 +117,12 @@ class langInfo():
     # Lists of test characters for the various encodings
     self.test_chars = [' '.join([unichr(x) for x in range(0xe600, 0xe780)])]
 
+    # For dictionary
+    self.dictionaryLang1 = "English"
+    self.dictionaryLang2 = self.Language
+    self.kb1 = 'en'
+    self.kb2 = self.kb_list[0]['shortName']
+
 # Global in this file.
 langInstance = langInfo()
 
@@ -156,6 +133,7 @@ app = webapp2.WSGIApplication(
      ('/bete/converter/', base.ConvertHandler),
      ('/bete/encodingRules/', base.EncodingRules),
      ('/bete/diacritic/', base.DiacriticHandler),
-    ], debug=True,
+     ('/' + 'bete' + '/dictionaryInput/', base.DictionaryInput),
+     ], debug=True,
     config={'langInfo': langInstance}
 )

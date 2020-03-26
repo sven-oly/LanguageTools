@@ -17,6 +17,7 @@
 import logging
 
 import os
+import sys
 import webapp2
 
 from google.appengine.ext.webapp import template
@@ -140,7 +141,10 @@ links = [
     {'linkText': 'Font conversion summary',
       'ref': '/' + LanguageCodeStandin + '/encodingRules/'
     },
-    {'linkText': 'Resources',
+    {'linkText': 'Dictionary entry',
+   'ref': '/' + LanguageCodeStandin + '/dictionaryInput/'
+   },
+  {'linkText': 'Resources',
       'ref': '/' + LanguageCode + '/downloads/'
     },
     {'linkText': 'Gunjala Unicode',
@@ -173,6 +177,46 @@ def fixLinks(link_template, langCode):
     }
     new_links.append(new_link)
   return new_links
+
+class langInfo():
+  def __init__(self):
+    self.LanguageCode = 'bete'
+    self.Language = u'Bété'
+    self.Language_native = u'Bété'
+    self.direction = 'ltr'
+
+    if sys.maxunicode >= 0x10000:
+      logging.info('WIDE SYSTEM BUILD!!!')
+      self.diacritic_list = [unichr(x) for x in range(0xe600, 0xe8)]
+    else:
+      logging.info('NARROW SYSTEM BUILD!!!')
+      self.diacritic_list = [unichr(0xd81a) + unichr(0xde00 + x) for x in range(0xf0, 0xf5)]
+
+    self.base_consonant = u'𞠀'
+    self.baseHexUTF16 = u'\ud81a\udee7'
+
+    self.lang_list = [
+      { 'shortName': self.LanguageCode,
+        'longName': self.Language,
+        }
+    ]
+    self.encoding_font_list = encoding_font_list
+    self.kb_list = [
+      {
+        'shortName': self.LanguageCode + "Phone",
+        'longName': 'Bété Phonetic',
+        'jsName': self.LanguageCode + "Phone",
+        'instructions': None,
+        'font': 'NotoSansMendeKikakui',
+      },
+    ]
+    self.links = links
+    self.text_file_list = []
+    self.unicode_font_list = unicode_font_list
+
+# Declare the communications with the base class.
+langInstance = langInfo()
+
 
 # Shows keyboards
 class IndigenousHomeHandler(webapp2.RequestHandler):
@@ -370,6 +414,31 @@ class DiacriticHandler(webapp2.RequestHandler):
     path = os.path.join(os.path.dirname(__file__), 'diacritics.html')
     self.response.out.write(template.render(path, template_values))
 
+class DictionaryInput(webapp2.RequestHandler):
+    def get(self):
+      req = webapp2.get_request()
+      top_path = req.path.split('/')
+      lang_code = top_path[1]
+
+      # user_info = getUserInfo(self.request.url)
+
+      oldOsageInput = self.request.get("text", "")
+      unicodeInput = self.request.get("utext", "")
+      latinInput = self.request.get("latintext", "")
+
+      template_values = {
+        'lang': Language,
+        'lang1': "English",
+        'lang2': lang_name_dict[lang_code],
+        'kb1': 'en',
+        'kb2': kb_list_dict[lang_code][0]['shortName'],
+        'unicodeFontList': unicode_font_dict[lang_code],
+        'links': links,
+      }
+      path = os.path.join(os.path.dirname(__file__), 'dictionaryInput.html')
+      self.response.out.write(template.render(path, template_values))
+
+langInstance = langInfo()
 
 app = webapp2.WSGIApplication([
   ('/' + 'esg' + '/', IndigenousHomeHandler),
@@ -383,6 +452,11 @@ app = webapp2.WSGIApplication([
   ('/' + LanguageCode + '/convertUI/', ConvertUIHandler),
   ('/' + LanguageCode + '/downloads/', Downloads),
 
+  ('/' + 'gon' + '/dictionaryInput/', DictionaryInput),
+  ('/' + 'esg' + '/dictionaryInput/', DictionaryInput),
+  ('/' + 'gno' + '/dictionaryInput/', DictionaryInput),
+  ('/' + 'wsg' + '/dictionaryInput/', DictionaryInput),
+
   ('/' + 'esg' + '/encodingRules/', EncodingRules),
   ('/' + 'gno' + '/encodingRules/', EncodingRules),
   ('/' + 'wsg' + '/encodingRules/', EncodingRules),
@@ -392,4 +466,6 @@ app = webapp2.WSGIApplication([
   ('/' + 'gno' + '/diacritic/', DiacriticHandler),
   ('/' + 'wsg' + '/diacritic/', DiacriticHandler),
   ('/' + LanguageCode + '/diacritic/', DiacriticHandler),
-], debug=True)
+    ], debug=True,
+    config={'langInfo': langInstance}
+)

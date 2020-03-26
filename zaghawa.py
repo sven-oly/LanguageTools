@@ -146,6 +146,11 @@ class langInfo():
     test_range.extend(unichr(x) for x in xrange(0x0130, 0x0131))
 
     self.test_chars = [' '.join(test_range)]
+    # For dictionary
+    self.dictionaryLang1 = "English"
+    self.dictionaryLang2 = self.Language
+    self.kb1 = 'en'
+    self.kb2 = self.kb_list[0]['shortName']
 
 # Global in this file.
 langInstance = langInfo()
@@ -157,6 +162,7 @@ app = webapp2.WSGIApplication(
      ('/zag/converter/', base.ConvertHandler),
      ('/zag/encodingRules/', base.EncodingRules),
      ('/zag/diacritic/', base.DiacriticHandler),
-    ], debug=True,
+     ('/' + langInstance.LanguageCode + '/dictionaryInput/', base.DictionaryInput),
+     ], debug=True,
     config={'langInfo': langInstance}
 )
