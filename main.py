@@ -88,7 +88,8 @@ class DownloadKBText(webapp2.RequestHandler):
 # Error catching
 def handle_404(request, response, exception):
     logging.exception(exception)
-    response.write('Sorry, but we do not have that page. Please try again.')
+    response.write('Sorry, but we cannot find that page in MAIN. Please try again.\n\n')
+    response.write('Request = %s\n' % request.url)
     response.set_status(404)
 
 def handle_500(request, response, exception):

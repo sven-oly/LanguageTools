@@ -64,16 +64,16 @@ handlers:
 - url: /demo_chr/.*
   script: cherokee.app
 
-- url: /del/*
+- url: /del/.*
   script: lenape.app
 
-- url: /demo_win/*
+- url: /demo_win/.*
   script: hochunk.app
 
-- url: /emoji/*
+- url: /emoji/.*
   script: emoji.app
 
-- url: /en_anangu/*
+- url: /en_anangu/.*
   script: anangu.app
 
 - url: /gon/.*
@@ -176,7 +176,7 @@ handlers:
 - url: /test/.*
   script: test.app
 
-- url: /feedback/*
+- url: /feedback/.*
   script: feedback.app
 
 - url: .*

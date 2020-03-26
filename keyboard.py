@@ -232,7 +232,7 @@ class ShowDBHandler(webapp2.RequestHandler):
 # Error catching
 def handle_404(request, response, exception):
     logging.exception(exception)
-    response.write('Sorry, but we do not have that page. Please try again.')
+    response.write('Sorry, but we do not have that keyboard page. Please try again.')
     response.set_status(404)
 
 def handle_500(request, response, exception):
