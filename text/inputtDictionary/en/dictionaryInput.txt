@@ -1,0 +1,15 @@
+Instructions: Type a word or phrase for the first language in the upper left box.
+
+When finished with that, use the "tab" key to move to the next box. The keyboard for that language will be activated,
+
+the user easily type the equivalent in that language.
+
+Then "enter" adds the line into a table below, clears the inputs, and returns to the upper left box.
+
+Edit for each line works as above, with "enter" filling in the edited line with new information.
+
+None of this data is communicated or stored online with this. The downloaded file is only stored on the user's local
+disk. Since it's a tab-separated-value file, it can be loaded into any spreadsheet program or modified with simple text
+editors.
+
+If there's a need to edit data, the .tsv file can be uploaded easily and editing or adding new data is just as above.

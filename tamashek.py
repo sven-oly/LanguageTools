@@ -45,9 +45,15 @@ unicode_font_list = [
 ]
 
 links = [
-    {'linkText': 'Tamasheq Wikipedia',
-      'ref': 'https://en.wikipedia.org/wiki/Tamasheq_language'
-     },
+  {'linkText': 'Tamasheq keyboard',
+   'ref': '/tmh/'
+   },
+  {'linkText': 'Tamasheq Wikipedia',
+   'ref': 'https://en.wikipedia.org/wiki/Tamasheq_language'
+  },
+  {'linkText': 'Simple dictionary input',
+   'ref': '/tmh/dictionaryInput/'
+   },
 ]
 
 class langInfo():

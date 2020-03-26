@@ -45,21 +45,24 @@ unicode_font_list = [
 ]
 
 links = [
-    {'linkText': 'Keyboard + Converter',
-      'ref': '/en_anangu/'
-    },
-    {'linkText': 'Keyman Yolngu keyboard',
-      'ref': 'https://keyman.com/keyboards/el_yolngu'
-    },
-    {'linkText': 'Yolŋu Studies, Charles Darwin University',
-      'ref': 'http://learnline.cdu.edu.au/yolngustudies/'
-    },
-    {'linkText': 'Aṉangu Wikipedia',
-      'ref': 'https://en.wikipedia.org/wiki/A%E1%B9%89angu'
-     },
-    {'linkText': 'Yolŋu Wikipedia',
-      'ref': 'https://en.wikipedia.org/wiki/Yolngu'
-    },
+  {'linkText': 'Keyboard + Converter',
+   'ref': '/en_anangu/'
+  },
+  {'linkText': 'Simple dictionary input',
+    'ref': '/en_anangu/dictionaryInput/'
+  },
+  {'linkText': 'Keyman Yolngu keyboard',
+  'ref': 'https://keyman.com/keyboards/el_yolngu'
+  },
+  {'linkText': 'Yolŋu Studies, Charles Darwin University',
+    'ref': 'http://learnline.cdu.edu.au/yolngustudies/'
+  },
+  {'linkText': 'Aṉangu Wikipedia',
+    'ref': 'https://en.wikipedia.org/wiki/A%E1%B9%89angu'
+   },
+  {'linkText': 'Yolŋu Wikipedia',
+    'ref': 'https://en.wikipedia.org/wiki/Yolngu'
+  },
 
 ]
 
@@ -125,11 +128,11 @@ class AnanuguYolnguHomeHandler(webapp2.RequestHandler):
 app = webapp2.WSGIApplication(
     [
       ('/en_anangu/', AnanuguYolnguHomeHandler),
-      ('/' + 'en_anangu' + '/convertUI/', AnanuguYolnguHomeHandler),
-      ('/' + langInstance.LanguageCode+ '/downloads/', base.Downloads),
-      ('/' + langInstance.LanguageCode+ '/converter/', base.ConvertHandler),
-      ('/' + langInstance.LanguageCode+ '/encodingRules/', base.EncodingRules),
-      ('/' + langInstance.LanguageCode+ '/diacritic/', base.DiacriticHandler),
+      ('/' + langInstance.LanguageCode + '/convertUI/', AnanuguYolnguHomeHandler),
+      ('/' + langInstance.LanguageCode + '/downloads/', base.Downloads),
+      ('/' + langInstance.LanguageCode + '/converter/', base.ConvertHandler),
+      ('/' + langInstance.LanguageCode + '/encodingRules/', base.EncodingRules),
+      ('/' + langInstance.LanguageCode + '/diacritic/', base.DiacriticHandler),
       ('/' + langInstance.LanguageCode + '/dictionaryInput/', base.DictionaryInput),
     ], debug=True,
     config={'langInfo': langInstance}
