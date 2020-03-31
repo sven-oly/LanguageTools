@@ -14,15 +14,15 @@
 # limitations under the License.
 #
 
-from allCherokeeFonts import all_cherokee_unicode_fonts
 
-#import translit
+import base
+
 import transliterate
-# import transrule_nv
 
 import json
 import logging
 import os
+import sys
 import urllib
 import webapp2
 
@@ -52,7 +52,13 @@ unicode_font_list = [
 ]
 
 kb_list = [
-    {
+  {
+    'shortName': 'omq6',
+    'longName': 'Chatino upper and lower',
+    'instructions':
+      ' \u00a0'
+  },
+  {
         'shortName': 'omq2',
         'longName': 'Chatino alpha digits',
         'instructions':
@@ -97,10 +103,50 @@ links = [
     # {'linkText': 'Resources',
     #   'ref': '/' + LanguageCode + '/downloads/'
     # },
-    {'linkText': 'Chatino',
-     'ref': 'https://en.wikipedia.org/wiki/Chatino_language'
-    },
+  {'linkText': 'Chatino',
+    'ref': 'https://en.wikipedia.org/wiki/Chatino_language'
+  },
+  {'linkText': 'Simple dictionary entry',
+   'ref': '/' + LanguageCode + '/dictionaryInput/'
+   },
 ]
+
+
+class langInfo():
+  def __init__(self):
+    self.LanguageCode = 'omq'
+    self.Language = 'Chatino'
+    self.Language_native = 'Onʌyoteʔa·ká'
+
+    # Update this!
+    if sys.maxunicode >= 0x10000:
+      logging.info('WIDE SYSTEM BUILD!!!')
+      self.diacritic_list = [unichr(x) for x in range(0x11100, 0x11103)]
+      self.diacritic_list.extend([unichr(x) for x in range(0x11127, 0x11133)])
+      self.diacritic_list.extend([unichr(x) for x in range(0x11134, 0x11135)])
+      self.diacritic_list.extend([unichr(x) for x in range(0x11145, 0x11147)])
+      self.base_consonant = unichr(0x1110e)
+    else:
+      logging.info('NARROW SYSTEM BUILD!!!')
+      self.diacritic_list = [unichr(0xd804) + unichr(0xdd00 + x) for x in range(0x00, 0x04)]
+      self.diacritic_list.extend(unichr(0xd804) + unichr(0xdd00 + x) for x in range(0x27, 0x33))
+      self.diacritic_list.extend(unichr(0xd804) + unichr(0xdd00 + x) for x in range(0x34, 0x35))
+      self.diacritic_list.extend(unichr(0xd804) + unichr(0xdd00 + x) for x in range(0x45, 0x47))
+      self.base_consonant = u'\ud804\udd0e'
+
+    self.encoding_font_list = encoding_font_list
+
+    self.kb_list = kb_list
+    self.links = links
+
+    self.text_file_list = []
+    self.unicode_font_list = unicode_font_list
+
+    # For dictionary
+    self.dictionaryLang1 = "English"
+    self.dictionaryLang2 = self.Language
+    self.kb1 = 'es'
+    self.kb2 = self.kb_list[0]['shortName']
 
 # Shows keyboards
 class IndigenousHomeHandler(webapp2.RequestHandler):
@@ -242,13 +288,19 @@ class Downloads(webapp2.RequestHandler):
       self.response.out.write(template.render(path, template_values))
 
 
+# Global in this file.
+langInstance = langInfo()
 
-
-app = webapp2.WSGIApplication([
-  ('/demo_' + LanguageCode + '/', IndigenousHomeHandler),
-  ('/' + LanguageCode + '/', IndigenousHomeHandler),
-  ('/' + LanguageCode + '/convertUI/', ConvertUIHandler),
-  ('/' + LanguageCode + '/downloads/', Downloads),
-  ('/' + LanguageCode + '/converter/', ConvertHandler),
-  ('/' + LanguageCode + '/encodingRules/', EncodingRules),
-], debug=True)
+app = webapp2.WSGIApplication(
+  [
+    ('/demo_' + LanguageCode + '/', IndigenousHomeHandler),
+    ('/' + LanguageCode + '/', IndigenousHomeHandler),
+    ('/' + LanguageCode + '/convertUI/', ConvertUIHandler),
+    ('/' + LanguageCode + '/downloads/', Downloads),
+    ('/' + LanguageCode + '/converter/', ConvertHandler),
+    ('/' + LanguageCode + '/encodingRules/', EncodingRules),
+    ('/' + LanguageCode + '/dictionaryInput/', base.DictionaryInput),
+  ],
+  debug=True,
+  config={'langInfo': langInstance}
+)
