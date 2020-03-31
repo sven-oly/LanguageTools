@@ -85,10 +85,10 @@ links = [
     },
   {'linkText': 'Simple dictionary entry',
    'ref': '/' + LanguageCode + '/dictionaryInput/'
-    },
-{'linkText': 'Resources',
+  },
+  {'linkText': 'Resources',
       'ref': '/ccp/downloads/'
-    },
+  },
     {'linkText': 'Unicode',
     'ref': 'http://unicode.org/charts/PDF/U11100.pdf'
     },
@@ -334,7 +334,6 @@ def chakmaCombiningCombos(baseHexChar):
       testString += baseHexChar + c0 + c1 + ' '
     testString += '\u000a'
   return testString
-
 
 # Global in this file.
 langInstance = langInfo()

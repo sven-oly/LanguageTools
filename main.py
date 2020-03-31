@@ -94,7 +94,8 @@ def handle_404(request, response, exception):
 
 def handle_500(request, response, exception):
     logging.exception(exception)
-    response.write('A server error occurred!')
+    response.write('A server error occurred in MAIN!')
+    response.write('Request = %s\n' % request.url)
     response.set_status(500)
 
 
