@@ -1,4 +1,4 @@
-\// Licensed under the Apache License, Version 2.0 (the "License");
+// Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
 //
@@ -18,7 +18,7 @@ var EN_LAYOUT = {
     ',c': {
       '': '`1234567890-=' +
           'qwertyuiop[]\\' +
-          'asdfghjkl\'' +
+          'asdfghjkl;\'' +
           'zxcvbnm,./'
     },
     's,sc': {
@@ -36,7 +36,7 @@ var EN_LAYOUT = {
     'sl,scl': {
       '': '~!@#$%^&*()_+' +
           'QWERTYUIOP{}|' +
-          'ASDFGHJKL:"'' +
+          'ASDFGHJKL:"' +
           'ZXCVBNM<>?'
     }
   },
