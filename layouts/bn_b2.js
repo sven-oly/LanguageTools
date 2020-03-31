@@ -11,21 +11,21 @@
 // limitations under the License.
 
 
-var BN3_LAYOUT = {
-  'id': 'bn_b3',
-  'title': 'Bangali',
+var BN2_LAYOUT = {
+  'id': 'bn_b2',
+  'title': 'Bangali 2',
   'mappings': {
     ',c': {
       '': '`১২৩৪৫৬৭৮৯০-=' +
-          'য়ৃেরটয়ুিোপ[]॥' +
-          'াসডফগহজকল;\'' +
-          'যকসচভবনম,।/'
+          'ঙযডপটচজহগড়[]ৎ' +
+          'ৃুিা্বকতদ;\'' +
+          '{{্র}}ওেরনসম,./'
     },
     's,sc': {
-      '': '~‍!@#৳%^্*()_্' +
-          '     যউইওচ{}।' +
-          'আষদঋঘঃঝখখ:\"' +
-          'তঢছঠইণগ<>?'
+      '': '~‍!@#৳%^ঁ*()_+' +
+          'ংয়ঢফঠছঝঞঘঢ়{}ঃ' +
+          'র্ূীঅ।ভখথধ:\"' +
+          '্যৗৈলণষশ<>?'
     },
     'l,cl': {
       '': '`1234567890-=' +
@@ -46,4 +46,4 @@ var BN3_LAYOUT = {
 };
 
 // Load the layout and inform the keyboard to switch layout if necessary.
-google.elements.keyboard.loadme(BN3_LAYOUT);
+google.elements.keyboard.loadme(BN2_LAYOUT);

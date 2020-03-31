@@ -40,6 +40,9 @@ handlers:
 - url: /bete/.*
   script: bete.app
 
+- url: /bn/.*
+  script: bangali.app
+
 - url: /bod/.*
   script: tibetan.app
 

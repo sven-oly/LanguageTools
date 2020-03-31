@@ -29,19 +29,19 @@ import webapp2
 from google.appengine.ext.webapp import template
 
 encoding_font_list = [
-    {
-       'font_path':'/fonts/bete/JGBete4PUA.ttf',
-       'font_name':'JGBete4',
-       'display_name': 'JGBete4',
-    #   'Source location': 'https://www.wfonts.com/font/jg-bete',  # ??
-    },
+    # {
+    #    'font_path':'/fonts/bete/JGBete4PUA.ttf',
+    #    'font_name':'JGBete4',
+    #    'display_name': 'JGBete4',
+    # #   'Source location': 'https://www.wfonts.com/font/jg-bete',  # ??
+    # },
 ]
 
 unicode_font_list = [
     {
-      'family': 'JGBete4',
-      'longName': 'JGBete4 PUA',
-      'source': '/fonts/bete/JGBete4PUA.ttf',
+      'family': 'NotoSansBengali',
+      'longName': 'Noto Sans Bengali',
+      'source': '/fonts/NotoSansBengali-Regular.ttf',
       'attribution': 'https://www.wfonts.com/font/jg-bete',
   },
   # {
@@ -53,7 +53,7 @@ unicode_font_list = [
 
 links = [
     {'linkText': 'Keyboard',
-     'ref': '/bete/'
+     'ref': '/bn/'
     },
     # {'linkText': 'Converter',
     #  'ref': '/bete/convertUI/'
@@ -67,12 +67,12 @@ links = [
     # {'linkText': 'Unicode Page',
     #  'ref': 'https://www.unicode.org/charts/PDF/U1E800.pdf'
     # },
-    {'linkText': 'Language Wikipedia',
-     'ref': 'https://en.wikipedia.org/wiki/B%C3%A9t%C3%A9_languages'
+    {'linkText': 'Bangali Wikipedia',
+     'ref': 'https://en.wikipedia.org/wiki/Bangali_(ethnic_dialect)'
     },
-    {'linkText': 'Athinkra Character Picker',
-     'ref': 'http://nkoconvert.ho.ua/bete-ime/'
-     },
+    # {'linkText': 'Athinkra Character Picker',
+    #  'ref': 'http://nkoconvert.ho.ua/bete-ime/'
+    #  },
     #{'linkText': 'Combiners',
     # 'ref': '/bete/diacritic/'
     #},
@@ -80,20 +80,14 @@ links = [
 
 class langInfo():
   def __init__(self):
-    self.LanguageCode = 'bete'
-    self.Language = u'Bété'
-    self.Language_native = u'Bété'
+    self.LanguageCode = 'bn'
+    self.Language = u'Bangali'
+    self.Language_native = u'Bangali'
     self.direction = 'ltr'
 
-    if sys.maxunicode >= 0x10000:
-      logging.info('WIDE SYSTEM BUILD!!!')
-      self.diacritic_list = [unichr(x) for x in range(0xe753, 0xe75)]
-    else:
-      logging.info('NARROW SYSTEM BUILD!!!')
-      self.diacritic_list = [unichr(x) for x in range(0xe753, 0xe75)]
-
-    self.base_consonant = u'𞠀'
-    self.baseHexUTF16 = u'\ud81a\udee7'
+    self.diacritic_list = [unichr(x) for x in range(0xe9bc, 0x9e3)]
+    self.base_consonant = u'ঀ'
+    self.baseHexUTF16 = u'\u0980'
 
     self.lang_list = [
       { 'shortName': self.LanguageCode,
@@ -103,11 +97,18 @@ class langInfo():
     self.encoding_font_list = encoding_font_list
     self.kb_list = [
       {
-        'shortName': self.LanguageCode + "Phone",
-        'longName': 'Bété Phonetic',
-        'jsName': self.LanguageCode + "Phone",
+        'shortName': 'bn_b2',
+        'longName': 'Bangali2 ',
+        'jsName': 'bn_b2',
         'instructions': None,
-        'font': 'NotoSansMendeKikakui',
+        'font': '/fonts/NotoSansBengali-Regular.ttf',
+      },
+      {
+        'shortName': 'bn_b3',
+        'longName': 'Bangali 3',
+        'jsName': 'bn_b3',
+        'instructions': None,
+        'font': '/fonts/NotoSansBengali-Regular.ttf',
       },
     ]
     self.links = links
@@ -115,7 +116,7 @@ class langInfo():
     self.unicode_font_list = unicode_font_list
 
     # Lists of test characters for the various encodings
-    self.test_chars = [' '.join([unichr(x) for x in range(0xe600, 0xe780)])]
+    self.test_chars = [' '.join([unichr(x) for x in range(0xe9bc, 0x9e3)])]
 
     # For dictionary
     self.dictionaryLang1 = "English"
