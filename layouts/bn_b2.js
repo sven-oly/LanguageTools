@@ -41,7 +41,7 @@ var BN2_LAYOUT = {
     }
   },
   'transform': {
-    '([\u09c7\u09c8\u09bf\u09cb\u09cc])\u200C([\u0993-\u09b9\u09ce\u09dc-\u09df])': '$2$1'
+    '([\u09c7\u09c8\u09bf\u09cb\u09cc])\u200C([\u0993-\u09b9\u09cd\u09ce\u09dc-\u09df]+)': '$2$1'
   }
 };
 
