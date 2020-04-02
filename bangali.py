@@ -98,18 +98,18 @@ class langInfo():
     self.kb_list = [
       {
         'shortName': 'bn_b2',
-        'longName': 'Bangali2 ',
+        'longName': 'Bangali',
         'jsName': 'bn_b2',
         'instructions': None,
         'font': '/fonts/NotoSansBengali-Regular.ttf',
       },
-      {
-        'shortName': 'bn_b3',
-        'longName': 'Bangali 3',
-        'jsName': 'bn_b3',
-        'instructions': None,
-        'font': '/fonts/NotoSansBengali-Regular.ttf',
-      },
+      # {
+      #   'shortName': 'bn_b3',
+      #   'longName': 'Bangali 3',
+      #   'jsName': 'bn_b3',
+      #   'instructions': None,
+      #   'font': '/fonts/NotoSansBengali-Regular.ttf',
+      # },
     ]
     self.links = links
     self.text_file_list = []
