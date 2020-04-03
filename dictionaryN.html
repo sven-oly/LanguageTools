@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+
+  <title>Enter data for {{lang}} translations</title>
+
+  <link rel="stylesheet" href="/css/blueprint/screen.css" type="text/css" media="screen">
+  <link rel="stylesheet" href="/css/blueprint/print.css" type="text/css" media="print"> 
+  <!--[if lt IE 8]>
+    <link rel="stylesheet" href="/css/blueprint/ie.css" type="text/css" media="screen, projection">
+  <![endif]-->
+
+  <link rel="stylesheet" type="text/css" href="/css/fonts.css">
+
+  <style>
+  textarea {
+    width: 350px;
+	height: 100px;
+	border: 3px solid #cccccc;
+	padding: 5px;
+	font-size: 18px;
+    font-variant-ligatures: normal;
+	}
+
+table {
+  border: 1px solid #ddd;
+  padding: 8px;
+  font-size: 16px;
+}
+table tr:nth-child(even){background-color: #f2f2f2;}
+  {
+    font-family: "Courier New";
+  }
+  </style>
+
+  <style>
+   {% for item in dictionaryNData %}
+    @font-face{
+      font-family:"{{item.font.family}}";
+      src:url("{{item.font.source}}");
+      font-weight:normal;
+      font-style:normal;
+    }
+    {% endfor %}
+  </style>
+
+  <script src="/js/text_utils.js"></script>
+  <script src="/js/utils.js"></script>
+
+  <script src="/js/vk-debug.js"></script>
+
+  <script>
+  // Keeping track for editing rows of text.
+  let edit_mode = false;
+  let edit_row_num = -1;
+
+  let lang_index = 0;
+  let num_langs = {{dictionaryNData|length}};
+  let kb_array = [
+    {% for item in dictionaryNData %}'{{item.kbShortName}}',{% endfor %}
+  ];
+  let lang_array = [
+    {% for item in dictionaryNData %}'{{item.langName}}',{% endfor %}
+  ];  let fontlist = [
+    {% for item in dictionaryNData %}'{{item.font.family}}',{% endfor %}
+  ];
+
+  function onFontSelected(selected) {
+    var output_text = document.getElementById('Unicode_font_output_text');
+     var fontFam = selected.value + ", Arial";
+    output_text.style.fontFamily = fontFam;
+    setKeyCapsFont(fontFam);
+  }
+
+  function setKeyCapsFont(newFontFamily) {
+    var keycaps = document.getElementsByClassName("vk-cap");
+    for (var i = 0; i < keycaps.length; i++ ) {
+      keycaps[i].style.fontFamily = newFontFamily;
+    }
+  }
+
+  function toggle(id, toggle) {
+    var obj = document.getElementById(id);
+    var checkBox = document.getElementById(toggle);
+    var showIt = checkBox.checked;
+    if(showIt)
+      obj.style.display = 'block';
+    else
+      obj.style.display = 'none';
+    }
+
+  var controller, visible = true;
+  var controller0 = null;
+  var visible0 = true;
+
+  function initKeyboard(textAreaID) {
+      var input = document.getElementById(textAreaID);
+      controller = // clone(
+      new i18n.input.keyboard.Keyboard();
+      {% for item in dictionaryNData %}controller.loadLayout('{{item.kbShortName}}');{% endfor %}
+      controller.reposition(input, 2, 1, [1, 1, 0, 0]);
+      controller.register(input);
+      controller.addEventListener('kc', function() { visible = false; });
+      var selector = document.getElementById('selectKeyboard');
+      controller.activateLayout('{{dictionaryNData.0.kbShortName}}');
+  }
+
+// https://stackoverflow.com/questions/728360/how-do-i-correctly-clone-a-javascript-object
+function clone(obj) {
+    var copy;
+
+    // Handle the 3 simple types, and null or undefined
+    if (null == obj || "object" != typeof obj) return obj;
+
+    // Handle Date
+    if (obj instanceof Date) {
+        copy = new Date();
+        copy.setTime(obj.getTime());
+        return copy;
+    }
+
+    // Handle Array
+    if (obj instanceof Array) {
+        copy = [];
+        for (var i = 0, len = obj.length; i < len; i++) {
+            copy[i] = clone(obj[i]);
+        }
+        return copy;
+    }
+
+    // Handle Object
+    if (obj instanceof Object) {
+        copy = {};
+        for (var attr in obj) {
+            if (obj.hasOwnProperty(attr)) copy[attr] = clone(obj[attr])
+            else copy[attr] = obj[attr];
+        }
+        return copy;
+    }
+
+    throw new Error("Unable to copy obj! Its type isn't supported.");
+}
+
+  function onLayoutSelected(selector, this_controller, outputId) {
+    var layoutCode = selector.value;
+    if (this_controller) {
+      this_controller.activateLayout(layoutCode);
+    } else {  // The global.
+      controller.activateLayout(layoutCode);
+    }
+    document.getElementById(outputId).focus();
+  }
+
+function addRowValues() {
+  var en_input = document.getElementById("lang1_input");
+  var dict_input = document.getElementById("lang2_input");
+  addRow(en_input.value, dict_input.value);
+}
+
+function addRowItem(index, value) {
+  var table = document.getElementById("output_table");
+  let rows = table.rows;
+  var row = null;
+  var row_num = rows.length - 1;
+  if (index == 0) {
+    // Create new row.
+    row_num += 1;
+    row = table.insertRow(-1);
+  } else {
+    // Get last row
+    row = rows[rows.length-1];
+  }
+  var cell1 = row.insertCell(index);
+  cell1.contentEditable = true;
+  cell1.innerHTML = value;
+  cell1.style.fontFamily = fontlist[index];
+
+  if (index == num_langs - 1) {
+   var cell3 = row.insertCell(index+1);
+   var btn_name = 'Edit ' + row_num;
+    var btn = document.createElement('input');
+    btn.type = "button";
+    btn.className = "btn_edit";
+    btn.value = "Edit "  + row_num;
+    btn.onclick = (function(entry) {return function() {editRow(entry);}})(row_num);
+    cell3.appendChild(btn);
+  };
+}
+
+function addRow(first_value, second_value) {
+  var table = document.getElementById("output_table");
+  var row = table.insertRow(-1);
+  var cell1 = row.insertCell(0);
+  var cell2 = row.insertCell(1);
+  //var en_input = document.getElementById("lang1_input");
+  //var dict_input = document.getElementById("lang2_input");
+  cell1.innerHTML = first_value;
+  cell1.contentEditable = true;
+  cell2.innerHTML = second_value;
+  cell2.contentEditable = true;
+  cell2.spellcheck = false;
+  cell2.style.fontFamily = "{{unicodeFontList.0.family}}";
+
+  var rows = table.rows;
+  var new_row_num = rows.length - 1;
+  var cell3 = row.insertCell(2);
+  var btn_name = 'Edit ' + new_row_num;
+  var btn = document.createElement('input');
+  btn.type = "button";
+  btn.className = "btn_edit";
+  btn.value = "Edit "  + new_row_num;
+  btn.onclick = (function(entry) {return function() {editRow(entry);}})(new_row_num);
+  cell3.appendChild(btn);
+  //cell3.innerHTML = "<button id='" + btn_name + "';>" + btn_name + "</button>";
+}
+
+function editRow(row_num) {
+  var table = document.getElementById("output_table");
+  var rows = table.rows;
+  var edit_row = rows.item(row_num);
+
+  var en_input = document.getElementById("lang1_input");
+  var dict_input = document.getElementById("lang2_input");
+  en_input.value = edit_row.cells[0].innerText;
+  dict_input.value = edit_row.cells[1].innerText;
+  edit_mode = true;
+  edit_row_num = row_num;
+  document.getElementById("updateButton").disabled = false;
+  document.getElementById("addRowButton").disabled = true;
+  en_input.focus();
+}
+
+function updateRow() {
+  var table = document.getElementById("output_table");
+  var rows = table.rows;
+  var edit_row = rows.item(edit_row_num);
+  var en_input = document.getElementById("lang1_input");
+  var dict_input = document.getElementById("lang2_input");
+  edit_row.cells[0].innerHTML = en_input.value;
+  edit_row.cells[1].innerHTML = dict_input.value;
+  en_input.value = '';
+  dict_input.value = '';
+  edit_mode = false;
+  document.getElementById("updateButton").disabled = true;
+  document.getElementById("addRowButton").disabled = false;
+  en_input.focus();
+}
+
+// Download TSV
+function download_tsv() {
+  var table = document.getElementById("output_table");
+  var rows = table.rows;
+  var num_rows = rows.length;
+  var tsv = '';
+  // Skip the headers.
+  for (var i = 1; i < num_rows; i++) {
+    var cells = rows.item(i).cells;
+    tsv += cells[0].innerText;
+    tsv += "\t";
+    tsv += cells[1].innerText;
+    tsv += "\n";
+  };
+  console.log(tsv);
+  var hiddenElement = document.createElement('a');
+  hiddenElement.href = 'data:text/tsv;charset=utf-8,' + encodeURI(tsv);
+  hiddenElement.target = '_blank';
+  var page_element = document.getElementById("pagenumber");
+  var page_num = page_element.value;
+
+  hiddenElement.download = 'dictionary_' + page_num + '.tsv';
+  hiddenElement.click();
+
+  // Clear table contents after first row.
+  for (var i = 0; i < num_rows -1; i++) {
+    table.deleteRow(-1);
+  };
+};
+
+function submitOnEnter(source, event){
+    if(event.which === 13) {
+      // Prevents the addition of a new line in the text field (not needed in a lot of cases)
+      event.preventDefault();
+      // NEEDED?
+    }
+}
+
+function onTextFocus(id) {
+  // Needed?
+}
+
+// Switch keyboard, font to next index.
+function onTextBlur(id) {
+  var dict_input = document.getElementById("lang2_input");
+  // Get data from the field.
+  // Store into the right column of the table.
+  addRowItem(lang_index, dict_input.value);
+
+  // Next language
+   lang_index += 1;
+
+  if (lang_index < num_langs) {
+    // Get data from the field.
+    // Store into the right column of the table.
+
+  } else {
+    lang_index = 0;
+  }
+
+  // Clear it
+  dict_input.value = dict_input.innerHtml = '';
+  // Update label on the field.
+  var lang_title = document.getElementById("lang_name");
+  lang_title.value = lang_title.innerHTML = lang_array[lang_index];
+
+  // Switch to new keyboard.
+  controller.activateLayout(kb_array[lang_index]);
+  // Put focus back in this area.
+  id.focus();
+}
+
+ function Upload() {
+   // Load with data from file, split by last period.
+   // Or split by tab.
+        var fileUpload = document.getElementById("fileUpload");
+        var regex = /^([a-zA-Z0-9\s_\\.\-:])+(.tsv|.txt)$/;
+        if (regex.test(fileUpload.value.toLowerCase())) {
+            if (typeof (FileReader) != "undefined") {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                var table = document.getElementById("output_table");
+                    var rows = e.target.result.split("\n");
+                    for (var i = 0; i < rows.length; i++) {
+                        var index = rows[i].lastIndexOf(".");
+                        if (index < 0) {
+                          // Try a tab.
+                          index = rows[i].lastIndexOf("\t");
+                        }
+                        if (index >= 0) {
+                          var first = rows[i].substr(0, index );
+                          var last = rows[i].substr(index + 1);
+                          addRow(first, last);
+                        }
+                    }
+                }
+                reader.readAsText(fileUpload.files[0]);
+            } else {
+                alert("This browser does not support HTML5.");
+            }
+        } else {
+            alert("Please upload a valid text file.");
+        }
+  }
+
+  function onPageLoaded() {
+    initKeyboard('lang2_input');
+    init();
+  }  
+
+  function init() {
+    // Fill in if needed.
+    var lang_input = document.getElementById("lang2_input")
+    lang_input.focus();
+  }
+
+  </script>
+  </head>
+
+  <body onload="onPageLoaded();">
+  <h1>Dictionary Input Tool</h1>
+  <div class="container">
+
+  <div class="span-20">
+    <h3 id="lang_name">{{lang2}}</h3>
+      <textarea id="lang2_input" style="font-family:{{unicodeFontList.0.family}};"
+                onfocus="onTextFocus(this);" onblur="onTextBlur(this);"
+                onkeypress="submitOnEnter(this, event);" spellcheck="false"></textarea>
+  </div>
+
+  <div class="span-1 last">
+      <br /><br/><br/>
+      <button id="addRowButton"
+              type="button" onclick="addRowValues()">Data OK</button>
+      <br />
+      <br />
+      <button id="updateButton"
+              type="button" onclick="updateRow()" disabled="disabled">Updated edited row</button>
+  </div>
+
+  <div class="span-19">
+    Data label <input id="pagenumber" width='4'>
+    <button onclick="download_tsv()">Download TSV</button>
+    &ensp;&ensp;&ensp;&ensp;&ensp;
+    <input type="button" id="upload" value="Upload data file (.tsv / .txt)" onclick="Upload()" />
+    <input type="file" id="fileUpload" />
+    <br />
+    <br />
+
+    <table id="output_table">
+       <tr>
+         {% for item in dictionaryNData %}
+           <td width="450px">{{item.langName}}</td>
+         {% endfor %}
+         <td width="50px">Edit</td>
+       </tr>
+    </table>
+
+    <button onclick="download_tsv()">Download TSV</button>
+  </div>
+  <div class="span-4 last">
+    {% if user_nickname %}
+           <h4>Welcome {{user_nickname}}</h4>
+    {% if user_logout %}
+    <a href={{user_logout}}>Logout</a>
+    {% endif %}
+    {% else %}
+    <a href='{{user_login_url}}'>Log in</a>
+    {% endif %}
+
+         {% if isAdmin %}
+        <hr>
+        <h4>Admin Functions</h4>
+        <ul>
+          <li><a href="/db/manageDB/">Manage Databases</a></li>
+          <li><a href="/users/">Manage users</a></li>
+          <!-- <li><a href="/db/resetDbEntries/">Reset Database Entries</a> -->
+        </ul>
+        {% endif %}
+
+   {% if links %}
+   <h4>Useful links</h4>
+     <ul>
+   {% for link in links %}
+      <li>
+        <a href="{{link.ref}}" target="_blank">{{link.linkText}}</a>
+     </li>
+   {% endfor %}
+     </ul>
+   {% endif %}
+    <div>Keyboard: <select onchange="onLayoutSelected(this, null, 'blure_input')")" id="selectKeyboard">
+      <option value="{{kb2}}">{{lang}} Dictionary</option>
+    </select>
+
+    </div>
+  </div>
+  </div> <!-- container -->
+
+</body>
+</html>

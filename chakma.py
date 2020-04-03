@@ -152,6 +152,26 @@ class langInfo():
     self.kb1 = 'en'
     self.kb2 = self.kb_list[0]['shortName']
 
+    self.dictionaryNData = [
+      {'langName': self.Language, 'kbShortName': 'ccp', 'kbLongName': 'Chakma Unicode',
+       'font': { 'family': 'RibengUni2018018',
+         'longName': 'RibengUni 2018-06-18',
+         'source': '/fonts/RibengUni-Regular_20180618.ttf'},
+      },
+      {'langName': 'Bangali', 'kbShortName': 'bn_b2', 'kbLongName': 'Bangali',
+       'font': {'family': 'Bangali',
+                'longName': 'Noto Sans Bengali',
+                'source': '/fonts/NotoSansBengali-Regular.ttf'
+                },
+       },
+      {'langName': 'English', 'kbShortName': 'en', 'kbLongName': 'English',
+       'font': {'family': 'Latin',
+                'longName': 'Noto Sans',
+                'source': '/fonts/NotoSans-Regular.ttf'
+                },
+       },
+    ]
+
 # Shows keyboard for Chakma
 class ChakmaIndigenousHomeHandler(webapp2.RequestHandler):
     def get(self):
@@ -347,6 +367,7 @@ app = webapp2.WSGIApplication(
      ('/ccp/encodingRules/', base.EncodingRules),
      ('/ccp/diacritic/', base.DiacriticHandler),
      ('/' + langInstance.LanguageCode + '/dictionaryInput/', base.DictionaryInput),
+     ('/' + langInstance.LanguageCode + '/dictionaryN/', base.DictionaryN),
      ], debug=True,
     config={'langInfo': langInstance}
 )
