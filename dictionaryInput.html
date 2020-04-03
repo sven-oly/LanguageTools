@@ -272,7 +272,7 @@ function download_tsv() {
   };
 };
 
-function submitOnEnter(event){
+function submitOnEnter(source, event){
     if(event.which === 13) {
       // Prevents the addition of a new line in the text field (not needed in a lot of cases)
       event.preventDefault();
@@ -292,7 +292,7 @@ function onTextFocus(id) {
   var x = id;
   if (x.id == "lang1_input") {
     //controller.deactivate('{{kb2}}');
-    controller0.activateLayout('{{kb1}}');
+    if (controller0) controller0.activateLayout('{{kb1}}');
   } else {
     //controller0.deactivate('{{kb1}}');
     controller.activateLayout('{{kb2}}');
@@ -303,10 +303,10 @@ function onTextBlur(id) {
   var x = id;
   if (x.id == "lang1_input") {
     //controller0.deactivate('{{kb1}}');
-    controller.activateLayout('{{kb2}}');
+    if (controller0) controller.activateLayout('{{kb2}}');
   } else {
     //controller.deactivate('{{kb2}}');
-    controller0.activateLayout('{{kb1}}');
+    if (controller0) controller0.activateLayout('{{kb1}}');
   }
 }
 
@@ -371,8 +371,8 @@ function onTextBlur(id) {
   <div class="span-10">
     <h3> {{lang2}} definition</h3>
       <textarea id="lang2_input" style="font-family:{{unicodeFontList.0.family}};"
-                onkeypress="submitOnEnter(event);" spellcheck="false"
-                onfocus=onTextFocus(this);" onblur="onTextBlur(this);"></textarea>
+                onkeypress="submitOnEnter(this, event);" spellcheck="false"
+                onfocus="onTextFocus(this);" onblur="onTextBlur(this);"></textarea>
   </div>
 
   <div class="span-1 last">
