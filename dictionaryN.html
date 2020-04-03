@@ -291,7 +291,7 @@ function onTextFocus(id) {
 
 // Switch keyboard, font to next index.
 function onTextBlur(id) {
-  var dict_input = document.getElementById("lang2_input");
+  var dict_input = id;
   // Get data from the field.
   // Store into the right column of the table.
   addRowItem(lang_index, dict_input.value);
@@ -437,7 +437,7 @@ function onTextBlur(id) {
    {% endfor %}
      </ul>
    {% endif %}
-    <div>Keyboard: <select onchange="onLayoutSelected(this, null, 'blure_input')")" id="selectKeyboard">
+    <div>Keyboard: <select onchange="onLayoutSelected(this, null, 'blur_input')")" id="selectKeyboard">
       <option value="{{kb2}}">{{lang}} Dictionary</option>
     </select>
 
