@@ -54,6 +54,8 @@ table tr:nth-child(even){background-color: #f2f2f2;}
   // Keeping track for editing rows of text.
   let edit_mode = false;
   let edit_row_num = -1;
+  let edit_cell_num = -1;
+  let edit_cell = null;
 
   let lang_index = 0;
   let num_langs = {{dictionaryNData|length}};
@@ -158,6 +160,12 @@ function addRowValues() {
   addRow(en_input.value, dict_input.value);
 }
 
+function addRowN(tabs) {
+  for(var tab = 0; tab < tabs.length; tab++){
+    addRowItem(tab, tabs[tab]);
+  }
+}
+
 function addRowItem(index, value) {
   var table = document.getElementById("output_table");
   let rows = table.rows;
@@ -175,17 +183,7 @@ function addRowItem(index, value) {
   cell1.contentEditable = true;
   cell1.innerHTML = value;
   cell1.style.fontFamily = fontlist[index];
-
-  if (index == num_langs - 1) {
-   var cell3 = row.insertCell(index+1);
-   var btn_name = 'Edit ' + row_num;
-    var btn = document.createElement('input');
-    btn.type = "button";
-    btn.className = "btn_edit";
-    btn.value = "Edit "  + row_num;
-    btn.onclick = (function(entry) {return function() {editRow(entry);}})(row_num);
-    cell3.appendChild(btn);
-  };
+  cell1.onclick = function() { editCell(cell1, row_num, index); };
 }
 
 function addRow(first_value, second_value) {
@@ -256,10 +254,16 @@ function download_tsv() {
   // Skip the headers.
   for (var i = 1; i < num_rows; i++) {
     var cells = rows.item(i).cells;
-    tsv += cells[0].innerText;
-    tsv += "\t";
-    tsv += cells[1].innerText;
-    tsv += "\n";
+    let num_cells = cells.length;
+    for (j = 0; j < num_cells; j++) {
+      tsv += cells[j].innerText;
+      if (j < (num_cells - 1)) {
+        tsv += "\t";
+      }
+    }
+    if (i < num_rows - 1) {
+      tsv += "\n";
+    }
   };
   console.log(tsv);
   var hiddenElement = document.createElement('a');
@@ -281,17 +285,55 @@ function submitOnEnter(source, event){
     if(event.which === 13) {
       // Prevents the addition of a new line in the text field (not needed in a lot of cases)
       event.preventDefault();
-      // NEEDED?
-    }
+      if (edit_mode) {
+        // Return data to cell
+        updateCellContent(source, edit_cell);
+      } else {
+        getAndStoreText(source);
+      }
+  }
 }
 
 function onTextFocus(id) {
   // Needed?
 }
 
+function updateCellContent(source, edit_cell) {
+  edit_cell.innerHTML = source.value;
+  edit_mode = false;
+
+  // Keyboard and name back to new line
+  controller.activateLayout(kb_array[0]);
+  var lang_title = document.getElementById("lang_name");
+  lang_title.value = lang_title.innerHTML = lang_array[0];
+
+  // Clear the input
+  source.value = source.innerHTML = '';
+
+}
+
+function editCell(cell, row, col) {
+  // Paste cell data into keyboard input area
+  var edit_area = document.getElementById("lang2_input");
+  edit_area.innerHTML = edit_area.value = cell.innerText;
+  edit_cell = cell;
+
+  // Set keyboard type
+  controller.activateLayout(kb_array[col]);
+  var lang_title = document.getElementById("lang_name");
+  lang_title.value = lang_title.innerHTML = lang_array[col] + " (edit)";
+
+  // Set edit mode so Enter puts it back in the right place.
+  edit_mode = true;
+  edit_row_num = row;
+  edit_cell_num = col;
+
+  // Set input to that item.
+  edit_area.focus();
+}
+
 // Switch keyboard, font to next index.
-function onTextBlur(id) {
-  var dict_input = id;
+function getAndStoreText(dict_input) {
   // Get data from the field.
   // Store into the right column of the table.
   addRowItem(lang_index, dict_input.value);
@@ -316,11 +358,11 @@ function onTextBlur(id) {
   // Switch to new keyboard.
   controller.activateLayout(kb_array[lang_index]);
   // Put focus back in this area.
-  id.focus();
+  dict_input.focus();
 }
 
  function Upload() {
-   // Load with data from file, split by last period.
+   // Load with data from file, split by tabs.
    // Or split by tab.
         var fileUpload = document.getElementById("fileUpload");
         var regex = /^([a-zA-Z0-9\s_\\.\-:])+(.tsv|.txt)$/;
@@ -331,16 +373,8 @@ function onTextBlur(id) {
                 var table = document.getElementById("output_table");
                     var rows = e.target.result.split("\n");
                     for (var i = 0; i < rows.length; i++) {
-                        var index = rows[i].lastIndexOf(".");
-                        if (index < 0) {
-                          // Try a tab.
-                          index = rows[i].lastIndexOf("\t");
-                        }
-                        if (index >= 0) {
-                          var first = rows[i].substr(0, index );
-                          var last = rows[i].substr(index + 1);
-                          addRow(first, last);
-                        }
+                        var tabs = rows[i].split('\t');
+                        addRowN(tabs);
                     }
                 }
                 reader.readAsText(fileUpload.files[0]);
@@ -361,6 +395,10 @@ function onTextBlur(id) {
     // Fill in if needed.
     var lang_input = document.getElementById("lang2_input")
     lang_input.focus();
+
+    lang_index = 0;
+    var lang_title = document.getElementById("lang_name");
+    lang_title.value = lang_title.innerHTML = lang_array[lang_index];
   }
 
   </script>
@@ -373,7 +411,7 @@ function onTextBlur(id) {
   <div class="span-20">
     <h3 id="lang_name">{{lang2}}</h3>
       <textarea id="lang2_input" style="font-family:{{unicodeFontList.0.family}};"
-                onfocus="onTextFocus(this);" onblur="onTextBlur(this);"
+                onfocus="onTextFocus(this);"
                 onkeypress="submitOnEnter(this, event);" spellcheck="false"></textarea>
   </div>
 
@@ -391,7 +429,7 @@ function onTextBlur(id) {
     Data label <input id="pagenumber" width='4'>
     <button onclick="download_tsv()">Download TSV</button>
     &ensp;&ensp;&ensp;&ensp;&ensp;
-    <input type="button" id="upload" value="Upload data file (.tsv / .txt)" onclick="Upload()" />
+    <input type="button" id="upload" value="Upload data file (.tsv)" onclick="Upload()" />
     <input type="file" id="fileUpload" />
     <br />
     <br />
@@ -401,7 +439,6 @@ function onTextBlur(id) {
          {% for item in dictionaryNData %}
            <td width="450px">{{item.langName}}</td>
          {% endfor %}
-         <td width="50px">Edit</td>
        </tr>
     </table>
 
