@@ -64,9 +64,9 @@ links = [
     # {'linkText': 'Resources',
     #   'ref': '/bete/downloads/'
     # },
-    # {'linkText': 'Unicode Page',
-    #  'ref': 'https://www.unicode.org/charts/PDF/U1E800.pdf'
-    # },
+    {'linkText': 'Unicode Page',
+      'ref': 'https://unicode.org/charts/PDF/U0980.pdf'
+    },
     {'linkText': 'Bangali Wikipedia',
      'ref': 'https://en.wikipedia.org/wiki/Bangali_(ethnic_dialect)'
     },
