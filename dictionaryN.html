@@ -23,15 +23,15 @@
     font-variant-ligatures: normal;
 	}
 
-table {
-  border: 1px solid #ddd;
-  padding: 8px;
-  font-size: 16px;
-}
-table tr:nth-child(even){background-color: #f2f2f2;}
-  {
-    font-family: "Courier New";
+  table {
+    border: 1px solid #ddd;
+    padding: 8px;
+    font-size: 16px;
+    white-space:pre;
   }
+  table tr:nth-child(even){background-color: #f2f2f2;}
+
+  td {white-space:pre}
   </style>
 
   <style>
@@ -94,8 +94,11 @@ table tr:nth-child(even){background-color: #f2f2f2;}
   }
 
 function addRowN(tabs) {
+  var regex = />NL</gi  // to allow new lines within a cell
   for(var tab = 0; tab < tabs.length; tab++){
-    addRowItem(tab, tabs[tab]);
+
+    text = tabs[tab].replace(regex, '\n');
+    addRowItem(tab, text);
   }
 }
 
@@ -128,11 +131,16 @@ function download_tsv() {
   var num_rows = rows.length;
   var tsv = '';
   // Skip the headers.
+  const regex = /\u000a/gi;  // To allow multi-line contents
+
   for (var i = 1; i < num_rows; i++) {
     var cells = rows.item(i).cells;
     let num_cells = cells.length;
     for (j = 0; j < num_cells; j++) {
-      tsv += cells[j].innerText;
+      let v = cells[j].innerText;
+      let output = v.replace(regex, '>NL<');  // Store special
+
+      tsv += output;
       if (j < (num_cells - 1)) {
         tsv += "\t";
       }
@@ -159,7 +167,8 @@ function download_tsv() {
 };
 
 function submitOnEnter(source, event){
-    if(event.which === 13) {
+    // Shift-enter enters new line in the input.
+    if(event.which === 13 && !event.shiftKey) {
       // Prevents the addition of a new line in the text field (not needed in a lot of cases)
       event.preventDefault();
       if (edit_mode) {
@@ -184,6 +193,7 @@ function updateCellContent(source, edit_cell) {
   var lang_title = document.getElementById("lang_name");
   lang_title.value = lang_title.innerHTML = lang_array[0];
   source.dir = textdirection[0];
+  source.style.fontFamily = fontlist[0];
 
   // Clear the input
   source.value = source.innerHTML = '';
@@ -201,6 +211,7 @@ function editCell(cell, row, col) {
   var lang_title = document.getElementById("lang_name");
   lang_title.value = lang_title.innerHTML = lang_array[col] + " (edit)";
   edit_area.dir = textdirection[col];
+  edit_area.style.fontFamily = fontlist[0];
 
   // Set edit mode so Enter puts it back in the right place.
   edit_mode = true;
@@ -237,6 +248,7 @@ function getAndStoreText(dict_input) {
   // Switch to new keyboard.
   controller.activateLayout(kb_array[lang_index]);
   dict_input.dir = textdirection[lang_index];
+  dict_input.style.fontFamily = fontlist[lang_index];
 
   // Put focus back in this area.
   dict_input.focus();
@@ -246,7 +258,7 @@ function Upload() {
   // Load with data from file, split by tabs.
   // Or split by tab.
   var fileUpload = document.getElementById("fileUpload");
-  var regex = /^([a-zA-Z0-9\s_\\.\-:])+(.tsv|.txt)$/;
+  var regex = /^([ a-zA-Z0-9\s_\\.\-:\(\)])+(.tsv|.txt)$/;
   if (regex.test(fileUpload.value.toLowerCase())) {
     if (typeof (FileReader) != "undefined") {
       var reader = new FileReader();
@@ -283,6 +295,7 @@ function init() {
   var lang_title = document.getElementById("lang_name");
   lang_title.value = lang_title.innerHTML = lang_array[lang_index];
   lang_input.dir = textdirection[lang_index];
+  lang_input.style.fontFamily = fontlist[lang_index];
 }
 
 // Warn before exiting with unsaved data.
