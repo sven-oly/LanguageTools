@@ -67,8 +67,12 @@ table tr:nth-child(even){background-color: #f2f2f2;}
   ];
   let lang_array = [
     {% for item in dictionaryNData %}'{{item.langName}}',{% endfor %}
-  ];  let fontlist = [
+  ];
+  let fontlist = [
     {% for item in dictionaryNData %}'{{item.font.family}}',{% endfor %}
+  ];
+  let textdirection = [
+    {% for item in dictionaryNData %}'{{item.direction}}',{% endfor %}
   ];
 
   function setKeyCapsFont(newFontFamily) {
@@ -179,6 +183,7 @@ function updateCellContent(source, edit_cell) {
   controller.activateLayout(kb_array[0]);
   var lang_title = document.getElementById("lang_name");
   lang_title.value = lang_title.innerHTML = lang_array[0];
+  source.dir = textdirection[0];
 
   // Clear the input
   source.value = source.innerHTML = '';
@@ -195,6 +200,7 @@ function editCell(cell, row, col) {
   controller.activateLayout(kb_array[col]);
   var lang_title = document.getElementById("lang_name");
   lang_title.value = lang_title.innerHTML = lang_array[col] + " (edit)";
+  edit_area.dir = textdirection[col];
 
   // Set edit mode so Enter puts it back in the right place.
   edit_mode = true;
@@ -230,6 +236,8 @@ function getAndStoreText(dict_input) {
 
   // Switch to new keyboard.
   controller.activateLayout(kb_array[lang_index]);
+  dict_input.dir = textdirection[lang_index];
+
   // Put focus back in this area.
   dict_input.focus();
 }
@@ -274,6 +282,7 @@ function init() {
   lang_index = 0;
   var lang_title = document.getElementById("lang_name");
   lang_title.value = lang_title.innerHTML = lang_array[lang_index];
+  lang_input.dir = textdirection[lang_index];
 }
 
 // Warn before exiting with unsaved data.
@@ -312,8 +321,8 @@ window.onbeforeunload = function(e) {
     Data label <input id="pagenumber" width='4'>
     <button onclick="download_tsv()">Download TSV</button>
     &ensp;&ensp;&ensp;&ensp;&ensp;
-    <input type="button" id="upload" value="Upload data file (.tsv)" onclick="Upload()" />
-    <input type="file" id="fileUpload" />
+   To load a .tsv file:<input type="file" id="fileUpload" />
+   <input type="button" id="upload" value="Upload data file (.tsv)" onclick="Upload()" />
     <br />
     <br />
 

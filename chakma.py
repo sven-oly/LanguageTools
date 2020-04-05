@@ -16,8 +16,8 @@
 
 import base
 
-import transliterate
-import transrule_ccp
+#import transliterate
+#import transrule_ccp
 
 import json
 import logging
@@ -75,51 +75,68 @@ unicode_font_list = [
 ]
 
 links = [
-    {'linkText': 'Keyboard',
-     'ref': '/ccp/'
-    },
-    {'linkText': 'Converter',
-     'ref': '/ccp/convertUI/'},
-    {'linkText': 'Font conversion summary',
-      'ref': '/ccp/encodingRules/'
-    },
-  {'linkText': 'Simple dictionary entry',
-   'ref': '/' + LanguageCode + '/dictionaryInput/'
+  {'linkText': 'Keyboard',
+   'ref': '/ccp/'
+  },
+  {'linkText': 'Converter',
+   'ref': '/ccp/convertUI/'},
+  {'linkText': 'Font conversion summary',
+    'ref': '/ccp/encodingRules/'
+  },
+  {'linkText': 'Chakma-Bangali-English dictionary builder',
+   'ref': '/' + LanguageCode + '/dictionaryN/'
   },
   {'linkText': 'Resources',
       'ref': '/ccp/downloads/'
   },
-    {'linkText': 'Unicode',
+  {'linkText': 'Unicode',
     'ref': 'http://unicode.org/charts/PDF/U11100.pdf'
-    },
-    {'linkText': 'Language',
-     'ref': 'https://en.wikipedia.org/wiki/Chakma_language'
-    },
-    {'linkText': 'Hill Education Chakma Script',
-     'ref': 'http://hilledu.com/'
-    },
-    {'linkText': 'Combiners',
-     'ref': '/ccp/diacritic/'
-     },
+  },
+  {'linkText': 'Language',
+   'ref': 'https://en.wikipedia.org/wiki/Chakma_language'
+  },
+  {'linkText': 'Hill Education Chakma Script',
+   'ref': 'http://hilledu.com/'
+  },
+  {'linkText': 'Combiners',
+   'ref': '/ccp/diacritic/'
+  },
 ]
 
-base_consonant = u'\ud804\udd0e'
+# Create a string with combinations of the combining characters,
+# following the given base character.
+def chakmaCombiningCombos(baseHexChar):
+
+  combiners = [u'\ud804\udd00', u'\ud804\udd01', u'\ud804\udd02',
+               u'\ud804\udd27', u'\ud804\udd28', u'\ud804\udd29',
+               u'\ud804\udd2a',
+               u'\ud804\udd2b', u'\ud804\udd2c', u'\ud804\udd2d',
+               u'\ud804\udd2e', u'\ud804\udd2f',
+               u'\ud804\udd30', u'\ud804\udd31', u'\ud804\udd32',
+               u'\ud804\udd33', u'\ud804\udd34',
+               u'\ud804\udd45', u'\ud804\udd46',
+  ]
+  testString = u''
+  for c0 in combiners:
+    for c1 in combiners:
+      testString += baseHexChar + c0 + c1 + ' '
+    testString += '\u000a'
+  return testString
 
 class langInfo():
   def __init__(self):
     self.LanguageCode = 'ccp'
     self.Language = 'Chakma'
     self.Language_native = '𑄌𑄋𑄴𑄟𑄳𑄦'
+    self.lang_list = ['ccp']
 
     if sys.maxunicode >= 0x10000:
-      logging.info('WIDE SYSTEM BUILD!!!')
       self.diacritic_list = [unichr(x) for x in range(0x11100, 0x11103)]
       self.diacritic_list.extend([unichr(x) for x in range(0x11127, 0x11133)])
       self.diacritic_list.extend([unichr(x) for x in range(0x11134, 0x11135)])
       self.diacritic_list.extend([unichr(x) for x in range(0x11145, 0x11147)])
       self.base_consonant = unichr(0x1110e)
     else:
-      logging.info('NARROW SYSTEM BUILD!!!')
       self.diacritic_list = [unichr(0xd804) + unichr(0xdd00 + x) for x in range(0x00, 0x04)]
       self.diacritic_list.extend(unichr(0xd804) + unichr(0xdd00 + x) for x in range(0x27, 0x33))
       self.diacritic_list.extend(unichr(0xd804) + unichr(0xdd00 + x) for x in range(0x34, 0x35))
@@ -152,24 +169,34 @@ class langInfo():
     self.kb1 = 'en'
     self.kb2 = self.kb_list[0]['shortName']
 
+    # For a multilingual dictionary builder
+    # self.dictionaryLinks = {
+    #   {'linkText': 'How to use this in Chakma',
+    #    'ref': 'https://www.youtube.com/watch?v=olOq1R5IUhA&feature=youtu.be',
+    #    },
+    # }
+
     self.dictionaryNData = [
       {'langName': self.Language, 'kbShortName': 'ccp', 'kbLongName': 'Chakma Unicode',
-       'font': { 'family': 'RibengUni2018018',
-         'longName': 'RibengUni 2018-06-18',
-         'source': '/fonts/RibengUni-Regular_20180618.ttf'},
+        'font': { 'family': 'RibengUni2018018',
+          'longName': 'RibengUni 2018-06-18',
+          'source': '/fonts/RibengUni-Regular_20180618.ttf'},
+        'direction': 'ltr',
       },
       {'langName': 'Bangali', 'kbShortName': 'bn_b2', 'kbLongName': 'Bangali',
-       'font': {'family': 'Bangali',
+        'font': {'family': 'Bangali',
                 'longName': 'Noto Sans Bengali',
                 'source': '/fonts/NotoSansBengali-Regular.ttf'
                 },
-       },
+        'direction': 'ltr',
+      },
       {'langName': 'English', 'kbShortName': 'en', 'kbLongName': 'English',
-       'font': {'family': 'Latin',
+        'font': {'family': 'Latin',
                 'longName': 'Noto Sans',
                 'source': '/fonts/NotoSans-Regular.ttf'
                 },
-       },
+        'direction': 'ltr',
+      },
     ]
 
 # Shows keyboard for Chakma
@@ -266,94 +293,16 @@ bucZ t JeborM ribo sunelo$ at tirtVire kili"""
       path = os.path.join(os.path.dirname(__file__), 'translit_general.html')
       self.response.out.write(template.render(path, template_values))
 
-# AJAX handler for Chakma converter
-class ChakmaConvertHandler(webapp2.RequestHandler):
+
+class TestURLHandler(webapp2.RequestHandler):
     def get(self):
-      # TODO: Get the text values
-      # Call transliterator
-      # Return JSON structure with values.
+      langs = self.request.get('lang')
+      name = self.request.get('name')
+      route_args = self.request.route_args
+      logging.info("TestURL langs = %s" % langs)
+      logging.info("TestURL name = %s" % name)
+      logging.info("TestURL route_args: %s" % str(route_args))
 
-      transCcp = transliterate.Transliterate(
-        transrule_ccp.TRANS_LIT_RULES,
-        transrule_ccp.DESCRIPTION
-      )
-
-      outText = '\u11103\u11101\u11103'
-      message = 'TBD'
-      error = ''
-
-      result = {
-        'outText' : outText,
-        'message' : message,
-        'error': error,
-        'language': 'Chakma',
-        'langTag': 'ccp',
-        'showTools': self.request.get('tools', None),
-        'summary' : transCcp.getSummary(),
-      }
-      self.response.out.write(json.dumps(result))
-
-
-class ChakmaEncodingRules(webapp2.RequestHandler):
-    def get(self):
-
-      template_values = {
-        'converterJS': "/js/ccpConverter.js",
-        'language': 'Chakma',
-        'encoding_list': encoding_font_list,
-        'unicode_list': unicode_font_list,
-        'kb_list': kb_list,
-        'links': links,
-      }
-      path = os.path.join(os.path.dirname(__file__), 'fontsView.html')
-      self.response.out.write(template.render(path, template_values))
-
-class ChakmaRenderPage(webapp2.RequestHandler):
-    def get(self):
-
-      template_values = {
-        'converterJS': "/js/ccpConverter.js",
-        'language': 'Chakma',
-        'encoding_list': encoding_font_list,
-        'unicode_list': unicode_font_list,
-        'kb_list': kb_list,
-        'links': links,
-      }
-      path = os.path.join(os.path.dirname(__file__), 'renderCombos.html')
-      self.response.out.write(template.render(path, template_values))
-
-
-class ChakmaDownloads(webapp2.RequestHandler):
-    def get(self):
-
-      template_values = {
-          'language': langInstance.Language,
-          'language_native': langInstance.Language_native,
-          'unicode_font_list': langInstance.unicode_font_list,
-      }
-      path = os.path.join(os.path.dirname(__file__), 'downloads.html')
-      self.response.out.write(template.render(path, template_values))
-
-
-# Create a string with combinations of the combining characters,
-# following the given base character.
-def chakmaCombiningCombos(baseHexChar):
-
-  combiners = [u'\ud804\udd00', u'\ud804\udd01', u'\ud804\udd02',
-               u'\ud804\udd27', u'\ud804\udd28', u'\ud804\udd29',
-               u'\ud804\udd2a',
-               u'\ud804\udd2b', u'\ud804\udd2c', u'\ud804\udd2d',
-               u'\ud804\udd2e', u'\ud804\udd2f',
-               u'\ud804\udd30', u'\ud804\udd31', u'\ud804\udd32',
-               u'\ud804\udd33', u'\ud804\udd34',
-               u'\ud804\udd45', u'\ud804\udd46',
-  ]
-  testString = u''
-  for c0 in combiners:
-    for c1 in combiners:
-      testString += baseHexChar + c0 + c1 + ' '
-    testString += '\u000a'
-  return testString
 
 # Global in this file.
 langInstance = langInfo()
@@ -363,11 +312,11 @@ app = webapp2.WSGIApplication(
      ('/ccp/', ChakmaIndigenousHomeHandler),
      ('/ccp/convertUI/', ChakmaConvertUIHandler),
      ('/ccp/downloads/', base.Downloads),
-     ('/ccp/converter/', ChakmaConvertHandler),
      ('/ccp/encodingRules/', base.EncodingRules),
      ('/ccp/diacritic/', base.DiacriticHandler),
      ('/' + langInstance.LanguageCode + '/dictionaryInput/', base.DictionaryInput),
      ('/' + langInstance.LanguageCode + '/dictionaryN/', base.DictionaryN),
+     webapp2.Route('/' + langInstance.LanguageCode + '/testURL/', handler=TestURLHandler, name="testURL"),
      ], debug=True,
     config={'langInfo': langInstance}
 )
