@@ -28,6 +28,9 @@ handlers:
 - url: /resources
   static_dir: resources
 
+- url: /help
+  static_dir: help
+
 - url: /base/.*
   script: base.app
 

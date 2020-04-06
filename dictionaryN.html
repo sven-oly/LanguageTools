@@ -157,7 +157,7 @@ function download_tsv() {
   var label = page_element.value;
 
   hiddenElement.download = 'dictionary_' +
-    {% for item in dictionaryNData %}'{{item.langName}}_' +{% endfor %} label + '.tsv';
+    {% for item in dictionaryNData %}'{{item.languageCode}}_' +{% endfor %} label + '.tsv';
   hiddenElement.click();
 
   // Clear table contents after first row.
@@ -379,6 +379,8 @@ window.onbeforeunload = function(e) {
    {% endfor %}
      </ul>
    {% endif %}
+   <a href="/help/en/wordlist_input_help.html" target="_blank"
+    title="How to use this page">Instructions</a>
   </div>
   </div> <!-- container -->
 
