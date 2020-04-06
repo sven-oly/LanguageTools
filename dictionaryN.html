@@ -153,10 +153,11 @@ function download_tsv() {
   var hiddenElement = document.createElement('a');
   hiddenElement.href = 'data:text/tsv;charset=utf-8,' + encodeURI(tsv);
   hiddenElement.target = '_blank';
-  var page_element = document.getElementById("pagenumber");
-  var page_num = page_element.value;
+  var page_element = document.getElementById("label");
+  var label = page_element.value;
 
-  hiddenElement.download = 'dictionary_' + page_num + '.tsv';
+  hiddenElement.download = 'dictionary_' +
+    {% for item in dictionaryNData %}'{{item.langName}}_' +{% endfor %} label + '.tsv';
   hiddenElement.click();
 
   // Clear table contents after first row.
@@ -331,7 +332,7 @@ window.onbeforeunload = function(e) {
   </div>
 
   <div class="span-19">
-    Data label <input id="pagenumber" width='4'>
+    Data label <input id="label" size='10'>
     <button onclick="download_tsv()">Download TSV</button>
     &ensp;&ensp;&ensp;&ensp;&ensp;
    To load a .tsv file:<input type="file" id="fileUpload" />

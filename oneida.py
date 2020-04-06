@@ -14,6 +14,8 @@
 # limitations under the License.
 #
 
+import base
+
 import transliterate
 
 import json
@@ -43,11 +45,8 @@ unicode_font_list = [
    },
   {'family': 'Noto Serif',
    'longName': 'Noto Serif',
+   'source': 'fonts/NotoSerif-Regular.ttf',
    },
-  #{'family': 'Roboto',
-  # 'longName': 'Roboto',
-  # 'source': 'https://fonts.googleapis.com/css?family=Roboto',
-  # },
 ]
 
 kb_list = [
@@ -95,13 +94,55 @@ links = [
     {'linkText': 'Font conversion summary',
       'ref': '/' + LanguageCode + '/encodingRules/'
     },
-    {'linkText': 'Resources',
+   {'linkText': 'Oneida-English dictionary builder',
+   'ref': '/' + LanguageCode + '/dictionaryN/'
+   },
+   {'linkText': 'Resources',
       'ref': '/' + LanguageCode + '/downloads/'
     },
     {'linkText': 'Oneida NSN',
      'ref': 'https://oneida-nsn.gov/'
     },
 ]
+
+class langInfo():
+  def __init__(self):
+    self.LanguageCode = LanguageCode
+    self.Language = Language
+    self.Language_native = Language_native
+    self.lang_list = ['one']
+
+    self.encoding_font_list = encoding_font_list
+
+    self.unicode_font_list = unicode_font_list
+
+    self.kb_list = kb_list
+    self.links = links
+
+    self.dictionaryLang1 = self.Language
+    self.dictionaryLang2 = 'English'
+    self.kb1 = self.kb_list[0]['shortName']
+    self.kb2 = 'en'
+
+    self.dictionaryNData = [
+      {'langName': self.Language, 'langNative': self.Language_native,
+       'kbShortName': self.kb_list[0]['shortName'],
+       'kbLongName': self.kb_list[0]['longName'],
+       'font': {'family': 'Latin',
+                'longName': 'Noto Sans',
+                'source': '/fonts/NotoSans-Regular.ttf'
+                },
+       'direction': 'ltr',
+       },
+      {'langName': 'English', 'langNative': 'English',
+       'kbShortName': 'en', 'kbLongName': 'English',
+       'font': {'family': 'Latin',
+                'longName': 'Noto Sans',
+                'source': '/fonts/NotoSans-Regular.ttf'
+                },
+       'direction': 'ltr',
+      },
+    ]
 
 
 # Shows keyboards
@@ -243,14 +284,20 @@ class Downloads(webapp2.RequestHandler):
       path = os.path.join(os.path.dirname(__file__), 'downloads.html')
       self.response.out.write(template.render(path, template_values))
 
+langInstance = langInfo()
 
 
 
-app = webapp2.WSGIApplication([
+app = webapp2.WSGIApplication(
+  [
   ('/demo_' + LanguageCode + '/', OneidaIndigenousHomeHandler),
   ('/' + LanguageCode + '/', OneidaIndigenousHomeHandler),
   ('/' + LanguageCode + '/convertUI/', ConvertUIHandler),
   ('/' + LanguageCode + '/downloads/', Downloads),
   ('/' + LanguageCode + '/converter/', ConvertHandler),
   ('/' + LanguageCode + '/encodingRules/', EncodingRules),
-], debug=True)
+    ('/' + langInstance.LanguageCode + '/dictionaryN/', base.DictionaryN),
+  ],
+  debug=True,
+  config={'langInfo': langInstance}
+)
