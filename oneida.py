@@ -126,6 +126,7 @@ class langInfo():
 
     self.dictionaryNData = [
       {'langName': self.Language, 'langNative': self.Language_native,
+       'languageCode': 'one',
        'kbShortName': self.kb_list[0]['shortName'],
        'kbLongName': self.kb_list[0]['longName'],
        'font': {'family': 'Latin',
@@ -135,6 +136,7 @@ class langInfo():
        'direction': 'ltr',
        },
       {'langName': 'English', 'langNative': 'English',
+       'languageCode': 'en',
        'kbShortName': 'en', 'kbLongName': 'English',
        'font': {'family': 'Latin',
                 'longName': 'Noto Sans',
