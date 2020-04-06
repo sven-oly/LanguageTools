@@ -177,20 +177,23 @@ class langInfo():
     # }
 
     self.dictionaryNData = [
-      {'langName': self.Language, 'kbShortName': 'ccp', 'kbLongName': 'Chakma Unicode',
+      {'langName': self.Language, 'langNative': '𑄌𑄋𑄴𑄟𑄳𑄦 𑄢𑄧',
+        'kbShortName': 'ccp', 'kbLongName': 'Chakma Unicode',
         'font': { 'family': 'RibengUni2018018',
           'longName': 'RibengUni 2018-06-18',
           'source': '/fonts/RibengUni-Regular_20180618.ttf'},
         'direction': 'ltr',
       },
-      {'langName': 'Bangali', 'kbShortName': 'bn_b2', 'kbLongName': 'Bangali',
+      {'langName': 'Bangali', 'langNative': 'বাংলা শব্দ',
+        'kbShortName': 'bn_b2', 'kbLongName': 'Bangali',
         'font': {'family': 'Bangali',
                 'longName': 'Noto Sans Bengali',
                 'source': '/fonts/NotoSansBengali-Regular.ttf'
                 },
         'direction': 'ltr',
       },
-      {'langName': 'English', 'kbShortName': 'en', 'kbLongName': 'English',
+      {'langName': 'English', 'langNative': 'English',
+        'kbShortName': 'en', 'kbLongName': 'English',
         'font': {'family': 'Latin',
                 'longName': 'Noto Sans',
                 'source': '/fonts/NotoSans-Regular.ttf'
