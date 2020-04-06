@@ -57,6 +57,8 @@ var BN2_LAYOUT = {
   'transform': {
     // Vowel combos
     '\u09cd\u09be': '\u0986',
+    '\u09bf\u09be': '\u0986',
+
     '\u09cd\u09bf\u200C': '\u0987',
     '\u09cd\u09c0': '\u0988',
     '\u09cd\u09c1': '\u0989',
@@ -70,8 +72,12 @@ var BN2_LAYOUT = {
     '\u09c7\u001d\u09d7': '\u09cc',
     '\u0981\u09c3': '\u09c3\u0981',
     '\u09c7\u09cb': '\u09cb',
-    '\u09C8\u09CD\u001d\u09AF': '\u200d\u09CD\u09AF\u09C8',  // Unsure of this one
+    '\u09c7\u001d\u09be': '\u09cb',
+    '\u09c7\u001d\u09d7': '\u09cc',
 
+    // Move vowel across ka-virama-la
+    '\u0995([\u09bf\u09c7])\u001d\u09cd\u09b2' : '\u0995\u09cd\u09b2$1',
+     '\u09C8\u09CD\u001d\u09AF': '\u200d\u09CD\u09AF\u09C8',  // Unsure of this one
     '//': '\u2016',
   }
 };
