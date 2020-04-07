@@ -68,6 +68,9 @@ var BN2_LAYOUT = {
     '\u09cd\u09c8\u200C': '\u0990',
     '\u09cd\u09d7': '\u0994',
 
+    // Special case of ra - virama - ya
+    '([\u09b0])\u09cd([\u09af])': '$1\u200c$2',
+
     '([\u09c7\u09c8\u09bf\u09c8\u09cb\u09cc])\u200C([\u0993-\u09b9\u09ce\u09dc-\u09df])([\u09cd]?)': '$2$1$3',
     '\u09c7\u001d\u09d7': '\u09cc',
     '\u0981\u09c3': '\u09c3\u0981',
@@ -77,7 +80,7 @@ var BN2_LAYOUT = {
 
     // Move vowel across consonant-virama-la
     //    '([\u0995\u0997-\u099f\u09a1-\u09a4\u09a6\u09a8\u09aa-\u09ae\u09b2-\u09b9])([\u09bf\u09c7])\u001d\u09cd\u09b2':
-    '([\u0995\u0997-\u099f\u09a1-\u09a4\u09a6\u09a8-\u09ae\u09b2-\u09b9])([\u09bf\u09c7])\u001d\u09cd\
+    '([\u0995\u0997-\u099f\u09a1-\u09a4\u09a6\u09a8-\u09ae\u09b0\u09b2-\u09b9])([\u09bf\u09c7])\u001d\u09cd\
 ([\u0995\u0997-\u099f\u09a1-\u09a4\u09a6\u09a8-\u09ae\u09b2-\u09b9])':
       '$1\u09cd$3$2',
      '\u09C8\u09CD\u001d\u09AF': '\u200d\u09CD\u09AF\u09C8',  // Unsure of this one
