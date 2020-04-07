@@ -12,7 +12,7 @@
 
 
 var GON_DEVA_LAYOUT = {
-  'id': 'gon_dev',
+  'id': 'gon_deva',
   'title': 'Gondi Devanagari',
   'mappings': {
     ',c': {

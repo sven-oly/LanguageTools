@@ -14,6 +14,8 @@
 # limitations under the License.
 #
 
+import base
+
 import logging
 
 import os
@@ -180,9 +182,9 @@ def fixLinks(link_template, langCode):
 
 class langInfo():
   def __init__(self):
-    self.LanguageCode = 'bete'
-    self.Language = u'Bété'
-    self.Language_native = u'Bété'
+    self.LanguageCode = 'gon'
+    self.Language = u'Gondi'
+    self.Language_native = u'Gondi'
     self.direction = 'ltr'
 
     if sys.maxunicode >= 0x10000:
@@ -201,21 +203,60 @@ class langInfo():
         }
     ]
     self.encoding_font_list = encoding_font_list
-    self.kb_list = [
-      {
-        'shortName': self.LanguageCode + "Phone",
-        'longName': 'Bété Phonetic',
-        'jsName': self.LanguageCode + "Phone",
-        'instructions': None,
-        'font': 'NotoSansMendeKikakui',
-      },
-    ]
+    self.kb_list = kb_list
+
     self.links = links
     self.text_file_list = []
     self.unicode_font_list = unicode_font_list
 
-# Declare the communications with the base class.
-langInstance = langInfo()
+    self.dictionaryLang1 = 'gon'
+    self.dictionaryLang2 = 'en'
+    self.kb1 = ''
+    self.kb2 = ''
+
+    self.dictionaryNData = [
+      {'langName': 'Aheri Gondi', 'langNative': 'Aheri Gondi',
+       'languageCode': 'esg',
+        'kbShortName': 'gon_masaram', 'kbLongName': 'Gondi Masaram',
+        'font': { 'family': 'GondiMasaram',
+          'longName': 'Gondi Masaram',
+          'source': '/fonts/Gondi/NotoSansMasaramGondi-Regular.ttf'},
+        'direction': 'ltr',
+      },
+      {'langName': 'Northern Gondi', 'langNative': 'Northern Gondi',
+       'languageCode': 'gnw',
+       'kbShortName': 'gon_gunjala', 'kbLongName': 'Gondi Gunjala',
+       'font': {'family': 'GondiGunjala',
+                'longName': 'Gondi Gunjala',
+                'source': '/fonts/Gondi/NotoSansGunjalaGondi-Regular.ttf'},
+       'direction': 'ltr',
+       },
+      {'langName': 'Gondi Devanagari', 'langNative': 'Gondi Devanagari',
+       'languageCode': 'gon_Deva',
+       'kbShortName': 'gon_deva', 'kbLongName': 'Gondi Devanagari',
+       'font': {'family': 'GondiDeva',
+                'longName': 'Gondi Devanagari',
+                'source': '/fonts/Gondi/NotoSansGunjalaGondi-Regular.ttf'},
+       'direction': 'ltr',
+       },
+      {'langName': 'Gondi Telugu', 'langNative': 'Gondi Telugu',
+       'languageCode': 'gon_Telu',
+       'kbShortName': 'gon_telu', 'kbLongName': 'Gondi Telugu',
+       'font': {'family': 'GondiTelugu',
+                'longName': 'Gondi Telugu',
+                'source': '/fonts/Gondi/NotoSansGunjalaGondi-Regular.ttf'},
+       'direction': 'ltr',
+       },
+      {'langName': 'English', 'langNative': 'English',
+       'languageCode': 'en',
+       'kbShortName': 'en', 'kbLongName': 'English',
+        'font': {'family': 'Latin',
+                'longName': 'Noto Sans',
+                'source': '/fonts/NotoSans-Regular.ttf'
+                },
+        'direction': 'ltr',
+      },
+      ]
 
 
 # Shows keyboards
@@ -438,6 +479,7 @@ class DictionaryInput(webapp2.RequestHandler):
       path = os.path.join(os.path.dirname(__file__), 'dictionaryInput.html')
       self.response.out.write(template.render(path, template_values))
 
+# Declare the communications with the base class.
 langInstance = langInfo()
 
 app = webapp2.WSGIApplication([
@@ -466,6 +508,7 @@ app = webapp2.WSGIApplication([
   ('/' + 'gno' + '/diacritic/', DiacriticHandler),
   ('/' + 'wsg' + '/diacritic/', DiacriticHandler),
   ('/' + LanguageCode + '/diacritic/', DiacriticHandler),
-    ], debug=True,
+  ('/' + langInstance.LanguageCode + '/dictionaryN/', base.DictionaryN),
+], debug=True,
     config={'langInfo': langInstance}
 )
