@@ -71,9 +71,6 @@
           function() { visible = false; });
       input.focus();
 
-      // TODO: Implement?
-      // setFontFamily(document.getElementById("fontSelector").value);
-
       var selector = document.getElementById("setLayout");
       if (selector) {
         onLayoutSelected(selector.value);
@@ -89,48 +86,6 @@
                 area.innerHTML = area.value = info[1];
             }
         }
-    }
-
-    function toggle() {
-      if (controller) {
-        controller.setVisible(visible = !visible);
-      }
-    }
-
-    function clearText() {
-      var field = document.getElementById('t1');
-      field.value = '';
-      field = document.getElementById('codepoints');
-      field.value = '';
-      document.getElementById('t1').focus();
-    }
-
-    function showCodePoints() {
-      var src_field = document.getElementById('t1');
-      var code_text = uplus(src_field.value);
-      var dest_field = document.getElementById('codepoints');
-      dest_field.value = code_text;
-      document.getElementById('t1').focus();
-    }
-
-    function setKeyCapsFont(newFontFamily) {
-      var keycaps = document.getElementsByClassName("vk-cap");
-      for (var i = 0; i < keycaps.length; i++ ) {
-        keycaps[i].style.fontFamily = newFontFamily;
-      }
-    }
-
-    function setFontFamily(newFontFamily) {
-      setKeyCapsFont(newFontFamily);
-
-      var t1_element = document.getElementById('t1');
-      t1_element.className = newFontFamily;
-      t1_element.style.fontFamily = newFontFamily; //  + ",Arial";
-    }
-
-    function onLanguageSelected(newLangTag, textArea) {
-      var t1_element = document.getElementById(textArea);
-      t1_element.lang = newLangTag;
     }
 
     function onSizeSelected(newSize, textArea) {
