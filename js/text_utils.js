@@ -22,6 +22,7 @@ function utf16common(text, prefix, suffix, asciitoo, highlight_list)
   for(var i=0;i<text.length;i++)
   {
     var ccode = text.charCodeAt(i);
+        const orig_code = ccode;
     if (!asciitoo && (ccode == 0x005c)) {
       res += "\\\\";
     } else if ((ccode >= 0xd800) && (ccode < 0xdc00)) {
@@ -65,12 +66,14 @@ function utf16common(text, prefix, suffix, asciitoo, highlight_list)
           tmp = "0123456789".charAt(cur) + tmp;
         }
         ccode >>= 4;
-
       }
       if (i < highlight_list.length && highlight_list[i]) {
         res += prefix + tmp + suffix;
       } else {
         res += prefix + tmp + suffix;
+      }
+      if (orig_code == 0x0a) {
+        res += "\n";  // Put Newline in the output
       }
     } else  {
       res += text.charAt(i);
@@ -82,7 +85,7 @@ function utf16common(text, prefix, suffix, asciitoo, highlight_list)
   function uplus(text)
   {
     return utf16common(text, "", " ", true, diff_list)
-    return utf16common(text, "u+", " ", true, diff_list)
+    // return utf16common(text, "u+", " ", true, diff_list)
   }
 
 

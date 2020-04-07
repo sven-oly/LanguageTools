@@ -30,6 +30,7 @@ function utf16common(text, prefix, suffix, asciitoo, highlight_list)
   for(var i=0;i<text.length;i++)
   {
     var ccode = text.charCodeAt(i);
+    const orig_code = ccode;
     if (!asciitoo && (ccode == 0x005c)) {
       res += "\\\\";
     } else if ((ccode >= 0xd800) && (ccode < 0xdc00)) {
@@ -66,21 +67,23 @@ function utf16common(text, prefix, suffix, asciitoo, highlight_list)
     } else if (asciitoo || (ccode > 0x007F) || (ccode < 0x0020)) {
       var tmp = "";
       for (var j = 0; j < 4; j++) {
-	var cur = ccode & 0x000f;
-	if (cur > 9) {
-	  tmp = "ABCDEF".charAt(cur-10) + tmp;
-	} else {
-	  tmp = "0123456789".charAt(cur) + tmp;
-	}
-	ccode >>= 4;
-
-      }
-      if (i < highlight_list.length && highlight_list[i]) {
-	res += "<b>" + prefix + tmp + suffix + "</b>";
-      } else {
-	res += prefix + tmp + suffix;
-      }
-    } else  {
+	    var cur = ccode & 0x000f;
+	    if (cur > 9) {
+	      tmp = "ABCDEF".charAt(cur-10) + tmp;
+	    } else {
+	      tmp = "0123456789".charAt(cur) + tmp;
+    	}
+	      ccode >>= 4;
+        }
+        if (i < highlight_list.length && highlight_list[i]) {
+          res += "<b>" + prefix + tmp + suffix + "</b>";
+        } else {
+          res += prefix + tmp + suffix;
+        }
+        if (orig_code == 0x0a) {
+          res += "\n";  // Put Newline in the output
+        }
+      } else  {
       res += text.charAt(i);
     }
   }
