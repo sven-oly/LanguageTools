@@ -116,6 +116,9 @@ class langInfo():
         {'linkText': 'Font conversion summary',
          'ref': '/' + self.LanguageCode + '/encodingRules/'
         },
+        {'linkText': 'Tai Ahom-English dictionary builder',
+          'ref': '/' + self.LanguageCode + '/dictionaryN/'
+        },
         {'linkText': 'Ahom Unicode block',
          'ref': 'https://www.unicode.org/charts/PDF/U11700.pdf'
         },
@@ -157,6 +160,31 @@ class langInfo():
 𑜘𑜐
 """
 
+    self.dictionaryLang1 = 'aho'
+    self.dictionaryLang2 = 'en'
+    self.kb1 = ''
+    self.kb2 = ''
+
+    self.dictionaryNData = [
+      {'langName': self.Language, 'langNative': '',
+       'languageCode': self.LanguageCode,
+        'kbShortName': 'aho', 'kbLongName': self.Language,
+        'font': { 'family': 'NotoSerifAhom',
+          'longName': 'Noto Serif Ahom-Regular',
+          'source':'/fonts/ahom_aiton/NotoSerifAhom-Regular.ttf'
+                  },
+       'direction': 'ltr',
+      },
+      {'langName': 'English', 'langNative': 'English',
+       'languageCode': 'en',
+       'kbShortName': 'en', 'kbLongName': 'English',
+       'font': {'family': 'Latin',
+                'longName': 'Noto Sans',
+                'source': '/fonts/NotoSans-Regular.ttf'
+                },
+       'direction': 'ltr',
+       },
+    ]
     return
 
 
@@ -171,6 +199,7 @@ app = webapp2.WSGIApplication(
         ('/aho/encodingRules/', base.EncodingRules),
         ('/aho/diacritic/', base.DiacriticHandler),
         ('/aho/render/', base.EncodingRules),
+        ('/aho/dictionaryN/', base.DictionaryN),
     ],
     debug=True,
     config={'langInfo': langInstance}

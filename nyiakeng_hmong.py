@@ -166,6 +166,31 @@ class langInfo():
     # Lists of test characters for the various encodings
     self.test_chars = [' '.join([unichr(x) for x in range(0x20, 0x7f)])]
 
+    self.dictionaryLang1 = 'hnj'
+    self.dictionaryLang2 = 'en'
+    self.kb1 = ''
+    self.kb2 = ''
+
+    self.dictionaryNData = [
+      {'langName': self.Language, 'langNative': '',
+       'languageCode': self.LanguageCode,
+        'kbShortName': 'hnj', 'kbLongName': self.Language,
+        'font': { 'family': 'TT_Hmong-Regular',
+          'longName': 'TT_Hmong-Regular',
+          'source':'/fonts/NyiakengPuacheHmong/TT_Hmong-Regular.otf'
+                  },
+       'direction': 'ltr',
+      },
+      {'langName': 'English', 'langNative': 'English',
+       'languageCode': 'en',
+       'kbShortName': 'en', 'kbLongName': 'English',
+       'font': {'family': 'Latin',
+                'longName': 'Noto Sans',
+                'source': '/fonts/NotoSans-Regular.ttf'
+                },
+       'direction': 'ltr',
+       },
+    ]
 
 class NewKBHandler(webapp2.RequestHandler):
   def get(self):
@@ -205,6 +230,7 @@ app = webapp2.WSGIApplication(
      ('/nyiakeng/diacritic/', base.DiacriticHandler),
 
      ('/nyiakeng/newkb/', NewKBHandler),
+     ('/nyiakeng/dictionaryN/', base.DictionaryN),
 
      ], debug=True,
     config={'langInfo': langInstance}

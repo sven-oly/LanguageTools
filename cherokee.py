@@ -34,13 +34,6 @@ Language_native = 'ᏣᎳᎩ'
 LanguageTag = 'chr'
 
 # Handling Cherokee and other language codes for testing font and conversions.
-class langInfo():
-  def __init__(self):
-    self.LanguageCode = 'chr'
-    self.Language = 'Cherokee'
-    self.Language_native = 'ᏣᎳᎩ'
-    self.unicodeChars = [unichr(x) for x in range(0x13a0, 0x13fd)]
-    self.unicodeChars.extend([unichr(x) for x in range(0xaa70, 0xabbf)])
 
 encoding_font_list = [
     {
@@ -79,6 +72,43 @@ links = [
      'ref': 'http://unicode.org/charts/PDF/UAB70.pdf'
     },
 ]
+
+
+class langInfo():
+  def __init__(self):
+    self.LanguageCode = 'chr'
+    self.Language = 'Cherokee'
+    self.Language_native = 'ᏣᎳᎩ'
+    self.unicodeChars = [unichr(x) for x in range(0x13a0, 0x13fd)]
+    self.unicodeChars.extend([unichr(x) for x in range(0xaa70, 0xabbf)])
+    self.unicode_font_list = unicode_font_list
+    self.links = links
+
+    self.dictionaryLang1 = self.LanguageCode
+    self.dictionaryLang2 = 'en'
+    self.kb1 = ''
+    self.kb2 = ''
+
+    self.dictionaryNData = [
+      {'langName': self.Language, 'langNative': '',
+       'languageCode': self.LanguageCode,
+       'kbShortName': 'chr_phone', 'kbLongName': 'Cherokee Phonetic',
+       'font': {'family': self.unicode_font_list[0]['family'],
+                'longName': self.unicode_font_list[0]['longName'],
+                'source': self.unicode_font_list[0]['source'],
+                },
+       'direction': 'ltr',
+       },
+      {'langName': 'English', 'langNative': 'English',
+       'languageCode': 'en',
+       'kbShortName': 'en', 'kbLongName': 'English',
+       'font': {'family': 'Latin',
+                'longName': 'Noto Sans',
+                'source': '/fonts/NotoSans-Regular.ttf'
+                },
+       'direction': 'ltr',
+       },
+    ]
 
 
 # Shows keyboard for Cherokee
@@ -264,15 +294,18 @@ class AllFontTest(webapp2.RequestHandler):
     self.response.out.write(template.render(path, template_values))
 
 
-instance = langInfo()
+langInstance = langInfo()
+
 app = webapp2.WSGIApplication(
     [('/chr/', CherokeeIndigenousHomeHandler),
      ('/chr/convertUI/', CherokeeConvertUIHandler),
      ('/chr/downloads/', CherokeeDownloads),
      ('/chr/converter/', CherokeeConvertHandler),
      ('/chr/encodingRules/', CherokeeEncodingRules),
-     ('/chr/AllFonts/', AllFontTest )
-    ],
+     ('/chr/AllFonts/', AllFontTest ),
+     ('/' + langInstance.LanguageCode + '/dictionaryN/', base.DictionaryN),
+
+     ],
     debug=True,
-    config={'langInfo': instance}
+    config={'langInfo': langInstance}
 )

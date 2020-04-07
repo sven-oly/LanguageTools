@@ -105,6 +105,9 @@ links = [
     {'linkText': 'Resources / Downloads',
       'ref': '/rhg/downloads/'
     },
+    {'linkText': 'Rohingya-English dictionary builder',
+     'ref': '/' + 'rhg' + '/dictionaryN/'
+     },
     {'linkText': 'Unicode Page',
     'ref': 'https://www.unicode.org/charts/PDF/U10D00.pdf'
     },
@@ -186,6 +189,32 @@ class langInfo():
     # Lists of test characters for the various encodings
     self.test_chars = [' '.join([unichr(x) for x in range(0x620, 0x6f9)])]
 
+    self.dictionaryLang1 = 'rhg'
+    self.dictionaryLang2 = 'en'
+    self.kb1 = ''
+    self.kb2 = ''
+
+    self.dictionaryNData = [
+      {'langName': self.Language, 'langNative': '',
+       'languageCode': self.LanguageCode,
+        'kbShortName': self.kb_list[0]['shortName'], 'kbLongName': self.Language,
+        'font': { 'family': self.unicode_font_list[0]['family'],
+          'longName': self.unicode_font_list[0]['longName'],
+          'source':self.unicode_font_list[0]['source'],
+                  },
+       'direction': 'ltr',
+      },
+      {'langName': 'English', 'langNative': 'English',
+       'languageCode': 'en',
+       'kbShortName': 'en', 'kbLongName': 'English',
+       'font': {'family': 'Latin',
+                'longName': 'Noto Sans',
+                'source': '/fonts/NotoSans-Regular.ttf'
+                },
+       'direction': 'ltr',
+       },
+    ]
+
 
 class NewKBHandler(webapp2.RequestHandler):
   def get(self):
@@ -225,6 +254,8 @@ app = webapp2.WSGIApplication(
      ('/rhg/diacritic/', base.DiacriticHandler),
 
      ('/rhg/newkb/', NewKBHandler),
+
+     ('/' + langInstance.LanguageCode + '/dictionaryN/', base.DictionaryN),
 
      ], debug=True,
     config={'langInfo': langInstance}

@@ -122,6 +122,9 @@ class langInfo():
         {'linkText': 'Font conversion summary',
          'ref': '/' + self.LanguageCode + '/encodingRules/'
         },
+        {'linkText': 'Phake-English dictionary builder',
+         'ref': '/' + self.LanguageCode + '/dictionaryN/'
+        },
         {'linkText': 'Myanmar Unicode block',
          'ref': 'http://www.unicode.org/charts/PDF/U1000.pdf'
         },
@@ -154,9 +157,31 @@ class langInfo():
    # Test data for showing in converter.
     self.test_data = u'V: ဢ︀ꩬ︀ၵ︀ꩡ︀ထ︀ၸ︀တ︀ယ︀ီက︀လ︀\nN: ဢꩬၵꩡထၸတယီကလ'
 
+    self.dictionaryLang1 = 'phk'
+    self.dictionaryLang2 = 'en'
+    self.kb1 = ''
+    self.kb2 = ''
 
-    return
-
+    self.dictionaryNData = [
+      {'langName': self.Language, 'langNative': '',
+       'languageCode': self.LanguageCode,
+        'kbShortName': 'phk', 'kbLongName': self.Language,
+        'font': { 'family': self.unicode_font_list[0]['family'],
+          'longName': self.unicode_font_list[0]['longName'],
+          'source':self.unicode_font_list[0]['source'],
+                  },
+       'direction': 'ltr',
+      },
+      {'langName': 'English', 'langNative': 'English',
+       'languageCode': 'en',
+       'kbShortName': 'en', 'kbLongName': 'English',
+       'font': {'family': 'Latin',
+                'longName': 'Noto Sans',
+                'source': '/fonts/NotoSans-Regular.ttf'
+                },
+       'direction': 'ltr',
+       },
+    ]
 
 langInstance = langInfo()
 app = webapp2.WSGIApplication(
@@ -169,6 +194,7 @@ app = webapp2.WSGIApplication(
         ('/phk/encodingRules/', base.EncodingRules),
         ('/phk/diacritic/', base.DiacriticHandler),
         ('/phk/render/', base.EncodingRules),
+        ('/phk/dictionaryN/', base.DictionaryN),
     ],
     debug=True,
     config={'langInfo': langInstance}
