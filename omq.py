@@ -109,6 +109,9 @@ links = [
   {'linkText': 'Simple dictionary entry',
    'ref': '/' + LanguageCode + '/dictionaryInput/'
    },
+  {'linkText': 'Chatino-English dictionary builder',
+   'ref': '/' + LanguageCode + '/dictionaryN/'
+   },
 ]
 
 
@@ -147,6 +150,27 @@ class langInfo():
     self.dictionaryLang2 = self.Language
     self.kb1 = 'es'
     self.kb2 = self.kb_list[0]['shortName']
+
+    self.dictionaryNData = [
+      {'langName': self.Language, 'langNative': '',
+       'languageCode': self.LanguageCode,
+        'kbShortName': self.kb_list[0]['shortName'], 'kbLongName': self.Language,
+        'font': { 'family': self.unicode_font_list[0]['family'],
+          'longName': self.unicode_font_list[0]['longName'],
+          'source':self.unicode_font_list[0]['source'],
+                  },
+       'direction': 'ltr',
+      },
+      {'langName': 'English', 'langNative': 'English',
+       'languageCode': 'en',
+       'kbShortName': 'en', 'kbLongName': 'English',
+       'font': {'family': 'Latin',
+                'longName': 'Noto Sans',
+                'source': '/fonts/NotoSans-Regular.ttf'
+                },
+       'direction': 'ltr',
+       },
+    ]
 
 # Shows keyboards
 class IndigenousHomeHandler(webapp2.RequestHandler):
@@ -300,6 +324,7 @@ app = webapp2.WSGIApplication(
     ('/' + LanguageCode + '/converter/', ConvertHandler),
     ('/' + LanguageCode + '/encodingRules/', EncodingRules),
     ('/' + LanguageCode + '/dictionaryInput/', base.DictionaryInput),
+    ('/' + langInstance.LanguageCode + '/dictionaryN/', base.DictionaryN),
   ],
   debug=True,
   config={'langInfo': langInstance}
