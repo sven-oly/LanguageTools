@@ -202,7 +202,7 @@ class langInfo():
           'longName': self.unicode_font_list[0]['longName'],
           'source':self.unicode_font_list[0]['source'],
                   },
-       'direction': 'ltr',
+       'direction': 'rtl',
       },
       {'langName': 'English', 'langNative': 'English',
        'languageCode': 'en',

@@ -116,9 +116,14 @@ function addRowItem(index, value) {
     row = rows[rows.length-1];
   }
   var cell1 = row.insertCell(index);
+  cell1.style.direction = textdirection[index];
+  if (textdirection[index] == "rtl") {
+    cell1.style.textAlign = "right";
+  }
+  cell1.style.fontFamily = fontlist[index];
   cell1.contentEditable = true;
   cell1.innerHTML = value;
-  cell1.style.fontFamily = fontlist[index];
+
   // Function to support edit in the text area.
   cell1.onclick = function() { editCell(cell1, row_num, index); };
   unsaved_data = true;
@@ -278,6 +283,13 @@ function Upload() {
     }
   } else {
     alert("Please upload a valid text file.");
+  }
+}
+
+function setKeyCapsFont(newFontFamily) {
+  var keycaps = document.getElementsByClassName("vk-cap");
+  for (var i = 0; i < keycaps.length; i++ ) {
+    keycaps[i].style.fontFamily = newFontFamily;
   }
 }
 

@@ -165,7 +165,7 @@ class langInfo():
     self.dictionaryNData = [
       {'langName': self.Language, 'langNative': '',
        'languageCode': self.LanguageCode,
-        'kbShortName': 'phk', 'kbLongName': self.Language,
+        'kbShortName': 'phkVar', 'kbLongName': self.Language,
         'font': { 'family': self.unicode_font_list[0]['family'],
           'longName': self.unicode_font_list[0]['longName'],
           'source':self.unicode_font_list[0]['source'],
