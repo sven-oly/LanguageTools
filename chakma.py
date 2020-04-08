@@ -184,7 +184,7 @@ class langInfo():
           'longName': 'RibengUni 2018-06-18',
           'source': '/fonts/RibengUni-Regular_20180618.ttf'},
         'direction': 'ltr',
-        'helptext': 'Chakma help'
+        'helptext': '𑄣𑄢𑄴𑄌𑄢𑄧𑄢𑄴 𑄥𑄪𑄘𑄮𑄟𑄴'
       },
       {'langName': 'Bangali', 'langNative': 'বাংলা শব্দ',
        'languageCode': 'bn',
@@ -194,7 +194,7 @@ class langInfo():
                 'source': '/fonts/NotoSansBengali-Regular.ttf'
                 },
         'direction': 'ltr',
-       'helptext': 'Bengali help'
+       'helptext': 'নির্দেশাবলী'
        },
       {'langName': 'English', 'langNative': 'English',
        'languageCode': 'en',
@@ -204,7 +204,7 @@ class langInfo():
                 'source': '/fonts/NotoSans-Regular.ttf'
                 },
         'direction': 'ltr',
-        'helptext': 'English help'
+        'helptext': 'Instructions'
        },
     ]
 
