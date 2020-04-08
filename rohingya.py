@@ -212,6 +212,7 @@ class langInfo():
                 'source': '/fonts/NotoSans-Regular.ttf'
                 },
        'direction': 'ltr',
+       'helptext': 'Instructions'
        },
     ]
 
