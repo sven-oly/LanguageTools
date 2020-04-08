@@ -391,8 +391,14 @@ window.onbeforeunload = function(e) {
    {% endfor %}
      </ul>
    {% endif %}
-   <a href="/help/en/wordlist_input_help.html" target="_blank"
-    title="How to use this page">Instructions</a>
+
+  {% for lang in dictionaryNData %}
+      {% if lang.helptext %}
+   <a href="/help/{{lang.languageCode}}/wordlist_input_help.html" target="_blank"
+    title="How to use this page">{{lang.helptext}}</a><br />
+      {% endif %}
+   {% endfor %}
+
   </div>
   </div> <!-- container -->
 
