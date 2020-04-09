@@ -55,6 +55,11 @@ encoding_font_list = [
 
 unicode_font_list = [
   {
+    'family': 'TT_Hmong2',
+    'longName': 'TT Hmong2',
+    'source': '/fonts/NyiakengPuacheHmong/TT_Hmong-2-Regular.woff',
+  },
+  {
       'family': 'TT_Hmong',
       'longName': 'TT Hmong',
       'source':'/fonts/NyiakengPuacheHmong/TT_Hmong-Regular.otf',
