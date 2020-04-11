@@ -75,8 +75,8 @@ class FeedbackHandler(webapp2.RequestHandler):
     newReport.put()
 
     email_body = (
-        'sender: %s (%s)\n\nDescription: %s\nLanguage: %s\nComment: %s\nEncoding: %s font: %s\n' %
-                   (sender_name, sender_email, description, lang, comment, encoding, font))
+        'sender: %s (%s)\n\nDescription: %s\nLanguage: %s\nComment: %s\nEncoding: %s font: %s\nSampleText: %s' %
+                   (sender_name, sender_email, description, lang, comment, encoding, font, sampleText))
 
     result = "OK"
     try:
@@ -84,7 +84,9 @@ class FeedbackHandler(webapp2.RequestHandler):
                             'cwcornelius@gmail.com',
                             'Feedback on %s' % lang,
                             email_body)
-    except InvalidEmailError:
+    except:  # InvalidEmailError:
+      logging.info('mail.send_mail error: lang = %s, email_body = %s' %
+                   (lang, email_body))
       result = "Bad email address"
 
     template_values = {

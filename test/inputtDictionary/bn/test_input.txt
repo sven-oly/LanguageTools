@@ -1,0 +1,40 @@
+cjgV# 9-Apr-2020
+# Testing sequences for Bangali input method
+# expected output, tab, input key strokes, tab, expected Bangali hex
+স্থিতি  dngKdk [Shift+K]    09B8 09CD 09A5 09BF 09A4 09BF
+ব্যোম  chZfm [Shift+Z] 09AC 09CD 09AF 09C7 09BE 09AE
+চ্যুতি  ysZdk [Shift+Z] 099A 09CD 09AF 09C1 09A4 09BF
+গ্যেটে  coZct [Shift+Z] 0997 09CD 09AF 09C7 099F 09C7
+ম্যুর   msZv [Shift+Z]  09AE 09CD 09AF 09C1 09B0
+প্রত্যেক    rzckZj [Shift+Z]    09AA 09CD 09B0 09A4 09CD 09AF 09C7 0995
+ব্রিটেন dhzctb  09AC 09CD 09B0 09BF 099F 09C7 09A8
+#
+# combinations for independent vowels
+আ  gf   U+09CD U+09BE
+ই   gd  U+09CD U+09BF
+ঈ   gD  U+09CD U+09C0
+উ   gs  U+09CD U+09C1
+ঊ   gS  U+09CD U+09C2
+ঋ   ga  U+09CD U+09C3
+এ   gc  U+09CD U+09C7
+ঐ   gC  U+09CD U+09C8
+ঔ   gX  U+09CD U+09D7
+#
+ক্লে    cjgV    U+0995 U+09CD U+09B2 U+09C7
+ক্লি    djgV    U+0995 U+09CD U+09B2 U+09BF
+ক্লো    cjgVf   U+0995 U+09CD U+09B2 U+09CB
+#
+ক্লেশ   cjgVM   U+0995 U+09CD U+09B2 U+09C7 U+09B6
+ক্লিন   djgVb   U+0995 U+09CD U+09B2 U+09BF U+09A8
+ক্লোন   cjgVfb  U+0995 U+09CD U+09B2 U+09CB U+09A8
+#
+বর্ণে   hcvgB   U+09AC U+09B0 U+09CD U+09A3 U+09C7
+বর্ণিত  hdvgBk  U+09AC U+09B0 U+09CD U+09A3 U+09BF U+09A4
+বর্ণো   hcvgBf  U+09AC U+09B0 U+09CD U+09A3 U+09CB
+# Special case?
+র‌্যাব  vgwfh   U+09B0 U+200C U+09CD U+09AF U+09BE U+09AC
+# 10-Apr-2020
+ম্যূর   mSZv [Shift+K] [Shift+S]    09AE 09CD 09AF 09C2 09B0
+স্যৈকত  CnZjk [Shift+Z] 09B8 09CD 09AF 09C8 0995 09A4
+ক্যৃত   jaZk [Shift+Z]  0995 09CD 09AF 09C3 09A4
+কার্য   jfvgw   0995 09BE 09B0 09CD 09AF

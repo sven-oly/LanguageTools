@@ -18,13 +18,13 @@ var OMQ6_LAYOUT = {
   'title': 'Chatino superscripts upper/lower',
   'mappings': {
     '': {
-      '': 'ᴬᴮᶜᴰᴱᶠᴳᴴᴵᴶᴷᴸᴹ' +
+      '': '`ᴬᴮᶜᴰᴱᶠᴳᴴᴵᴶᴷᴸ' +
           'qwertyuiop[]\\' +
           'asdfghjkl;\'' +
           'zxcvbnm,./'
     },
     's': {
-      '': 'ᵃᵇᶜᵈᵉᶠᵍʰⁱʲᵏˡᵐ' +
+      '': '~ᵃᵇᶜᵈᵉᶠᵍʰⁱʲᵏˡ' +
           'QWERTYUIOP{}|' +
           'ASDFGHJKL:"' +
           'ZXCVBNM<>?'

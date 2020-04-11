@@ -44,11 +44,12 @@ unicode_font_list = [
       'source': '/fonts/NotoSansBengali-Regular.ttf',
       'attribution': 'https://www.wfonts.com/font/jg-bete',
   },
-  # {
-  #     'family': 'KikakuiSansPro',
-  #     'longName': 'Kikakui Sans Pro',
-  #     'source': '/fonts/MendeKikakui/KikakuiSansPro.ot.ttf',
-  # },
+  {
+    'family': 'Hindia',
+    'longName': 'Hindia',
+    'source': '/fonts/SouthAsia/Hindia.otf',
+    'attribution': 'https://www.wfonts.com/category/various',
+  },
 ]
 
 links = [
@@ -70,12 +71,10 @@ links = [
     {'linkText': 'Bangali Wikipedia',
      'ref': 'https://en.wikipedia.org/wiki/Bangali_(ethnic_dialect)'
     },
-    # {'linkText': 'Athinkra Character Picker',
-    #  'ref': 'http://nkoconvert.ho.ua/bete-ime/'
-    #  },
-    #{'linkText': 'Combiners',
-    # 'ref': '/bete/diacritic/'
-    #},
+    {
+      'linkText': 'Combiners',
+      'ref': '/bn/diacritic/'
+    },
 ]
 
 class langInfo():
@@ -85,9 +84,9 @@ class langInfo():
     self.Language_native = u'Bangali'
     self.direction = 'ltr'
 
-    self.diacritic_list = [unichr(x) for x in range(0xe9bc, 0x9e3)]
-    self.base_consonant = u'ঀ'
-    self.baseHexUTF16 = u'\u0980'
+    self.diacritic_list = [unichr(x) for x in range(0x9bc, 0x9e3)]
+    self.base_consonant = u'ক'  # KA
+    self.baseHexUTF16 = u'\u0995'
 
     self.lang_list = [
       { 'shortName': self.LanguageCode,

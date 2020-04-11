@@ -23,7 +23,7 @@ var HNJ_LAYOUT = {
           '{{\ud838\udd0b}}{{\ud838\udd06}}{{\ud838\udd08}}{{\ud838\udd12}}{{\ud838\udd1c}}{{\ud838\udd05}}{{\ud838\udd00}},./'
     },
     's,sc': {
-      '': '~!{{\ud838\udd4f}}#{{\ud838\udd4e}}%{{^}}&*()_+' +
+      '': '~!{{\ud838\udd4f}}#{{\ud838\udd4e}}%{{\ud838\udd3d}}&*()_+' +
           '{{\ud838\udd19}}{{\ud838\udd2a}}{{\ud838\udd32}}{{\ud838\udd11}}{{\ud838\udd02}}{{\ud838\udd10}}{{\ud838\udd2b}}{{\ud838\udd31}}{{\ud838\udd29}}' +
             '{{\ud838\udd21}}{{\ud838\udd3a}}{{\ud838\udd3b}}|' +
           '{{\ud838\udd25}}{{\ud838\udd0a}}{{\ud838\udd1d}}{{\ud838\udd35}}{{\ud838\udd13}}{{\ud838\udd1f}}{{\ud838\udd0d}}{{\ud838\udd07}}{{\ud838\udd23}}:\"' +

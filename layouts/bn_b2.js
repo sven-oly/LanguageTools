@@ -18,15 +18,15 @@ var BN2_LAYOUT = {
     '': {
       '': '{{\u2018}}১২৩৪৫৬৭৮৯০-=' +
           'ঙযডপটচজহগড়[]ৎ' +
-          '{{ৃ}}{{ু}}{{ি\u200C}}{{া}}{{্}}বকতদ;{{\u2019}}' +
+          '{{ৃ}}{{ু}}{{ি\u200C}}{{\u09be}}{{্}}বকতদ;{{\u2019}}' +
           '{{\u09CD\u09b0}}ও{{ে\u200C}}রনসম,./'
     },
     's': {
-      '': '{{\u201c}}!@#{{৳}}%^{{ঁ}}*()_+' +
+      '': '{{\u201c}}!@#{{৳}}%{{\u09f0}}{{ঁ}}*()_+' +
           '{{ং}}য়ঢফঠছঝঞঘঢ়{}{{ঃ}}' +
           '{{র্}}{{ূ}}{{ী}}অ।ভখথধ:{{\u201d}}' +
           '{{\u09cd\u09AF}}{{ৗ}}{{ৈ\u200C}}লণষশ<>?' +
-          ' '
+          '\u200c'  // To support special cases.
     },
     'c': {
       '': '`1234567890-=' +
@@ -47,9 +47,15 @@ var BN2_LAYOUT = {
           'asdfghjkl;\'' +
           'zxcvbnm,./'
     },
-    'sl,scl': {
+    'sl': {
       '': '~!@#$%^&*()_+' +
           'QWERTYUIOP{}|' +
+          'ASDFGHJKL:"' +
+          'ZXCVBNM<>?'
+    },
+    'scl': {  // Special for testing with additional characters
+      '': '~!@#$%^&*()_+' +
+          'QWE{{\u09c4}}TYUIOP{}|' +
           'ASDFGHJKL:"' +
           'ZXCVBNM<>?'
     }
@@ -69,19 +75,26 @@ var BN2_LAYOUT = {
     '\u09cd\u09d7': '\u0994',
 
     // Special case of ra - virama - ya
-    '([\u09b0])\u09cd([\u09af])': '$1\u200c$2',
+    '([\u09b0])\u09cd([\u09af])': '$1\u200c\u09cd$2',
 
+    // 8-Apr-2020 challenge. ?? 9be-9c4 ?? Sanskrit too?
+    '([\u09be-\u09c4\u09c7-\u09c8])\u001d?(\u09cd)([\u09a5\u09af\u09b0])':
+      '$2$3$1',
+
+    // Move front vowel signs over consonants.
     '([\u09c7\u09c8\u09bf\u09c8\u09cb\u09cc])\u200C([\u0993-\u09b9\u09ce\u09dc-\u09df])([\u09cd]?)': '$2$1$3',
-    '\u09c7\u001d\u09d7': '\u09cc',
-    '\u0981\u09c3': '\u09c3\u0981',
+
+    '\u0981\u09c3': '\u09c3\u0981',  // reorder
+    // Combinations of front and back
     '\u09c7\u09cb': '\u09cb',
+    '\u09c7\u09cc': '\u09cc',
+    '\u09c7\u09be': '\u09cb',
     '\u09c7\u001d\u09be': '\u09cb',
     '\u09c7\u001d\u09d7': '\u09cc',
 
     // Move vowel across consonant-virama-la
-    //    '([\u0995\u0997-\u099f\u09a1-\u09a4\u09a6\u09a8\u09aa-\u09ae\u09b2-\u09b9])([\u09bf\u09c7])\u001d\u09cd\u09b2':
     '([\u0995\u0997-\u099f\u09a1-\u09a4\u09a6\u09a8-\u09ae\u09b0\u09b2-\u09b9])([\u09bf\u09c7])\u001d\u09cd\
-([\u0995\u0997-\u099f\u09a1-\u09a4\u09a6\u09a8-\u09ae\u09b2-\u09b9])':
+([\u0995\u0997-\u099f\u09a1-\u09a4-u09a6\u09a8-\u09ae\u09b2-\u09b9])':
       '$1\u09cd$3$2',
      '\u09C8\u09CD\u001d\u09AF': '\u200d\u09CD\u09AF\u09C8',  // Unsure of this one
     '//': '\u2016',

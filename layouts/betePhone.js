@@ -37,43 +37,9 @@ var BETE_PHONE_LAYOUT = {
   },
   'transform' : {
     // Based on transliteration of Latin to Bété.
-    'i' : '\ue622',
+    // Still under construction as of 9-Apr-2020
     'a' : '\ue623',
-    'u' : '\ue624',
-    'e' : '\ue626',
-    'E' : '\ue625',  // E -> ee
-    '\ue626\u001De' : '\ue625',  // ee
-    'o' : '\ue73e',
-    'oi' : '\ue743',
-    'oo' : '\ue73c',
-    'oo-' : '\ue73d',
-    'O' : '\ue627',  // oo
-    '\ue628\u001Do' : '\ue627',  // oo
-    '\ue626\u001Di' : '\ue629',  // ei
-    '\ue622\u001Dn' : '\ue62a',  // in
-    '\ue62a\u001Dn' : '\ue62b',  // inn
-    '\ue623\u001Dn' : '\ue62c',  // an
-    '\ue626\u001Dn' : '\ue62d',  // en
-
-    'ue': '\ue741',
-    'uee': '\ue740',
-    'ui': '\ue742',
-
-    // Many more for the consonants and syllables.
-    'coo': '\ue626',
-    'cui': '\ue626\ue626',
-
-    'k':  '\ue600',
-    '\ue600\u001Di':  '\ue600',  // ki
-    '\ue600\u001Da':  '\ue601',  // ka
-    '\ue600\u001Du':  '\ue602',  // ku
-    '\ue600\u001De':  '\ue604',  // ke
-    '\ue600\u001Do':  '\ue606',  // ko
-    '\ue604\u001De':  '\ue603',  // ke + e -> kee
-    '\ue600\u001DE':  '\ue603',  // kE -> kee
-    '\ue600\u001DO':  '\ue605',  // kO -> koo
-    '\ue606\u001Do':  '\ue605',  // ko + o -> koo
-    '\ue602\u001Da':  '\ue607',  // kua
+    'an' : '\ue62c',  // an    'u' : '\ue624',
 
     'b':  '\ue61b',
     'bi':  '\ue61b',
@@ -83,14 +49,14 @@ var BETE_PHONE_LAYOUT = {
     'be':  '\ue602\ue602',
     'bee': '\ue601\ue601',
     'beu': '\ue600\ue600',
-    'beu[-\ue74a]': '\ue603',
+    'beu[-\ue74a]': '\ue603',   // "-" or 2
     'bhee':  '\ue614',
     'bheu':  '\ue616',
     'bhi':  '\ue617',
     'bhla':  '\ue622',
     'bhlo':  '\ue620',
     'bhlo':  '\ue620',
-    'bhloo[-\ue74a]':  '\ue621',
+    'bhloo[-\ue74a]':  '\ue621',   // "-" or 2
     'bhloo\ue74a':  '\ue621',
     'bho':  '\ue619',
     'bhoo':  '\ue618',
@@ -100,66 +66,69 @@ var BETE_PHONE_LAYOUT = {
     'bo':  '\ue605',
     'boo':  '\ue620',
     'bri':  '\ue60c',
-    'bri[-\ue74a]':  '\ue60d\ue60d',
+    'bri[-\ue74a]':  '\ue60d\ue60d',   // "-" or 2
     'bra':  '\ue608',
-    'bra[-\ue74a]':  '\ue609',
+    'bra[-\ue74a]':  '\ue609',   // "-" or 2
     'bre':  '\ue60b',
     'bree':  '\ue60a',
-    'bree[-\ue74a]':  '\ue60d',
+    'bree[-\ue74a]':  '\ue60d',   // "-" or 2
     'bro':  '\ue60f',
     'broe':  '\ue60e\ue60e',
     'broo':  '\ue60e',
     'brou':  '\ue610',
     'bru':  '\ue610',
-    'bru[-\ue74a]':  '\ue611',
+    'bru[-\ue74a]':  '\ue611',  // "-" or 2
     'brui':  '\ue611\ue611',
-    'brui[-\ue74a]':  '\ue612',
+    'brui[-\ue74a]':  '\ue612',  // "-" or 2
     'bui':  '\ue607\ue607',
     'byi':  '\ue603\ue603',
+
+    // Many more for the consonants and syllables.
+    'coo': '\ue626',
+    'cui': '\ue626\ue626',
 
     'd':  '\ue63e',
     'di':  '\ue63e',
     'da':  '\ue63f',
     'du':  '\ue640',
-    'dE':  '\ue628',
     'dee':  '\ue628',
     'di':  '\ue62b',
     'djui':  '\ue65f\ue65f',
     'do':  '\ue62e',
-    'do[-\ue74a]':  '\ue62f',
-    'do\ue74b':  '\ue632\ue632',
+    'do[-\ue74a]':  '\ue62f',    // "-" or 2
     'doo':  '\ue62c',
-    'doo[-\ue74a]':  '\ue62d',
+    'doo[-\ue74a]':  '\ue62d',   // "-" or 2
     'dro':  '\ue637',
     'dui':  '\ue62d\ue62d',
     'dwa':  '\ue632',
 
+    'e' : '\ue626',
+    'ee' : '\ue625',
+    'ei' : '\ue629',  // ei
+    'en' : '\ue62d',  // en
+
     'f':  '\ue65a',
-    'fi':  '\ue65a',
     'fa':  '\ue65b',
-    'fu':  '\ue65c',
-    'fE':  '\ue65d',
+    'fan':  '\ue662',
     'fee':  '\ue65d',
     'fe':  '\ue65e',
-    'fO':  '\ue65f',
+    'fi':  '\ue65a',
     'foo':  '\ue65f',
     'fo':  '\ue660',
+    'fu':  '\ue65c',
     'fua':  '\ue661',
-    'fan':  '\ue662',
 
     'g':  '\ue683',
     'gi':  '\ue683',
     'ga':  '\ue684',
     'gba':  '\ue66a',
     'gu':  '\ue65b\ue65b',
-    'gE':  '\ue686',
     'gee':  '\ue686',
     'gue':  '\ue687',
     'gua':  '\ue688',
     'gb':  '\ue6a6',
     'gbi':  '\ue6a6',
     'gbu':  '\ue6a8',
-    'gbE':  '\ue6a9',
     'gbee':  '\ue6a9',
     'gbe':  '\ue6aa',
     'gboo':  '\ue6ab',
@@ -167,23 +136,19 @@ var BETE_PHONE_LAYOUT = {
     'goo':  '\ue65b',
     'gru': '\ue668',
     'grui': '\ue668\ue668',
-    'gu[-\ue74a]': '\ue65f',
+    'gu[-\ue74a]': '\ue65f',   // "-" or 2
 
     'h':  '\ue668',   // HI
     'ha':  '\ue669',  // HA
     'han':  '\ue746',
-    'hE':  '\ue66b',  // HEE
     'hee':  '\ue66b', // HEE
     'he':  '\ue66c',  // He
     'hi':  '\ue668',  // HI
     'hin':  '\ue671', // HIN
-    'hO':  '\ue66d',  // HOO
     'hoo':  '\ue66d', // HOO
     'ho':  '\ue66e',  // HO
     'hei':  '\ue66f', // HEI
-    'hEi':  '\ue66f', // HEEI
     'heei':  '\ue66f',// HEEI
-    'hOu':  '\ue670', // HOOU
     'hoou':  '\ue670',// HOOU
     'hun':  '\ue673', // HUN
     'hen':  '\ue674', // HEN
@@ -191,27 +156,38 @@ var BETE_PHONE_LAYOUT = {
     'hu':  '\ue66a',  // HU
     'hua':  '\ue676', // HUAN
 
+    'i' : '\ue622',
+    'in' : '\ue62a',  // in
+    'inn' : '\ue62b',  // inn
+
     'j':  '\ue64b',
     'ji':  '\ue64b',
     'ja':  '\ue64c',
     'ju':  '\ue64d',
-    'jE':  '\ue64e',
     'jee':  '\ue64e',
     'je':  '\ue64f',
-    'jO':  '\ue650',
     'joo':  '\ue650',
     'jo':  '\ue651',
     'jjo':  '\ue652',
     'jol':  '\ue652',
     'Jo':  '\ue652',
     'JO':  '\ue652',
+
+    'k':  '\ue600',
+    'ki':  '\ue600',  // ki
+    'ka':  '\ue601',  // ka
+    'ku':  '\ue602',  // ku
+    'ke':  '\ue604',  // ke
+    'ko':  '\ue606',  // ko
+    'kee':  '\ue603',  // ke + e -> kee
+    'koo':  '\ue605',  // ko + o -> koo
+    'kua':  '\ue607',  // kua
     'kp':  '\ue69f',
-    'kpi':  '\ue69f',
     'kpa':  '\ue6a0',
     'kpu':  '\ue6a1',
-    'kpE':  '\ue6a2',
     'kpee':  '\ue6a2',
     'kpe':  '\ue6a3',
+    'kpi':  '\ue69f',
     'kpoo':  '\ue6a4',
     'kpo':  '\ue6a5',
     'krwa':  '\ue699',
@@ -220,17 +196,15 @@ var BETE_PHONE_LAYOUT = {
     'li':  '\ue636',
     'la':  '\ue637',
     'lu':  '\ue638',
-    'lE':  '\ue639',
-    'lee':  '\ue639',
     'le':  '\ue63a',
-    'lO':  '\ue63b',
+    'lee':  '\ue639',
     'loo':  '\ue63b',
     'lo':  '\ue63c',
     'lle':  '\ue63d',  // Long Le
     'Le':  '\ue63d',  // Long Le
     'LE':  '\ue63d',  // Long Le
     'lu':  '\ue6b0',
-    'lui[-\ue74a]':  '\ue6b4',
+    'lui[-\ue74a]':  '\ue6b4',  // "-" or 2
 
     'm':  '\ue614',
     'mi':  '\ue614',
@@ -242,18 +216,15 @@ var BETE_PHONE_LAYOUT = {
     'mue':  '\ue61a',
 
     'mb':  '\ue693',
-    'mbi':  '\ue693',
     'mba':  '\ue694',
-    'mbu':  '\ue695',
-    'mbE':  '\ue696',
+    'mbi':  '\ue693',
+    'mbe':  '\ue698',
     'mbee':  '\ue696',
     'mbEE':  '\ue697',
-    'mbe':  '\ue698',
     'mbO':  '\ue699',
     'mboo':  '\ue699',
     'mbo':  '\ue69a',
     'mbU':  '\ue69b',
-    'mbuu':  '\ue69b',
     'mbel':  '\ue69c',  // Long MBE
     'mbOO':  '\ue69d',  // Long MBOO
     'mbOl':  '\ue69d',  // Long MBOO
@@ -262,8 +233,13 @@ var BETE_PHONE_LAYOUT = {
     'M[bB]O':  '\ue69d',  // Long MBOO
     'M[bB]oo':  '\ue69d',  // Long MBOO
     'M[bB]o':  '\ue69e',  // Long MBO
+    'mbu':  '\ue695',
+    'mbuu':  '\ue69b',
 
-    'n':  '\ue745',
+    'n':  '\ue663',
+    'na':  '\ue664',
+    'ne':  '\ue666',
+    'ng':  '\ue745',
     'ngg':  '\ue677',
     'nggi':  '\ue677',
     'ngga':  '\ue678',
@@ -291,28 +267,18 @@ var BETE_PHONE_LAYOUT = {
     'ndi':  '\ue6ae',
     'nda':  '\ue6af',
     'ndu':  '\ue6b0',
-    'ndE':  '\ue6b1',
     'ndee':  '\ue6b1',
     'nde':  '\ue6b2',
-    'ndO':  '\ue6b3',
     'ndoo':  '\ue6b3',
     'ndo':  '\ue6b4',
+    'ni':  '\ue663',
     'nj':  '\ue6b5',
     'nja':  '\ue6b5',
     'nju':  '\ue6b6',
-    'njE':  '\ue6b7',
     'njee':  '\ue6b7',
-    'njO':  '\ue6b8',
     'njoo':  '\ue6b8',
-
-    'n':  '\ue663',
-    'ni':  '\ue663',
-    'na':  '\ue664',
-    'nu':  '\ue665',
-    'ne':  '\ue666',
     'no':  '\ue667',
-
-    'ng':  '\ue745',
+    'nu':  '\ue665',
     'ny':  '\ue747',
     'nyi':  '\ue6c0',
     'nya':  '\ue6c1',
@@ -320,17 +286,21 @@ var BETE_PHONE_LAYOUT = {
     'nye':  '\ue6c3',
     'nyo':  '\ue6c4',
 
+    'o' : '\ue73e',
+    'oi' : '\ue743',
+    'oo' : '\ue73c',
+    'oo-' : '\ue73d',
+    'O' : '\ue627',  // oo  ?
+
     'p':  '\ue68c',
     'pa':  '\ue6d1',
-    'pi':  '\ue68c',
-    'pu':  '\ue68e',
-    'pE':  '\ue68f',
     'pee':  '\ue68f',
     'peu':  '\ue6d1\ue6d1',
     'pe':  '\ue690',
-    'pO':  '\ue691',
-    'poo':  '\ue691',
+    'pi':  '\ue68c',
     'po':  '\ue692',
+    'poo':  '\ue691',
+    'pu':  '\ue68e',
 
     'r':  '\ue6ad',
 
@@ -338,47 +308,43 @@ var BETE_PHONE_LAYOUT = {
     'si':  '\ue62e',
     'sa':  '\ue62f',
     'su':  '\ue630',
-    'sE':  '\ue631',
     'see':  '\ue631',
     'se':  '\ue632',
-    'sO':  '\ue633',
-    'soo':  '\ue633',
     'so':  '\ue634',
+    'so':  '\ue6f2',  // ???
+    'soo':  '\ue633',
     'sia':  '\ue635',
-    'so':  '\ue6f2',
 
+    't':  '\ue644',
     'ta': '\ue6f7',
     'ti': '\ue6fa',
-    'tre': '\ue702',
-    't':  '\ue644',
-    'tu':  '\ue646',
-    'tE':  '\ue647',
-    'tee':  '\ue647',
     'te':  '\ue648',
-    'tO':  '\ue649',
-    'too':  '\ue649',
+    'tee':  '\ue647',
     'to':  '\ue64a',
+    'too':  '\ue649',
+    'tre': '\ue702',
+    'tu':  '\ue646',
+
+    'ue': '\ue741',
+    'uee': '\ue740',
+    'ui': '\ue742',
 
     'v':  '\ue6b9',
-    'vi':  '\ue6b9',
     'va':  '\ue6ba',
-    'vu':  '\ue6bb',
-    'vE':  '\ue6bc',
-    'vee':  '\ue6bc',
     've':  '\ue6bd',
-    'vO':  '\ue6be',
-    'voo':  '\uE70C',
+    'vee':  '\ue6bc',
+    'vi':  '\ue6b9',
+    'vO':  '\ue6be', // ???
     'vo':  '\uE70D',
+    'voo':  '\uE70C',
+    'vu':  '\ue6bb',
 
     'w':  '\ue608',  // w
     'wa': '\ue740',
-    'we':  '\ue60c',
-    'wei':  '\ue610',
-    'wE':  '\ue60b',
-
+    'we': '\ue60c',
+    'wei': '\ue610',
     'wee':  '\ue60b',
     'wi':  '\ue608',  // w
-    'wO':  '\ue60d',
     'woo':  '\ue60d',
     'wo':  '\ue60e',
     'wu':  '\ue60a',
@@ -389,28 +355,28 @@ var BETE_PHONE_LAYOUT = {
     'wve':  '\ue613',  // wve
 
     'y':  '\ue653',
-    'yi':  '\ue653',
     'ya':  '\ue654',
-    'yu':  '\ue655',
-    'yE':  '\ue656',
-    'yee':  '\ue656',
     'ye':  '\ue657',
-    'yO':  '\ue658',
-    'yoo':  '\ue658',
+    'yee':  '\ue656',
+    'yi':  '\ue653',
     'yo':  '\ue659',
+    'yoo':  '\ue658',
+    'yu':  '\ue655',
 
     // Remove ZWNB Space
     '\ufeff([a-zA-Z0-9])': '$1',
   },
-  'historyPruneRegex': 'o|oo|u|ue|' +
+  'historyPruneRegex': 'a|an|o|oo|u|ue|' +
       'b|be|beu|bh|bhe|bhl|bho|bhlo|bhloo|bhy|bo|br|bra|bre|bree|bri|bro|bru|brui|bu|by|' +
       'co|cu|' +
       'd|de|dj|dju|do|doo|dr|dru|du|dw|' +
+      'e|E|' +
       'f|fa|fe|fo|fu|n|h|' +
       'g|gb|gbe|gbo|ge|go|gr|gru|gu|' +
       'he|hE|hi|ho|hoo|hO|hee|ha|hu|' +
+      'i|in|' +
       'j|je|jj|jo|' +
-      'k|kp|kpe|kpo|kr|krw|' +
+      'k|ke|ko|kp|kpe|kpo|kr|krw|ku|' +
       'l|le|lo|ll|lu|lui|' +
       'm|mb|mbe|mbo|mbE|mbO|mbu|mu|' +
       'nd|nde|ndo|ng|ngg|ngga|ngge|nggE|nggo|nggO|Ngg|NGg|nggu|nj|nje|njo|ny|' +
