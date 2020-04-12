@@ -20,7 +20,6 @@ import base
 # import transrule_ccp
 
 import json
-import logging
 import os
 import sys
 import urllib
@@ -134,10 +133,8 @@ class langInfo():
     self.direction = 'ltr'
 
     if sys.maxunicode >= 0x10000:
-      logging.info('WIDE SYSTEM BUILD!!!')
       self.diacritic_list = [unichr(x) for x in range(0x1e100, 0x1e14f)]
     else:
-      logging.info('NARROW SYSTEM BUILD!!!')
       self.diacritic_list = [unichr(0xd838) + unichr(0xdd00 + x) for x in range(0x00, 0x4f)]
 
     self.base_consonant = u'\ud838\udd00'
@@ -199,7 +196,7 @@ class langInfo():
     ]
 
 class NewKBHandler(webapp2.RequestHandler):
-  def get(self):
+  def get(self, match=None):
     langInfo = self.app.config.get('langInfo')
     lang_list = [
         {'shortName':  'tst',
@@ -228,15 +225,16 @@ class NewKBHandler(webapp2.RequestHandler):
 langInstance = langInfo()
 
 app = webapp2.WSGIApplication(
-    [('/nyiakeng/', base.LanguagesHomeHandler),
-     ('/nyiakeng/convertUI/', base.ConvertUIHandler),
-     ('/nyiakeng/downloads/', base.Downloads),
-     ('/nyiakeng/converter/', base.ConvertHandler),
-     ('/nyiakeng/encodingRules/', base.EncodingRules),
-     ('/nyiakeng/diacritic/', base.DiacriticHandler),
+    [
+     ('/(hnj|nyiakeng)/', base.LanguagesHomeHandler),
+     ('/(hnj|nyiakeng)/convertUI/', base.ConvertUIHandler),
+     ('/(hnj|nyiakeng)/downloads/', base.Downloads),
+     ('/(hnj|nyiakeng)/converter/', base.ConvertHandler),
+     ('/(hnj|nyiakeng)/encodingRules/', base.EncodingRules),
+     ('/(hnj|nyiakeng)/diacritic/', base.DiacriticHandler),
 
-     ('/nyiakeng/newkb/', NewKBHandler),
-     ('/nyiakeng/dictionaryN/', base.DictionaryN),
+     ('/(hnj|nyiakeng)/newkb/', NewKBHandler),
+     ('/(hnj|nyiakeng)/dictionaryN/', base.DictionaryN),
 
      ], debug=True,
     config={'langInfo': langInstance}

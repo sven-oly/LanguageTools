@@ -80,15 +80,11 @@ class languageTemplate():
 
 # Shows keyboards for Language
 class LanguagesHomeHandler(webapp2.RequestHandler):
-  def get(self):
+  def get(self, match=None):
+    # Match is the actual url route matched.
     req = webapp2.get_request()
     # Can use this for additional information
     langInfo = self.app.config.get('langInfo')
-    lang_list = [
-        {'shortName':  'tst',
-         'longName': 'Testing'
-        },
-    ]
 
     try:
       text_direction = langInfo.direction
@@ -99,7 +95,6 @@ class LanguagesHomeHandler(webapp2.RequestHandler):
       test_data = langInfo.test_data
     except AttributeError:
       test_data = ''
-    logging.info('test_data: %s' % test_data)
 
     template_values = {
         'direction': text_direction,
@@ -116,7 +111,7 @@ class LanguagesHomeHandler(webapp2.RequestHandler):
 
 # AJAX handler for  converter
 class ConvertHandler(webapp2.RequestHandler):
-  def get(self):
+  def get(self, match=None):
     # TODO: Get the text values
     # Call transliterator
     # Return JSON structure with values.
@@ -149,7 +144,7 @@ def surrogate_to_utf32(high, low):
     return (high << 10) + low - 0x35fdc00
 
 class DiacriticHandler(webapp2.RequestHandler):
-  def get(self):
+  def get(self, match=None):
     langInfo = self.app.config.get('langInfo')
 
     # Generate combinations of base + diacritic pairs
@@ -193,7 +188,7 @@ class DiacriticHandler(webapp2.RequestHandler):
 
 # Presents UI for conversions from font encoding to Unicode.
 class ConvertUIHandler(webapp2.RequestHandler):
-  def get(self):
+  def get(self, match=None):
 
     langInfo = self.app.config.get('langInfo')
 
@@ -269,7 +264,7 @@ def getCombiningCombos(baseHexChar, diacritic_list):
 
 
 class EncodingRules(webapp2.RequestHandler):
-  def get(self):
+  def get(self, match=None):
 
     langInfo = self.app.config.get('langInfo')
 
@@ -287,7 +282,7 @@ class EncodingRules(webapp2.RequestHandler):
 
 
 class Downloads(webapp2.RequestHandler):
-  def get(self):
+  def get(self, match=None):
 
     langInfo = self.app.config.get('langInfo')
     template_values = {
@@ -300,7 +295,7 @@ class Downloads(webapp2.RequestHandler):
     self.response.out.write(template.render(path, template_values))
 
 class RenderPage(webapp2.RequestHandler):
-  def get(self):
+  def get(self, match=None):
 
     langInfo = self.app.config.get('langInfo')
 
@@ -328,7 +323,7 @@ class RenderPage(webapp2.RequestHandler):
     self.response.out.write(template.render(path, template_values))
 
 class DictionaryInput(webapp2.RequestHandler):
-    def get(self):
+    def get(self, match=None):
       req = webapp2.get_request()
       top_path = req.path.split('/')
       lang_code = top_path[1]
@@ -353,7 +348,7 @@ class DictionaryInput(webapp2.RequestHandler):
 
 # For N languages in the dictionary
 class DictionaryN(webapp2.RequestHandler):
-  def get(self):
+  def get(self, match=None):
     req = webapp2.get_request()
     top_path = req.path.split('/')
     lang_code = top_path[1]

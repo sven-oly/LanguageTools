@@ -174,7 +174,6 @@ handlers:
 
 - url: /zag/.*
   script: zaghawa.app
-  
 
 - url: /kb/.*
   script: keyboard.app
