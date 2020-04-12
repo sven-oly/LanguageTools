@@ -50,6 +50,30 @@ unicode_font_list = [
     'source': '/fonts/SouthAsia/Hindia.otf',
     'attribution': 'https://www.wfonts.com/category/various',
   },
+  {
+    'family': 'Nirmala',
+    'longName': 'Nirmala',
+    'source': '/fonts/SouthAsia/Nirmala.ttf',
+    'attribution': 'https://www.wfonts.com/category/various',
+  },
+  {
+    'family': 'SolaimanLipi_2-2012' ,
+    'longName': 'SolaimanLipi 2012',
+    'source': '/fonts/SouthAsia/SolaimanLipi_22-02-2012.ttf',
+    'attribution': 'https://www.wfonts.com/category/various',
+  },
+  {
+    'family': 'SolaimanLipi_2006',
+    'longName': 'SolaimanLipi 2006',
+    'source': '/fonts/SouthAsia/SolaimanLipi_29-05-06.ttf',
+    'attribution': 'https://www.wfonts.com/category/various',
+  },
+  {
+    'family': 'SolaimanLipi_Bold',
+    'longName': 'SolaimanLipi Bold',
+    'source': '/fonts/SouthAsia/SolaimanLipi_Bold_10-03-12.ttf',
+    'attribution': 'https://www.wfonts.com/category/various',
+  },
 ]
 
 links = [
