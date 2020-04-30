@@ -159,6 +159,6 @@ app = webapp2.WSGIApplication([
   ('/feedback/', FeedbackHandler),
   ('/entererror/', SubmitErrorHandler),
   ('/store_error_sample/', StoreErrorHandler),
-  ('/getfeedback/', GetFeedbackHandler),
+  ('/feedback/getfeedback/', GetFeedbackHandler),
   ],
   debug=True)

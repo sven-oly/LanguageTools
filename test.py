@@ -41,11 +41,42 @@ class testLocaleHandler(webapp2.RequestHandler):
           'value': 1,
       }
 
+      logging.info("user agent = %s" % self.request.headers['user-agent'])
+      logging.info("country = %s" % self.request.headers['X-AppEngine-Country'])
+      #    logging.info("region = %s" % self.request.headers['X-AppEngine-Region'])
+      #    logging.info("City = %s" % self.request.headers['X-AppEngine-City'])
+      #    logging.info("LatLong = %s" % self.request.headers['X-AppEngine-CityLatLong'])
+
+      isMobile = self.request.get('mobile')
+      uastring = self.request.headers.get('user_agent')
+      if isMobile or ("Mobile" in uastring and "Safari" in uastring):
+        logging.info('Mobile')
+        isMobile = True
+      else:
+        logging.info('NOT Mobile')
+
+      template_values = {
+          'value': 1,
+        'isMobile': isMobile,
+      }
       path = os.path.join(os.path.dirname(__file__), 'testLocales.html')
       self.response.out.write(template.render(path, template_values))
+
+
+class LayoutToKeyMan(webapp2.RequestHandler):
+  def get(self):
+    template_values = {
+      'value': 1,
+      'kb_js': "aho",
+      'kb_layout': 'AHO_LAYOUT',
+
+    }
+    path = os.path.join(os.path.dirname(__file__), 'kbkeyman.html')
+    self.response.out.write(template.render(path, template_values))
 
 
 app = webapp2.WSGIApplication([
     ('/test/', testHandler),
     ('/test/testLocale/', testLocaleHandler),
+    ('/test/kbkm/', LayoutToKeyMan),
 ], debug=True)
