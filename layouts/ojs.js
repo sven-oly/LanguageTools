@@ -284,3 +284,4 @@ transform:{
 
 // Load the layout and inform the keyboard to switch layout if necessary.
 google.elements.keyboard.loadme(OJS_LAYOUT);
+ojs = OJS_LAYOUT;

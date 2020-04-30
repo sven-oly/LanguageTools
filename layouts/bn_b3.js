@@ -47,3 +47,4 @@ var BN3_LAYOUT = {
 
 // Load the layout and inform the keyboard to switch layout if necessary.
 google.elements.keyboard.loadme(BN3_LAYOUT);
+bn_b3 = BN3_LAYOUT;

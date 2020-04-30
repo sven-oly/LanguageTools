@@ -111,3 +111,4 @@ var BN2_LAYOUT = {
 
 // Load the layout and inform the keyboard to switch layout if necessary.
 google.elements.keyboard.loadme(BN2_LAYOUT);
+bn_b2 = BN2_LAYOUT;

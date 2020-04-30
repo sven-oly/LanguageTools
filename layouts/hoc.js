@@ -86,3 +86,4 @@ var HOC_LAYOUT = {
 
 // Load the layout and inform the keyboard to switch layout if necessary.
 google.elements.keyboard.loadme(HOC_LAYOUT);
+hoc = HOC_LAYOUT;

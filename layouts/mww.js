@@ -47,3 +47,4 @@ var MWW_LAYOUT = {
 
 // Load the layout and inform the keyboard to switch layout if necessary.
 google.elements.keyboard.loadme(MWW_LAYOUT);
+mww = MWW_LAYOUT;

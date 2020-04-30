@@ -47,3 +47,4 @@ var TO_NAM_LAYOUT = {
 
 // Load the layout and inform the keyboard to switch layout if necessary.
 google.elements.keyboard.loadme(TO_NAM_LAYOUT);
+to_nom = TO_NAM_LAYOUT;

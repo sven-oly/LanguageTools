@@ -95,3 +95,4 @@ var MNW__MUL_LAYOUT = {
 
 // Load the layout and inform the keyboard to switch layout if necessary.
 google.elements.keyboard.loadme(MNW__MUL_LAYOUT);
+mnw_mul = MNW__MUL_LAYOUT;

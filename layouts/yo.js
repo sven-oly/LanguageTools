@@ -47,3 +47,4 @@ var YO_LAYOUT = {
 
 // Load the layout and inform the keyboard to switch layout if necessary.
 google.elements.keyboard.loadme(YO_LAYOUT);
+yo = YO_LAYOUT;

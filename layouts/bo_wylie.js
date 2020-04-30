@@ -91,3 +91,4 @@ var BO_WYLIE_LAYOUT = {
 
 // Load the layout and inform the keyboard to switch layout if necessary.
 google.elements.keyboard.loadme(BO_WYLIE_LAYOUT);
+bo_wylie = BO_WYLIE_LAYOUT;

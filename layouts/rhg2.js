@@ -85,3 +85,4 @@ var RHG_LAYOUT2 = {
 
 // Load the layout and inform the keyboard to switch layout if necessary.
 google.elements.keyboard.loadme(RHG_LAYOUT2);
+rhg2 = RHG_LAYOUT2;

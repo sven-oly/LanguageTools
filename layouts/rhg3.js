@@ -102,3 +102,4 @@ var RHG_LAYOUT3 = {
 
 // Load the layout and inform the keyboard to switch layout if necessary.
 google.elements.keyboard.loadme(RHG_LAYOUT3);
+rhg3 = RHG_LAYOUT3;

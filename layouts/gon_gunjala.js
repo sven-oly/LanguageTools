@@ -53,3 +53,4 @@ var GON_GUNJALA_LAYOUT = {
 
 // Load the layout and inform the keyboard to switch layout if necessary.
 google.elements.keyboard.loadme(GON_GUNJALA_LAYOUT);
+gon_gunjala = GON_GUNJALA_LAYOUT;

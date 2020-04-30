@@ -72,3 +72,4 @@ var EN_ANANGU_LAYOUT = {
 
 // Load the layout and inform the keyboard to switch layout if necessary.
 google.elements.keyboard.loadme(EN_ANANGU_LAYOUT);
+en_anangu = EN_ANANGU_LAYOUT;

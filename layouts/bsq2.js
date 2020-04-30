@@ -41,3 +41,4 @@ var BSQ2_LAYOUT = {
 
 // Load the layout and inform the keyboard to switch layout if necessary.
 google.elements.keyboard.loadme(BSQ2_LAYOUT);
+bsq2 = BSQ2_LAYOUT;

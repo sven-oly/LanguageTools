@@ -54,3 +54,4 @@ var YO_1983_LAYOUT = {
 
 // Load the layout and inform the keyboard to switch layout if necessary.
 google.elements.keyboard.loadme(YO_1983_LAYOUT);
+yo1983 = YO_1983_LAYOUT;

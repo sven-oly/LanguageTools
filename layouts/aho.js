@@ -31,7 +31,7 @@ var AHO_LAYOUT = {
             '{{\ud805\udf08}}{{\ud805\udf03}}{{\ud805\udf09}}{{\ud805\udf3c}}' +
             '{{\ud805\udf3d}}/'
     },
-    's, sc': {
+    's,sc': {
       '': '~!{{\ud805\udf3e}}#$%^&*()_+' +
           '{{}}\u00A3\u20AC{{\ud805\udf1d}}' +
             '{{\ud805\udf1f}}{{}}{{\ud805\udf25}}{{\ud805\udf23}}{{}}{{}}{}|' +
@@ -79,3 +79,4 @@ var AHO_LAYOUT = {
 
 // Load the layout and inform the keyboard to switch layout if necessary.
 google.elements.keyboard.loadme(AHO_LAYOUT);
+aho = AHO_LAYOUT;

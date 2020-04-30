@@ -54,3 +54,4 @@ var BAX_LAYOUT = {
 
 // Load the layout and inform the keyboard to switch layout if necessary.
 google.elements.keyboard.loadme(BAX_LAYOUT);
+bax = BAX_LAYOUT;

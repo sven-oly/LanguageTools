@@ -65,3 +65,4 @@ var CCP_REORDER_LAYOUT = {
 
 // Load the layout and inform the keyboard to switch layout if necessary.
 google.elements.keyboard.loadme(CCP_REORDER_LAYOUT);
+ccp_reorder = CCP_REORDER_LAYOUT;

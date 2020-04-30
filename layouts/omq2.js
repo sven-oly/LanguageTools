@@ -59,3 +59,4 @@ var OMQ2_LAYOUT = {
 
 // Load the layout and inform the keyboard to switch layout if necessary.
 google.elements.keyboard.loadme(OMQ2_LAYOUT);
+omq2 = OMQ2_LAYOUT;

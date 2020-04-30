@@ -47,3 +47,4 @@ var MOR_LAYOUT = {
 
 // Load the layout and inform the keyboard to switch layout if necessary.
 google.elements.keyboard.loadme(MOR_LAYOUT);
+mor = MOR_LAYOUT;

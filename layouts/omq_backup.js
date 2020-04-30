@@ -47,3 +47,4 @@ var OMQ_LAYOUT = {
 
 // Load the layout and inform the keyboard to switch layout if necessary.
 google.elements.keyboard.loadme(OMQ_LAYOUT);
+omq_backup = OMQ_LAYOUT;

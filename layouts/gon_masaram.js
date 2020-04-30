@@ -51,3 +51,4 @@ var GON_MASARAM_LAYOUT = {
 
 // Load the layout and inform the keyboard to switch layout if necessary.
 google.elements.keyboard.loadme(GON_MASARAM_LAYOUT);
+gon_masaram = GON_MASARAM_LAYOUT;

@@ -53,3 +53,4 @@ var SYL_LAYOUT = {
 
 // Load the layout and inform the keyboard to switch layout if necessary.
 google.elements.keyboard.loadme(SYL_LAYOUT);
+syl = SYL_LAYOUT;

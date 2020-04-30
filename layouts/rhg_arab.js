@@ -58,3 +58,4 @@ var RHG_ARAB_LAYOUT = {
 
 // Load the layout and inform the keyboard to switch layout if necessary.
 google.elements.keyboard.loadme(RHG_ARAB_LAYOUT);
+rhg_arab = RHG_ARAB_LAYOUT;

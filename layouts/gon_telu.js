@@ -41,3 +41,4 @@ var GON_TELU_LAYOUT = {
 
 // Load the layout and inform the keyboard to switch layout if necessary.
 google.elements.keyboard.loadme(GON_TELU_LAYOUT);
+gon_telu = GON_TELU_LAYOUT;

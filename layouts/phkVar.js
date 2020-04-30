@@ -19,15 +19,15 @@ var PHK_VAR_LAYOUT = {
   'mappings': {
     '': {
       '': '`\u1041\u1042\u1043\u1044\u1045\u1046\u1047\u1048\u1049\u1040{{\u1014}}=' +
-          '{{်}}{{ဝ\ufe00}}{{\u1031}}{{\uAA7A\ufe00}}{{တ\ufe00}}{{ယ\ufe00}}{{ု}}' +
+          '{{်}}{{ဝ\ufe00}}{{\u200c\u1031\ufe00}}{{\uAA7A\ufe00}}{{တ\ufe00}}{{ယ\ufe00}}{{ု}}' +
             '{{ိ}}{{ွ}}{{ပ\ufe00}}{{}}{{}}{{\u104a}}' +
           '{{ႃ}}{{\uaa6c\ufe00}}{{ဒ}}{{ၸ\ufe00}}{{င\ufe00}}{{\uaa6d}}{{\u109d}}' +
           '{{က\ufe00}}{{လ\ufe00}}\u1064\u1062' +
-          '{{\uAA78}}{{ၵ\ufe00}}{{ꩡ\ufe00}}{{ထ\ufe00}}{{ပ\ufe00}}{{ꩫ\ufe00}}{{မ\ufe00}},.{{\u104b}}'
+          '{{\uAA78}}{{ၵ\ufe00}}{{ꩡ\ufe00}}{{ထ\ufe00}}{{\u1017}}{{ꩫ\ufe00}}{{မ\ufe00}},.{{\u104b}}'
     },
     's, sc': {
       '': '~{{\uaa78}}{{\uaa79}}{{\u1036\u00a0\u1036}}{{\u102e\u00a0\u102e}}{{\u103a\u00a0\u103a}}{{\u102c}}{{\u109d\u00a0\u109d}}*(){{\u101b}}+' +
-          '{{\uaa77}}{{ွ်}}{{\u105e\u103a}}{{ြ}}{{\u1039\u1010\ufe00}}{{ျ}}' +
+          '{{\uaa77}}{{ွ်}}{{\u105e\u103a}}{{\u200cြ}}{{\u1039\u1010\ufe00}}{{ျ}}' +
             '{{\u1030}}{{ီ}}{{\u1089}}{{\u1039\u1015\ufe00}}{{\u105C}}{{\u103A}}{{\u102f}}' +
           '{{ဢ\ufe00}}{{꩷}}{{ꩰ}}{{\u103a\u1036}}\u1087\u1088{{ို}}' +
             '{{\u1039\u1000\ufe00}}\u1038:"' +
@@ -37,7 +37,8 @@ var PHK_VAR_LAYOUT = {
       '': '`1234567890-=' +
           'qwertyuiop[]\\' +
           'asdfghjkl;\'' +
-          'zxcvbnm,./'
+          'zxcvbnm,./' +
+          '\u00a0'
     },    'l,cl': {
       '': '`1234567890-=' +
           'QWERTYUIOP[]\\' +
@@ -54,9 +55,16 @@ var PHK_VAR_LAYOUT = {
 
   'transform' : {
     // Reorder vowel E after consonant
-    '\u200c\u1031(\ufe00)?([\u1000-\u102a\u103f\u104e]\ufe00?)': '$2\u1031$1'
-    }
+    '\u200c([\u1031\u103c]\ufe00?)([\u1000-\u1029\u1075-\u1081\uaa60-\uaa7a]\ufe00?)': '$2$1',
+
+    // Doubled vowel symbols
+    '\u102e\u001d?\u102e': '\u102e\u00a0\u102e',
+    '\u1036\u001d?\u1036': '\u1036\u00a0\u1036',
+    '\u103a\u001d?\u103a': '\u103a\u00a0\u103a',
+    '\u109d\u001d?\u109d': '\u109d\u00a0\u109d',
+  },
 };
 
 // Load the layout and inform the keyboard to switch layout if necessary.
 google.elements.keyboard.loadme(PHK_VAR_LAYOUT);
+phkVar = PHK_VAR_LAYOUT;

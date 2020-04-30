@@ -135,3 +135,4 @@ var ZAG_PUA_LAYOUT = {
 
 // Load the layout and inform the keyboard to switch layout if necessary.
 google.elements.keyboard.loadme(ZAG_PUA_LAYOUT);
+zag_pua = ZAG_PUA_LAYOUT;

@@ -265,3 +265,4 @@ X:"\u166D",
 }
 
 google.elements.keyboard.loadme(OJICREE_LAYOUT)
+ojicree = OJICREE_LAYOUT;

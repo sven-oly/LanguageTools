@@ -49,3 +49,4 @@ var TMH_LAYOUT = {
 
 // Load the layout and inform the keyboard to switch layout if necessary. cibu
 google.elements.keyboard.loadme(TMH_LAYOUT);
+tmh = TMH_LAYOUT;
