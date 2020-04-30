@@ -1,0 +1,165 @@
+<html><head>
+    <title>Keyboard to Keyman</title>
+
+    <script>
+    // TESTING
+    var loaded_layout = '';
+    function layout_info(x) {
+      layout_loaded = x;
+    }
+
+    var k = { loadme: Object};
+    k.loadme.prototype = function(a) {
+      return a;
+    }
+    var e = {keyboard: k};
+
+    var google = {elements: e};
+    //google.elements = ''
+
+     google.elements.keyboard.loadme.prototype = layout_info;
+
+     //google.elements.keyboard.loadme.prototype = function(a) {
+     //      return a;
+     //};
+    </script>
+  <script src="/layouts/en.js"></script>
+  <script src="/layouts/{{kb_js}}.js"></script>
+  <script src="/layouts/bn_b2.js"></script>
+  <script src="/layouts/gon_gunjala.js"></script>
+  <script>
+
+  const en_qwerty = EN_LAYOUT['mappings'];
+  let en_qwerty_map = en_qwerty[""];
+  if (!en_qwerty_map) {
+    // Need to generalize this.
+    en_qwerty_map = en_qwerty[',c'];
+  }
+  const en_qwerty_keys = en_qwerty_map[""];
+
+  function mapnames() {
+    // Create a map from the keys to the Keyman names.
+   var en_map = {};
+  for (var k = 0x30; k < 0x3a; k++) {
+   var char = String.fromCharCode(k);
+    en_map[char] = "K_" + char;
+  }
+  for (var k = 0x41; k < 0x5b; k++) {
+   var char = String.fromCharCode(k);
+    en_map[char] = "K_" + char;
+  }
+  en_map[','] = 'K_COMMA';
+  en_map['.'] = 'K_PERIOD';
+  en_map[';'] = 'K_SEMICOLON';
+  en_map['\''] = 'K_SINGLEQUOTE'
+  en_map['['] = 'K_LBRACKET'
+  en_map[']'] = 'K_RBRACKET'
+  en_map['\\'] = 'K_BACKSLASH';
+  en_map['`'] = 'K_GRAVE';
+  en_map['-'] = 'K_HYPHEN';
+  en_map['='] = 'K_EQUALS';
+  return en_map;
+}
+
+function map_qwerty(layer_values, layer_txt, querty_names) {
+  // Given a layer and a name, create a mapping from those keys to
+  // the values, plus the layer text.
+  // + [SHIFT K_5] > 'ᶠ'
+
+  let layer_list = [];
+  let layer_items = parselayerstring(layer_values);
+  for (let index = 0; index < en_qwerty_keys.length; index++) {
+    let upper = en_qwerty_keys[index].toUpperCase();
+    if (layer_items[index]) {
+      layer_list.push("+ [ " + layer_txt + querty_names[upper] +
+        "] > \'" + layer_items[index] + "\'" + "\n");
+    }
+  }
+  return layer_list;
+}
+
+function parselayerstring(layerstring) {
+  // Get the characters for each key as an array.
+  let ret = [];
+  let index = 0;
+  let layerdata = layerstring;
+  let splits = layerdata.split("}}");  // Get each chunk.
+  for (var i in splits) {
+    var has_double_brace = splits[i].indexOf("{{");
+    var last_index = splits[i].length;
+    var saved = null;
+    if (has_double_brace >= 0) {
+      last_index = has_double_brace;
+      saved = splits[i].substring(has_double_brace + 2);
+    }
+    for (var k = 0; k < last_index; k++) {
+      ret.push(splits[i][k]);
+    }
+    if (saved) {
+      ret.push(saved);
+    }
+  }
+
+  return ret;
+}
+
+// Given a field such as "", "s", "l", find the property containing that one.
+function propContaining(props, field) {
+  for (let i in props) {
+    if (props[i] == field) {
+      return props[i];
+    }
+    let splits = props[i].split(",");
+    for (k in splits) {
+      if (splits[k] == field) {
+        return props[i];
+      }
+    }
+    // TODO: consider orders such as sc, cs, lsc, scl, etc.
+  }
+  return null;
+}
+
+function map_en_to_x(xlayout) {
+  // Compute the full mapping from QWERTY keys to the xlayout values.
+  const qwerty_names = mapnames();
+ 
+  // For each layer, map the values and add the text
+  // for empty, s, c, sc, l, ls, lc, lsc layers
+     // Check if there is any duplicate.
+  var vals = xlayout;
+  var layers = []
+  let keys = Object.getOwnPropertyNames(vals);
+
+  // Need to generalize this to get layer with "".
+  let base = propContaining(keys, "");
+  layers.push(map_qwerty(vals[base][""], "", qwerty_names));
+  base = propContaining(keys, "s");
+  layers.push(map_qwerty(vals[base][""], "SHIFT ", qwerty_names));
+
+  base = propContaining(keys, "c");
+  layers.push(map_qwerty(vals[base][""], "CTRL ", qwerty_names));
+  base = propContaining(keys, "sc");
+  layers.push(map_qwerty(vals[base][""], "SHIFT CTRL ", qwerty_names));
+  // Add Lock levels as needed.
+  return layers;
+}
+
+function onPageLoaded() {
+  //let LOAD_NAME = {{kb_js}}.google.elements.keyboard.loadme();
+  let layout = {{kb_js}};
+  var layers = map_en_to_x(layout['mappings']);
+  //var layers = map_en_to_x(GON_GUNJALA_LAYOUT['mappings']);
+
+  var output = document.getElementById('output');
+  output.innerHTML = layers.join(" XXXX");
+}
+
+</script>
+</head>
+
+  <body onload="onPageLoaded()">
+  <h1>Load keyboard</h1>
+  <textarea id="output"></textarea>
+</body>
+</html>

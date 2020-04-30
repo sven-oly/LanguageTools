@@ -385,7 +385,11 @@
     <h1>Testing locale support with Intl.DateTime formatting</h1>
     <h2 id="main"></h2>
     <p id='local_counts'/>
-    
+
+    {% if isMobile %}
+    <h1>HEY MOBILE USER!</h1>
+    {% endif %}
+
     <h2>Intersections of the locales supported by Intl classes</h2>
     <p>These are results from intersecting the sets of locales
     supported by the 6 classes in the Intl object: Collator,
