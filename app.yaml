@@ -166,6 +166,9 @@ handlers:
 - url: /tmh/.*
   script: tamashek.app
 
+- url: /nst/.*
+  script: tangsa.app
+
 - url: /to/.*
   script: tongan.app
 
