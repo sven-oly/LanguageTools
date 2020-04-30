@@ -17,7 +17,7 @@ var private_use_map_combined = {
         "F": ["\u103a\u1036", "\u103a\u1036", "\u103a\u1036"],
         "G": ["\u1087", "\u1087", "\u1087"],
         "H": ["\u1088", "\u1088", "\u1088"],
-        "I": ["ျ", "ီ", "ီ"],
+        "I": ["\u102e", "ီ", "ီ"],
         "J": ["ို", "ို", "ို"],
         "K": ["\u1039\u1000\ufe00", "\u1039\u1000\ufe00", "\u1039\u1000\ufe00"],
   "L": ["\u1038", "\u1038", ""],
@@ -120,11 +120,11 @@ function convertEncodingToUnicode(inbox, outbox, encodingIndex) {
 
   // Insert more complex replacements here.
   var newText = outtext;
-  ePattern = /([\u1031\u103c]\ufe00?)([\u1000-\u1029\u1075-\u1081\uaa60-\uaa76]\uf300?)/gi;
+  ePattern = /([\u1031\u103c]\ufe00?)([\u1000-\u1029\u1075-\u1081\uaa60-\uaa7a]\ufe00?)/gi;
   eReplace = "$2$1";
   newText = outtext.replace(ePattern, eReplace);
 
-  spaceCombPattern = / ([\u102f\u103d]`)/gi;
+  spaceCombPattern = / ([\u102f\u103d])/gi;
   spaceCombReplace = "$1 ";
   newText = newText.replace(spaceCombPattern, spaceCombReplace);
 
@@ -132,7 +132,7 @@ function convertEncodingToUnicode(inbox, outbox, encodingIndex) {
   spaceCombReplace = "$1\u102f ";
   newText = newText.replace(spaceCombPattern, spaceCombReplace);
 
-  pattern = /([\u1031]\ufe00?)([\u103d])/gi;
+  pattern = /([\u1031]\ufe00?)([\u103a\u103d]+)/gi;
   replacement = "$2$1 ";
   newText = newText.replace(pattern, replacement);
 

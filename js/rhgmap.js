@@ -94,6 +94,9 @@ var inCapsLock = false;
     var out = e.srcElement;
     var layer = eventPropToLayerCode(e);
     var newVal = '';
+    if (inCapsLock) {
+      newVal = key;  // Just to try this.
+    }
     if (key in rhg_map) {
       newVal = rhg_map[key][layer];
     }
