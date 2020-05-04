@@ -60,14 +60,18 @@ Language = 'Chakma'
 Language_native = '𑄌𑄋𑄴𑄟𑄳𑄦'
 
 unicode_font_list = [
-  { 'family': 'RibengUni2018018',
-    'longName': 'RibengUni 2018-06-18',
-    'source': '/fonts/RibengUni-Regular_20180618.ttf',
+  { 'family': 'RibengUni2020',
+    'longName': 'RibengUni 2020',
+    'source': '/fonts/RibengUni-Regular.ttf',
   },
   { 'family': 'NotoSansChakma',
     'longName': 'NotoSans Chakma',
     'source': '/fonts/NotoSansChakma-Regular.ttf',
   },
+  {'family': 'RibengUni2018018',
+   'longName': 'RibengUni 2018-06-18',
+   'source': '/fonts/RibengUni-Regular_20180618.ttf',
+   },
   { 'family': 'extendedNotoSansChakma',
     'longName': 'extended NotoSans Chakma',
     'source': '/fonts/extendedNotoSansChakma-Regular.ttf',
@@ -149,20 +153,8 @@ class langInfo():
     self.links = links
 
     self.text_file_list = []
-    self.unicode_font_list = [
-        { 'family': 'RibengUni2018018',
-          'longName': 'RibengUni 2018-06-18',
-          'source': '/fonts/RibengUni-Regular_20180618.ttf',
-        },
-        { 'family': 'NotoSansChakma',
-          'longName': 'NotoSans Chakma',
-          'source': '/fonts/NotoSansChakma-Regular.ttf',
-        },
-        { 'family': 'extendedNotoSansChakma',
-          'longName': 'extended NotoSans Chakma',
-          'source': '/fonts/extendedNotoSansChakma-Regular.ttf',
-        },
-    ]
+    self.unicode_font_list = unicode_font_list
+
     # For dictionary
     self.dictionaryLang1 = "English"
     self.dictionaryLang2 = self.Language
