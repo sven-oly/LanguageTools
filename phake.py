@@ -48,6 +48,10 @@ class langInfo():
     ]
 
     self.unicode_font_list = [
+      {'source': '/fonts/Phake/GhinKhao-Bold.otf',
+       'family': 'GhinKhao-Bold',
+       'longName': 'GhinKhao Bold',
+       },
       {'source': '/fonts/Myanmar/NotoSerifMyanmar-Light.ttf',
        'family': 'NotoSerif Myanmar Light',
        'longName': 'Noto Serif Myanmar Light',
