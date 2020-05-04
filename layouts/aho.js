@@ -72,8 +72,8 @@ var AHO_LAYOUT = {
     // Reorder sign killer before other signs.
     '(\ud805[\udf20-\udf2a])(\ud805\udf2b)': '$2$1',
 
-    // Reorder U/O + I signs.
-    '(\ud805[\udf24\udf28])(\ud805[\udf22\udf29])': '$2$1',
+    // Reorder U/O + I signs, including AM.
+    '(\ud805[\udf24\udf28])(\ud805[\udf22\udf29\udf2a])': '$2$1',
   }
 };
 

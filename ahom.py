@@ -122,8 +122,11 @@ class langInfo():
         {'linkText': 'Ahom Unicode block',
          'ref': 'https://www.unicode.org/charts/PDF/U11700.pdf'
         },
+        {'linkText': 'Combiners',
+          'ref': '/' + self.LanguageCode + '/diacritic/'
+        },
         {'linkText': 'Resources',
-         'ref': '/' + self.LanguageCode + '/downloads/'
+          'ref': '/' + self.LanguageCode + '/downloads/'
         },
     ]
 
@@ -142,8 +145,8 @@ class langInfo():
       self.unicodeChars = [unichr(x) for x in range(0x11700, 0x1173f)]
       self.diacritic_list = [unichr(x) for x in range(0x1171d, 0x1172c)]
     else:
-      self.unicodeChars = [unichr(0xd805) + unichr(0xdd00 + x) for x in range(0x00, 0x3f)]
-      self.diacritic_list = [unichr(0xd805) + unichr(0xdd00 + x) for x in range(0x1d, 0x2c)]
+      self.unicodeChars = [unichr(0xd805) + unichr(0xdf00 + x) for x in range(0x00, 0x3f)]
+      self.diacritic_list = [unichr(0xd805) + unichr(0xdf00 + x) for x in range(0x1d, 0x2c)]
 
 
     # Python-based transliteration tool.
