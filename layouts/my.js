@@ -87,14 +87,24 @@ var MY_LAYOUT = {
     '([\u102f\u1030\u1037]+)([\u102d\u102e\u1032-\u1036\u1071-\u1074\u1085\u109d]+)' :
         '$2$1',
 
+    // Standardize order of these
+    '\u103a\u1037': '\u1037\u103a',
+
     // Move vowel anusvara relative to vowel signs
-    '([\u1032\u1036])\u001d?([\u102d-\u1030\1032-\u1036\u1071-\u1074\u1085\u109d]+)': '$2$1',
+    '([\u1032\u1036])\u001d?([\u102d-\u1030\1032-\u1036\u1071-\u1074\u1085\u109d]+)':
+        '$2$1',
 
     // Move vowel anusvara relative to medials signs
     '\u1036([\u103b|\u103c\u103d|\u103e])': '$1\u1036',
 
     // Visible virama before visarga
     '([\u1038\u1087-\u108d\u108f\u109a-\u109c])(\u103a)' : '$2$1',
+
+    // Substitutions of common combinations:
+    '\u1005\u103b': '\u1008',
+    '\u1025\u102e': '\u1026',
+    '\u101e\u103c': '\u1029',
+    '\u101e\u103c\u1031\u001d?\u102c\u103a': '\u102a',
 
   }
 
