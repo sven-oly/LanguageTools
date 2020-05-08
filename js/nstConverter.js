@@ -194,16 +194,16 @@ var private_use_map_combined = {
   'uiurz': ['\ue423\ue440'],
   'uiurc': ['\ue424\ue440'],
   'uiurx': ['\ue426\ue440'],
-  'ok': ['\ue400\ue423'],
-  'ak': ['\ue404\ue423'],
-  'vk': ['\ue454\ue423'],
-  'ek': ['\ue408\ue423'],
-  'ik': ['\ue40c\ue423'],
+  'ok': ['\ue400\ue42e'],
+  'ak': ['\ue404\ue42e'],
+  'vk': ['\ue454\ue42e'],
+  'ek': ['\ue408\ue42e'],
+  'ik': ['\ue40c\ue42e'],
   'uk': ['\ue410\ue423'],
-  'awk': ['\ue414\ue423'],
-  'uik': ['\ue417\ue423'],
-  'uek': ['\ue420\ue423'],
-  'uiuk': ['\ue423\ue423'],
+  'awk': ['\ue414\ue42e'],
+  'uik': ['\ue417\ue42e'],  // Changed from 17, 23
+  'uek': ['\ue420\ue42e'],
+  'uiuk': ['\ue423\ue42e'],
   'oap': ['\ue400\ue435'],
   'op': ['\ue400\ue435'],
   'ap': ['\ue404\ue435'],
@@ -303,13 +303,13 @@ var gamwin_latin_chars =
     "uilz|uilc|uilx|uelz|uelc|uelx|uiulz|uiulc|uiulx|oarz|" +
     "oarc|oarx|arz|arc|arx|vrz|vrc|vrx|erz|erc|erx|irz|irc|irx|" +
     "urz|urc|urx|awrz|awrc|awrx|uirz|uirc|uirx|uerz|uerc|uerx|" +
-    "uiurz|uiurc|uiurx|ok|ak|vk|ek|ik|uk|awk|uik|uek|uiuk|oap|" +
+//    "uiurz|uiurc|uiurx|ok|ak|vk|ek|ik|uk|awk|uik|uek|uiuk|oap|" +
+    "uiurz|uiurc|uiurx|ok|ak|ek|ik|uk|awk|uik|uek|uiuk|oap|" +
     "op|ap|vp|ep|ip|up|awp|uip|uep|uiup|oat|at|vt|et|it|ut|awt|" +
     "uit|uet|uiut|oz|oc|ox|az|ac|ax|vz|vc|vx|ez|ec|ex|iz|ic|ix|" +
     "uz|uc|ux|awz|awc|awx|uiz|uic|uix|uez|uec|uex|uiuz|uiuc|" +
     "uiux|htt|th|ht|ch|kh|ng|ny|ph|nh|sh|ts|gh|f|k|g|s|y|w|p|" +
-    "b|m|n|h|l|t|d|r|j|v|\u0020";
-
+    "b|m|n|h|l|t|d|r|j|v|\u0020|,|\.";
 
 function preParseLatin(instring) {
   //  var regex1 = new RegExp(tangsa_latin_chars, "gi");
