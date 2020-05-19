@@ -13,6 +13,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+from django.template import Template
 
 import transliterate
 
@@ -118,11 +119,14 @@ class ConvertHandler(webapp2.RequestHandler):
 
     langInfo = self.app.config.get('langInfo')
 
-    if langInfo.transliterator:
-      transliterator = transliterate.Transliterate(
-          langInfo.transliterator.TRANS_LIT_RULES,
-          langInfo.transliterator.DESCRIPTION
-      )
+    try:
+      if langInfo.transliterator:
+        transliterator = transliterate.Transliterate(
+            langInfo.transliterator.TRANS_LIT_RULES,
+            langInfo.transliterator.DESCRIPTION
+        )
+    except AttributeError:
+      transliterator = None
 
     outText = '\u11103\u11101\u11103'
     message = 'TBD'
@@ -132,11 +136,11 @@ class ConvertHandler(webapp2.RequestHandler):
         'outText' : outText,
         'message' : message,
         'error': error,
-        'language': Language,
+        'language': langInfo.Language,
         'lang_list': langInfo.lang_list,
-        'langTag': LanguageCode,
+        'langTag': langInfo.LanguageCode,
         'showTools': self.request.get('tools', None),
-        'summary' : transliterator.getSummary(),
+        #'summary' : transliterator.getSummary(),
     }
     self.response.out.write(json.dumps(result))
 
@@ -285,10 +289,16 @@ class Downloads(webapp2.RequestHandler):
   def get(self, match=None):
 
     langInfo = self.app.config.get('langInfo')
+    # To possibly limit fonts from download
+    try:
+      public_unicode_fonts = langInfo.public_font_resources
+    except:
+      public_unicode_fonts = langInfo.unicode_font_list
+
     template_values = {
         'language': langInfo.Language,
         'language_native': langInfo.Language_native,
-        'unicode_font_list': langInfo.unicode_font_list,
+        'unicode_font_list': public_unicode_fonts,
         'file_list': langInfo.text_file_list,
     }
     path = os.path.join(os.path.dirname(__file__), 'downloads.html')
@@ -356,6 +366,8 @@ class DictionaryN(webapp2.RequestHandler):
     langInfo = self.app.config.get('langInfo')
 
     # user_info = getUserInfo(self.request.url)
+
+    # t = Template("My name is {{ person.first_name }}.")
 
     template_values = {
       'dictionaryNData': langInfo.dictionaryNData,

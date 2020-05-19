@@ -169,6 +169,9 @@ handlers:
 - url: /nst/.*
   script: tangsa.app
 
+- url: /suz/.*
+  script: sunuwar.app
+
 - url: /to/.*
   script: tongan.app
 
