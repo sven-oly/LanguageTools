@@ -104,6 +104,7 @@ class LanguagesHomeHandler(webapp2.RequestHandler):
         'lang_list': langInfo.lang_list,
         'kb_list': langInfo.kb_list,
         'links': langInfo.links,
+        'showTools': self.request.get('tools', None),
         'test_data': test_data,
     }
     path = os.path.join(os.path.dirname(__file__), 'demo_general.html')
@@ -182,6 +183,7 @@ class DiacriticHandler(webapp2.RequestHandler):
         'diacritics': [x for x in langInfo.diacritic_list],
         'diacritics_hex': row_names,  #['%4x ' % ord(y) for y in langInfo.diacritic_list],
         'combinations': combos,
+        'showTools': self.request.get('tools', None),
         'table': table,
         'unicode_font_list': langInfo.unicode_font_list,
     }
@@ -280,6 +282,7 @@ class EncodingRules(webapp2.RequestHandler):
         'unicode_list': langInfo.unicode_font_list,
         'kb_list': langInfo.kb_list,
         'links': langInfo.links,
+        'showTools': self.request.get('tools', None),
     }
     path = os.path.join(os.path.dirname(__file__), 'fontsView.html')
     self.response.out.write(template.render(path, template_values))
@@ -300,6 +303,7 @@ class Downloads(webapp2.RequestHandler):
         'language_native': langInfo.Language_native,
         'unicode_font_list': public_unicode_fonts,
         'file_list': langInfo.text_file_list,
+        'showTools': self.request.get('tools', None),
     }
     path = os.path.join(os.path.dirname(__file__), 'downloads.html')
     self.response.out.write(template.render(path, template_values))
@@ -328,6 +332,7 @@ class RenderPage(webapp2.RequestHandler):
       'unicode_list': langInfo.unicode_font_list,
       'kb_list': langInfo.kb_list,
       'links': langInfo.links,
+      'showTools': self.request.get('tools', None),
     }
     path = os.path.join(os.path.dirname(__file__), 'renderCombos.html')
     self.response.out.write(template.render(path, template_values))
@@ -348,6 +353,7 @@ class DictionaryInput(webapp2.RequestHandler):
         'lang2': langInfo.dictionaryLang2,
         'kb1': langInfo.kb1,
         'kb2': langInfo.kb2,
+        'showTools': self.request.get('tools', None),
         'unicodeFontList': langInfo.unicode_font_list,
 
         'links': langInfo.links,
@@ -377,6 +383,7 @@ class DictionaryN(webapp2.RequestHandler):
       'kb1': langInfo.kb1,
       'kb2': langInfo.kb2,
       'unicodeFontList': langInfo.unicode_font_list,
+      'showTools': self.request.get('tools', None),
 
       'links': langInfo.links,
     }

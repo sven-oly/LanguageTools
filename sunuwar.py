@@ -51,10 +51,10 @@ encoding_font_list = [
 
 unicode_font_list = [
   {
-    'source': '/fonts/Sunuwar/Lonkuch_PUA.woff',
+    'source': '/fonts/Sunuwar/Lonkuch_PUA.ttf',
     'longName': 'Lonkuch PUA',
     'family': 'LonkuchPUA',
-    'font_path': '/fonts/Sunuwar/Lonkuch_PUA.woff',
+    'font_path': '/fonts/Sunuwar/Lonkuch_PUA.ttf',
     'font_name': 'Lonkuch PUA',
     'display_name': 'Lonkuch PUA',
     'Source location': 'https://omniglot.com/writing/tikamuli.htm',
@@ -71,18 +71,21 @@ links = [
     {'linkText': 'Keyboard',
      'ref': '/suz/'
     },
-    # {'linkText': 'Converter',
-    #  'ref': '/bete/convertUI/'
-    # },
+    {'linkText': 'Converter',
+     'ref': '/suz/convertUI/'
+    },
     # {'linkText': 'Font conversion summary',
     #   'ref': '/bete/encodingRules/'
     # },
     # {'linkText': 'Resources',
     #   'ref': '/bete/downloads/'
     # },
-    # {'linkText': 'Unicode Page',
-    #   'ref': 'https://unicode.org/charts/PDF/U0980.pdf'
-    # },
+    {'linkText': 'Tikamuli Unicode Proposal',
+      'ref': 'http://www.unicode.org/L2/L2010/10465-tikamuli.pdf'
+    },
+    {'linkText': 'Jenticha Unicode Proposal',
+      'ref': '  http://unicode.org/L2/L2011/11218-n4028-jenticha.pdf'
+    },
     {'linkText': 'Sunuwar Wikipedia',
      'ref': 'https://en.wikipedia.org/wiki/Sunwar_language'
     },
@@ -112,32 +115,26 @@ class langInfo():
     self.encoding_font_list = encoding_font_list
     self.kb_list = [
       {
+        'shortName': 'suz_tikamuli_pua',
+        'longName': 'Sunuwar Tikamuli PUA',
+        'jsName': 'suz_tikamuli_pua',
+        'instructions': None,
+        'font': '/fonts/Sunuwar/Lonkuch_PUA.ttf',
+      },
+      {
         'shortName': 'suz_tikamuli',
         'longName': 'Sunuwar Tikamuli',
         'jsName': 'suz_tikamuli',
         'instructions': None,
         'font': '/fonts/Sunuwar/PREM.ttf',
       },
-      {
-        'shortName': 'suz_tikamuli_pua',
-        'longName': 'Sunuwar Tikamuli PUA',
-        'jsName': 'suz_tikamuli_pua',
-        'instructions': None,
-        'font': '/fonts/Sunuwar/Lonkuch_PUA.woff.woff',
-      },
+
       {
         'shortName': 'suz_jenticha',
         'longName': 'Sunuwar Jenticha',
         'jsName': 'suz_jenticha',
         'instructions': None,
       },
-      # {
-      #   'shortName': 'bn_b3',
-      #   'longName': 'Bangali 3',
-      #   'jsName': 'bn_b3',
-      #   'instructions': None,
-      #   'font': '/fonts/NotoSansBengali-Regular.ttf',
-      # },
     ]
     self.links = links
     self.text_file_list = []
