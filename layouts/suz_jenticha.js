@@ -11,21 +11,21 @@
 // limitations under the License.
 
 
-var SUZ_TIKAMULI_PUA_LAYOUT = {
-  'id': 'suz_tikamuli_pua',
-  'title': 'Kõinch PUA',
+var SUZ_JENTICHA_LAYOUT = {
+  'id': 'suz_jenticha',
+  'title': 'Kõinch Jenticha QWERTY',
   'mappings': {
     ',c': {
-      '': '`\uec31\uec32\uec33\uec34\uec35\uec36\uec37\uec38\uec39\uec30-=' +
-          '\uec71\uec77\uec65\uec72\uec74\uec79\uec75\uec69\uec6F\uec70[]\\' +
-          '\uec41\uec73\uec73\uec64\uec66\uec67\uec68\uec6A\uec6B\uec3b\u0027' +
-          '\uec7A\uec78\uec63\uec76\uec62\uec6E\uec6D,|/'
+      '': '`1234567890-=' +
+          'qwertyuiop[]\\' +
+          'asdfghjkl;\'' +
+          'zxcvbnm,./'
     },
     's,sc': {
       '': '~!@#$%^&*()_+' +
-          '\uec71\uec77\uec45\uec72\uec74\uec79\uec55\uec49\uec4F\uec70{}|' +
-          '\uec41\uec73\uec73\uec64\uec66\uec67\uec68\uec6A\uec6B:"' +
-          '\uec7A\uec78\uec63\uec76\uec62\uec6E\uec6D<>?'
+          'QWERTYUIOP{}|' +
+          'ASDFGHJKL:"' +
+          'ZXCVBNM<>?'
     },
     'l,cl': {
       '': '`1234567890-=' +
@@ -46,5 +46,5 @@ var SUZ_TIKAMULI_PUA_LAYOUT = {
 };
 
 // Load the layout and inform the keyboard to switch layout if necessary.
-google.elements.keyboard.loadme(SUZ_TIKAMULI_PUA_LAYOUT);
-en = SUZ_TIKAMULI_PUA_LAYOUT;
+google.elements.keyboard.loadme(SUZ_JENTICHA_LAYOUT);
+en = SUZ_JENTICHA_LAYOUT;
