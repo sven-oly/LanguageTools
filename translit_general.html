@@ -225,6 +225,9 @@
         encodingIndex = 2;
       }
     }
+    if (map_font_to_encoding != null) {
+        encodingIndex =  map_font_to_encoding[encodeSelector.value];
+    }
     convertEncodingToUnicode(sourceArea, destinationArea, encodingIndex);
   }
 
