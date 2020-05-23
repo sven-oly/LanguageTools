@@ -63,7 +63,7 @@ var AHO_LAYOUT = {
     '\u200c(\ud805[\udf26\udf1e])(\ud805[\udf00-\udf19])': '$2$1',
 
     // Move e-vowel to right ot other medials.
-    '(\ud805\udf26)(\ud805[\udf1d-\udf1f])': '$2$1',
+    '(\ud805\udf26)\u001d?(\ud805[\udf1d-\udf1f])': '$2$1',
 
     // Reorder medials
     '\ud805\udf1d(\ud805[\udf1e\udf1f]+)': '$1\ud805\udf1d',

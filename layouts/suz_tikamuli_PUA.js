@@ -10,9 +10,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-
+// Uses private use area U+ec31 ... for Tikamula script (not yet encoded)
 var SUZ_TIKAMULI_PUA_LAYOUT = {
-  'id': 'suz_tikamuli_pua',
+  'id': 'suz_tikamuli_PUA',
   'title': 'Kõinch PUA',
   'mappings': {
     ',c': {

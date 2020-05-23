@@ -47,9 +47,27 @@ encoding_font_list = [
     'display_name': 'Prem',
     'Source location': 'https://omniglot.com/writing/tikamuli.htm',
   },
+  {
+    'source': '/fonts/Sunuwar/Kirat1.Kõits.Blese.ttf',
+    'longName': 'Kirat1',
+    'family': 'Kirat1',
+    'font_path': '/fonts/Sunuwar/Kirat1.Kõits.Blese.ttf',
+    'font_name': 'Kirat1',
+    'display_name': 'Kirat1',
+    'Source location': 'https://omniglot.com/writing/jenticha.htm',
+  },
 ]
 
 unicode_font_list = [
+  {
+    'source': '/fonts/Sunuwar/Sunuwar_combined_PUA.ttf',
+    'longName': 'Sunawar Combined PUA',
+    'family': 'Sunawar_PUA',
+    'font_path': '/fonts/Sunuwar/Sunuwar_combined_PUA.ttf',
+    'font_name': 'Sunawar_PUA',
+    'display_name': 'Sunawar_PUA',
+    'Source location': 'https://omniglot.com/writing/jenticha.htm',
+  },
   {
     'source': '/fonts/Sunuwar/Lonkuch_PUA.ttf',
     'longName': 'Lonkuch PUA',
@@ -59,6 +77,16 @@ unicode_font_list = [
     'display_name': 'Lonkuch PUA',
     'Source location': 'https://omniglot.com/writing/tikamuli.htm',
   },
+  {
+    'source': '/fonts/Sunuwar/kirat1_PUA_new.ttf',
+    'longName': 'Kirat1 PUA',
+    'family': 'kirat1_PUA',
+    'font_path': '/fonts/Sunuwar/kirat1_PUA_new.ttf',
+    'font_name': 'Kirat1 PUA',
+    'display_name': 'Kirat1 PUA',
+    'Source location': 'https://omniglot.com/writing/jenticha.htm',
+  },
+
   #   {
   #     'family': 'NotoSansBengali',
   #     'longName': 'Noto Sans Bengali',
@@ -115,24 +143,17 @@ class langInfo():
     self.encoding_font_list = encoding_font_list
     self.kb_list = [
       {
-        'shortName': 'suz_tikamuli_pua',
+        'shortName': 'suz_tikamuli_PUA',
         'longName': 'Sunuwar Tikamuli PUA',
-        'jsName': 'suz_tikamuli_pua',
+        'jsName': 'suz_tikamuli_PUA',
         'instructions': None,
         'font': '/fonts/Sunuwar/Lonkuch_PUA.ttf',
       },
       {
-        'shortName': 'suz_tikamuli',
-        'longName': 'Sunuwar Tikamuli',
-        'jsName': 'suz_tikamuli',
-        'instructions': None,
-        'font': '/fonts/Sunuwar/PREM.ttf',
-      },
-
-      {
-        'shortName': 'suz_jenticha',
-        'longName': 'Sunuwar Jenticha',
-        'jsName': 'suz_jenticha',
+        'shortName': 'suz_jenticha_PUA',
+        'longName': 'Sunuwar Jenticha PUA',
+        'jsName': 'suz_jenticha_PUA',
+        'font': '/fonts/Sunuwar/kirat1_PUA_new.ttf',
         'instructions': None,
       },
     ]
