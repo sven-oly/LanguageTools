@@ -13,7 +13,7 @@
 
 var SUZ_JENTICHA_PUA_LAYOUT = {
   'id': 'suz_jenticha_PUA',
-  'title': 'Kõinch Jenticha PUA',
+  'title': 'Kõits-Bleshe-Sunuwar PUA',
   'mappings': {
     ',c': {
       '': '`\ued31\ued32\ued33\ued34\ued35\ued36\ued37\ued38\ued39\ued30-=' +

@@ -225,7 +225,8 @@
         encodingIndex = 2;
       }
     }
-    if (map_font_to_encoding != null) {
+    // This is defined in some converters, and should eventually be in all.
+    if(typeof map_font_to_encoding == 'object') {
         encodingIndex =  map_font_to_encoding[encodeSelector.value];
     }
     convertEncodingToUnicode(sourceArea, destinationArea, encodingIndex);

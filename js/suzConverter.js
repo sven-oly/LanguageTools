@@ -5,9 +5,9 @@ var map_encoding_names = [
   'TikamuliPUA', 'Jenticha'];
 
 const map_font_to_encoding = {
+    'Kirat1': 1,
     'Lonkuch': 0,
-    'Prem': 0,
-    'Kirat1': 1
+    'Prem': 0
 };
 
 // Conversion to PUA

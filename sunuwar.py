@@ -30,6 +30,15 @@ from google.appengine.ext.webapp import template
 
 encoding_font_list = [
   {
+    'source': '/fonts/Sunuwar/Kirat1.Kõits.Blese.ttf',
+    'longName': 'Kirat1',
+    'family': 'Kirat1',
+    'font_path': '/fonts/Sunuwar/Kirat1.Kõits.Blese.ttf',
+    'font_name': 'Kirat1',
+    'display_name': 'Kirat1',
+    'Source location': 'https://omniglot.com/writing/jenticha.htm',
+  },
+  {
     'source': '/fonts/Sunuwar/LONKUCH.ttf',
     'longName': 'Lonkuch',
     'family': 'Lonkuch',
@@ -47,15 +56,7 @@ encoding_font_list = [
     'display_name': 'Prem',
     'Source location': 'https://omniglot.com/writing/tikamuli.htm',
   },
-  {
-    'source': '/fonts/Sunuwar/Kirat1.Kõits.Blese.ttf',
-    'longName': 'Kirat1',
-    'family': 'Kirat1',
-    'font_path': '/fonts/Sunuwar/Kirat1.Kõits.Blese.ttf',
-    'font_name': 'Kirat1',
-    'display_name': 'Kirat1',
-    'Source location': 'https://omniglot.com/writing/jenticha.htm',
-  },
+
 ]
 
 unicode_font_list = [
@@ -66,6 +67,15 @@ unicode_font_list = [
     'font_path': '/fonts/Sunuwar/Sunuwar_combined_PUA.ttf',
     'font_name': 'Sunawar_PUA',
     'display_name': 'Sunawar_PUA',
+    'Source location': 'Combined by author CWC',
+  },
+  {
+    'source': '/fonts/Sunuwar/kirat1_PUA_new.ttf',
+    'longName': 'Kirat1 PUA',
+    'family': 'kirat1_PUA',
+    'font_path': '/fonts/Sunuwar/kirat1_PUA_new.ttf',
+    'font_name': 'Kirat1 PUA',
+    'display_name': 'Kirat1 PUA',
     'Source location': 'https://omniglot.com/writing/jenticha.htm',
   },
   {
@@ -77,22 +87,6 @@ unicode_font_list = [
     'display_name': 'Lonkuch PUA',
     'Source location': 'https://omniglot.com/writing/tikamuli.htm',
   },
-  {
-    'source': '/fonts/Sunuwar/kirat1_PUA_new.ttf',
-    'longName': 'Kirat1 PUA',
-    'family': 'kirat1_PUA',
-    'font_path': '/fonts/Sunuwar/kirat1_PUA_new.ttf',
-    'font_name': 'Kirat1 PUA',
-    'display_name': 'Kirat1 PUA',
-    'Source location': 'https://omniglot.com/writing/jenticha.htm',
-  },
-
-  #   {
-  #     'family': 'NotoSansBengali',
-  #     'longName': 'Noto Sans Bengali',
-  #     'source': '/fonts/NotoSansBengali-Regular.ttf',
-  #     'attribution': 'https://www.wfonts.com/font/jg-bete',
-  # },
 ]
 
 links = [
@@ -103,15 +97,12 @@ links = [
      'ref': '/suz/convertUI/'
     },
     # {'linkText': 'Font conversion summary',
-    #   'ref': '/bete/encodingRules/'
-    # },
-    # {'linkText': 'Resources',
-    #   'ref': '/bete/downloads/'
+    #   'ref': '/suz/encodingRules/'
     # },
     {'linkText': 'Tikamuli Unicode Proposal',
       'ref': 'http://www.unicode.org/L2/L2010/10465-tikamuli.pdf'
     },
-    {'linkText': 'Jenticha Unicode Proposal',
+    {'linkText': 'Kõits-Bleshe-Sunuwar Unicode Proposal',
       'ref': '  http://unicode.org/L2/L2011/11218-n4028-jenticha.pdf'
     },
     {'linkText': 'Sunuwar Wikipedia',
@@ -126,7 +117,7 @@ links = [
 class langInfo():
   def __init__(self):
     self.LanguageCode = 'suz'
-    self.Language = u'Kõinch'
+    self.Language = u'Kõits'
     self.Language_native = u'कोँइच'
     self.direction = 'ltr'
 
@@ -143,23 +134,25 @@ class langInfo():
     self.encoding_font_list = encoding_font_list
     self.kb_list = [
       {
+        'shortName': 'suz_jenticha_PUA',
+        'longName': 'Kõits-Bleshe-Sunuwar PUA',
+        'jsName': 'suz_jenticha_PUA',
+        'font': '/fonts/Sunuwar/kirat1_PUA_new.ttf',
+        'instructions': None,
+      },
+      {
         'shortName': 'suz_tikamuli_PUA',
         'longName': 'Sunuwar Tikamuli PUA',
         'jsName': 'suz_tikamuli_PUA',
         'instructions': None,
         'font': '/fonts/Sunuwar/Lonkuch_PUA.ttf',
       },
-      {
-        'shortName': 'suz_jenticha_PUA',
-        'longName': 'Sunuwar Jenticha PUA',
-        'jsName': 'suz_jenticha_PUA',
-        'font': '/fonts/Sunuwar/kirat1_PUA_new.ttf',
-        'instructions': None,
-      },
+
     ]
     self.links = links
     self.text_file_list = []
     self.unicode_font_list = unicode_font_list
+    self.outputFont = "Private Use Area (PUA)"
 
     # Lists of test characters for the various encodings
     self.test_chars = [' '.join([unichr(x) for x in range(0xe9bc, 0x9e3)])]
