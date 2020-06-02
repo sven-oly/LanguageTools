@@ -224,6 +224,12 @@ class ConvertUIHandler(webapp2.RequestHandler):
     except AttributeError:
       text_direction = 'ltr'
 
+    # Handle non-Unicode output.
+    try:
+      outputFont = langInfo.outputFont
+    except:
+      outputFont = 'Unicode'
+
     unicodeChars = '\ud804\udd00'
     unicodeChars += '\ud804\udd03'
     unicodeChars += '\ud804\udd04'
@@ -245,6 +251,7 @@ class ConvertUIHandler(webapp2.RequestHandler):
         'links': langInfo.links,
         'oldChars': oldChars,
         'oldInput': oldInput,
+        'outputFont': outputFont,
         'text': text,
         'textStrings': testStringList,
         'showTools': self.request.get('tools', None),
