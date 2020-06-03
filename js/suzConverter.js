@@ -93,6 +93,10 @@ var private_use_map_combined = {
     '\u007d': ['\u007d', '\ued7d'],
 
     '\u00b2': ['\uecb2', '\u00b2'],
+    '\u00b3': ['\uecb3', '\u00b3'],
+    '\u00bc': ['\uecbc', '\u00bc'],
+    '\u00bd': ['\uecbd', '\u00bd'],
+    '\u00be': ['\uecbe', '\u00be'],
 };
 
 

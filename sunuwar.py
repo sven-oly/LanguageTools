@@ -47,15 +47,15 @@ encoding_font_list = [
     'display_name': 'Lonkuch',
     'Source location': 'https://omniglot.com/writing/tikamuli.htm',
   },
-  {
-    'source': '/fonts/Sunuwar/PREM.ttf',
-    'longName': 'Prem',
-    'family': 'Prem',
-    'font_path': '/fonts/Sunuwar/PREM.ttf',
-    'font_name': 'Prem',
-    'display_name': 'Prem',
-    'Source location': 'https://omniglot.com/writing/tikamuli.htm',
-  },
+  # {
+  #   'source': '/fonts/Sunuwar/PREM.ttf',
+  #   'longName': 'Prem',
+  #   'family': 'Prem',
+  #   'font_path': '/fonts/Sunuwar/PREM.ttf',
+  #   'font_name': 'Prem',
+  #   'display_name': 'Prem',
+  #   'Source location': 'https://omniglot.com/writing/tikamuli.htm',
+  # },
 
 ]
 
