@@ -133,6 +133,9 @@ handlers:
 - url: /mor/.*
   script: moro.app
 
+- url: /pcm/.*
+  script: nigerianpidgin.app
+
 - url: /my/.*
   script: burmese.app
 
