@@ -20,25 +20,37 @@ var PCM_LAYOUT = {
   'id': 'pcm',
   'title': 'Naijíriá Píjin',
   'mappings': {
-    ',l': {
-      '': '{{\u0301}}1234567890{{\u0257}}{{\u0199}}' +
-          '{{\u0300}}wertyuiop{{u\u0329}}{{i\u0329}}{{\u0259}}' +
-          'asdfghjkl{{o\u0329}}{{e\u0329}}' +
-          'z{{\u0192}}cvbnm,.{{s\u0329}}'
+    '': {
+      '': '{{\u0300}}1234567890-=' +
+          '{{\u0301}}wertyuiop[]/' +
+          'asdfghjkl{{ọ}}{{ẹ}}' +
+          'zcvbnm,.;\''
     },
-    's,sl': {
-      '': '{{\u0323}}{{\u0302}}"/-{{\u20A6}}=_\'(){{\u018A}}{{\u0198}}' +
-          '{{\u0304}}WERTYUIOP{{U\u0329}}{{I\u0329}}{{\u018F}}' +
-          'ASDFGHJKL{{O\u0329}}{{E\u0329}}' +
-          'Z{{\u0191}}CVBNM;:{{S\u0329}}'
+    's': {
+      '': '~!@#$₦%&*()_+' +
+          '{{\u0323}}WERTYUIOP{}?' +
+          'ASDFGHJKL{{Ọ}}{{Ẹ}}' +
+          'ZCVBNM<>:\"'
     },
-    'c, cl': {
+    'c,cl': {
       '': '`1234567890-=' +
-          'qwẹrtyuiọp[]\\' +
+          'qwertyuiọp[]\\' +
           'aṣd{{\u030c}}g{{\u0301}}jk{{\u0300}}:"' +
           'zxcvbn{{\u0304}},./'
     },
-    'sc, scl': {
+    'l': {
+      '': '`1234567890-=' +
+          'qwertyuiop[]\\' +
+          'asdfghjkl;\'' +
+          'zxcvbnm,./'
+    },
+    'sl': {
+      '': '~!@#$%^&*()_+' +
+          'QWERTYUIOP{}|' +
+          'ASDFGHJKL:"' +
+          'ZXCVBNM<>?'
+    },
+    'sc,scl': {
       '': '~!@#$%^&*()_+' +
           'QWẸRTYUIỌP{}|' +
           'AṢDFGHJKL;\'' +
@@ -46,7 +58,7 @@ var PCM_LAYOUT = {
     }
   },
   'transform': {
-    '([\u0300\u0301\u0304\u0302\u0323])([eosEOS])': '$2$1',  // Placeholder
+    '([\u0300\u0301\u0304\u0302\u0323])([eoEO])': '$1$2',  // Placeholder
   },
     'historyPruneRegex': '\u0300|\u0301|\u0304|\u0302'
 
