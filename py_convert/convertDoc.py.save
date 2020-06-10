@@ -31,21 +31,6 @@ removeOldTextParents = False
 # If enabled, replaces old fonts in list in fontsTable.xml
 convertFontsTable = False
 
-# To keep track of data for an entire paragraph, to pass to conversion.
-class paragraphData():
-  def __init__(self):
-    self.formatList = []
-    self.textList = []
-    self.textsize = 0
-    self.startPoint = []
-
-  def adddata(self, textNode, formatNode):
-    self.formatList.append(formatNode)
-    self.textList.append(textNode)
-    self.startPoint.append(self.textsize)
-    if textNode and textNode.text:
-      self.textsize += len(textNode.text)
-
 
 def fixElementAndParent(textElement, parent, newText, oldFontList, unicodeFont):
   removeList = []
@@ -117,7 +102,7 @@ def processCollectedText(collectedText, textElementList, parent_map, superscript
 
 
 # Looks at text parts of the DOCX data, extracting each.
-def parseDocXML(docfile_name, path_to_doc, docxml, converter,
+def parseDocXML(docfile_name, path_to_doc, converter,
                 saveConversion=False, outpath=None, isString=False):
   global debug_output
   if isString:
@@ -131,11 +116,9 @@ def parseDocXML(docfile_name, path_to_doc, docxml, converter,
   for p in tree.getiterator():
     if re.search('}drawing', p.tag):
       drawingCount += 1
-  print('@@@@@@ %d drawings found' % drawingCount)
-  print('@@@@@@ docfile_name = %s' % docfile_name)
 
-  if drawingCount == 0 and docfile_name == 'word/document.xml':  # CHECK THIS!
-    convertWord.convertOneDoc(path_to_doc, docfile_name, converter)
+  if drawingCount == 0 and docfile_name == 'word/document':  # CHECK THIS!
+    convertWord.convertOneDoc(path_to_doc)
     return
 
   # So we can get the parents of each node.
@@ -168,7 +151,6 @@ def parseDocXML(docfile_name, path_to_doc, docxml, converter,
       paragraphTextElements = []
       paragraphFonts = []
       paragraphCount += 1
-      paragraph_info = paragraphData()
 
       textElements = []
       formatTextInfo = []
@@ -179,29 +161,26 @@ def parseDocXML(docfile_name, path_to_doc, docxml, converter,
 
       for pchild in node.iter('*'):
         if re.search('}r$', pchild.tag):
-          # Look only at the rPr and <w:t> data
+          # Look at the rPr and <w:t>
+
           for rchild in pchild.iter('*'):
             superscriptNode = None
 
             # Process <w:r>
             if re.search('}rPr', rchild.tag):
-              processRtF(rchild, paragraph_info, rprFormatData, converter)
+              # processRtF(rchild)
               fontFound = False
               actualFont = None
-              fontNode = None
               for rprchild in rchild.iter('*'):
                 # Collect all the formatting information
                 rprFormatData.append(rprchild)
 
                 # Process <w:rPr>
-                # Gather formatting information as needed, e.g.,
-                # superscript, subscript, style, underline, etc.
                 if re.search('}vertAlign', rprchild.tag):
                   superscriptNode = rprchild
                 elif re.search('}rFonts', rprchild.tag):
                   # Font info.
                   fontFound = True
-                  fontNode = rprchild
                   (newFontIndex, actualFont) = isOldFontNode(rprchild, converter.oldFonts)
                   if newFontIndex >= 0:
                     # In font encoded node
@@ -232,7 +211,6 @@ def parseDocXML(docfile_name, path_to_doc, docxml, converter,
                 paragraphText += rchild.text
               paragraphTextElements.append(rchild)
               paragraphFonts.append(actualFont)
-              paragraph_info.adddata(rchild, fontNode)
 
               treat_as_no_break = converter.checkContentsForMerge(rchild.text)
               if treat_as_no_break:
@@ -281,7 +259,6 @@ def parseDocXML(docfile_name, path_to_doc, docxml, converter,
 
   print( ' %s: %d text items converted' % (docfile_name, convertCount))
 
-  # Save the new document data.
   if isString:
     return ET.tostring(root, encoding='utf-8')
 
@@ -291,10 +268,7 @@ def parseDocXML(docfile_name, path_to_doc, docxml, converter,
     tree.write(outpath)
   return tree
 
-def processRtF(rchild, paragraph_info, rprFormatData, converter):
-  # Deal with the font and text data for the paragraph.
-  # Keep track of all the data for each chunk and
-  inEncodedFont = False
+def processRtF(rchild):
   if re.search('}rPr', rchild.tag):
     fontFound = False
     actualFont = None
@@ -306,7 +280,7 @@ def processRtF(rchild, paragraph_info, rprFormatData, converter):
       if re.search('}vertAlign', rprchild.tag):
         superscriptNode = rprchild
       elif re.search('}rFonts', rprchild.tag):
-        processFont(rprchild, converter)        # Font info.
+        processFont(rpchild)        # Font info.
         fontFound = True
         (newFontIndex, actualFont) = isOldFontNode(rprchild, converter.oldFonts)
         if newFontIndex >= 0:
@@ -334,12 +308,35 @@ def processRtF(rchild, paragraph_info, rprFormatData, converter):
   elif re.search('}t', rchild.tag):
     processText(rchild, paragraphTextStarts, paragraphTextElements, paragraphFonts,
                 collectedText, rprFormatData, textElements,
-                fontFound, inEncodedFont, actualFont)
+                fontFound, inEncodedFont, actualFont))
+    # For all the paragraph text.
+    paragraphTextStarts.append(len(paragraphText))
+    if rchild.text:
+      paragraphText += rchild.text
+    paragraphTextElements.append(rchild)
+    paragraphFonts.append(actualFont)
 
-def processFont(rprchild, converter):
+    treat_as_no_break = converter.checkContentsForMerge(rchild.text)
+    if treat_as_no_break:
+      print('Contents treated as no break: %s' % rchild.text)
+
+    if fontFound and (inEncodedFont or treat_as_no_break) and rchild.text:
+      # Process <w:t>
+      formatTextInfo.append([rchild.text, rprFormatData])
+      collectedText += rchild.text
+      rprFormatData = []
+      textElements.append(rchild)
+
+    else:
+      notEncoded = rchild.text
+      if notEncoded and False and debug_output:
+        print(' &&& fontFound = %s, inEncodedFont = %s, actual = %s' %
+              (fontFound, inEncodedFont, actualFont))
+        print('notEncoded = >%s<' % notEncoded)
+
+def processFont(rpchild):
   fontFound = True
   (newFontIndex, actualFont) = isOldFontNode(rprchild, converter.oldFonts)
-  inEncodedFont = False
   if newFontIndex >= 0:
     # In font encoded node
     inEncodedFont = True
@@ -391,11 +388,6 @@ def processText(rchild, paragraphTextStarts, paragraphTextElements, paragraphFon
       print(' &&& fontFound = %s, inEncodedFont = %s, actual = %s' %
             (fontFound, inEncodedFont, actualFont))
       print('notEncoded = >%s<' % notEncoded)
-
-def processParagraphText( paragraphTextStarts, paragraphTextElements, paragraphFonts):
-  # TODO:
-  #  For this, use the converter to handle each part.
-  return
 
 def removeOldTextElements(allElementsToRemove, parent_map):
   count = 0
@@ -475,18 +467,17 @@ def processDOCX(path_to_doc, output_dir,
 
     try:
       docXML = newzip.read(docfile_name)  # A file-like object
-    except KeyError as err:
-      print('ERROR %s' % err)
+    except KeyError:
       continue
 
     # The real parsing.
-    new_docXML = parseDocXML(docfile_name, path_to_doc, docXML, converter,
+    new_docXML = parseDocXML(docfile_name, docXML, converter,
                              isString=True)
     # Remember this piece for output.
     docPartsOut[docfile_name] = new_docXML
 
   # All done with the pieces. Now create a new zip archive to save it.
-  if output_dir:
+  if output_dir is not '':
     # String the directory tree to the file, substituting the output
     fileIn = os.path.split(path_to_doc)[1]
     baseWOextension = os.path.splitext(fileIn)[0]
@@ -522,7 +513,7 @@ def unzipInputFile(infile, outdir):
 
   return newzip
 
- # For standalong and testing.
+
 def main(argv):
   global debug_output
 

@@ -36,8 +36,8 @@ def parseArgs():
                       help='Show debug info if given.')
   parser.add_argument('-encoding', metavar='encoding', nargs='?', default=None,
                       help='The expected encoding of the input data.')
-  parser.add_argument('-lower', metavar='lower', nargs='?', default=None, help='Convert to lower')
-  parser.add_argument('-sentence', metavar='sentence', nargs='?', default=None, help='Convert sentence casing')
+  parser.add_argument('-lower', metavar='lower', nargs='?', default=True, help='Convert to lower')
+  parser.add_argument('-sentence', metavar='sentence', nargs='?', default=True, help='Convert sentence casing')
   args = parser.parse_args()
 
   # Get the filenames from the input file list, if available.

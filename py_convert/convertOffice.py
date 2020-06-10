@@ -18,7 +18,7 @@ import convertUtil
 
 def convertOffice(input_path, output_dir, converter):
 
-  print('***** input_path = %s' % input_path)
+  # print('***** input_path = %s' % input_path)
 
   if input_path.find('unicode.') > 0:
     return

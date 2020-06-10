@@ -8,12 +8,15 @@ import os
 import re
 import sys
 
-import convertOffice
 import adlamConversion
+import convertOffice
+
+# For conversion from Arabic encoding
+# import adlamConversion
 
 import convertUtil
 
-defaultOutputFont = "NotoSansAdlam-Regular"
+defaultOutputFont = "Noto Sans Adlam New"
 
 def main(argv):
 
@@ -23,12 +26,7 @@ def main(argv):
     else:
       newUnicodeFont = defaultOutputFont
 
-    # TODO: Handle other options?
     # Other Latin fonts to convert?
-
-
-    print('** args = %s' % args)
-
     paths_to_doc = args.filenames
 
     # TODO: How to handle other Latin fonts?
@@ -41,6 +39,9 @@ def main(argv):
     ]
 
     converter = adlamConversion.converter(FONTS_TO_CONVERT, newUnicodeFont)
+    # Set up parameters for conversion
+    converter.lower_mode = args.lower
+    converter.sentence_mode = args.sentence
 
     for input in paths_to_doc:
       convertOffice.convertOffice(input, args.output_dir, converter)

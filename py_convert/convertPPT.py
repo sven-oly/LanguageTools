@@ -90,7 +90,7 @@ def processOnePresentation(path_to_presentation, output_dir,
 
   print ('  %d conversions applied to Unicode ' % conversionCount)
 
-  if output_dir is not '':
+  if output_dir:
     # String the directory tree to the file, substituting the output
     fileIn = os.path.split(path_to_presentation)[1]
     baseWOextension = os.path.splitext(fileIn)[0]
@@ -103,9 +103,9 @@ def processOnePresentation(path_to_presentation, output_dir,
   prs.save(new_path_to_presentation)
 
   if conversionCount:
-    print '  Output to file %s\n' % new_path_to_presentation
+    print('  Output to file %s\n' % new_path_to_presentation)
   else:
-    print '  No new file written.\n'
+    print('  No new file written.\n')
 
 
 def main(argv):
