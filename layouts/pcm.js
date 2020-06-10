@@ -27,16 +27,16 @@ var PCM_LAYOUT = {
           'zcvbnm,.;\''
     },
     's': {
-      '': '~!@#$₦%&*()_+' +
-          '{{\u0323}}WERTYUIOP{}?' +
+      '': '{{\u0300}}!@#$₦%&*()_+' +
+          '{{\u0301}}WERTYUIOP{}?' +
           'ASDFGHJKL{{Ọ}}{{Ẹ}}' +
           'ZCVBNM<>:\"'
     },
     'c,cl': {
       '': '`1234567890-=' +
-          'qwertyuiọp[]\\' +
-          'aṣd{{\u030c}}g{{\u0301}}jk{{\u0300}}:"' +
-          'zxcvbn{{\u0304}},./'
+          'qwertyuiop[]\\' +
+          'asdfghjkl;\'' +
+          'zxcvbnm,./'
     },
     'l': {
       '': '`1234567890-=' +
@@ -51,17 +51,40 @@ var PCM_LAYOUT = {
           'ZXCVBNM<>?'
     },
     'sc,scl': {
-      '': '~!@#$%^&*()_+' +
-          'QWẸRTYUIỌP{}|' +
-          'AṢDFGHJKL;\'' +
+      '':  '~!@#$%^&*()_+' +
+          'QWERTYUIOP{}|' +
+          'ASDFGHJKL:"' +
           'ZXCVBNM<>?'
     }
   },
   'transform': {
-    '([\u0300\u0301\u0304\u0302\u0323])([eoEO])': '$1$2',  // Placeholder
-  },
-    'historyPruneRegex': '\u0300|\u0301|\u0304|\u0302'
+      'a\u0300': 'à',
+      'e\u0300': 'è',
+      'o\u0300': 'ò',
 
+      'A\u0300': 'À',
+      'E\u0300': 'È',
+      'O\u0300': 'Ò',
+
+      'a\u0301': 'á',
+      'e\u0301': 'é',
+      'o\u0301': 'ó',
+
+      'A\u0301': 'Á',
+      'E\u0301': 'É',
+      'O\u0301': 'Ó',
+
+      'a\u0323': 'ạ',
+      'e\u0323': 'ẹ',
+      'o\u0323': 'ọ',
+
+      'A\u0323': 'Ạ',
+      'E\u0323': 'Ẹ',
+      'O\u0323': 'Ọ',
+      // Doubled single quote --> lower dot combining mark
+      "\'\'": '\u0323'
+  },
+  'historyPruneRegex': '\u0300|\u0301|\u0323'
 };
 
 // Load the layout and inform the keyboard to switch layout if necessary.

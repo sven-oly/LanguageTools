@@ -26,7 +26,7 @@ import webapp2
 
 from google.appengine.ext.webapp import template
 
-Language = 'Nigerian Pidgin'
+Language = 'Naijíriá Píjin'
 Language_native = 'Naijíriá Píjin'
 LanguageCode = 'pcm'
 
@@ -102,13 +102,13 @@ links = [
     {'linkText': 'Keyboard',
      'ref': '/' + LanguageCode + '/'
     },
-    {'linkText': 'Converter',
-     'ref': '/' + LanguageCode + '/convertUI/'},
+    # {'linkText': 'Converter',
+    #  'ref': '/' + LanguageCode + '/convertUI/'},
     # {'linkText': 'Resources',
     #   'ref': '/' + LanguageCode + '/downloads/'
     # },
-  {'linkText': 'nigerianpidgin',
-   'ref': '/https://nigerianpidgin.com/'
+  {'linkText': 'nigerianpidgin.com',
+   'ref': 'https://nigerianpidgin.com/'
    },
 ]
 
@@ -117,9 +117,9 @@ class langInfo():
     self.LanguageCode = LanguageCode
     self.Language = Language
     self.Language_native = 'Naijíriá Píjin'
-    self.test_data = u'Naijíriá Píjin na impọ́tánt pát ọf... ' + u'I dé fọ awa hand to sí sé wi de yúz dís grẹ́t an ímpọ́tánt lángwej ték chénj awa pípol laif '
+    self.test_data = u'Naijíriá Píjin na impọ́tánt pát ọf... ' + u'I dé fọ awa hand to sí sé wi de yúz dís grẹ́t an ímpọ́tánt lángwej ték chénj awa pípol laif.'
     self.unicode_font_list = unicode_font_list
-    self.lang_list = ['yo']
+    self.lang_list = ['pcm']
     self.kb_list = kb_list
     self.links = links
 
@@ -273,7 +273,7 @@ app = webapp2.WSGIApplication([
     ('/' + LanguageCode + '/downloads/', Downloads),
     ('/' + LanguageCode + '/converter/', ConvertHandler),
     ('/' + LanguageCode + '/encodingRules/', EncodingRules),
-    ],
+  ],
                               debug=True,
                               config={'langInfo': langInstance}
 )
