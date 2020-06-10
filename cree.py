@@ -33,26 +33,38 @@ class langInfo():
     ]
 
     self.unicode_font_list = [
-        { 'source': '/fonts/cree/NotoSansCanadianAboriginal-Regular.ttf',
-          'family': 'NotoSansCanadianAboriginal',
-          'longName': 'Noto Sans Canadian Aboriginal',
-        },
-        { 'family': 'Euphemia',
-          'longName': 'Euphemia regular',
-          'source': '/fonts/cree/Euphemia UCAS Regular 2.6.6.ttf',
-        },
-        { 'family': 'bjcrus',
-          'longName': 'BJ Cree',
-          'source': '/fonts/cree/bjcrus.ttf'
-        },
-        { 'family': 'aboriginalSans',
-          'longName': 'Aboriginal Sans',
-          'source': '/fonts/cree/AboriginalSansREGULAR.ttf'
-        },
-        { 'family': 'aboriginalSerif',
-          'longName': 'Aboriginal Serif',
-          'source': '/fonts/cree/Aboriginal Serif REGULAR 939.ttf'
-        },
+      { 'source': '/fonts/cree/NotoSansCanadianAboriginal-Regular.ttf',
+        'family': 'NotoSansCanadianAboriginal',
+        'longName': 'Noto Sans Canadian Aboriginal',
+      },
+
+      { 'family': 'bjcrus',
+        'longName': 'BJ Cree',
+        'source': '/fonts/cree/bjcrus.ttf'
+      },
+      { 'family': 'aboriginalSans',
+        'longName': 'Aboriginal Sans',
+        'source': '/fonts/cree/AboriginalSansREGULAR.ttf'
+      },
+      { 'family': 'aboriginalSerif',
+        'longName': 'Aboriginal Serif',
+        'source': '/fonts/cree/Aboriginal Serif REGULAR 939.ttf'
+      },
+      {'family': 'Euphemia',
+       'longName': 'Euphemia regular',
+       'source': '/fonts/cree/Euphemia UCAS Regular 2.6.6.ttf',
+       'origin': 'http://tiro.com/syllabics/resources/'
+       },
+      {'family': 'Uqammaq',
+       'longName': 'Uqammaq regular',
+       'source': '/fonts/cree/Uqammaq_Regular.ttf',
+       'origin': 'http://tiro.com/syllabics/resources/'
+       },
+      {'family': 'Pigiarniq',
+       'longName': 'Pigiarniq regular',
+       'source': '/fonts/cree/Pigiarniq_Regular.ttf',
+       'origin': 'http://tiro.com/syllabics/resources/'
+       },
     ]
 
     self.lang_list = [
@@ -92,11 +104,11 @@ class langInfo():
         {'linkText': 'Converter',
          'ref': '/' + self.LanguageCode + '/convertUI/'
         },
-        {'linkText': 'Font conversion summary',
-         'ref': '/' + self.LanguageCode + '/encodingRules/'
-        },
-        {'linkText': 'Ahom Unicode block',
-         'ref': 'https://www.unicode.org/charts/PDF/U11700.pdf'
+        # {'linkText': 'Font conversion summary',
+        #  'ref': '/' + self.LanguageCode + '/encodingRules/'
+        # },
+        {'linkText': 'Unicode block',
+         'ref': 'https://www.unicode.org/charts/PDF/U1400.pdf'
         },
         {'linkText': 'Resources',
          'ref': '/' + self.LanguageCode + '/downloads/'
@@ -107,19 +119,17 @@ class langInfo():
 
     # Resource files
     self.text_file_list = [
-        '/download/aho/3-5-1-1.txt',
-        '/download/aho/nemi_mang_text.txt'
     ]
 
-    self.baseHexUTF16 = u'\ud805\udf00'
-    self.base_consonant = u'\ud805\udf00'
+    self.baseHexUTF16 = u'\u1400'
+    self.base_consonant = u'\u1400'
 
     if sys.maxunicode >= 0x10000:
-      self.unicodeChars = [unichr(x) for x in range(0x11700, 0x1173f)]
-      self.diacritic_list = [unichr(x) for x in range(0x1171d, 0x1172c)]
+      self.unicodeChars = [unichr(x) for x in range(0x1400, 0x167F)]
+      self.diacritic_list = []
     else:
-      self.unicodeChars = [unichr(0xd805) + unichr(0xdd00 + x) for x in range(0x00, 0x3f)]
-      self.diacritic_list = [unichr(0xd805) + unichr(0xdd00 + x) for x in range(0x1d, 0x2c)]
+      self.unicodeChars = [unichr(x) for x in range(0x1400, 0x167F)]
+      self.diacritic_list = []
 
 
     # Python-based transliteration tool.
