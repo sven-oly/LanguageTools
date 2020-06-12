@@ -15,14 +15,14 @@ import convertUtil
 
 
 def main(argv):
-
   args = convertUtil.parseArgs()
   newUnicodeFont = args.font  # "NotoSansMyanmar"
-  print '** args = %s' % args
+  print
+  '** args = %s' % args
 
   paths_to_doc = args.filenames
 
-  print('Args = %s'% args)
+  print('Args = %s' % args)
 
   converter = myConversion.myConvert()  # An object
 

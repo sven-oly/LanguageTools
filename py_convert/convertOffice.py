@@ -25,7 +25,10 @@ def convertOffice(input_path, output_dir, converter):
 
   extension = os.path.splitext(input_path)[-1]
   if extension == '.docx':
-    convertDoc.processDOCX(input_path, output_dir, converter)
+    docxProcessor = convertDoc.convertDocx(input_path, output_dir, converter)
+    docxProcessor.processDocx()
+
+    # convertDoc.processDOCX(input_path, output_dir, converter)
   elif extension == '.pptx':
     convertPPT.processOnePresentation(input_path, output_dir,
                                       converter)

@@ -267,17 +267,17 @@ def oldEncodingToUnicode(textIn, convertToLower=False):
 # TODO: fix these tests to do Cherokee!
 def testConvertOld():
   # Debug!
-  print '\nOLD CHR'
+  print ('\nOLD CHR')
   oldChrText = u'\uf044\uf041\uf04e\uf059\uf020\uf057\uf041\uf04c\uf059\uf05e'  # u'\'
   expected = u'𐓈𐒰𐓁𐒻 𐓏𐒰𐒿𐒻͘'
 
   result = oldChrToUnicode(oldChrText)
 
   if result != expected:
-    print 'Old Chr = %s' % oldChrText.encode('utf-8')
-    print '** Not converting Old Chr: expected(%d) >%s<. Result(%d) = >%s<' % (len(expected), expected, len(result), result)
+    print ('Old Chr = %s' % oldChrText.encode('utf-8'))
+    print ('** Not converting Old Chr: expected(%d) >%s<. Result(%d) = >%s<' % (len(expected), expected, len(result), result))
 
-  print '\nOLD CHR Punctuation'
+  print ('\nOLD CHR Punctuation')
   oldChrPunctuation = [(u'\uf02d' '-'), (u'\uf020', ' '),
                          (u'\uf05e', '^'), (u'\uf02e', '.')]
 
@@ -285,10 +285,10 @@ def testConvertOld():
     result = oldChrToUnicode(punct[0])
     expected = punct[1]
     if result == expected:
-      print '  Punctuation is as expected = %s' % result
+      print ('  Punctuation is as expected = %s' % result)
     else:
-      print '  Punctuation is *NOT* as expected(%d) = >%s< vs. result(%d) = >%s<' % (
-          len(expected), expected, len(result), result)
+      print ('  Punctuation is *NOT* as expected(%d) = >%s< vs. result(%d) = >%s<' % (
+          len(expected), expected, len(result), result))
 
 
 def testConvert():

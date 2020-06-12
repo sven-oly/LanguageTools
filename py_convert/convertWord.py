@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
+#!/usr/bin/env python3
 
 from __future__ import absolute_import, division, print_function
 
-import re
 import os
 import re
 import sys
@@ -460,55 +460,6 @@ def convertDoc(doc, converter, unicodeFont, debugInfo=None):
 
   print('  %d values converted to Unicode' % numConverts)
   return (numConverts, notConverted)
-
-
-def analyzeParagraphRuns(para):
-  # Look for beginning of sentences for capitalization and insertion
-  # of start of sentence marks.
-  analyses = []
-
-  end_sentence_pattern = r'([\.\?\!\u061F])($|\u0020)'
-
-  # Find if there are ends of sentences with exclamation or question marks
-  print('---------------')
-  starting = True
-  for run in para.runs:
-    analysis = runInfo(run)
-    analysis.text = run.text
-    sentence_parts = re.split(end_sentence_pattern, run.text)
-    analyses.append(analysis)
-    if starting:
-      analysis.sentence_start_offsets.append(0)  # Actual first non-white-space
-      starting = False
-    match_iter = re.finditer(end_sentence_pattern, run.text)
-    for match in match_iter:
-      span = match.span()
-      first = span[0]
-      matched_char = match.groups(0)[0][0]
-      # print('   match %s %s [%s]' % (match.span(), match.groups(), matched_char))
-      if matched_char == '!':
-        analysis.exclamation_mark_offsets.append(first)
-      elif matched_char == '.':
-        analysis.stop_mark_offsets.append(first)
-      else:
-        analysis.question_mark_offsets.append(first)
-      if span[1] >= len(run.text) and (span[1] - span[0] > 1):
-        starting = True  # The previous was
-
-  # The last run is assumed to end a sentence.
-  # TODO: Complete
-  runnum = 0
-  for analysis in analyses:
-    print(' Analysis %2d %s %s %s %s %s' % (runnum,
-                                            analysis.sentence_start_offsets,
-                                            analysis.stop_mark_offsets,
-                                            analysis.exclamation_mark_offsets,
-                                            analysis.question_mark_offsets,
-                                            analysis.text,
-                                            ))
-    runnum += 1
-
-    return analyses
 
 
 def compareFonts(f1, f2):

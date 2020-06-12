@@ -379,26 +379,22 @@ class converter(ConverterBase):
     }
     description = 'Converts Adlam font encoding to Unicode'
 
-
     def __init__(self, oldFontList, newFont=None, defaultOutputFont=thisDefaultOutputFont):
         super().__init__(oldFontList, newFont=newFont, defaultOutputFont=defaultOutputFont)
-        self.combiningLowerLine = u'\u0332'
-        self.adlamFirstUpper = u'\U0001e900'
-        self.adlamFirstUpperOrd = ord(self.adlamFirstUpper)
-        self.adlamFirstLower = u'\U0001e922'
-        self.adlamFirstLowerOrd = ord(self.adlamFirstLower)
-        self.adlamFirstChar = self.adlamFirstUpper
-        self.adlamLastChar = u'\U0001e925f'
-        self.lowerOffset = 0x22
+        self.setScriptRange(0x1e900, 0x1e95f)
+        self.setUpperCaseRange(0x1e900, 0x1e921)
+        self.setLowerCaseRange(0x1e922, 0x1e943)
+        self.description = 'Converts Adlam font encoding to Unicode'
 
         self.forceFont = True  # May be used to set all font fields to the Unicode font
 
-        self.firstChar = self.adlamFirstUpper
+        self.isRtl = True
 
         self.encoding = None
         self.debug = False  #False
-        self.lower_mode = True
-        self.sentence_mode = True
+
+        self.setLowerMode(True)
+        self.setSentenceMode(True)
 
         self.end_of_sentence_pattern = re.compile(r'([\.\?\!\؟])($|)')
 
@@ -408,30 +404,12 @@ class converter(ConverterBase):
             '!': '𞥞',
             '؟': '𞥟',
         }
-        self.oldFonts = []
-        # TODO
-        self.encodingScripts = []  # If given, tells the Script of incoming characters
-        # The fonts detected for conversion
-        for item in oldFontList:
-          if isinstance(item, list):
-            self.oldFonts.append(item[0])
-            self.encodingScripts.append(item[1])
-          else:
-            self.oldFonts.append(item)
-        # Name of the substitute Unicode font, if provided
-        if newFont:
-            self.unicodeFont = newFont
-        else:
-            self.unicodeFont = defaultOutputFont
+
         if self.debug:
           print('OldFonts = %s' % self.oldFonts)
           print('encodingScripts = %s' % self.encodingScripts)
           print('unicodeFont = %s' % self.unicodeFont)
     # TODO: check input and conversion tables for Unicode NFC normalization.
-
-    def isRtl(self):
-        # Adlam is RTL.
-        return True
 
     # Consider the font information if relevant, e.g., underlining.
     # fontInfo: a list of font data for this code, including formatting for each piece.
@@ -490,49 +468,14 @@ class converter(ConverterBase):
 
         if self.lower_mode:
           convertResult = self.toLower(convertResult)
-        #if self.sentence_mode:
-        #  convertResult= self.toSentenceCase(convertResult)
 
         return convertResult
-
-    def setLowerMode(self, lowerExpected):
-      self.lower_mode = lowerExpected
-
-    def setSentenceMode(self, sentence_mode):
-      self.lower_mode = sentence_mode
-
-    # Converts sentence_mode case characters to lower
-    def toLower(self, inText):
-        if (sys.version_info > (3, 0)):
-            return inText.lower()
-        # Below is Python2
-        outTextList = []
-        for c in inText:
-          ord_c = ord(c)
-          if ord_c >= self.adlamFirstUpperOrd and ord_c < self.adlamFirstLowerOrd:
-            outTextList.append(unichr(ord_c + self.lowerOffset))
-          else:
-            outTextList.append(c)
-        return ''.join(outTextList)  # Standard Unicode conversion.
-
-    def toSentenceCase(self, inText):
-        # TODO: Capitalize first.
-        if not inText:
-            return inText
-        first = inText[0].upper()
-        # TODO: Handle initial question and exclamation marks.
-        # if inText[-1] == "!":
-        #     first = '\U0001E95E' + first
-        # elif inText[-1] == "?":
-        #     first = '\U0001E95F' + first
-        return first + inText[1:]
 
     # Locate the sentence boundaries given a paragraph.
     # Sentences end with period followed by a space, a question mark, exclamation,
     # or end of text, but not 3 dots (ellipsis).
     def findSentencesInParagraph(self, paratext):
         sentences = paragraph().split('. ')
-        # Others: ! and ? and reversed ?
         return None  # To be finished!
 
     def checkContentsForMerge(self, text):
@@ -544,7 +487,7 @@ class converter(ConverterBase):
         ok_chars = ['\u0020', '.', ',', ';', ':', '[', ']', '{', '}', '⹁',
                     '⁏', '?', '\u061F', '(', ')', '/', '-', '_']
         for c in text:
-            if not (c >= self.adlamFirstChar and c <= self.adlamLastChar) and (
+            if not (c >= self.first and c <= self.last) and (
                 c not in ok_chars):
                 return False
         return True

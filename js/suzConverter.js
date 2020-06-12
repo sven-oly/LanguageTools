@@ -94,9 +94,9 @@ var private_use_map_combined = {
 
     '\u00b2': ['\uecb2', '\u00b2'],
     '\u00b3': ['\uecb3', '\u00b3'],
-    '\u00bc': ['\uecbc', '\u00bc'],
-    '\u00bd': ['\uecbd', '\u00bd'],
-    '\u00be': ['\uecbe', '\u00be'],
+    '\u00bc': ['\uec31/\uec34', '\u00bc'],
+    '\u00bd': ['\uec31/\uec32', '\u00bd'],
+    '\u00be': ['\uec33/\uec34', '\u00be'],
 };
 
 
