@@ -360,7 +360,7 @@ class copyConverter():
     runnum += 1
 
 
-# TODO: Complete this with sentence checking.
+# Handles sentence conversion if needed.
 def convertParagraph(para, converter, unicodeFont, debugInfo=False):
   numConverts = 0
   notConverted = 0

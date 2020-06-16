@@ -27,8 +27,6 @@ def convertOffice(input_path, output_dir, converter):
   if extension == '.docx':
     docxProcessor = convertDoc.convertDocx(input_path, output_dir, converter)
     docxProcessor.processDocx()
-
-    # convertDoc.processDOCX(input_path, output_dir, converter)
   elif extension == '.pptx':
     convertPPT.processOnePresentation(input_path, output_dir,
                                       converter)

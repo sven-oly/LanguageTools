@@ -16,7 +16,7 @@ FONTS_TO_CONVERT = [
   ['Times New Roman', 'latn'],
 ]
 
-thisDefaultOutputFont = 'NotoSansAdlam'
+thisDefaultOutputFont = 'Noto Sans Adlam'
 
 
 class converter(ConverterBase):
@@ -377,9 +377,9 @@ class converter(ConverterBase):
             u'\U0001E94B': u'\U0001E94B',
         },
     }
-    description = 'Converts Adlam font encoding to Unicode'
 
-    def __init__(self, oldFontList, newFont=None, defaultOutputFont=thisDefaultOutputFont):
+
+    def __init__(self, oldFontList=FONTS_TO_CONVERT, newFont=None, defaultOutputFont=thisDefaultOutputFont):
         super().__init__(oldFontList, newFont=newFont, defaultOutputFont=defaultOutputFont)
         self.setScriptRange(0x1e900, 0x1e95f)
         self.setUpperCaseRange(0x1e900, 0x1e921)
@@ -390,13 +390,17 @@ class converter(ConverterBase):
 
         self.isRtl = True
 
+        self.description = 'Converts Adlam font encoding to Unicode'
+        self.ignore_start_of_sentence = re.compile(
+            r'([\U0001E950-\U0001E959\u0020()\- ]+)')
+
         self.encoding = None
         self.debug = False  #False
 
         self.setLowerMode(True)
         self.setSentenceMode(True)
 
-        self.end_of_sentence_pattern = re.compile(r'([\.\?\!\؟])($|)')
+        self.end_of_sentence_pattern = re.compile(r'([\.\?\!\؟$])')
 
         # For inserting question and exclamation before sentences.
         self.pre_punctuation = {
@@ -441,7 +445,7 @@ class converter(ConverterBase):
 
         return ''.join(convertList)
 
-    # Handles details of converting the text, including case and sentence conversion.
+    # Handles details of converting the text, including case conversion.
     def convertString(self, textIn, fontInfo,
                       conversion_map):
         # type: (object, object, object) -> object
@@ -492,78 +496,194 @@ class converter(ConverterBase):
                 return False
         return True
 
-    def processParagraphRuns(self, p):
-        # Get all the positions of sentence endings
-        all_sentence_ends = self.end_of_sentence_pattern.finditer(p.text)
-        text_len = len(p.text)
-        if not all_sentence_ends:
-            # No sentence endings. Should first be capitalized?
-            return None
-        sentence_starts = [0]
-        sentence_ends = []
-        for sentence_end in all_sentence_ends:
-            # print(sentence_end)
-            # Position and character of this sentence ending
-            sentence_ends.append((sentence_end.start(), sentence_end.group(0)[0]))
-            end_pos = sentence_end.end()
-            while end_pos < text_len and (
-                p.text[end_pos] == ' ' or p.text[end_pos] == '\r'
-                or p.text[end_pos] == '\t' or p.text[end_pos] == '\n'):
-              end_pos += 1
-            sentence_starts.append(end_pos)
 
-        runs = p.runs
+    def computeSentenceStartsEnds(self, text):
+         # Get all the positions of sentence endings
+         all_sentence_ends = self.end_of_sentence_pattern.finditer(text)
+         text_len = len(text)
+         if not all_sentence_ends:
+             # No sentence endings. Should first be capitalized?
+             return None
+         sentence_starts = [0]
+         ignore_match = self.ignore_start_of_sentence.match(text)
+         if ignore_match:
+             sentence_starts[0] = ignore_match.end()
+         sentence_ends = []
+         for sentence_end in all_sentence_ends:
+             # print(sentence_end)
+             # Position and character of this sentence ending
+             sentence_ends.append((sentence_end.start(), sentence_end.group(0)[0]))
+             end_pos = sentence_end.end()
+             while end_pos < text_len and (
+                 text[end_pos] == ' ' or text[end_pos] == '\r'
+                 or text[end_pos] == '\t' or text[end_pos] == '\n'):
+                 end_pos += 1
+             # Move the letter content
+             #         self.ignore_start_of_sentence = re.compile(
+             # r'([\U0001E950\U0001E959\u0020()]+)')
+             start_pos = end_pos
+             if start_pos < text_len:
+                 ignore_match = self.ignore_start_of_sentence.match(text[start_pos:])
+                 if ignore_match:
+                     start_pos += ignore_match.end() - 1
+             sentence_starts.append(start_pos)
+         # The paragraph text ends a sentence
+         sentence_ends.append((len(text)-1, '$'))
+         return sentence_ends, sentence_starts
+
+    def processXmlParagraphRuns(self, xml_runs):
+        # Get paragraph text
+        text_list = []
+        for run in xml_runs:
+            if run.text:
+                text_list.append(run.text)
+        para_text = ''.join(text_list)
+        # Get the sentence ends and starts of this text
+        sentence_ends, sentence_starts = \
+            self.computeSentenceStartsEnds(para_text)
+
+        # Get mappings of text in runs to paragraph text
+        run_map = self.mapRunsToParagraphTextPosisions(xml_runs)
+
+        # Process each sentence for capitalization and punctuation,
+        # updating the runs.
+        self.updateSentencesInRuns(xml_runs, run_map, sentence_starts, sentence_ends)
+        return
+
+    def mapRunsToParagraphTextPosisions(self, runs):
         # Mapping of run starts & ends to text positions
         run_map = []
         pos = 0
         run_index = 0
         for run in runs:
-          run_length = len(run.text)
-          run_map.append((pos, pos + len(run.text) - 1, run, run_index))
-          pos += len(run.text)
-          run_index += 1
-        # print('pos-run map: %s' % run_map)
+            if run.text:
+                run_length = len(run.text)
+                run_map.append((pos, pos + len(run.text) - 1, run, run_index))
+                pos += len(run.text)
+            run_index += 1
+        return run_map
 
-        # now iterate over the ends of sentences
-        # Capitalize each start of sentence
+    def updateSentencesInRuns(self, runs, run_map, sentence_starts, sentence_ends):
         for start in sentence_starts:
             # Get the run and relative position
             (run, run_pos) = self.textPositionInRun(run_map, start)
 
-            if run:
+            if run != None and run.text and run.text != '':
                 # Find next non-white space and capitalize it
                 run_length = len(run.text)
                 runIndex = run_pos
                 text = run.text
+                # TODO: ignore spaces, digits, and some punctuation at start of sentence
+                # self.ignore_start_of_sentence = r'[𞥐𞥑𞥒𞥓𞥔𞥕𞥖𞥗𞥘𞥙𞥐() ]'
+                ignore_match = self.ignore_start_of_sentence.match(text)
+                if ignore_match:
+                    increment = ignore_match.end()
+                    runIndex += increment
                 while runIndex < run_length and text[runIndex] == ' ':
                     runIndex += 1
                 if runIndex < run_length:
                     fixThisOne = text[runIndex]
                     toUpper = fixThisOne.upper()
-                    run.text = text[0:runIndex] + toUpper + text[runIndex+1:]
+                    run.text = text[0:runIndex] + toUpper + text[runIndex + 1:]
                 else:
                     print('!! Capitalization question %d %s (%d)' % (runIndex, text, len(text)))
+
 
         # Insert preceding ! or ?, from the back
         index = len(sentence_ends) - 1
         while index >= 0:
             insert_pos = sentence_ends[index][0]
             punctuation = sentence_ends[index][1]
-            if punctuation != ".":
+            if punctuation != "."  and punctuation != '$':
                 # Get the start of this sentence
-                (run, run_pos) = self.textPositionInRun(run_map, sentence_starts[index])
+                (run, run_pos) = self.textPositionInRun(
+                    run_map, sentence_starts[index])
                 text = run.text
                 run_length = len(text)
+                # TODO: ignore spaces, digits, and some punctuation at start of sentence
                 while run_pos < run_length and text[run_pos] == ' ':
                     run_pos += 1
-                run.text = text[0:run_pos] + self.pre_punctuation[punctuation] + text[run_pos:]
-
+                if run.text and run_pos < run_length and run.text[run_pos] != self.pre_punctuation[punctuation]:
+                    run.text = text[0:run_pos] + self.pre_punctuation[punctuation] + text[run_pos:]
             index -= 1
+
+
+    def processParagraphRuns(self, p):
+        # Get all the positions of sentence endings
+        sentence_ends, sentence_starts = \
+            self.computeSentenceStartsEnds(p.text)
+        # all_sentence_ends = self.end_of_sentence_pattern.finditer(p.text)
+        # text_len = len(p.text)
+        # if not all_sentence_ends:
+        #     # No sentence endings. Should first be capitalized?
+        #     return None
+        # sentence_starts = [0]
+        # sentence_ends = []
+        # for sentence_end in all_sentence_ends:
+        #     # print(sentence_end)
+        #     # Position and character of this sentence ending
+        #     sentence_ends.append((sentence_end.start(), sentence_end.group(0)[0]))
+        #     end_pos = sentence_end.end()
+        #     while end_pos < text_len and (
+        #         p.text[end_pos] == ' ' or p.text[end_pos] == '\r'
+        #         or p.text[end_pos] == '\t' or p.text[end_pos] == '\n'):
+        #       end_pos += 1
+        #     sentence_starts.append(end_pos)
+        #
+        runs = p.runs
+        run_map = self.mapRunsToParagraphTextPosisions(p.runs)
+        # Mapping of run starts & ends to text positions
+        # run_map = []
+        # pos = 0
+        # run_index = 0
+        # for run in runs:
+        #   run_length = len(run.text)
+        #   run_map.append((pos, pos + len(run.text) - 1, run, run_index))
+        #   pos += len(run.text)
+        #   run_index += 1
+
+        # now iterate over the ends of sentences
+        # Capitalize each start of sentence
+        converter.updateSentencesInRuns(self, run_map, runs, sentence_starts, sentence_ends)
+        # for start in sentence_starts:
+        #     # Get the run and relative position
+        #     (run, run_pos) = self.textPositionInRun(run_map, start)
+        #
+        #     if run:
+        #         # Find next non-white space and capitalize it
+        #         run_length = len(run.text)
+        #         runIndex = run_pos
+        #         text = run.text
+        #         while runIndex < run_length and text[runIndex] == ' ':
+        #             runIndex += 1
+        #         if runIndex < run_length:
+        #             fixThisOne = text[runIndex]
+        #             toUpper = fixThisOne.upper()
+        #             run.text = text[0:runIndex] + toUpper + text[runIndex+1:]
+        #         else:
+        #             print('!! Capitalization question %d %s (%d)' % (runIndex, text, len(text)))
+        #
+        # # Insert preceding ! or ?, from the back
+        # index = len(sentence_ends) - 1
+        # while index >= 0:
+        #     insert_pos = sentence_ends[index][0]
+        #     punctuation = sentence_ends[index][1]
+        #     if punctuation != ".":
+        #         # Get the start of this sentence
+        #         (run, run_pos) = self.textPositionInRun(run_map, sentence_starts[index])
+        #         text = run.text
+        #         run_length = len(text)
+        #         while run_pos < run_length and text[run_pos] == ' ':
+        #             run_pos += 1
+        #         run.text = text[0:run_pos] + self.pre_punctuation[punctuation] + text[run_pos:]
+        #
+        #     index -= 1
 
         return
 
   # Given a start position in the paragraph text, return run and place there.
     def textPositionInRun(self, run_map, start):
+        # TODO: Ignore some characters at start, e.g., digits, space, punctuation
         for map in run_map:
             if start >= map[0] and start <= map[1]:
                 # print('Capitalize run %s at %s' % (map, start - map[0]))

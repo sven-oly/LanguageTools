@@ -61,7 +61,6 @@ class ConverterBase():
     self.last_lower = chr(last)
     self.lowerOffset = ord(self.first_lower) - ord(self.first_upper)
 
-
   def isRtl(self):
     # Override for RTL langu
     return False
@@ -87,3 +86,7 @@ class ConverterBase():
       return inText
     first = inText[0].upper()
     return first + inText[1:]
+
+  # Implemented by specific class for language and script.
+  def processParagraphRuns(self, p):
+    return

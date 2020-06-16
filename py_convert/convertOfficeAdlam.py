@@ -29,7 +29,6 @@ def main(argv):
     # Other Latin fonts to convert?
     paths_to_doc = args.filenames
 
-    # TODO: How to handle other Latin fonts?
     # List of [fontName, encodingScript]
     FONTS_TO_CONVERT = [
         ['Fulfulde - Aissata', 'arab'],
@@ -38,7 +37,7 @@ def main(argv):
         ['Times New Roman', 'latn'],
     ]
 
-    converter = adlamConversion.converter(FONTS_TO_CONVERT, newUnicodeFont)
+    converter = adlamConversion.converter()  # FONTS_TO_CONVERT, newUnicodeFont)
     # Set up parameters for conversion
     converter.lower_mode = args.lower
     converter.sentence_mode = args.sentence

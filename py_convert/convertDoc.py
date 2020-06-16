@@ -29,7 +29,7 @@ removeOldText = False
 removeOldTextParents = False
 
 # If enabled, replaces old fonts in list in fontsTable.xml
-convertFontsTable = False
+convertFontsTable = True
 
 # To keep track of data for an entire paragraph, to pass to conversion.
 class paragraphData():
@@ -62,11 +62,23 @@ class convertDocx():
     self.unicode_font = converter.unicodeFont
     self.debug = debug
 
+    # True if paragraph text should be converted as a unit
+    self.accumulate_text = False
+
+    # If enabled, replaces old fonts in list in fontsTable.xml
+    self.convertFontsTable = True
+
     # Pieces of the document
     self.paragraphs = []
     self.drawings = []
     self.text_boxes = []
     self.parent_map = {}
+    self.paragraphs_converted = {}
+
+    # Pieces for paragraphs
+    self.paragraph_runs = []
+    self.rprFormatData = []
+    self.superscriptNode = None
 
   def processDocx(self):
     if self.debug:
@@ -77,8 +89,8 @@ class convertDocx():
     docfiles = ['word/document.xml', 'word/header1.xml', 'word/footer1.xml']
     docPartsOut = {}
 
-    if convertFontsTable:
-      newFontTable = tryFontUpdate(newzip, self.converter.oldFonts, self.unicode_font)
+    if self.convertFontsTable:
+      newFontTable = self.tryFontUpdate(newzip, self.converter.oldFonts, self.unicode_font)
       docPartsOut['word/fontTable.xml'] = newFontTable
 
     for docfile_name in docfiles:
@@ -137,7 +149,6 @@ class convertDocx():
     # Accumulate the paragraphs, drawing text, and text boxes
     drawingContentText = []
     textBoxText = []
-    paragraphs = []
     # Should we check for tables, too?
     for p in tree.iter():
       if re.search('}p$', p.tag):
@@ -163,13 +174,14 @@ class convertDocx():
     print('@@@@@@ %d paragraphs found' % len(self.paragraphs))
     print('@@@@@@ docfile_name = %s' % docfile_name)
 
-    if not drawingContentText and not textBoxText and docfile_name == 'word/document.xml':  # CHECK THIS!
+    if not drawingContentText and not textBoxText and docfile_name == 'word/document.xml':
+      # Handle this with only DocX functions.
       convertWord.convertOneDoc(self.input_path, docfile_name, self.converter)
       return
 
     # This contains drawings and possibly other things that can't be parsed with the docx
-    # library. Look at this as raw XML.
-    # So we can get the parents of each node.
+    # library. Process all the paragraphs and text items.
+    # Compute the parent items for possible deletions.
     # http://elmpowered.skawaii.net/?p=74
     self.parent_map = dict((c, p) for p in tree.iter() for c in p)
 
@@ -178,7 +190,8 @@ class convertDocx():
     allEmptiedTextElements, convertCount = self.processXmlParagraphs()
 
     # TODO: remove all emptied text elements.
-    self.removeOldTextElements(allEmptiedTextElements)
+    if self.accumulate_text:
+      self.removeOldTextElements(allEmptiedTextElements)
 
     print(' %s: %d text items converted' % (docfile_name, convertCount))
 
@@ -192,24 +205,29 @@ class convertDocx():
       tree.write(outpath)
     return tree
 
+  # Process each of the paragraph nodes
   def processXmlParagraphs(self):
-    paragraphCount = 0
     allEmptiedTextElements = []
     paragraphCount = 0
     convertCount = 0
+    self.paragraph_runs = []
 
     for para in self.paragraphs:
-      newConvertedCount, emptiedElements = self.handleXmlParagraph(para)
+      newConvertedCount, emptiedElements, paragraph_text = self.handleXmlParagraph(para)
 
       convertCount += newConvertedCount
       allEmptiedTextElements.append(emptiedElements)
-      print('@P@P@P Paragraph %d text = %s' % (paragraphCount, para.text))
+      print('@P@P@P Paragraph %d text = %s' % (paragraphCount, paragraph_text))
       paragraphCount += 1
 
     return allEmptiedTextElements, convertCount
 
+  # Process the text of a single paragraph.
   def handleXmlParagraph(self, para):
     allEmptiedTextElements = []
+    if para in self.paragraphs_converted:
+      print('Paragraph already done: %s' % para)
+      return 0, allEmptiedTextElements, ''
     paragraphText = ""
     paragraphTextStarts = []
     paragraphTextElements = []
@@ -220,29 +238,30 @@ class convertDocx():
 
     textElements = []
     formatTextInfo = []
-    rprFormatData = []
+    self.rprFormatData = []
     collectedText = ''
-    superscriptNode = None
-    inEncodedFont = False
+    self.superscriptNode = None
+    self.inEncodedFont = False
     actualFont = None
     fontNode = None
     fontFound = False
+    convertedText = ''
 
     for pchild in para.iter('*'):
       if re.search('}r$', pchild.tag):
         # Look only at the rPr and <w:t> data
         for rchild in pchild.iter('*'):
-          superscriptNode = None
-
           # Process <w:r>
           if re.search('}rPr', rchild.tag):
-            self.processRtF(rchild, paragraph_info, rprFormatData)
+            self.processRtF(rchild, paragraph_info, self.rprFormatData)
             fontFound = False
             actualFont = None
             fontNode = None
             for rprchild in rchild.iter('*'):
               # Collect all the formatting information
-              rprFormatData.append(rprchild)
+              # TODO: revise returns.
+              #fontFound, fontIndex = self.collectRprData(rprchild)
+              # TODO: Move all to the above function
 
               # Process <w:rPr>
               # Gather formatting information as needed, e.g.,
@@ -273,13 +292,14 @@ class convertDocx():
                       conversions += newConvertedCount
                       allEmptiedTextElements.append(emptiedElements)
                     collectedText = ''
-                    rprFormatData = []
+                    self.rprFormatData = []
                     formatTextInfo = []
                     textElements = []
                     inEncodedFont = False
           elif re.search('}t', rchild.tag):
             # For all the paragraph text.
             paragraphTextStarts.append(len(paragraphText))
+            self.paragraph_runs.append(rchild)
             if rchild.text:
               paragraphText += rchild.text
             paragraphTextElements.append(rchild)
@@ -287,33 +307,43 @@ class convertDocx():
             paragraph_info.adddata(rchild, fontNode)
 
             treat_as_no_break = self.converter.checkContentsForMerge(rchild.text)
-            if treat_as_no_break:
-              print('Contents treated as no break: %s' % rchild.text)
-
-            if fontFound and (inEncodedFont or treat_as_no_break) and rchild.text:
-              # Process <w:t>
-              formatTextInfo.append([rchild.text, rprFormatData])
-              collectedText += rchild.text
-              rprFormatData = []
-              textElements.append(rchild)
-
+            if fontFound and (self.inEncodedFont or treat_as_no_break) and rchild.text:
+              # Consider the text across the runs as a unit
+              if self.accumulate_text:
+                # Process <w:t>
+                formatTextInfo.append([rchild.text, self.rprFormatData])
+                collectedText += rchild.text
+                self.rprFormatData = []
+                textElements.append(rchild)
+              else:
+                # Convert the text of each run independently.
+                rchild.text = self.converter.convertText(
+                  rchild.text, fontTextInfo=None, fontIndex=0)
+                convertedText += rchild.text
+                conversions += 1
             else:
               notEncoded = rchild.text
               if notEncoded and False and debug_output:
                 print(' &&& fontFound = %s, inEncodedFont = %s, actual = %s' %
-                      (fontFound, inEncodedFont, actualFont))
+                      (fontFound, self.inEncodedFont, actualFont))
                 print('notEncoded = >%s<' % notEncoded)
 
     # End of the paragraph
-    if debug_output:
-      print('     Starts = %s' % paragraphTextStarts)
-      # print('     Fonts = %s' % paragraphFonts)
+    if paragraphText and self.accumulate_text:
       convertedText = self.converter.convertText(paragraphText, fontTextInfo=None,
-                                          fontIndex=0)
-      print('  --> Converted paragraph = %s' % convertedText)
-        # TODO: Use the collect paragraph stuff to do better conversion, esp. sentence
-       # and punctuation across font differences.
-    return conversions, allEmptiedTextElements
+                                               fontIndex=0)
+      if debug_output:
+        print('     Starts = %s' % paragraphTextStarts)
+        print('  --> Converted paragraph = %s' % convertedText)
+
+    # TODO: Use the collect paragraph stuff to do better conversion, esp. sentence
+    # and punctuation across font differences.
+    # Use self.paragraph_runs and paragraphText to do sentence-level stuff
+    # if needed.
+    self.converter.processXmlParagraphRuns(self.paragraph_runs)
+
+    self.paragraphs_converted[para] = True
+    return conversions, allEmptiedTextElements, convertedText
 
   def removeOldTextElements(self, allElementsToRemove):
     count = 0
@@ -362,7 +392,7 @@ class convertDocx():
   # unicode string, remove text from other text elements in that,
   # batch, and remove the empty elements.
   # Should I reset the font in this function, too?
-  def processCollectedText(self, collectedText, textElementList, superscriptNode,
+  def processCollectedText(self, collectedText, textElementList,
                            formatTextInfo, fontIndex):
     # type: (object, object, object, object, object, object) -> object
     clearedTextElements = []
@@ -398,8 +428,9 @@ class convertDocx():
     except:
       print('Error with parent indexing')
 
-    if superscriptNode:  # This is special case for Osage. TODO: Move to Osage self.converter
-      superscriptNode.val = 'baseline'
+    if self.superscriptNode:
+      # This is special case for Osage. TODO: Move to Osage self.converter
+      self.superscriptNode.val = 'baseline'
 
     # 2. Clear text in other elements
     for element in textElementList[1:]:
@@ -412,63 +443,102 @@ class convertDocx():
   def processRtF(self, rchild, paragraph_info, rprFormatData):
     # Deal with the font and text data for the paragraph.
     # Keep track of all the data for each chunk and
-    inEncodedFont = False
+    self.inEncodedFont = False
     if re.search('}rPr', rchild.tag):
       fontFound = False
       actualFont = None
       fontNode = None
       for rprchild in rchild.iter('*'):
         # Collect all the formatting information
-        rprFormatData.append(rprchild)
+        self.rprFormatData.append(rprchild)
 
         # Process <w:rPr>
         if re.search('}vertAlign', rprchild.tag):
-          superscriptNode = rprchild
+          self.superscriptNode = rprchild
         elif re.search('}rFonts', rprchild.tag):
           self.processFont(rprchild)        # Font info.
           fontFound = True
           (newFontIndex, actualFont) = self.isOldFontNode(rprchild)
           if newFontIndex >= 0:
             # In font encoded node
-            inEncodedFont = True
+            self.inEncodedFont = True
             fontIndex = newFontIndex
           else:
             # Check if we are switching out. If so, handle accumulated text
-            if inEncodedFont:
+            if self.inEncodedFont:
               # TODO: Even if no text, reset the encoded font
               if collectedText:
                 (newConvertedCount, emptiedElements) = \
                   self.processCollectedText(collectedText,
                                             textElements,
                                             parent_map,
-                                            superscriptNode,
                                             formatTextInfo, fontIndex)
                 convertCount += newConvertedCount
                 allEmptiedTextElements.append(emptiedElements)
               collectedText = ''
-              rprFormatData = []
+              self.rprFormatData = []
               formatTextInfo = []
               textElements = []
-              inEncodedFont = False
+              self.inEncodedFont = False
     elif re.search('}t', rchild.tag):
       processText(rchild, paragraphTextStarts, paragraphTextElements, paragraphFonts,
-                  collectedText, rprFormatData, textElements,
-                  fontFound, inEncodedFont, actualFont)
+                  collectedText, self.rprFormatData, textElements,
+                  fontFound, actualFont)
 
+  def collectRprData(self, rprchild):
+    self.rprFormatData.append(rprchild)
+
+    fontFound = True
+    fontIndex = -1
+    fontNode = None
+
+    # Process <w:rPr>
+    # Gather formatting information as needed, e.g.,
+    # superscript, subscript, style, underline, etc.
+    if re.search('}vertAlign', rprchild.tag):
+      self.superscriptNode = rprchild
+    elif re.search('}rFonts', rprchild.tag):
+      # Font info.
+      fontFound = True
+      fontNode = rprchild
+      (newFontIndex, actualFont) = self.isOldFontNode(rprchild)
+      if newFontIndex >= 0:
+        # In font encoded node
+        self.inEncodedFont = True
+        fontIndex = newFontIndex
+      else:
+        # Check if we are switching out. If so, handle accumulated text
+        if self.inEncodedFont:
+          # TODO: Even if no text, reset the encoded font
+          if collectedText:
+            (newConvertedCount, emptiedElements) = \
+              self.processCollectedText(
+                collectedText,
+                textElements,
+                self.superscriptNode,
+                formatTextInfo,
+                fontIndex)
+            conversions += newConvertedCount
+            allEmptiedTextElements.append(emptiedElements)
+          collectedText = ''
+          self.rprFormatData = []
+          formatTextInfo = []
+          textElements = []
+          self.inEncodedFont = False
+    return fontFound, fontIndex
 
   def processFont(self, rprchild):
     fontFound = True
     (newFontIndex, actualFont) = self.isOldFontNode(rprchild)
-    inEncodedFont = False
+    self.inEncodedFont = False
 
     # Check if we are switching out. If so, handle accumulated text
-    if inEncodedFont:
+    if self.inEncodedFont:
       # TODO: Even if no text, reset the encoded font
       if collectedText:
         (newConvertedCount, emptiedElements) = \
           self.processCollectedText(collectedText,
                                     textElements,
-                                    superscriptNode,
                                     self.converter,
                                     formatTextInfo, newFontIndex)
         convertCount += newConvertedCount
@@ -477,7 +547,7 @@ class convertDocx():
 
   def processText(self, rchild, paragraphTextStarts, paragraphTextElements, paragraphFonts,
                   collectedText, rprFormatData, textElements,
-                  fontFound, inEncodedFont, actualFont):
+                  fontFound, actualFont):
     paragraphTextStarts.append(len(paragraphText))
     if rchild.text:
       paragraphText += rchild.text
@@ -489,11 +559,11 @@ class convertDocx():
       # Prepare to handle this, too.
       print('Contents treated as no break: %s' % rchild.text)
 
-    if fontFound and (inEncodedFont or treat_as_no_break) and rchild.text:
+    if fontFound and (self.inEncodedFont or treat_as_no_break) and rchild.text:
       # Process <w:t>
       v.append([rchild.text, rprFormatData])
       collectedText += rchild.text
-      rprFormatData = []
+      self.rprFormatData = []
       textElements.append(rchild)
 
     else:
@@ -501,7 +571,7 @@ class convertDocx():
       notEncoded = rchild.text
       if notEncoded and False and debug_output:
         print(' &&& fontFound = %s, inEncodedFont = %s, actual = %s' %
-              (fontFound, inEncodedFont, actualFont))
+              (fontFound, self.inEncodedFont, actualFont))
         print('notEncoded = >%s<' % notEncoded)
 
 
@@ -524,13 +594,14 @@ class convertDocx():
     for node in tree.iter('*'):
       if re.search('}font$', node.tag):
         keys = node.attrib.keys()
-        if re.search('}name', keys[0]) and node.attrib[keys[0]] in oldFontList:
-          print( 'Replacing font %s with %s' % (node.attrib[keys[0]], self.unicode_font))
-          node.attrib[keys[0]] = self.unicode_font
+        for key in keys:
+          if re.search('}name', key) and node.attrib[key] in self.oldFonts:
+            print( 'Replacing font %s with %s' % (node.attrib[key], self.unicode_font))
+            node.attrib[key] = self.unicode_font
     return ET.tostring(tree, encoding='utf-8')
 
 
- # For standalong and testing.
+ # For standalone and testing.
 def main(argv):
   global debug_output
 

@@ -1,0 +1,28 @@
+processDOCX path = /Users/craig/Desktop/Projects/Adlam/AdlamConversionData/a2_short.docx, output_dir = 
+
+    oldConvert = <adlamConversion.converter object at 0x10d18ce10>, oldFontList = ['Fulfulde - Aissata', 'Fulfulde - Fuuta', 'Fulfulde - Pulaar', 'Times New Roman']
+@@@@@@ 0 drawings found
+@@@@@@ docfile_name = word/document.xml
+Converting  in file: word/document.xml
+Traceback (most recent call last):
+  File "convertOfficeAdlam.py", line 51, in <module>
+    main(sys.argv)
+  File "convertOfficeAdlam.py", line 47, in main
+    convertOffice.convertOffice(input, args.output_dir, converter)
+  File "/Users/craig/Desktop/Projects/LanguageTools/py_convert/convertOffice.py", line 28, in convertOffice
+    convertDoc.processDOCX(input_path, output_dir, converter)
+  File "/Users/craig/Desktop/Projects/LanguageTools/py_convert/convertDoc.py", line 481, in processDOCX
+    isString=True)
+  File "/Users/craig/Desktop/Projects/LanguageTools/py_convert/convertDoc.py", line 137, in parseDocXML
+    convertWord.convertOneDoc(docfile_name, converter)
+  File "/Users/craig/Desktop/Projects/LanguageTools/py_convert/convertWord.py", line 122, in convertOneDoc
+    doc = Document(path_to_doc)
+  File "/Library/Frameworks/Python.framework/Versions/3.7/lib/python3.7/site-packages/docx/api.py", line 25, in Document
+    document_part = Package.open(docx).main_document_part
+  File "/Library/Frameworks/Python.framework/Versions/3.7/lib/python3.7/site-packages/docx/opc/package.py", line 128, in open
+    pkg_reader = PackageReader.from_file(pkg_file)
+  File "/Library/Frameworks/Python.framework/Versions/3.7/lib/python3.7/site-packages/docx/opc/pkgreader.py", line 32, in from_file
+    phys_reader = PhysPkgReader(pkg_file)
+  File "/Library/Frameworks/Python.framework/Versions/3.7/lib/python3.7/site-packages/docx/opc/phys_pkg.py", line 31, in __new__
+    "Package not found at '%s'" % pkg_file
+docx.opc.exceptions.PackageNotFoundError: Package not found at 'word/document.xml'
