@@ -24,6 +24,8 @@ import webapp2
 
 from google.appengine.ext.webapp import template
 
+import jsToCldrKb
+
 class testHandler(webapp2.RequestHandler):
     def get(self):
       template_values = {
@@ -43,9 +45,6 @@ class testLocaleHandler(webapp2.RequestHandler):
 
       logging.info("user agent = %s" % self.request.headers['user-agent'])
       logging.info("country = %s" % self.request.headers['X-AppEngine-Country'])
-      #    logging.info("region = %s" % self.request.headers['X-AppEngine-Region'])
-      #    logging.info("City = %s" % self.request.headers['X-AppEngine-City'])
-      #    logging.info("LatLong = %s" % self.request.headers['X-AppEngine-CityLatLong'])
 
       isMobile = self.request.get('mobile')
       uastring = self.request.headers.get('user_agent')
@@ -69,14 +68,55 @@ class LayoutToKeyMan(webapp2.RequestHandler):
       'value': 1,
       'kb_js': "aho",
       'kb_layout': 'AHO_LAYOUT',
-
     }
     path = os.path.join(os.path.dirname(__file__), 'kbkeyman.html')
     self.response.out.write(template.render(path, template_values))
+
+class LayoutToCldr(webapp2.RequestHandler):
+  def get(self):
+    kbname = self.request.get('kbname')
+    template_values = {
+      'value': 1,
+      'kb_js': kbname,
+      'kb_layout': kbname.upper() + '_LAYOUT',
+    }
+    path = os.path.join(os.path.dirname(__file__), 'kbks2cdr.html')
+    self.response.out.write(template.render(path, template_values))
+
+class ProcessJsToXml(webapp2.RequestHandler):
+  def post(self):
+    # Process it to xml
+    json_txt = self.request.get('json_text', 'NOTHING');
+
+    # TODO: replace with conversion to XML.
+    # json_loaded = json.load(json_txt)
+    outfilename = 'outputfilename.xml'
+    layout_obj = jsToCldrKb.layout(outfilename)
+
+    try:
+      json_obj = json.loads(json_txt)
+    except:
+      json_obj = None
+      logging.info('&&&&&&& Cannont run json.loads on json_txt = %s' % json_txt)
+
+    xml_content = layout_obj.outputLdml(json_obj)  # urllib.parse.unquote(json_txt)
+    # logging.info('*** Length of input = %d', len(xml_content))
+
+    # TODO: set file name from keyboard data
+    download_filename = 'CLDR_KB.xml'
+    # Output to xml document
+    # self.response.headers['Content-Type'] = 'text/xml'
+    # self.response.headers['Content-Disposition'] = "attachment; filename=%s" % download_filename
+    # self.response.out.write(xml_content)
+    result = xml_content  #urllib.parse.quote(xml_content)
+    # To return info the the caller's page.
+    self.response.out.write(result)  # json.dumps(result))
 
 
 app = webapp2.WSGIApplication([
     ('/test/', testHandler),
     ('/test/testLocale/', testLocaleHandler),
     ('/test/kbkm/', LayoutToKeyMan),
+    ('/test/kbtocldr/', LayoutToCldr),
+    ('/test/ProcessJsToXml/', ProcessJsToXml),
 ], debug=True)

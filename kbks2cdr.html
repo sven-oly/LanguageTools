@@ -1,0 +1,82 @@
+<html><head>
+    <title>Keyboard JS for CLDR Input</title>
+
+    <script src="/layouts/{{kb_js}}.js"></script>
+
+<script>
+    // Output the mappings
+    function outputJS() {
+      let kb_data = {{kb_layout}};
+      let mappings = kb_data.mappings;
+      let transforms = kb_data.transform;
+      let text_out = JSON.stringify(kb_data);
+      let text_size = text_out.length;
+      var outarea = document.getElementById('output');
+      outarea.innerHTML = text_out;
+
+      // Send to the backend for XML output with the name of the file.
+      requestCldrKeyboardXml(text_out, "{{kb_js}}");
+    }
+
+  function requestCldrKeyboardXml(json_text, js_file_name) {
+    // Prepare for the call to the backendvar xmlhttp;
+	if (window.XMLHttpRequest) { // code for IE7+, Firefox, Chrome, Opera, Safari
+	  xmlhttp=new XMLHttpRequest();
+	} else { // code for IE6, IE5
+	  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+	}
+
+    // Deal with the results
+    xmlhttp.onreadystatechange=function() {
+	  if(xmlhttp.readyState==4) {
+	    var returned_json = xmlhttp.responseText;
+        var return_area = document.getElementById('return_area');
+        return_area.value = returned_json;
+        let text_size = returned_json.length;
+		var json_obj = JSON.parse(returned_json);
+
+//        if (json_obj.error) {
+//          // Warn, and don't change values.
+//          alert(json_obj.error);
+//          return;
+//        }
+        return;
+      }
+    }
+
+	// Set up the call
+	var escaped = encodeURIComponent(json_text);
+	var target = "/test/ProcessJsToXml/?json_text=" + escaped + "&js_filename" + js_file_name;
+	xmlhttp.open("POST", target, true);
+	var size = escaped.length;
+	xmlhttp.send(null);
+  }
+
+</script>
+  <script src="/js/vk-debug.js"></script>
+  <script>
+
+  function onPageLoaded() {
+      var input = document.getElementById('output');
+      controller = new i18n.input.keyboard.Keyboard();
+
+      // TEST!
+      var x = i18n.input.keyboard.Controller;
+
+      controller.loadLayout('{{kb_js}}');
+      controller.reposition(input, 3, 4, [5, 0, 0, 0]);
+      controller.activateLayout('{{kb_js}}');
+      controller.register(input);
+
+      outputJS();
+  }
+
+</script>
+</head>
+
+  <body onload="onPageLoaded()">
+  <h1>Load keyboard</h1>
+  <textarea id="output"cols="50" rows="40"></textarea>
+  <textarea id="return_area" cols="50" rows="40"></textarea>
+</body>
+</html>
