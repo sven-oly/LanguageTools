@@ -129,6 +129,9 @@ class langInfo():
         {'linkText': 'Phake-English dictionary builder',
          'ref': '/' + self.LanguageCode + '/dictionaryN/'
         },
+        {'linkText': 'Variation sequences: About those dots',
+         'ref': 'http://unicode.org/faq/vs.html'
+         },
         {'linkText': 'Myanmar Unicode block',
          'ref': 'http://www.unicode.org/charts/PDF/U1000.pdf'
         },
