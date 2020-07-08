@@ -3,11 +3,12 @@
 
 from __future__ import print_function
 import codecs
+
 import logging
 import re
 import sys
-import types
 
+import xml.etree.ElementTree as ET
 
 # Default transliteration framework.
 # Uses ICU-like syntax of transliteration rules.
@@ -147,7 +148,7 @@ def uStringsFixPlaceholder(string):
   return re.sub(u'\$(\d)', subBackSlash, string) # Fix the replacement patterns
 
 def uStringsToText(string):
-  pattern = '\\\u[0-9A-Fa-f]{4}'
+  pattern = r'\\u[0-9A-Fa-f]{4}'
   result = re.sub(pattern, decodeHexU, string)
   return re.sub(u'\$(\d)', subBackSlash, result) # Fix the replacement patterns
 
@@ -339,6 +340,40 @@ class Transliterate():
     return outstring
 
 
+# Take an XML file from CLDR and create a transliterator from it
+class TranslitXML(Transliterate):
+  def __init__(self, file_path):
+    self.path = file_path
+    self.tree = None
+    self.root = None
+    self.openFile()
+    self.parseRules()
+    self.rules = None
+    self.transforms = None
+    self.openFile()
+    self.parseRules()
+    self.rule_list = []
+    return self
+
+  def openFile(self):
+    self.tree = ET.parse(self.path)
+    self.root = self.tree.getroot()
+    return
+
+  def parseRules(self):
+    if self.root:
+      # Look for the rules and get into proper shape
+      self.transforms = self.root.find('transforms')
+      self.transform = self.transforms.find('transform')
+      self.rules = self.transform.find('tRule')
+      # How to handle ';' as the left side?
+      #self.rule_list = self.rules.text.split(';')
+      rule_lines = self.rules.split('\n')
+      for r in rule_lines:
+        stripped = r.lstrip()
+        self.rule_list.append(r)
+    return
+
 # ----------------- TESTING ------------------
 # TODO: Factor out the tests.
 def biggerTest(trans):
@@ -439,7 +474,7 @@ def transliterateFile(trans, encoding, fileName):
   return
 
 def main(argv=None):
-
+  # For testing basics
   if len(argv) > 1:
     print(argv)
     inType = argv[1]

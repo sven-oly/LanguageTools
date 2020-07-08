@@ -1,5 +1,9 @@
 from __future__ import print_function
 
+import os
+import sys
+import transliterate
+
 # ----------------- TESTING ------------------
 # TODO: Factor out the tests.
 def biggerTest(trans):
@@ -98,10 +102,21 @@ def transliterateFile(trans, encoding, fileName):
     print('%s\t%s' % (lineNum, outline))
     lineNum += 1
   return
-  
+
+def testXmlInput(file_path):
+  xml_transliterator = transliterate.TranslitXML(file_path)
+  # TODO: Now what to do with it!
+  return xml_transliterator
+
 def main(argv=None):
- 
+
+  # TODO: Test XML input and parsing
+
   if len(argv) > 1:
+    path = os.path.splitext(argv[1])
+    if path[1] == '.xml':
+      xml_transliterator = testXmlInput(argv[1])
+
     print(argv)
     inType = argv[1]
     inFile = argv[2]
@@ -121,9 +136,9 @@ def main(argv=None):
       encoding = 'shanthai'
   
     transliterateFile(trans, encoding, inFile)
-    return 
+    return
 
-  trans = Transliterate(translit_zawgyi.ZAWGYI_UNICODE_TRANSLITERATE)
+  trans = transliterate.Transliterate(translit_zawgyi.ZAWGYI_UNICODE_TRANSLITERATE)
   
   # New is not working yet.
   # trans = Transliterate(ZAWGYI_UNICODE_TRANSLITERATE_2)
