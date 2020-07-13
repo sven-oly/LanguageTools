@@ -46,6 +46,10 @@
 
   <script src="/js/utils.js"></script>
   <script src="/js/vk-debug.js"></script>
+{% if variation_sequence %}
+  <script src="/js/{{langTag}}Converter.js"></script>
+{% endif %}
+
   <script>
     var diff_list = [];  // needed for utils.js
 
@@ -75,7 +79,6 @@
               setFontFamily('{{font_list.0.family}}');
           });
       input.focus();
-
 
       var selector = document.getElementById("setLayout");
       onLayoutSelected(selector.value);
@@ -146,6 +149,21 @@
       {% for kb in kb_list %}{{kb.shortName}}: ["{{kb.longName}}", "{{kb.instructions}}" ],{%endfor%}
     };
 
+{% if variation_sequence %}
+function toggleConvertedVS(text_area_id, toggle) {
+  // TODO: Change variation sequence content of text.
+  var text_area = document.getElementById(text_area_id);
+
+  var text = text_area.value;
+  var new_text;
+  if (toggle.checked) {
+      new_text = add_variation_modifiers(text);
+  } else {
+      new_text =remove_variation_modifiers(text);
+  }
+  text_area.innerHTML = text_area.value = new_text;
+}
+{% endif %}
   </script>
   <link rel="stylesheet" type="text/css" href="/css/keyboard.css" />
 
@@ -200,7 +218,8 @@
 
   <!-- If an original encoding area is needed. -->
   {% if encoded_div %} 
-  <textarea id="encodeArea" class='default-font' style="width:600px;height:300px;" rows="10" dir="{{direction}}"></textarea>
+  <textarea id="encodeArea" class='default-font' style="width:600px;height:300px;"
+            rows="10" dir="{{direction}}" spellcheck="false"></textarea>
   <br />
   <input type="button" value="Convert to Unicode text"
     onclick="convertToUnicode('encodeArea', 't1');">
@@ -209,7 +228,7 @@
 
   <div id="t1_div">
     <textarea id="t1" style="width:600px;font-family:{{font.family.0}};resize:vertical;"
-      rows="10"
+      rows="10" spellcheck="false"
       style="font-size:18px;" lang="{%if lang_list.0.shortName %}{{lang_list.0.shortName}}{%endif%}{%if langTag %}{{langTag}}{%endif%}"
       dir="{{direction}}">{{test_data}}</textarea>
   </div>
@@ -217,9 +236,13 @@
   <div id="codepoint_div">
     <hr>
     <input type="button" value="Code points" onclick="showCodePoints()">
+    {% if variation_sequence %}
+       <input type="checkbox" name="vsToggle" id="toggleVS" checked
+      onchange="toggleConvertedVS('t1', toggleVS);">Toggle variation sequence<br />
+    {% endif %}
     <br />
     <textarea id="codepoints" class='default-font'
-     style="width:600px;height:100px;resize:vertical;"
+     style="width:600px;height:100px;resize:vertical;" spellcheck="false"
      rows="5"></textarea>
   </div>
     <input type="button" value="-> Unicode text" onclick="hexToOutput('codepoints', 't1');">

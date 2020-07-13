@@ -1,5 +1,4 @@
-  <!DOCTYPE html>
-  <!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8"/>
@@ -286,6 +285,21 @@
   }
 {% endif %}
 
+{% if variation_sequence %}
+function toggleConvertedVS(text_area_id, toggle) {
+  // TODO: Change variation sequence content of text.
+  var text_area = document.getElementById(text_area_id);
+
+  var text = text_area.value;
+  var new_text;
+  if (toggle.checked) {
+      new_text = add_variation_modifiers(text);
+  } else {
+      new_text =remove_variation_modifiers(text);
+  }
+  text_area.innerHTML = text_area.value = new_text;
+}
+{% endif %}
   </script>
   </head>
 
@@ -321,7 +335,10 @@
     {% endif %}
      <input type="checkbox" name="showOldTools" id="showOldTools"
       onchange="toggle('OldEncodingTools', 'showOldTools');">Tools?<br />
-
+    {% if variation_sequence %}
+       <input type="checkbox" name="showNewTools" id="showNewTools" checked
+      onchange="toggle('Unicode{{language}}Tools', 'showNewTools');">Convert with variation sequence<br />
+    {% endif %}
     <div id="OldEncodingTools"
          {% if showTools %}
          style="display:block;"
@@ -389,7 +406,11 @@
     {% endif %}
 
     <input type="checkbox" name="showNewTools" id="showNewTools"
-      onchange="toggle('Unicode{{language}}Tools', 'showNewTools');">Tools?<br />
+      onchange="toggle('Unicode{{language}}Tools', 'showNewTools');">Tools?
+    {% if variation_sequence %}
+       <input type="checkbox" name="vsToggle" id="toggleVS" checked
+      onchange="toggleConvertedVS('Unicode_font_output_text', toggleVS);">Toggle variation sequence<br />
+    {% endif %}
 
     <div id="Unicode{{language}}Tools"
          {% if showTools %}

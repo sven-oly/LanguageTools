@@ -169,6 +169,9 @@ class langInfo():
     self.kb1 = ''
     self.kb2 = ''
 
+    # Set up the toggle to change variation sequence.
+    self.variation_sequence = True
+
     self.dictionaryNData = [
       {'langName': self.Language, 'langNative': '',
        'languageCode': self.LanguageCode,

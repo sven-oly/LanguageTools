@@ -73,6 +73,9 @@ class languageTemplate():
     self.text_file_list = [
     ]
 
+    # Controls display of toggle for variation sequence.
+    self.variation_sequence = False
+
     self.baseHexUTF16 = u''
 
     return
@@ -100,12 +103,14 @@ class LanguagesHomeHandler(webapp2.RequestHandler):
     template_values = {
         'direction': text_direction,
         'language': langInfo.Language,
+        'langTag': langInfo.LanguageCode,
         'font_list': langInfo.unicode_font_list,
         'lang_list': langInfo.lang_list,
         'kb_list': langInfo.kb_list,
         'links': langInfo.links,
         'showTools': self.request.get('tools', None),
         'test_data': test_data,
+        'variation_sequence': langInfo.variation_sequence,
     }
     path = os.path.join(os.path.dirname(__file__), 'demo_general.html')
     self.response.out.write(template.render(path, template_values))
@@ -257,6 +262,7 @@ class ConvertUIHandler(webapp2.RequestHandler):
         'showTools': self.request.get('tools', None),
         'unicodeChars': unicodeChars,
         'combiningChars': unicodeCombiningChars,
+        'variation_sequence': langInfo.variation_sequence,
     }
     path = os.path.join(os.path.dirname(__file__), 'translit_general.html')
     self.response.out.write(template.render(path, template_values))
