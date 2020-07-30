@@ -18,7 +18,8 @@ To create Yoruba text, a user needs a keyboard that can produce the characters.
 the ctrl-alt and shift-ctrl-alt layers. With this keyboard, users can type correct Yoruba text that is portable
 to websites, applications, social media, etc. because the characters are in Unicode.
 
-[Yoruba keyboard ctrl-alt layer](/images/Yoruba_alt_layer.png)
+Here, the ctrl-alt layer shows dotted characters and diactric keys:
+![Yoruba keyboard ctrl-alt layer](/images/Yoruba_alt_layer.png)
 
 The challenge, however, is that Unicode characters need to be drawn to be readable. This requires a font that
 will show the letters correctly, including the accents and lower dot forms in the needed combination. Not all fonts
