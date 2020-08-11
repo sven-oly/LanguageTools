@@ -56,9 +56,10 @@ var RHG_LAYOUT = {
     '\uD803\uDD2c\uD803\uDD2c\u001d\uD803\uDD33\uD803([\uDD03-\uDD26])': '\uD803\uDD33\uD803$1\uD803\uDD2c\uD803\uDD2c',
     '\uD803\uDD2c\u001d\uD803\uDD33\uD803([\uDD03-\uDD26])': '\uD803\uDD33\uD803$1\uD803\uDD2c',
     // Reorder upper vs. lower diacritics
-    '\ud803([\udd2a\udd2b\udd31\udd32])\ud803([\udd27-\udd29\udd2d\udd30\udd34])':
-      '\ud803$2\ud803$1',
-    // Question: Should we convert doubled signs to the separate Unicode values?
+    //'\ud803([\udd2a\udd2b\udd31\udd32])\ud803([\udd27-\udd29\udd2d\udd30\udd34])':
+    //  '\ud803$2\ud803$1',
+    '(\ud803\udd2a|\ud803\udd2b|\ud803\udd31|\ud803\udd32)(\ud803\udd27|\ud803\udd28|\ud803\udd29|\ud803\udd2d|\ud803\udd30|\ud803\udd34)':
+      '$2$1',    // Question: Should we convert doubled signs to the separate Unicode values?
     // e.g., 11127 11127 -> 11127 11134?
     '\uD803\uDD27\uD803\udd27': '\uD803\udd27\uD803\uDD34',
   }

@@ -20,37 +20,37 @@ var PCM_LAYOUT = {
   'id': 'pcm',
   'title': 'Naijíriá Píjin',
   'mappings': {
-    '': {
+    '': {  // unshifted
       '': '{{\u0300}}1234567890-=' +
           '{{\u0301}}wertyuiop[]/' +
           'asdfghjkl{{ọ}}{{ẹ}}' +
           'zcvbnm,.;\''
     },
-    's': {
+    's': {  //  shift
       '': '{{\u0300}}!@#$₦%&*()_+' +
           '{{\u0301}}WERTYUIOP{}?' +
           'ASDFGHJKL{{Ọ}}{{Ẹ}}' +
           'ZCVBNM<>:\"'
     },
-    'c,cl': {
+    'c,cl': {  // control and control-caps lock
       '': '`1234567890-=' +
           'qwertyuiop[]\\' +
           'asdfghjkl;\'' +
           'zxcvbnm,./'
     },
-    'l': {
+    'sl': {  // caps lock with shift
       '': '`1234567890-=' +
           'qwertyuiop[]\\' +
           'asdfghjkl;\'' +
           'zxcvbnm,./'
     },
-    'sl': {
+    'l': {  // caps lock
       '': '~!@#$%^&*()_+' +
           'QWERTYUIOP{}|' +
           'ASDFGHJKL:"' +
           'ZXCVBNM<>?'
     },
-    'sc,scl': {
+    'sc,scl': {  // shift control an shift control caps lock
       '':  '~!@#$%^&*()_+' +
           'QWERTYUIOP{}|' +
           'ASDFGHJKL:"' +
@@ -82,11 +82,12 @@ var PCM_LAYOUT = {
       'E\u0323': 'Ẹ',
       'O\u0323': 'Ọ',
       // Doubled single quote --> lower dot combining mark
-      "\'\'": '\u0323'
+      "\'\'": '\u0323',
+      '\u0301\u0301': '\u0300'
   },
   'historyPruneRegex': '\u0300|\u0301|\u0323'
 };
 
 // Load the layout and inform the keyboard to switch layout if necessary.
 google.elements.keyboard.loadme(PCM_LAYOUT);
-yo1983 = PCM_LAYOUT;
+pcm = PCM_LAYOUT;

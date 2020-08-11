@@ -100,9 +100,6 @@ links = [
     # {'linkText': 'Font conversion summary',
     #   'ref': '/' + LanguageCode + '/encodingRules/'
     # },
-    # {'linkText': 'Resources',
-    #   'ref': '/' + LanguageCode + '/downloads/'
-    # },
   {'linkText': 'Chatino',
     'ref': 'https://en.wikipedia.org/wiki/Chatino_language'
   },
@@ -111,6 +108,9 @@ links = [
    },
   {'linkText': 'Chatino-English dictionary builder',
    'ref': '/' + LanguageCode + '/dictionaryN/'
+   },
+  {'linkText': 'Resources & Downloads',
+   'ref': '/' + LanguageCode + '/downloads/'
    },
 ]
 
@@ -144,6 +144,16 @@ class langInfo():
 
     self.text_file_list = []
     self.unicode_font_list = unicode_font_list
+
+    resource_list = [
+      {
+        'name': 'KeyMan for Chatino',
+        'source': '/resources/omq/chatino.kmp',
+        'description': 'Keyboard for Mobile & Desktop',
+        'instructions': '',
+      },
+    ]
+    self.text_file_list = resource_list
 
     # For dictionary
     self.dictionaryLang1 = "English"
@@ -301,18 +311,6 @@ class RenderPage(webapp2.RequestHandler):
       self.response.out.write(template.render(path, template_values))
 
 
-class Downloads(webapp2.RequestHandler):
-    def get(self):
-
-      template_values = {
-          'language': Language,
-          'language_native': Language_native,
-          'unicode_font_list': unicode_font_list,
-      }
-      path = os.path.join(os.path.dirname(__file__), 'downloads.html')
-      self.response.out.write(template.render(path, template_values))
-
-
 # Global in this file.
 langInstance = langInfo()
 
@@ -321,7 +319,7 @@ app = webapp2.WSGIApplication(
     ('/demo_' + LanguageCode + '/', IndigenousHomeHandler),
     ('/' + LanguageCode + '/', IndigenousHomeHandler),
     ('/' + LanguageCode + '/convertUI/', ConvertUIHandler),
-    ('/' + LanguageCode + '/downloads/', Downloads),
+    ('/' + LanguageCode + '/downloads/', base.Downloads),
     ('/' + LanguageCode + '/converter/', ConvertHandler),
     ('/' + LanguageCode + '/encodingRules/', EncodingRules),
     ('/' + LanguageCode + '/dictionaryInput/', base.DictionaryInput),

@@ -95,6 +95,18 @@ kb_list = [
    'longName': Language,
    'source': 'nigerianpidgin.com'
    },
+  {'shortName': 'pcm_t_k0_windows',
+   'longName': 'PCM CLDR',
+   'source': 'nigerianpidgin.com'
+   },
+]
+
+resource_list = [
+  {
+    'name': 'KeyMan Nigerian Pidgin keyboard for Windows and MacOS',
+    'source': '/resources/pcm/pcm.kmp',
+    'description': '(pcm.kmp) for Nigerian Pidgin Unicode'
+  },
 ]
 
 
@@ -104,12 +116,12 @@ links = [
     },
     # {'linkText': 'Converter',
     #  'ref': '/' + LanguageCode + '/convertUI/'},
-    # {'linkText': 'Resources',
-    #   'ref': '/' + LanguageCode + '/downloads/'
-    # },
-  {'linkText': 'nigerianpidgin.com',
-   'ref': 'https://nigerianpidgin.com/'
-   },
+    {'linkText': 'Resources',
+      'ref': '/' + LanguageCode + '/downloads/'
+    },
+    {'linkText': 'nigerianpidgin.com',
+     'ref': 'https://nigerianpidgin.com/'
+    },
 ]
 
 class langInfo():
@@ -122,6 +134,9 @@ class langInfo():
     self.lang_list = ['pcm']
     self.kb_list = kb_list
     self.links = links
+
+    self.text_file_list = resource_list
+
 
 # Shows keyboards
 class IndigenousHomeHandler(webapp2.RequestHandler):
@@ -252,17 +267,17 @@ class RenderPage(webapp2.RequestHandler):
       path = os.path.join(os.path.dirname(__file__), 'renderCombos.html')
       self.response.out.write(template.render(path, template_values))
 
-
-class Downloads(webapp2.RequestHandler):
-    def get(self):
-
-      template_values = {
-          'language': Language,
-          'language_native': Language_native,
-          'unicode_font_list': unicode_font_list,
-      }
-      path = os.path.join(os.path.dirname(__file__), 'downloads.html')
-      self.response.out.write(template.render(path, template_values))
+#
+# class Downloads(webapp2.RequestHandler):
+#     def get(self):
+#
+#       template_values = {
+#           'language': Language,
+#           'language_native': Language_native,
+#           'unicode_font_list': unicode_font_list,
+#       }
+#       path = os.path.join(os.path.dirname(__file__), 'downloads.html')
+#       self.response.out.write(template.render(path, template_values))
 
 
 langInstance = langInfo()
@@ -270,7 +285,7 @@ app = webapp2.WSGIApplication([
     ('/demo_' + LanguageCode + '/', IndigenousHomeHandler),
     ('/' + LanguageCode + '/', base.LanguagesHomeHandler),
     ('/' + LanguageCode + '/convertUI/', ConvertUIHandler),
-    ('/' + LanguageCode + '/downloads/', Downloads),
+    ('/' + LanguageCode + '/downloads/', base.Downloads),
     ('/' + LanguageCode + '/converter/', ConvertHandler),
     ('/' + LanguageCode + '/encodingRules/', EncodingRules),
   ],

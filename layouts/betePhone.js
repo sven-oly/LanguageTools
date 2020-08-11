@@ -23,7 +23,7 @@ var BETE_PHONE_LAYOUT = {
           'ZXC{{\ue75a}}{{\ue75b}}{{\ue75c}}{{\ue75d}}<>?'
     },
     'l': { // ZWNB Space before signals to not transform
-      '': '`1234567890-=' +
+      '': '`1234567890-=' +}
           '{{\ufeffq}}{{\ufeffw}}{{\ufeffe}}{{\ufeffr}}{{\ufefft}}{{\ufeffy}}{{\ufeffu}}{{\ufeffi}}{{\ufeffo}}{{\ufeffp}}[]\\' +
           '{{\ufeffa}}{{\ufeffs}}{{\ufeffd}}{{\ufefff}}{{\ufeffg}}{{\ufeffh}}{{\ufeffj}}{{\ufeffk}}{{\ufeffl}};\'' +
           '{{\ufeffz}}{{\ufeffx}}{{\ufeffc}}{{\ufeffv}}{{\ufeffb}}{{\ufeffn}}{{\ufeffm}},./'

@@ -11,21 +11,22 @@
 // limitations under the License.
 
 
-var EN_LAYOUT = {
-  'id': 'en',
-  'title': 'English QWERTY',
+var AR_LAYOUT = {
+  'id': 'ar',
+  'title': 'Arabic',
+  'dir': 'rtl',
   'mappings': {
     ',c': {
-      '': '`1234567890-=' +
-          'qwertyuiop[]\\' +
-          'asdfghjkl\'' +
-          'zxcvbnm,./'
+      '': 'ذ١٢٣٤٥٦٧٨٩٠-=' +
+          'ضصثقفغعهخحجد\\' +
+          'شسيبلاتنمكط' +
+          'ئءؤرلاىةوزظ'
     },
     's,sc': {
-      '': '~!@#$%^&*()_+' +
-          'QWERTYUIOP{}|' +
-          'ASDFGHJKL:"' +
-          'ZXCVBNM<>?'
+      '': 'ّ!@#$%^&*)(_+' +
+          'ًٌَُلإإ‘÷×؛<>|' +
+          'ٍِ][لأأـ،/:"' +
+          '~ْ}{لآآ’,.؟'
     },
     'l,cl': {
       '': '`1234567890-=' +
