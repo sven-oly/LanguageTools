@@ -144,10 +144,13 @@ class layout():
       's,sl': 'shift+caps?',
       'sl': 'caps+shift',
       'c':  'ctrl+alt',
+      ',c':  'ctrl?',
       's,sc': 'shift+alt',
       'c,cl': 'ctrl+caps?',
       'l': 'caps',
+      'al': 'shift+caps',
       'sc,slc': 'ctrl+alt+caps?',
+      'sc,scl': 'ctrl+shift+caps?',
       'cl': 'altR+caps? ctrl+alt+caps?'
       # Others?
     }
@@ -155,15 +158,14 @@ class layout():
 
   def outputLdml(self, parsed_json):
     # Create a tree
-    #logging.info('PARSED_JSON = %s' % parsed_json)
     tag = 'keyboard'
     if 'locale' in parsed_json:
       attrib = {'locale': parsed_json['locale']}
+    else:
+      attrib = {'locale': parsed_json['id']}
 
-    elem = Element(tag)
+    elem = Element(tag, attrib)
     tree = ElementTree(elem)
-
-#    tree.doctype('keyboard', 'PUBID', '../dtd/ldmlKeyboard.dtd')
 
     version = Element('version', {'platform': '10', 'number': '1.0'})
     elem.append(version)
@@ -187,7 +189,10 @@ class layout():
         modifier_value = 'UNKNOWN'
         print('Modifier value unknown: %s', layer)
       modifiers = {'modifiers': modifier_value}
-      keymap = Element('keymap', modifiers)
+      if modifier_value:
+        keymap = Element('keyMap', modifiers)
+      else:
+        keymap = Element('keyMap')
 
       elements = parsed_json['mappings'][layer]
       for start_point in elements:
@@ -244,25 +249,24 @@ class layout():
     if displayMap:
       elem.append(displayMap)
 
-    # TODO: for any transform with regex such as "\", convert to multiple
     # transform items
     if parsed_json['transform']:
       transforms = Element('transforms', {'type': 'simple'})
       keys = parsed_json['transform'].keys()
       for key in keys:
-        to_item = parsed_json['transform'][key]
-        transform = Element('transform',
-                      {'from': key, 'to': to_item})
-        transforms.append(transform)
-
-      # 		<transform from="`a" to="à"/>
-      # TODO: Process each transform
+        key_parts = key.split('|')
+        for part in key_parts:
+          to_item = parsed_json['transform'][key]
+          transform = Element('transform',
+                        {'from': part, 'to': to_item})
+          transforms.append(transform)
       elem.append(transforms)
 
     xml_output = ET.tostring(elem, encoding='utf-8')
-    #      self.outputname, encoding='unicode')
 
-    return xml_output
+    # Add header info
+    doctype = '<!DOCTYPE keyboard SYSTEM "../dtd/ldmlKeyboard.dtd">\n'
+    return doctype + xml_output
 
   def parseJS(self, jsText):
     return
