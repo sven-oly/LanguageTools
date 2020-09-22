@@ -48,13 +48,13 @@ class langInfo():
     ]
 
     self.unicode_font_list = [
-      {'source': '/fonts/Phake/GhinKhao-Bold.otf',
-       'family': 'GhinKhao-Bold',
-       'longName': 'GhinKhao Bold',
-       },
       {'source': '/fonts/Myanmar/NotoSerifMyanmar-Light.ttf',
        'family': 'NotoSerif Myanmar Light',
        'longName': 'Noto Serif Myanmar Light',
+       },
+      {'source': '/fonts/Phake/GhinKhao-Bold.otf',
+       'family': 'GhinKhao-Bold',
+       'longName': 'GhinKhao Bold',
        },
       { 'source': '/fonts/Padauk-Regular.ttf',
           'family': 'Padauk',
@@ -143,9 +143,16 @@ class langInfo():
         },
     ]
 
-    # Resource files
-    self.text_file_list = [
+    resource_list = [
+      {
+        'name': 'KeyMan Phake keyboard for mobile and computer',
+        'source': '/resources/phk/phk.kmp',
+        'description': '(phk.kmp) for Phake Unicode'
+      },
     ]
+
+    # Resource files
+    self.text_file_list = resource_list
 
     self.baseHexUTF16 = u'\ud805\udf00'
     self.base_consonant = u'\ud805\udf00'
