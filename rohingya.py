@@ -64,9 +64,28 @@ unicode_font_list = [
  #     'attribution': 'Created by Mihai Nita 2018-08-29',
  # },
   {
-      'family': 'NotoSansRohingya',
-      'longName': 'Noto Sans Rohingya',
-      'source': '/fonts/NotoSansHanifiRohingya-Regular.otf',
+    'family': 'NotoSansRohingya',
+    'longName': 'Noto Sans Rohingya regular',
+    'source': '/fonts/Rohingya/NotoSansHanifiRohingya-Regular.ttf',
+    'attribution': 'https://github.com/googlefonts/noto-fonts/tree/master/hinted/ttf/NotoSansHanifiRohingya',
+  },
+  {
+    'family': 'NotoSansRohingyaBold',
+    'longName': 'Noto Sans Rohingya bold',
+    'source': '/fonts/Rohingya/NotoSansHanifiRohingya-Bold.ttf',
+    'attribution': 'https://github.com/googlefonts/noto-fonts/tree/master/hinted/ttf/NotoSansHanifiRohingya',
+  },
+  {
+    'family': 'NotoSansRohingyaSemiBold',
+    'longName': 'Noto Sans Rohingya semibold',
+    'source': '/fonts/Rohingya/NotoSansHanifiRohingya-SemiBold.ttf',
+    'attribution': 'https://github.com/googlefonts/noto-fonts/tree/master/hinted/ttf/NotoSansHanifiRohingya',
+  },
+  {
+    'family': 'NotoSansRohingyaMedium',
+    'longName': 'Noto Sans Rohingya medium',
+    'source': '/fonts/Rohingya/NotoSansHanifiRohingya-Medium.ttf',
+    'attribution': 'https://github.com/googlefonts/noto-fonts/tree/master/hinted/ttf/NotoSansHanifiRohingya',
   },
   {
     'family': 'UniFoundaryUpper',
@@ -93,6 +112,7 @@ resource_list = [
     'description': '(.kmn) for Rohingya Unicode'
   },
 ]
+
 links = [
     {'linkText': 'Keyboard',
      'ref': '/rhg/'
@@ -216,7 +236,7 @@ class langInfo():
        },
     ]
 
-
+# Trying input without explicit keyboard.
 class NewKBHandler(webapp2.RequestHandler):
   def get(self):
     langInfo = self.app.config.get('langInfo')
