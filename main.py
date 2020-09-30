@@ -62,18 +62,6 @@ class MainHandler(webapp2.RequestHandler):
       self.response.out.write(template.render(path, template_values))
 
 
-class Downloads(webapp2.RequestHandler):
-  def get(self):
-    infile = self.request.get("infile", "")
-    outfile = self.request.get("outfile", "")
-    template_values = {
-      'infile': infile,
-      'outfile': outfile,
-    }
-    path = os.path.join(os.path.dirname(__file__), 'downloads.html')
-    self.response.out.write(template.render(path, template_values))
-
-
 class DownloadKBText(webapp2.RequestHandler):
   def get(self):
     infile = self.request.get("infile", "")

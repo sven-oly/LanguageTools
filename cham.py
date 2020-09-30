@@ -14,9 +14,7 @@
 # limitations under the License.
 #
 
-#import translit
-import transliterate
-# import transrule_nv
+import base
 
 import json
 import logging
@@ -105,6 +103,20 @@ diacritic_list = [unichr(x) for x in range(0xaa29, 0xaa37)] + \
   [unichr(x) for x in range(0xaa43, 0xaa44)] + \
   [unichr(x) for x in range(0xaa4c, 0xaa4e)]
 default_base_consonant = u'\uaa06'
+
+class langInfo():
+  def __init__(self):
+    self.LanguageCode = LanguageCode
+    self.Language = Language
+    self.Language_native = Language_native
+    self.test_data = u''
+    self.unicode_font_list = unicode_font_list
+    self.lang_list = [LanguageCode]
+    self.kb_list = kb_list
+    self.links = links
+
+    self.text_file_list = []
+
 
 # Shows keyboards
 class IndigenousHomeHandler(webapp2.RequestHandler):
@@ -204,18 +216,6 @@ class RenderPage(webapp2.RequestHandler):
       self.response.out.write(template.render(path, template_values))
 
 
-class Downloads(webapp2.RequestHandler):
-    def get(self):
-
-      template_values = {
-          'language': Language,
-          'language_native': Language_native,
-          'unicode_font_list': unicode_font_list,
-      }
-      path = os.path.join(os.path.dirname(__file__), 'downloads.html')
-      self.response.out.write(template.render(path, template_values))
-
-
 class DiacriticHandler(webapp2.RequestHandler):
   def get(self):
     global default_base_consonant
@@ -257,11 +257,16 @@ class DiacriticHandler(webapp2.RequestHandler):
     path = os.path.join(os.path.dirname(__file__), 'diacritics.html')
     self.response.out.write(template.render(path, template_values))
 
+langInstance = langInfo()
 
 app = webapp2.WSGIApplication([
-  ('/' + LanguageCode + '/', ConvertUIHandler),
-  ('/' + LanguageCode + '/convertUI/', ConvertUIHandler),
-  ('/' + LanguageCode + '/downloads/', Downloads),
-  ('/' + LanguageCode + '/encodingRules/', EncodingRules),
-  ('/' + LanguageCode + '/diacritic/', DiacriticHandler),
-], debug=True)
+    ('/' + LanguageCode + '/', ConvertUIHandler),
+    ('/' + LanguageCode + '/convertUI/', ConvertUIHandler),
+    ('/' + LanguageCode + '/downloads/', base.Downloads),
+    ('/' + LanguageCode + '/encodingRules/', EncodingRules),
+    ('/' + LanguageCode + '/diacritic/', DiacriticHandler),
+  ],
+  debug=True,
+  config = {'langInfo': langInstance}
+)
+

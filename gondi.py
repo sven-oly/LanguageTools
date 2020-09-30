@@ -399,18 +399,6 @@ class RenderPage(webapp2.RequestHandler):
       self.response.out.write(template.render(path, template_values))
 
 
-class Downloads(webapp2.RequestHandler):
-    def get(self):
-
-      template_values = {
-          'language': Language,
-          'language_native': Language_native,
-          'unicode_font_list': unicode_font_list,
-      }
-      path = os.path.join(os.path.dirname(__file__), 'downloads.html')
-      self.response.out.write(template.render(path, template_values))
-
-
 class DiacriticHandler(webapp2.RequestHandler):
   def get(self):
     global default_base_consonant
@@ -493,7 +481,7 @@ app = webapp2.WSGIApplication([
   ('/' + 'gno' + '/convertUI/', ConvertUIHandler),
   ('/' + 'wsg'+ '/convertUI/', ConvertUIHandler),
   ('/' + LanguageCode + '/convertUI/', ConvertUIHandler),
-  ('/' + LanguageCode + '/downloads/', Downloads),
+  ('/' + LanguageCode + '/downloads/', base.Downloads),
 
   ('/' + 'gon' + '/dictionaryInput/', DictionaryInput),
   ('/' + 'esg' + '/dictionaryInput/', DictionaryInput),

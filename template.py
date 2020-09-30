@@ -81,7 +81,7 @@ class langInfo():
   def __init__(self):
     self.LanguageCode = LanguageCode
     self.Language = Language
-    self.Language_native = 'Èdè Yorùbá'
+    self.Language_native = Language_native
     self.test_data = u'FILL IN'
     self.unicode_font_list = unicode_font_list
     self.encoding_font_list = encoding_font_list
@@ -89,6 +89,10 @@ class langInfo():
     self.lang_list = [LanguageCode]  # This may be extended
     self.kb_list = kb_list
     self.links = links
+
+    # For additional resources for download
+    self.text_file_list = []
+
     # TODO: Fill in the rest of the common data.
 
 # TODO: Fill in with diacritics
@@ -221,18 +225,6 @@ class RenderPage(webapp2.RequestHandler):
       self.response.out.write(template.render(path, template_values))
 
 
-class Downloads(webapp2.RequestHandler):
-    def get(self):
-
-      template_values = {
-          'language': Language,
-          'language_native': Language_native,
-          'unicode_font_list': unicode_font_list,
-      }
-      path = os.path.join(os.path.dirname(__file__), 'downloads.html')
-      self.response.out.write(template.render(path, template_values))
-
-
 class DiacriticHandler(webapp2.RequestHandler):
   def get(self):
     global default_base_consonant
@@ -280,7 +272,7 @@ langInstance = langInfo()
 app = webapp2.WSGIApplication([
   ('/' + LanguageCode + '/', IndigenousHomeHandler),
   ('/' + LanguageCode + '/convertUI/', ConvertUIHandler),
-  ('/' + LanguageCode + '/downloads/', Downloads),
+  ('/' + LanguageCode + '/downloads/', base.Downloads),
   ('/' + LanguageCode + '/encodingRules/', EncodingRules),
   ('/' + LanguageCode + '/diacritic/', DiacriticHandler),
 ], debug=True,

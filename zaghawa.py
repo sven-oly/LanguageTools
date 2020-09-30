@@ -16,9 +16,6 @@
 
 import base
 
-# import transliterate
-# import transrule_ccp
-
 import json
 import logging
 import os
@@ -39,7 +36,8 @@ encoding_font_list = [
       'font_path':'/fonts/zawghawa/ZaghawaBeria.otf',
       'font_name':'ZaghawaBeriaASCII',
       'display_name': 'Zaghawa Beria ASCII',
-      'Source location': 'https://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&id=ZaghawaBeria_Hom/',
+      'Source location':
+        'https://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&id=ZaghawaBeria_Home/',
     },
 ]
 
@@ -72,6 +70,9 @@ links = [
      'ref': '/zag/convertUI/'},
     {'linkText': 'Font conversion summary',
       'ref': '/zag/encodingRules/'
+    },
+    { 'linkText': 'SIL Zawghawa Beria Font',
+      'ref': 'https://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&id=ZaghawaBeria_Home/',
     },
 #    {'linkText': 'Resources / Downloads',
 #      'ref': '/zag/downloads/'
@@ -156,13 +157,15 @@ class langInfo():
 langInstance = langInfo()
 
 app = webapp2.WSGIApplication(
-    [('/zag/', base.LanguagesHomeHandler),
-     ('/zag/convertUI/', base.ConvertUIHandler),
-     ('/zag/downloads/', base.Downloads),
-     ('/zag/converter/', base.ConvertHandler),
-     ('/zag/encodingRules/', base.EncodingRules),
-     ('/zag/diacritic/', base.DiacriticHandler),
-     ('/' + langInstance.LanguageCode + '/dictionaryInput/', base.DictionaryInput),
-     ], debug=True,
-    config={'langInfo': langInstance}
+  [
+    ('/zag/', base.LanguagesHomeHandler),
+    ('/zag/convertUI/', base.ConvertUIHandler),
+    ('/zag/downloads/', base.Downloads),
+    ('/zag/converter/', base.ConvertHandler),
+    ('/zag/encodingRules/', base.EncodingRules),
+    ('/zag/diacritic/', base.DiacriticHandler),
+    ('/' + langInstance.LanguageCode + '/dictionaryInput/', base.DictionaryInput),
+     ],
+  debug=True,
+  config={'langInfo': langInstance}
 )

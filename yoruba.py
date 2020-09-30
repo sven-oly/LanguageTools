@@ -115,10 +115,10 @@ class langInfo():
   def __init__(self):
     self.LanguageCode = LanguageCode
     self.Language = Language
-    self.Language_native = 'Èdè Yorùbá'
+    self.Language_native = Language_native
     self.test_data = u'ẹ ẹ́ ẹ̀ Ẹ Ẹ́ Ẹ̀ ọ ọ́ ọ̀ Ọ́ Ọ̀ ṣ Ṣ ń ǹ n̄ Ń Ǹ N̄ ḿ m̀ m̄ Ḿ M̀ M̄'
     self.unicode_font_list = unicode_font_list
-    self.lang_list = ['yo']
+    self.lang_list = [Language]
     self.kb_list = kb_list
     self.links = links
 
@@ -252,27 +252,16 @@ class RenderPage(webapp2.RequestHandler):
       self.response.out.write(template.render(path, template_values))
 
 
-class Downloads(webapp2.RequestHandler):
-    def get(self):
-
-      template_values = {
-          'language': Language,
-          'language_native': Language_native,
-          'unicode_font_list': unicode_font_list,
-      }
-      path = os.path.join(os.path.dirname(__file__), 'downloads.html')
-      self.response.out.write(template.render(path, template_values))
-
-
 langInstance = langInfo()
+
 app = webapp2.WSGIApplication([
     ('/demo_' + LanguageCode + '/', IndigenousHomeHandler),
     ('/' + LanguageCode + '/', base.LanguagesHomeHandler),
     ('/' + LanguageCode + '/convertUI/', ConvertUIHandler),
-    ('/' + LanguageCode + '/downloads/', Downloads),
+    ('/' + LanguageCode + '/downloads/', base.Downloads),
     ('/' + LanguageCode + '/converter/', ConvertHandler),
     ('/' + LanguageCode + '/encodingRules/', EncodingRules),
     ],
-                              debug=True,
-                              config={'langInfo': langInstance}
+  debug=True,
+  config={'langInfo': langInstance}
 )

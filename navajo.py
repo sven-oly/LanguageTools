@@ -24,6 +24,8 @@ import webapp2
 
 from google.appengine.ext.webapp import template
 
+import base
+
 Language = 'Navajo'
 Language_native = 'Diné Bizaad'
 LanguageCode = 'nv'
@@ -90,6 +92,22 @@ links = [
      'ref': 'http://www.dinecollege.edu/current/it.php'
     },
 ]
+
+class langInfo():
+  def __init__(self):
+    self.LanguageCode = LanguageCode
+    self.Language = Language
+    self.Language_native = Language_native
+    self.test_data = u'FILL IN'
+    self.unicode_font_list = unicode_font_list
+    self.encoding_font_list = encoding_font_list
+
+    self.lang_list = [LanguageCode]  # This may be extended
+    self.kb_list = kb_list
+    self.links = links
+
+    # For additional resources for download
+    self.text_file_list = []
 
 
 # Shows keyboards
@@ -219,25 +237,16 @@ class RenderPage(webapp2.RequestHandler):
       self.response.out.write(template.render(path, template_values))
 
 
-class Downloads(webapp2.RequestHandler):
-    def get(self):
-
-      template_values = {
-          'language': Language,
-          'language_native': Language_native,
-          'unicode_font_list': unicode_font_list,
-      }
-      path = os.path.join(os.path.dirname(__file__), 'downloads.html')
-      self.response.out.write(template.render(path, template_values))
-
-
-
+langInstance = langInfo()
 
 app = webapp2.WSGIApplication([
-  ('/demo_' + LanguageCode + '/', NajavjoIndigenousHomeHandler),
-  ('/' + LanguageCode + '/', NajavjoIndigenousHomeHandler),
-  ('/' + LanguageCode + '/convertUI/', ConvertUIHandler),
-  ('/' + LanguageCode + '/downloads/', Downloads),
-  ('/' + LanguageCode + '/converter/', ConvertHandler),
-  ('/' + LanguageCode + '/encodingRules/', EncodingRules),
-], debug=True)
+      ('/demo_' + LanguageCode + '/', NajavjoIndigenousHomeHandler),
+      ('/' + LanguageCode + '/', NajavjoIndigenousHomeHandler),
+      ('/' + LanguageCode + '/convertUI/', ConvertUIHandler),
+      ('/' + LanguageCode + '/downloads/', base.Downloads),
+      ('/' + LanguageCode + '/converter/', ConvertHandler),
+      ('/' + LanguageCode + '/encodingRules/', EncodingRules),
+  ],
+  debug=True,
+  config={'langInfo': langInstance}
+)

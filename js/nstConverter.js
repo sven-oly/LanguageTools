@@ -7,6 +7,39 @@ var map_encoding_names = [
 
 var private_use_map_combined = {
   // Gam Win --> Lakhum personal area code
+  'mnvungz': ['\ue427\ue43a\ue454\ue410\ue41b'],
+  'mznvungz': ['\ue427\ue43a\ue454\ue410\ue41b'],
+  'mnaungz': ['\ue427\ue43a\ue404\ue410\ue41b'],
+  'vungz': ['\ue454\ue410\ue41b'],
+  'vungc': ['\ue455\ue411\ue41b'],
+  'vungx': ['\ue457\ue413\ue41b'],
+  'vuk': ['\ue454\ue412\ue42e'],
+  'ovyz': ['\ue400\ue40c'],
+  'ovyc': ['\ue401\ue40d'],
+  'ovyx': ['\ue403\ue40f'],
+  'ovmz': ['\ue400\ue439'],
+  'ovmc': ['\ue401\ue439'],
+  'ovmx': ['\ue403\ue439'],
+  'oamz': ['\ue400\ue439'],
+  'oamc': ['\ue401\ue439'],
+  'oamx': ['\ue403\ue439'],
+  'omz': ['\ue400\ue439'],
+  'omc': ['\ue401\ue439'],
+  'omx': ['\ue403\ue439'],
+  'ovnz': ['\ue400\ue43a'],
+  'ovnc': ['\ue401\ue43a'],
+  'ovnx': ['\ue403\ue43a'],
+  'ovlz': ['\ue400\ue43c'],
+  'ovlc': ['\ue401\ue43c'],
+  'ovlx': ['\ue403\ue43c'],
+  'ovrz': ['\ue400\ue440'],
+  'ovrc': ['\ue401\ue440'],
+  'ovrx': ['\ue403\ue440'],
+  'ovp': ['\ue400\ue435'],
+  'ovt': ['\ue400\ue43e'],
+   // Before 29-Sep-2020
+   // Before 29-Sep-2020
+
   'mnaungz': ['\ue427\ue43a\ue404\ue410\ue41b'],
   'mznaungz': ['\ue427\ue43a\ue404\ue410\ue41b'],
   'mrvkueq': ['\ue427\ue440\ue454\ue42e\ue421'],
@@ -74,9 +107,6 @@ var private_use_map_combined = {
   'uiungz': ['\ue423\ue41b'],
   'uiungc': ['\ue424\ue41b'],
   'uiungx': ['\ue426\ue41b'],
-  'oamz': ['	\ue400\ue439'],
-  'oamc': ['\ue401\ue439'],
-  'oamx': ['\ue403\ue439'],
   'amz': ['\ue404\ue439'],
   'amc': ['\ue405\ue439'],
   'amx': ['\ue407\ue439'],
@@ -283,11 +313,15 @@ var private_use_map_combined = {
   'd': ['\ue43f'],
   'r': ['\ue440'],
   'j': ['\ue433'],
-  'v': ['\ue454']
+  'v': ['\ue454'],
+  '\u000a': ['\u000a'],
 };
 
 
 var gamwin_latin_chars =
+    "mnvungz|mznvungz|vungz|vungc|vungx|vuk|ovyz|ovyc|ovyx|" +
+    "oamz|oamc|oamx|omz|omc|omx|ovnz|ovnc|ovnx|ovlz|ovlc|ovlx|" +
+    "ovrz|ovrc|ovrx|ovp|ovt|" +
     "mnaungz|mznaungz|mrvkueq|aungz|aungc|aungx|auk|uiyq|vyq|oq|aq|" +
     "vq|eq|iq|uq|awq|uiq|ueq|uiuq|oayz|oayc|oayx|ayz|ayc|ayx|vyz|vyc|" +
     "vyx|uyz|uyc|uyx|uiyz|uiyc|uiyx|ueyz|ueyc|ueyx|ongz|ongc|ongx|" +
@@ -305,11 +339,11 @@ var gamwin_latin_chars =
     "urz|urc|urx|awrz|awrc|awrx|uirz|uirc|uirx|uerz|uerc|uerx|" +
 //    "uiurz|uiurc|uiurx|ok|ak|vk|ek|ik|uk|awk|uik|uek|uiuk|oap|" +
     "uiurz|uiurc|uiurx|ok|ak|ek|ik|uk|awk|uik|uek|uiuk|oap|" +
-    "op|ap|vp|ep|ip|up|awp|uip|uep|uiup|oat|at|vt|et|it|ut|awt|" +
+    "ph|op|ap|vk|ep|ip|up|awp|uip|uep|uiup|oat|at|vt|et|it|ut|awt|" +
     "uit|uet|uiut|oz|oc|ox|az|ac|ax|vz|vc|vx|ez|ec|ex|iz|ic|ix|" +
     "uz|uc|ux|awz|awc|awx|uiz|uic|uix|uez|uec|uex|uiuz|uiuc|" +
-    "uiux|htt|th|ht|ch|kh|ng|ny|ph|nh|sh|ts|gh|f|k|g|s|y|w|p|" +
-    "b|m|n|h|l|t|d|r|j|v|\u0020|,|\.";
+    "uiux|htt|th|ht|ch|kh|ng|ny|nh|sh|ts|gh|f|k|g|s|y|w|p|" +
+    "b|m|n|h|l|t|d|r|j|v|\u0020|,|\.|\u000a";
 
 function preParseLatin(instring) {
   //  var regex1 = new RegExp(tangsa_latin_chars, "gi");

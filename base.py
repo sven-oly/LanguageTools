@@ -99,6 +99,10 @@ class LanguagesHomeHandler(webapp2.RequestHandler):
       test_data = langInfo.test_data
     except AttributeError:
       test_data = ''
+    try:
+      variation_sequence = langInfo.variation_sequence
+    except:
+      variation_sequence = None
 
     template_values = {
         'direction': text_direction,
@@ -110,7 +114,7 @@ class LanguagesHomeHandler(webapp2.RequestHandler):
         'links': langInfo.links,
         'showTools': self.request.get('tools', None),
         'test_data': test_data,
-        'variation_sequence': langInfo.variation_sequence,
+        'variation_sequence': variation_sequence,
     }
     path = os.path.join(os.path.dirname(__file__), 'demo_general.html')
     self.response.out.write(template.render(path, template_values))
@@ -243,6 +247,10 @@ class ConvertUIHandler(webapp2.RequestHandler):
 
     unicodeCombiningChars = getCombiningCombos(
         langInfo.baseHexUTF16, langInfo.diacritic_list)
+    try:
+      variation_sequence = langInfo.variation_sequence
+    except:
+      variation_sequence = None
 
     template_values = {
         'font': font,
@@ -262,7 +270,7 @@ class ConvertUIHandler(webapp2.RequestHandler):
         'showTools': self.request.get('tools', None),
         'unicodeChars': unicodeChars,
         'combiningChars': unicodeCombiningChars,
-        'variation_sequence': langInfo.variation_sequence,
+        'variation_sequence': variation_sequence,
     }
     path = os.path.join(os.path.dirname(__file__), 'translit_general.html')
     self.response.out.write(template.render(path, template_values))
@@ -311,11 +319,16 @@ class Downloads(webapp2.RequestHandler):
     except:
       public_unicode_fonts = langInfo.unicode_font_list
 
+    try:
+      text_file_list = langInfo.text_file_list
+    except:
+      text_file_list = None
+
     template_values = {
         'language': langInfo.Language,
         'language_native': langInfo.Language_native,
         'unicode_font_list': public_unicode_fonts,
-        'file_list': langInfo.text_file_list,
+        'file_list': text_file_list,
         'showTools': self.request.get('tools', None),
     }
     path = os.path.join(os.path.dirname(__file__), 'downloads.html')

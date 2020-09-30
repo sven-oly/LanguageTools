@@ -108,7 +108,10 @@ links = [
     {'linkText': 'Sunuwar Wikipedia',
      'ref': 'https://en.wikipedia.org/wiki/Sunwar_language'
     },
-    # {
+    {'linkText': 'Resources & Downloads',
+     'ref': '/suz/downloads/'
+    },
+  # {
     #   'linkText': 'Combiners',
     #   'ref': '/bn/diacritic/'
     # },
@@ -132,6 +135,8 @@ class langInfo():
         }
     ]
     self.encoding_font_list = encoding_font_list
+
+    self.unicode_font_list = unicode_font_list
     self.kb_list = [
       {
         'shortName': 'suz_jenticha_PUA',
@@ -149,9 +154,19 @@ class langInfo():
       },
 
     ]
+
+    resource_list = [
+      {
+        'name': 'KeyMan for Chatino',
+        'source': '/resources/omq/chatino.kmp',
+        'description': 'Keyboard for Mobile & Desktop',
+        'instructions': '',
+      },
+    ]
     self.links = links
     self.text_file_list = []
-    self.unicode_font_list = unicode_font_list
+    self.public_unicode_fonts = unicode_font_list
+
     self.outputFont = "Private Use Area (PUA)"
 
     # Lists of test characters for the various encodings
@@ -167,12 +182,12 @@ class langInfo():
 langInstance = langInfo()
 
 app = webapp2.WSGIApplication(
-    [('/' + langInstance.LanguageCode+ '/', base.LanguagesHomeHandler),
+    [('/' + langInstance.LanguageCode + '/', base.LanguagesHomeHandler),
      ('/' + langInstance.LanguageCode + '/convertUI/', base.ConvertUIHandler),
-     ('/' + langInstance.LanguageCode+ '/downloads/', base.Downloads),
-     ('/' + langInstance.LanguageCode+ '/converter/', base.ConvertHandler),
-     ('/' + langInstance.LanguageCode+ '/encodingRules/', base.EncodingRules),
-     ('/' + langInstance.LanguageCode+ '/diacritic/', base.DiacriticHandler),
+     ('/' + langInstance.LanguageCode + '/downloads/', base.Downloads),
+     ('/' + langInstance.LanguageCode + '/converter/', base.ConvertHandler),
+     ('/' + langInstance.LanguageCode + '/encodingRules/', base.EncodingRules),
+     ('/' + langInstance.LanguageCode + '/diacritic/', base.DiacriticHandler),
      ('/' + langInstance.LanguageCode + '/dictionaryInput/', base.DictionaryInput),
      ], debug=True,
     config= {'langInfo': langInstance,

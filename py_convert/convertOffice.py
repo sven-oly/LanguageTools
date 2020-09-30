@@ -10,7 +10,7 @@ import re
 import sys
 
 import convertDoc
-#import convertXLS
+import convertXLS
 import convertPPT
 
 import convertUtil
@@ -21,6 +21,7 @@ def convertOffice(input_path, output_dir, converter):
   # print('***** input_path = %s' % input_path)
 
   if input_path.find('unicode.') > 0:
+    print('This file has UNICODE in the name. Not converted!')
     return
 
   extension = os.path.splitext(input_path)[-1]
@@ -30,8 +31,8 @@ def convertOffice(input_path, output_dir, converter):
   elif extension == '.pptx':
     convertPPT.processOnePresentation(input_path, output_dir,
                                       converter)
-  #elif extension == '.xlsx':
-  #  convertXLS.processOneSpreadsheet(input_path, output_dir,
-  #                                   converter)
+  elif extension == '.xlsx':
+    convertXLS.processOneSpreadsheet(input_path, output_dir,
+                                     converter)
   else:
     print('!!! Not processing file type %s: %s !' % (extension, input_path))

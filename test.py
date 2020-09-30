@@ -16,11 +16,21 @@
 # limitations under the License.
 #
 
+import xml.etree.ElementTree as ET
+import xml.dom.minidom
+
+from StringIO import StringIO
+
+#from lib.docx import Document
+
+import lib.lxml
+
 import json
 import logging
 import os
 import urllib
 import webapp2
+import zipfile
 
 from google.appengine.ext.webapp import template
 
@@ -64,10 +74,11 @@ class testLocaleHandler(webapp2.RequestHandler):
 
 class LayoutToKeyMan(webapp2.RequestHandler):
   def get(self):
+    kbname = self.request.get('kbname')
     template_values = {
       'value': 1,
-      'kb_js': "aho",
-      'kb_layout': 'AHO_LAYOUT',
+      'kb_js': kbname,
+      'kb_layout': kbname.upper() + '_LAYOUT',
     }
     path = os.path.join(os.path.dirname(__file__), 'kbkeyman.html')
     self.response.out.write(template.render(path, template_values))
@@ -86,7 +97,7 @@ class LayoutToCldr(webapp2.RequestHandler):
 class ProcessJsToXml(webapp2.RequestHandler):
   def post(self):
     # Process it to xml
-    json_txt = self.request.get('json_text', 'NOTHING');
+    json_txt = self.request.get('json_text', 'NOTHING')
 
     # TODO: replace with conversion to XML.
     # json_loaded = json.load(json_txt)
@@ -97,7 +108,7 @@ class ProcessJsToXml(webapp2.RequestHandler):
       json_obj = json.loads(json_txt)
     except:
       json_obj = None
-      logging.info('&&&&&&& Cannont run json.loads on json_txt = %s' % json_txt)
+      logging.info('&&&&&&& Cannot run json.loads on json_txt = %s' % json_txt)
 
     xml_content = layout_obj.outputLdml(json_obj)  # urllib.parse.unquote(json_txt)
     # logging.info('*** Length of input = %d', len(xml_content))
@@ -109,8 +120,46 @@ class ProcessJsToXml(webapp2.RequestHandler):
     # self.response.headers['Content-Disposition'] = "attachment; filename=%s" % download_filename
     # self.response.out.write(xml_content)
     result = xml_content  #urllib.parse.quote(xml_content)
+    try:
+      parsed = xml.dom.minidom.parseString(xml_content)
+      result = parsed.toprettyxml()
+    except:
+      logging.error('XML ParseString failed %s' % result)
+
     # To return info the the caller's page.
     self.response.out.write(result)  # json.dumps(result))
+
+
+class SelectFile(webapp2.RequestHandler):
+  def get(self):
+    template_values = {
+    }
+    path = os.path.join(os.path.dirname(__file__), 'upload.html')
+    self.response.out.write(template.render(path, template_values))
+
+
+# Read a file and process it in some way.
+class ReadProcessFile(webapp2.RequestHandler):
+  def post(self):
+    upload_file_data = self.request.get('filename', None)
+    fileObj = self.request.POST.get(upload_file_data)
+    # Zipfile stuff not working.
+    #zipfile.is_zipfile(upload_file_data)
+    #zipfile.ZipFile(fileObj, mode='r')
+    #logging.info('*** Uploading file %s' % upload_filename)
+    # Process it to xml
+    tree = ET.fromstring(upload_file_data)
+    # try:
+    #   tree = ET.fromstring(upload_file_data)
+    # except:
+    #   #logging.info('----- cannot zipfile with %s' % upload_filename)
+    #   self.response.out.write('ERROR in loading %s' % upload_file_data)
+
+    # Do something with this!
+    self.response.out.write('file length = %d' % len(upload_file_data))
+    self.response.out.write('file  = %s' % upload_file_data)
+    #for p in tree.iter():
+    #  self.response.out.write(' --- tag = %s' % p.tag)
 
 
 app = webapp2.WSGIApplication([
@@ -119,4 +168,7 @@ app = webapp2.WSGIApplication([
     ('/test/kbkm/', LayoutToKeyMan),
     ('/test/kbtocldr/', LayoutToCldr),
     ('/test/ProcessJsToXml/', ProcessJsToXml),
+    ('/test/SelectFile/', SelectFile),
+    ('/test/ReadFile/', ReadProcessFile),
+
 ], debug=True)

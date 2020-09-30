@@ -1,0 +1,321 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" 
+"http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Meetei Mayek Editor For The Unicode&#153; Standard</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="Author" content="Tabish Qureshi" />
+<meta name="Keywords" content="devanagri,hex,unicode,word,processor" />
+<meta name="Description" content="Devanagri word processor that outputs hex unicode and devanagri" />
+<!-- This Editor has been created by modifying the Devanagari Editor by Matthew Blackwell. -->
+<style type="text/css">
+BODY, TD {
+	font-family: tahoma;
+	font-size: 8pt;
+}
+.button {
+	font-size: 8pt;
+	background-color: rgb(204,204,204);
+	border: 1px outset #FFF;
+}
+.buttonFont {
+	width: 45px;
+	font-size: 16pt;
+	background-color: rgb(204,204,204);
+	border: 1px outset #FFF;
+}
+.buttonBlank {
+	width: 45px;
+	font-size: 10pt;
+	color: #C00;
+	background-color: #FFF;
+	border: 1px solid #FFF;
+}
+.fontButtons {
+	font-size: 0pt;
+}
+.fontLabels {
+	font-size: 0pt;
+}
+.bold {
+	font-weight: bold;
+}
+.centeralign {
+	text-align: center;
+}
+.margin_top2px {
+	margin-top: 2px;
+}
+.margin_top7px {
+	margin-top: 7px;
+}
+.margin_top14px {
+	margin-top: 14px;
+}
+.margin_top21px {
+	margin-top: 21px;
+}
+.margin_top28px {
+	margin-top: 28px;
+}
+.padding7px TD {
+	padding: 7px;
+}
+.stf {
+	width: 100%;
+}
+.width_50 {
+	width: 50%;
+}
+.display_text {
+	font-family: "Arial Unicode MS";
+	font-size: 12pt;
+	width: 100%;
+	height: 72px;
+}
+.display_hex {
+	font-family: tahoma;
+	font-size: 8pt;
+	width: 100%;
+	height: 72px;
+}
+HR {
+	color: transparent;
+	height: 1px;
+	border-top: 1px dotted #000;
+}
+</style>
+<script language="JavaScript">
+function inputButtonText(buttonValue) {
+	document.forms[0].elements[0].value += buttonValue;
+}
+function inputButtonHex(buttonValue) {
+	document.forms[0].elements[1].value += buttonValue;
+}
+function inputReset() {
+	document.forms[0].elements[0].value = "";
+	document.forms[0].elements[1].value = "Reset";
+}
+function selectCharacters() {
+	if (document.forms[0].elements.selectCopy[0].checked == true) {
+		document.forms[0].elements[0].select();
+	} else {
+		document.forms[0].elements[1].select();
+	}
+}
+function inputBackspace() {
+	document.forms[0].elements[0].value = document.forms[0].elements[0].value.substring(0, document.forms[0].elements[0].value.length -1);
+	document.forms[0].elements[1].value = document.forms[0].elements[1].value.substring(0, document.forms[0].elements[1].value.length + (document.forms[0].elements[1].value.lastIndexOf("&") - document.forms[0].elements[1].value.length));
+}
+function inputTab() {
+	document.forms[0].elements[0].value += "     ";
+	document.forms[0].elements[1].value += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+}
+</script>
+</head>
+
+<body>
+
+<form name="editForm" type="POST">
+
+<h3 class="centeralign"><font color="red">Meetei Mayek Editor For The Unicode&#153; Standard</font></h3>
+
+<table class="margin_top14px stf">
+<colgroup><col class="width_50" /><col class="width_50" /></colgroup>
+	<tbody class="padding7px">
+		<tr>
+			<td>
+				<div class="bold">[ Meetei Mayek ]</div>
+				<div class="margin_top2px"><textarea name="outputText" class="display_text"></textarea></div>
+			</td>
+			<td>
+	Click on buttons to write Meetei Mayek.<br />
+	You can copy and paste the typed Meetei Mayek text to another application,<br />
+	e.g., chat window or Word processor.<br />
+	Click on the "Reset" button to clear earlier input texts.<br/>
+	<input type="button" class="button" value="Reset" onclick="inputReset();" />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  <a href="eeyek.zip">Download Eeyek Unicode font</a>
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+
+<div class="centeralign">
+	<!--input type="radio" name="selectCopy" value="dev">Meetei Mayek
+	<input type="radio" name="selectCopy" value="hex" checked>Hex Unicode
+	<input type="button" class="button" value="Select" onclick="selectCharacters();"-->
+</div>
+
+
+
+<div class="fontButtons margin_top21px">
+<input type="button" class="buttonBlank" value="" />
+<input type="button" class="buttonBlank" value="" />
+<input type="button" class="buttonBlank" value="" />
+<input type="button" class="buttonBlank" value="" />
+<input type="button" class="buttonFont" onclick="inputButtonText('&#xABF0;');" value="&#xABF0;" title="" />
+<input type="button" class="buttonFont" onclick="inputButtonText('&#xABF1;');" value="&#xABF1;" title="" />
+<input type="button" class="buttonFont" onclick="inputButtonText('&#xABF2;');" value="&#xABF2;" title="" />
+<input type="button" class="buttonFont" onclick="inputButtonText('&#xABF3;');" value="&#xABF3;" title="" />
+<input type="button" class="buttonFont" onclick="inputButtonText('&#xABF4;');" value="&#xABF4;" title="" />
+<input type="button" class="buttonFont" onclick="inputButtonText('&#xABF5;');" value="&#xABF5;" title="" />
+<input type="button" class="buttonFont" onclick="inputButtonText('&#xABF6;');" value="&#xABF6;" title="" />
+<input type="button" class="buttonFont" onclick="inputButtonText('&#xABF7;');" value="&#xABF7;" title="" />
+<input type="button" class="buttonFont" onclick="inputButtonText('&#xABF8;');" value="&#xABF8;" title="" />
+<input type="button" class="buttonFont" onclick="inputButtonText('&#xABF9;');" value="&#xABF9;" title="" />
+<input type="button" class="buttonBlank" value="" />
+<input type="button" class="buttonFont" value="Backspace" onclick="inputBackspace();" style="width: 137px;" title="" />
+</div>
+
+<div class="fontButtons margin_top7px">
+<input type="button" class="buttonFont" value="Tab" onclick="inputTab();" style="width: 91px;" title="" />
+<input type="button" class="buttonBlank" value="" />
+<input type="button" class="buttonFont" onclick="inputButtonText('&#xABE5;');" value="?&#xABE5;" title="" />
+<input type="button" class="buttonFont" onclick="inputButtonText('&#xABE4;');" value="?&#xABE4;" title="" />
+<input type="button" class="buttonBlank" value="" />
+<input type="button" class="buttonFont" onclick="inputButtonText('&#xABE8;');" value="?&#xABE8;" title="" />
+<input type="button" class="buttonFont" onclick="inputButtonText('&#xABE6;');" value="?&#xABE6;" title="" />
+<input type="button" class="buttonFont" onclick="inputButtonText('&#xABE9;');" value="?&#xABE9;" title="" />
+<input type="button" class="buttonFont" onclick="inputButtonText('&#xABE3;');" value="?&#xABE3;" title="" />
+<input type="button" class="buttonFont" onclick="inputButtonText('&#xABE7;');" value="?&#xABE7;" title="" />
+<input type="button" class="buttonFont" onclick="inputButtonText('&#xABEA;');" value="?&#xABEA;" title="" />
+<input type="button" class="buttonFont" onclick="inputButtonText('&#xABED;');" value="?&#xABED;" title="" />
+<input type="button" class="buttonFont" onclick="inputButtonText('&#xABEC;');" value="?&#xABEC;" title="" />
+<input type="button" class="buttonFont" onclick="inputButtonText('&#x0964;');" value="&#x0964;" title="" />
+<input type="button" class="buttonFont" onclick="inputButtonText('&#xABEB;');" value="&#xABEB;" title="" />
+<input type="button" class="buttonBlank" value="" />
+<input type="button" class="buttonBlank" value="" />
+</div>
+
+<div class="fontButtons">
+<input type="button" class="buttonBlank" value="" />
+<input type="button" class="buttonBlank" value="" />
+<input type="button" class="buttonBlank" value="a" />
+<input type="button" class="buttonBlank" value="aa" />
+<input type="button" class="buttonBlank" value="i" />
+<input type="button" class="buttonBlank" value="ee" />
+<input type="button" class="buttonBlank" value="u" />
+<input type="button" class="buttonBlank" value="e" />
+<input type="button" class="buttonBlank" value="ei" />
+<input type="button" class="buttonBlank" value="o" />
+<input type="button" class="buttonBlank" value="ou" />
+<input type="button" class="buttonBlank" value=".n" />
+<input type="button" class="buttonBlank" value="" />
+<input type="button" class="buttonBlank" value="" />
+<input type="button" class="buttonBlank" value="" />
+<input type="button" class="buttonBlank" value="" />
+</div>
+
+<div class="fontButtons">
+<input type="button" class="buttonBlank" value="" />
+<input type="button" class="buttonBlank" value="" />
+<input type="button" class="buttonFont" onclick="inputButtonText('&#xABD1;');" value="&#xABD1;" title="" />
+<input type="button" class="buttonFont" onclick="inputButtonText('&#xABD1;&#xABE5;');" value="&#xABD1;&#xABE5;" title="" />
+<input type="button" class="buttonFont" onclick="inputButtonText('&#xABE2;');" value="&#xABE2;" title="" />
+<input type="button" class="buttonFont" onclick="inputButtonText('&#xABCF;');" value="&#xABCF;" title="" />
+<input type="button" class="buttonFont" onclick="inputButtonText('&#xABCE;');" value="&#xABCE;" title="" />
+<input type="button" class="buttonFont" onclick="inputButtonText('&#xABD1;&#xABE6;');" value="&#xABD1;&#xABE6;" title="" />
+<input type="button" class="buttonFont" onclick="inputButtonText('&#xABD1;&#xABE9;');" value="&#xABD1;&#xABE9;" title="" />
+<input type="button" class="buttonFont" onclick="inputButtonText('&#xABD1;&#xABE3;');" value="&#xABD1;&#xABE3;" title="" />
+<input type="button" class="buttonFont" onclick="inputButtonText('&#xABD1;&#xABE7;');" value="&#xABD1;&#xABE7;" title="" />
+<input type="button" class="buttonBlank" value="" />
+<input type="button" class="buttonBlank" value="" />
+</div>
+
+<div class="fontButtons">
+<input type="button" class="buttonBlank" value="k" />
+<input type="button" class="buttonBlank" value="s" />
+<input type="button" class="buttonBlank" value="l" />
+<input type="button" class="buttonBlank" value="m" />
+<input type="button" class="buttonBlank" value="p" />
+<input type="button" class="buttonBlank" value="n" />
+<input type="button" class="buttonBlank" value="ch" />
+<input type="button" class="buttonBlank" value="t" />
+<input type="button" class="buttonBlank" value="kh" />
+<input type="button" class="buttonBlank" value="ng" />
+<input type="button" class="buttonBlank" value="th" />
+<input type="button" class="buttonBlank" value="w" />
+<input type="button" class="buttonBlank" value="y" />
+<input type="button" class="buttonBlank" value="h" />
+<input type="button" class="buttonBlank" value="ph" />
+</div>
+
+<div class="fontButtons margin_top7px">
+<input type="button" class="buttonFont" onclick="inputButtonText('&#xABC0;');" value="&#xABC0;" title="" />
+<input type="button" class="buttonFont" onclick="inputButtonText('&#xABC1;');" value="&#xABC1;" title="" />
+<input type="button" class="buttonFont" onclick="inputButtonText('&#xABC2;');" value="&#xABC2;" title="" />
+<input type="button" class="buttonFont" onclick="inputButtonText('&#xABC3;');" value="&#xABC3;" title="" />
+<input type="button" class="buttonFont" onclick="inputButtonText('&#xABC4;');" value="&#xABC4;" title="" />
+<input type="button" class="buttonFont" onclick="inputButtonText('&#xABC5;');" value="&#xABC5;" title="" />
+<input type="button" class="buttonFont" onclick="inputButtonText('&#xABC6;');" value="&#xABC6;" title="" />
+<input type="button" class="buttonFont" onclick="inputButtonText('&#xABC7;');" value="&#xABC7;" title="" />
+<input type="button" class="buttonFont" onclick="inputButtonText('&#xABC8;');" value="&#xABC8;" title="" />
+<input type="button" class="buttonFont" onclick="inputButtonText('&#xABC9;');" value="&#xABC9;" title="" />
+<input type="button" class="buttonFont" onclick="inputButtonText('&#xABCA;');" value="&#xABCA;" title="" />
+<input type="button" class="buttonFont" onclick="inputButtonText('&#xABCB;');" value="&#xABCB;" title="" />
+<input type="button" class="buttonFont" onclick="inputButtonText('&#xABCC;');" value="&#xABCC;" title="" />
+<input type="button" class="buttonFont" onclick="inputButtonText('&#xABCD;');" value="&#xABCD;" title="" />
+<input type="button" class="buttonFont" onclick="inputButtonText('&#xABD0;');" value="&#xABD0;" title="" />
+</div>
+
+<div class="fontButtons margin_top7px">
+<input type="button" class="buttonFont" onclick="inputButtonText('&#xABDB;');" value="&#xABDB;" title="" />
+<input type="button" class="buttonBlank" value="" />
+<input type="button" class="buttonFont" onclick="inputButtonText('&#xABDC;');" value="&#xABDC;" title="" />
+<input type="button" class="buttonFont" onclick="inputButtonText('&#xABDD;');" value="&#xABDD;" title="" />
+<input type="button" class="buttonFont" onclick="inputButtonText('&#xABDE;');" value="&#xABDE;" title="" />
+<input type="button" class="buttonFont" onclick="inputButtonText('&#xABDF;');" value="&#xABDF;" title="" />
+<input type="button" class="buttonBlank" value="" />
+<input type="button" class="buttonFont" onclick="inputButtonText('&#xABE0;');" value="&#xABE0;" title="" />
+<input type="button" class="buttonBlank" value="" />
+<input type="button" class="buttonFont" onclick="inputButtonText('&#xABE1;');" value="&#xABE1;" title="" />
+<input type="button" class="buttonBlank" value="" />
+<input type="button" class="buttonBlank" value="" />
+<input type="button" class="buttonBlank" value="" />
+<input type="button" class="buttonBlank" value="" />
+<input type="button" class="buttonBlank" value="" />
+</div>
+
+<div class="fontButtons">
+<input type="button" class="buttonBlank" value="g" />
+<input type="button" class="buttonBlank" value="jh" />
+<input type="button" class="buttonBlank" value="r" />
+<input type="button" class="buttonBlank" value="b" />
+<input type="button" class="buttonBlank" value="j" />
+<input type="button" class="buttonBlank" value="d" />
+<input type="button" class="buttonBlank" value="gh" />
+<input type="button" class="buttonBlank" value="dh" />
+<input type="button" class="buttonBlank" value="bh" />
+</div>
+
+<div class="fontButtons">
+<input type="button" class="buttonFont" onclick="inputButtonText('&#xABD2;');" value="&#xABD2;" title="" />
+<input type="button" class="buttonFont" onclick="inputButtonText('&#xABD3;');" value="&#xABD3;" title="" />
+<input type="button" class="buttonFont" onclick="inputButtonText('&#xABD4;');" value="&#xABD4;" title="" />
+<input type="button" class="buttonFont" onclick="inputButtonText('&#xABD5;');" value="&#xABD5;" title="" />
+<input type="button" class="buttonFont" onclick="inputButtonText('&#xABD6;');" value="&#xABD6;" title="" />
+<input type="button" class="buttonFont" onclick="inputButtonText('&#xABD7;');" value="&#xABD7;" title="" />
+<input type="button" class="buttonFont" onclick="inputButtonText('&#xABD8;');" value="&#xABD8;" title="" />
+<input type="button" class="buttonFont" onclick="inputButtonText('&#xABD9;');" value="&#xABD9;" title="" />
+<input type="button" class="buttonFont" onclick="inputButtonText('&#xABDA;');" value="&#xABDA;" title="" />
+<input type="button" class="buttonBlank" value="" />
+<input type="button" class="buttonFont" onclick="inputButtonText(' ');" value="Space" style="width: 229px;" title="" />
+</div>
+
+</form>
+
+<hr />
+
+<div class="centeralign">
+Created by: Tabish (tabishq at gmail dot com)
+	<div class="margin_top7px"><b>This page is NOT affiliated with, nor endorsed by, the Unicode Consortium</b></div>
+	<div><b>Unicode is a trademark of Unicode, Inc.</b></div>
+	<div><b>For more information on the Unicode&#153; Standard, visit <a href="http://www.unicode.org" target="_new">www.unicode.org</a></b></div>
+</div>
+
+</body>
+</html>
+
+

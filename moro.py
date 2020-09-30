@@ -24,6 +24,8 @@ import webapp2
 
 from google.appengine.ext.webapp import template
 
+import base
+
 Language = 'Moro'
 Language_native = 'Moro family'
 LanguageCode = 'mor'
@@ -65,6 +67,20 @@ links = [
       'ref': 'https://en.wikipedia.org/wiki/Moro_language'
     },
 ]
+
+
+class langInfo():
+  def __init__(self):
+    self.LanguageCode = LanguageCode
+    self.Language = Language
+    self.Language_native = Language_native
+    self.test_data = u''
+    self.unicode_font_list = unicode_font_list
+    self.lang_list = [LanguageCode]
+    self.kb_list = kb_list
+    self.links = links
+
+    self.text_file_list = []
 
 
 # Shows keyboards
@@ -193,24 +209,16 @@ class RenderPage(webapp2.RequestHandler):
       path = os.path.join(os.path.dirname(__file__), 'renderCombos.html')
       self.response.out.write(template.render(path, template_values))
 
-
-class Downloads(webapp2.RequestHandler):
-    def get(self):
-
-      template_values = {
-          'language': Language,
-          'language_native': Language_native,
-          'unicode_font_list': unicode_font_list,
-      }
-      path = os.path.join(os.path.dirname(__file__), 'downloads.html')
-      self.response.out.write(template.render(path, template_values))
-
+langInstance = langInfo()
 
 app = webapp2.WSGIApplication([
-  ('/demo_' + LanguageCode + '/', IndigenousHomeHandler),
-  ('/' + LanguageCode + '/', IndigenousHomeHandler),
-  ('/' + LanguageCode + '/convertUI/', ConvertUIHandler),
-  ('/' + LanguageCode + '/downloads/', Downloads),
-  ('/' + LanguageCode + '/converter/', ConvertHandler),
-  ('/' + LanguageCode + '/encodingRules/', EncodingRules),
-], debug=True)
+    ('/demo_' + LanguageCode + '/', IndigenousHomeHandler),
+    ('/' + LanguageCode + '/', IndigenousHomeHandler),
+    ('/' + LanguageCode + '/convertUI/', ConvertUIHandler),
+    ('/' + LanguageCode + '/downloads/', base.Downloads),
+    ('/' + LanguageCode + '/converter/', ConvertHandler),
+    ('/' + LanguageCode + '/encodingRules/', EncodingRules),
+  ],
+  debug=True,
+  config={'langInfo': langInstance}
+)

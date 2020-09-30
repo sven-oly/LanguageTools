@@ -685,7 +685,7 @@ class converter(ConverterBase):
     def textPositionInRun(self, run_map, start):
         # TODO: Ignore some characters at start, e.g., digits, space, punctuation
         for map in run_map:
-            if start >= map[0] and start <= map[1]:
+             if start >= map[0] and start <= map[1]:
                 # print('Capitalize run %s at %s' % (map, start - map[0]))
                 return (map[2], start - map[0])
         return (None, None)

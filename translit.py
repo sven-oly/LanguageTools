@@ -1,5 +1,6 @@
-# -*- coding: utf-8 -*-
 #!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 #
 # Copyright 2007 Google Inc.
 #
@@ -16,13 +17,14 @@
 # limitations under the License.
 #
 
-import transliterate
+from transliterate import Transliterate
 
-import transrule_knu
+#import transrule_knu
 
 import json
 import logging
 import os
+import sys
 import urllib
 import webapp2
 
@@ -31,19 +33,26 @@ from google.appengine.ext.webapp import template
 
 # Example rule:
 sampleRule = u"""
-A > a ; # A -> a
-c > CB ; # c -> CB
-e > H;
-::Null;
-# Phase 1
-H([!-w])> h$1h@ ; # H<x> -> h<x>h
-::Null; 
-# Phase 2
-ph > 1234\u1000;
-::Null;
-# Phase 3
-(.)o(.) > $2 O $1 SWAPPED ;
+$consonant = [A-Z];
+A > E;
+#($consonant) > X;
+(x)(yz) > $2 | $1;
+N > Y|es;
+es > y\=;
 """
+# A > a ; # A -> a
+# c > CB ; # c -> CB
+# e > H;
+# ::Null;
+# # Phase 1
+# H([!-w])> h$1h@ ; # H<x> -> h<x>h
+# ::Null;
+# # Phase 2
+# ph > 1234က;
+# ::Null;
+# # Phase 3
+# (.)o(.) > $2 O $1 SWAPPED ;
+# """
 
 # Present the transliteration interface
 class TranslitUIHandler(webapp2.RequestHandler): 
@@ -52,14 +61,19 @@ class TranslitUIHandler(webapp2.RequestHandler):
     rules = self.request.get('rules', '')
     intext = self.request.get('input', '')
 
+    logging.info('TranslitUIHandler: ruleID: %s rules: %s intext: %s' %
+                 (ruleID, rules, intext))
     # TESTING ONLY - now only the first line is actually used.
     if not rules:
-      rules = sampleRule # transrule_knu.KNU_UNICODE_TRANSLITERATE # sampleRule
+      rules = sampleRule
     if not intext:
-      intext = ' A CY cy H 3AH. က\n Now is the time for All conscious people coming to califHorniA'
+      intext =\
+"""A CY cy H 3AH. က\n Now is the time for All conscious people coming to califHorniA.
+xyz
+"""
     # TODO: Get from data store.
     if ruleID:
-      # Look up rules in the datastore.
+      # TODO: Look up rules in the datastore.
       rules = ''  # GET IT!
 
     template_values = {
@@ -76,36 +90,59 @@ class TranslitUIHandler(webapp2.RequestHandler):
 class DoTranslitHandler(webapp2.RequestHandler): 
   def get(self):
     # Get parameters
-    rules = self.request.get('rules', '').decode('unicode-escape')
-    
-    input = self.request.get('input', '')
-    logging.info('INPUT = %s' % input)
-    input = urllib.unquote(input)
-    logging.info('INPUT = %s' % input)
-    input = urllib.unquote(input)
-    logging.info('INPUT = %s' % input)
-    input = input.decode('unicode-escape')
-    logging.info('INPUT = %s' % input)
-    
-    logging.info('RULES = %s' % rules)
-    logging.info('INPUT = %s' % input)
- 
-    trans = transliterate.Transliterate(rules, True)
-    outText = trans.transliterate(input)
+    logging.info('DoTranslitHandler')
 
-    logging.info('rules = %s' % rules)
-    logging.info('input = %s' % input)
-    logging.info('trans = %s' % trans)
-    logging.info('outText = %s' % outText)
-  
+    rules = self.request.get('rules', '').decode('unicode-escape')
+    input = self.request.get('input', 'No input')
+    input = urllib.unquote(input.encode('utf-8'))
+
+    out_text = "not transliterated"
+    try:
+      trans = Transliterate(rules, 'description')
+      logging.info('Transliterator = %s' % trans)
+    except:
+      e = sys.exc_info()[0]
+      logging.error('!! Creating transliterator Error e = %s.' % (e))
+      out_text = '~~~~~~~~~ Creation Error: %s' % e
+
+    logging.info('PHASE STRINGS: %s' % trans.phaseStrings)
+
+    try:
+      out_text = trans.transliterate(input)
+    except:
+      e = sys.exc_info()[0]
+      logging.error('!! Calling transliterate Error e = %s. trans=%s' % (e, trans))
+      logging.info('outText = %s' % (out_text))
+
+    # try:
+    #   logging.info('trans phases = = %s' % trans.phaseStrings)
+    #   logging.info('outText type %s' % (type(out_text)))
+    #   logging.info('outText = %s' % (out_text))
+    # except:
+    #   e = sys.exc_info()[0]
+    #   print('!! Logging Error e = %s. trans=%s' % (e, trans))
+    #   out_text = 'LOGGING ERROR'
+
     message = ''  # TODO: Fill in with error or success message.
     error = ''
-
+    summary = trans.getSummary()
     result = {
-      'outText' : outText,
+      'outText': out_text,
+      #'outText' : outText,
       'message' : message,
       'error': error,
-      'summary' : trans.getSummary(),
+      'summary' : ','.join(summary['shortcuts'].values()),
       }
-    self.response.out.write(json.dumps(result))
-  
+    return_string = json.dumps(result)
+    self.response.out.write(return_string)
+
+
+# app = webapp2.WSGIApplication(
+#     [
+#         ('/transliterate/', translit.TranslitUIHandler),
+#         ('/dotransliterate/', translit.DoTranslitHandler),
+#     ],
+#     debug=True)
+#
+# app.error_handlers[404] = handle_404
+# app.error_handlers[500] = handle_500

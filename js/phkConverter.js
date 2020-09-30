@@ -8,6 +8,44 @@ var map_encoding_names = [
   'Shan'
 ];
 
+// These characters take variation sequence modifiers
+var variation_sequence_code_points =
+/([\u1000\u1002\u1004\u1010\u1011\u1015\u1019\u101a\u101c\u101d\u1022\u1031\u1075\u1078\u1080\uaa60\uaa61\uaa62\uaa63\uaa64\uaa65\uaa66\uaa6b\uaa6c\uaa6f\uaa7a])/g;
+var variation_modifier = "\ufe00";
+
+function vsReplacer(match, match_char, offset, string) {
+  return match_char + variation_modifier;
+}
+function add_variation_modifiers(text) {
+  size = text.length;
+  index = 0;
+  out_text = text.replace(variation_sequence_code_points, vsReplacer);
+//  while (index < size) {
+//    out_text += text[index];  // Just copy
+//    if (text[index] in variation_sequence_code_points) {
+//      if (index == size -1 || text[index+1] != variation_modifier) {
+//        out_text += variation_modifier;
+//      }
+//    }
+//    index ++;
+//  }
+  return out_text;
+}
+
+function remove_variation_modifiers(text) {
+  size = text.length;
+  index = 0;
+  out_text = "";
+  while (index < size) {
+    var char = text[index];
+    if (char != variation_modifier) {
+      out_text += char;
+    }
+    index ++;
+  }
+  return out_text;
+}
+
 var private_use_map_combined = {
         "A": ["ဢ\ufe00", "ဢ\ufe00", "ဢ"],
         "B": ["ꩰ", "ꩰ", "ꩰ"],

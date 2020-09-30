@@ -16,13 +16,14 @@
   <style>
   textarea {
     width: 500px;
-	height: 40px;
+	height: 120px;
 	border: 2px solid #cccccc;
 	padding: 5px;
 	font-size: 18px;
 	}
    .default {
      font-family: "Courier New";
+
    }
   </style>
   
@@ -30,7 +31,7 @@
 
   <script type="text/javascript" >
 
-  function requestTransliterate(inputarea, outputarea, rulearea, messagearea) {
+  function requestTransliterate(inputarea, outputarea, rulearea, messagearea, summaryarea) {
     // Prepare for the call to the backendvar xmlhttp;
 	if (window.XMLHttpRequest) { // code for IE7+, Firefox, Chrome, Opera, Safari
 	  xmlhttp=new XMLHttpRequest();
@@ -46,6 +47,7 @@
 
         var outputObj = document.getElementById(outputarea);
         var messageObj = document.getElementById(messagearea);
+        var transliteratorSummaryObj = document.getElementById(summaryarea);
 
         if (json_obj.error) {
           // Warn, and don't change values.
@@ -54,7 +56,8 @@
         }
         messageObj.value = messageObj.innerHTML = json_obj.message;
         outputObj.value = outputObj.innerHTML = json_obj.outText;
-      }          
+        transliteratorSummaryObj. value = json_obj.summary;
+      }
     }
 	
 	// Set up the call
@@ -94,7 +97,7 @@
         <textarea id="inputarea" class="default">{{intext}}</textarea>
         <br />
         <input type="button" value="Transliterate"
-           onclick="requestTransliterate('inputarea', 'outputarea', 'rulearea', 'message');"/>
+           onclick="requestTransliterate('inputarea', 'outputarea', 'rulearea', 'message', 'summaryarea');"/>
         </div>
         
       <div id='outputtext'>
@@ -109,13 +112,25 @@
         <br />
         <textarea id="rulearea" class="default">{{rules}}</textarea>
         <br />
-      </div>            
+      </div>
+
+      <div id='summarytext'>
+        <h3>Transliterator summary:
+        <br />
+        <textarea id="summaryarea" class="default">{{summary}}</textarea>
+        <br />
+      </div>
+
+    <h3>Messages:
+      <textarea id="message" class="">{{message}}</textarea>
     </div> <!-- end span 16 -->
     
     <div class="span-4 last">  
-    <textarea id="message" class="" cols=10>{{message}}</textarea>
-      
+
+    <form action="yourHandlerUrl" class="form" method="POST" enctype="multipart/form-data">
+        <input type="file" name="yourFileName" >
     </div> <!-- end span last -->
   </div> <!-- end container --> 
 </body>
+
 </html>    

@@ -31,16 +31,6 @@ Language_native = 'Naijíriá Píjin'
 LanguageCode = 'pcm'
 
 encoding_font_list = [
-  # {
-  #   'font_path': '/fonts/yoruba/ariya.ttf',
-  #   'font_name': 'Ariya',
-  #   'display_name': 'Ariya      #',
-  # },
-  # {
-  #   'font_path': '/fonts/yoruba/YorubaOK_FF.ttf',
-  #   'font_name': 'YorubaOK',
-  #   'display_name': 'Cloned YorubaOK',
-  # },
 ]
 
 unicode_font_list = [
@@ -135,6 +125,20 @@ class langInfo():
     self.kb_list = kb_list
     self.links = links
 
+    resource_list = [
+      {
+        'name': 'KeyMan for Naijíriá Píjin',
+        'source': '/resources/pcm/pcm_13sept.kmp',
+        'description': '1.03 Latest Keyboard (13-Sep-2020)',
+        'instructions': 'Install KeyMan first. Next, Desk/laptop: download file and open.\nMobile: open link.',
+      },
+      {
+        'name': 'KeyMan for Naijíriá Píjin',
+        'source': '/resources/pcm/pcm_v1.kmp',
+        'description': '1.01 Keyboard for Mobile & Desktop',
+        'instructions': '',
+      },
+    ]
     self.text_file_list = resource_list
 
 
@@ -266,18 +270,6 @@ class RenderPage(webapp2.RequestHandler):
       }
       path = os.path.join(os.path.dirname(__file__), 'renderCombos.html')
       self.response.out.write(template.render(path, template_values))
-
-#
-# class Downloads(webapp2.RequestHandler):
-#     def get(self):
-#
-#       template_values = {
-#           'language': Language,
-#           'language_native': Language_native,
-#           'unicode_font_list': unicode_font_list,
-#       }
-#       path = os.path.join(os.path.dirname(__file__), 'downloads.html')
-#       self.response.out.write(template.render(path, template_values))
 
 
 langInstance = langInfo()

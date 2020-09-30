@@ -27,7 +27,7 @@ class langInfo():
   def __init__(self):
     self.LanguageCode = 'cr'
     self.Language = 'Cree'
-    self.Language_native = 'Language in Creen'
+    self.Language_native = 'Cree languages'
 
     self.encoding_font_list = [
     ]
@@ -42,9 +42,13 @@ class langInfo():
         'longName': 'BJ Cree',
         'source': '/fonts/cree/bjcrus.ttf'
       },
-      { 'family': 'aboriginalSans',
-        'longName': 'Aboriginal Sans',
-        'source': '/fonts/cree/AboriginalSansREGULAR.ttf'
+      {'family': 'oskiblackfoot5',
+       'longName': 'Oski Blackfoot',
+       'source': '/fonts/cree/oskiblackfoot5.ttf'
+       },
+      { 'family': 'kisiska',
+        'longName': 'Kisiska',
+        'source': '/fonts/cree/kisiska.otf'
       },
       { 'family': 'aboriginalSerif',
         'longName': 'Aboriginal Serif',
@@ -68,33 +72,34 @@ class langInfo():
     ]
 
     self.lang_list = [
-        {'shortName':  'cr',
-         'longName': 'Cree'
+        {'shortName':  'crk_phonetic',
+         'longName': 'ᓀᐦᐃᔭᐍᐏᐣ (Plains Cree)',
+         'nativeName': 'ᓀᐦᐃᔭᐍᐏᐣ'
         },
-        {'shortName':  'crk',
-         'longName': 'Plains Cree'
-        },
-        {'shortName':  'cwd',
-         'longName': 'Woods Cree'
-        },
-        {'shortName':  'csw',
-         'longName': 'Swampy Cree'
-        },
-        {'shortName':  'crl',
-         'longName': 'Northern East Cree'
-        },
-        {'shortName':  'crj',
-         'longName': 'Southern East Cree'
-        },
-        {'shortName':  'nsk',
-         'longName': 'Naskapi'
-        },
-        {'shortName':  'moe',
-         'longName': 'Montagnais'
-        },
-        {'shortName': 'atj',
-         'longName':  'Atikamekw'
-        },
+        # {'shortName':  'crk',
+        #  'longName': 'Plains Cree'
+        # },
+        # {'shortName':  'cwd',
+        #  'longName': 'Woods Cree'
+        # },
+        # {'shortName':  'csw',
+        #  'longName': 'Swampy Cree'
+        # },
+        # {'shortName':  'crl',
+        #  'longName': 'Northern East Cree'
+        # },
+        # {'shortName':  'crj',
+        #  'longName': 'Southern East Cree'
+        # },
+        # {'shortName':  'nsk',
+        #  'longName': 'Naskapi'
+        # },
+        # {'shortName':  'moe',
+        #  'longName': 'Montagnais'
+        # },
+        # {'shortName': 'atj',
+        #  'longName':  'Atikamekw'
+        # },
       ]
 
     self.links = [
@@ -115,7 +120,11 @@ class langInfo():
         },
     ]
 
-    self.kb_list = self.lang_list
+    self.kb_list = [
+      {'shortName':  'crk_phonetic',
+       'longName': 'Plains Cree Phonetic',
+       'nativeName': 'ᓀᐦᐃᔭᐍᐏᐣ'
+       },]
 
     # Resource files
     self.text_file_list = [
@@ -136,7 +145,7 @@ class langInfo():
     self.transliterator = None
 
    # Test data for showing in converter.
-    self.test_data = 'ᔑ ᔕ ᔓ ᔐ'
+    self.test_data = ''  #ᐊ ᐃ ᐄ ᐅ ᐆ ᐊ ᐋ'
     return
 
 

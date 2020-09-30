@@ -63,6 +63,13 @@ unicode_font_list = [
 ]
 
 kb_list = [
+  # First two are tests for CLDR keyboard source
+  {'shortName': 'fr',
+   'longName': 'French CLDR',
+   },
+  {'shortName': 'ga_Ogam',
+   'longName': 'ga Ogam CLDR',
+   },
   {'shortName': 'bo' + '_wylie',
    'longName': 'Tibetan' + ' Wylie',
    },
@@ -124,6 +131,7 @@ class langInfo():
         }
     ]
     self.encoding_font_list = encoding_font_list
+    self.unicode_font_list = unicode_font_list
     self.kb_list = [
       {
         'shortName': self.LanguageCode,
@@ -247,17 +255,6 @@ class RenderPage(webapp2.RequestHandler):
       }
       path = os.path.join(os.path.dirname(__file__), 'renderCombos.html')
       self.response.out.write(template.render(path, template_values))
-
-
-class Downloads(webapp2.RequestHandler):
-    def get(self):
-
-      template_values = {
-          'language': Language,
-          'language_native': Language_native,
-          'unicode_font_list': unicode_font_list,
-      }
-      path = os.path.join(os.path.dirname(__file__), 'downloads.html')
       self.response.out.write(template.render(path, template_values))
 
 
@@ -332,12 +329,16 @@ class TibetanHomeHandler(webapp2.RequestHandler):
       path = os.path.join(os.path.dirname(__file__), 'demo_tibetan.html')
       self.response.out.write(template.render(path, template_values))
 
+langInstance = langInfo()
 
 app = webapp2.WSGIApplication([
-  ('/' + LanguageCode + '/', IndigenousHomeHandler),
-  ('/' + LanguageCode + '/compare/', TibetanHomeHandler),
-  ('/' + LanguageCode + '/convertUI/', ConvertUIHandler),
-  ('/' + LanguageCode + '/downloads/', Downloads),
-  ('/' + LanguageCode + '/encodingRules/', EncodingRules),
-  ('/' + LanguageCode + '/diacritic/', DiacriticHandler),
-], debug=True)
+    ('/' + LanguageCode + '/', IndigenousHomeHandler),
+    ('/' + LanguageCode + '/compare/', TibetanHomeHandler),
+    ('/' + LanguageCode + '/convertUI/', ConvertUIHandler),
+    ('/' + LanguageCode + '/downloads/', base.Downloads),
+    ('/' + LanguageCode + '/encodingRules/', EncodingRules),
+    ('/' + LanguageCode + '/diacritic/', DiacriticHandler),
+    ],
+  debug=True,
+  config = {'langInfo': langInstance}
+)

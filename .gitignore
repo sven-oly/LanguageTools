@@ -2,7 +2,7 @@
 *.pyc
 *~
 *.save
-py_convert/*
+#py_convert/*
 CLDR/*
 #*
 env/*

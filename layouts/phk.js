@@ -57,7 +57,7 @@ var PHK_LAYOUT = {
     '\u200c\u103c\u1031(\ufe00?)\u001d?([\u1000-\u102a\u103f\u104e](\ufe00?))': '$2$3\u103c\u1031($1)',
 
     // Reorder medial ra after consonant.
-    '\u103c([\u1000-\u102a\u103f\u104e])': '$1\u103c',
+    //'\u103c([\u1000-\u102a\u103f\u104e])': '$1\u103c',
 
     // Reorder vowel E after consonant
     '\u200c\u1031([\u1000-\u102a\u103f\u104e])': '$1\u1031',

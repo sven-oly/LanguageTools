@@ -265,18 +265,6 @@ class CherokeeRenderPage(webapp2.RequestHandler):
       self.response.out.write(template.render(path, template_values))
 
 
-class CherokeeDownloads(webapp2.RequestHandler):
-    def get(self):
-
-      template_values = {
-          'language': Language,
-          'language_native': Language_native,
-          'unicode_font_list': unicode_font_list,
-      }
-      path = os.path.join(os.path.dirname(__file__), 'downloads.html')
-      self.response.out.write(template.render(path, template_values))
-
-
 class AllFontTest(webapp2.RequestHandler):
   def get(self):
     utext = self.request.get("utext", "")
@@ -300,7 +288,7 @@ langInstance = langInfo()
 app = webapp2.WSGIApplication(
     [('/chr/', CherokeeIndigenousHomeHandler),
      ('/chr/convertUI/', CherokeeConvertUIHandler),
-     ('/chr/downloads/', CherokeeDownloads),
+     ('/chr/downloads/', base.Downloads),
      ('/chr/converter/', CherokeeConvertHandler),
      ('/chr/encodingRules/', CherokeeEncodingRules),
      ('/chr/AllFonts/', AllFontTest ),

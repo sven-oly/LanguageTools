@@ -1,0 +1,50 @@
+# http://resources.atlas-ling.ca/media//East-Cree-Unicode-Chart.pdf
+ᐁ ᐃ ᐄ ᐅ ᐆ ᐊ ᐋ ᐤ ᐦ
+e i ii u uu a aa u h
+1401 1403 1404 1405 1406 140A 140B 1424 1426
+ᐧᐁ ᐧᐃ ᐧᐄ ᐧᐅ ᐧᐆ ᐧᐊ ᐧᐋ
+we wi wii wu wuu wa waa
+140C 140E 1410 1412 1414 1417 1419
+ᐯ ᐧᐯ ᐱ ᐲ ᐳ ᐴ ᐸ ᐹ ᑆ ᑉ
+pe pwe pi pii pu puu pa paa pwaa p
+142F 143A 1431 1432 1433 1434 1438 1439 1446 1449
+ᑌ ᐧᑌ ᑎ ᑏ ᑐ ᑑ ᑕ ᑖ ᑣ ᑦ
+te twe ti tii tu tuu ta taa twaa t
+144C 1457 144E 144F 1450 1451 1455 1456 1463 14BC
+ᑫ ᐧᑫ ᑭ ᑮ ᑯ ᑰ ᑲ ᑳ ᒀ ᒃ ᒄ
+ke kwe ki kii ku kuu ka kaa kwaa k kw
+146B 1474 146D 146E 146F 1470 1472 1473 1480 1483 1484
+ᒉ ᐧᒉ ᒋ ᒌ ᒍ ᒎ ᒐ ᒑ ᒞ ᒡ
+che chwe chi chii chu chuu cha chaa chwaa ch
+1489 1492 148B 148C 148D 148E 1490 1491 149E 14A1
+ᒣ ᐧᒣ ᒥ ᒦ ᒧ ᒨ ᒪ ᒫ ᒸ ᒻ ᒽ
+me mwe mi mii mu muu ma maa mwaa m mw
+14A3 14AC 14A5 14A6 14A7 14A8 14AA 14AB 14B8 14BB 14BD
+ᓀ ᐧᓀ ᓂ ᓃ ᓄ ᓅ ᓇ ᓈ ᓍ ᓐ
+ne nwe ni nii nu nuu na naa nwaa n
+14C0 14C9 14C2 14C3 14C4 14C5 14C7 14C8 14CD 14D0
+ᓓ ᐧᓓ ᓕ ᓖ ᓗ ᓘ ᓚ ᓛ ᓨ ᓪ
+le lwe li lii lu luu la laa lwaa l
+14D3 14DC 14D5 14D6 14D7 14D8 14DA 14DB 14E8 14EA
+ᓭ ᐧᓭ ᓯ ᓰ ᓱ ᓲ ᓴ ᓵ ᔂ ᔅ
+se swe si sii su suu sa saa swaa s
+14ED 14F6 14EF 14F0 14F1 14F2 14F4 14F5 1502 1505
+ᔐ ᐧᔐ ᔑ ᔒ ᔓ ᔔ ᔕ ᔖ ᔣ ᔥ
+she shwe shi shii shu shuu sha shaa shwaa sh
+1510 1517 1511 1512 1513 1514 1515 1516 1523 1525
+ᔦ ᐧᔦ ᔨ ᔩ ᔪ ᔫ ᔭ ᔮ ᔻ ᔾ
+ye ywe yi yii yu yuu ya yaa ywaa y
+1526 152F 1528 1529 152A 152B 152D 152E 153B 153E
+ᕃ ᣎ ᕆ ᕇ ᕈ ᕉ ᕋ ᕌ ᕎ ᕐ
+re rwe ri rii ru ruu ra raa rwaa r
+1543 18CE 1546 1547 1548 1549 154B 154C 154E 1550
+ᕓ ᐧᕓ ᕕ ᕖ ᕗ ᕘ ᕙ ᕚ ᐧᕚ ᕝ
+ve vwe vi vii vu vuu va vaa vwaa f
+1553 1427+
+1553
+1555 1556 1557 1558 1559 155A 155B 155D
+ᕞ ᐧᕞ ᕠ ᕢ ᕤ ᕥ ᕦ ᕧ ᕨ ᕪ
+the thwe thi thii thu thuu tha thaa thwaa th
+155E 1427+
+155E
+1560 1562 1564 1565 1566 1567 1568 156A

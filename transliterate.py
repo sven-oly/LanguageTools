@@ -5,9 +5,9 @@ from __future__ import print_function
 import codecs
 
 import logging
+
 import re
 import sys
-
 import xml.etree.ElementTree as ET
 
 # Default transliteration framework.
@@ -32,15 +32,28 @@ debug_output = False
 
 class Rule():
   # Stores one rule of a phase, including substitution information
-  def __init__(self, pattern, substitution, id=0):
-    if debug_output:
-      print(' Rule: %s --> %s' % (pattern.encode('utf-8'),
-                                  substitution.encode('utf-8')))
+  def __init__(self, pattern, substitution,
+               context = None,
+               after_context=None,
+               before_context=None,
+               in_context=None,
+               before_reposition=None,
+               after_reposition=None,
+               id=0):
     self.id = id
     self.pattern = pattern
     self.re_pattern = re.compile(pattern, re.UNICODE)
     self.subst = substitution
-    #? Store info on repositioning cursor
+    self.context = context
+    self.in_context = in_context
+    self.after_context = after_context
+    self.before_reposition = before_reposition
+    self.after_reposition = after_reposition
+    # Store info on repositioning cursor
+    self.cursor_offset = 0
+
+  def parseString(self, rule_string):
+    return
 
 
 class Phase():
@@ -54,29 +67,83 @@ class Phase():
     global debug_output
 
     # set up pattern and subst value for each rule
+    parts_splitter = re.compile('>|→')
+    rule_pattern = re.compile(
+      '(?P<before_context>[^\{]*)(?P<left_context_mark>\{?)(?P<in_context>[^\}>→]*)\
+(?P<right_context_mark>\}?)(?P<after_context>[^>→]*)\
+[>→](?P<before_reposition>[^|]*)(?P<reposition_mark>\|?)(?P<after_reposition>[^;]*)'\
+'(?P<final_semicolon>;?)(?P<comment>#?.*)')
+
     index = 0
-    if debug_output:
-      print('%d rules in rulelist, phase %d' % (len(rulelist), self.phase_id))
     for rule1 in rulelist:
+      # TODO: handle reposition with unescaped '|'
+      resposition = rule1.find('|')
+      # TODO: handle context with unescaped '{'
+      context = rule1.find('}')
+
+      # Extract parts for context, matching, and output with respositioning
+      test_match = rule_pattern.match(rule1)
+      context = None
+      left_context_mark = None
+      before_context = None
+      in_context = None
+      after_context = None
+      before_reposition = None
+      after_reposition = None
+      if test_match:
+        groups = test_match.groupdict()
+        if groups['reposition_mark']:
+          after_reposition = re.sub(' ', '', uStringsFixPlaceholder(groups['after_reposition']))
+        before_reposition = re.sub(' ', '', uStringsFixPlaceholder(groups['before_reposition']))
+        if groups['left_context_mark']:
+          left_context_mark = groups['left_context_mark']
+          after_context = re.sub(' ', '', uStringsFixPlaceholder(groups['after_context']))
+          before_context = re.sub(' ', '', uStringsFixPlaceholder(groups['before_context']))
+          in_context = re.sub(' ', '', uStringsFixPlaceholder(groups['in_context']))
+
       rule1 = rule1.strip()
       rule = re.sub('\n', '', rule1)
-      if rule:
-        parts = rule.split('>')
+      # Remove comment lines.
+      # TODO: remove final semicolon
+      if rule and rule[0] != '#':
+        # TODO: Use matched results instead of simple split
+        parts = parts_splitter.split(rule)
         pattern = re.sub(' ', '', parts[0]) # but don't remove quoted space
-        # print '  rule %d is %s parts' % (index, parts)
+
+        # Handle those without before_context
+        # Use context information to create context rules
+        subst = re.sub(' ', '', uStringsFixPlaceholder(parts[1]))
+        if left_context_mark:
+          pattern_string = '(%s)%s(%s)' % (before_context, in_context, after_context)
+          pattern = pattern_string
+          new_subst = '\\1%s\\2' % subst
+          subst = new_subst
+        # TODO: Separate rule parsing
+        # newRule = Rule.fromString(rule_string)
+        # self.RuleList.append(newRule)
         try:
-          subst = re.sub(' ', '', uStringsFixPlaceholder(parts[1]))
-          #subst = re.sub(' ', '', uStringsToText(parts[1]))
           newPair = (pattern, subst)
           self.rules.append(newPair)
-          if debug_output and False:
-            print(' ** Rule1 = %s' % rule.encode('utf-8'))
-            print(' appending to RuleList: #%d %s --> %s' %
-                  (index, pattern.encode('utf-8'), subst.encode('utf-8')))
-          self.RuleList.append(Rule(pattern, subst, index))  # Rule objects
+          self.RuleList.append(Rule(pattern, subst,
+                                    context=context,
+                                    before_context=before_context,
+                                    in_context=in_context,
+                                    after_context=after_context,
+                                    before_reposition=before_reposition,
+                                    after_reposition=after_reposition,
+                                    id=index))  # Rule objects
         except IndexError as e:
-          print('Error e = %s. Phase %s, %d rule = %s' % (e, self.phase_id, index, rule1))
+          print('IndexError e = %s. Phase %s, %d rule = %s' % (e, self.phase_id, index, rule1))
           print('  Rule = >>%s<< %d' % (rule, len(rule)))
+          break
+        except ValueError as e:
+          print('ValueError e = %s. Phase %s, %d rule = %s' % (e, self.phase_id, index, rule1))
+          print('  Rule = >>%s<< %d' % (rule, len(rule)))
+          break
+        except:
+          e = sys.exc_info()[0]
+          print('!! Error e = %s. Phase %s, %d rule = %s' % (e, self.phase_id, index, rule1))
+          print('  Rule = >>%s<< %d characters' % (rule, len(rule)))
           break
       index += 1
 
@@ -116,10 +183,11 @@ def extractShortcuts(ruleString):
 
 def expandShortcuts(shortcuts, inlist):
   newlist = inlist
-  for key, value in shortcuts.iteritems():
-    key = re.sub('\$', '\$', key)
-    sublist = re.sub(key, value, newlist)
-    newlist = sublist
+  if shortcuts:
+    for key, value in shortcuts.items():
+      key = re.sub('\$', '\$', key)
+      sublist = re.sub(key, value, newlist)
+      newlist = sublist
   return newlist
 
 
@@ -174,6 +242,10 @@ class Transliterate():
 
   def __init__(self, raw_rules, description='Default conversion'):
     # Get the short cuts.
+    print('--------------- __init__ TRANSLITERATE raw_rules = %s. description = %s' %
+                  (raw_rules, description))
+    # logging.info('--------------- __init__ TRANSLITERATE raw_rules = %s. description = %s' %
+    #              (raw_rules, description))
 
     self.description = description
     # Convert Unicode escapes to characters
@@ -185,30 +257,25 @@ class Transliterate():
 
     self.phaseStrings = splitPhases(self.expanded)
 
-    if debug_output:
-      print('phase strings = %s' % self.phaseStrings)
-      print('-------------------------------------\n')
-
     # Create the phase objects
     self.phaseList = []
     index = 0
     for phase in self.phaseStrings:
       self.phaseList.append(Phase(index))
-      self.phaseList[index].fillRules(phase.split(';'))
+      rule_lines = phase.split('\n')
+      phase_rules = []
+      for r in rule_lines:
+        # TODO: Handle lines with semicolon as left side of rule
+        rule_parts = r.rsplit(';', 1)
+        if rule_parts[0]:
+          phase_rules.append(rule_parts[0])
+        # Omit empty lines
+      self.phaseList[index].fillRules(phase_rules)
       index += 1
 
     # Range of current string, for passing information to substFunction.
     self.start = 0
     self.limit = 0
-
-    if debug_output:
-      for phase in self.phaseList:
-        print('Phase %s' % phase)
-        for rule in phase.RuleList:
-          print('  rule %s: %s (%s) --> %s' % (
-              rule.id, rule.pattern.encode('utf-8'), len(rule.pattern),
-              rule.subst.encode('utf-8')))
-
 
   def printSummary(self):
     # Print the statistics
@@ -226,10 +293,10 @@ class Transliterate():
     # Print the statistics
     result = {
       'raw rules': len(self.raw_rules),
-      'shortcuts': len(self.shortcuts),
+      'shortcuts': self.shortcuts,
       'reduced': len(self.reduced),
       'phaseStrings': self.phaseStrings,
-      'phaseList': len(self.phaseList)
+      'phaseList': self.phaseList,
     }
     return result
 
@@ -237,11 +304,6 @@ class Transliterate():
     return 'UNFINISHED'
 
   def applyPhase(self, index, instring,  debug):
-    if debug:
-      print('Applying phase %d to %s' % (index, instring.encode('utf-8')))
-      print('  instring = %s' % uStringToHex(instring))
-      print(' DEBUG LEVEL = %s' % debug)
-
     # It should do:
     #  a. Find rule that matches from the start
     #  b. if a match, substitute text and move start as required
@@ -251,11 +313,14 @@ class Transliterate():
     self.start = 0
     self.limit = len(instring) - 1
     ruleList = self.phaseList[index].RuleList
+    try:
+      print('---------------applyPhase line 316  phase %s, instring = >%s<' % (index, instring))
+      print('---------------applyPhase line 317  phase has %s rules' % (len(ruleList)))
+    except AttributeError as e:
+      print('--------------- applyPhase Error e = %s.' % (e))
 
     currentString = instring
-    if debug:
-      print(' Phase %d has %d rules' % (index, len(ruleList)))
-      print('  start, limit = %3d %3d' % (self.start, self.limit))
+    print('UUUUUUUUUUUUU current = %s', currentString)
     matchObj = True
     while self.start <= self.limit:
       # Look for a rule that matches
@@ -267,6 +332,7 @@ class Transliterate():
       for rule in ruleList:
         # Try to match each rule at the current start point.
         re_pattern = rule.re_pattern
+        #print('Trying RRRRRRRRule = %s. current = %s' % (rule.re_pattern, currentString[self.start:]))
 
         try:
           # look at the current position.
@@ -282,36 +348,58 @@ class Transliterate():
 
         if matchObj:
           # Do just one substitution!
-          foundRule = ruleIndex
-          if debug:
-            print(' Matched rule %s. abs start = %d, rel start = %d, end = %d' % (rule.id,
-              self.start, matchObj.start(0), matchObj.end(0) ))
+          foundRule = True
+          print('MATCHING RRRRRRRRule = %s. current = %s' % (rule, currentString))
+
           # Size of last part of old string after the replacement
           cSize = len(currentString) - matchObj.end(0) - self.start  # Last part of old string not matched
-          if debug and debug > 1:
-            print(' Rule %d: >%s<  Matched sequence = >%s<' % (rule.id, rule.pattern.encode('utf-8'),
-            matchObj.string[matchObj.start(0):matchObj.end(0)].encode('utf-8')))
-          substitution = rule.subst
-
-          if debug and debug > 1:
-            old_stuff = matchObj.string[matchObj.start(0):matchObj.end(0)]
-            print('  replacing >%s< (%d) with %s' % (
-                uStringToHex(old_stuff), len(old_stuff),
-              uStringToHex(substitution)))
-          if debug >= 2:
-            print('  before: %s' % uStringToHex(currentString))
-
-          outstring = re.sub(rule.pattern, substitution, currentString[self.start:], 1)
+          if not rule.before_reposition:
+            substitution = rule.after_reposition
+          else:
+            # TODO: Handle case of before and after substitutions.
+            substitution = rule.subst
+          print('AFTER GETTING SUBSTITUTION Rule = %s. current = %s' % (str(rule.pattern), currentString))
+          if not substitution:
+            substitution = ''
+          try:
+            outstring = re.sub(rule.pattern, substitution, currentString[self.start:], 1)
+          except TypeError as e:
+            outstring = u'&*&*& %s &*&*&' % substitution
           # Try to advance start.
-          newString = currentString[0:self.start] + outstring
-          if debug >= 2:
-            print('  after:  %s' % uStringToHex(newString))
+          print('&&&&&&&&&&  after substitution after substitution after substitution after substitution: >>>%s<<<' %
+                ((len(currentString[0:self.start]))))
+          print('&&&&&&&&&&  outstring: type=%s, %s' % (type(outstring), len(outstring)))
+          try:
+            newString = currentString[0:self.start] + str(outstring)
+          except:
+            print('!!!!!!!!!!! ERROR with substitution start = %s, currentString length = %s !!!!!!!!' %
+                  (self.start, len(currentString)))
+            print('!!!!!!!!!!!  last part = %s, outstring = %s' % (currentString[self.start:], outstring))
+            print('!!!!!!!!!!!  first part = %s, outstring = %s' % (currentString[0:self.start], outstring))
           self.limit = len(newString) - 1
+
           # Figure out the new start and limit.
-
-          self.start = self.limit - cSize + 1
+          # New: don't advance if all the text is after the reposition mark.
+          print('!!!!!!!!!!!   before_reposition before_reposition before_reposition before_reposition rule = %s' %
+                rule.after_reposition)
+          if not rule.before_reposition:
+            self.start = self.start  # Unchanged
+          elif rule.after_reposition:
+            # Find the location of the '|' in the result,
+            # Remove that, and set the new position
+            # Backwards from this place, to self.start
+            print('!!!!!!!!!!!  after_reposition = %s' % currentString)
+            for pos in range(self.limit - cSize, self.start, -1):
+              if newString[pos] == u'|':
+                self.start = pos
+                newString = newString[0:pos] + newString[pos+1:]
+                break
+          else:
+            print('!!!!!!!!!!!  NO reposition = %s' % currentString)
+            self.start = self.limit - cSize + 1
           currentString = newString
-
+          print('after reposition after reposition after reposition after reposition')
+          break
         ruleIndex += 1
 
       # Rule loop complete
@@ -319,214 +407,67 @@ class Transliterate():
         # Increment position since no rule matched
         self.start += 1
 
+    print('OUTPUTPUTPUTPUTPUTPUT = %s' % currentString)
     return currentString
 
 
   def transliterate(self, instring, debug=None):
     # Apply each phase to the incoming string or string list.
+    print('--------------- TRANSLITERATE type = %s. data = %s' % (type(instring), instring))
+    # logging.info('--------------- TRANSLITERATE type = %s. data = %s' % (type(instring), instring))
 
     if type(instring) == list:
-      # Recursive on each list item.
+      # Repeat on each list item.
+      print('****  calling with list item >%s<' % instring)
       return [self.transliterate(item, debug) for item in instring]
+    print('---------------transliterate line 422 instring = %s' % instring)
 
-    if type(instring) != bytes and type(instring) != str:
-      return 'Error: type = %s. String or Unicode required' % type(instring)
-
-    for phaseIndex in range(len(self.phaseList)):
-      outstring = self.applyPhase(phaseIndex, instring, debug)
+    for phase_index in range(len(self.phaseList)):
+      print('---------------transliterate line 425  phase %d = >%s<' % (phase_index, self.phaseList))
+      print('---------------transliterate line 426  instring = >%s<' % (instring))
+      outstring = 'NOT SET'
+      try:
+        outstring = self.applyPhase(phase_index, instring, debug)
+      except:
+        e = sys.exc_info()[0]
+        logging.error('!! Calling applyPhase Error e = %s. outstring=%s' % (e, outstring))
       instring = outstring
 
     # ?? .decode('unicode-escape')
+    print('****** outstring = %s' % outstring)
     return outstring
 
-
-# Take an XML file from CLDR and create a transliterator from it
+# Derived class that takes an XML file from CLDR and create a transliterator from it
 class TranslitXML(Transliterate):
   def __init__(self, file_path):
     self.path = file_path
     self.tree = None
     self.root = None
-    self.openFile()
-    self.parseRules()
-    self.rules = None
+    self.rules_text = None
     self.transforms = None
     self.openFile()
-    self.parseRules()
-    self.rule_list = []
-    return self
+    self.parseXmlTree()
+
+    super(TranslitXML, self).__init__(self.rules_text)
+
+    return
 
   def openFile(self):
     self.tree = ET.parse(self.path)
     self.root = self.tree.getroot()
     return
 
-  def parseRules(self):
+  def parseXmlTree(self):
     if self.root:
       # Look for the rules and get into proper shape
       self.transforms = self.root.find('transforms')
       self.transform = self.transforms.find('transform')
-      self.rules = self.transform.find('tRule')
-      # How to handle ';' as the left side?
-      #self.rule_list = self.rules.text.split(';')
-      rule_lines = self.rules.split('\n')
-      for r in rule_lines:
-        stripped = r.lstrip()
-        self.rule_list.append(r)
+      text = self.transform.find('tRule').text
+      #text = text.encode('unicode-escape')
+      in_str = text.encode('unicode-escape')  # bytes with all chars escaped (the original escapes have the backslash escaped)
+      in_str = in_str.replace(b'\\\\u', b'\\u')  # unescape the \
+      text = in_str.decode('unicode-escape')
+    self.rules_text = text
+      # self.rules_text = self.transform.find('tRule').text.decode( 'unicode-escape' )
     return
 
-# ----------------- TESTING ------------------
-# TODO: Factor out the tests.
-def biggerTest(trans):
-  # A little more text. Title of the ThanLWinSoft test.
-  zString = u'က်န္းမာေရး နည္းလမ္း မ်ား'
-  expectedU = u'ကျန်းမာရေး နည်းလမ်း များ'
-
-  result1 = trans.transliterate(zString)
-  print('in = %s' % zString)
-  print('out = %s' % result1)
-
-  if result1 == expectedU:
-    print('ThanLWinSoft title passes')
-  else:
-    print('ThanLWinSoft title fails. result = %s' % result1)
-    print(' Expected hex = %s' % uStringToHex(expectedU))
-    print(' Result1  hex = %s' % uStringToHex(result1))
-
-
-def biggerTest2(trans):
-  # A little more text. 2nd paragraph of the ThanLWinSoft test.
-  zString = u'က်န္းမာေရး ႏွင့္ ျပည့္စုံ ရန္ အတြက္ ေဆာင္႐ြက္ ရန္ နည္းလမ္း မ်ား ကို သိရွိ လိုက္နာ ရ ပါ မည္။ အစားအေသာက္၊ အအိပ္အေန၊ ေလ့က်င့္ခန္း ႏွင့္ သန့္႐ွင္း မႈ တို့ သည္ က်န္းမာေရး အတြက္ လိုအပ္ခ်က္ မ်ား ျဖစ္ ပါ သည္။ အစားအစာ သည္ အသက္ ႐ွင္ မႈ အတြက္ အထူး လိုအပ္ခ်က္ ျဖစ္ ပါ သည္။ ကြၽႏ္ုပ္ တို့ သည္ အသက္ ႐ွင္ ေနႏိုင္ ရန္ အစာ စား ရ ျခင္း ျဖစ္ ၿပီး စားေသာက္ ရန္ အသက္ ႐ွင္ ေန ျခင္း မ ဟုတ္ ပါ။ က်န္းမာ မႈ အတြက္ သင့္ေတာ္ သည့္ ပ⁠႐ို⁠တိန္း၊ သတၱဳ ဓာတ္ မ်ား ႏွင့္ ဗီတာမင္ မ်ား မ်ား စြာ ပါ ဝင္ သည့္ အစာ မ်ား ကို ရယူ စား သုံး ရန္'
-  expectedU = u'ကျန်းမာရေး နှင့် ပြည့်စုံ ရန် အတွက် ဆောင်ရွက် ရန် နည်းလမ်း များ ကို သိရှိ လိုက်နာ ရ ပါ မည်။ အစားအသောက်၊ အအိပ်အနေ၊ လေ့ကျင့်ခန်း နှင့် သန့်ရှင်း မှု တို့ သည် ကျန်းမာရေး အတွက် လိုအပ်ချက် များ ဖြစ် ပါ သည်။ အစားအစာ သည် အသက် ရှင် မှု အတွက် အထူး လိုအပ်ချက် ဖြစ် ပါ သည်။ ကျွန်ုပ် တို့ သည် အသက် ရှင် နေနိုင် ရန် အစာ စား ရ ခြင်း ဖြစ် ပြီး စားသောက် ရန် အသက် ရှင် နေ ခြင်း မ ဟုတ် ပါ။ ကျန်းမာ မှု အတွက် သင့်တော် သည့် ပ⁠ရို⁠တိန်း၊ သတ္တု ဓာတ် များ နှင့် ဗီတာမင် များ များ စွာ ပါ ဝင် သည့် အစာ များ ကို ရယူ စား သုံး ရန်'
-
-  result1 = trans.transliterate(zString)
-  # print 'in = %s' % zString
-  # print 'out = %s' % result1
-
-  if result1 == expectedU:
-    print('biggerTest2 passes')
-  else:
-    print('biggerTest2 fails. result = %s' % result1)
-    # print ' Expected hex = %s' % uStringToHex(expectedU)
-    # print ' Result1  hex = %s' % uStringToHex(result1)
-
-
-def testPhase1a(transliterator):
-  z1 = u'\u1002\u103a\u1064\u1005\u1072'
-  e1 = u'င်္ဂျင်္စီင်္ဆံ'  # u'\u1004\u103A\u1039\u1002\u1038'
-  result1 = transliterator.transliterate(z1)
-  print('  hex = %s' % uStringToHex(result1))
-  print('  text = %s' % result1.encode('utf-8'))
-
-
-def testPhase1(transliterator):
-  z1 = u'\u1002\u103a\u1064\u1005\u108c\u1006\u108d\u106a\u1025\u102e'
-  e1 = 'င်္ဂျင်္စီင်္ဆံ'  # u'\u1004\u103A\u1039\u1002\u1038'
-  result1 = transliterator.transliterate(z1)
-  if result1 == e1:
-    print('test#1 passes')
-  else:
-    print('test#1 fails. result = %s' % result1)
-    print('  hex = %s' % uStringToHex(result1))
-
-
-def testPhase2(transliterator):
-  z1 = u'\u1006\u103a\u108c\u1033\u1044\u1039\u1025\u103a\u1036\u103b\u103c\u1004'
-  e1 = 'င်္ဆျီု|၎်ဥျံြွင'
-  result1 = transliterator.transliterate(z1)
-  print('testPhase2 gives %s' % uStringToHex(result1))
-  if result1 == e1:
-    print('testPhase2 passes')
-  else:
-    print('testPhase2 fails. result = %s' % result1)
-    print('  Result hex =   %s' % uStringToHex(result1))
-    print('  Expected hex = %s' % uStringToHex(e1))
-
-
-def testList(transliterator):
-  zList = [
-    u'\u1006\u103a\u108c\u1033\u1044\u1039\u1025\u103a\u1036\u103b\u103c\u1004',
-    u'\u1002\u103a\u1064\u1005\u108c\u1006\u108d\u106a\u1025\u102e',
-    u'\u1002\u103a\u1064\u1005\u1072']
-  resultList = transliterator.transliterate(zList)
-
-  eList = [u'င်္ဆျီု|၎်ဥျံြွင', u'င်္ဂျင်္စီင်္ဆံ', u'င်္ဂျင်္စီင်္ဆံ']
-  for i in range(len(resultList)):
-    if resultList[i] == eList[i]:
-      print('  testList %d passes' % i)
-    else:
-      print('  testList %d fails' % 1)
-      print('  Z input =      %s' % uStringToHex(zList[i]))
-      print('  Result hex =   %s' % uStringToHex(resultList[i]))
-      print('  Expected hex = %s' % uStringToHex(eList[i]))
-
-
-def transliterateFile(trans, encoding, fileName):
-  # Open a file, read the text, and transliterate it, line by line.
-  print('** transliterateFile %s for file %s' % (encoding, fileName))
-  infile = codecs.open(fileName, "rb") #, "utf-8")
-  print('infile = %s' % (infile))
-  lineNum = 0
-  for line in infile:
-    print(lineNum)
-    outline = trans.transliterate(line)
-    print('%s\t%s' % (lineNum, outline))
-    lineNum += 1
-  return
-
-def main(argv=None):
-  # For testing basics
-  if len(argv) > 1:
-    print(argv)
-    inType = argv[1]
-    inFile = argv[2]
-    print(inType, inFile)
-
-    if inType == 'knu':
-      trans = Transliterate(translit_knu.TRANS_LIT_RULES)
-      encoding = 'knu'
-    elif inType == 'zawgyi':
-      trans = Transliterate(translit_zawgyi.TRANS_LIT_RULES)
-      encoding = 'zawgyi'
-    elif inType == 'uni_mon':
-      trans = Transliterate(translit_zawgyi.UNIMON_UNICODE_TRANSLITERATE)
-      encoding = 'uni_mon'
-    elif inType == 'shanthai':
-      trans =  None  # Transliterate(translit_zawgyi.SHANTHAI_TRANSLITERATE)
-      encoding = 'shanthai'
-
-    transliterateFile(trans, encoding, inFile)
-    return
-
-  trans = Transliterate(translit_zawgyi.ZAWGYI_UNICODE_TRANSLITERATE)
-
-  # New is not working yet.
-  # trans = Transliterate(ZAWGYI_UNICODE_TRANSLITERATE_2)
-  #trans.summary()
-  #testPhase1a(trans)
-  #testPhase1(trans)
-  #testPhase2(trans)
-  biggerTest(trans)
-  biggerTest2(trans)
-
-  #return
-
-  test1 = u'ေျခႀက'  # 1031 103b 1001 1080 1000
-  result1 = trans.transliterate(test1)
-  print('Output is %s' % result1)
-
-  print('-------------\n')
-  test2 = uStringsToText(u'\u1000\u1064')
-  result2 = trans.transliterate(test2)
-
-  print('Output 2 is %s' % result2)
-
-  print('-------------\n')
-
-  # biggerTest()
-
-  return
-
-
-if __name__ == "__main__":
-    print('ARGS = %s' % sys.argv)
-    sys.exit(main(sys.argv))

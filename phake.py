@@ -146,8 +146,18 @@ class langInfo():
     resource_list = [
       {
         'name': 'KeyMan Phake keyboard for mobile and computer',
-        'source': '/resources/phk/phk.kmp',
-        'description': '(phk.kmp) for Phake Unicode'
+        'source': '/resources/phk/phake_107.kmp',
+        'description': 'Version 1.07 29-Spe-2020'
+      },
+      {
+        'name': 'KeyMan Phake keyboard for mobile and computer',
+        'source': '/resources/phk/phk_v1.06.kmp',
+        'description': 'Version 1.06 19-Aug-2020'
+      },
+      {
+        'name': 'KeyMan Phake keyboard for mobile and computer',
+        'source': '/resources/phk/phk3.kmp',
+        'description': 'phk3.kmp for Phake Unicode'
       },
     ]
 

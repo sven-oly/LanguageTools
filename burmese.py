@@ -13,10 +13,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-
-
-#import translit
 from __future__ import print_function
+
+import base
+
 import transliterate
 import transrule_my_wwburn
 
@@ -114,30 +114,43 @@ testStringList = [
    },
 ]
 
+kb_list = [
+  {'shortName': 'my',
+   'longName': 'Burmese Unicode'
+   },
+  {'shortName': 'shn_keyman',
+   'longName': 'Shan Keyman layout'
+   },
+  {'shortName': 'shn',
+   'longName': 'Shan'
+   },
+  {'shortName': 'mnw',
+   'longName': 'Mon Unicode'
+   },
+  {'shortName': 'mnw_mul',
+   'longName': 'MUL Unicode, Mon/Burmese'
+   },
+  {'shortName': 'ksw',
+   'longName': 'S\'gaw Karen'
+   },
+]
+
+class langInfo():
+  def __init__(self):
+    self.LanguageCode = LanguageCode
+    self.Language = Language
+    self.Language_native = Language_native
+    self.test_data = u''
+    self.unicode_font_list = unicode_font_list
+    self.lang_list = ['my']
+    self.kb_list = kb_list
+    self.links = links
+
+    self.text_file_list = []
+
 # Shows keyboard
 class IndigenousHomeHandler(webapp2.RequestHandler):
     def get(self):
-
-      kb_list = [
-        {'shortName':  'my',
-         'longName': 'Burmese Unicode'
-        },
-        {'shortName': 'shn_keyman',
-         'longName': 'Shan Keyman layout'
-        },
-        {'shortName':  'shn',
-         'longName': 'Shan'
-        },
-        {'shortName': 'mnw',
-         'longName': 'Mon Unicode'
-         },
-        {'shortName': 'mnw_mul',
-         'longName': 'MUL Unicode, Mon/Burmese'
-         },
-        {'shortName': 'ksw',
-         'longName': 'S\'gaw Karen'
-         },
-      ]
       template_values = {
         'language': Language,
         'font_list': unicode_font_list,
@@ -356,18 +369,6 @@ class RenderPage(webapp2.RequestHandler):
       self.response.out.write(template.render(path, template_values))
 
 
-class Downloads(webapp2.RequestHandler):
-    def get(self):
-
-      template_values = {
-          'language': Language,
-          'language_native': Language_native,
-          'unicode_font_list': unicode_font_list,
-      }
-      path = os.path.join(os.path.dirname(__file__), 'downloads.html')
-      self.response.out.write(template.render(path, template_values))
-
-
 # Convert text in URL, with JSON return
 class ConvertHandler(webapp2.RequestHandler):
   def post(self):
@@ -464,14 +465,18 @@ class DiacriticHandler(webapp2.RequestHandler):
     path = os.path.join(os.path.dirname(__file__), 'diacritics.html')
     self.response.out.write(template.render(path, template_values))
 
+langInstance = langInfo()
 
 app = webapp2.WSGIApplication([
-  ('/demo_my/', IndigenousHomeHandler),
-  ('/my/', IndigenousHomeHandler),
-  ('/my/convertUI/', ConvertUIHandler),
-  ('/my/downloads/', Downloads),
-  ('/my/converter/', ConvertHandler),
-  ('/my/convertToZawgyi/', ConvertToZawgyiHandler),
-  ('/my/encodingRules/', EncodingRules),
-  ('/my/diacritic/', DiacriticHandler),
-], debug=True)
+    ('/demo_my/', IndigenousHomeHandler),
+    ('/my/', IndigenousHomeHandler),
+    ('/my/convertUI/', ConvertUIHandler),
+    ('/my/downloads/', base.Downloads),
+    ('/my/converter/', ConvertHandler),
+    ('/my/convertToZawgyi/', ConvertToZawgyiHandler),
+    ('/my/encodingRules/', EncodingRules),
+    ('/my/diacritic/', DiacriticHandler),
+  ],
+  debug=True,
+  config = {'langInfo': langInstance}
+)

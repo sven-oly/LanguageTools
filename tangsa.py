@@ -92,11 +92,7 @@ class langInfo():
 
    # Test data for showing in converter.
     self.test_data = ''
-    self.test_chars = ['Corona htaungc tvhtumx muex, Yauk hoalz shuinz, ' +
-                      'Sauz kuex yaukshexkungc maq httuiuq shuinz, ' +
-                      'Htvlx pemc raxmuq, Rvghawcghawc nuex httax kuinz' +
-                      'Yuimx nuex dvyx httax kuinz'
-    ]
+    self.test_chars = ['']
 
     return
 

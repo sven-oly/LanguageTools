@@ -14,11 +14,6 @@
 # limitations under the License.
 #
 
-import base
-
-# import transliterate
-# import transrule_ccp
-
 import json
 import os
 import sys
@@ -26,6 +21,8 @@ import urllib
 import webapp2
 
 from google.appengine.ext.webapp import template
+
+import base
 
 encoding_font_list = [
     {
@@ -54,25 +51,50 @@ encoding_font_list = [
 
 unicode_font_list = [
   {
+    'family': 'Noto_Serif_Regular',
+    'longName': 'Noto Serif Regular',
+    'source': '/fonts/NyiakengPuacheHmong/Noto/NotoSerifNyiakengPuachueHmong-Regular.ttf',
+  },
+  {
+    'family': 'Noto_Serif_Bold',
+    'longName': 'Noto Serif Bold',
+    'source': '/fonts/NyiakengPuacheHmong/Noto/NotoSerifNyiakengPuachueHmong-Bold.otf',
+  },
+  {
+    'family': 'Noto_Serif_SemiBold',
+    'longName': 'Noto Serif SemiBold',
+    'source': '/fonts/NyiakengPuacheHmong/Noto/NotoSerifNyiakengPuachueHmong-SemiBold.otf',
+  },
+  {
+    'family': 'Noto_Serif_Medium',
+    'longName': 'Noto Serif Medium',
+    'source': '/fonts/NyiakengPuacheHmong/Noto/NotoSerifNyiakengPuachueHmong-Medium.otf',
+  },
+  {
+    'family': 'Noto_Serif_Variable',
+    'longName': 'Noto Serif Variable',
+    'source': '/fonts/NyiakengPuacheHmong/Noto/NotoSerifNyiakengPuachueHmong-VF.ttf',
+  },
+  {
     'family': 'TT_Hmong2',
     'longName': 'TT Hmong2',
     'source': '/fonts/NyiakengPuacheHmong/TT_Hmong-2-Regular.woff',
   },
-  {
-      'family': 'TT_Hmong',
-      'longName': 'TT Hmong',
-      'source':'/fonts/NyiakengPuacheHmong/TT_Hmong-Regular.otf',
-  },
-  {
-      'family': 'MATD',
-      'longName': 'MATD_TP70',
-      'source':'/fonts/NyiakengPuacheHmong/MATD-TamaraPilz-Regular-A-70.otf',
-  },
-  {
-      'family': 'Mong0_Unicode',
-      'longName': 'Mong0 Unicode prototype',
-      'source':'/fonts/NyiakengPuacheHmong/Mong0_unicode.ttf',
-  },
+  # {
+  #     'family': 'TT_Hmong',
+  #     'longName': 'TT Hmong',
+  #     'source':'/fonts/NyiakengPuacheHmong/TT_Hmong-Regular.otf',
+  # },
+  # {
+  #     'family': 'MATD',
+  #     'longName': 'MATD_TP70',
+  #     'source':'/fonts/NyiakengPuacheHmong/MATD-TamaraPilz-Regular-A-70.otf',
+  # },
+  # {
+  #     'family': 'Mong0_Unicode',
+  #     'longName': 'Mong0 Unicode prototype',
+  #     'source':'/fonts/NyiakengPuacheHmong/Mong0_unicode.ttf',
+  # },
 ]
 
 # Resource file list
@@ -162,6 +184,10 @@ class langInfo():
     ]
     self.links = links
     self.text_file_list = []
+
+    # Restricted
+    self.public_font_resources = unicode_font_list[0:5]
+
     self.unicode_font_list = unicode_font_list
     self.text_file_list = resource_list
 
@@ -226,16 +252,15 @@ langInstance = langInfo()
 
 app = webapp2.WSGIApplication(
     [
-     ('/(hnj|nyiakeng)/', base.LanguagesHomeHandler),
-     ('/(hnj|nyiakeng)/convertUI/', base.ConvertUIHandler),
-     ('/(hnj|nyiakeng)/downloads/', base.Downloads),
-     ('/(hnj|nyiakeng)/converter/', base.ConvertHandler),
-     ('/(hnj|nyiakeng)/encodingRules/', base.EncodingRules),
-     ('/(hnj|nyiakeng)/diacritic/', base.DiacriticHandler),
-
-     ('/(hnj|nyiakeng)/newkb/', NewKBHandler),
-     ('/(hnj|nyiakeng)/dictionaryN/', base.DictionaryN),
-
-     ], debug=True,
-    config={'langInfo': langInstance}
+      ('/(hnj|nyiakeng)/', base.LanguagesHomeHandler),
+      ('/(hnj|nyiakeng)/convertUI/', base.ConvertUIHandler),
+      ('/(hnj|nyiakeng)/downloads/', base.Downloads),
+      ('/(hnj|nyiakeng)/converter/', base.ConvertHandler),
+      ('/(hnj|nyiakeng)/encodingRules/', base.EncodingRules),
+      ('/(hnj|nyiakeng)/diacritic/', base.DiacriticHandler),
+      ('/(hnj|nyiakeng)/newkb/', NewKBHandler),
+      ('/(hnj|nyiakeng)/dictionaryN/', base.DictionaryN),
+    ],
+  debug=True,
+  config={'langInfo': langInstance}
 )

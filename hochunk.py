@@ -28,9 +28,12 @@ import webapp2
 
 from google.appengine.ext.webapp import template
 
+import base
+
 Language = 'Hoocąk'
 Language_native = 'Hoocąk'
 LanguageTag = 'win'
+LanguageCode = 'win'
 
 encoding_font_list = [
     {
@@ -52,9 +55,9 @@ links = [
     {'linkText': 'Font conversion summary',
       'ref': '/win/encodingRules/'
     },
-    {'linkText': 'Resources',
-      'ref': '/win/downloads/'
-    },
+    # {'linkText': 'Resources',
+    #   'ref': '/win/downloads/'
+    # },
     {'linkText': 'Hoocąk language',
       'ref': 'https://en.wikipedia.org/wiki/Winnebago_language#Orthography',
     },
@@ -69,16 +72,27 @@ links = [
      },
 ]
 
+kb_list = [
+  {'shortName': 'win_latn',
+   'longName': Language + " Latin",
+   }
+]
+
+class langInfo():
+  def __init__(self):
+    self.LanguageCode = LanguageCode
+    self.Language = Language
+    self.Language_native = Language_native
+    self.test_data = u''
+    self.unicode_font_list = unicode_font_list
+    self.lang_list = [Language]
+    self.kb_list = kb_list
+    self.links = links
+
 
 # Shows keyboard for Hoocak
 class IndigenousHomeHandler(webapp2.RequestHandler):
     def get(self):
-
-      kb_list = [
-        {'shortName': 'win_latn',
-         'longName': Language + " Latin",
-        }
-      ]
       template_values = {
         'language': Language,
         'font_list': unicode_font_list,
@@ -217,18 +231,6 @@ class RenderPage(webapp2.RequestHandler):
       self.response.out.write(template.render(path, template_values))
 
 
-class Downloads(webapp2.RequestHandler):
-    def get(self):
-
-      template_values = {
-          'language': Language,
-          'language_native': Language_native,
-          'unicode_font_list': unicode_font_list,
-      }
-      path = os.path.join(os.path.dirname(__file__), 'downloads.html')
-      self.response.out.write(template.render(path, template_values))
-
-
 class AllFontTest(webapp2.RequestHandler):
   def get(self):
     utext = self.request.get("utext", "")
@@ -247,12 +249,14 @@ class AllFontTest(webapp2.RequestHandler):
     self.response.out.write(template.render(path, template_values))
 
 
+langInstance = langInfo()
+
 app = webapp2.WSGIApplication([
-  ('/demo_win/', IndigenousHomeHandler),
-  ('/win/', IndigenousHomeHandler),
-  ('/win/convertUI/', ConvertUIHandler),
-  ('/win/downloads/', Downloads),
-  ('/win/converter/', ConvertHandler),
-  ('/win/encodingRules/', EncodingRules),
-  ('/chr/AllFonts/', AllFontTest )
-], debug=True)
+    ('/' + LanguageCode + '/', IndigenousHomeHandler),
+    ('/' + LanguageCode + '/convertUI/', ConvertUIHandler),
+    ('/' + LanguageCode + '/downloads/', base.Downloads),
+    ('/' + LanguageCode + '/encodingRules/', EncodingRules),
+  ],
+  debug=True,
+  config={'langInfo': langInstance}
+)
