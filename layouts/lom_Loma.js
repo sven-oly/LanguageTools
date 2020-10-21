@@ -44,11 +44,20 @@ var LOM_LOMA_LAYOUT = {
     'a': '\u01a2',
     'e': '\u01ab',
     'ee': '\u01aa',
-    'pi': '\u00a2'
+    'pa': '\u00a3',
+    'pee': '\u00a7',
+    'pe': '\u00a8',
+    'peh': '\u00ae',
+    'pi': '\u00a2',
+    'poo': '\u00ac',
+    'pooi': '\u00af',
+    'po': '\u00a9',
+    'pu': '\u00a5',
   },
   'historyPruneRegex': 'e|p|b|ba|baa|be|bo|bu|bh|bha|bhe|bhee|bho|bhu|bhue|' +
     'f|fo|fu|g|ge|gee|gi|gb|gbe|bgo|gh|t|d|l|h|y|kp|kw|g|n|ng|m|ny|ng' +
-    'pe|be|ke|kpe|fe|te|le|he|ye|kwe|we|ne|nge|nge|po|bo|kpo|fo|to|lo|ho|yo|ko|wo'
+    'pe|be|ke|kpe|fe|te|le|he|ye|kwe|we|ne|nge|nge|po|bo|kpo|fo|to|lo|ho|yo|ko|wo|' +
+    'poo|see|soo|suo|tie|zie|zoo|zuo/'
 };
 
 // Load the layout and inform the keyboard to switch layout if necessary.

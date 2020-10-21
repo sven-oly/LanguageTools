@@ -28,17 +28,17 @@ ScriptCode = 'Gara'
 
 encoding_font_list = [
   {
-    'font_path': '/fonts/xyz.ttf',
-    'font_name': 'xyz',
-    'display_name': 'xyz',
+    'font_path': '/fonts/African_font_encodings/WOLOF.TTF',
+    'font_name': 'Garay ASCII',
+    'display_name': 'Garay ASCII',
   },
 ]
 
 unicode_font_list = [
     {
-        'family': 'NotoSansxyz',
-        'longName': 'Noto Sans xyz',
-        'source': '/fonts/NotoSansxyz-Regular.ttf',
+        'family': 'GarayAscii',
+        'longName': 'Garay ASCII',
+        'source': '/fonts/African_font_encodings/WOLOF.TTF',
     },
 ]
 
