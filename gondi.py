@@ -83,6 +83,9 @@ kb_list = [
   {'shortName': LanguageCode + '_gunjala',
    'longName': 'Gondi Gunjala',
    },
+  {'shortName': 'esg_masaram',
+   'longName': 'Gondi Masaram',
+   },
   {'shortName': 'gon_masaram',
    'longName': 'Gondi Masaram',
    },
@@ -96,7 +99,8 @@ kb_list = [
 
 kb_list_dict = {
   'gon': kb_list,
-  'esg': [  {'shortName': 'gon_masaram','longName': 'Gondi Masaram' },],
+  'esg': [{'shortName': 'esg_masaram','longName': 'Gondi Masaram 2' },
+          {'shortName': 'gon_masaram','longName': 'Gondi Masaram' },],
   'gno': [{'shortName': 'gon_gunjala', 'longName': 'Gondi Gonjala'}, ],
   'wsg': [  {'shortName': 'gon_masaram','longName': 'Gondi Masaram' },],
 }

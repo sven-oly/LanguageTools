@@ -11,21 +11,21 @@
 // limitations under the License.
 
 
-var SUZ_JENTICHA_PUA_LAYOUT = {
-  'id': 'suz_jenticha_PUA',
-  'title': 'Kõits-Bleshe-Sunuwar PUA',
+var LOM_LOMA_LAYOUT = {
+  'id': 'lom_Loma',
+  'title': 'Loma script',
   'mappings': {
     ',c': {
-      '': '\ued4f\ued31\ued32\ued33\ued34\ued35\ued36\ued37\ued38\ued39\ued30-=' +
-          '\ued71\ued77\ued65\ued72\ued74\ued79\ued75\ued69\ued6F\ued70[]\\' +
-          '\ued61\ued73\ued7d\ued66\ued67\ued68\ued6A\ued6B\ued6B\u003b\u0027' +
-          '\ued7A\ued78\ued63\ued76\ued2c\ued6E\ued6D,./'
+      '': '`1234567890-=' +
+          '{{}}wertyuiop[]\\' +
+          'asdfgh{{}}kl;\'' +
+          'z{{}}{{}}vbnm,./'
     },
     's,sc': {
-      '': '\ued3c!@#$%^&*()_+' +
-          '\ued71\ued57\ued45\ued72\ued74\ued59\ued55\ued49\ued4F\ued70{}|' +
-          '\ued41\ued73\ued2e\ued64\ued27\ued2d\ued59\ued3f\ued3e:"' +
-          '\u221a\u2260\u2122\u00a9\u2211\u2230\ued2f<>?'
+      '': '~!@#$%^&*()_+' +
+          'QWERTYUIOP{}|' +
+          'ASDFGHJKL:"' +
+          'ZXCVBNM<>?'
     },
     'l,cl': {
       '': '`1234567890-=' +
@@ -41,10 +41,16 @@ var SUZ_JENTICHA_PUA_LAYOUT = {
     }
   },
   'transform': {
-    '^': '^',  // Placeholder
-  }
+    'a': '\u01a2',
+    'e': '\u01ab',
+    'ee': '\u01aa',
+    'pi': '\u00a2'
+  },
+  'historyPruneRegex': 'e|p|b|ba|baa|be|bo|bu|bh|bha|bhe|bhee|bho|bhu|bhue|' +
+    'f|fo|fu|g|ge|gee|gi|gb|gbe|bgo|gh|t|d|l|h|y|kp|kw|g|n|ng|m|ny|ng' +
+    'pe|be|ke|kpe|fe|te|le|he|ye|kwe|we|ne|nge|nge|po|bo|kpo|fo|to|lo|ho|yo|ko|wo'
 };
 
 // Load the layout and inform the keyboard to switch layout if necessary.
-google.elements.keyboard.loadme(SUZ_JENTICHA_PUA_LAYOUT);
-en = SUZ_JENTICHA_PUA_LAYOUT;
+google.elements.keyboard.loadme(LOM_LOMA_LAYOUT);
+en = LOM_LOMA_LAYOUT;

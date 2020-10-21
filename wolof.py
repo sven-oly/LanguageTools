@@ -14,39 +14,32 @@
 # limitations under the License.
 #
 
-#import translit
-import transliterate
-# import transrule_nv
+import os
+import webapp2
 
 import base
 
-import json
-import logging
-import os
-import urllib
-import webapp2
-
 from google.appengine.ext.webapp import template
 
-Language = 'Bamum'
-Language_native = 'Need native name'
-LanguageCode = 'bax'
+Language = 'Wolof'
+Language_native = '???ᰶ'
+LanguageCode = 'wo'
+ScriptCode = 'Gara'
 
 encoding_font_list = [
+  {
+    'font_path': '/fonts/xyz.ttf',
+    'font_name': 'xyz',
+    'display_name': 'xyz',
+  },
 ]
 
 unicode_font_list = [
     {
-        'family': 'NotoSansBamum',
-        'longName': 'Noto Sans Bamum',
-        'source': '/fonts/NotoSansBamum-Regular.ttf',
+        'family': 'NotoSansxyz',
+        'longName': 'Noto Sans xyz',
+        'source': '/fonts/NotoSansxyz-Regular.ttf',
     },
-]
-
-kb_list = [
-  {'shortName': LanguageCode,
-   'longName': LanguageCode,
-   },
 ]
 
 links = [
@@ -54,50 +47,52 @@ links = [
      'ref': '/' + LanguageCode + '/'
     },
     # {'linkText': 'Converter',
-    # 'ref': '/' + LanguageCode + '/convertUI/'},
-    #{'linkText': 'Font conversion summary',
-    #  'ref': '/' + LanguageCode + '/encodingRules/'
-    #},
-    {'linkText': 'Resources',
-      'ref': '/' + LanguageCode + '/downloads/'
-    },
-    {'linkText': 'Unicode Bamum page',
-     'ref': 'https://www.unicode.org/charts/PDF/UA6A0.pdf'
-    },
-    {'linkText': 'Unicode Bamum Supplement page',
-     'ref': 'https://www.unicode.org/charts/PDF/U16800.pdf'
-     },
-    {'linkText': 'Bamum script',
-     'ref': 'https://en.wikipedia.org/wiki/Bamum_script'
-    },
-    {'linkText': 'Wikipedi page',
-     'ref': 'https://en.wikipedia.org/wiki/Bamum_language'
-    },
-    {'linkText': 'Ethnolog',
-     'ref': 'https://www.ethnologue.com/language/baX'
-    },
-    {'linkText': 'Combiners',
-     'ref': '/bax/diacritic/'
-     },
+    #  'ref': '/' + LanguageCode + '/convertUI/'},
+    # {'linkText': 'Font conversion summary',
+    #   'ref': '/' + LanguageCode + '/encodingRules/'
+    # },
+    # {'linkText': 'Resources',
+    #   'ref': '/' + LanguageCode + '/downloads/'
+    # },
+    # {'linkText': 'Unicode page',
+    #  'ref': 'https://www.unicode.org/charts/PDF/U1C00.pdf'
+    # },
+    # {'linkText': 'Lepcha script',
+    #  'ref': 'https://en.wikipedia.org/wiki/Lepcha_alphabet'
+    # },
+    # {'linkText': 'Wikipedi page',
+    #  'ref': 'https://en.wikipedia.org/wiki/Lepcha_language'
+    # },
+    # {'linkText': 'Ethnolog',
+    #  'ref': 'https://www.ethnologue.com/language/lep'
+    # },
+    # {'linkText': 'Combiners',
+    #  'ref': '/lep/diacritic/'
+    #  },
 ]
-
-
-diacritic_list = [unichr(x) for x in range(0xA6F0, 0xA6F2)]
-
-default_base_consonant = u'\uA6A1'
 
 class langInfo():
   def __init__(self):
     self.LanguageCode = LanguageCode
     self.Language = Language
     self.Language_native = Language_native
-    self.test_data = u''
+    self.test_data = u'FILL IN'
     self.unicode_font_list = unicode_font_list
-    self.lang_list = [LanguageCode]
+    self.encoding_font_list = encoding_font_list
+
+    self.lang_list = [LanguageCode]  # This may be extended
     self.kb_list = kb_list
     self.links = links
 
+    # For additional resources for download
     self.text_file_list = []
+
+    # TODO: Fill in the rest of the common data.
+
+# TODO: Fill in with diacritics
+diacritic_list = [unichr(x) for x in range(0x1c24, 0x1c37)]
+#TODO: Fill in base consonant
+default_base_consonant = u'\u1c00'
 
 # Shows keyboards
 class IndigenousHomeHandler(webapp2.RequestHandler):
@@ -113,16 +108,44 @@ class IndigenousHomeHandler(webapp2.RequestHandler):
       path = os.path.join(os.path.dirname(__file__), 'demo_general.html')
       self.response.out.write(template.render(path, template_values))
 
+
+kb_list = [
+  {'shortName': LanguageCode + '_' + ScriptCode,
+   'longName': Language + ' ' + ScriptCode,
+   }
+]
+
+diacritic_list = [unichr(x) for x in range(0xa926, 0xa92d)]
+
+default_base_consonant = u'\u1c00'
+
+# Shows keyboards
+class IndigenousHomeHandler(webapp2.RequestHandler):
+    def get(self):
+      template_values = {
+        'language': Language,
+        'langTag': LanguageCode,
+        'font_list': unicode_font_list,
+        'lang_list': None,
+        'kb_list': kb_list,
+        'links': links,
+      }
+      path = os.path.join(os.path.dirname(__file__), 'demo_general.html')
+      self.response.out.write(template.render(path, template_values))
+
+encodedRanges = [
+  (0x20, 0x7b),
+]
 # Presents UI for conversions from font encoding to Unicode.
 class ConvertUIHandler(webapp2.RequestHandler):
     def get(self):
 
       # All old characters
-      oldChars = (u'' +
-                  '0123456789:;<=>?@' +
-                  '!@#$%^&*()_+' +
-                  'ABCDEFGHIJKLMNOPQRSTUVWXYZ[ \\ ]^_`' +
-                  'abcdefghijklmnopqrstuvwxyz{|}~')
+      oldCharList = []
+      for run in encodedRanges:
+        oldCharList.extend([unichr(x) + ' ' for x in xrange(run[0], run[1])])
+
+      oldChars = ''.join(oldCharList)
       text = self.request.get('text', oldChars)
       font = self.request.get('font')
       testStringList = [
@@ -131,18 +154,10 @@ class ConvertUIHandler(webapp2.RequestHandler):
            '\u000a\u000b'},
       ]
 
-      oldInput = u''
-      for i in xrange(0x20, 0x7e):
-        oldInput += unichr(i)
-      for i in xrange(0x2018, 0x201e):
-        oldInput += unichr(i)
+      oldInput = text
+
       unicodeChars = ''
       unicodeCombiningChars = ''
-      kb_list = [
-        {'shortName':  LanguageCode,
-         'longName': Language
-        }
-      ]
 
       template_values = {
           'font': font,
@@ -164,34 +179,6 @@ class ConvertUIHandler(webapp2.RequestHandler):
       path = os.path.join(os.path.dirname(__file__), 'translit_general.html')
       self.response.out.write(template.render(path, template_values))
 
-# AJAX handler for converter
-class ConvertHandler(webapp2.RequestHandler):
-    def get(self):
-      # TODO: Get the text values
-      # Call transliterator
-      # Return JSON structure with values.
-
-      transCcp = transliterate.Transliterate(
-        transrule_ccp.TRANS_LIT_RULES,
-        transrule_ccp.DESCRIPTION
-      )
-
-      outText = '\u11103\u11101\u11103'
-      message = 'TBD'
-      error = ''
-
-      result = {
-        'outText' : outText,
-        'message' : message,
-        'error': error,
-        'language': Language,
-        'langTag': LanguageCode,
-        'showTools': self.request.get('tools', None),
-        'summary' : transCcp.getSummary(),
-      }
-      self.response.out.write(json.dumps(result))
-
-
 class EncodingRules(webapp2.RequestHandler):
     def get(self):
 
@@ -210,11 +197,6 @@ class EncodingRules(webapp2.RequestHandler):
 class RenderPage(webapp2.RequestHandler):
     def get(self):
 
-      kb_list = [
-        {'shortName':  LanguageCode,
-         'longName': Language + ' Unicode'
-        }
-      ]
       template_values = {
         'converterJS': "/js/' + LanguageCode + 'Converter.js",
         'language': Language,
@@ -268,16 +250,15 @@ class DiacriticHandler(webapp2.RequestHandler):
     path = os.path.join(os.path.dirname(__file__), 'diacritics.html')
     self.response.out.write(template.render(path, template_values))
 
+
 langInstance = langInfo()
 
 app = webapp2.WSGIApplication([
-    ('/' + LanguageCode + '/', IndigenousHomeHandler),
-    ('/' + LanguageCode + '/convertUI/', ConvertUIHandler),
-    ('/' + LanguageCode + '/downloads/', base.Downloads),
-    ('/' + LanguageCode + '/converter/', ConvertHandler),
-    ('/' + LanguageCode + '/encodingRules/', EncodingRules),
+  ('/' + LanguageCode + '/', IndigenousHomeHandler),
+  ('/' + LanguageCode + '/convertUI/', ConvertUIHandler),
+  ('/' + LanguageCode + '/downloads/', base.Downloads),
+  ('/' + LanguageCode + '/encodingRules/', EncodingRules),
   ('/' + LanguageCode + '/diacritic/', DiacriticHandler),
-  ],
-  debug=True,
-  config = {'langInfo': langInstance}
+], debug=True,
+                              config={'langInfo': langInstance}
 )

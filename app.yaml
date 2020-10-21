@@ -100,6 +100,12 @@ handlers:
 - url: /kgp/.*
   script: kaingang.app
 
+- url: /kpe/.*
+  script: kpelle.app
+
+- url: /lom/.*
+  script: loma.app
+
 - url: /omq/.*
   script: omq.app
 
@@ -108,6 +114,9 @@ handlers:
 
 - url: /win/.*
   script: hochunk.app
+
+- url: /wo/.*
+  script: wolof.app
 
 - url: /aho/.*
   script: ahom.app

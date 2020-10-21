@@ -1,0 +1,2885 @@
+SplineFontDB: 3.2
+FontName: kirat2
+FullName: kirat2
+FamilyName: kirat2
+Weight: Book
+Copyright: Typeface (c) <Shyan Kirat Rai>. 2004. All Rights Reserved\nExtended by CWC 2020\n
+Version: kirat2
+ItalicAngle: 4
+UnderlinePosition: -292
+UnderlineWidth: 150
+Ascent: 1638
+Descent: 410
+InvalidEm: 0
+sfntRevision: 0x00010000
+LayerCount: 2
+Layer: 0 1 "Back" 1
+Layer: 1 1 "Fore" 0
+XUID: [1021 341 221541093 11463213]
+StyleMap: 0x0040
+FSType: 8
+OS2Version: 1
+OS2_WeightWidthSlopeOnly: 0
+OS2_UseTypoMetrics: 0
+CreationTime: 1086700641
+ModificationTime: 1603254879
+PfmFamily: 17
+TTFWeight: 400
+TTFWidth: 5
+LineGap: 67
+VLineGap: 0
+Panose: 2 0 0 0 0 0 0 0 0 0
+OS2TypoAscent: 1491
+OS2TypoAOffset: 0
+OS2TypoDescent: -431
+OS2TypoDOffset: 0
+OS2TypoLinegap: 307
+OS2WinAscent: 1854
+OS2WinAOffset: 0
+OS2WinDescent: 434
+OS2WinDOffset: 0
+HheadAscent: 1854
+HheadAOffset: 0
+HheadDescent: -434
+HheadDOffset: 0
+OS2SubXSize: 1434
+OS2SubYSize: 1331
+OS2SubXOff: 0
+OS2SubYOff: 283
+OS2SupXSize: 1434
+OS2SupYSize: 1331
+OS2SupXOff: 0
+OS2SupYOff: 977
+OS2StrikeYSize: 102
+OS2StrikeYPos: 530
+OS2FamilyClass: 2575
+OS2Vendor: 'HL  '
+OS2CodePages: 4000001f.00000000
+OS2UnicodeRanges: 00000287.00000000.00000000.00000000
+Lookup: 260 0 0 "Mark to base attachment in Latin lookup 1" { "Mark to base attachment in Latin lookup 1-1"  } ['mark' ('DFLT' <'dflt' > 'latn' <'dflt' > ) ]
+Lookup: 258 0 0 "'kern' Horizontal Kerning in Latin lookup 0" { "'kern' Horizontal Kerning in Latin lookup 0-2" [307,30,2] "'kern' Horizontal Kerning in Latin lookup 0-1" [307,30,6] } ['kern' ('DFLT' <'dflt' > 'latn' <'dflt' > ) ]
+MarkAttachClasses: 1
+DEI: 91125
+ShortTable: maxp 16
+  1
+  0
+  653
+  101
+  6
+  0
+  0
+  2
+  16
+  47
+  66
+  0
+  1036
+  0
+  0
+  0
+EndShort
+LangName: 1033 "Typeface +AKkA <Shyan Kirat Rai>. 2004. All Rights Reserved" "" "Regular" "" "" "kirat1" "" "Typeface +AKkA <Shyan Kirat Rai>. 2004. All Rights Reserved" "" "" "This font was created using the Font Creator Program 4.1 from High-Logic.com"
+LangName: 1027 "" "" "Normal"
+LangName: 1029 "" "" "oby+AQ0A-ejn+AOkA"
+LangName: 1030 "" "" "normal"
+LangName: 1031 "" "" "Standard"
+LangName: 1032 "" "" "+A5oDsQO9A78DvQO5A7oDrAAA"
+LangName: 1034 "" "" "Normal"
+LangName: 1035 "" "" "Normaali"
+LangName: 1036 "" "" "Normal"
+LangName: 1038 "" "" "Norm+AOEA-l"
+LangName: 1040 "" "" "Normale"
+LangName: 1043 "" "" "Standaard"
+LangName: 1044 "" "" "Normal"
+LangName: 1045 "" "" "Normalny"
+LangName: 1046 "" "" "Normal"
+LangName: 1049 "" "" "+BB4EMQRLBEcEPQRLBDkA"
+LangName: 1051 "" "" "Norm+AOEA-lne"
+LangName: 1053 "" "" "Normal"
+LangName: 1055 "" "" "Normal"
+LangName: 1060 "" "" "Navadno"
+LangName: 1069 "" "" "Arrunta"
+LangName: 2058 "" "" "Normal"
+LangName: 2070 "" "" "Normal"
+LangName: 3082 "" "" "Normal"
+LangName: 3084 "" "" "Normal"
+GaspTable: 1 65535 2 0
+Encoding: UnicodeBmp
+Compacted: 1
+UnicodeInterp: none
+NameList: AGL For New Fonts
+DisplaySize: -72
+AntiAlias: 1
+FitToEm: 0
+WinInfo: 16 16 4
+BeginPrivate: 0
+EndPrivate
+AnchorClass2: "bottom" "Mark to base attachment in Latin lookup 1-1" "top" "Mark to base attachment in Latin lookup 1-1" "Accent"""  "Bottom"""  "Anchor-1""" 
+BeginChars: 65541 72
+
+StartChar: .notdef
+Encoding: 65536 -1 0
+Width: 1536
+Flags: W
+LayerCount: 2
+Fore
+SplineSet
+256 0 m 1,0,-1
+ 256 1280 l 1,1,-1
+ 1280 1280 l 1,2,-1
+ 1280 0 l 1,3,-1
+ 256 0 l 1,0,-1
+288 32 m 1,4,-1
+ 1248 32 l 1,5,-1
+ 1248 1248 l 1,6,-1
+ 288 1248 l 1,7,-1
+ 288 32 l 1,4,-1
+EndSplineSet
+Validated: 1
+EndChar
+
+StartChar: .null
+Encoding: 65537 -1 1
+Width: 0
+Flags: W
+LayerCount: 2
+Fore
+Validated: 1
+EndChar
+
+StartChar: nonmarkingreturn
+Encoding: 65538 -1 2
+Width: 569
+Flags: W
+LayerCount: 2
+Fore
+Validated: 1
+EndChar
+
+StartChar: space
+Encoding: 32 32 3
+AltUni2: 0000a0.ffffffff.0
+Width: 569
+Flags: W
+LayerCount: 2
+Fore
+Validated: 1
+EndChar
+
+StartChar: kaa
+Encoding: 33 33 4
+Width: 2401
+Flags: W
+AnchorPoint: "top" 982 1426 basechar 0
+AnchorPoint: "bottom" 1066 -106 basechar 0
+LayerCount: 2
+Fore
+SplineSet
+1354 1286 m 1,0,-1
+ 2087 1286 l 1,1,-1
+ 2087 15 l 1,2,-1
+ 1208 15 l 1,3,-1
+ 1306 197 l 1,4,-1
+ 1500 435 l 1,5,-1
+ 1648 651 l 1,6,-1
+ 1255 651 l 1,7,-1
+ 1354 832 l 1,8,-1
+ 1500 1195 l 1,9,-1
+ 1208 1195 l 1,10,-1
+ 1354 1286 l 1,0,-1
+1648 1195 m 1,11,-1
+ 1452 741 l 1,12,-1
+ 1694 745 l 1,13,-1
+ 1881 741 l 1,14,-1
+ 1774 583 l 1,15,-1
+ 1436 105 l 1,16,-1
+ 1941 105 l 1,17,-1
+ 1941 1195 l 1,18,-1
+ 1648 1195 l 1,11,-1
+590 1211 m 1,19,-1
+ 600 700 l 1,20,-1
+ 800 700 l 2,21,22
+ 1200 700 1200 700 1100 500 c 1,23,24
+ 800 300 800 300 900 250 c 128,-1,25
+ 1000 200 1000 200 1200 400 c 1,26,-1
+ 1200 100 l 1,27,28
+ 1000 0 1000 0 850 0 c 128,-1,29
+ 700 0 700 0 650 150 c 128,-1,30
+ 600 300 600 300 800 500 c 1,31,-1
+ 600 500 l 1,32,-1
+ 600 0 l 1,33,-1
+ 400 100 l 1,34,-1
+ 400 300 l 1,35,-1
+ 400 500 l 1,36,-1
+ 100 500 l 1,37,-1
+ 0 700 l 1,38,-1
+ 400 700 l 1,39,-1
+ 400 900 l 1,40,-1
+ 400 1301 l 1,41,-1
+ 590 1211 l 1,19,-1
+EndSplineSet
+Validated: 33
+EndChar
+
+StartChar: quotedbl
+Encoding: 34 34 5
+Width: 727
+Flags: W
+LayerCount: 2
+Fore
+Validated: 1
+EndChar
+
+StartChar: kau
+Encoding: 35 35 6
+Width: 1957
+Flags: W
+AnchorPoint: "top" 974 1422 basechar 0
+AnchorPoint: "bottom" 982 -94 basechar 0
+LayerCount: 2
+Fore
+SplineSet
+590 1211 m 1,0,-1
+ 600 700 l 1,1,-1
+ 800 700 l 2,2,3
+ 1200 700 1200 700 1100 500 c 1,4,5
+ 800 300 800 300 900 250 c 128,-1,6
+ 1000 200 1000 200 1200 400 c 1,7,-1
+ 1200 100 l 1,8,9
+ 1000 0 1000 0 850 0 c 128,-1,10
+ 700 0 700 0 650 150 c 128,-1,11
+ 600 300 600 300 800 500 c 1,12,-1
+ 600 500 l 1,13,-1
+ 600 0 l 1,14,-1
+ 400 100 l 1,15,-1
+ 400 300 l 1,16,-1
+ 400 500 l 1,17,-1
+ 100 500 l 1,18,-1
+ 0 700 l 1,19,-1
+ 400 700 l 1,20,-1
+ 400 900 l 1,21,-1
+ 400 1301 l 1,22,-1
+ 590 1211 l 1,0,-1
+1135 744 m 1,23,24
+ 1119 866 1119 866 1119 961 c 0,25,26
+ 1119 1276 1119 1276 1299 1298 c 0,27,28
+ 1353 1305 1353 1305 1402 1305 c 0,29,30
+ 1565 1305 1565 1305 1669 1230 c 0,31,32
+ 1804 1133 1804 1133 1742 938.5 c 128,-1,33
+ 1680 744 1680 744 1598.5 597.5 c 128,-1,34
+ 1517 451 1517 451 1467.5 365 c 128,-1,35
+ 1418 279 1418 279 1368 197 c 128,-1,36
+ 1318 115 1318 115 1918 515 c 1,37,-1
+ 1818 315 l 1,38,39
+ 1590 61 1590 61 1402 13 c 0,40,41
+ 1355 2 1355 2 1320 2 c 0,42,43
+ 1212 2 1212 2 1210 111 c 0,44,45
+ 1207 257 1207 257 1391.5 547 c 128,-1,46
+ 1576 837 1576 837 1583 987 c 128,-1,47
+ 1590 1137 1590 1137 1498.5 1164.5 c 128,-1,48
+ 1407 1192 1407 1192 1347 1162.5 c 128,-1,49
+ 1287 1133 1287 1133 1287 841 c 1,50,-1
+ 1135 744 l 1,23,24
+EndSplineSet
+Validated: 33
+EndChar
+
+StartChar: kae
+Encoding: 36 36 7
+Width: 2416
+Flags: W
+AnchorPoint: "top" 1118 1414 basechar 0
+AnchorPoint: "bottom" 1178 -110 basechar 0
+LayerCount: 2
+Fore
+SplineSet
+600 1200 m 1,0,-1
+ 600 700 l 1,1,-1
+ 800 700 l 2,2,3
+ 1200 700 1200 700 1100 500 c 1,4,5
+ 800 300 800 300 900 250 c 128,-1,6
+ 1000 200 1000 200 1200 400 c 1,7,-1
+ 1200 100 l 1,8,9
+ 1000 0 1000 0 850 0 c 128,-1,10
+ 700 0 700 0 650 150 c 128,-1,11
+ 600 300 600 300 800 500 c 1,12,-1
+ 600 500 l 1,13,-1
+ 600 0 l 1,14,-1
+ 400 100 l 1,15,-1
+ 400 300 l 1,16,-1
+ 400 500 l 1,17,-1
+ 100 500 l 1,18,-1
+ 0 700 l 1,19,-1
+ 400 700 l 1,20,-1
+ 400 900 l 1,21,-1
+ 400 1301 l 1,22,-1
+ 600 1200 l 1,0,-1
+1570 1305 m 1,23,-1
+ 1780 1204 l 1,24,-1
+ 1780 945 l 1,25,-1
+ 2330 943 l 1,26,-1
+ 2170 769 l 1,27,-1
+ 1780 765 l 1,28,-1
+ 1780 204 l 1,29,-1
+ 2380 204 l 1,30,-1
+ 2133 4 l 1,31,-1
+ 1133 4 l 1,32,-1
+ 1280 204 l 1,33,-1
+ 1580 204 l 1,34,-1
+ 1580 769 l 1,35,-1
+ 1070 772 l 1,36,-1
+ 1270 945 l 1,37,-1
+ 1570 945 l 1,38,-1
+ 1570 1305 l 1,23,-1
+EndSplineSet
+Validated: 33
+EndChar
+
+StartChar: ai
+Encoding: 37 37 8
+Width: 1422
+Flags: W
+AnchorPoint: "top" 747 1376 basechar 0
+AnchorPoint: "bottom" 762 -43 basechar 0
+LayerCount: 2
+Fore
+SplineSet
+984 1301 m 1,0,-1
+ 1165 1183 l 1,1,-1
+ 1168 834 l 1,2,-1
+ 1400 970 l 1,3,-1
+ 1400 775 l 1,4,-1
+ 1165 643 l 1,5,-1
+ 1165 9 l 1,6,-1
+ 977 109 l 1,7,-1
+ 978 570 l 1,8,-1
+ 802 479 l 1,9,-1
+ 800 681 l 1,10,-1
+ 978 760 l 1,11,-1
+ 984 1301 l 1,0,-1
+794 1290 m 1,12,13
+ 791 150 791 150 795 90 c 1,14,-1
+ 795 87 l 2,15,16
+ 795 29 795 29 646 7 c 0,17,18
+ 594 0 594 0 545 0 c 0,19,20
+ 448 0 448 0 361 29 c 0,21,22
+ 228 72 228 72 20 300 c 1,23,-1
+ 20 500 l 1,24,25
+ 341 213 341 213 469.5 163.5 c 128,-1,26
+ 598 114 598 114 620 200 c 1,27,-1
+ 620 500 l 1,28,29
+ -459 826 -459 826 341 1102 c 1,30,-1
+ 794 1290 l 1,12,13
+620 1075 m 1,31,32
+ -180 840 -180 840 620 668 c 1,33,-1
+ 620 1075 l 1,31,32
+EndSplineSet
+Validated: 33
+EndChar
+
+StartChar: ko
+Encoding: 38 38 9
+Width: 2086
+Flags: W
+AnchorPoint: "top" 1034 1438 basechar 0
+AnchorPoint: "bottom" 1078 -98 basechar 0
+LayerCount: 2
+Fore
+SplineSet
+1644 1260 m 128,-1,1
+ 1671 1260 1671 1260 1700 1253 c 128,-1,2
+ 1729 1246 1729 1246 1751 1236.5 c 128,-1,3
+ 1773 1227 1773 1227 1792 1214.5 c 128,-1,4
+ 1811 1202 1811 1202 1843.5 1171.5 c 128,-1,5
+ 1876 1141 1876 1141 1904.5 1104 c 128,-1,6
+ 1933 1067 1933 1067 1954 1024.5 c 128,-1,7
+ 1975 982 1975 982 1999.5 908.5 c 128,-1,8
+ 2024 835 2024 835 2029 807.5 c 128,-1,9
+ 2034 780 2034 780 2039 685 c 0,10,11
+ 2040 657 2040 657 2040 631 c 0,12,13
+ 2040 565 2040 565 2032 503 c 0,14,15
+ 2021 415 2021 415 1985.5 320.5 c 128,-1,16
+ 1950 226 1950 226 1926 186 c 128,-1,17
+ 1902 146 1902 146 1871.5 113 c 128,-1,18
+ 1841 80 1841 80 1823.5 66.5 c 128,-1,19
+ 1806 53 1806 53 1764 32 c 128,-1,20
+ 1722 11 1722 11 1696.5 5.5 c 128,-1,21
+ 1671 0 1671 0 1644 0 c 256,22,23
+ 1617 0 1617 0 1588.5 7 c 128,-1,24
+ 1560 14 1560 14 1538 23.5 c 128,-1,25
+ 1516 33 1516 33 1497.5 45.5 c 128,-1,26
+ 1479 58 1479 58 1445.5 88.5 c 128,-1,27
+ 1412 119 1412 119 1384.5 156 c 128,-1,28
+ 1357 193 1357 193 1335 235.5 c 128,-1,29
+ 1313 278 1313 278 1289.5 351.5 c 128,-1,30
+ 1266 425 1266 425 1260.5 452 c 128,-1,31
+ 1255 479 1255 479 1250 574.5 c 128,-1,32
+ 1245 670 1245 670 1256.5 757.5 c 128,-1,33
+ 1268 845 1268 845 1303.5 939.5 c 128,-1,34
+ 1339 1034 1339 1034 1363.5 1074 c 128,-1,35
+ 1388 1114 1388 1114 1418 1147 c 128,-1,36
+ 1448 1180 1448 1180 1466 1193.5 c 128,-1,37
+ 1484 1207 1484 1207 1525.5 1228 c 128,-1,38
+ 1567 1249 1567 1249 1592 1254.5 c 128,-1,0
+ 1617 1260 1617 1260 1644 1260 c 128,-1,1
+1593.5 1082 m 128,-1,40
+ 1562 1069 1562 1069 1539 1048.5 c 128,-1,41
+ 1516 1028 1516 1028 1506.5 1016 c 128,-1,42
+ 1497 1004 1497 1004 1480 976 c 128,-1,43
+ 1463 948 1463 948 1444 899 c 128,-1,44
+ 1425 850 1425 850 1412.5 772.5 c 128,-1,45
+ 1400 695 1400 695 1399 650.5 c 128,-1,46
+ 1398 606 1398 606 1403.5 544 c 128,-1,47
+ 1409 482 1409 482 1418 445 c 128,-1,48
+ 1427 408 1427 408 1445 359.5 c 128,-1,49
+ 1463 311 1463 311 1480 283.5 c 128,-1,50
+ 1497 256 1497 256 1506.5 244 c 128,-1,51
+ 1516 232 1516 232 1539 211.5 c 128,-1,52
+ 1562 191 1562 191 1593.5 178 c 128,-1,53
+ 1625 165 1625 165 1644 165 c 128,-1,54
+ 1663 165 1663 165 1694.5 178 c 128,-1,55
+ 1726 191 1726 191 1749.5 211.5 c 128,-1,56
+ 1773 232 1773 232 1783 244 c 128,-1,57
+ 1793 256 1793 256 1809.5 283.5 c 128,-1,58
+ 1826 311 1826 311 1845 360.5 c 128,-1,59
+ 1864 410 1864 410 1876.5 487.5 c 128,-1,60
+ 1889 565 1889 565 1889 631 c 128,-1,61
+ 1889 697 1889 697 1875 773.5 c 128,-1,62
+ 1861 850 1861 850 1836 913 c 128,-1,63
+ 1811 976 1811 976 1792 1002 c 128,-1,64
+ 1773 1028 1773 1028 1749.5 1048.5 c 128,-1,65
+ 1726 1069 1726 1069 1712.5 1076.5 c 128,-1,66
+ 1699 1084 1699 1084 1681 1088 c 128,-1,67
+ 1663 1092 1663 1092 1644 1093.5 c 128,-1,39
+ 1625 1095 1625 1095 1593.5 1082 c 128,-1,40
+600 1200 m 1,68,-1
+ 600 700 l 1,69,-1
+ 800 700 l 2,70,71
+ 1200 700 1200 700 1100 500 c 1,72,73
+ 800 300 800 300 900 250 c 128,-1,74
+ 1000 200 1000 200 1200 400 c 1,75,-1
+ 1200 100 l 1,76,77
+ 1000 0 1000 0 850 0 c 128,-1,78
+ 700 0 700 0 650 150 c 128,-1,79
+ 600 300 600 300 800 500 c 1,80,-1
+ 600 500 l 1,81,-1
+ 600 0 l 1,82,-1
+ 400 100 l 1,83,-1
+ 400 300 l 1,84,-1
+ 400 500 l 1,85,-1
+ 100 500 l 1,86,-1
+ 0 700 l 1,87,-1
+ 400 700 l 1,88,-1
+ 400 900 l 1,89,-1
+ 400 1301 l 1,90,-1
+ 600 1200 l 1,68,-1
+EndSplineSet
+Validated: 33
+EndChar
+
+StartChar: quotesingle
+Encoding: 39 39 10
+Width: 0
+Flags: W
+AnchorPoint: "top" -559 1282 mark 0
+LayerCount: 2
+Fore
+SplineSet
+-701.5 1700 m 1,0,-1
+ -501.5 1700 l 1,1,-1
+ -501.5 1541 l 1,2,-1
+ -134.5 1540 l 1,3,-1
+ -1.5 1348 l 1,4,-1
+ -972.5 1347 l 1,5,-1
+ -1041.5 1532 l 1,6,-1
+ -701.5 1532 l 1,7,-1
+ -701.5 1700 l 1,0,-1
+EndSplineSet
+Validated: 1
+EndChar
+
+StartChar: parenleft
+Encoding: 40 40 11
+Width: 423
+Flags: W
+LayerCount: 2
+Fore
+SplineSet
+132 638 m 0,0,1
+ 132 443 132 443 205.5 304.5 c 128,-1,2
+ 279 166 279 166 472 5 c 1,3,4
+ 216 146 216 146 108 291 c 128,-1,5
+ 0 436 0 436 0 638 c 0,6,7
+ 0 842 0 842 106.5 984 c 128,-1,8
+ 213 1126 213 1126 472 1269 c 1,9,10
+ 282 1107 282 1107 207 969.5 c 128,-1,11
+ 132 832 132 832 132 638 c 0,0,1
+EndSplineSet
+Validated: 1
+EndChar
+
+StartChar: parenright
+Encoding: 41 41 12
+Width: 482
+Flags: W
+LayerCount: 2
+Fore
+SplineSet
+0 1183 m 1,0,1
+ 228 1052 228 1052 323 916.5 c 128,-1,2
+ 418 781 418 781 418 595 c 0,3,4
+ 418 403 418 403 324.5 270 c 128,-1,5
+ 231 137 231 137 0 5 c 1,6,7
+ 168 156 168 156 234.5 285 c 128,-1,8
+ 301 414 301 414 301 595 c 0,9,10
+ 301 772 301 772 236 901.5 c 128,-1,11
+ 171 1031 171 1031 0 1183 c 1,0,1
+EndSplineSet
+Validated: 1
+EndChar
+
+StartChar: ka_nasal
+Encoding: 42 42 13
+Width: 1228
+Flags: W
+AnchorPoint: "top" 566 1394 basechar 0
+AnchorPoint: "bottom" 626 -94 basechar 0
+LayerCount: 2
+Fore
+SplineSet
+412 1292 m 1,0,-1
+ 583 1239 l 1,1,-1
+ 583 1156 l 1,2,-1
+ 754 1156 l 1,3,-1
+ 840 1051 l 1,4,-1
+ 240 1051 l 1,5,-1
+ 155 1156 l 1,6,-1
+ 412 1156 l 1,7,-1
+ 412 1292 l 1,0,-1
+600 1200 m 1,8,-1
+ 600 700 l 1,9,-1
+ 800 700 l 2,10,11
+ 1200 700 1200 700 1100 500 c 1,12,13
+ 800 300 800 300 900 250 c 128,-1,14
+ 1000 200 1000 200 1200 400 c 1,15,-1
+ 1200 100 l 1,16,17
+ 1000 0 1000 0 850 0 c 128,-1,18
+ 700 0 700 0 650 150 c 128,-1,19
+ 600 300 600 300 800 500 c 1,20,-1
+ 600 500 l 1,21,-1
+ 600 0 l 1,22,-1
+ 400 100 l 1,23,-1
+ 400 300 l 1,24,-1
+ 400 500 l 1,25,-1
+ 100 500 l 1,26,-1
+ 0 700 l 1,27,-1
+ 400 700 l 1,28,-1
+ 400 900 l 1,29,-1
+ 400 1301 l 1,30,-1
+ 600 1200 l 1,8,-1
+EndSplineSet
+Validated: 37
+EndChar
+
+StartChar: plus
+Encoding: 43 43 14
+Width: 1196
+Flags: W
+LayerCount: 2
+Fore
+Validated: 1
+EndChar
+
+StartChar: ha
+Encoding: 44 44 15
+Width: 1150
+Flags: W
+AnchorPoint: "top" 504 1481 basechar 0
+AnchorPoint: "bottom" 585 -43 basechar 0
+LayerCount: 2
+Fore
+SplineSet
+400 1300 m 1,0,-1
+ 400 900 l 1,1,-1
+ 700 900 l 1,2,-1
+ 1138 200 l 1,3,-1
+ 900 200 l 1,4,-1
+ 566 745 l 1,5,-1
+ 405 745 l 1,6,-1
+ 405 0 l 1,7,-1
+ 205 0 l 1,8,-1
+ 205 745 l 1,9,-1
+ 0 742 l 1,10,-1
+ 0 900 l 1,11,-1
+ 200 900 l 1,12,-1
+ 200 1300 l 1,13,-1
+ 400 1300 l 1,0,-1
+EndSplineSet
+Validated: 1
+EndChar
+
+StartChar: trill
+Encoding: 60717 60717 16
+AltUni2: 0000ad.ffffffff.0
+Width: 0
+Flags: W
+AnchorPoint: "bottom" -587 20 mark 0
+LayerCount: 2
+Fore
+SplineSet
+-1060 -420 m 1,0,-1
+ -587 -17 l 1,1,-1
+ -90 -420 l 1,2,-1
+ -305 -420 l 1,3,-1
+ -591 -194 l 1,4,-1
+ -844 -420 l 1,5,-1
+ -1060 -420 l 1,0,-1
+EndSplineSet
+Validated: 1
+EndChar
+
+StartChar: glottoal_stop
+Encoding: 46 46 17
+Width: 1098
+Flags: W
+AnchorPoint: "top" 440 1502 basechar 0
+AnchorPoint: "bottom" 455 -70 basechar 0
+LayerCount: 2
+Fore
+SplineSet
+200 1301 m 1,0,-1
+ 200 967 l 1,1,2
+ 438 1000 438 1000 619 930 c 128,-1,3
+ 800 860 800 860 862 718.5 c 128,-1,4
+ 924 577 924 577 912 403.5 c 128,-1,5
+ 900 230 900 230 750 101.5 c 128,-1,6
+ 600 -27 600 -27 350 12 c 128,-1,7
+ 100 51 100 51 0 280 c 1,8,-1
+ 193 271 l 1,9,10
+ 377 131 377 131 538.5 184.5 c 128,-1,11
+ 700 238 700 238 717 431 c 128,-1,12
+ 734 624 734 624 620.5 732 c 128,-1,13
+ 507 840 507 840 200 800 c 1,14,-1
+ 200 534 l 1,15,-1
+ 0 586 l 1,16,-1
+ 0 1299 l 1,17,-1
+ 200 1301 l 1,0,-1
+EndSplineSet
+Validated: 33
+EndChar
+
+StartChar: virama
+Encoding: 47 47 18
+Width: 0
+Flags: W
+AnchorPoint: "bottom" -773 -36 mark 0
+LayerCount: 2
+Fore
+SplineSet
+-1180 -64 m 1,0,-1
+ -375 -61 l 1,1,-1
+ -280 -230 l 1,2,-1
+ -1080 -229 l 1,3,-1
+ -1180 -64 l 1,0,-1
+EndSplineSet
+Validated: 1
+EndChar
+
+StartChar: zero
+Encoding: 48 48 19
+Width: 733
+Flags: W
+LayerCount: 2
+Fore
+SplineSet
+0 922 m 1,0,1
+ 110 1268 110 1268 360 1268 c 128,-1,2
+ 610 1268 610 1268 710 936 c 1,3,-1
+ 710 382 l 1,4,5
+ 654 0 654 0 359 25 c 128,-1,6
+ 64 50 64 50 10 379 c 1,7,-1
+ 0 922 l 1,0,1
+156 936 m 1,8,9
+ 156 493 l 1,10,11
+ 210 211 210 211 360 211 c 128,-1,12
+ 510 211 510 211 564 382 c 1,13,-1
+ 564 936 l 1,14,15
+ 510 1096 510 1096 360 1101.5 c 128,-1,16
+ 210 1107 210 1107 156 936 c 1,8,9
+562 939 m 1,17,-1
+ 153 597 l 1,18,-1
+ 163 435 l 1,19,-1
+ 610 769 l 1,20,-1
+ 562 939 l 1,17,-1
+EndSplineSet
+Validated: 37
+EndChar
+
+StartChar: one
+Encoding: 49 49 20
+Width: 344
+Flags: W
+LayerCount: 2
+Fore
+SplineSet
+0 1307 m 1,0,-1
+ 0 100 l 1,1,-1
+ 255 -2 l 1,2,-1
+ 243 1200 l 1,3,-1
+ 0 1307 l 1,0,-1
+EndSplineSet
+Validated: 9
+EndChar
+
+StartChar: two
+Encoding: 50 50 21
+Width: 1099
+Flags: W
+LayerCount: 2
+Fore
+SplineSet
+345 1293 m 1,0,-1
+ 345 945 l 1,1,-1
+ 0 700 l 1,2,-1
+ 0 500 l 1,3,-1
+ 355 745 l 1,4,-1
+ 355 500 l 1,5,-1
+ 0 300 l 1,6,-1
+ 0 100 l 1,7,-1
+ 343 300 l 1,8,-1
+ 345 86 l 1,9,-1
+ 600 -16 l 1,10,-1
+ 600 400 l 1,11,-1
+ 1000 600 l 1,12,-1
+ 1000 800 l 1,13,-1
+ 600 600 l 1,14,-1
+ 600 850 l 1,15,-1
+ 1000 1055 l 1,16,-1
+ 1000 1250 l 1,17,-1
+ 600 1041 l 1,18,-1
+ 588 1186 l 1,19,-1
+ 466 1240 l 1,20,-1
+ 345 1293 l 1,0,-1
+EndSplineSet
+Validated: 9
+EndChar
+
+StartChar: three
+Encoding: 51 51 22
+Width: 1090
+Flags: W
+LayerCount: 2
+Fore
+SplineSet
+345 1293 m 1,0,-1
+ 345 945 l 1,1,-1
+ 0 700 l 1,2,-1
+ 0 500 l 1,3,-1
+ 355 745 l 1,4,-1
+ 355 500 l 1,5,-1
+ 0 300 l 1,6,-1
+ 0 100 l 1,7,-1
+ 343 300 l 1,8,-1
+ 345 86 l 1,9,-1
+ 600 -16 l 1,10,-1
+ 600 400 l 1,11,-1
+ 600 600 l 1,12,-1
+ 600 850 l 1,13,-1
+ 1000 1055 l 1,14,-1
+ 1000 1250 l 1,15,-1
+ 600 1041 l 1,16,-1
+ 588 1186 l 1,17,-1
+ 466 1240 l 1,18,-1
+ 345 1293 l 1,0,-1
+EndSplineSet
+Validated: 9
+EndChar
+
+StartChar: four
+Encoding: 52 52 23
+Width: 704
+Flags: W
+LayerCount: 2
+Fore
+SplineSet
+605 1301 m 1,0,-1
+ 601 708 l 1,1,-1
+ 605 8 l 1,2,-1
+ -1 14 l 1,3,-1
+ -5 837 l 1,4,-1
+ -5 1301 l 1,5,-1
+ 605 1301 l 1,0,-1
+128 1188 m 5,6,-1
+ 134 153 l 1,7,-1
+ 470 153 l 1,8,-1
+ 471 1183 l 5,9,-1
+ 128 1188 l 5,6,-1
+EndSplineSet
+Validated: 1
+EndChar
+
+StartChar: five
+Encoding: 53 53 24
+Width: 709
+Flags: W
+LayerCount: 2
+Fore
+SplineSet
+605 1301 m 1,0,-1
+ 601 708 l 1,1,-1
+ 605 8 l 1,2,-1
+ -1 14 l 1,3,-1
+ -5 837 l 1,4,-1
+ -5 1301 l 1,5,-1
+ 605 1301 l 1,0,-1
+122 1162 m 1,6,-1
+ 139 689 l 1,7,-1
+ 500 689 l 1,8,-1
+ 500 544 l 1,9,-1
+ 142 544 l 1,10,-1
+ 143 155 l 1,11,-1
+ 469 160 l 1,12,-1
+ 470 409 l 1,13,-1
+ 455 883 l 1,14,-1
+ 470 1157 l 1,15,-1
+ 122 1162 l 1,6,-1
+EndSplineSet
+Validated: 5
+EndChar
+
+StartChar: six
+Encoding: 54 54 25
+Width: 1051
+Flags: W
+LayerCount: 2
+Fore
+SplineSet
+443 1301 m 1,0,-1
+ 610 1301 l 1,1,-1
+ 719 1301 l 1,2,-1
+ 957 1301 l 1,3,-1
+ 960 7 l 1,4,-1
+ 0 10 l 1,5,-1
+ 100 143 l 1,6,-1
+ 414 144 l 1,7,-1
+ 800 143 l 1,8,-1
+ 800 1158 l 1,9,-1
+ 643 1157 l 1,10,11
+ 500 774 500 774 400 583 c 128,-1,12
+ 300 392 300 392 250 302.5 c 128,-1,13
+ 200 213 200 213 100 143 c 1,14,-1
+ 0 10 l 1,15,-1
+ 0 102 l 1,16,-1
+ 0 194 l 1,17,18
+ 266 564 266 564 333 732 c 128,-1,19
+ 400 900 400 900 500 1200 c 1,20,-1
+ 443 1200 l 1,21,-1
+ 443 1301 l 1,0,-1
+EndSplineSet
+Validated: 5
+EndChar
+
+StartChar: seven
+Encoding: 55 55 26
+Width: 1236
+Flags: W
+LayerCount: 2
+Fore
+SplineSet
+477 1301 m 1,0,-1
+ 795 1301 l 2,1,2
+ 954 1301 954 1301 914.5 1192.5 c 128,-1,3
+ 875 1084 875 1084 835 867.5 c 128,-1,4
+ 795 651 795 651 1034 217 c 1,5,-1
+ 1113 217 l 1,6,-1
+ 1193 0 l 1,7,-1
+ 1113 0 l 1,8,-1
+ 728 0 l 1,9,-1
+ 0 0 l 1,10,-1
+ 0 217 l 1,11,-1
+ 0 542 l 1,12,-1
+ 0 1084 l 1,13,-1
+ 0 1301 l 1,14,-1
+ 477 1301 l 1,0,-1
+477 1084 m 1,15,-1
+ 477 759 l 1,16,-1
+ 477 217 l 1,17,-1
+ 875 217 l 1,18,19
+ 557 591 557 591 716 1084 c 1,20,-1
+ 477 1084 l 1,15,-1
+318 1084 m 1,21,-1
+ 159 1084 l 1,22,-1
+ 159 759 l 1,23,-1
+ 159 434 l 1,24,-1
+ 159 217 l 1,25,-1
+ 318 217 l 1,26,-1
+ 318 759 l 1,27,-1
+ 318 1084 l 1,21,-1
+EndSplineSet
+Validated: 33
+EndChar
+
+StartChar: eight
+Encoding: 56 56 27
+Width: 1009
+Flags: W
+LayerCount: 2
+Fore
+SplineSet
+0 0 m 1,0,-1
+ 142 257 l 1,1,-1
+ 355 654 l 1,2,-1
+ 0 1305 l 1,3,-1
+ 200 1305 l 1,4,-1
+ 454 843 l 1,5,-1
+ 648 1100 l 1,6,-1
+ 800 1305 l 1,7,-1
+ 1000 1301 l 1,8,-1
+ 558 657 l 1,9,-1
+ 800 300 l 1,10,-1
+ 1000 0 l 1,11,-1
+ 800 0 l 1,12,-1
+ 458 500 l 1,13,-1
+ 200 0 l 1,14,-1
+ 0 0 l 1,0,-1
+EndSplineSet
+Validated: 1
+EndChar
+
+StartChar: nine
+Encoding: 57 57 28
+Width: 744
+Flags: W
+LayerCount: 2
+Fore
+SplineSet
+0 1307 m 1,0,-1
+ 0 100 l 1,1,-1
+ 255 -2 l 1,2,-1
+ 244 700 l 1,3,-1
+ 500 700 l 1,4,-1
+ 500 600 l 1,5,-1
+ 700 500 l 1,6,-1
+ 700 1000 l 1,7,-1
+ 500 1100 l 1,8,-1
+ 500 900 l 1,9,-1
+ 246 900 l 1,10,-1
+ 243 1200 l 1,11,-1
+ 0 1307 l 1,0,-1
+EndSplineSet
+Validated: 9
+EndChar
+
+StartChar: vowel_lengthener
+Encoding: 58 58 29
+Width: 542
+Flags: W
+LayerCount: 2
+Fore
+SplineSet
+283 580 m 1,0,-1
+ 543 407 l 1,1,-1
+ 283 232 l 1,2,-1
+ 29 407 l 1,3,-1
+ 283 580 l 1,0,-1
+265 1000 m 1,4,-1
+ 535 847 l 1,5,-1
+ 265 693 l 1,6,-1
+ 0 847 l 1,7,-1
+ 265 1000 l 1,4,-1
+EndSplineSet
+Validated: 1
+EndChar
+
+StartChar: less
+Encoding: 60 60 30
+AltUni2: 000000.ffffffff.0
+Width: 0
+Flags: W
+AnchorPoint: "top" -59.5 1256 mark 0
+LayerCount: 2
+Fore
+SplineSet
+-127.5 1572 m 1,0,-1
+ 0.5 1572 l 1,1,-1
+ 0.5 1248 l 1,2,-1
+ -107.5 1424 l 1,3,-1
+ -127.5 1572 l 1,0,-1
+EndSplineSet
+Validated: 1
+Comment: "Vertical accent combining"
+EndChar
+
+StartChar: equal
+Encoding: 61 61 31
+Width: 12
+Flags: W
+AnchorPoint: "top" -704 1355 mark 0
+LayerCount: 2
+Fore
+SplineSet
+-1100 1600 m 1,0,-1
+ -200 1600 l 1,1,-1
+ -285 1432 l 1,2,-1
+ -1213 1432 l 1,3,-1
+ -1100 1600 l 1,0,-1
+-650 1850 m 1,4,-1
+ -439 1744 l 1,5,-1
+ -635 1618 l 1,6,-1
+ -845 1739 l 1,7,-1
+ -650 1850 l 1,4,-1
+EndSplineSet
+Validated: 1
+EndChar
+
+StartChar: greater
+Encoding: 62 62 32
+Width: 0
+Flags: W
+AnchorPoint: "top" -53.5 1263 mark 0
+LayerCount: 2
+Fore
+SplineSet
+-219 1572 m 1,0,-1
+ 82.5 1320 l 1,1,-1
+ -213 1401 l 1,2,-1
+ -219 1572 l 1,0,-1
+EndSplineSet
+Validated: 1
+EndChar
+
+StartChar: question
+Encoding: 63 63 33
+Width: 0
+Flags: W
+AnchorPoint: "top" -103.5 1260 mark 0
+LayerCount: 2
+Fore
+SplineSet
+5 1572 m 1,0,-1
+ -1 1401 l 1,1,-1
+ -296.5 1320 l 1,2,-1
+ 5 1572 l 1,0,-1
+EndSplineSet
+Validated: 1
+EndChar
+
+StartChar: kaii
+Encoding: 64 64 34
+Width: 2595
+Flags: W
+AnchorPoint: "top" 812 1426 basechar 0
+AnchorPoint: "bottom" 832 -129 basechar 0
+LayerCount: 2
+Fore
+SplineSet
+2167 530 m 1,0,-1
+ 2374 381 l 1,1,-1
+ 2167 236 l 1,2,-1
+ 1965 381 l 1,3,-1
+ 2167 530 l 1,0,-1
+2171 927 m 1,4,-1
+ 2404 782 l 1,5,-1
+ 2171 637 l 1,6,-1
+ 1941 782 l 1,7,-1
+ 2171 927 l 1,4,-1
+1830 595 m 256,8,9
+ 1830 437 1830 437 1890.5 322 c 128,-1,10
+ 1951 207 1951 207 2109 74 c 1,11,12
+ 1898 190 1898 190 1809 309.5 c 128,-1,13
+ 1720 429 1720 429 1720 595 c 0,14,15
+ 1720 762 1720 762 1807 878.5 c 128,-1,16
+ 1894 995 1894 995 2109 1114 c 1,17,18
+ 1955 980 1955 980 1892.5 866.5 c 128,-1,19
+ 1830 753 1830 753 1830 595 c 256,8,9
+2205 1114 m 1,20,21
+ 2402 997 2402 997 2485 878 c 128,-1,22
+ 2568 759 2568 759 2568 595 c 0,23,24
+ 2568 426 2568 426 2486 309 c 128,-1,25
+ 2404 192 2404 192 2205 74 c 1,26,27
+ 2350 207 2350 207 2408 320.5 c 128,-1,28
+ 2466 434 2466 434 2466 595 c 0,29,30
+ 2466 751 2466 751 2410 865.5 c 128,-1,31
+ 2354 980 2354 980 2205 1114 c 1,20,21
+600 1200 m 1,32,-1
+ 600 700 l 1,33,-1
+ 800 700 l 2,34,35
+ 1200 700 1200 700 1100 500 c 1,36,37
+ 800 300 800 300 900 250 c 128,-1,38
+ 1000 200 1000 200 1200 400 c 1,39,-1
+ 1200 100 l 1,40,41
+ 1000 0 1000 0 850 0 c 128,-1,42
+ 700 0 700 0 650 150 c 128,-1,43
+ 600 300 600 300 800 500 c 1,44,-1
+ 600 500 l 1,45,-1
+ 600 0 l 1,46,-1
+ 400 100 l 1,47,-1
+ 400 300 l 1,48,-1
+ 400 500 l 1,49,-1
+ 100 500 l 1,50,-1
+ 0 700 l 1,51,-1
+ 400 700 l 1,52,-1
+ 400 900 l 1,53,-1
+ 400 1301 l 1,54,-1
+ 600 1200 l 1,32,-1
+1314 1301 m 1,55,-1
+ 1495 1183 l 1,56,-1
+ 1498 834 l 1,57,-1
+ 1730 970 l 1,58,-1
+ 1730 775 l 1,59,-1
+ 1495 643 l 1,60,-1
+ 1495 9 l 1,61,-1
+ 1307 109 l 1,62,-1
+ 1308 570 l 1,63,-1
+ 1132 479 l 1,64,-1
+ 1130 681 l 1,65,-1
+ 1308 760 l 1,66,-1
+ 1314 1301 l 1,55,-1
+EndSplineSet
+Validated: 33
+EndChar
+
+StartChar: aa
+Encoding: 65 65 35
+Width: 1123
+Flags: W
+AnchorPoint: "top" 476 1303 basechar 0
+AnchorPoint: "bottom" 484 -44 basechar 0
+LayerCount: 2
+Fore
+SplineSet
+59 1262 m 1,0,-1
+ 900 1256 l 1,1,-1
+ 904 -2 l 1,2,-1
+ -10 -2 l 1,3,-1
+ 330 588 l 1,4,-1
+ -10 588 l 1,5,-1
+ 46 731 l 1,6,-1
+ 242 1170 l 1,7,-1
+ 0 1170 l 1,8,-1
+ 59 1262 l 1,0,-1
+357 1153 m 1,9,-1
+ 200 723 l 1,10,-1
+ 549 728 l 1,11,-1
+ 200 97 l 1,12,-1
+ 784 107 l 1,13,-1
+ 784 1156 l 1,14,-1
+ 357 1153 l 1,9,-1
+EndSplineSet
+Validated: 1
+EndChar
+
+StartChar: oo
+Encoding: 66 66 36
+Width: 1757
+Flags: W
+AnchorPoint: "top" 367 1421 basechar 0
+AnchorPoint: "bottom" 402 -119 basechar 0
+LayerCount: 2
+Fore
+SplineSet
+396 1278 m 256,1,2
+ 423 1278 423 1278 452 1271 c 128,-1,3
+ 481 1264 481 1264 503 1254 c 128,-1,4
+ 525 1244 525 1244 544 1231.5 c 128,-1,5
+ 563 1219 563 1219 595.5 1188 c 128,-1,6
+ 628 1157 628 1157 656.5 1119.5 c 128,-1,7
+ 685 1082 685 1082 706 1038.5 c 128,-1,8
+ 727 995 727 995 751.5 921 c 128,-1,9
+ 776 847 776 847 781 819 c 128,-1,10
+ 786 791 786 791 790.5 694.5 c 128,-1,11
+ 795 598 795 598 784 510 c 128,-1,12
+ 773 422 773 422 737.5 326 c 128,-1,13
+ 702 230 702 230 678 189 c 128,-1,14
+ 654 148 654 148 623.5 114.5 c 128,-1,15
+ 593 81 593 81 575.5 67 c 128,-1,16
+ 558 53 558 53 516 32 c 128,-1,17
+ 474 11 474 11 448.5 5.5 c 128,-1,18
+ 423 0 423 0 396 0 c 256,19,20
+ 369 0 369 0 340.5 7 c 128,-1,21
+ 312 14 312 14 290 24 c 128,-1,22
+ 268 34 268 34 249.5 46.5 c 128,-1,23
+ 231 59 231 59 197.5 90 c 128,-1,24
+ 164 121 164 121 136.5 158.5 c 128,-1,25
+ 109 196 109 196 87 239.5 c 128,-1,26
+ 65 283 65 283 41.5 357 c 128,-1,27
+ 18 431 18 431 12.5 459 c 128,-1,28
+ 7 487 7 487 2 584 c 0,29,30
+ 0 613 0 613 0 641 c 0,31,32
+ 0 707 0 707 9 768 c 0,33,34
+ 20 856 20 856 55.5 952 c 128,-1,35
+ 91 1048 91 1048 115.5 1089 c 128,-1,36
+ 140 1130 140 1130 170 1163.5 c 128,-1,37
+ 200 1197 200 1197 218 1211 c 128,-1,38
+ 236 1225 236 1225 277.5 1246 c 128,-1,39
+ 319 1267 319 1267 344 1272.5 c 128,-1,0
+ 369 1278 369 1278 396 1278 c 256,1,2
+345.5 1098 m 128,-1,41
+ 314 1085 314 1085 291 1064 c 128,-1,42
+ 268 1043 268 1043 258.5 1030 c 128,-1,43
+ 249 1017 249 1017 232 990 c 128,-1,44
+ 215 963 215 963 196 912.5 c 128,-1,45
+ 177 862 177 862 164.5 783.5 c 128,-1,46
+ 152 705 152 705 151 660 c 128,-1,47
+ 150 615 150 615 155.5 552 c 128,-1,48
+ 161 489 161 489 170 451 c 128,-1,49
+ 179 413 179 413 197 364 c 128,-1,50
+ 215 315 215 315 232 288 c 128,-1,51
+ 249 261 249 261 258.5 248 c 128,-1,52
+ 268 235 268 235 291 214 c 128,-1,53
+ 314 193 314 193 345.5 180 c 128,-1,54
+ 377 167 377 167 396 167 c 128,-1,55
+ 415 167 415 167 446.5 180 c 128,-1,56
+ 478 193 478 193 501.5 214 c 128,-1,57
+ 525 235 525 235 535 248 c 128,-1,58
+ 545 261 545 261 561.5 288 c 128,-1,59
+ 578 315 578 315 597 365.5 c 128,-1,60
+ 616 416 616 416 628.5 494.5 c 128,-1,61
+ 641 573 641 573 641 640 c 128,-1,62
+ 641 707 641 707 627 784.5 c 128,-1,63
+ 613 862 613 862 588 925.5 c 128,-1,64
+ 563 989 563 989 544 1016 c 128,-1,65
+ 525 1043 525 1043 501.5 1064 c 128,-1,66
+ 478 1085 478 1085 464.5 1092 c 128,-1,67
+ 451 1099 451 1099 433 1103 c 128,-1,68
+ 415 1107 415 1107 396 1109 c 128,-1,40
+ 377 1111 377 1111 345.5 1098 c 128,-1,41
+1300 575 m 1,69,-1
+ 1504 419 l 1,70,-1
+ 1300 264 l 1,71,-1
+ 1101 419 l 1,72,-1
+ 1300 575 l 1,69,-1
+1303 999 m 1,73,-1
+ 1534 845 l 1,74,-1
+ 1303 689 l 1,75,-1
+ 1076 845 l 1,76,-1
+ 1303 999 l 1,73,-1
+966 644 m 0,77,78
+ 966 478 966 478 1026 356 c 128,-1,79
+ 1086 234 1086 234 1243 92 c 1,80,81
+ 1035 216 1035 216 947 343.5 c 128,-1,82
+ 859 471 859 471 859 644 c 0,83,84
+ 859 823 859 823 945.5 947 c 128,-1,85
+ 1032 1071 1032 1071 1243 1196 c 1,86,87
+ 1089 1054 1089 1054 1027.5 934 c 128,-1,88
+ 966 814 966 814 966 644 c 0,77,78
+1336 1196 m 1,89,90
+ 1531 1073 1531 1073 1612.5 946.5 c 128,-1,91
+ 1694 820 1694 820 1694 644 c 0,92,93
+ 1694 466 1694 466 1614 341.5 c 128,-1,94
+ 1534 217 1534 217 1336 92 c 1,95,96
+ 1480 234 1480 234 1537 354.5 c 128,-1,97
+ 1594 475 1594 475 1594 644 c 0,98,99
+ 1594 812 1594 812 1538.5 933 c 128,-1,100
+ 1483 1054 1483 1054 1336 1196 c 1,89,90
+EndSplineSet
+Validated: 33
+EndChar
+
+StartChar: O
+Encoding: 79 79 37
+Width: 1054
+Flags: W
+AnchorPoint: "top" 405 1429 basechar 0
+AnchorPoint: "bottom" 405 -80 basechar 0
+LayerCount: 2
+Fore
+SplineSet
+404 1278 m 256,1,2
+ 431 1278 431 1278 460 1271 c 128,-1,3
+ 489 1264 489 1264 511 1254 c 128,-1,4
+ 533 1244 533 1244 552 1231.5 c 128,-1,5
+ 571 1219 571 1219 603.5 1188 c 128,-1,6
+ 636 1157 636 1157 664.5 1119.5 c 128,-1,7
+ 693 1082 693 1082 714 1038.5 c 128,-1,8
+ 735 995 735 995 759.5 921 c 128,-1,9
+ 784 847 784 847 789 819 c 128,-1,10
+ 794 791 794 791 799 695 c 0,11,12
+ 800 666 800 666 800 639 c 0,13,14
+ 800 572 800 572 792 510 c 0,15,16
+ 781 422 781 422 745.5 326 c 128,-1,17
+ 710 230 710 230 686 189 c 128,-1,18
+ 662 148 662 148 631.5 114.5 c 128,-1,19
+ 601 81 601 81 583.5 67 c 128,-1,20
+ 566 53 566 53 524 32 c 128,-1,21
+ 482 11 482 11 456.5 5.5 c 128,-1,22
+ 431 0 431 0 404 0 c 256,23,24
+ 377 0 377 0 348.5 7 c 128,-1,25
+ 320 14 320 14 298 24 c 128,-1,26
+ 276 34 276 34 257.5 46.5 c 128,-1,27
+ 239 59 239 59 205.5 90 c 128,-1,28
+ 172 121 172 121 144.5 158.5 c 128,-1,29
+ 117 196 117 196 95 239.5 c 128,-1,30
+ 73 283 73 283 49.5 357 c 128,-1,31
+ 26 431 26 431 20.5 459 c 128,-1,32
+ 15 487 15 487 10 584 c 0,33,34
+ 8 613 8 613 8 641 c 0,35,36
+ 8 707 8 707 17 768 c 0,37,38
+ 28 856 28 856 63.5 952 c 128,-1,39
+ 99 1048 99 1048 123.5 1089 c 128,-1,40
+ 148 1130 148 1130 178 1163.5 c 128,-1,41
+ 208 1197 208 1197 226 1211 c 128,-1,42
+ 244 1225 244 1225 285.5 1246 c 128,-1,43
+ 327 1267 327 1267 352 1272.5 c 128,-1,0
+ 377 1278 377 1278 404 1278 c 256,1,2
+353.5 1098 m 128,-1,45
+ 322 1085 322 1085 299 1064 c 128,-1,46
+ 276 1043 276 1043 266.5 1030 c 128,-1,47
+ 257 1017 257 1017 240 990 c 128,-1,48
+ 223 963 223 963 204 912.5 c 128,-1,49
+ 185 862 185 862 172.5 783.5 c 128,-1,50
+ 160 705 160 705 159 660 c 128,-1,51
+ 158 615 158 615 163.5 552 c 128,-1,52
+ 169 489 169 489 178 451 c 128,-1,53
+ 187 413 187 413 205 364 c 128,-1,54
+ 223 315 223 315 240 288 c 128,-1,55
+ 257 261 257 261 266.5 248 c 128,-1,56
+ 276 235 276 235 299 214 c 128,-1,57
+ 322 193 322 193 353.5 180 c 128,-1,58
+ 385 167 385 167 404 167 c 128,-1,59
+ 423 167 423 167 454.5 180 c 128,-1,60
+ 486 193 486 193 509.5 214 c 128,-1,61
+ 533 235 533 235 543 248 c 128,-1,62
+ 553 261 553 261 569.5 288 c 128,-1,63
+ 586 315 586 315 605 365.5 c 128,-1,64
+ 624 416 624 416 636.5 494.5 c 128,-1,65
+ 649 573 649 573 649 640 c 128,-1,66
+ 649 707 649 707 635 784.5 c 128,-1,67
+ 621 862 621 862 596 925.5 c 128,-1,68
+ 571 989 571 989 552 1016 c 128,-1,69
+ 533 1043 533 1043 509.5 1064 c 128,-1,70
+ 486 1085 486 1085 472.5 1092 c 128,-1,71
+ 459 1099 459 1099 441 1103 c 128,-1,72
+ 423 1107 423 1107 404 1109 c 128,-1,44
+ 385 1111 385 1111 353.5 1098 c 128,-1,45
+EndSplineSet
+Validated: 33
+EndChar
+
+StartChar: W
+Encoding: 87 87 38
+Width: 1197
+Flags: W
+AnchorPoint: "top" 566.69 1288.05 basechar 0
+AnchorPoint: "bottom" 636 -31 basechar 0
+LayerCount: 2
+Back
+Image2: image/png 11956 -114 1328 23.0735 24.2059
+M,6r;%14!\!!!!.8Ou6I!!!!e!!!!e#R18/!&tXUZ2akI!(fRE<-SH2I#2p?B:[o.l;QN@UNPH=
+c$^,B`dk>1i%k"HP^t^(OMJk)8?u5g-)n!R8XA(`b#VEPaVG9N63uL\_8[>L2Y`XWO(Up<,L%CV
+N(3Ql\ts;P>-1i+n)MU_]KJ(?8*oCWl-n6kJ)C/&hV[l$T&8uo/0=-C;/>[TYYKJXC!B>tRIdJG
+Y?QF'"6Ou>DT.KM`iVS$BMD2*X\u-/D+8!cS$/D=T5SXb>6Fg_b]u/f[0?iXc^U>kkP_aLHLLZY
+/!Wero;u-Cr76qlSpB!OO,pZf`e*@LAi++ZND>o5=cOlHETrhuY#lJ.drFMLYPFd8c^qjY'oPL2
+alcGocKUL7@rU((QsVTBS31rN>gkchLM"bU16o,iS`qrn>?c*JpKX<orKU!Oc,I*@Ya%srX?s't
+7AFjD/][Hb4CQOal)_;"Y\MIA`KHKWPU@9*DXj7k'J1OTIARgaLUYL@qQ[UM]mCf]Q\D,GV`6(F
+>Hr#iCn8mG0Be`_7YW8X?B;2.bdD7FGB\H)n>;K5GBM+5Q`P#3@*Vj9b2^tn>?g3/C,'5-n',B`
+GFuLY)DU-s%gR@?Ed7uraQ@NaUpDI/M^T<5k$"HT5Ur0iV;&udpfXQr:)<YQT(`q\bN=mW,iP]+
++eQh!>KlVoe]?n\8AsPeDlDgU(,D9l;Q38f<dKj&VbgCTj`?=;+Haq0OlA5oV475?^m4%p-1b7p
+RGbI]I(i56$[KIq`5c$BnaUp?BEk\&;)m(AlPq_DP$X'`(=/GS3LgSn4+f#ta#l;G8sqDQmUf_#
+U;cF%.0_264km9N[o:j>Dk5FX2*3[.?0f7CcKFBA\6ALdHu`\^.ipG1\$ikcIVXXU%$$e&;i.l(
+ksF(9MRfH=4'ktd`JFb6@<U&RF8k!R<q<\"V3>K8cj.8IYF3`0j8@SZEup<Y>%8cjk'Vis2efEU
+`bnP?hc?F]c2R3Xg<H!bHJuMZnN0NF'f&giJ'+5Vrc=CU2eC7kS@.@]o(U_dI]&ku8'7\WZQC&6
+Rkob1h7,XH2ArL.<.&9A[`K4o11g-S``NV`B-qh%/tL9jku?4B:?j4caL4$AC3l#dB)!kS#d7Cq
+U,?t.`0ceg:>Y[dl"&N%\inHkKf(BM.6m9]\a&-pZbKFe/VK,s^L+K1DHUo7YdT&\Ng9CO?h+'*
+(&GmR<qb4q<p=78>5`sIQW@OgI/i1maF$c1ZaEdkf+]#hVPiJKhe,VPlCZ0t+A^P0kDRbZf^0DQ
+mAs/8VpgYGY>b%lPpNG4=e.Q0+@DjnQ_"eIAU(tsNb1iTZah+Q$EORBJ]7\I]Wo=S5uYj742(fp
+h9O=uXNn#D7+9Q.4,GdDBRV^0qFET9'o6dF_s?pY8]ZZsE/Z?A['g"'PFg`P3t],N*EF]uDc7mD
+?#=9Onn4)cWJ$1>oi/N,Z]h)^3&sa%\;g*dd07nXq9R@\;(fk!.Pq1Z=T>4ufX7ahZ-=jo:!KH1
+VAfD]"'Ai37r)lR0(rU?1`AeWD)IWF6F:Gc+&YFDmq#IEh8\TDQ<)D_<6+mE0K_1H,KC<mW#9F#
+DVOsQjlLXF(OUc`9T7;jdU.iG^?=%5IY5)#G.9Xe"G;W2XfX?F@'i9kB/@Os-BXrt>3["<5<f/'
+RXffs*-:;g^ghH&c8iO\ni(5AHkcA"UR:_dZ2:4*?t<^NO[p1G>`?(u9a\^sL5&m%H++SrYD30R
+j3iX^S5Y[bbl$J#<mrh_<$nq>[EUDJjDm7rA[/>:;QE6TN':>8OkT&e$SGOs.qM`)dBi.&R7`^;
+pl<H!B:$iUqCsg3p'3Y)B$-6$Au;N(,J:I&hQ-8<O`FRRq7CR8[HQO#/"X$.Iejt2`i,0uY<TDF
+^\TP*qN'OA,6-V?XQ6k)De2^O[r/p-ek3&"Z=Q\[X8hgL<P1KGaml[/d.:ej3`_P5<aqPq7t3H[
+7.\$=(mD3d*)tm63#i[Q2!e1C?^6[e7eNUH<`5A#P#87eWre.F*I'*6N\2-R<.,]e<X2t3IK:`a
+!h"haj1MGh[FJN9C`Z?<K.75'3=^hnHuCgH`HOE=<LQEo)a8!Ha(N-@f\V.sr!IgM)t6Q)OWL!c
+)0t/F3tRi#JS4EmfP>9-)@XL3d0e',a4=!*LH]Y[R;<X6Vorb(>_0dY'BO:64'=?efPFZN6r4Pq
+7Zjj((eMW3h'T']rFfn\_VFK?qCbI#Wc=m8)Whj%W+H'hN_CQjU"O[?OFq:aC-Z>eNTomp"4qo?
+L"/.XrT4gZl>!R>>0$!j/6^esWNn7IfJ5KL>P[&)1s[_JU`F)CTBBVLE4as$d1?6hJbiP6fnP^Z
+]SfOR=-T^K6F/cQ^*AFrpD[Y8Ii47<<D*]c<3/UJhMC+L`Zf0/]A_m_?MaInd?uR0O\+R*=5Lal
+6i/TWFV$&RX(ZBb6mTuQbe`'/@uC^5W2lW<MrV?\TBFk\ONuo@40npV1hA%sJtKOqPKq!5#=X/s
+`(grQZunAf7KV(Z^^8_'Ss'V.]s(9*_]i\@dC*Pn,+Q8,iVV[<fV.>g""hlf&Y\4*dJ_'f:.tk3
+nDJ3++*2Krkiq=g%\2ZMTfD:D_T)U8W@:L3bNRYK>VWpNeX,/[CM4ZC,nNk*i2-%R.NF8n&QTr:
+KK,N5oq<Tq,_QU6WVoJ^KB(T*>TOa!7iqSYH!bN&&\Id\)&s9e7b:KSdXE"?e`CmN1U?Mun)uG,
+$&'RFKU^W'D`>P,W,]-!*&,8M^LT:O%,Mso?&5*KA1sh2VJqSZJ-6rJ(gFr][EY)n?H:TB+27C!
+It^]BKuh7<p)Ve@`J$2!elC0j=(.#>Bqp;]7#Gn/\8i%#Z6d0Qr+l)EPFk1H@%m<g0-5E:@9A^d
+8Gr5d<7.5%UItkh#ZW;4Hu&lq2RF^SM"p#l.K''557_+&2_GSG`kD+1J.`mteA2n?HLsK)\hpF$
+WWej7h!>Z6hfFm#bF/*Qj\NT]0UUl?f<BI;[kT1`?eE-<_a/XNWi@s-jmfiX<UDT9cX5e3`jg7g
+lV86m*SuNlBS8@p"ufU=T?k==WC28mdoFK*Yo,oE@lq=.pS$ZPTrt)L8@@"k6`i`[eQ!2Qr^'.U
+lDsF+e^XgfrJ$*rlKISb4._'&kr1kU7jtqW3tZLeXaoO*%`1t"=p#5<.(j<kZ!@h]SFg+X@Q!^C
+%/"n76JVn'%i<-cP=X6KkLMTA)]u&ipq;-F..:ctd6$afSJm^4j!jke%%U[(<@+$b8S@8ZlsLH;
+ZpP@kSR+_5r[uh@f0b*]e/g]+=GA;qc_AnV_g3q&/E"EC?S.#)I299Cc_@22"[b5gp_#MQ>U=7r
+N[#+n+S\'-!XV5u4[[jCW:SIh'@`*f.]G/M?bR"s/;Ee/(ba01,0tTP\)J5LB)).rT7u`0^'s>,
+0B/bar"]p+Ih[b57Wc(\@QZUZ``h`6=(6/mdCe)QKihX:jMKW1M/MlIq[W=M#q/`,XBGJ?q))<5
+=WHI$298E,DkOYO*fK[Sf*@&8DuVF`d]5#7>9#WPK?-XfRFXj7Ic=5[R\*&,e^;S/%;r;@WMUDE
+qMbDA"@j>`+tpZ\dC7EZSpQOGUSj+C](c3!#h!E9Dj'Un>okar[?@TCHgVf#</kn+=2+Db1b;'-
+hZtBj:#YCYHSMh6JPG8tO#M2jJ`iUp5(JqH+2b.A3<HG*;#BE_7<!0$%Y!fG./h!B#juEHrY'Vr
+&6=dYG'#QMF+YTq:;"0lMk<02/%![NqKuUS^+tY=4e2d*NfHl#9h&eoX6A\\b224L4Ue/RPuTX[
+)h0s6q!:t$D!,3(1Wiojf_p9;W4#ElC/iRU<`8<7Z5L0O3LO+a<VIPiLETBc0:bkeEEDZN0&o;;
+)B+R7b,I94?'b8XSH<[kI0IUO'biRXO=k&UA*B_L7h<ii_fs\fIil<6]oP`s&P\3h'i]C8As2/#
+h"s1l3jBXlNYVhQ*L`[_nA&lRf'6F'B.<IW6@23Abuh-a7[*Re*&`OlLDd#;&7r@'/To]Xelps5
+95bmP'0\60ef"*.8*d"2(Td`sCMdb\g)#iuic/MDoP*+TfDc#Jh$r#FEbP0uA$(uNNu;rncnNJS
+qbq!g_Df<!AV2WmL]l\I"=seEU^"rYa4=`K`09[eGZ0_N\EGkd\.F(XS(Q3FJbHcIZ+P8s!hXnZ
+5\ujt;"8k!&=sK=]r(t5Tad]FeBj$_%,@S\&6<g,<%i;i@3#&#rDP4(4djN]/A&(!MU?.]p_gmU
+,EOHXp$1WXW+VK'?rRu=aja7Chg#)FVAV!J]3:.8fc^cB4P5Xm=[MD7hLkY8*lgB[]AokT7#iq2
+\28a=2,+A2lr^%c4F2&WM?!GS[M_Pq^[D0*%usHl=nq2_J+SAk%=G=Yp>a0.31;pti#Gn<f#f`X
+3BVDV8W5$?nALo.(aH,C55l*Wni)&TS*OJb_;!Z^)8=^Y=k`+mC@Unf4cbV/Xj"hC?j;Nb55$\=
+.4?O:3,j*aJdgTnR>/^"]_:'k-9[.s=.Oa%4PJPZN6,>:2H10uiZ",@q5@bZGQJ1\r-HBJA9*I&
+;e`&NGTbd0:*O>p9.3g!Z[s!O$s/.tqZZQN'6"SX&eAK--3-f`7l4sDp*fL(q#n@#=J\uaRN^bU
+o9D<CX%4n99qpX$?=Zj(7VI&c0"riB[))Lpa&2NSIgp=UO*OcbGtB5/DkeWL7p]XK7>]*3e<iWH
++FmO%5'PJ?KMJkdYJ>X:U@0WRZS59'2,o@@*4Z;CU*M>0BSaB%9,l)1g@uP+4,@!_#\0?mS![c5
+M,8Cm<C?f&6'BAHO[Ji0ji!tkWSeE[ZV8puTPZ$(^?U$o/)h+,]*Y!4SE06Jrr?@L8O\t.rJR28
+a;IDb2rSpgQpa_p*DR5F_8J7s(`F,qVs8Z.Aa#HK)7_Ur0jDXPD\:"qgPANIV8.W.JBc>UiX)"9
+W5Xq1-t!="8e[W3E/k*jP1t@[!mrg0RA(RcT.*CcLJSP[hn;W0jMBL$1bN,VUeb\YRG][VNm=e.
+_V-=-OD`cen%#KFQMJ.R0Yd&.!G%TgN7^d:qq=tNhupn2hP8?-Ye7<%3Nh]THMPtW5E-XW`m6%h
+4uUTs`m44i!jDOs=)_5;'8[f/'ZS&7C=ao5$)RrgI.Q5Mg.c(*/V6J6HO-gir$JBEbP6YOSpcT1
+^taalR$a8]rr"uJej]G9-)/e%//*!j0H(/Z$HS&@Vd35,M:m.T:++)#iJl`d@@BNIc>a:'hC>!g
+S.7BDi]t1P"&K>hY(Q7K1nl]<Wgb2o%`N<W>n<1Bg?9eF1nWdG'%2Hu'h8bNc8<--p)2p-k@#U$
+8<R<#1*LF[n3L%Q`A\>QTTd:El:OE[FE!8hQVhbr1:G5@@5YBDAnkK:;kF9nkRj!c-kY5[Xe5g%
+Q2X6ERdq_$"k)m&T9JEurJZ+bf%/E3DibXi-?(J*92V=W$`O@H*P^aA9rIES)9Zi,b!nb:Il9*o
+AC>b`Y^CmQnU8F<2Zbo.aPm^[#hUoV?`K'bb+Fk\V(.@\[!&o&n>V2*UM9QGGX(QNSX:cZjL)U.
+VjW2GbabT.;7[gEO!,CZK+Z^s9+6@/Eh]qGN`7H[=TU`>9r=Vu*i\N822QMgd0a&92E.)n.\&=S
+f9p:8Jqp5(a='u1P#TS784IU91/Wt^85Vk=,cu#a1L\s]XTAs],i,5\QdC^WFqSe@hNRRL!R/ln
+@//;0=0Ru9c5]"CZ6<pOWT$#3g'o%?eAN=IYfFESg6GkVOIs%UKX[A*2'(mIA9]#ne?\rQ*>fun
+8huVpi#sO;NS/UU\'1*&0i,3Cf2mRsgAh-q5QiO6ejk=,T?E3sZ<m_(<V.9f`Q5M\hmJ.?N,W_6
+p9a?U'%"1I6e#B#,FZj'X]]8<c(&_RMi/aI:R_B:>>.4rBbI=>pIU)DJ+WKm1b>)CB(,O]UE)\I
+K+-9W\_CX7VDsPB.ig!s@PgJuLqY-7<?`b]jp744TVT.&Wk?,OSrQWc'=j97Pk&JSN''eCJ,';C
+dut%L=01R_pb;:ZQckH:T7.Y@:R(C&U73C!L@)s(i*toB-WFG`$GW30h"ECm7-;F:F>78@!1RC(
+d7T1t8>U8T%RXW!k"GE$.K1ZJ9e8S)?CY4gB6P:rh8\t4aNRY(r63rUJAcqVm(BMe'9[t2RF3.O
++j)b/(hKL$$<;PDN/]d^7<2R0/_QL(+;93LVt(k-R$7QKHq%3J-:^UhLtPA97=cmU2`b2W@-CoB
+l?)<Z*-_XX(Dpj9(dIE3@QajBG*Nm=/e?iBi2EY8aJRK9emCY$;K/2*9&)#G0Zt<p_hK(!.L3@K
+-L'[eN6:a;%OQ%1,%tQQ1)hBJPtZ:5XO9eU=5W]-:,_d5&ksS^eRSIQY;=2MdS[ug7S*uu:/<O1
+4JZaoM_UbC_I5)lAT^#M'dF=7QV:3#S#E#!bcAL-*J(o+#[\UffZ>r=GBRC,`#KK.^M<,P<,)Y@
+3jZiR.D5ETShgH^!W;<YIKBb\kp2hlNC40c1!6GTZURW0s+?A?kfcJsYL!\k16[oC`c(X/DU4jm
+0WK&hcWFFSV\[l]UU0#hV[:Zgba@G?fP2b0B25$Wr_]h+3k3=V1GboGNQ"G3;a>s,@1q54A:ub7
+%5O!Ml4ah6%AS8oQgr5X8t,"g6ljE[$b;/@W1\gEkgdYJfh!>`6n$'<n4n^H&Y8@F\cM7p!SN`P
+N(:e<'<$PUL)$DgD><T").E@mq1<pb+-j%D#@%3;C^%j5`R&t=B-/+Cq+Y+`SAP5sqC#TK*^iFr
+&X=,fD+"s4r)GS/Vu`.2C*eqQ$1AU[-H:YuA%IYL=WpWpA1NjF,`u-/0oW1.V0n%55pK&`?,NXf
+/%tT9APPL97tE_ejc+t!M.s<6n>C;36??I6"8#t;GmPW`l'Q\ufqFBA19!u-AqDECcVtH(H0F3e
+C'\J#GTY1#.\'9\=lglLF_%uWbYJkL7'j"gk>qg`pQt[0?KFT<]n]FYcu`!P/&+hi8rePme1)um
+C5dIg9hgU(T8Xl=6;XYHf:`P'+r\4."Jk<i/[+D!dZS@j<JO8rQqX%85&fV\H,)!eA(+A_#+3*q
+c5CXJ)[=9=L8,(ejS6!k'LARVd%.%WV=1um>613Dj@lW=I)BUC@:=R!20g.,8FVGkqLeV[%)t5'
+FF2EN;#JU7Si5Z5#!6gQ!Yo80,_W3lmn[nQbE6oUO,Tg&4A:8)<RMF%B&Qb"EG`on8uqmV1TqYD
+>2"Dp496YLVC];eMWKc-`[W<aS&?X)@hK']o"o/hm)g\>o1q$qNA;;'>_h(7\kNN5Y$<WLbgOoX
+r<G.!:t0H^$;W253-XiZ+O-4,30Ic!%T6$-L0!*M5q^M0.VL.\1o2&2*"Ap*.NH,W!\aKSPm^gT
+-+%o4O=.4d'4&Ks;L`k)<bREb^@ranro28>/;e3!NQB9j;>]@"85Oh<f9UC5m_ePlO$CZ%^FNVZ
+)Z&m$?@;Ya&"82Lg)r:,*00OED?Q?`NsnhDn<*YRk)YMIn[t>IZ!ik\CH"7\"cjZZmK-i2>kD'W
+]olt`FE7L*r6P`P&rk#_;UlJ!Rp2>@l0p-8CN&>CM6a&pXfX1p9N7PImdAHBBP_?mab%&34h79C
+W67f=][W0J.`(W+L-ho3I"MsRd?sNM8LW8#gXV.,q@MV>3b"PJPp`*J_-^7K4&*bXE1qu;j[D-G
+)EZYWn#HA\6O1gsoR;d$AhMWcWloiQaE,G(l&-"e<<c^$0Y6L-b,#`I-SgnAoT+lu195ci3NP^h
+%5K7TgsO0bSWYO(b@YB'9_(&)3_e%JKBSD.#YJ7,4f<ld1.sA?nY9m#&UJF]$/H:JpC4u8ntu37
+a,m%bR_/YpF2^'tq;Vq?Qn'rK0^#EOD+EL50\gc/,(WPgjpW`-V92"r1Wg\ZH*@pB@?skX$_?6=
+_'.PZcq`L6%W@^@8Jn4tZc#7<U]+o`]4cH;1k!p(<019^60`E[)F;)k_O-pd2j9O]7Rs=Ln.=ZQ
++NP8,'AB#pT.6=h#TM_5jYW,C/*d`[hb>tl2r>a1hThD7q;t/:f@pk6+N-#m1<X3XLj>CZU_$C4
+B2oCu0:kN&HnT5Ub\.lB'QT8ce04kkA!f5s&dQLoVOr5;Kh(PU(W%rjDbd)'V/sl$@i/=:6;p6-
+3kt8fGlD.o^A-5C184Zu^Np?]qnf7i[O,_[Wi^pk/NgruU'!bf]I%Ba8f=tA@aeOA/fPDd..1U(
+8mFrXjU>S#/V[b(<7)Q!i%cem/5sop)NuU_N-=u1:I8tXC0)(n8+9H#f>;T#;]`W@s,'3g/M'61
+/$$B7MEk%SDKD0p=@Jh!BOi9e.KJ(D*#/Tb<c/kQ*5Pp&)pN7eIK!<[SOFt=?j%kiA8rfB,04SP
+R4j+)_3L#KIe]%d).0(]*BHU=VLu3r/4qhl`%<0gN6*bc)Y6fSiD"[n[Ma.a[GpE?6bKm=bZeL[
+LfK,;%ZS5mH']!j:H?R.W+NM@5ShZ_$n`Y^)s$)9XCWs3C[W*3:/<H<rQ'p2==KR[GVqZqN]Ds3
+PsSc<9XfmYfk_S;V.J.Wf3jINq?/0cP\>2ID&tTueb)=e',6[h)7Ga;hfnW(C)NV2%j8BgL&E9F
+enK`"_0PYa9<aG8(a8YDp[)TM\\^3O(Wp:[jP.AtCiLLSRdi5BLa?-&5&8PXK#/K/>V;o`e&3Xq
+A<q4E.>;KpQ!";"-U64WLh#Dajj'R[XOIbc]?*B;K;jjc]J311kV+[%F`Y\b.1ssC"?AtI*$D!3
+,%Zj%ce_FnR0[5I(4-SY!ZP_/Co[deMP8]8ltP5Y:PBbV0ao/+@Wn25@QD/RpXaO31c(&4@[76@
+rs0!NCl+f#F?0;ECMf>-Eu,>BHOn$U4&F<u.k283d>rdue<sktO"n7IZr<9;kf>ppA]AC^(MUjT
+?[AbXF('//]K/IJl7i?:aeb:eDjB](nh8fM@noeCF.O+o7s3KqKJq@Ae\/#AKFK6QBV@_JFfJtI
+Yb.sABhC6ea?SqqYkG-e/9Frt>?3s'`1&/O!A&rV[VD6LUQDUY*P8c3=?s'Bc06Ah9cuo\m%aM/
+H_;?T>oOnXa]].ieq(F'1C@[]O"g]l@<6D',(1/rmM)8BRT861e"i:CXBgcm>']dgI-b@Eic3MF
+4\(MS/tZ'%RY0hILAHFgLJ10K<R";GX3hIb6Rd1AYt0\)A?C).j#T9s$je2C&E_T&jFgK]<4GpT
+WJ\IS4b^CG3n,X6_#bW\G&7DB/KH6%H9Z@Z0+QRB@YkR.[Is%$]Hj2[;,suUN$rkjF1<*),ag&J
+D)[0W9k#PB[SG,.c%+<`2#W;PO+\[QKMk66.gW(u5!-Acc:(nCMCU>Q:ieI*\UkNp"j2]o*M5XH
+:u[gOj%bDpBXrq!15.b6&?YN[4^AmC)CO8\0P*J"Q$oIh`+nu>h;i^p?d#CG"uFLL9BrNhP:[8B
+7'<94AFBMh'-e54oVeDUbK="F_!.Cd&DaDg=7CKN>g9sQqlq&F`QDcqJ[Pc!OCTtAfZh\k>_oOm
+\(u`?e=%1V`S8S1R6pe?YFXZ@"(m[)9FDnfpc^6k=AkAGaMdPY-pTieFr$sHq8KC&fRDjj/mfr<
+_[*4'SImd;1f7@Y?tl2,j6=Yh,G:&li[q0fg+/0T;524]BaV(8I<6koM5aO9i?4OU)=s[5V;`(t
+1t8Z8JtsrO;VY`E\/[kMH5<J1"*!YpJVRi>@f+(ZWBi`pn"El1WV/El)RY7fV2p$A`Hr*!pOd%/
+^*+an$:TbV)G!b1J+e$GNZWh-R)_RRQ.$BQXtaW&f`XiVc'g4A7k'0B"F`hQ1r5lTkCiuR*U*ml
+/uh9s`t@0)GSQo'dh.%,oTZ?>ZeHBbEeXFe;Yr%<:(gVY`"j^KVHOD=)He=2H"74KTZfii:CPU4
+/]CP6G6$#4r<hBhK8?*]NHAtM<J`gNVpAdaA-@n;9$G8L8=+@=Z8<5h=[/lR5A>o7^]-=9+kB%p
+;ClLSa3+ei9kTY=HejYf,YkY6(YLP-Ko0V+1kC@k0ZQP,OGbFC.$1;0'sjh%.q`)[K2-70N)XWf
+E:Hn6eWK$B_JJ1q.>f*CJ"+iIA_LfZgD%S2G>`:JN:TrHQI\+W:I]"]@_?op639;f-;3;Rf+9&\
+`nEGin,*sO>]!Q=%l9P*@(2Us(6RVPXY;rjI>f\A__3C@iQFq9\?N]a%+rEe>4u@!OQ=>sB_OAn
+,L<Xs6_o@,SL)2I:fAlGhM"mb-pIIjk>5\`jn39uTE"ad85`C<()O7UrY(ZgR5\CU19(8e)n>qI
+HO(H=nA_N,nAH,,BdQ$`@b[UT]8^;p&C;lKBX,Oob5\_XPOq+m\bE8KaEt6pN#GQ(\khD-N&*bk
+6YOt_":&fhOKrf%O^D=FP8M-UA1p<jAE.lNV"?F,[%3VkNP&qnbqUM6W.;VuV5r3&[LttKEu:sD
+2-o?>a[cPo?+Wp!c('.UoDek$Db3>_<837a:rf*H7GkDV:$RkTUl"f9@[&;qJHVa3YHeMO=I@1>
+%?9F@o"/,1H+Y(jbYoL!(\sIY9oBDua."?:jWheiF&4ZsLiO6+C+'A`5rBMe6HE]%V2IuD6t0AF
+3UDVqMesdY[TZ8.//ii:\qY'i<&l*`^S;G3F#Q@YcV-5Y1(4u:F-5[f7$c!q_%.d2g`nU9Ng:3(
+#j]AqfPt*Ih+kh4D?`!#XqN2N_t>K@No'dJfK5NV5!+dZ#OWtg*^f/F!'4oM;-7'hI'=^5;X@d8
+<f)q:l6/Dt:WD@i1HnXo,]U4Y\rfOL6D$Jf$I)@1$!U[8H2<rEqrr(a#F#OYi\;*i]9Rf,$g-Mm
+-k+9]jF^FC:t8I\TfgErOOhoU)]P89(k$3t'ZDEu@#d'KCMb*?"&l`-^]"6kFE3kG2_f[P&o..-
+`O4r-bZ*:e'CJ2'SG#b@W/7WNQS+jui:(a9\$k:mX1`3E\,R)4VnRhVCbF`(5Q2:)X8r72mgMs=
+r_\?,=Y0+]LS&l*P:a0AV`ofEJ,=)qlD0L+m_PK#L[]JGD,T3pphao]&Xl3/2(-6(1qb`$#9D>3
+-]>b/]cWs4edQlXEMR?B8ep7_Du\9ClNk7TpMYPsm$p4M7(_fCk5<<'&QNJB&Lq8'_J4XL;'#*[
+-F:foP%,,W]gFj.6*O6on0!0s&GFHt.TXD7YRYG]ln/p''\Ie2h6Rn83j?k_78eZ$aK\!Id>O@T
+GLB1YCs5R'(`=e0VArjs=Uq7ja<C<qVRP7>=$n[>OKSS*3B=(@88#AW_Th1X-=4g"XXY5u7XKd#
+/YRSPZGnMn9rN@WA$d`4<#bNOL*N*RgrdK"@-7L+UI[8(7:WT/5sQbAIh<!jj7#oH(hk1g4I]QD
+%%^(R]ou%PONA=K;0&Ne<tg#9l.AT_L>cYa=dhTiBpmA!2:6Q4s-fB)Lb^lnYs`<2!AA]n$E@ds
+??QD."8gI7i'"<)F<OlU7OPHlMTfhi]_Bg/8/flid`.Oq94cZAWUrDLd`,'k3gk!BBYGLBG,&0W
+UA09tm/#-D.":Q)YeKYJkkt'_aEE^03H,,GHhJ[O2SE"90Y<G;lsQb`A5N3oX%:!G()Hk<&l'GK
+Bhi+\R>]p9Vn"<MQ-G*+.Bb0b;Xqm8`(%etb]\`1QYsZQ-a[LXaM7EQ9njr]^2.1e"YGK?P6"n*
+`A_*l$erI8N=E4`L\94G^4>P>0N'KOe.DbSH1rk:3HeiWJNXj_15$G>$["!"oI%uUS?"uM$o+!(
+K2=Xp6=UNF?.=S,iV0Q\E,oCg*Y'sP`&<CKIuVGM]AW*nUA:luf@R`g4@B*+l-fM@4cF)*KhuXp
+D%Aa^9?T-4'@$hL>PQKFrXEUFrH$FR?X[V4E3P+X21tGh=];r#SXLq>aA,BCX?s@'KPEQfAE6kB
+#2sV7nFYOgMo:LB+a0&t+DQ*#-(H;GTYG)]TAYLMc2Y`&Of(Dl;Vej]liX"]U'`EsaO3'trKXrp
+d^ub!R:/5'Et:')T4,H$9G4tjb+ri1`i>TE9(c1qfLlG=.N/R@BhO='V=LH6UI0d4bsp][*.-8&
+c<iu'YD21:O$!T<R:+%XB5Mk#_m'tDk1DlIJ*'&,#eV?#;4:(/H"NKQ;+!RBkAr9fBi#Q'A24:.
+7]6#K\VQlV/ho)=;FJ26m-4m/_aX%K^_X!;iIe**n@]*haGhuuGI(?1ih2PuB]@_oTGImVYHts:
+*289C;J=OQk1S8OAii^lhiZ'=Io1Y?:N$`CM#^M;!Yks7.(;Lh-m)N#ReBj2@efRP5Ci%])GZ7d
+J\Gmu]DmD6SbnLY[ilgn-W?"q1D`k1$F]=:N)8Vr^l7__AucQ%\e*u4mMt56N6+W]9pFN*WBPQp
+5Bn+"o>N'/%Ve\/&a+JUK;LkD1E63S/mZ5Cg?r!/8?Xf]eATjmWua%8q>#;Z5-mn[Z)Q#j+du:/
+?i&oSmi!H&]21:j)cp!urn9&&)t:/T2eXn]*p,&hGif/:M-@u#r5TmDa6*Vbk$>_c@d;$T_Mc?!
+bo]-08[dbLlieC*:Z&s0^^W5ZWrOm'0Ah!\mGqd4KFI&#lXaT=$K&iTG":lO8eREJWf$<&]9dCC
+Mb0qjAZ.N/:`P&V&E5VR:^VnRY7Q$=%!I-^8YB!]*,UW<AC=rZ"71`>NN7#0W(-K>CpQ@M9a"Tj
+#Hd9Z&uhnck!Al!3<f0)R<EL_dPQ6q6\kE)`R/n[1SWE`0<&QtihEk2_c=I,9Nj;Z*Sa2=<be*Z
+oK4@il:?XK,tut#Y8\oWoMq2E)EKo=8I'Vjp<[?_9MO$#7aiRVgLfm)aLZMSVQGQRjEm/dBIAV3
+A9L4SC/<Ve`6&S9>Nt*,X2Ngc.jMmB4-IHr&W=)6Fu$9H7piTYo!g]a][;NGk>$[#:'p;_g>"7J
+\)U*9h$q>t\[b5B+VkmGbVSlY].*.f'TUjlThS6tp+r&CBo+0Mc;VjU]CcEP,3G>CBRI`@AeS'!
+;VnXFjA%EmS,S5U`le/cFYA05I[TMG`_9aZSJbQR2N*2<Dr[3%*4&N_&0"EHn_s%>0(!\TUXO&q
+WC-"L\P)(4I!!A3>m["lJZC`2&@ZlIiPE&No39s5hE?"tI%I#ST6o_>ni:(Rp7%u)3PgicFB^HQ
+5,-;`)Z88Ej`fqdH1'=tF%gTNRgtEl@?J/XH)u&lkaa:PVb^VUhq.O"DkGK3F'Q:YhD3,&fV4e&
+CO.Z"^)Uq1\p8A`p75.rSOoOhgf'p`"hDZKP@J6d29Hr%g/k$!dFL&>0@?HGSR]#q&(IDN.>5mq
+#U`&^0H-Y8h<*m2lFArImY9N&<m@5'!r(NIXZ>g<e8o=6f#8$KbddpJ^;?E+RF3iR6i2!_Bg#\;
+f6sG?XLI%K@t_&K>jEIWNKN@4EaOfLB6$*QX$2a@/hWF`$0iC*5$-('ku\A3B!1t_rEjhOVY8"8
+il]^Te>l.oX@cVYSXI-sr`8YkECg$NFTM2jd4sl6pW0BpUkh:%S_&R-jj?dEM1D#>koeg+1!2EC
+6*$2<0u@N#IGhniSsR-="5/!kkLcH*Q4%[Iatm!jfCaRhfIN[E6:]kKp2NAI@Qj)2e&-O_eQCgS
+Q?k0j=s7"Kjh7*U%0<-AU%-[DLm#lBGW?j70n$2KSDDKY,\b=LpZq+k%]JruV7G=A>t.`6^.[SD
+QG_4&$b]Wc^%:iree0nnQG9moXU6"=PNXm)-4QI-k%>]F^TG>'nr>3%%/W>MC.lH2\,?H!nB.b,
+1[2Zf+^,f]=5X!AGKjOjp23K:hs`=DA+JKunJS[r=7<]k4mg&]_=rGV9BNa-FiaKHQ8'SPo6G50
+^9^n.lsTWYr\O\=g(US+@E<QA6?KA0Xeg_*<Lm7ocaC*Ah)E?Tk,Id;0Ms1ICrK(9K-UWBo;pUr
+]M<+?mtJ="=BeJ@G0r.UmXFV>hb>=Th*9-NUtYdh]mMYn&S$D*L3AE.6L/6aX@uE%1dj-3Wc$\`
+iih5oA(KOR3&]nH1RY)mleXYIM]3MXL?me;jmU=@Jl@Ti);=^F28.'cQ+,&DP$j]^9?ETd=X4B'
+KeWgT%&p.'4^bQ4DSn8=<W*p&,LP].BV`?rTBQJd<K(?g7H\KQTSc=M_Pfeu%Y\GI3O)bn5Eu6:
+:k:,)CZo6V*YFZOjV$f.^a;OoaULgUjs;KRdrIEC[Z7E"aMj*UYb/=poH+=J6Wbrr=mAd7-W;ZJ
+PU8tKdeNLEa<8WcA@?au8&;_i8X)5mFCp1ZRuEl/%W2$U@kr6d%4Y>_e_>I((#t=tnp-`UFursS
+d57X^g:Z'fC!]CUlH'[umI/#r?iBm;F3Xg6]9bnCbg\a4YA@6`S?m)O\GcFNd.tnep?q7jZK-ga
+BOt\_p\rIe"B]n(f/4$Ydb^=>rMDU,O%!fT%Rh6="<D$pN4-o_It+f#0c?Cu/CdB(@cbmOlt&O)
+s$m-k-8]G2@q/GLF#29XWnb8Wde]RBYRS^%Dj;t5;21_/J"!$l/<eIFIgJt=+/OJ7pGG88%gs)K
+p!2E8"(i_/Ec"K:fAuU-82m/JVdL6VFT'Y,Z9QeohL<)gN'ep:s.O4so]#7^Za@UD-Hu-jY`*q]
+W5gSr2BRoOISo!h,&#2EP<3*G\k(Apd=b_%9hq?"X3dSC.,f[CN1thse<.o,R-;Y]F)npK[1>_O
+-$60(leG"i8A4+7Db;;Za47S"b-UTVFC1RDfeiHZ<AJSl^"$DU@k+0Y=li.'8'7(hR4(?K]9(Ms
+,bu>iSQM?qKN'm4KGR-^mUsijC$J.JH$O7j/R^65W`?+l,C:m6a2p_\r_AoJH;+a*4=6Dg"(K>\
+bOa4G-UCptEGgn51odQkP/Il)g6aFRbuS+Lf@?1[n%%99*T3*CqVET%A#9!j[!S7fPKsiA4iQ,o
+%K21poq]36n#G=7n9J"k,bmoiVuS0Z1<t%oL%S'TJ3ib2=qj\_k/DO[dm8Pl6'?XH%AjYCIk,YK
+,*A]UX)2?F,bHB1#r9Tq%P<^@FPNJ6E,MFiad;L8FX!eb;kJu<2B!e,d"@Qp4#de#Ad7E02W.7T
+TX(GZV5nrc9lXJ=F@^3>:DJ.Tjs;/3%>t$DPSN(9fDE_JP<O#eI)_^3kjRED=$kO(R1,Hd=;F[-
+IHGm(OjR,<j7f0cVh\9u;oX4jk@ffu`iRL.r;JPuORhL_r[A-jPPJigr([=n/<Jc2_OURSF<d)N
+CUY\#z8OZBBY!QNJ
+EndImage2
+Fore
+SplineSet
+94 20 m 1049,0,-1
+960 1212 m 1,1,2
+ 591 981 591 981 679 341 c 1,3,-1
+ 548 352 l 1,4,5
+ 612 897 612 897 240 1143 c 1,6,-1
+ 117 1063 l 0,7,8
+ 343 884 343 884 363 786 c 0,9,10
+ 451 371 451 371 388 307 c 0,11,12
+ 340 257 340 257 -50 155 c 1,13,14
+ 10 88 10 88 69 21 c 1,15,16
+ 645 378 645 378 1139 -11 c 25,17,-1
+ 1181 120 l 0,18,-1
+ 833 306 l 1,19,20
+ 717 849 717 849 1073 1128 c 1,21,-1
+ 960 1212 l 1,1,2
+EndSplineSet
+Validated: 41
+EndChar
+
+StartChar: hha
+Encoding: 89 89 39
+Width: 1670
+Flags: W
+AnchorPoint: "top" 844 1389 basechar 0
+AnchorPoint: "bottom" 838 -39 basechar 0
+LayerCount: 2
+Back
+Image2: image/png 10418 -164 1492 27.6308 26.0984
+M,6r;%14!\!!!!.8Ou6I!!!!b!!!!^#R18/!:gp/rr<$A!(fRE<+lFuRotqcf6*WccBVO"ei[#V
+=3h=4d$P)jOpR:*77jj<M_]"#9hDc[IaDIOX9dM<OM_RCp^d.&HI.9h*&JBS-&NC-OTYt'A#%F:
+:K:\+o3>F.Al[-EfAAUm+;nSEb.PVPqlIL)g3]G2Mp=MdeJm4(37c%3TUO-6%M+WNS*s61PuP.r
+;_/tg4:tXWRFLKCWNmN^EN']q/aN73=2HiV8khJ)3Rqnf7Jne[O"6VhW)u/Z[9D,MaH-o*O47u7
+)BS=sa[oXUa!H_+%u9<a3UZA%<BFr2D085AhB)@_or3=B%aXV1b\:^2:HcDIb2tH/'h^SJX_;CP
+?]%GBG/X"3*65VaWH,NZ`F:PB*hB61X_DmQTBET2B[i=9mZNr9].J:P;5mNT9#]7eNbYs><@YCq
+ghO6lK>USHDUt<)gHWFnNp@\Bqd;<CfKTdoQVT-Z_85Y3^U9dHDU3cPhVgu^f4rRoPk,`*eAM\f
+3,7ue59"B"OmhP\lH3_GZ*=t&4g'k7>:EXK6K'V5[9DP(_X8T-XG6=Y+"fr4=ubBqgl7=X3qb\%
+(0AEJ5'LmfM(t546T\ISg'm$3O"pZA*>IjV(K<RYdH,/1=k.+dV9Z66,-6^%Y[0uX>S@bq.[<cY
+BXZF0ms![(Y@h1OWHP=r`JYWQl=[Mce_/KH,cLP6").HkTbCJQpWE6l3U]4mH;hMYI]M!qnb>LX
+4e:QE>.)X=E_<7Y>$orZG>FQGr-`g/U]^rZ8j)MU^O'NTc=6$;4e-/L@K6B?#74;!Hc6W&E8:i!
+lJVD)_IJL'X#1$'`.Lr]U8`je90bHPN3L%,`;gi^O9Wk8!9^?G0n*o;hIpYCYV4c?)_.+FKR;3s
+6`qLJaK(%'q)@3cs8%oZW^fS"g>CWqf.]D6Qb'c7iHGenTC5fAQ."*t&oLYUf9AoCPus]>9Ld9l
+JgsDtatOE'W)B[r)ed9$#rNT%2Tl4X[MQ>PWJ6,,gISh^&,5em2qPK_:)D5J1-UZ5!2JB+K)cQ,
+DZRhpr?EBgkcV%X6.6D!=PF>CQ\";:qhq)VOT.L..YcghFTrD;0j_6\d5>\i>LEB[joUe7=pH"Y
+;6<s?2qlZrlsdm?LMM'`o?R&Y3.>gr2Yr3Ds2!B:EM_\SmROD2*_!3cS'`"t5:rG:nEs$p!]f5P
+fm=+NkNr&o;M?joL@6j1FSicK;%^9%F,)WmJ*-"sYFV5c"E<o]"W(S.C64qDS4LYN?!U/1V2-'!
+2'C16"!lq0Cl]aQN_DJFkk<Sf"pP<tK>7n.*Yqf3pI_7ql5p0&bt+sW730@Il?ARpjo269!B;P5
+KWB[*%#YJU9MCDEY:$Nrg('4(/!K<rEUL(U`gQhFVf<kVah>$k>^2R,POJ)MVo&4uTKA]9#1kd"
+-ROR.YGH[&2%Fo#8:=3O#IA*Mh:0m$>4=[BD/3oGptFBqTMCDV*>OLDG5WVKBG)?.)BA2.!GVJC
+W!r\e&j2am_(]kOk-Eqcqr>c=+;:af=V;W!$8d<Qp#2dR-Z(`t\tan-HsK\LK6X;9[!/<332Ng^
+>D;H-V%P5:()o=5Mf5SCG=`Y\Gd&m")Pc^b2h?mU7ns0I*KBueOg-';h^+(77%(lb^(;a;&]5]M
+"ls@fgiur2dh7e`=P6m8<>+3QL6N[T@TY):gP)KY(hQ]JYFZ8*4$5WYp]dsO6Q>>Q)B+>HZ<7B1
+=.,>spZ1fsqgFS3&rns?E;rb0XFRL2i0[1bX4C&gWqlX2V-!EAArumCh9aM!c`2uPapr9ZSX?4T
+]nKHds3Gn3Xpd$lRS]hQB[5]S,HU9nor7h0cRPFQAARuhg"?u8*4U',N5%/03%4$!moWYpSRXsT
+@>n>)go)Gi&43]G20FY,EhsE$4U"\"_M4"T_5h?\oL0hNmM:Fu@-(2)BbQSbd"H$g-'G5]km_+7
+cQU0*!@/\disi.qgf*RbMW.#A!U3Vl/O@TF9f+l>"ae;:"P#3Y,fWO%DeS@_-)h!MrEr[2qho4&
+o:B\-*iSXC;:3Z$@tWDO\&[^qlk^-6q'A:40&(rXVLlhWrCs*e,ab(W11H?r562)i_5k$SUL(QU
+0gpYRokf[%%^Xr(&"#7`f[6s4/O*RjEN,b'cTVrf0gE.CX4K"X#k6d?U7QVplki%rBJMD;CBZ!o
+.`rKAW[og&[BZj:VDL5U:U)R%?<@-^QW6H#*"sMDVM;?^Um!b*.Jq+*V1o8Pn(^g]4tDuDl)h'J
+FZo8JDZ$hJf1@/arPjNeVal>WfAWha6F2:V>!ouVd;Hm,R7LoZ1lMea*YdSAZHf![%:QW#0nKuW
+[iGYnD_W*0dU[J6=Ks*4O3,?a-@s-?^oCG="Z#X/L`uHak6$#[4Nt`I_;_^Z@?]%UQ&+&Ha,3%:
+<j]-7=JN_rnFQHe27%".ro;V<N@U"7N:Y8(+PeleP$HgAot.E.\[eT_EWa3rW!4=Y.ReJeI6rc,
+T2Y.qrk1(i'(2.+*BI?-.R]U+Od/NVPU=8WEk+s-=2d/dJ8k,rcP!Bg/d%q>JLtI!p%S1b?Uppr
+*FMS0(Q&5&=X$CnGb+0C#''5hqqLkk32+Lh`8Olua%*&s92;IM\n^[e.._[V\p$rX\QPceOQ>r:
+arAOhlKhCjX(]nD@c5fF7p[Xc/q%;7Z-PP7lHXr97#a[BXMW)nVE(i@=MNar.=N>6K!YjmBT6G'
+Ifp;30p_Ke8UPm>RNrsH!21AW,X;aUI9Q6lK.DH2%`_'c>b\$8kJokV$W9!<V=R">*$(dEGjs'V
+0>pl@.9<l4Zluk9[rq\eF<Jt$F3?t5):(mp/)0@A+Va>alejk^Jl:Un*u`\Oeqt@NHg6T'[4&oC
+s8F,*0JjXiZ<I2/]qD4$dbFM]ffi9qeXpN%Db2ri\-E/m4$c-fHq)`ff:V@SeL#Z&eK=@D8oWO)
+U7&Q/*uE3FY.PU`47EB1e2`BqEDgfue'#/$5i+dS=FM/(-9&8Y'-e@>-GcIp@YhYqh$T=\Jb<Kg
+#72r4$ls+(8]JaSK68-PMILXBC>N11(Fr,/g587n-O0lk<LSdXK]Im;$#(RYJh^!*h;+X\5)*X3
+eZZaeVV:,Ed@q0M:t@oI[E)ma&[K,uU/he8N2r6Mi?mPj,+=MNO*s0VJdcq=<FHAsiU[*`\i[e(
+c1+iA_&[]MS7Csu`3E%H/F;_;R*aqd5C0gN>egL*)`kq0p@dbgj-X1*V1%^Wg=t5SW'XU>d..eH
+!=,^P5>]\&$`YtuSb#56IcbA+-RMhg$T*jAA"\lqm_M>/Ui76IQW.N?\X@.h=N.&hZ$LFR3j)P,
+VmNX#?/6E365pHtK0HR<-#!^tUmFWY8a(=-1-3u._W'S8e_m;r>b\I7Ihp_!euPk+(p(_?&nf-r
+;RCajGVZmWASk<1L9pe$)[OH8a65KpTRHdp7_NDH(No]1"gpAjFFI5<*M'3XpSU(+gjmc:8j@f(
+g[2R5SsW@sk>d!/Shfb!</+CUgOUmSoX?^Kb]OI.Z$L':5K96)IX54h90;E@hUMP"#E%+`((iT=
+@2coObF8:&J"m/E@b'[=mQ&prEY,$8S6c"CQ&^>\Ldo2]$!<V7*$--[H&XN(J-9Lb5,#pu4(-\T
+&6W@Ia-$l?d1m)J*8cU9cSHJeNoat>]]%lbITCskFm6qb.0Z/tE(0)hkEPq90C/6Wo`b]+"0!;H
+L3#%@!]T<`)HQn5Gdq)p[=T?pm39LG'(-R@#cT8uG<AZs23c>M\5h-8"I]d&A<U\W!!>OdS/S@J
+5N=N1]s&!/5osMu6f2$\",!'_*K=mN?j%.3Q.?47:VrlT,j2M[4j@j(>"17C+WVRD>$KhnCmm_N
+mHks&`O[BdL/n3"D:SXC%lG9%<I4.:$a!?5qp0bfj?J&a%rOVYNDJF;q8K-+O466LVK>V+mM&\:
+RiG;O8>#=`HQV8pOlF'j*N`HsJ+4gbHd^UpW_@"$L`U9D?eWt_>dpl6](GDT^<%SLK#G)Im-a,h
+73Y?4mk>m\BajGAq2i/?9fcFeq8G4fREO,2kHn;M%Kng`4qiaWcb9epee(H*Yd5_?C60[='p[U-
+[8:dk:Opm0r]VL(7tL^OhR]mQL8o__VtEM^]e=k=K?mn%$3)r(p5GQalqX@\F,]8JQ=?0.R4_JI
+"\"*K4T&\u20#HPa/IYHgem4nN)Jh><W:o?hr10+X:AA.prTe<0>F;V3YU;A'4f`I*7^Rg39f2S
+hIFAmg&b_e7%UC_6*5:TE?2>4U%A&,9gF::d6_;V@6$S/LF+t])&>g,cAfXJ9qZ6]+?RO18fN-B
+(39''3N[c%gIgs@'6FrXqp+*sOp5f1<K3KGJG(8?4"N6,A.JcWJ[@>L5<=HW8l6ZQoM-!aN<Emo
+"0@I)BFjRVWSWb8meV&@3tb/]F1OW$=?A[s7e'"oe)Sq8lClR7j4\IDO9n%%4.$THc:7P2[b1d@
+4d6;Sj:b&B4M-2$c(G`_lMeXgEfAY,@EH<raQW<Y9mu:_c\0qXkI_LX)AT4(rTGgZ+0@!^G[6B!
+-+3cl(Nf&F^DuO$o*\3;qUm5r`U?H1S3sB"'b.AN*7%,X2?2XUg:qc7rEoPe111&mX`!T^MNo\]
+l`dh.B4tg@9n^t=$.LXAr3W]/c)i:O5_/BocYMq"^SIR$AoOFE$pcobj(D5^IV)!Xbi&LrRMt6<
+-MmuOhVpPM^H$7m.+3m?\.TP3_5%]c!39SZj[@&@Tbkd/7Yi%?+sDH2TA:Y(`8W2ZqP+3UM^"%[
+UG(M(V8#q]Zl3,ncJ#uKY11F1"Ts!LH@]S5L^T=*,Uhf`GYX0^n2VgKC\AGsh(\Ne,uK(nMPuU(
+hq&DuB$Ii?#Xt"-<N@S-A$5F6g^:N-K`?E1O$CQM+q8*Xs$-,>juh6cRRld]\AgCbi"!2Me^Z:*
+Qq."A#hMq$r_-+N[stW\g8jZj6bT/jGMgm#\%f%-rg*K4cYN,NQdkoslO_pWDS:Hgfq,8t?+lmu
+@^Vt*N`B1*-/RD0=9$bU#!>_!VkE#*ELe5UO!,nf>?mqFj`l#l+J?Mm9'63mB")(IGtdL,c]G(=
+BpWln_`a*/+Mg@.X:=?.m)mV$.GhoX%f+e.#YSsFMF4A*j(iJH*AgW4#KoVY_HCnnMaE)!XMIV(
+[p\AB%.W&t[/T#ic,<.J/ki8Ce5bW0q.E]OBOq7:YR*24l>Rt=oW4Wsq*!*^(Fh[mZFBhp*S%pp
+I3"T1lMULn<6&XDeh"[Nk46'u"eLO,c'&`lNP>?9711&L5+3]nWi2-E1gYQ,O$@\Q1XBCZ&Fk2Y
+GHiZ#0iIi@ir]T,d36^Ye@bX5LN!8k`!bun\chLoM"E0!"M%4gqRi)ej(h^@VUQBX-q[n`9oH9R
+;SVn.Q2S&H;t\*KC-u63SEGrO36HbF;Z8X&q`@$h]#*u!W["/1:R-SXlI[T+^`B^#fDVs)HDOk,
+p3k@XN9UNU2egmeA=HQ'=I_4)f*6re$8,bRF(@"'r6,hKJ/?]4(5S"T[P=:JHsB(Em!!Be$Z5n=
+,_7F2HEPV"\U$G5\?K;d!$NdiNG7kKG?#[MeDs9KWtmQL5PnPA+A;UfCTkFH07E($_ss47gsXB<
+HRVXE@VJB6D9P@?C`_<f9>0gJ^8^=K3G$BN4e*QinuJtX$B!4\Y!gBZ#W@`=lRMi)?1k97PbW\I
+HhIP!M?eHYWm]_PU'CVl%lO$L^D&#5V<Mr31fIeYB$_><bmkmP&+Kh/7m4GOFFIg7=hTaJ*9dYg
+@[e")TDM3%BJQ8"OQiZJDH(l-/o`fm)[\iF-6Z%'c7<6e.(SKu'"68)f*#fjT\*#br/T8h%0K,%
+@(D4($k*95CllmfmjtL7h&iWt1g=>a<MdG!Jf5K7],MUt;T(sAoBU-U>ZPTN4V1ojTV1SlTe[lh
+"it]Y^\k&L=2r_tQPa-X7&rP]%1ISbW'\U_jZ&qnCdN<">+pQ!Oes5;l>rGfNL[ij@]Z"Ana3UO
++\jWpQcLo73#8Y8EZnX["fV9,f,lGc#;U??G-!XGO&G%\%,TelS.QA9>$oqkOQ20Y\:%^uP.UqJ
+iDhFuSf'mDjgB;N;0>pQK4M4aP?Y'#H!C([eR7fl>QZ!ldUVY8TR<aI',Qm'FZO5WbW"&=^?-^T
+qB:./qBcKb*?&m]'.UVN?#F4bK6\s-7/JB*0=L0k!=<@0Mk_jV^._DP0R$sC/*qSP-g$[9)BM:<
+(.18LNkrrr/r>S)f(Q@1n(lO=kFN+M@)J?FYZVesbc?R;K_3m"Wr.)ZiP`F49ITr&ca!>EC2P-W
+FGp,CL23url1*2Z#$uRX6^Q-"nlO^FI<-Drd%_j9FoSp8dHGWW1=4Vq$*pG5TQ>q_jNYn$m.f4b
+cTDkU'i_sM;Aba[i_Gq`TqE&CLrEn6V.Q6b:i'91`%a0cLU%jgpKSgpa9]]Z7b6W1:Q@%S*\0II
+A4$Q'E`%j^:[i:]YZj9,Po*I%QPo!):i)G^('D#W6d<4b;LG=74-!1sT_L0(WFhRp_a(\1kYMKR
+PNa;bV=J1hS4KACLfWXAbBo"6O2\l!:/:u>3e_0\U"XA5(pV0sUrc;9Li'A@_&ZR-8JQ`C4Eo@h
+[+4L]T#g9sa.Z6^5YeS>Nc;DJ/\%X2[;_+8YF?ETiLbMoC9Y:u<VIr%+JWEXQUtW$K+B$%DsX3E
+8[R%ZQoo+]GA$U<Dn`4Ab+_AOc03I0L?;ACh>G1J;@,O4pmiM*HXp%Ah>uF^*GV<e=;TM]D%,--
+!f$:b0'?]*>B#W@QP"6-_BcnJocDHR)""agB7k!0!_l/nGAb;e+1["KKBn3i39+J1K>eI6@5U$\
+@EtkE=_.o2i#ruTUQMbgN(7$]ck*$tkXMP`8$;Y*U2I@3&^mDuIDoQ?=4&c67m8jK8;hpbQ+gXp
+Iqp<B0p'nX4I<e+"OJ+D$pLp*+b&GVWn_qhIrRm`'!\%3r0lVP_2WuQO_8b_+E"BiO_bMHFf\;$
+@D6gRAn2kN%Eee7P,,?m4lR"lOPlRYlNj)XCBI-TInD<?&3GdMjcJHsfFLRc?`c(hlh;G$a)nYh
+q8!0sliJ3#`q"7_PR5(oTk])Qf1I3$W[l8mQUuV)5XgpoKu30u)-;JgN\?B-ioT@R6\B#_'nO;R
+EsT*a';MnV1\h&gZqu.fh'"NjI;>nL+gH+FiJ$o+4N7IiU3/^C`FF+a6BN+j5>)2d-cq)64t4&"
+^GjK*?(.?KbP5mMLE7f`gW82"pB(,7OsV@Lh(IS(Aj4OYj6o)1?h85[?;Ee6%B7"<D:IF%Hg<0\
+ORd\)W':-g$KJ=_jem#ZY:R!Wf(rl^qu,ELPWkq!+$@s_Y3>T4->gTmr2q@W=G3<]V0tsY';,6)
+'*%WKKCQ&n]kFbHQS_F40bLQ5Qe_uWOUCO/VIB,8P8?JN4%NluJ_Xkm+^B4'opiJo@N6^.1\k0*
+RM7?'USnfc]=Q95VD779D!6/m<bTe,OpUD;=PSY;'_TLmh3D[BEp3ej/XeJp%ge;pBp9]rdm6\W
+r:O`m[/-&SFQ;8mU)4(d_\$$Pb6Bh_:!/:n.RP>W9b_8nckGJ`OpKUXQps]d,OOq@[uoTa:!ue;
+mB.4?2LnGEXsuF3=A!33rslk78T4pd'3qGZFib&-JoP8Y)k%%*KM-6aED"q125TCT:h*l(9e8FZ
+7?9ITBUGJaC=FMCDOe<s6btUSpns`_a2L\$2efV+)k%Y8<:e*EmI[3=V+PS,(((;8VRGF53i"mh
+:PX;`WG?7Fj6D4@B!OS2qqbPgo@b/K6R\A/h!jR'D!+@MHV@*CK7]4n&A-uPoOoYiqDY>"/e2#h
+os$J7AF]GiL9.N>U4cIo[C$H['alV'=\<72q4,`+iKpK-a'3V9&`>j,eRJgL2R%3-V')U$;ZjW:
+19.&kO5?AT,SR=3;DA(+X)sc_n8WcIKAjHIroEg<4?j%\*bs?pGmnuZ0"5Tuh!=UW4%b[QG7u=(
+5C%m)hQjXpm6CJXmB@_"l&pBU++?2m`fOM$:6*.&gQ6J?Yl=04OW)(Hjg9r=Qd-J'YRL#QYrsNu
+-O$cHklfq^U/S`s"J<utk9d\nRMGOgKTch5-^BRqbHk`t$&Khh-t&gT&A]/=1f'kp&^Xt]->:,,
+E*<Pl5a'8b!pQ$i+%>Q3'PAU1\5'$9VQn&Frgck'-(<eaBke-c&!rMMbX?L[.at^`W0B,)9.`.X
+X?tr`(Q6<f3^Vg1Jj$ONX[B^4plBEgY8F0]ddSQ4#6Dl=,D8^I@1GPokrU.7;1ZAaEIgM#PlALj
+:k`lpologS(eSqfVMWfh((*PTC%:Y]ln"V/N`IMTSdYfsY9%BFed'?LZ7/E0NQ#H8U.sbHZqD=.
+L!Y.-i?u.&gL`Vb1:[1o2jKD*!%'r1SaU6Z?:,d-F/O&ScJSZr])8rhKi%/*a:MM@Q:@QHG^nLF
+G.@9+fnlKlY"l9*p+k$&EB`>rQfYYkO$P]$%t=ks65To$DY7Yc\m]$E2,l-#rLJf:/H.tFS8T?N
+?2DW^G8ggJiKo:krDl%j[S56Jh0[;kTrt)ZG,S!p^\UUgU@[d3LIp!C;PXTQabH)5gCI8\9\7;W
+iYXM'SnOCL_?LJJf%3lNp7_a>jJ5Af/b.(qrWJ5_`AX[Bi-'Ji)oLI,X]F8/3_S3j?;"lT+V:EF
+,fa":)nOAhrJrhG[=_c&%1O+IK=G<`LQo??Fo"%EJd9;JV1\4kBqOj0:JO]M"&YKN@5S=)E=+7:
+)RX.j:BFu!),.CK#uF@[LfCiG[u*8p;?mB`6hq3['V)O87>q\>4[QA!<2t)"YOQiHF4V9]mO[Un
+7f.Dq*?-D@WK4pgH/@B>kiIk&oLV3^iR-D!qN8_Q<T:-$IAGC'1KteDYSbJ%iJVohpG@"&JHH=H
+;1CBgV?541UAT3-lFCkT\'s]A2Q!go[O(@2%s7Hg^SUHe)#aAF[//c^jX1:#.DP):+4s=`:J,h3
+Fn#._;>1C/k>7Yk$hLk0Q"3p9PEg(a_=).$F3at%XV3`cfRS9i<2>.q7!':SL07ejrtOM&.!fi^
+!B9HOdDMZC@+TVPo3>OD$cH`7m>XeoUc1V#`O%j6$D0#^%[ah!hsLcfjQT$T&K8?rc73l8hsuY/
+M<,jKB;@0+)iEba1UI0!,NEQ:T_5=]RrP"I>46((N<PC!`]IOSi1-Z+7uu>n`B=U`Rrk5E=3.O9
+;5I%/4.I3h"SaJAEZda7W@jLJ3TMaCU"M39"'KPDFX;HlKscSWS'K1-..oCpZ+C3aE9l4lZ":0P
+i&[E#YXRb\rUDK4PGr\$B"S)<G6/sLo3(cBX[4LRT!ZSTLa@4r9V7pcn?\SUp"oE&jMj2F)E'3H
+,T5hg<@<K[N?e-+^^G=@rS8^l9X4$dK-&g^X.r1G+PUT^a'*dF=juH`^S8rUISj<&s+7ERVa&NA
+0AHPum'@mN\R=CuZ&RU-31hR]CsiA)7=/!)^`5ODX`@1C]Y'*%YeWB%!;C^G:QWn_%[O[`aNck3
+]?p+b[ga,GG*hnbRl]`a89G;4hRKA!C5\u(2j.:s7F`,jI.?bAf0l<c'fKfG]b+fgE^&sA2hDTf
+5$UpJ]gnlDMZ1Lp<P(#c/7HsF_bH\seP-K*lpu'M<bmcPY#AiYf=n1-U8nO5E\h>=0$)K<kbD>J
+$/*WdZ6hZ[`BoruOs&B2%F#KF?m]op?),BAi9\iQDQSgjL&hU@cXpd]Ch`.<j'?;0d+jnccob#7
+JpQ:G=7"JlA;#`sL3=XP9jh(Za42O&#89t0l?r_H4'E:TR/"KQ)n(WggF7hDjI(p)@J-/pL1d!>
+hOddP6a3\CPp-ICFC+p402YoN.*A-5mSQl&]$A"a\m<.+*#lc-'aP=;SL&n+`8"K_ahAkpK$d]G
+f5\tp#S6N;lpaf*632;7'h:i#:1.!:7^"%NXk3$Tp6N;B?]`2cn%SK_[K#g$e4F.nl/>OmVgJMC
+>[-%4$G!_Sd\Qa/rk+!<+2HP%*d\X6=>_%4Ock-*)V5fEdi:&a:!a<_0Y?DmT^+6pYN,<KYS609
+QiE>ZLbeG5n[:&6E?S;_G=^K/kZoG^Pe;MC*c=OI&7)QYQ@L;Q1=NSq2U(,0.Chh7D+]+!<5IBP
+?!^hB!?#ne1^YiL\BkiMJ+>>;#Na")I3VD,)?VZRG*oA`5?K/*6T6KQKhnWZ%".mhV&@&q^,\`<
+f4B)+I-mhGHAj1N:Y_Wn6fYUtRk8l(L%d=O55Uku2_ZdVmjuh35"j+;K9cXCTTO1c^6&<C;k_b(
+'mJ)<G^EmWdVs+@b0`Y85[<RgG3$@`U/hV!m-LRp^gbqJbZWLT%V=H1HMf>?e]8'So63HO2b\Mf
+-T"=5G<GsC8F8XT9^m_fgDh9cb`bhrh&5/,HV1(!j)@P?Xh7E,4"6lj+a*/^mTr!93Qgugj.#M`
+.03idJrIrb?&'P4K_OSg1&q:[D+R,]<(+jBl)<#@+i`_:(RLGMdF9V\n+u=$@_HL;>n93ifMrAn
+^[L))WF8TSQ[7a/;5mJg%!_^+T;ZOp?1?'H'1BA*@s9okhMr"Ne2eJCZUfjh9EW$aB-Y5-=dPnS
+9cgRf-5C0#c5!ufnH+E(m+.kjhg.f+ASQMW$Wt%6Sl.?\2"@!3['m>-&S+&s/CkRqFSFWZ?%;FN
+>.E,V[pN(k,)qc]-#GPRWIO"[9#'kKhLG:;&.Q8kArE&5`C.;+*SQ#AFmCB6SY&b&S($@?HP.sW
+"L[NnjY<4O+27=i'?Pj5]T0c*Wo>.DYcC8)(h7]5<)\m]pKb=/kZp%UeZZae<nK(m^"dQ*r&.$h
+SZ,2P8$"o?,5Ja,A(TYOOigm8S=.@lY)UrUFOO'_)'e_L!G#p,DgnACgc,hdLK\&;Lu>DLi<+Ik
+47j\8L%aLe)'\1JR4CnDntL1#Pcd5l/\$m>f7Bf[+CX+0@93eU++EL0aTk9>e9d4M/%WW;G'nMa
+.ff]AGGmYEDm7\"?,AqIaVu-sD%5=6+YoVHMMf"\i;]M_8mcgo]oT[b$%I>mKFQFWhbnCuLGc8k
+'.?A.,])dKn*nb$Y3qR3`^Z5?qC.\s^^`5Q*rN/>G[?khom^]$VDXb*eEl(??Wm;PRf1F+^]#rO
+^8QF3=)lUb%0Xl4F.^lu@?3QI&/m1]7*LKg5DH3\dBC'0=//^C)S7\uNLb2<o(3aGr@8DEZk$?H
+o\<7"]W:2(I\pP^#Gg7jUWU(FQ9)jd,1>S4CXX4"[?l%+WJe:8-;qJsC'ZnCf"=5q$fj)A*q"-A
+6EJ?2p[?Cua_#I8ELp\5k'1Y,3ErlJ\CQa-WR\KPFmtCZBs:3,jk^*)(aQpfl+THS4SP'a3$H2M
+S\mhKVde.Kl<U09g8*9Lai%pbhARr;pqlW[&`,(6^&-?6Nub[eG#][8pD9+)G<\Kl$HQpEG>1O(
+GEcdhA93$e2e>$o8>5SJUEc53&9*ZK3VfM$,$c$eAu%p9lp9ij1sL_,[T8d9ci@8Y-jKLdO`!-+
+4;2;[_6Z3Gk9-8=i\!&IFuoF)HO=1u7h+nnmMI2eJT8kP6`Q$5E3mF/!K@^)(C2P:^8(lqh(uko
+.rKgK\=d8p@?EHqK)tU=N$<^o<LF]R!']e-Npl;M"H>]Acn:^NAuf8"<"WQMO&Wa^p-#hJ2!$.N
+1iS`>?:!D#=Pibu8IYFnh"+/9aqo.ls.O'NY7?6Bd3BtF:Uhe:NMkXcAU0onTIC/gQIFDD-:PPY
+$20PcauY"_995a\?)od1HcrRu7)R$tU#AuNa7j`IpYSo!QDh($U3F$]oZG6Tg1;Sd4$D(HF:Y=m
+m^-+8Vru`cgiqkces7C.G3-@`J*/b47#5p41.HT(b>+FQSpC:VX/[hhk5Xpl\:@/F+ng,*-R);/
+PeaqU[&GO0S*8#\qh8UHiJOi:pHR7a/mK`NO.f\3E-9/[:@Z>A]Khg!'#eSUggOVh/@(I,^Xc4*
+K>#,C$<Nl@.=r/%FLY(Z2[F*4+FXd()_GqLnnWE/doL0s#ibXVDlE6p#KdiT\Aacn=M*-D<>jed
+9XE!(JQ758kN'-^SYY335^i'!lF\kspGa03h>9#X=c[ePGT+*WB-/>F=4EtG=!MR*6R]iYV8Nd5
+b4f\5rCd$_C^S/+7]ml,gc,>R%`M0C9ls]8[fZ9^(r%$OA(No7l5P"l6\I7:ZK_Jh-<j<_cAc:`
+L'<AbC5<'\`&2_I[KoaZiT+Li,m."V?@IXb,=V;ZUbtJ)An?CEIc?qO:L2IN]YP)aMJes!Y!SW1
+T4mKK(LPa%-5f_NbC^U`S%59R6>]Lo>`Tr!+j^SpT79U_A=#Us:!QFHIXP?&;#.)os+Y82iKQKa
+_sE-DA+^o"S_'-XMd`HKWF*5.glq3b4jDLgD5N,(0!O]kL7`"WTX.,&%:_46h/E8i4_2@<-Mpmn
+TG*akS8fPNqoQt-Yj+-*MjK1L.1)';m4,?`gj[^gPVRZH9'mkalSG/Y<[V_D44u,uOG]*7N\q0>
+W@kXMZgu:4lUjOMhF5#0\8jVl#&HHD^^3!!F*hg-E:Ghq^nn^XFi$R:bUj#]NjtOlFH2mRCo=:[
+N5#:mLY<VdSUD,.:X#cGbCpucZM=+EhEYKZL/bs:PSuSqLo:E7&;_*+N!)'iS:lOrI4QhXfFP3f
+9sI\Ni_>Y6ah^J7M&d4'&KYC\NFUHA\o(hPS_di`c!\$t:jLk*e:\WJs01C)oY!:7P]gFG)qQ_*
+SLQXA68/HF:&nE$Uq0hGfQIkY#N1Y/$9B6#]Ajrf_`4a<G!4d-q")RR^Gb.i40072LAPS=3(,i`
+@opo+P8t[l%<oqHZA]1fSfURM-1KqR;2`)ap[R"DOC>N/[,k6'l[aM3p$B35S#fi,??c*8*Gob;
+c:>)$D='h(mQD'C;3(P7PsF477"tM7=Gc/]/r$iGIGu5b\=uj;21B\pDqt2qZFgsdoCH2Ff\^O`
+mY&&biN?jJo18MjDr`P`<Ma[$B0Vhh$HML1iml"<i>?bEY8WS`LG<U]m.4iYflMa,R.OYRnQ*9Y
+:i1A=Tnr+aH,<bA`bUk$XNN[pbo?*@fgQr+O`*G\1k]DQ:XOjPit59=/'gI[%_7m95gKTJ':#Uo
+25';K>+D#)*1!)lS&&*pK_[2WQhpZ#jiG$j.C[j&qi3CKl4D8.!l<QdCLk+u:uLZ?]JSoD-Ia0[
+)r-#0+d;PqDBmSC0etl2rsoIuV\&^+j4jV7!!#SZ:.26O@"J@Y
+EndImage2
+Fore
+SplineSet
+262 306 m 1,0,-1
+ 492 147 l 0,1,2
+ 692 177 692 177 720.505859375 448.232421875 c 0,3,4
+ 736 596 736 596 723 593 c 24,5,6
+ 658 579 658 579 652 616.5 c 0,7,8
+ 648 645 648 645 663 656 c 0,9,10
+ 709 688 709 688 714 713 c 0,11,12
+ 844 1341 844 1341 287 644.5 c 0,13,14
+ 285 642 285 642 219 710 c 0,15,16
+ 167.753604671 763.296251142 167.753604671 763.296251142 391 959.5 c 0,17,18
+ 590.938960187 1134.94643756 590.938960187 1134.94643756 701.5 1213.5 c 24,19,20
+ 822 1299 822 1299 881.5 1308 c 24,21,22
+ 907 1272 907 1272 881.5 1240.5 c 24,23,24
+ 866.507909605 1215.83559322 866.507909605 1215.83559322 845.5 964.5 c 24,25,26
+ 828 758 828 758 840 744 c 24,27,28
+ 863 715 863 715 994 782 c 0,29,30
+ 1117 844 1117 844 1104 970.5 c 24,31,32
+ 1087.019678 1128.81653162 1087.019678 1128.81653162 1106 1201.5 c 24,33,34
+ 1122.86034035 1266.46189957 1122.86034035 1266.46189957 1189 1296 c 24,35,36
+ 1266.92464155 1330.89163054 1266.92464155 1330.89163054 1260.5 1270.5 c 24,37,38
+ 1233 1012 1233 1012 1229.58544922 808.42578125 c 0,39,40
+ 1222 396 1222 396 1174.5 357 c 0,41,42
+ 1112 306 1112 306 1113 228 c 24,43,44
+ 1114 162 1114 162 1177.5 154 c 0,45,46
+ 1280 142 1280 142 1342 204 c 24,47,48
+ 1387 249 1387 249 1423 214.5 c 24,49,50
+ 1430.04446951 134.494953393 1430.04446951 134.494953393 1352.5 91.5 c 24,51,52
+ 1258.84473377 39.9144790305 1258.84473377 39.9144790305 1120 46.5 c 24,53,54
+ 1008.33696372 51.9834526746 1008.33696372 51.9834526746 973 109.5 c 24,55,56
+ 945 155 945 155 979 276 c 24,57,58
+ 1023 344 1023 344 1064.5 432 c 24,59,60
+ 1116 541 1116 541 1115.5 561 c 0,61,62
+ 1111 699 1111 699 1109.5 700.5 c 24,63,64
+ 1102 708 1102 708 973 672 c 0,65,66
+ 822 630 822 630 822 450 c 24,67,68
+ 823 314 823 314 791.5 247.5 c 24,69,70
+ 734 124 734 124 664 81.5 c 0,71,72
+ 530 -1 530 -1 458.5 29 c 0,73,74
+ 210 134 210 134 262 306 c 1,0,-1
+EndSplineSet
+EndChar
+
+StartChar: asciicircum
+Encoding: 94 94 40
+Width: 1621
+Flags: W
+AnchorPoint: "top" 786 1370 basechar 0
+AnchorPoint: "bottom" 792 -68 basechar 0
+LayerCount: 2
+Fore
+SplineSet
+794 1290 m 1,0,1
+ 791 150 791 150 795 90 c 1,2,-1
+ 795 87 l 2,3,4
+ 795 29 795 29 646 7 c 0,5,6
+ 594 0 594 0 545 0 c 0,7,8
+ 448 0 448 0 361 29 c 0,9,10
+ 228 72 228 72 20 300 c 1,11,-1
+ 20 500 l 1,12,13
+ 341 213 341 213 469.5 163.5 c 128,-1,14
+ 598 114 598 114 620 200 c 1,15,-1
+ 620 500 l 1,16,17
+ -459 826 -459 826 341 1102 c 1,18,-1
+ 794 1290 l 1,0,1
+620 1075 m 1,19,20
+ -180 840 -180 840 620 668 c 1,21,-1
+ 620 1075 l 1,19,20
+816 744 m 1,22,23
+ 800 866 800 866 800 961 c 0,24,25
+ 800 1276 800 1276 980 1298 c 0,26,27
+ 1034 1305 1034 1305 1083 1305 c 0,28,29
+ 1246 1305 1246 1305 1350 1230 c 0,30,31
+ 1485 1133 1485 1133 1423 938.5 c 128,-1,32
+ 1361 744 1361 744 1279.5 597.5 c 128,-1,33
+ 1198 451 1198 451 1148.5 365 c 128,-1,34
+ 1099 279 1099 279 1049 197 c 128,-1,35
+ 999 115 999 115 1599 515 c 1,36,-1
+ 1499 315 l 1,37,38
+ 1271 61 1271 61 1083 13 c 0,39,40
+ 1036 2 1036 2 1001 2 c 0,41,42
+ 893 2 893 2 891 111 c 0,43,44
+ 888 257 888 257 1072.5 547 c 128,-1,45
+ 1257 837 1257 837 1264 987 c 128,-1,46
+ 1271 1137 1271 1137 1179.5 1164.5 c 128,-1,47
+ 1088 1192 1088 1192 1028 1162.5 c 128,-1,48
+ 968 1133 968 1133 968 841 c 1,49,-1
+ 816 744 l 1,22,23
+EndSplineSet
+Validated: 33
+EndChar
+
+StartChar: a
+Encoding: 97 97 41
+Width: 1100
+Flags: W
+AnchorPoint: "bottom" 441 -48 basechar 0
+AnchorPoint: "top" 453 1335 basechar 0
+LayerCount: 2
+Fore
+SplineSet
+794 1290 m 1,0,1
+ 791 150 791 150 795 90 c 1,2,-1
+ 795 87 l 2,3,4
+ 795 29 795 29 646 7 c 0,5,6
+ 594 0 594 0 545 0 c 0,7,8
+ 448 0 448 0 361 29 c 0,9,10
+ 228 72 228 72 20 300 c 1,11,-1
+ 20 500 l 1,12,13
+ 341 213 341 213 469.5 163.5 c 128,-1,14
+ 598 114 598 114 620 200 c 1,15,-1
+ 620 500 l 1,16,17
+ -459 826 -459 826 341 1102 c 1,18,-1
+ 794 1290 l 1,0,1
+620 1075 m 1,19,20
+ -180 840 -180 840 620 668 c 1,21,-1
+ 620 1075 l 1,19,20
+EndSplineSet
+Validated: 33
+EndChar
+
+StartChar: ii
+Encoding: 98 98 42
+Width: 1639
+Flags: W
+LayerCount: 2
+Fore
+SplineSet
+1116 507 m 1,0,-1
+ 1366 357 l 1,1,-1
+ 1116 210 l 1,2,-1
+ 871 357 l 1,3,-1
+ 1116 507 l 1,0,-1
+1120 910 m 1,4,-1
+ 1402 762 l 1,5,-1
+ 1120 615 l 1,6,-1
+ 842 762 l 1,7,-1
+ 1120 910 l 1,4,-1
+708 573 m 256,8,9
+ 708 413 708 413 781.5 296.5 c 128,-1,10
+ 855 180 855 180 1045 45 c 1,11,12
+ 790 162 790 162 683 283.5 c 128,-1,13
+ 576 405 576 405 576 573 c 0,14,15
+ 576 743 576 743 681 861.5 c 128,-1,16
+ 786 980 786 980 1045 1100 c 1,17,18
+ 859 964 859 964 783.5 848.5 c 128,-1,19
+ 708 733 708 733 708 573 c 256,8,9
+1161 1100 m 1,20,21
+ 1399 981 1399 981 1499.5 860.5 c 128,-1,22
+ 1600 740 1600 740 1600 573 c 0,23,24
+ 1600 401 1600 401 1501 283 c 128,-1,25
+ 1402 165 1402 165 1161 45 c 1,26,27
+ 1337 180 1337 180 1407 295.5 c 128,-1,28
+ 1477 411 1477 411 1477 573 c 0,29,30
+ 1477 732 1477 732 1409 848 c 128,-1,31
+ 1341 964 1341 964 1161 1100 c 1,20,21
+184 1301 m 1,32,-1
+ 365 1183 l 1,33,-1
+ 368 834 l 1,34,-1
+ 600 970 l 1,35,-1
+ 600 775 l 1,36,-1
+ 365 643 l 1,37,-1
+ 365 9 l 1,38,-1
+ 177 109 l 1,39,-1
+ 178 570 l 1,40,-1
+ 2 479 l 1,41,-1
+ 0 681 l 1,42,-1
+ 178 760 l 1,43,-1
+ 184 1301 l 1,32,-1
+EndSplineSet
+Validated: 1
+EndChar
+
+StartChar: uu
+Encoding: 99 99 43
+Width: 1792
+Flags: W
+LayerCount: 2
+Fore
+SplineSet
+1292 625 m 1,0,-1
+ 1530 471 l 1,1,-1
+ 1292 316 l 1,2,-1
+ 1059 471 l 1,3,-1
+ 1292 625 l 1,0,-1
+1295 1045 m 1,4,-1
+ 1565 892 l 1,5,-1
+ 1295 738 l 1,6,-1
+ 1030 892 l 1,7,-1
+ 1295 1045 l 1,4,-1
+902 694 m 256,8,9
+ 902 526 902 526 972 406 c 128,-1,10
+ 1042 286 1042 286 1225 146 c 1,11,12
+ 982 268 982 268 879.5 393.5 c 128,-1,13
+ 777 519 777 519 777 694 c 0,14,15
+ 777 871 777 871 878 994 c 128,-1,16
+ 979 1117 979 1117 1225 1241 c 1,17,18
+ 1045 1100 1045 1100 973.5 981 c 128,-1,19
+ 902 862 902 862 902 694 c 256,8,9
+1334 1241 m 1,20,21
+ 1562 1119 1562 1119 1657 993 c 128,-1,22
+ 1752 867 1752 867 1752 694 c 0,23,24
+ 1752 516 1752 516 1658.5 392.5 c 128,-1,25
+ 1565 269 1565 269 1334 146 c 1,26,27
+ 1502 286 1502 286 1568.5 406 c 128,-1,28
+ 1635 526 1635 526 1635 694 c 0,29,30
+ 1635 859 1635 859 1570 979.5 c 128,-1,31
+ 1505 1100 1505 1100 1334 1241 c 1,20,21
+17 729 m 1,32,33
+ 1 851 1 851 1 946 c 0,34,35
+ 1 1261 1 1261 181 1283 c 0,36,37
+ 235 1290 235 1290 284 1290 c 0,38,39
+ 447 1290 447 1290 551 1215 c 0,40,41
+ 686 1118 686 1118 624 923.5 c 128,-1,42
+ 562 729 562 729 480.5 582.5 c 128,-1,43
+ 399 436 399 436 349.5 350 c 128,-1,44
+ 300 264 300 264 250 182 c 128,-1,45
+ 200 100 200 100 800 500 c 1,46,-1
+ 700 300 l 1,47,48
+ 472 46 472 46 284 -2 c 0,49,50
+ 237 -13 237 -13 202 -13 c 0,51,52
+ 94 -13 94 -13 92 96 c 0,53,54
+ 89 242 89 242 273.5 532 c 128,-1,55
+ 458 822 458 822 465 972 c 128,-1,56
+ 472 1122 472 1122 380.5 1149.5 c 128,-1,57
+ 289 1177 289 1177 229 1147.5 c 128,-1,58
+ 169 1118 169 1118 169 826 c 1,59,-1
+ 17 729 l 1,32,33
+EndSplineSet
+Validated: 33
+EndChar
+
+StartChar: ee
+Encoding: 100 100 44
+Width: 2178
+Flags: W
+LayerCount: 2
+Fore
+SplineSet
+1686 519 m 1,0,-1
+ 1925 366 l 1,1,-1
+ 1686 210 l 1,2,-1
+ 1452 366 l 1,3,-1
+ 1686 519 l 1,0,-1
+1689 940 m 1,4,-1
+ 1960 787 l 1,5,-1
+ 1689 633 l 1,6,-1
+ 1424 787 l 1,7,-1
+ 1689 940 l 1,4,-1
+1295 589 m 256,8,9
+ 1295 422 1295 422 1365 300.5 c 128,-1,10
+ 1435 179 1435 179 1619 39 c 1,11,12
+ 1375 161 1375 161 1272.5 287.5 c 128,-1,13
+ 1170 414 1170 414 1170 589 c 0,14,15
+ 1170 765 1170 765 1271 888.5 c 128,-1,16
+ 1372 1012 1372 1012 1619 1137 c 1,17,18
+ 1439 996 1439 996 1367 876 c 128,-1,19
+ 1295 756 1295 756 1295 589 c 256,8,9
+1728 1137 m 1,20,21
+ 1957 1014 1957 1014 2052 887.5 c 128,-1,22
+ 2147 761 2147 761 2147 589 c 0,23,24
+ 2147 411 2147 411 2053.5 287 c 128,-1,25
+ 1960 163 1960 163 1728 39 c 1,26,27
+ 1896 179 1896 179 1963 299 c 128,-1,28
+ 2030 419 2030 419 2030 589 c 0,29,30
+ 2030 755 2030 755 1965 875.5 c 128,-1,31
+ 1900 996 1900 996 1728 1137 c 1,20,21
+490 1301 m 1,32,-1
+ 700 1200 l 1,33,-1
+ 700 941 l 1,34,-1
+ 1247 945 l 1,35,-1
+ 1090 765 l 1,36,-1
+ 700 761 l 1,37,-1
+ 700 200 l 1,38,-1
+ 1300 200 l 1,39,-1
+ 1053 0 l 1,40,-1
+ 53 0 l 1,41,-1
+ 200 200 l 1,42,-1
+ 500 200 l 1,43,-1
+ 500 765 l 1,44,-1
+ -10 768 l 1,45,-1
+ 190 941 l 1,46,-1
+ 490 941 l 1,47,-1
+ 490 1301 l 1,32,-1
+EndSplineSet
+Validated: 1
+EndChar
+
+StartChar: ka
+Encoding: 101 101 45
+Width: 1349
+Flags: W
+AnchorPoint: "bottom" 638 -37 basechar 0
+AnchorPoint: "top" 632 1379 basechar 0
+LayerCount: 2
+Fore
+SplineSet
+590 1211 m 1,0,-1
+ 600 700 l 1,1,-1
+ 800 700 l 2,2,3
+ 1200 700 1200 700 1100 500 c 1,4,5
+ 800 300 800 300 900 250 c 128,-1,6
+ 1000 200 1000 200 1200 400 c 1,7,-1
+ 1200 100 l 1,8,9
+ 1000 0 1000 0 850 0 c 128,-1,10
+ 700 0 700 0 650 150 c 128,-1,11
+ 600 300 600 300 800 500 c 1,12,-1
+ 600 500 l 1,13,-1
+ 600 0 l 1,14,-1
+ 400 100 l 1,15,-1
+ 400 300 l 1,16,-1
+ 400 500 l 1,17,-1
+ 100 500 l 1,18,-1
+ 0 700 l 1,19,-1
+ 400 700 l 1,20,-1
+ 400 900 l 1,21,-1
+ 400 1301 l 1,22,-1
+ 590 1211 l 1,0,-1
+EndSplineSet
+Validated: 33
+EndChar
+
+StartChar: kha
+Encoding: 102 102 46
+Width: 1079
+Flags: W
+AnchorPoint: "top" 339 1363 basechar 0
+AnchorPoint: "bottom" 378 -26 basechar 0
+LayerCount: 2
+Fore
+SplineSet
+640 1305 m 1,0,-1
+ 640 298 l 1,1,2
+ 720 97 720 97 880 298 c 1,3,-1
+ 880 97 l 1,4,-1
+ 800 -3 l 1,5,6
+ 560 -3 560 -3 480 197 c 1,7,-1
+ 480 398 l 1,8,-1
+ 480 1100 l 1,9,-1
+ 160 1100 l 1,10,-1
+ 160 699 l 1,11,-1
+ 160 97 l 1,12,-1
+ 6 -3 l 1,13,-1
+ 0 1305 l 1,14,-1
+ 640 1305 l 1,0,-1
+EndSplineSet
+Validated: 33
+Kerns2: 49 -327 "'kern' Horizontal Kerning in Latin lookup 0-2"
+EndChar
+
+StartChar: ga
+Encoding: 103 103 47
+Width: 1329
+Flags: W
+AnchorPoint: "bottom" 602 -43 basechar 0
+AnchorPoint: "top" 566 1370 basechar 0
+LayerCount: 2
+Fore
+SplineSet
+1204 1205 m 1,0,-1
+ 1204 0 l 1,1,-1
+ 354 0 l 1,2,3
+ 272 -9 272 -9 209 -9 c 0,4,5
+ 14 -9 14 -9 14 85 c 2,6,-1
+ 14 429 l 1,7,-1
+ 210 336 l 1,8,-1
+ 210 132 l 1,9,-1
+ 1010 132 l 1,10,-1
+ 1010 645 l 1,11,-1
+ 310 645 l 1,12,13
+ 14 608 14 608 14 770 c 2,14,-1
+ 14 1290 l 1,15,-1
+ 184 1205 l 1,16,-1
+ 184 774 l 1,17,-1
+ 524 774 l 1,18,-1
+ 1010 777 l 1,19,-1
+ 1010 1287 l 1,20,-1
+ 1204 1205 l 1,0,-1
+EndSplineSet
+Validated: 33
+EndChar
+
+StartChar: h
+Encoding: 104 104 48
+Width: 1569
+Flags: W
+AnchorPoint: "top" 760 1326 basechar 0
+AnchorPoint: "bottom" 817 -39 basechar 0
+LayerCount: 2
+Fore
+SplineSet
+76 1148 m 1,0,-1
+ 251 1232 l 1,1,2
+ 151 897 151 897 188 749.5 c 128,-1,3
+ 225 602 225 602 360 455.5 c 128,-1,4
+ 495 309 495 309 667 201 c 128,-1,5
+ 839 93 839 93 1097 118 c 128,-1,6
+ 1355 143 1355 143 1288 339.5 c 128,-1,7
+ 1221 536 1221 536 911 645 c 1,8,-1
+ 755 525 l 1,9,-1
+ 495 393 l 1,10,-1
+ 495 522 l 1,11,-1
+ 839 768 l 1,12,-1
+ 1183 1148 l 1,13,-1
+ 323 1148 l 1,14,-1
+ 510 1284 l 1,15,-1
+ 1510 1284 l 1,16,-1
+ 1355 1108 l 1,17,-1
+ 1183 897 l 1,18,-1
+ 1011 730 l 1,19,20
+ 1432 514 1432 514 1479 412 c 0,21,22
+ 1510 344 1510 344 1510 264 c 0,23,24
+ 1510 222 1510 222 1502 176 c 0,25,26
+ 1477 43 1477 43 1198 10 c 0,27,28
+ 1126 1 1126 1 1056 1 c 0,29,30
+ 853 1 853 1 665 74 c 0,31,32
+ 411 171 411 171 235 366.5 c 128,-1,33
+ 59 562 59 562 19 730 c 0,34,35
+ 7 778 7 778 7 834 c 0,36,37
+ 7 970 7 970 76 1148 c 1,0,-1
+EndSplineSet
+Validated: 33
+EndChar
+
+StartChar: ca
+Encoding: 105 105 49
+Width: 1191
+Flags: W
+AnchorPoint: "top" 562 1320 basechar 0
+AnchorPoint: "bottom" 622 -33 basechar 0
+LayerCount: 2
+Fore
+SplineSet
+700 1263 m 1,0,-1
+ 955 1263 l 1,1,-1
+ 600 921 l 1,2,-1
+ 317 589 l 1,3,-1
+ 964 17 l 1,4,-1
+ 700 17 l 1,5,-1
+ 446 231 l 1,6,-1
+ 8 594 l 1,7,-1
+ 300 874 l 1,8,-1
+ 700 1263 l 1,0,-1
+EndSplineSet
+Validated: 1
+EndChar
+
+StartChar: ja
+Encoding: 106 106 50
+Width: 1330
+Flags: W
+AnchorPoint: "top" 585 1336 basechar 0
+AnchorPoint: "bottom" 630 -35 basechar 0
+LayerCount: 2
+Fore
+SplineSet
+768 1294 m 1,0,-1
+ 953 1301 l 1,1,-1
+ 825 920 l 1,2,-1
+ 1191 925 l 1,3,-1
+ 1050 742 l 1,4,-1
+ 768 742 l 1,5,-1
+ 641 330 l 1,6,-1
+ 550 48 l 1,7,8
+ 458 -32 458 -32 366.5 5.5 c 128,-1,9
+ 275 43 275 43 142 330 c 2,10,-1
+ 0 639 l 1,11,-1
+ 141 772 l 1,12,-1
+ 408 194 l 1,13,-1
+ 583 742 l 1,14,-1
+ 242 742 l 1,15,-1
+ 366 920 l 1,16,-1
+ 641 922 l 1,17,-1
+ 768 1294 l 1,0,-1
+EndSplineSet
+Validated: 33
+EndChar
+
+StartChar: ta
+Encoding: 107 107 51
+Width: 1203
+Flags: W
+AnchorPoint: "top" 513 1334 basechar 0
+AnchorPoint: "bottom" 534 -22 basechar 0
+LayerCount: 2
+Fore
+SplineSet
+0 1301 m 1,0,-1
+ 900 1301 l 1,1,2
+ 1138 1306 1138 1306 910 994 c 1,3,-1
+ 700 674 l 1,4,-1
+ 1138 126 l 1,5,-1
+ 1000 9 l 1,6,-1
+ 558 542 l 1,7,-1
+ 162 9 l 1,8,-1
+ 0 126 l 1,9,-1
+ 364 596 l 1,10,-1
+ 761 1120 l 1,11,-1
+ 100 1120 l 1,12,-1
+ 0 1301 l 1,0,-1
+EndSplineSet
+Validated: 33
+EndChar
+
+StartChar: tha
+Encoding: 108 108 52
+Width: 1261
+Flags: W
+AnchorPoint: "top" 547 1347 basechar 0
+AnchorPoint: "bottom" 571 -33 basechar 0
+LayerCount: 2
+Fore
+SplineSet
+180 1305 m 1,0,1
+ 845 1303 845 1303 887 1303 c 0,2,3
+ 1173 1303 1173 1303 961 1087 c 1,4,-1
+ 580 640 l 1,5,-1
+ 880 634 l 1,6,-1
+ 980 466 l 1,7,-1
+ 450 485 l 1,8,-1
+ 218 164 l 1,9,-1
+ 980 156 l 1,10,-1
+ 1080 0 l 1,11,-1
+ 236 -1 l 2,12,13
+ -56 0 -56 0 12 150 c 128,-1,14
+ 80 300 80 300 444 751 c 1,15,-1
+ 780 1137 l 1,16,-1
+ 80 1137 l 1,17,-1
+ 180 1305 l 1,0,1
+EndSplineSet
+Validated: 33
+EndChar
+
+StartChar: m
+Encoding: 109 109 53
+Width: 1154
+Flags: W
+AnchorPoint: "top" 429 1310 basechar 0
+AnchorPoint: "bottom" 507 -22 basechar 0
+LayerCount: 2
+Fore
+SplineSet
+10 1267 m 1,0,-1
+ 600 1263 l 1,1,2
+ 810 1254 810 1254 860 1037 c 128,-1,3
+ 910 820 910 820 810 378 c 1,4,-1
+ 1000 236 l 1,5,-1
+ 910 120 l 1,6,-1
+ 748 253 l 1,7,8
+ 610 20 610 20 460 2.5 c 128,-1,9
+ 310 -15 310 -15 188.5 20 c 128,-1,10
+ 67 55 67 55 56 200 c 1,11,-1
+ 51 626 l 1,12,13
+ 67 1020 67 1020 300 800 c 1,14,-1
+ 670 500 l 1,15,16
+ 772 820 772 820 724.5 971.5 c 128,-1,17
+ 677 1123 677 1123 470 1120 c 2,18,-1
+ 77 1120 l 1,19,-1
+ 10 1267 l 1,0,-1
+200 659 m 1,20,-1
+ 200 200 l 1,21,22
+ 276 121 276 121 410 158 c 1,23,24
+ 576 220 576 220 610 364 c 1,25,-1
+ 200 659 l 1,20,-1
+EndSplineSet
+Validated: 33
+EndChar
+
+StartChar: n
+Encoding: 110 110 54
+Width: 1360
+Flags: W
+AnchorPoint: "top" 585 1337 basechar 0
+AnchorPoint: "bottom" 642 -19 basechar 0
+LayerCount: 2
+Fore
+SplineSet
+210 1291 m 1,0,-1
+ 935 1298 l 1,1,-1
+ 935 793 l 1,2,3
+ 1210 720 1210 720 1274.5 570 c 128,-1,4
+ 1339 420 1339 420 1277 168 c 1,5,-1
+ 1110 20 l 1,6,7
+ 1165 420 1165 420 1118.5 520 c 128,-1,8
+ 1072 620 1072 620 947 620 c 1,9,10
+ 980 90 980 90 726 41.5 c 128,-1,11
+ 472 -7 472 -7 291 56.5 c 128,-1,12
+ 110 120 110 120 60 220 c 128,-1,13
+ 10 320 10 320 10 453 c 128,-1,14
+ 10 586 10 586 60 671.5 c 128,-1,15
+ 110 757 110 757 290.5 810.5 c 128,-1,16
+ 471 864 471 864 770 835 c 1,17,-1
+ 768 1160 l 1,18,-1
+ 110 1161 l 1,19,-1
+ 210 1291 l 1,0,-1
+188 575.5 m 128,-1,21
+ 156 520 156 520 151.5 396 c 128,-1,22
+ 147 272 147 272 283.5 213.5 c 128,-1,23
+ 420 155 420 155 565 162.5 c 128,-1,24
+ 710 170 710 170 760 264.5 c 128,-1,25
+ 810 359 810 359 779 682 c 1,26,27
+ 410 720 410 720 315 675.5 c 128,-1,20
+ 220 631 220 631 188 575.5 c 128,-1,21
+EndSplineSet
+Validated: 33
+EndChar
+
+StartChar: da
+Encoding: 111 111 55
+Width: 1563
+Flags: W
+AnchorPoint: "top" 746 1360 basechar 0
+AnchorPoint: "bottom" 833 -44 basechar 0
+LayerCount: 2
+Fore
+SplineSet
+1291 1272 m 1,0,1
+ 1353 1302 1353 1302 1392 1302 c 0,2,3
+ 1475 1302 1475 1302 1452 1166 c 1,4,-1
+ 1452 210 l 1,5,-1
+ 1525 103 l 1,6,-1
+ 1452 -3 l 1,7,8
+ 968 277 968 277 395 -3 c 1,9,-1
+ 161 -3 l 1,10,-1
+ 323 103 l 1,11,-1
+ 484 210 l 1,12,-1
+ 484 741 l 2,13,14
+ 484 995 484 995 0 953 c 1,15,-1
+ 161 1107 l 1,16,-1
+ 544 1007 l 1,17,-1
+ 968 1166 l 1,18,-1
+ 1291 1272 l 1,0,1
+1100 1038 m 1,19,20
+ 620 934 620 934 646 741 c 1,21,-1
+ 651 206 l 1,22,23
+ 879 277 879 277 1300 206 c 1,24,-1
+ 1291 570 l 1,25,-1
+ 1291 848 l 1,26,27
+ 1300 1107 1300 1107 1100 1038 c 1,19,20
+EndSplineSet
+Validated: 33
+EndChar
+
+StartChar: na
+Encoding: 112 112 56
+Width: 1213
+Flags: W
+AnchorPoint: "top" 520 1382 basechar 0
+AnchorPoint: "bottom" 535 -49 basechar 0
+LayerCount: 2
+Fore
+SplineSet
+0 1301 m 1,0,-1
+ 209 1167 l 1,1,2
+ 500 1301 500 1301 691.5 1263.5 c 128,-1,3
+ 883 1226 883 1226 991.5 1163 c 128,-1,4
+ 1100 1100 1100 1100 950 800 c 128,-1,5
+ 800 500 800 500 676 300 c 128,-1,6
+ 552 100 552 100 900 300 c 1,7,-1
+ 900 100 l 1,8,9
+ 400 -100 400 -100 437 134 c 1,10,-1
+ 529 306 l 2,11,12
+ 900 1000 900 1000 815.5 1064.5 c 128,-1,13
+ 731 1129 731 1129 569.5 1121.5 c 128,-1,14
+ 408 1114 408 1114 408 968 c 128,-1,15
+ 408 822 408 822 408 415 c 1,16,-1
+ 209 415 l 1,17,-1
+ 209 1023 l 1,18,-1
+ 0 1100 l 1,19,-1
+ 0 1301 l 1,0,-1
+EndSplineSet
+Validated: 33
+EndChar
+
+StartChar: pa
+Encoding: 113 113 57
+Width: 1225
+Flags: W
+AnchorPoint: "top" 500 1330 basechar 0
+AnchorPoint: "bottom" 560 -50 basechar 0
+LayerCount: 2
+Fore
+SplineSet
+1000 1200 m 1,0,-1
+ 1200 1200 l 1,1,-1
+ 935 913 l 1,2,3
+ 1083 535 1083 535 1041.5 316 c 128,-1,4
+ 1000 97 1000 97 864 48.5 c 128,-1,5
+ 728 0 728 0 529.5 0 c 128,-1,6
+ 331 0 331 0 70 113 c 1,7,-1
+ 70 275 l 1,8,9
+ 489 118 489 118 644.5 159 c 128,-1,10
+ 800 200 800 200 867.5 300 c 128,-1,11
+ 935 400 935 400 800 800 c 1,12,13
+ 489 714 489 714 279.5 744 c 128,-1,14
+ 70 774 70 774 15 950 c 0,15,16
+ 1 993 1 993 1 1030 c 0,17,18
+ 1 1143 1 1143 128 1198 c 0,19,20
+ 296 1270 296 1270 497.5 1250.5 c 128,-1,21
+ 699 1231 699 1231 908 1073 c 1,22,-1
+ 1000 1200 l 1,0,-1
+291 1084 m 1,23,24
+ 151 881 151 881 456 898.5 c 128,-1,25
+ 761 916 761 916 667 1017 c 128,-1,26
+ 573 1118 573 1118 291 1084 c 1,23,24
+EndSplineSet
+Validated: 33
+EndChar
+
+StartChar: pha
+Encoding: 114 114 58
+Width: 1544
+Flags: W
+AnchorPoint: "top" 626 1317 basechar 0
+AnchorPoint: "bottom" 716 -48 basechar 0
+LayerCount: 2
+Fore
+SplineSet
+1100 1230 m 1,0,-1
+ 1300 1230 l 1,1,2
+ 1200 1030 1200 1030 1210 856 c 1,3,-1
+ 1424 39 l 1,4,-1
+ 1300 30 l 1,5,-1
+ 1100 730 l 1,6,7
+ 907 236 907 236 733 119 c 0,8,9
+ 602 31 602 31 441 31 c 0,10,11
+ 388 31 388 31 332 41 c 0,12,13
+ 105 79 105 79 42 219 c 0,14,15
+ 5 301 5 301 5 451 c 0,16,17
+ 5 556 5 556 23 695 c 0,18,19
+ 67 1032 67 1032 241 1110 c 128,-1,20
+ 415 1188 415 1188 524.5 1188 c 128,-1,21
+ 634 1188 634 1188 730 1168.5 c 128,-1,22
+ 826 1149 826 1149 1077 993 c 1,23,-1
+ 1100 1230 l 1,0,-1
+235 804.5 m 128,-1,25
+ 160 581 160 581 185 374.5 c 128,-1,26
+ 210 168 210 168 410 168 c 128,-1,27
+ 610 168 610 168 710 340 c 128,-1,28
+ 810 512 810 512 958 787 c 1,29,30
+ 710 1063 710 1063 510 1045.5 c 128,-1,24
+ 310 1028 310 1028 235 804.5 c 128,-1,25
+EndSplineSet
+Validated: 33
+EndChar
+
+StartChar: ba
+Encoding: 115 115 59
+Width: 1190
+Flags: W
+AnchorPoint: "top" 534 1358 basechar 0
+AnchorPoint: "bottom" 528 -49 basechar 0
+LayerCount: 2
+Fore
+SplineSet
+657 1296 m 1,0,-1
+ 657 856 l 1,1,-1
+ 1101 1000 l 1,2,-1
+ 1101 854 l 1,3,-1
+ 670 726 l 1,4,-1
+ 657 417 l 1,5,-1
+ 657 65 l 1,6,7
+ 489 0 489 0 305.5 0 c 128,-1,8
+ 122 0 122 0 0 100 c 1,9,-1
+ 0 400 l 1,10,11
+ 122 200 122 200 244.5 176 c 128,-1,12
+ 367 152 367 152 428 241 c 1,13,-1
+ 428 657 l 1,14,-1
+ 0 560 l 1,15,-1
+ 0 700 l 1,16,-1
+ 428 812 l 1,17,-1
+ 428 1208 l 1,18,-1
+ 657 1296 l 1,0,-1
+EndSplineSet
+Validated: 33
+EndChar
+
+StartChar: ma
+Encoding: 116 116 60
+Width: 1101
+Flags: W
+AnchorPoint: "top" 483 1359 basechar 0
+AnchorPoint: "bottom" 492 -39 basechar 0
+LayerCount: 2
+Fore
+SplineSet
+1020 1174 m 1,1,2
+ 853 747 853 747 857 501 c 128,-1,3
+ 861 255 861 255 1020 213 c 1,4,-1
+ 1020 0 l 1,5,6
+ 698 139 698 139 693.5 443 c 128,-1,7
+ 689 747 689 747 770 1142 c 1,8,-1
+ 588 1140 l 1,9,-1
+ 588 0 l 1,10,-1
+ 395 107 l 1,11,-1
+ 395 1140 l 1,12,-1
+ 233 1142 l 1,13,14
+ 270 920 270 920 305 620 c 128,-1,15
+ 340 320 340 320 242.5 186.5 c 128,-1,16
+ 145 53 145 53 20 0 c 1,17,-1
+ 20 213 l 1,18,19
+ 145 213 145 213 145 533.5 c 128,-1,20
+ 145 854 145 854 20 1174 c 1,21,22
+ -28 1310 -28 1310 145 1281 c 1,23,-1
+ 520 1281 l 1,24,-1
+ 895 1281 l 2,25,0
+ 1020 1281 1020 1281 1020 1174 c 1,1,2
+EndSplineSet
+Validated: 33
+EndChar
+
+StartChar: ya
+Encoding: 117 117 61
+Width: 1543
+Flags: W
+AnchorPoint: "top" 807 1383 basechar 0
+AnchorPoint: "bottom" 765 -48 basechar 0
+LayerCount: 2
+Fore
+SplineSet
+695 1268 m 0,0,1
+ 808 1296 808 1296 908 1296 c 0,2,3
+ 1011 1296 1011 1296 1102 1267 c 0,4,5
+ 1280 1208 1280 1208 1336.5 1091.5 c 128,-1,6
+ 1393 975 1393 975 1352.5 822.5 c 128,-1,7
+ 1312 670 1312 670 1206.5 605 c 128,-1,8
+ 1101 540 1101 540 969.5 540 c 128,-1,9
+ 838 540 838 540 715 595 c 1,10,-1
+ 547 434 l 1,11,12
+ 652 200 652 200 876.5 124.5 c 128,-1,13
+ 1101 49 1101 49 1393 319 c 1,14,-1
+ 1508 210 l 1,15,16
+ 1280 49 1280 49 1152 20 c 0,17,18
+ 1087 5 1087 5 1018 5 c 0,19,20
+ 948 5 948 5 873 20 c 0,21,22
+ 723 49 723 49 634 98 c 128,-1,23
+ 545 147 545 147 467 298 c 1,24,-1
+ 186 7 l 1,25,-1
+ -5 83 l 1,26,-1
+ 367 482 l 1,27,28
+ 282 788 282 788 374.5 999.5 c 128,-1,29
+ 467 1211 467 1211 695 1268 c 0,0,1
+597 1039 m 128,-1,31
+ 534 915 534 915 524.5 779 c 128,-1,32
+ 515 643 515 643 587.5 715 c 128,-1,33
+ 660 787 660 787 838 675 c 1,34,35
+ 1106 638 1106 638 1190.5 856 c 128,-1,36
+ 1275 1074 1275 1074 1023 1184 c 1,37,30
+ 660 1163 660 1163 597 1039 c 128,-1,31
+EndSplineSet
+Validated: 33
+EndChar
+
+StartChar: ra
+Encoding: 118 118 62
+Width: 1192
+Flags: W
+AnchorPoint: "top" 387 1333 basechar 0
+AnchorPoint: "bottom" 477 -32 basechar 0
+LayerCount: 2
+Fore
+SplineSet
+-3 1235 m 1,0,1
+ 33 1351 33 1351 139 1235 c 1,2,-1
+ 590 800 l 1,3,-1
+ 590 1252 l 1,4,-1
+ 790 1147 l 1,5,-1
+ 790 621 l 1,6,-1
+ 1144 271 l 1,7,-1
+ 1147 53 l 1,8,-1
+ 790 411 l 1,9,-1
+ 790 -10 l 1,10,-1
+ 590 -10 l 1,11,-1
+ 590 552 l 1,12,-1
+ 590 566 l 1,13,-1
+ 190 927 l 1,14,-1
+ 190 -10 l 1,15,-1
+ -3 -10 l 1,16,-1
+ -3 1235 l 1,0,1
+EndSplineSet
+Validated: 33
+EndChar
+
+StartChar: la
+Encoding: 119 119 63
+Width: 1471
+Flags: W
+AnchorPoint: "top" 682 1378 basechar 0
+AnchorPoint: "bottom" 715 -53 basechar 0
+LayerCount: 2
+Fore
+SplineSet
+600 1173 m 1,0,-1
+ 822 1292 l 1,1,-1
+ 822 425 l 1,2,-1
+ 1441 -8 l 1,3,-1
+ 1100 -10 l 1,4,-1
+ 700 268 l 1,5,-1
+ 300 -10 l 1,6,-1
+ -3 -8 l 1,7,-1
+ 600 445 l 1,8,-1
+ 600 1173 l 1,0,-1
+EndSplineSet
+Validated: 1
+EndChar
+
+StartChar: va
+Encoding: 120 120 64
+Width: 1280
+Flags: W
+AnchorPoint: "top" 483 1372 basechar 0
+AnchorPoint: "bottom" 489 -44 basechar 0
+LayerCount: 2
+Fore
+SplineSet
+200 1314 m 1,0,-1
+ 200 968 l 1,1,-1
+ 366 652 l 1,2,-1
+ 600 276 l 2,3,4
+ 747 38 747 38 732 302 c 1,5,-1
+ 732 1001 l 2,6,7
+ 732 1145 732 1145 1282 1102 c 1,8,-1
+ 1099 1001 l 1,9,10
+ 915 1001 915 1001 915 902 c 2,11,-1
+ 915 101 l 1,12,13
+ 841 -2 841 -2 739 -2 c 0,14,15
+ 700 -2 700 -2 657 13 c 0,16,17
+ 500 68 500 68 400 276 c 1,18,-1
+ 200 623 l 1,19,-1
+ 200 68 l 1,20,-1
+ -1 2 l 1,21,-1
+ -1 1201 l 1,22,-1
+ 200 1314 l 1,0,-1
+EndSplineSet
+Validated: 33
+EndChar
+
+StartChar: sha
+Encoding: 121 121 65
+Width: 1147
+Flags: W
+AnchorPoint: "bottom" 390 -22 basechar 0
+AnchorPoint: "top" 462 1373 basechar 0
+LayerCount: 2
+Fore
+SplineSet
+0 1165 m 1,0,-1
+ 150 1302 l 1,1,-1
+ 150 483 l 2,2,3
+ 150 277 150 277 174 209 c 128,-1,4
+ 198 141 198 141 397 141 c 128,-1,5
+ 596 141 596 141 600 346 c 1,6,-1
+ 596 892 l 1,7,-1
+ 596 1165 l 1,8,9
+ 558 1279 558 1279 721 1279 c 0,10,11
+ 753 1279 753 1279 793 1275 c 1,12,-1
+ 1132 1275 l 1,13,-1
+ 950 1165 l 1,14,-1
+ 750 1165 l 1,15,-1
+ 750 277 l 2,16,17
+ 750 141 750 141 602 65 c 0,18,19
+ 507 15 507 15 389 15 c 0,20,21
+ 324 15 324 15 252 31 c 0,22,23
+ 50 73 50 73 0 210 c 1,24,-1
+ 1 687 l 1,25,-1
+ 1 1029 l 1,26,-1
+ 0 1165 l 1,0,-1
+EndSplineSet
+Validated: 33
+EndChar
+
+StartChar: sa
+Encoding: 122 122 66
+Width: 1103
+Flags: W
+AnchorPoint: "top" 412 1396 basechar 0
+AnchorPoint: "bottom" 430 -41 basechar 0
+LayerCount: 2
+Fore
+SplineSet
+359 1274 m 2,0,1
+ 413 1308 413 1308 453 1308 c 0,2,3
+ 526 1308 526 1308 551 1194 c 1,4,-1
+ 551 843 l 1,5,-1
+ 900 1000 l 1,6,-1
+ 900 800 l 1,7,-1
+ 551 632 l 1,8,-1
+ 550 491 l 1,9,-1
+ 550 211 l 1,10,-1
+ 551 0 l 1,11,-1
+ 359 94 l 1,12,-1
+ 359 584 l 1,13,-1
+ 0 400 l 1,14,-1
+ 0 600 l 1,15,-1
+ 348 773 l 1,16,-1
+ 348 1054 l 1,17,-1
+ 0 852 l 1,18,-1
+ 0 1054 l 1,19,-1
+ 359 1274 l 2,0,1
+EndSplineSet
+Validated: 1
+EndChar
+
+StartChar: i
+Encoding: 123 123 67
+Width: 998
+Flags: W
+AnchorPoint: "top" 254 1367 basechar 0
+AnchorPoint: "bottom" 292 -31 basechar 0
+LayerCount: 2
+Fore
+SplineSet
+184 1301 m 1,0,-1
+ 365 1183 l 1,1,-1
+ 368 834 l 1,2,-1
+ 600 970 l 1,3,-1
+ 600 775 l 1,4,-1
+ 365 643 l 1,5,-1
+ 365 9 l 1,6,-1
+ 177 109 l 1,7,-1
+ 178 570 l 1,8,-1
+ 2 479 l 1,9,-1
+ 0 681 l 1,10,-1
+ 178 760 l 1,11,-1
+ 184 1301 l 1,0,-1
+EndSplineSet
+Validated: 1
+EndChar
+
+StartChar: u
+Encoding: 124 124 68
+Width: 953
+Flags: W
+AnchorPoint: "top" 315 1354 basechar 0
+AnchorPoint: "bottom" 372 -32 basechar 0
+LayerCount: 2
+Fore
+SplineSet
+17 729 m 1,0,1
+ 1 851 1 851 1 946 c 0,2,3
+ 1 1261 1 1261 181 1283 c 0,4,5
+ 235 1290 235 1290 284 1290 c 0,6,7
+ 447 1290 447 1290 551 1215 c 0,8,9
+ 686 1118 686 1118 624 923.5 c 128,-1,10
+ 562 729 562 729 480.5 582.5 c 128,-1,11
+ 399 436 399 436 349.5 350 c 128,-1,12
+ 300 264 300 264 250 182 c 128,-1,13
+ 200 100 200 100 800 500 c 1,14,-1
+ 700 300 l 1,15,16
+ 472 46 472 46 284 -2 c 0,17,18
+ 237 -13 237 -13 202 -13 c 0,19,20
+ 94 -13 94 -13 92 96 c 0,21,22
+ 89 242 89 242 273.5 532 c 128,-1,23
+ 458 822 458 822 465 972 c 128,-1,24
+ 472 1122 472 1122 380.5 1149.5 c 128,-1,25
+ 289 1177 289 1177 229 1147.5 c 128,-1,26
+ 169 1118 169 1118 169 826 c 1,27,-1
+ 17 729 l 1,0,1
+EndSplineSet
+Validated: 33
+EndChar
+
+StartChar: e
+Encoding: 125 125 69
+Width: 1305
+Flags: W
+AnchorPoint: "top" 530 1400 basechar 0
+AnchorPoint: "bottom" 620 -34 basechar 0
+LayerCount: 2
+Fore
+SplineSet
+490 1301 m 1,0,-1
+ 700 1200 l 1,1,-1
+ 700 941 l 1,2,-1
+ 1247 945 l 1,3,-1
+ 1090 765 l 1,4,-1
+ 700 761 l 1,5,-1
+ 700 200 l 1,6,-1
+ 1300 200 l 1,7,-1
+ 1053 0 l 1,8,-1
+ 53 0 l 1,9,-1
+ 200 200 l 1,10,-1
+ 500 200 l 1,11,-1
+ 500 765 l 1,12,-1
+ -10 768 l 1,13,-1
+ 190 941 l 1,14,-1
+ 490 941 l 1,15,-1
+ 490 1301 l 1,0,-1
+EndSplineSet
+Validated: 1
+EndChar
+
+StartChar: pi1
+Encoding: 65539 -1 70
+Width: 1124
+Flags: W
+LayerCount: 2
+Fore
+Validated: 1
+EndChar
+
+StartChar: middot
+Encoding: 65540 -1 71
+Width: 682
+Flags: W
+LayerCount: 2
+Fore
+Validated: 1
+EndChar
+EndChars
+EndSplineFont

@@ -29,6 +29,26 @@ import webapp2
 from google.appengine.ext.webapp import template
 
 encoding_font_list = [
+  # {
+  #   'source': '/fonts/Sunuwar/Kirat3.ttf',
+  #   'longName': 'Kirat3',
+  #   'family': 'Kirat3',
+  #   'font_path': '/fonts/Sunuwar/Kirat3.ttf',
+  #   'font_name': 'Kirat3',
+  #   'display_name': 'Kirat3',
+  #   'Source location': 'https://omniglot.com/writing/jenticha.htm',
+  #   'info': 'updated by CWC with new W and Y - reencoded'
+  # },
+  {
+    'source': '/fonts/Sunuwar/Kirat2.ttf',
+    'longName': 'Kirat2',
+    'family': 'Kirat2',
+    'font_path': '/fonts/Sunuwar/Kirat2.ttf',
+    'font_name': 'Kirat2',
+    'display_name': 'Kirat2',
+    'Source location': 'https://omniglot.com/writing/jenticha.htm',
+    'info': 'updated by CWC with new W and Y and diacritics'
+  },
   {
     'source': '/fonts/Sunuwar/Kirat1.Kõits.Blese.ttf',
     'longName': 'Kirat1',
@@ -60,6 +80,15 @@ encoding_font_list = [
 ]
 
 unicode_font_list = [
+  # {
+  #   'source': '/fonts/Sunuwar/kirat2_PUA.ttf',
+  #   'longName': 'Kirat2 PUA',
+  #   'family': 'kirat2_PUA',
+  #   'font_path': '/fonts/Sunuwar/kirat2_PUA.ttf',
+  #   'font_name': 'Kirat2 PUA',
+  #   'display_name': 'Kirat2 PUA',
+  #   'Source location': 'https://omniglot.com/writing/jenticha.htm',
+  # },
   {
     'source': '/fonts/Sunuwar/Sunuwar_combined_PUA.ttf',
     'longName': 'Sunawar Combined PUA',
@@ -69,6 +98,7 @@ unicode_font_list = [
     'display_name': 'Sunawar_PUA',
     'Source location': 'Combined by author CWC',
   },
+
   {
     'source': '/fonts/Sunuwar/kirat1_PUA_new.ttf',
     'longName': 'Kirat1 PUA',
@@ -121,7 +151,7 @@ class langInfo():
   def __init__(self):
     self.LanguageCode = 'suz'
     self.Language = u'Kõits'
-    self.Language_native = u'कोँइच'
+    self.Language_native = u'Sunuwar'
     self.direction = 'ltr'
 
     # This is undefined
@@ -156,12 +186,12 @@ class langInfo():
     ]
 
     resource_list = [
-      {
-        'name': 'KeyMan for Chatino',
-        'source': '/resources/omq/chatino.kmp',
-        'description': 'Keyboard for Mobile & Desktop',
-        'instructions': '',
-      },
+      # {
+      #   'name': 'KeyMan for Sunuwar',
+      #   'source': '/resources/omq/chatino.kmp',
+      #   'description': 'Keyboard for Mobile & Desktop',
+      #   'instructions': '',
+      # },
     ]
     self.links = links
     self.text_file_list = []

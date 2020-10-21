@@ -13,7 +13,7 @@
 
 var YO_LAYOUT = {
   'id': 'yo',
-  'title': 'Yoruba',
+  'title': 'Yorùbá',
   'mappings': {
     ',l': {
       '': '`1234567890-=' +

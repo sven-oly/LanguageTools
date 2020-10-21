@@ -321,7 +321,7 @@ var private_use_map_combined = {
 var gamwin_latin_chars =
     "mnvungz|mznvungz|vungz|vungc|vungx|vuk|ovyz|ovyc|ovyx|" +
     "oamz|oamc|oamx|omz|omc|omx|ovnz|ovnc|ovnx|ovlz|ovlc|ovlx|" +
-    "ovrz|ovrc|ovrx|ovp|ovt|" +
+    "ovmz|ovmc|ovmx|ovrz|ovrc|ovrx|ovp|ovt|" +
     "mnaungz|mznaungz|mrvkueq|aungz|aungc|aungx|auk|uiyq|vyq|oq|aq|" +
     "vq|eq|iq|uq|awq|uiq|ueq|uiuq|oayz|oayc|oayx|ayz|ayc|ayx|vyz|vyc|" +
     "vyx|uyz|uyc|uyx|uiyz|uiyc|uiyx|ueyz|ueyc|ueyx|ongz|ongc|ongx|" +
