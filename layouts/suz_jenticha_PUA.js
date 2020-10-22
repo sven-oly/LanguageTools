@@ -23,9 +23,9 @@ var SUZ_JENTICHA_PUA_LAYOUT = {
     },
     's,sc': {
       '': '\ued3c!@#$%^&*()_+' +
-          '\ued71\ued57\ued45\ued72\ued74\ued59\ued55\ued49\ued4F\ued70{}|' +
+          '\ued7e\ued57\u00b7\u00f8\u03a9\u00b1\u2264\u2265\u00a6\u2980{}|' +
           '\ued41\ued73\ued2e\ued64\ued27\ued2d\ued59\ued3f\ued3e:"' +
-          '\u221a\u2260\u2122\u00a9\u2211\u2230\ued2f<>?'
+          '\u221a\u2260\u2122\u00a9\u2211\u2030\ued2f<>?'
     },
     'l,cl': {
       '': '`1234567890-=' +

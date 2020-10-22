@@ -22,7 +22,7 @@ OS2Version: 1
 OS2_WeightWidthSlopeOnly: 0
 OS2_UseTypoMetrics: 0
 CreationTime: 1086700641
-ModificationTime: 1603254864
+ModificationTime: 1603405129
 PfmFamily: 17
 TTFWeight: 400
 TTFWidth: 5
@@ -108,11 +108,11 @@ NameList: AGL For New Fonts
 DisplaySize: -72
 AntiAlias: 1
 FitToEm: 1
-WinInfo: 16 8 7
+WinInfo: 80 8 7
 BeginPrivate: 0
 EndPrivate
 AnchorClass2: "top"""  "bottom""" 
-BeginChars: 135 131
+BeginChars: 135 132
 
 StartChar: .notdef
 Encoding: 0 -1 0
@@ -2284,7 +2284,7 @@ StartChar: uniED59
 Encoding: 61 60761 61
 AltUni2: 00fb02.ffffffff.0
 Width: 1670
-Flags: WO
+Flags: W
 AnchorPoint: "top" 844 1389 basechar 0
 AnchorPoint: "bottom" 838 -39 basechar 0
 LayerCount: 2
@@ -4879,6 +4879,29 @@ SplineSet
  -27 978.5 -27 978.5 -27 928.5 c 2,0,-1
 EndSplineSet
 Validated: 1
+EndChar
+
+StartChar: q_character
+Encoding: 131 60798 131
+Width: 2048
+Flags: W
+LayerCount: 2
+Fore
+SplineSet
+336 973 m 17,0,1
+ 367 987 367 987 1251 1463 c 9,2,-1
+ 1301 1308 l 25,3,-1
+ 906 1008 l 1,4,-1
+ 911 815 l 1,5,6
+ 1598 1216 1598 1216 1376 325 c 0,7,8
+ 1276 -75 1276 -75 366 250 c 1,9,-1
+ 501 375 l 1,10,11
+ 1486 140 1486 140 1151 685 c 0,12,-1
+ 771 535 l 1,13,-1
+ 721 958 l 1,14,-1
+ 381 803 l 25,15,-1
+ 336 973 l 17,0,1
+EndSplineSet
 EndChar
 EndChars
 EndSplineFont

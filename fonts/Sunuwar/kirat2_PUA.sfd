@@ -23,7 +23,7 @@ OS2Version: 1
 OS2_WeightWidthSlopeOnly: 0
 OS2_UseTypoMetrics: 0
 CreationTime: 1086700641
-ModificationTime: 1603256577
+ModificationTime: 1603405026
 PfmFamily: 17
 TTFWeight: 400
 TTFWidth: 5
@@ -78,31 +78,31 @@ ShortTable: maxp 16
   0
   0
 EndShort
-LangName: 1033 "Typeface +AKkA <Shyan Kirat Rai>. 2004. All Rights Reserved" "" "Regular" "" "" "kirat1" "" "Typeface +AKkA <Shyan Kirat Rai>. 2004. All Rights Reserved" "" "" "This font was created using the Font Creator Program 4.1 from High-Logic.com"
-LangName: 1036 "" "" "Normal"
-LangName: 1031 "" "" "Standard"
-LangName: 1040 "" "" "Normale"
-LangName: 1043 "" "" "Standaard"
-LangName: 1053 "" "" "Normal"
-LangName: 1034 "" "" "Normal"
-LangName: 1030 "" "" "normal"
-LangName: 1046 "" "" "Normal"
-LangName: 1044 "" "" "Normal"
-LangName: 1035 "" "" "Normaali"
 LangName: 1055 "" "" "Normal"
-LangName: 1069 "" "" "Arrunta"
-LangName: 1027 "" "" "Normal"
-LangName: 1032 "" "" "+A5oDsQO9A78DvQO5A7oDrAAA"
-LangName: 1049 "" "" "+BB4EMQRLBEcEPQRLBDkA"
-LangName: 1045 "" "" "Normalny"
-LangName: 1038 "" "" "Norm+AOEA-l"
-LangName: 1029 "" "" "oby+AQ0A-ejn+AOkA"
-LangName: 1051 "" "" "Norm+AOEA-lne"
-LangName: 1060 "" "" "Navadno"
+LangName: 1053 "" "" "Normal"
 LangName: 2058 "" "" "Normal"
-LangName: 2070 "" "" "Normal"
+LangName: 1034 "" "" "Normal"
 LangName: 3082 "" "" "Normal"
+LangName: 1060 "" "" "Navadno"
+LangName: 1051 "" "" "Norm+AOEA-lne"
+LangName: 1049 "" "" "+BB4EMQRLBEcEPQRLBDkA"
+LangName: 1046 "" "" "Normal"
+LangName: 2070 "" "" "Normal"
+LangName: 1045 "" "" "Normalny"
+LangName: 1044 "" "" "Normal"
+LangName: 1040 "" "" "Normale"
+LangName: 1038 "" "" "Norm+AOEA-l"
+LangName: 1032 "" "" "+A5oDsQO9A78DvQO5A7oDrAAA"
+LangName: 1031 "" "" "Standard"
+LangName: 1036 "" "" "Normal"
 LangName: 3084 "" "" "Normal"
+LangName: 1035 "" "" "Normaali"
+LangName: 1043 "" "" "Standaard"
+LangName: 1030 "" "" "normal"
+LangName: 1029 "" "" "oby+AQ0A-ejn+AOkA"
+LangName: 1027 "" "" "Normal"
+LangName: 1069 "" "" "Arrunta"
+LangName: 1033 "Typeface +AKkA <Shyan Kirat Rai>. 2004. All Rights Reserved" "" "Regular" "" "" "kirat1" "" "Typeface +AKkA <Shyan Kirat Rai>. 2004. All Rights Reserved" "" "" "This font was created using the Font Creator Program 4.1 from High-Logic.com"
 GaspTable: 1 65535 2 0
 Encoding: Custom
 UnicodeInterp: none
@@ -113,8 +113,9 @@ FitToEm: 0
 WinInfo: 0 8 8
 BeginPrivate: 0
 EndPrivate
+TeXData: 1 0 793564 291328 145664 97109 0 -1048576 97109 783286 444596 497025 792723 393216 433062 380633 303038 157286 324010 404750 52429 2506097 1059062 262144
 AnchorClass2: "top" "Mark to base attachment lookup 0-1" "bottom" "Mark to base attachment lookup 0-1"
-BeginChars: 69 61
+BeginChars: 71 62
 
 StartChar: nonmarkingreturn
 Encoding: 62 -1 0
@@ -129,6 +130,7 @@ SplineSet
  722 1424 l 1,3,-1
  702 1572 l 1,0,-1
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: space
@@ -519,6 +521,7 @@ SplineSet
  200 1300 l 1,13,-1
  400 1300 l 1,0,-1
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: uniEDAD
@@ -567,6 +570,7 @@ SplineSet
  0 1299 l 1,17,-1
  200 1301 l 1,0,-1
 EndSplineSet
+Validated: 33
 EndChar
 
 StartChar: slash
@@ -1012,6 +1016,7 @@ SplineSet
  784 1156 l 1,14,-1
  357 1153 l 1,9,-1
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: B
@@ -1146,6 +1151,7 @@ SplineSet
  449 573 449 573 387 687 c 0,30,31
  317 817 317 817 231 817 c 256,16,17
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: asciicircum
@@ -1445,6 +1451,7 @@ SplineSet
  0 1305 l 1,14,-1
  640 1305 l 1,0,-1
 EndSplineSet
+Validated: 33
 EndChar
 
 StartChar: g
@@ -1476,6 +1483,7 @@ SplineSet
  1010 1287 l 1,20,-1
  1204 1205 l 1,0,-1
 EndSplineSet
+Validated: 33
 EndChar
 
 StartChar: h
@@ -1517,6 +1525,7 @@ SplineSet
  7 778 7 778 7 834 c 0,36,37
  7 970 7 970 76 1148 c 1,0,-1
 EndSplineSet
+Validated: 33
 EndChar
 
 StartChar: i
@@ -1539,6 +1548,7 @@ SplineSet
  300 874 l 1,8,-1
  700 1263 l 1,0,-1
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: j
@@ -1569,6 +1579,7 @@ SplineSet
  641 922 l 1,17,-1
  768 1294 l 1,0,-1
 EndSplineSet
+Validated: 33
 EndChar
 
 StartChar: k
@@ -1594,6 +1605,7 @@ SplineSet
  100 1120 l 1,12,-1
  0 1301 l 1,0,-1
 EndSplineSet
+Validated: 33
 EndChar
 
 StartChar: l
@@ -1622,6 +1634,7 @@ SplineSet
  80 1137 l 1,17,-1
  180 1305 l 1,0,1
 EndSplineSet
+Validated: 33
 EndChar
 
 StartChar: m
@@ -1656,6 +1669,7 @@ SplineSet
  576 220 576 220 610 364 c 1,25,-1
  200 659 l 1,20,-1
 EndSplineSet
+Validated: 33
 EndChar
 
 StartChar: n
@@ -1694,6 +1708,7 @@ SplineSet
  410 720 410 720 315 675.5 c 128,-1,20
  220 631 220 631 188 575.5 c 128,-1,21
 EndSplineSet
+Validated: 33
 EndChar
 
 StartChar: o
@@ -1729,6 +1744,7 @@ SplineSet
  1291 848 l 1,26,27
  1300 1107 1300 1107 1100 1038 c 1,19,20
 EndSplineSet
+Validated: 33
 EndChar
 
 StartChar: p
@@ -1759,6 +1775,7 @@ SplineSet
  0 1100 l 1,19,-1
  0 1301 l 1,0,-1
 EndSplineSet
+Validated: 33
 EndChar
 
 StartChar: q
@@ -1793,6 +1810,7 @@ SplineSet
  761 916 761 916 667 1017 c 128,-1,26
  573 1118 573 1118 291 1084 c 1,23,24
 EndSplineSet
+Validated: 33
 EndChar
 
 StartChar: r
@@ -1829,6 +1847,7 @@ SplineSet
  710 1063 710 1063 510 1045.5 c 128,-1,24
  310 1028 310 1028 235 804.5 c 128,-1,25
 EndSplineSet
+Validated: 33
 EndChar
 
 StartChar: s
@@ -1859,6 +1878,7 @@ SplineSet
  428 1208 l 1,18,-1
  657 1296 l 1,0,-1
 EndSplineSet
+Validated: 33
 EndChar
 
 StartChar: t
@@ -1892,6 +1912,7 @@ SplineSet
  895 1281 l 2,25,0
  1020 1281 1020 1281 1020 1174 c 1,1,2
 EndSplineSet
+Validated: 33
 EndChar
 
 StartChar: u
@@ -1933,6 +1954,7 @@ SplineSet
  1275 1074 1275 1074 1023 1184 c 1,37,30
  660 1163 660 1163 597 1039 c 128,-1,31
 EndSplineSet
+Validated: 33
 EndChar
 
 StartChar: v
@@ -1962,6 +1984,7 @@ SplineSet
  -3 -10 l 1,16,-1
  -3 1235 l 1,0,1
 EndSplineSet
+Validated: 33
 EndChar
 
 StartChar: w
@@ -1984,6 +2007,7 @@ SplineSet
  600 445 l 1,8,-1
  600 1173 l 1,0,-1
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: x
@@ -2014,6 +2038,7 @@ SplineSet
  -1 1201 l 1,22,-1
  200 1314 l 1,0,-1
 EndSplineSet
+Validated: 33
 EndChar
 
 StartChar: y
@@ -2047,6 +2072,7 @@ SplineSet
  1 1029 l 1,26,-1
  0 1165 l 1,0,-1
 EndSplineSet
+Validated: 33
 EndChar
 
 StartChar: z
@@ -2078,6 +2104,7 @@ SplineSet
  0 1054 l 1,19,-1
  359 1274 l 2,0,1
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: braceleft
@@ -2103,6 +2130,7 @@ SplineSet
  178 760 l 1,11,-1
  184 1301 l 1,0,-1
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: bar
@@ -2135,6 +2163,7 @@ SplineSet
  169 1118 169 1118 169 826 c 1,27,-1
  17 729 l 1,0,1
 EndSplineSet
+Validated: 33
 EndChar
 
 StartChar: braceright
@@ -2164,6 +2193,7 @@ SplineSet
  490 941 l 1,15,-1
  490 1301 l 1,0,-1
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: uniED57
@@ -2189,6 +2219,7 @@ SplineSet
  717 849 717 849 1073 1128 c 1,21,-1
  960 1212 l 1,1,2
 EndSplineSet
+Validated: 41
 EndChar
 
 StartChar: uniED59
@@ -2239,6 +2270,29 @@ SplineSet
  734 124 734 124 664 81.5 c 0,71,72
  530 -1 530 -1 458.5 29 c 0,73,74
  210 134 210 134 262 306 c 1,0,-1
+EndSplineSet
+Validated: 33
+EndChar
+
+StartChar: Q_CHARACTER
+Encoding: 61 60798 61
+Width: 2048
+LayerCount: 2
+Fore
+SplineSet
+336 973 m 17,0,1
+ 367 987 367 987 1251 1463 c 9,2,-1
+ 1301 1308 l 25,3,-1
+ 906 1008 l 1,4,-1
+ 911 815 l 1,5,6
+ 1598 1216 1598 1216 1376 325 c 0,7,8
+ 1276 -75 1276 -75 366 250 c 1,9,-1
+ 501 375 l 1,10,11
+ 1486 140 1486 140 1151 685 c 0,12,-1
+ 771 535 l 1,13,-1
+ 721 958 l 1,14,-1
+ 381 803 l 25,15,-1
+ 336 973 l 17,0,1
 EndSplineSet
 EndChar
 EndChars

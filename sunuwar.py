@@ -40,10 +40,10 @@ encoding_font_list = [
   #   'info': 'updated by CWC with new W and Y - reencoded'
   # },
   {
-    'source': '/fonts/Sunuwar/Kirat2.ttf',
+    'source': '/fonts/Sunuwar/kirat2.ttf',
     'longName': 'Kirat2',
     'family': 'Kirat2',
-    'font_path': '/fonts/Sunuwar/Kirat2.ttf',
+    'font_path': '/fonts/Sunuwar/kirat2.ttf',
     'font_name': 'Kirat2',
     'display_name': 'Kirat2',
     'Source location': 'https://omniglot.com/writing/jenticha.htm',
@@ -80,15 +80,15 @@ encoding_font_list = [
 ]
 
 unicode_font_list = [
-  # {
-  #   'source': '/fonts/Sunuwar/kirat2_PUA.ttf',
-  #   'longName': 'Kirat2 PUA',
-  #   'family': 'kirat2_PUA',
-  #   'font_path': '/fonts/Sunuwar/kirat2_PUA.ttf',
-  #   'font_name': 'Kirat2 PUA',
-  #   'display_name': 'Kirat2 PUA',
-  #   'Source location': 'https://omniglot.com/writing/jenticha.htm',
-  # },
+  {
+    'source': '/fonts/Sunuwar/kirat2_PUA.ttf',
+    'longName': 'Kirat2 PUA',
+    'family': 'kirat2_PUA',
+    'font_path': '/fonts/Sunuwar/kirat2_PUA.ttf',
+    'font_name': 'Kirat2 PUA',
+    'display_name': 'Kirat2 PUA',
+    'Source location': 'https://omniglot.com/writing/jenticha.htm',
+  },
   {
     'source': '/fonts/Sunuwar/Sunuwar_combined_PUA.ttf',
     'longName': 'Sunawar Combined PUA',

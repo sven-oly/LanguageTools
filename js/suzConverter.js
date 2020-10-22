@@ -6,7 +6,7 @@ var map_encoding_names = [
 
 const map_font_to_encoding = {
     'Kirat1': 1,
-    'kirat2': 1,
+    'Kirat2': 1,
     'Lonkuch': 0,
     'Prem': 0
 };
@@ -92,6 +92,7 @@ var private_use_map_combined = {
     '\u007b': ['\u007b', '\ued7b'],
     '\u007c': ['\u007c', '\ued7c'],
     '\u007d': ['\u007d', '\ued7d'],
+    '\u007e': ['\u007e', '\ued7e'],
 
     '\u00b2': ['\uecb2', '\u00b2'],
     '\u00b3': ['\uecb3', '\u00b3'],

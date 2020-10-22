@@ -22,7 +22,7 @@ OS2Version: 1
 OS2_WeightWidthSlopeOnly: 0
 OS2_UseTypoMetrics: 0
 CreationTime: 1086700641
-ModificationTime: 1603254879
+ModificationTime: 1603406082
 PfmFamily: 17
 TTFWeight: 400
 TTFWidth: 5
@@ -104,21 +104,20 @@ LangName: 2070 "" "" "Normal"
 LangName: 3082 "" "" "Normal"
 LangName: 3084 "" "" "Normal"
 GaspTable: 1 65535 2 0
-Encoding: UnicodeBmp
-Compacted: 1
+Encoding: Custom
 UnicodeInterp: none
 NameList: AGL For New Fonts
 DisplaySize: -72
 AntiAlias: 1
-FitToEm: 0
-WinInfo: 16 16 4
+FitToEm: 1
+WinInfo: 8 8 8
 BeginPrivate: 0
 EndPrivate
 AnchorClass2: "bottom" "Mark to base attachment in Latin lookup 1-1" "top" "Mark to base attachment in Latin lookup 1-1" "Accent"""  "Bottom"""  "Anchor-1""" 
-BeginChars: 65541 72
+BeginChars: 67 67
 
 StartChar: .notdef
-Encoding: 65536 -1 0
+Encoding: 0 -1 0
 Width: 1536
 Flags: W
 LayerCount: 2
@@ -138,26 +137,8 @@ EndSplineSet
 Validated: 1
 EndChar
 
-StartChar: .null
-Encoding: 65537 -1 1
-Width: 0
-Flags: W
-LayerCount: 2
-Fore
-Validated: 1
-EndChar
-
-StartChar: nonmarkingreturn
-Encoding: 65538 -1 2
-Width: 569
-Flags: W
-LayerCount: 2
-Fore
-Validated: 1
-EndChar
-
 StartChar: space
-Encoding: 32 32 3
+Encoding: 1 32 1
 AltUni2: 0000a0.ffffffff.0
 Width: 569
 Flags: W
@@ -167,7 +148,7 @@ Validated: 1
 EndChar
 
 StartChar: kaa
-Encoding: 33 33 4
+Encoding: 2 33 2
 Width: 2401
 Flags: W
 AnchorPoint: "top" 982 1426 basechar 0
@@ -221,17 +202,8 @@ EndSplineSet
 Validated: 33
 EndChar
 
-StartChar: quotedbl
-Encoding: 34 34 5
-Width: 727
-Flags: W
-LayerCount: 2
-Fore
-Validated: 1
-EndChar
-
 StartChar: kau
-Encoding: 35 35 6
+Encoding: 3 35 3
 Width: 1957
 Flags: W
 AnchorPoint: "top" 974 1422 basechar 0
@@ -285,7 +257,7 @@ Validated: 33
 EndChar
 
 StartChar: kae
-Encoding: 36 36 7
+Encoding: 4 36 4
 Width: 2416
 Flags: W
 AnchorPoint: "top" 1118 1414 basechar 0
@@ -336,7 +308,7 @@ Validated: 33
 EndChar
 
 StartChar: ai
-Encoding: 37 37 8
+Encoding: 5 37 5
 Width: 1422
 Flags: W
 AnchorPoint: "top" 747 1376 basechar 0
@@ -378,7 +350,7 @@ Validated: 33
 EndChar
 
 StartChar: ko
-Encoding: 38 38 9
+Encoding: 6 38 6
 Width: 2086
 Flags: W
 AnchorPoint: "top" 1034 1438 basechar 0
@@ -478,7 +450,7 @@ Validated: 33
 EndChar
 
 StartChar: quotesingle
-Encoding: 39 39 10
+Encoding: 7 39 7
 Width: 0
 Flags: W
 AnchorPoint: "top" -559 1282 mark 0
@@ -499,7 +471,7 @@ Validated: 1
 EndChar
 
 StartChar: parenleft
-Encoding: 40 40 11
+Encoding: 8 40 8
 Width: 423
 Flags: W
 LayerCount: 2
@@ -519,7 +491,7 @@ Validated: 1
 EndChar
 
 StartChar: parenright
-Encoding: 41 41 12
+Encoding: 9 41 9
 Width: 482
 Flags: W
 LayerCount: 2
@@ -539,7 +511,7 @@ Validated: 1
 EndChar
 
 StartChar: ka_nasal
-Encoding: 42 42 13
+Encoding: 10 42 10
 Width: 1228
 Flags: W
 AnchorPoint: "top" 566 1394 basechar 0
@@ -581,17 +553,8 @@ EndSplineSet
 Validated: 37
 EndChar
 
-StartChar: plus
-Encoding: 43 43 14
-Width: 1196
-Flags: W
-LayerCount: 2
-Fore
-Validated: 1
-EndChar
-
 StartChar: ha
-Encoding: 44 44 15
+Encoding: 11 44 11
 Width: 1150
 Flags: W
 AnchorPoint: "top" 504 1481 basechar 0
@@ -619,7 +582,7 @@ Validated: 1
 EndChar
 
 StartChar: trill
-Encoding: 60717 60717 16
+Encoding: 12 45 12
 AltUni2: 0000ad.ffffffff.0
 Width: 0
 Flags: W
@@ -639,7 +602,7 @@ Validated: 1
 EndChar
 
 StartChar: glottoal_stop
-Encoding: 46 46 17
+Encoding: 13 46 13
 Width: 1098
 Flags: W
 AnchorPoint: "top" 440 1502 basechar 0
@@ -669,7 +632,7 @@ Validated: 33
 EndChar
 
 StartChar: virama
-Encoding: 47 47 18
+Encoding: 14 47 14
 Width: 0
 Flags: W
 AnchorPoint: "bottom" -773 -36 mark 0
@@ -686,7 +649,7 @@ Validated: 1
 EndChar
 
 StartChar: zero
-Encoding: 48 48 19
+Encoding: 15 48 15
 Width: 733
 Flags: W
 LayerCount: 2
@@ -716,7 +679,7 @@ Validated: 37
 EndChar
 
 StartChar: one
-Encoding: 49 49 20
+Encoding: 16 49 16
 Width: 344
 Flags: W
 LayerCount: 2
@@ -732,7 +695,7 @@ Validated: 9
 EndChar
 
 StartChar: two
-Encoding: 50 50 21
+Encoding: 17 50 17
 Width: 1099
 Flags: W
 LayerCount: 2
@@ -765,7 +728,7 @@ Validated: 9
 EndChar
 
 StartChar: three
-Encoding: 51 51 22
+Encoding: 18 51 18
 Width: 1090
 Flags: W
 LayerCount: 2
@@ -796,7 +759,7 @@ Validated: 9
 EndChar
 
 StartChar: four
-Encoding: 52 52 23
+Encoding: 19 52 19
 Width: 704
 Flags: W
 LayerCount: 2
@@ -819,7 +782,7 @@ Validated: 1
 EndChar
 
 StartChar: five
-Encoding: 53 53 24
+Encoding: 20 53 20
 Width: 709
 Flags: W
 LayerCount: 2
@@ -848,7 +811,7 @@ Validated: 5
 EndChar
 
 StartChar: six
-Encoding: 54 54 25
+Encoding: 21 54 21
 Width: 1051
 Flags: W
 LayerCount: 2
@@ -880,7 +843,7 @@ Validated: 5
 EndChar
 
 StartChar: seven
-Encoding: 55 55 26
+Encoding: 22 55 22
 Width: 1236
 Flags: W
 LayerCount: 2
@@ -920,7 +883,7 @@ Validated: 33
 EndChar
 
 StartChar: eight
-Encoding: 56 56 27
+Encoding: 23 56 23
 Width: 1009
 Flags: W
 LayerCount: 2
@@ -947,7 +910,7 @@ Validated: 1
 EndChar
 
 StartChar: nine
-Encoding: 57 57 28
+Encoding: 24 57 24
 Width: 744
 Flags: W
 LayerCount: 2
@@ -971,7 +934,7 @@ Validated: 9
 EndChar
 
 StartChar: vowel_lengthener
-Encoding: 58 58 29
+Encoding: 25 58 25
 Width: 542
 Flags: W
 LayerCount: 2
@@ -992,7 +955,7 @@ Validated: 1
 EndChar
 
 StartChar: less
-Encoding: 60 60 30
+Encoding: 26 60 26
 AltUni2: 000000.ffffffff.0
 Width: 0
 Flags: W
@@ -1011,7 +974,7 @@ Comment: "Vertical accent combining"
 EndChar
 
 StartChar: equal
-Encoding: 61 61 31
+Encoding: 27 61 27
 Width: 12
 Flags: W
 AnchorPoint: "top" -704 1355 mark 0
@@ -1033,7 +996,7 @@ Validated: 1
 EndChar
 
 StartChar: greater
-Encoding: 62 62 32
+Encoding: 28 62 28
 Width: 0
 Flags: W
 AnchorPoint: "top" -53.5 1263 mark 0
@@ -1049,7 +1012,7 @@ Validated: 1
 EndChar
 
 StartChar: question
-Encoding: 63 63 33
+Encoding: 29 63 29
 Width: 0
 Flags: W
 AnchorPoint: "top" -103.5 1260 mark 0
@@ -1065,7 +1028,7 @@ Validated: 1
 EndChar
 
 StartChar: kaii
-Encoding: 64 64 34
+Encoding: 30 64 30
 Width: 2595
 Flags: W
 AnchorPoint: "top" 812 1426 basechar 0
@@ -1140,7 +1103,7 @@ Validated: 33
 EndChar
 
 StartChar: aa
-Encoding: 65 65 35
+Encoding: 31 65 31
 Width: 1123
 Flags: W
 AnchorPoint: "top" 476 1303 basechar 0
@@ -1170,7 +1133,7 @@ Validated: 1
 EndChar
 
 StartChar: oo
-Encoding: 66 66 36
+Encoding: 32 66 32
 Width: 1757
 Flags: W
 AnchorPoint: "top" 367 1421 basechar 0
@@ -1277,7 +1240,7 @@ Validated: 33
 EndChar
 
 StartChar: O
-Encoding: 79 79 37
+Encoding: 33 79 33
 Width: 1054
 Flags: W
 AnchorPoint: "top" 405 1429 basechar 0
@@ -1357,7 +1320,7 @@ Validated: 33
 EndChar
 
 StartChar: W
-Encoding: 87 87 38
+Encoding: 34 87 34
 Width: 1197
 Flags: W
 AnchorPoint: "top" 566.69 1288.05 basechar 0
@@ -1588,7 +1551,7 @@ Validated: 41
 EndChar
 
 StartChar: hha
-Encoding: 89 89 39
+Encoding: 35 89 35
 Width: 1670
 Flags: W
 AnchorPoint: "top" 844 1389 basechar 0
@@ -1816,7 +1779,7 @@ EndSplineSet
 EndChar
 
 StartChar: asciicircum
-Encoding: 94 94 40
+Encoding: 36 94 36
 Width: 1621
 Flags: W
 AnchorPoint: "top" 786 1370 basechar 0
@@ -1865,7 +1828,7 @@ Validated: 33
 EndChar
 
 StartChar: a
-Encoding: 97 97 41
+Encoding: 37 97 37
 Width: 1100
 Flags: W
 AnchorPoint: "bottom" 441 -48 basechar 0
@@ -1894,7 +1857,7 @@ Validated: 33
 EndChar
 
 StartChar: ii
-Encoding: 98 98 42
+Encoding: 38 98 38
 Width: 1639
 Flags: W
 LayerCount: 2
@@ -1946,7 +1909,7 @@ Validated: 1
 EndChar
 
 StartChar: uu
-Encoding: 99 99 43
+Encoding: 39 99 39
 Width: 1792
 Flags: W
 LayerCount: 2
@@ -2005,7 +1968,7 @@ Validated: 33
 EndChar
 
 StartChar: ee
-Encoding: 100 100 44
+Encoding: 40 100 40
 Width: 2178
 Flags: W
 LayerCount: 2
@@ -2061,7 +2024,7 @@ Validated: 1
 EndChar
 
 StartChar: ka
-Encoding: 101 101 45
+Encoding: 41 101 41
 Width: 1349
 Flags: W
 AnchorPoint: "bottom" 638 -37 basechar 0
@@ -2095,7 +2058,7 @@ Validated: 33
 EndChar
 
 StartChar: kha
-Encoding: 102 102 46
+Encoding: 42 102 42
 Width: 1079
 Flags: W
 AnchorPoint: "top" 339 1363 basechar 0
@@ -2119,11 +2082,11 @@ SplineSet
  640 1305 l 1,0,-1
 EndSplineSet
 Validated: 33
-Kerns2: 49 -327 "'kern' Horizontal Kerning in Latin lookup 0-2"
+Kerns2: 45 -327 "'kern' Horizontal Kerning in Latin lookup 0-2"
 EndChar
 
 StartChar: ga
-Encoding: 103 103 47
+Encoding: 43 103 43
 Width: 1329
 Flags: W
 AnchorPoint: "bottom" 602 -43 basechar 0
@@ -2155,7 +2118,7 @@ Validated: 33
 EndChar
 
 StartChar: h
-Encoding: 104 104 48
+Encoding: 44 104 44
 Width: 1569
 Flags: W
 AnchorPoint: "top" 760 1326 basechar 0
@@ -2197,7 +2160,7 @@ Validated: 33
 EndChar
 
 StartChar: ca
-Encoding: 105 105 49
+Encoding: 45 105 45
 Width: 1191
 Flags: W
 AnchorPoint: "top" 562 1320 basechar 0
@@ -2220,7 +2183,7 @@ Validated: 1
 EndChar
 
 StartChar: ja
-Encoding: 106 106 50
+Encoding: 46 106 46
 Width: 1330
 Flags: W
 AnchorPoint: "top" 585 1336 basechar 0
@@ -2251,7 +2214,7 @@ Validated: 33
 EndChar
 
 StartChar: ta
-Encoding: 107 107 51
+Encoding: 47 107 47
 Width: 1203
 Flags: W
 AnchorPoint: "top" 513 1334 basechar 0
@@ -2277,7 +2240,7 @@ Validated: 33
 EndChar
 
 StartChar: tha
-Encoding: 108 108 52
+Encoding: 48 108 48
 Width: 1261
 Flags: W
 AnchorPoint: "top" 547 1347 basechar 0
@@ -2306,7 +2269,7 @@ Validated: 33
 EndChar
 
 StartChar: m
-Encoding: 109 109 53
+Encoding: 49 109 49
 Width: 1154
 Flags: W
 AnchorPoint: "top" 429 1310 basechar 0
@@ -2341,7 +2304,7 @@ Validated: 33
 EndChar
 
 StartChar: n
-Encoding: 110 110 54
+Encoding: 50 110 50
 Width: 1360
 Flags: W
 AnchorPoint: "top" 585 1337 basechar 0
@@ -2380,7 +2343,7 @@ Validated: 33
 EndChar
 
 StartChar: da
-Encoding: 111 111 55
+Encoding: 51 111 51
 Width: 1563
 Flags: W
 AnchorPoint: "top" 746 1360 basechar 0
@@ -2416,7 +2379,7 @@ Validated: 33
 EndChar
 
 StartChar: na
-Encoding: 112 112 56
+Encoding: 52 112 52
 Width: 1213
 Flags: W
 AnchorPoint: "top" 520 1382 basechar 0
@@ -2447,7 +2410,7 @@ Validated: 33
 EndChar
 
 StartChar: pa
-Encoding: 113 113 57
+Encoding: 53 113 53
 Width: 1225
 Flags: W
 AnchorPoint: "top" 500 1330 basechar 0
@@ -2482,7 +2445,7 @@ Validated: 33
 EndChar
 
 StartChar: pha
-Encoding: 114 114 58
+Encoding: 54 114 54
 Width: 1544
 Flags: W
 AnchorPoint: "top" 626 1317 basechar 0
@@ -2519,7 +2482,7 @@ Validated: 33
 EndChar
 
 StartChar: ba
-Encoding: 115 115 59
+Encoding: 55 115 55
 Width: 1190
 Flags: W
 AnchorPoint: "top" 534 1358 basechar 0
@@ -2550,7 +2513,7 @@ Validated: 33
 EndChar
 
 StartChar: ma
-Encoding: 116 116 60
+Encoding: 56 116 56
 Width: 1101
 Flags: W
 AnchorPoint: "top" 483 1359 basechar 0
@@ -2584,7 +2547,7 @@ Validated: 33
 EndChar
 
 StartChar: ya
-Encoding: 117 117 61
+Encoding: 57 117 57
 Width: 1543
 Flags: W
 AnchorPoint: "top" 807 1383 basechar 0
@@ -2626,7 +2589,7 @@ Validated: 33
 EndChar
 
 StartChar: ra
-Encoding: 118 118 62
+Encoding: 58 118 58
 Width: 1192
 Flags: W
 AnchorPoint: "top" 387 1333 basechar 0
@@ -2656,7 +2619,7 @@ Validated: 33
 EndChar
 
 StartChar: la
-Encoding: 119 119 63
+Encoding: 59 119 59
 Width: 1471
 Flags: W
 AnchorPoint: "top" 682 1378 basechar 0
@@ -2679,7 +2642,7 @@ Validated: 1
 EndChar
 
 StartChar: va
-Encoding: 120 120 64
+Encoding: 60 120 60
 Width: 1280
 Flags: W
 AnchorPoint: "top" 483 1372 basechar 0
@@ -2710,7 +2673,7 @@ Validated: 33
 EndChar
 
 StartChar: sha
-Encoding: 121 121 65
+Encoding: 61 121 61
 Width: 1147
 Flags: W
 AnchorPoint: "bottom" 390 -22 basechar 0
@@ -2744,7 +2707,7 @@ Validated: 33
 EndChar
 
 StartChar: sa
-Encoding: 122 122 66
+Encoding: 62 122 62
 Width: 1103
 Flags: W
 AnchorPoint: "top" 412 1396 basechar 0
@@ -2776,7 +2739,7 @@ Validated: 1
 EndChar
 
 StartChar: i
-Encoding: 123 123 67
+Encoding: 63 123 63
 Width: 998
 Flags: W
 AnchorPoint: "top" 254 1367 basechar 0
@@ -2802,7 +2765,7 @@ Validated: 1
 EndChar
 
 StartChar: u
-Encoding: 124 124 68
+Encoding: 64 124 64
 Width: 953
 Flags: W
 AnchorPoint: "top" 315 1354 basechar 0
@@ -2835,7 +2798,7 @@ Validated: 33
 EndChar
 
 StartChar: e
-Encoding: 125 125 69
+Encoding: 65 125 65
 Width: 1305
 Flags: W
 AnchorPoint: "top" 530 1400 basechar 0
@@ -2864,22 +2827,27 @@ EndSplineSet
 Validated: 1
 EndChar
 
-StartChar: pi1
-Encoding: 65539 -1 70
-Width: 1124
+StartChar: q_character
+Encoding: 66 126 66
+Width: 2048
 Flags: W
 LayerCount: 2
 Fore
-Validated: 1
-EndChar
-
-StartChar: middot
-Encoding: 65540 -1 71
-Width: 682
-Flags: W
-LayerCount: 2
-Fore
-Validated: 1
+SplineSet
+336 973 m 17,0,1
+ 367 987 367 987 1251 1463 c 9,2,-1
+ 1301 1308 l 25,3,-1
+ 906 1008 l 1,4,-1
+ 911 815 l 1,5,6
+ 1598 1216 1598 1216 1376 325 c 0,7,8
+ 1276 -75 1276 -75 366 250 c 1,9,-1
+ 501 375 l 1,10,11
+ 1486 140 1486 140 1151 685 c 0,12,-1
+ 771 535 l 1,13,-1
+ 721 958 l 1,14,-1
+ 381 803 l 25,15,-1
+ 336 973 l 17,0,1
+EndSplineSet
 EndChar
 EndChars
 EndSplineFont
