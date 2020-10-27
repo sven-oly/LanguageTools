@@ -106,6 +106,9 @@ handlers:
 - url: /lom/.*
   script: loma.app
 
+- url: /myh/.*
+  script: makah.app
+
 - url: /omq/.*
   script: omq.app
 

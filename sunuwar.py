@@ -186,13 +186,15 @@ class langInfo():
     ]
 
     resource_list = [
-      # {
-      #   'name': 'KeyMan for Sunuwar',
-      #   'source': '/resources/omq/chatino.kmp',
-      #   'description': 'Keyboard for Mobile & Desktop',
-      #   'instructions': '',
-      # },
+      {
+        'name': 'KeyMan for Kõits-Bleshe Sunuwar',
+        'source': '/resources/suz/sunuwar_kirat2.kmp',
+        'description': 'Keyboard for Desktop - Private Use area and ASCII-based',
+        'instructions': '',
+      },
     ]
+    self.text_file_list = resource_list
+
     self.links = links
     self.text_file_list = []
     self.public_unicode_fonts = unicode_font_list
