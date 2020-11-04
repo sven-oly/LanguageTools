@@ -58,29 +58,32 @@ links = [
     {'linkText': 'Keyboard',
      'ref': '/' + LanguageCode + '/'
     },
-    {'linkText': 'Converter',
-     'ref': '/' + LanguageCode + '/convertUI/'},
-    {'linkText': 'Font conversion summary',
-      'ref': '/' + LanguageCode + '/encodingRules/'
+    {'linkText': 'Language Geek keyboard',
+      'ref': 'http://www.languagegeek.com/nwc/keymaps/WakashanCanada/MakahNum.pdf',
     },
-    {'linkText': 'Resources',
-      'ref': '/' + LanguageCode + '/downloads/'
-    },
-    {'linkText': 'Unicode page',
-     'ref': 'https://www.unicode.org/charts/PDF/U1C00.pdf'
-    },
-    {'linkText': 'Lepcha script',
-     'ref': 'https://en.wikipedia.org/wiki/Lepcha_alphabet'
-    },
-    {'linkText': 'Wikipedi page',
-     'ref': 'https://en.wikipedia.org/wiki/Lepcha_language'
-    },
-    {'linkText': 'Ethnolog',
-     'ref': 'https://www.ethnologue.com/language/lep'
-    },
-    {'linkText': 'Combiners',
-     'ref': '/lep/diacritic/'
-     },
+    # {'linkText': 'Converter',
+    #  'ref': '/' + LanguageCode + '/convertUI/'},
+    # {'linkText': 'Font conversion summary',
+    #   'ref': '/' + LanguageCode + '/encodingRules/'
+    # },
+    # {'linkText': 'Resources',
+    #   'ref': '/' + LanguageCode + '/downloads/'
+    # },
+    # {'linkText': 'Unicode page',
+    #  'ref': 'https://www.unicode.org/charts/PDF/U1C00.pdf'
+    # },
+    # {'linkText': 'Lepcha script',
+    #  'ref': 'https://en.wikipedia.org/wiki/Lepcha_alphabet'
+    # },
+    # {'linkText': 'Wikipedi page',
+    #  'ref': 'https://en.wikipedia.org/wiki/Lepcha_language'
+    # },
+    # {'linkText': 'Ethnolog',
+    #  'ref': 'https://www.ethnologue.com/language/lep'
+    # },
+    # {'linkText': 'Combiners',
+    #  'ref': '/lep/diacritic/'
+    #  },
 ]
 
 class langInfo():
