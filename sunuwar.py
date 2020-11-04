@@ -50,6 +50,15 @@ encoding_font_list = [
     'info': 'updated by CWC with new W and Y and diacritics'
   },
   {
+    'source': '/fonts/Sunuwar/Kaatich1.ttf',
+    'longName': 'Kaatich1',
+    'family': 'Kaatich1',
+    'font_path': '/fonts/Sunuwar/Kaatich1.ttf',
+    'font_name': 'Kaatich1',
+    'display_name': 'Kaatich1',
+    'Source location': 'https://omniglot.com/writing/jenticha.htm',
+  },
+  {
     'source': '/fonts/Sunuwar/Kirat1.Kõits.Blese.ttf',
     'longName': 'Kirat1',
     'family': 'Kirat1',
