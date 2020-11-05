@@ -109,9 +109,9 @@ class langInfo():
         {'linkText': 'Converter',
          'ref': '/' + self.LanguageCode + '/convertUI/'
         },
-        # {'linkText': 'Font conversion summary',
-        #  'ref': '/' + self.LanguageCode + '/encodingRules/'
-        # },
+        {'linkText': 'Plains Cree phonetic key sequences',
+         'ref': 'https://www.altlab.dev/plains-cree-syllabics-key-sequences/'
+        },
         {'linkText': 'Unicode block',
          'ref': 'https://www.unicode.org/charts/PDF/U1400.pdf'
         },

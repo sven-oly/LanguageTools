@@ -14,7 +14,7 @@
 var CRK_PHONETIC_LAYOUT = {
   'id': 'crk_phonetic',
   'title': 'ᓀᐦᐃᔭᐍᐏᐣ phonetic',
-  'source': 'http://resources.atlas-ling.ca/media//Plains-Cree-Unicode-Chart.pdf',
+  'source': 'https://www.altlab.dev/plains-cree-syllabics-key-sequences/',
   'mappings': {
     ',c': {
       '': '`1234567890-=' +
@@ -56,7 +56,6 @@ var CRK_PHONETIC_LAYOUT = {
     'aa': 'ᐋ',  // 140B
     'A': 'ᐋ',  // 140B
     'h': 'ᐦ',  // 1426
-    'hk': 'ᕽ',  // 157D
     'we': 'ᐍ',  // 140D
     'wee|wE': 'ᐍ',  // 140D
     'wi': 'ᐏ',  // 140F
@@ -217,27 +216,12 @@ var CRK_PHONETIC_LAYOUT = {
     'ra': 'ᕋ',  // 154B
     'raa|rA': 'ᕌ',  // 154C
     'r': 'ᕒ',  // 1552
-    // After hk.
-    'hke|hkE': 'ᐦᑫ',
-    'hki': 'ᐦᑭ',
-    'hko': 'ᐦᑯ',
-    'hka': 'ᐦᑲ',
-    'hkii|hkI': 'ᐦᑮ',  // 146E
-    'hkoo|hkO': 'ᐦᑰ',  // 1470
-    'hkaa|hkA': 'ᐦᑳ',  // 1473
-    'hkwe|hkwE': 'ᐦᑵ',  // 1475
-    'hkwi': 'ᐦᑷ',  // 1477
-    'hkwii|hkwI': 'ᐦᑹ',  // 1479
-    'hkwo': 'ᐦᑻ',  // 147b
-    'hkwoo|hkwO': 'ᐦᑽ',  // 147d
-    'hkwa': 'ᐦᑿ',  // 147f
-    'hkwaa|hkwA': 'ᐦᒁ',  // 1481
+    // After hk. No special rules are needed.
 
-    // Remove ZWNJ from Latin input
+    // Remove ZWNJ from Latin input with caps lock
     '\u200c([a-zA-Z])' : '$1',
   },
- 'historyPruneRegex': '[eioaIOA]|[ptkcmnsywlrš]w*|h|hk|hkw|hkw*[eioaIOA]|' +
-   '[ptkcmnsywlrš]w*[eioaIOA]'
+ 'historyPruneRegex': '[ioaIOA]|[ptkcmnsywlrš]w*[ioaIOA]*'
 };
 
 // Load the layout and inform the keyboard to switch layout if necessary.
