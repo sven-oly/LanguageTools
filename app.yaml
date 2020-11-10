@@ -175,6 +175,9 @@ handlers:
 - url: /rhg/.*
   script: rohingya.app
 
+- url: /srb/.*
+  script: sora.app
+
 - url: /syl/.*
   script: sylheti.app
 
