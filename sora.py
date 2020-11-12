@@ -43,12 +43,6 @@ unicode_font_list = [
         'source': '/fonts/Sora/NotoSansSoraSompeng-Regular.ttf',
         'reference': 'https://github.com/sora-xor/sora-font/blob/master/fonts/ttf/Sora-Light.ttf',
     },
-  {
-    'family': 'SoraXor',
-    'longName': 'Sora Xor',
-    'source': '/fonts/Sora/Sora-Regular.ttf',
-    'reference': 'https://github.com/notofonts/NotoSansSoraSompeng/blob/master/fonts/ttf/unhinted/instance_ttf/NotoSansSoraSompeng-Medium.ttf',
-  },
 ]
 
 kb_list = [
@@ -61,29 +55,26 @@ links = [
     {'linkText': 'Keyboard',
      'ref': '/' + LanguageCode + '/'
     },
-    {'linkText': 'Converter',
-     'ref': '/' + LanguageCode + '/convertUI/'},
-    {'linkText': 'Font conversion summary',
-      'ref': '/' + LanguageCode + '/encodingRules/'
-    },
+    # {'linkText': 'Converter',
+    #  'ref': '/' + LanguageCode + '/convertUI/'},
+    # {'linkText': 'Font conversion summary',
+    #   'ref': '/' + LanguageCode + '/encodingRules/'
+    # },
     {'linkText': 'Resources',
       'ref': '/' + LanguageCode + '/downloads/'
     },
     {'linkText': 'Unicode page',
-     'ref': 'https://www.unicode.org/charts/PDF/U1C00.pdf'
-    },
-    {'linkText': 'Lepcha script',
-     'ref': 'https://en.wikipedia.org/wiki/Lepcha_alphabet'
+     'ref': 'https://www.unicode.org/charts/PDF/U110D0.pdf'
     },
     {'linkText': 'Wikipedi page',
-     'ref': 'https://en.wikipedia.org/wiki/Lepcha_language'
+     'ref': 'https://en.wikipedia.org/wiki/Sorang_Sompeng_script'
     },
-    {'linkText': 'Ethnolog',
-     'ref': 'https://www.ethnologue.com/language/lep'
-    },
-    {'linkText': 'Combiners',
-     'ref': '/lep/diacritic/'
-     },
+    # {'linkText': 'Ethnolog',
+    #  'ref': 'https://www.ethnologue.com/language/lep'
+    # },
+    # {'linkText': 'Combiners',
+    #  'ref': '/lep/diacritic/'
+    #  },
 ]
 
 class langInfo():
