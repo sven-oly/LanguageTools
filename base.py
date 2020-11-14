@@ -422,6 +422,12 @@ instance = languageTemplate()
 basePath = '/' + instance.LanguageCode
 
 # Error catching
+def handle_301(request, response, exception):
+  logging.exception(exception)
+  response.write('301 error.\n\n')
+  response.write('Request = %s\n' % request.url)
+  response.set_status(301)
+
 def handle_404(request, response, exception):
     logging.exception(exception)
     response.write('Sorry, but we do not have that page in BASE. Please check your link and try again.\n\n')
@@ -446,5 +452,6 @@ app.router.add((basePath + '/encodingRules/', EncodingRules))
 app.router.add((basePath + '/', LanguagesHomeHandler))
 app.router.add((basePath + 'dictionaryInput', DictionaryInput))
 
+app.error_handlers[301] = handle_301
 app.error_handlers[404] = handle_404
 app.error_handlers[500] = handle_500

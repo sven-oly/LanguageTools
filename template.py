@@ -140,7 +140,7 @@ class IndigenousHomeHandler(webapp2.RequestHandler):
       self.response.out.write(template.render(path, template_values))
 
 encodedRanges = [
-  (0x20, 2x7b),
+  (0x20, 0x7b),
 ]
 # Presents UI for conversions from font encoding to Unicode.
 class ConvertUIHandler(webapp2.RequestHandler):
@@ -148,8 +148,7 @@ class ConvertUIHandler(webapp2.RequestHandler):
 
       # All old characters
       oldCharList = []
-      for run in encodedRanges:
-        oldCharList.extend([unichr(x) + ' ' for x in xrange(run[0], run[1]))
+#   oldCharList.extend([unichr(x) + ' ' for x in xrange(run[0], run[1]))
 
       oldChars = ''.join(oldCharList)
       text = self.request.get('text', oldChars)

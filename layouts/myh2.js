@@ -11,19 +11,21 @@
 // limitations under the License.
 
 // Includes capitals for letters in top row.
-var MYH_LAYOUT = {
-  'id': 'myh',
-  'title': 'qʷi·qʷi·diččaq',
+// Uses diacritics for caron letters
+// Uses rules for H with lower dot.
+var MYH2_LAYOUT = {
+  'id': 'myh2',
+  'title': 'qʷi·qʷi·diččaq 2',
   'source': 'http://www.languagegeek.com/nwc/keymaps/WakashanCanada/MakahNum.pdf',
   'mappings': {
     '': {
-      '': '`{{\u030c}}{{ʷ}}{{š}}{{č}}{{ƛ}}{{ŋ}}{{x\u030c}}{{ɫ}}{{ʔ}}{{\u00B0}}-=' +
+      '': '`{{\u030c}}234{{ƛ}}678{{ʔ}}0-=' +
           'qwertyuiop‘’\\' +
-          'asdfghjkl{{\u00B7}}{{\u0313}}' +
+          'asdfghjkl{{S||mod||\u00B7}}{{\u0313}}' +
           'zxcvbnm,./'
     },
     's': {
-      '': '~!{{ᵂ}}{{Š}}{{Č}}%{{Ŋ}}{{X\u030c}}{{Ɫ}}()_+' +
+      '': '~!@#$%^&*()_+' +
           'QWERTYUIOP“”|' +
           'ASDFGHJKL:"' +
           'ZXCVBNM<>?'
@@ -43,9 +45,18 @@ var MYH_LAYOUT = {
   },
   'transform': {
     '^': '^',  // Placeholder
+    '\u00B7w': 'ʷ',
+    '\u00B7W': 'ᵂ',
+    '\u00B7h': 'ħ',
+    '\u00B7H': 'Ħ',
+    '\u00B7l': 'ɫ',
+    '\u00B7L': 'Ɫ',
+    '\u00B7n': 'ŋ',
+    '\u00B7N': 'Ŋ',
+
   }
 };
 
 // Load the layout and inform the keyboard to switch layout if necessary.
-google.elements.keyboard.loadme(MYH_LAYOUT);
-en = MYH_LAYOUT;
+google.elements.keyboard.loadme(MYH2_LAYOUT);
+myh2 = MYH2_LAYOUT;

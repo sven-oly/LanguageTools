@@ -128,6 +128,9 @@ kb_list = [
   {'shortName': LanguageCode,
    'longName': LanguageCode,
    },
+  {'shortName': 'myh2',
+   'longName': 'Makah 2',
+   },
 ]
 
 diacritic_list = [unichr(x) for x in range(0xa926, 0xa92d)]

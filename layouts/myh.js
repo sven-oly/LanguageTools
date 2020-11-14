@@ -10,20 +10,20 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-
+// Includes capitals for letters in top row.
 var MYH_LAYOUT = {
   'id': 'myh',
   'title': 'qʷi·qʷi·diččaq',
   'source': 'http://www.languagegeek.com/nwc/keymaps/WakashanCanada/MakahNum.pdf',
   'mappings': {
     '': {
-      '': '`{{\u030c}}{{ʷ}}{{š}}{{č}}{{ƛ}}{{ŋ}}{{x\u030c}}{{ɫ}}{{ʔ}}{{\u00B0}}-=' +
+      '': '`{{ḥ}}{{ʷ}}{{š}}{{č}}{{ƛ}}{{ŋ}}{{x\u030c}}{{ɫ}}{{ʔ}}{{\u00B0}}-=' +
           'qwertyuiop‘’\\' +
           'asdfghjkl{{\u00B7}}{{\u0313}}' +
           'zxcvbnm,./'
     },
     's': {
-      '': '~!@#$%^&*()_+' +
+      '': '~Ḥ{{ᵂ}}{{Š}}{{Č}}%{{Ŋ}}{{X\u030c}}{{Ɫ}}()_+' +
           'QWERTYUIOP“”|' +
           'ASDFGHJKL:"' +
           'ZXCVBNM<>?'
@@ -48,4 +48,4 @@ var MYH_LAYOUT = {
 
 // Load the layout and inform the keyboard to switch layout if necessary.
 google.elements.keyboard.loadme(MYH_LAYOUT);
-en = MYH_LAYOUT;
+myh = MYH_LAYOUT;
