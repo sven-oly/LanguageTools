@@ -221,7 +221,7 @@ var CRK_PHONETIC_LAYOUT = {
     // Remove ZWNJ from Latin input with caps lock
     '\u200c([a-zA-Z])' : '$1',
   },
- 'historyPruneRegex': '[ioaIOA]|[ptkcmnsywlrš][ioaIOA]?|[ptkcmnsylrš]w[ioaIOA]?'
+ 'historyPruneRegex': '[ptkcmnsywlrš]?w?[ioaIOA]?'
 };
 
 // Load the layout and inform the keyboard to switch layout if necessary.

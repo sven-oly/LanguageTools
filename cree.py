@@ -50,10 +50,14 @@ class langInfo():
         'longName': 'Kisiska',
         'source': '/fonts/cree/kisiska.otf'
       },
-      { 'family': 'aboriginalSerif',
-        'longName': 'Aboriginal Serif',
-        'source': '/fonts/cree/Aboriginal Serif REGULAR 939.ttf'
+      { 'family': 'aboriginalSans',
+        'longName': 'Aboriginal Sans',
+        'source': '/fonts/cree/AboriginalSansREGULAR.ttf'
       },
+      {'family': 'aboriginalSerif',
+       'longName': 'Aboriginal Serif',
+       'source': '/fonts/cree/Aboriginal Serif REGULAR 939.ttf'
+       },
       {'family': 'Euphemia',
        'longName': 'Euphemia regular',
        'source': '/fonts/cree/Euphemia UCAS Regular 2.6.6.ttf',
@@ -68,6 +72,11 @@ class langInfo():
        'longName': 'Pigiarniq regular',
        'source': '/fonts/cree/Pigiarniq_Regular.ttf',
        'origin': 'http://tiro.com/syllabics/resources/'
+       },
+      {'family': 'Masinahikan_h',
+       'longName': 'Masinahikan',
+       'source': '/fonts/cree/Masinahikan_h.ttf',
+       'origin': 'languagegeek.com'
        },
     ]
 
@@ -118,6 +127,9 @@ class langInfo():
         {'linkText': 'Resources',
          'ref': '/' + self.LanguageCode + '/downloads/'
         },
+      {'linkText': 'Language Geek fonts',
+       'ref': 'http://www.languagegeek.com/font/fontdownload.html'
+       },
     ]
 
     self.kb_list = [
