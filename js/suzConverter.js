@@ -7,6 +7,8 @@ var map_encoding_names = [
 const map_font_to_encoding = {
     'Kirat1': 1,
     'Kirat2': 1,
+    'Mukdum' : 1,
+    'Kaatich1': 1,
     'Lonkuch': 0,
     'Prem': 0
 };

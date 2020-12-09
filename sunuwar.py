@@ -50,6 +50,14 @@ encoding_font_list = [
     'info': 'updated by CWC with new W and Y and diacritics'
   },
   {
+    'source': '/fonts/Sunuwar/Mukdum.ttf',
+    'longName': 'Mukdum',
+    'family': 'Mukdum',
+    'font_path': '/fonts/Sunuwar/Mukdum.ttf',
+    'font_name': 'Mukdum',
+    'display_name': 'Mukdum',
+  },
+  {
     'source': '/fonts/Sunuwar/Kaatich1.ttf',
     'longName': 'Kaatich1',
     'family': 'Kaatich1',
