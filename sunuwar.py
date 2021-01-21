@@ -29,16 +29,14 @@ import webapp2
 from google.appengine.ext.webapp import template
 
 encoding_font_list = [
-  # {
-  #   'source': '/fonts/Sunuwar/Kirat3.ttf',
-  #   'longName': 'Kirat3',
-  #   'family': 'Kirat3',
-  #   'font_path': '/fonts/Sunuwar/Kirat3.ttf',
-  #   'font_name': 'Kirat3',
-  #   'display_name': 'Kirat3',
-  #   'Source location': 'https://omniglot.com/writing/jenticha.htm',
-  #   'info': 'updated by CWC with new W and Y - reencoded'
-  # },
+  {
+    'source': '/fonts/Sunuwar/Mukdum.ttf',
+    'longName': 'Mukdum',
+    'family': 'Mukdum',
+    'font_path': '/fonts/Sunuwar/Mukdum.ttf',
+    'font_name': 'Mukdum',
+    'display_name': 'Mukdum',
+  },
   {
     'source': '/fonts/Sunuwar/kirat2.ttf',
     'longName': 'Kirat2',
@@ -49,14 +47,7 @@ encoding_font_list = [
     'Source location': 'https://omniglot.com/writing/jenticha.htm',
     'info': 'updated by CWC with new W and Y and diacritics'
   },
-  {
-    'source': '/fonts/Sunuwar/Mukdum.ttf',
-    'longName': 'Mukdum',
-    'family': 'Mukdum',
-    'font_path': '/fonts/Sunuwar/Mukdum.ttf',
-    'font_name': 'Mukdum',
-    'display_name': 'Mukdum',
-  },
+
   {
     'source': '/fonts/Sunuwar/Kaatich1.ttf',
     'longName': 'Kaatich1',

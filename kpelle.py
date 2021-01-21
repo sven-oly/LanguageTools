@@ -52,28 +52,16 @@ links = [
     {'linkText': 'Keyboard',
      'ref': '/' + LanguageCode + '/'
     },
-    # {'linkText': 'Converter',
-    #  'ref': '/' + LanguageCode + '/convertUI/'},
-    # {'linkText': 'Font conversion summary',
-    #   'ref': '/' + LanguageCode + '/encodingRules/'
-    # },
-    # {'linkText': 'Resources',
-    #   'ref': '/' + LanguageCode + '/downloads/'
-    # },
-    # {'linkText': 'Unicode page',
-    #  'ref': 'https://www.unicode.org/charts/PDF/U1C00.pdf'
-    # },
-    # {'linkText': 'Lepcha script',
-    #  'ref': 'https://en.wikipedia.org/wiki/Lepcha_alphabet'
-    # },
-    {'linkText': 'Wikipedi page',
-     'ref': 'https://en.wikipedia.org/wiki/Lepcha_language'
+    {'linkText': 'Wikipedia Kpelle syllabary',
+     'ref': 'https://en.wikipedia.org/wiki/Kpelle_syllabary'
     },
-    {'linkText': 'ScriptSoruce',
+    {'linkText': 'Wikipedia Kpelle language',
+     'ref': 'https://en.wikipedia.org/wiki/Kpelle_language'},
+    {'linkText': 'ScriptSource',
      'ref': 'https://scriptsource.org/cms/scripts/page.php?item_id=script_detail&key=Kpel'
     },
     # {'linkText': 'Combiners',
-    #  'ref': '/lep/diacritic/'
+    #  'ref': '/kpe/diacritic/'
     #  },
 ]
 

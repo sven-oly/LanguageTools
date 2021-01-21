@@ -70,6 +70,9 @@ links = [
     {'linkText': 'Language Wikipedia',
      'ref': 'https://en.wikipedia.org/wiki/B%C3%A9t%C3%A9_languages'
     },
+    {'linkText': 'Unicode proposal draft',
+     'ref': 'http://www.unicode.org/L2/L2017/17323-bete-progress.pdf'
+    },
     {'linkText': 'Athinkra Character Picker',
      'ref': 'http://nkoconvert.ho.ua/bete-ime/'
      },

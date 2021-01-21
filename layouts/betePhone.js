@@ -1,7 +1,3 @@
-//javascript/keyboard/api/layouts/cpp.js
-// Copyright 2017 Google Inc.
-// All Rights Reserved.
-
 // Prototype for Mende Kikakui, 6-Nov-2018
 var BETE_PHONE_LAYOUT = {
   'id': 'betePhone',
@@ -23,7 +19,7 @@ var BETE_PHONE_LAYOUT = {
           'ZXC{{\ue75a}}{{\ue75b}}{{\ue75c}}{{\ue75d}}<>?'
     },
     'l': { // ZWNB Space before signals to not transform
-      '': '`1234567890-=' +}
+      '': '`1234567890-=' +
           '{{\ufeffq}}{{\ufeffw}}{{\ufeffe}}{{\ufeffr}}{{\ufefft}}{{\ufeffy}}{{\ufeffu}}{{\ufeffi}}{{\ufeffo}}{{\ufeffp}}[]\\' +
           '{{\ufeffa}}{{\ufeffs}}{{\ufeffd}}{{\ufefff}}{{\ufeffg}}{{\ufeffh}}{{\ufeffj}}{{\ufeffk}}{{\ufeffl}};\'' +
           '{{\ufeffz}}{{\ufeffx}}{{\ufeffc}}{{\ufeffv}}{{\ufeffb}}{{\ufeffn}}{{\ufeffm}},./'
@@ -54,7 +50,6 @@ var BETE_PHONE_LAYOUT = {
     'bheu':  '\ue616',
     'bhi':  '\ue617',
     'bhla':  '\ue622',
-    'bhlo':  '\ue620',
     'bhlo':  '\ue620',
     'bhloo[-\ue74a]':  '\ue621',   // "-" or 2
     'bhloo\ue74a':  '\ue621',
