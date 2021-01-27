@@ -239,11 +239,14 @@ class ConvertUIHandler(webapp2.RequestHandler):
     except:
       outputFont = 'Unicode'
 
-    unicodeChars = '\ud804\udd00'
-    unicodeChars += '\ud804\udd03'
-    unicodeChars += '\ud804\udd04'
-    unicodeChars += '\ud804\udd05'
-    unicodeChars += '\ud804\udd06'
+    try:
+      unicodeChars = langInfo.unicodChars
+    except:
+      unicodeChars = '\ud804\udd00'
+      unicodeChars += '\ud804\udd03'
+      unicodeChars += '\ud804\udd04'
+      unicodeChars += '\ud804\udd05'
+      unicodeChars += '\ud804\udd06'
 
     unicodeCombiningChars = getCombiningCombos(
         langInfo.baseHexUTF16, langInfo.diacritic_list)

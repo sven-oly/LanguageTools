@@ -39,6 +39,10 @@ class langInfo():
     ]
 
     self.unicode_font_list = [
+      {'family': 'LakhumUnicode',
+       'longName': 'Tangsa Lakhum Unicode',
+       'source': '/fonts/Tangsa/TangsaUnicodeLakhum.ttf',
+       },
       {'family': 'Lakhum',
        'longName': 'Lakhum',
        'source': '/fonts/Tangsa/LakhumTSDC.ttf',
@@ -46,11 +50,15 @@ class langInfo():
     ]
 
     self.kb_list = [
-        {'shortName': 'nstPUA',
-         'longName': 'Tangsa PUA',
-         #'reference': 'https://www.nomoa.com/tonga/life/mapu-he-ngalu/keyboard/',
-        },
-      ]
+      {'shortName': 'nstUnicode',
+       'longName': 'Tangsa Unicode',
+       #'reference': 'https://www.nomoa.com/tonga/life/mapu-he-ngalu/keyboard/',
+       },
+      {'shortName': 'nstPUA',
+       'longName': 'Tangsa PUA',
+       #'reference': 'https://www.nomoa.com/tonga/life/mapu-he-ngalu/keyboard/',
+       },
+    ]
     self.lang_list = [
         {'shortName':  'nst',
          'longName': 'Tangsa',
@@ -84,8 +92,8 @@ class langInfo():
     self.baseHexUTF16 = u'a'
     self.base_consonant = u'a'
 
-    self.unicodeChars = [unichr(x) for x in range(0x041, 0x076)]
-    self.diacritic_list = [unichr(x) for x in range(0x0304, 0x02BB)]
+    self.unicodeChars = [unichr(x) for x in range(0x16a70, 0x16ac9)]
+    self.diacritic_list = []
 
     # Python-based transliteration tool.
     self.transliterator = None
