@@ -19,6 +19,9 @@ import webapp2
 # Use routines from this base class
 import base
 
+import logging
+import sys
+
 LanguageCode = 'nst'
 
 
@@ -92,7 +95,12 @@ class langInfo():
     self.baseHexUTF16 = u'a'
     self.base_consonant = u'a'
 
-    self.unicodeChars = [unichr(x) for x in range(0x16a70, 0x16ac9)]
+    if sys.maxunicode >= 0x10000:
+      logging.info('WIDE SYSTEM BUILD!!!')
+      self.unicodeChars = [unichr(x) for x in range(0x16a70, 0x16ac9)]
+    else:
+      logging.info('NARROW SYSTEM BUILD!!!')
+      self.unicodeChars = [unichr(0xd81a) + unichr(x+0xde00) for x in range(0x70, 0xca)]
     self.diacritic_list = []
 
     # Python-based transliteration tool.
