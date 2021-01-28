@@ -16,8 +16,8 @@ var NST_PUA_LAYOUT = {
   'title': 'Tansa Unicode',
   'mappings': {
     '': {
-      '': '`{{\ud81a\ude70}}{{\ud81a\ude71}}{{\ud81a\ude72}}{{\ud81a\ude73}}{{\ud81a\ude74}}{{\ud81a\ude75}}' +
-             '{{\ud81a\ude76}}{{\ud81a\ude77}}{{\ud81a\ude78}}{{\ud81a\ude79}}-=' +
+      '': '`{{\ud81a\udec1}}{{\ud81a\udec2}}{{\ud81a\udec3}}{{\ud81a\udec4}}{{\ud81a\udec5}}{{\ud81a\udec6}}' +
+             '{{\ud81a\udec7}}{{\ud81a\udec8}}{{\ud81a\udec9}}{{\ud81a\udec0}}-=' +
           '{{\ud81a\ude95}}{{\ud81a\ude88}}{{\ud81a\ude7c}}{{\ud81a\ude9c}}{{\ud81a\udeb0}}{{\ud81a\udea5}}' +
              '{{\ud81a\ude84}}{{\ud81a\ude80}}{{\ud81a\ude70}}{{\ud81a\udea7}}{{\u21D3||\u21D3||\u21D3}}]\\' +
           '{{\ud81a\ude78}}{{\ud81a\udea4}}{{\ud81a\ude94}}{{\ud81a\udebb}}{{\ud81a\udea2}}{{\ud81a\udead}}' +
