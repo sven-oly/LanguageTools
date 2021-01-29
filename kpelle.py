@@ -74,9 +74,8 @@ class langInfo():
     self.Language = Language
     self.Language_native = Language_native
     self.test_data = u'FILL IN'
-    # !!!! NOTE
-    # self.unicode_font_list = encoding_font_list
-    self.unicode_font_list = encoding_font_list
+    # !!!! NOTE that this is not yet Unicode
+    self.unicode_font_list = unicode_font_list
     self.encoding_font_list = encoding_font_list
 
     self.lang_list = [LanguageCode]  # This may be extended
