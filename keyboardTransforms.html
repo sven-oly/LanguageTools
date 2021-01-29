@@ -101,36 +101,45 @@ function buildingTransformTable(table) {
   var code;
   // Update headers.
   var header = table.createTHead();
-  var row = header.insertRow(0);
+  var row = table.insertRow(0);
   if (kb_list === undefined) {
     return;
   }
 
+  var rowNum = 0;
+
   for (var kb_index in kb_list) {
     var kb = kb_list[kb_index];
+    var this_transform = kb.transform;
+    if (!this_transform) continue;
+
     var pattern_list = [];
     var this_kb_name = kb.title;
+
+    row = table.insertRow(rowNum);
+    rowNum += 1;
+
     row.insertCell(0).innerHTML = this_kb_name + " input";
     row.insertCell(1).innerHTML = "output";
-        var this_transform = kb.transform;
     for (pattern in this_transform) {
       pattern_list.push(pattern);
     }
     pattern_list.sort();
 
-    var rowNum = 1;  // Skip the headers
     for (var index in pattern_list) {
       var pattern = pattern_list[index];
       var result =  this_transform[pattern];
       // Make pattern human readable
       if (pattern != '|') {
-        pattern = pattern.replace('|', ' or ');
+        pattern = pattern.replace('|', ' | ');
       }
-      var row = table.insertRow(rowNum);
 
+      var row = table.insertRow(rowNum);
+      rowNum += 1;
 
       var cell1 = row.insertCell(0);
       cell1.style.fontSize = "24px";
+      cell1.style.width = "200px";
       var cell2 = row.insertCell(1);
       var fontStringUni = unicode_font_list[0];
       cell2.style.fontFamily = fontStringUni;
@@ -140,8 +149,6 @@ function buildingTransformTable(table) {
       cell2.innerHTML = result;
 
       cell2.title = charsToHexString(result);
-
-     rowNum += 1;
     }
   }
 }

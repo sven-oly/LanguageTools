@@ -52,9 +52,6 @@ var MYH_LAYOUT = {
           'ASDFGHJKL:"' +
           'ZXCVBNM<>?'
     }
-  },
-  'transform': {
-    '^': '^',  // Placeholder
   }
 };
 

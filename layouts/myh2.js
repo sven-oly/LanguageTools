@@ -44,7 +44,6 @@ var MYH2_LAYOUT = {
     }
   },
   'transform': {
-    '^': '^',  // Placeholder
     '\u00B7w': 'ʷ',
     '\u00B7W': 'ᵂ',
     '\u00B7h': 'ħ',
