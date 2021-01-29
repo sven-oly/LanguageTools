@@ -55,7 +55,9 @@ links = [
     {'linkText': 'Keyboard',
      'ref': '/bete/'
     },
-    # {'linkText': 'Converter',
+    {'linkText': 'Keyboard conversions',
+     'ref': '/' + 'bete' + '/kbtransforms/'    # {'linkText': 'Converter',
+     },
     #  'ref': '/bete/convertUI/'
     # },
     # {'linkText': 'Font conversion summary',
@@ -137,6 +139,7 @@ app = webapp2.WSGIApplication(
      ('/' + langInstance.LanguageCode+ '/encodingRules/', base.EncodingRules),
      ('/' + langInstance.LanguageCode+ '/diacritic/', base.DiacriticHandler),
      ('/' + langInstance.LanguageCode + '/dictionaryInput/', base.DictionaryInput),
+     ('/' + langInstance.LanguageCode + '/kbtransforms/', base.KeyboardTransforms),
      ], debug=True,
     config={'langInfo': langInstance}
 )

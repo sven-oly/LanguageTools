@@ -11,7 +11,7 @@
 // limitations under the License.
 
 
-var NST_PUA_LAYOUT = {
+var NST_UNICODE_LAYOUT = {
   'id': 'nstUnicode',
   'title': 'Tansa Unicode',
   'mappings': {
@@ -96,5 +96,5 @@ var NST_PUA_LAYOUT = {
 };
 
 // Load the layout and inform the keyboard to switch layout if necessary.
-google.elements.keyboard.loadme(NST_PUA_LAYOUT);
-nstPUA = NST_PUA_LAYOUT;
+google.elements.keyboard.loadme(NST_UNICODE_LAYOUT);
+nstUnicode = NST_UNICODE_LAYOUT;

@@ -52,6 +52,9 @@ links = [
     {'linkText': 'Keyboard',
      'ref': '/' + LanguageCode + '/'
     },
+    {'linkText': 'Keyboard conversions',
+     'ref': '/' + LanguageCode + '/kbtransforms/'
+    },
     {'linkText': 'Wikipedia Kpelle syllabary',
      'ref': 'https://en.wikipedia.org/wiki/Kpelle_syllabary'
     },
@@ -249,6 +252,7 @@ app = webapp2.WSGIApplication([
   ('/' + LanguageCode + '/downloads/', base.Downloads),
   ('/' + LanguageCode + '/encodingRules/', EncodingRules),
   ('/' + LanguageCode + '/diacritic/', DiacriticHandler),
+  ('/' + langInstance.LanguageCode + '/kbtransforms/', base.KeyboardTransforms),
 ], debug=True,
                               config={'langInfo': langInstance}
 )

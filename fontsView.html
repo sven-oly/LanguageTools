@@ -55,14 +55,38 @@
   </style>
 
   <!-- Path to convert with code tables and other  this for the converter. -->
+  <script>
+    var private_use_map_combined = undefined;
+  </script>
   <script src="{{converterJS}}"></script>
 
   <script src="/js/utils.js"></script>
 
   <script>
+  var k = { loadme: Object};
+  k.loadme.prototype = function(a) {
+  return a;
+  }
+  var e = {keyboard: k};
+  var google = {elements: e};
+  </script>
+
+  {% for kb in kb_list %}
+  <!-- {{kb.shortName}} -->
+  <script src="/layouts/{{kb.shortName}}.js"></script>
+  {% endfor %}
+
+  <script>
+  {% for kb in kb_list %}
+  const {{kb.shortName}}_transform =  {{kb.shortName}}.transform;
+  {% endfor %}
+
   function onPageLoaded() {
     var codetable = document.getElementById('codetable');
     buildEncodingTable(codetable);
+
+    // var transform_table = document.getElementById('transform_table');
+    // buildingTransformTable(transform_table);
   }
 
   var encoding_font_list = [
@@ -92,6 +116,9 @@ function buildEncodingTable(table) {
     outIndex += 1;
   }
   code_list = [];
+  if (private_use_map_combined === undefined) {
+    return;
+  }
   for (code in private_use_map_combined) {
     code_list.push(code);
   }
@@ -140,6 +167,16 @@ function buildEncodingTable(table) {
    rowNum += 1;
   }
 }
+
+function buildingTransformTable(table) {
+  var fontsize="14px";
+  var code;
+  // Update headers.
+  var header = table.createTHead();
+  var row = header.insertRow(0);
+  row.insertCell(0).innerHTML = "keys in";
+  row.insertCell(1).innerHTML = "output";
+}
   </script>
 </head>
 
@@ -153,5 +190,9 @@ function buildEncodingTable(table) {
   <table id='codetable' border="1">
   </table>
 
+  <!-- TEMPORARY -->
+  <table id='transform_table' border="3">
+
+  </table>
 </body>
 </html>

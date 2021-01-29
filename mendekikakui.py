@@ -54,6 +54,9 @@ links = [
     {'linkText': 'Keyboard',
      'ref': '/men/'
     },
+    {'linkText': 'Keyboard conversions',
+     'ref': '/' + 'men' + '/kbtransforms/'
+     },
     {'linkText': 'Converter',
      'ref': '/men/convertUI/'
     },
@@ -133,6 +136,7 @@ app = webapp2.WSGIApplication(
      ('/men/converter/', base.ConvertHandler),
      ('/men/encodingRules/', base.EncodingRules),
      ('/men/diacritic/', base.DiacriticHandler),
-    ], debug=True,
+     ('/' + langInstance.LanguageCode + '/kbtransforms/', base.KeyboardTransforms),
+     ], debug=True,
     config={'langInfo': langInstance}
 )

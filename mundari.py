@@ -68,6 +68,9 @@ class langInfo():
       {'linkText': 'Unicode proposal',
        'ref': 'http://www.unicode.org/L2/L2021/21031-mundari-bani.pdf'
        },
+      {'linkText': 'Font conversion summary',
+       'ref': '/unr/encodingRules/'
+       },
       {'linkText': 'Mundari in Wikipedia',
          'ref': 'https://en.wikipedia.org/wiki/Mundari_language'
         },

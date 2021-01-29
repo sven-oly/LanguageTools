@@ -311,6 +311,23 @@ class EncodingRules(webapp2.RequestHandler):
     path = os.path.join(os.path.dirname(__file__), 'fontsView.html')
     self.response.out.write(template.render(path, template_values))
 
+class KeyboardTransforms(webapp2.RequestHandler):
+  def get(self, match=None):
+
+    langInfo = self.app.config.get('langInfo')
+
+    template_values = {
+      'converterJS': '/js/' + langInfo.LanguageCode + 'Converter.js',
+      'language': langInfo.Language,
+      'lang_list': langInfo.lang_list,
+      'encoding_list': langInfo.encoding_font_list,
+      'unicode_list': langInfo.unicode_font_list,
+      'kb_list': langInfo.kb_list,
+      'links': langInfo.links,
+      'showTools': self.request.get('tools', None),
+    }
+    path = os.path.join(os.path.dirname(__file__), 'keyboardTransforms.html')
+    self.response.out.write(template.render(path, template_values))
 
 class Downloads(webapp2.RequestHandler):
   def get(self, match=None):
@@ -454,6 +471,7 @@ app.router.add((basePath + '/downloads/', Downloads))
 app.router.add((basePath + '/encodingRules/', EncodingRules))
 app.router.add((basePath + '/', LanguagesHomeHandler))
 app.router.add((basePath + 'dictionaryInput', DictionaryInput))
+app.router.add((basePath + 'kbtransforms', KeyboardTransforms))
 
 app.error_handlers[301] = handle_301
 app.error_handlers[404] = handle_404

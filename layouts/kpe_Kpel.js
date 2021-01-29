@@ -165,7 +165,7 @@ var KPE_KPEL_LAYOUT = {
     'nu': '\u0112',
     'nee': '\u0113',
 
-    // Sylllable lengtheners
+    // Syllable lengtheners
     'm': '\u0051',  // ??
     'yny': '\u00f2',
     'ng': '\u0119',
@@ -176,4 +176,4 @@ var KPE_KPEL_LAYOUT = {
 
 // Load the layout and inform the keyboard to switch layout if necessary.
 google.elements.keyboard.loadme(KPE_KPEL_LAYOUT);
-en = KPE_KPEL_LAYOUT;
+kpe_Kpel = KPE_KPEL_LAYOUT;

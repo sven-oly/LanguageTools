@@ -74,12 +74,15 @@ class langInfo():
         {'linkText': 'Keyboard',
          'ref': '/' + self.LanguageCode + '/',
         },
+        {'linkText': 'Keyboard conversions',
+         'ref': '/' + LanguageCode + '/kbtransforms/'
+       },
         {'linkText': 'Converter',
           'ref': '/' + self.LanguageCode + '/convertUI/'
         },
-        # {'linkText': 'Font conversion summary',
-        #  'ref': '/' + self.LanguageCode + '/encodingRules/'
-        # },
+        {'linkText': 'Font conversion summary',
+         'ref': '/' + self.LanguageCode + '/encodingRules/'
+        },
         {'linkText': 'Tangsa languages',
          'ref': 'https://en.wikipedia.org/wiki/Tangsa_language'
         },
@@ -124,6 +127,7 @@ app = webapp2.WSGIApplication(
         ('/' + LanguageCode + '/encodingRules/', base.EncodingRules),
         ('/' + LanguageCode + '/diacritic/', base.DiacriticHandler),
         ('/' + LanguageCode + '/render/', base.EncodingRules),
+        ('/' + langInstance.LanguageCode + '/kbtransforms/', base.KeyboardTransforms),
     ],
     debug=True,
     config={'langInfo': langInstance}

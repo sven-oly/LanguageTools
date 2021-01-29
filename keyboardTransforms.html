@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+
+  <title>{{language}} keyboard transformations</title>
+
+  <!-- Font encoding areas -->
+  <style>
+    {% for encoding in encoding_list %}
+    @font-face{
+      font-family:'{{encoding.font_name}}';
+      src:url('{{encoding.font_path}}');
+      font-weight:normal;
+      font-style:normal;
+      font-size: 32px;
+    }
+    .{{encoding.font_name}} {
+      font-family:{{encoding.font_name}};
+      font-size: 32px;
+    }
+    {% endfor %}
+  </style>
+  <!-- Unicode fonts -->
+  <style>
+    {% for font in unicode_list %}
+    @font-face{
+      font-family:'{{font.family}}';
+      src:url('{{font.source}}');
+      font-weight:normal;
+      font-style:normal;
+      font-size: 32px;
+    }
+
+    .{{font.family}} {
+      font-family:{{font.family}};
+      font-size: 32px;
+    }
+    {% endfor %}
+  </style>
+
+  <style>
+    table {
+      border-collapse: collapse;
+    }
+
+    table, th, td {
+      border: 1px solid black;
+    }
+    td {
+    text-align: center;
+    width: 120px;
+    font-size:20px;
+    }
+  </style>
+
+  <!-- Path to convert with code tables and other  this for the converter. -->
+  <script>
+    var private_use_map_combined = undefined;
+  </script>
+<!--  <script src="{{converterJS}}"></script>-->
+
+  <script src="/js/utils.js"></script>
+
+  <script>
+  var k = { loadme: Object};
+  k.loadme.prototype = function(a) {
+  return a;
+  }
+  var e = {keyboard: k};
+  var google = {elements: e};
+  </script>
+
+  {% for kb in kb_list %}
+  <!-- {{kb.shortName}} -->
+  <script src="/layouts/{{kb.shortName}}.js"></script>
+  {% endfor %}
+
+  <script>
+  var kb_list = [];
+  {% for kb in kb_list %}
+  kb_list.push({{kb.shortName}});
+  const {{kb.shortName}}_transform =  {{kb.shortName}}.transform;
+  {% endfor %}
+
+  function onPageLoaded() {
+    var transform_table = document.getElementById('transform_table');
+    buildingTransformTable(transform_table);
+  }
+
+  var encoding_font_list = [
+  {% for encoding in encoding_list %}"{{encoding.font_name}}",{% endfor %}
+  ];
+
+var unicode_font_list = [
+  {% for font in unicode_list %}"{{font.family}}",{% endfor %}
+  ];
+
+function buildingTransformTable(table) {
+  var fontsize="14px";
+  var code;
+  // Update headers.
+  var header = table.createTHead();
+  var row = header.insertRow(0);
+  if (kb_list === undefined) {
+    return;
+  }
+
+  for (var kb_index in kb_list) {
+    var kb = kb_list[kb_index];
+    var pattern_list = [];
+    var this_kb_name = kb.title;
+    row.insertCell(0).innerHTML = this_kb_name + " input";
+    row.insertCell(1).innerHTML = "output";
+        var this_transform = kb.transform;
+    for (pattern in this_transform) {
+      pattern_list.push(pattern);
+    }
+    pattern_list.sort();
+
+    var rowNum = 1;  // Skip the headers
+    for (var index in pattern_list) {
+      var pattern = pattern_list[index];
+      var row = table.insertRow(rowNum);
+
+      var result =  this_transform[pattern];
+
+      var cell1 = row.insertCell(0);
+      cell1.style.fontSize = "24px";
+      var cell2 = row.insertCell(1);
+      var fontStringUni = unicode_font_list[0];
+      cell2.style.fontFamily = fontStringUni;
+      cell2.style.fontSize = "24px";
+
+      cell1.innerHTML = pattern;
+      cell2.innerHTML = result;
+
+      cell2.title = charsToHexString(result);
+
+     rowNum += 1;
+    }
+  }
+}
+  </script>
+</head>
+
+
+<body onload="onPageLoaded();">
+
+  <h1>{{language}} keyboard transforms</h1>
+  <p>The following are transforms in the keyboards for {{language}}.
+  <p>Hint: hover over the Unicode conversions for the hex code points (UTF-16).
+
+  <!-- TEMPORARY -->
+  <table id='transform_table' border="3">
+
+  </table>
+</body>
+</html>
