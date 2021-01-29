@@ -172,6 +172,7 @@ app = webapp2.WSGIApplication(
         ('/cr/encodingRules/', base.EncodingRules),
         ('/cr/diacritic/', base.DiacriticHandler),
         ('/cr/render/', base.EncodingRules),
+        ('/' + langInstance.LanguageCode + '/kbtransforms/', base.KeyboardTransforms),
     ],
     debug=True,
     config={'langInfo': langInstance}

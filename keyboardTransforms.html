@@ -121,9 +121,13 @@ function buildingTransformTable(table) {
     var rowNum = 1;  // Skip the headers
     for (var index in pattern_list) {
       var pattern = pattern_list[index];
+      var result =  this_transform[pattern];
+      // Make pattern human readable
+      if (pattern != '|') {
+        pattern = pattern.replace('|', ' or ');
+      }
       var row = table.insertRow(rowNum);
 
-      var result =  this_transform[pattern];
 
       var cell1 = row.insertCell(0);
       cell1.style.fontSize = "24px";
