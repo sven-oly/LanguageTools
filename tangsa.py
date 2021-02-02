@@ -70,6 +70,11 @@ class langInfo():
 
       ]
 
+    self.info_text = {
+      'title': 'Tangsa Lakhum information',
+      'text': 'News: This script will be in Unicode 14.0'
+    }
+
     self.links = [
         {'linkText': 'Keyboard',
          'ref': '/' + self.LanguageCode + '/',
@@ -85,6 +90,9 @@ class langInfo():
         },
         {'linkText': 'Tangsa languages',
          'ref': 'https://en.wikipedia.org/wiki/Tangsa_language'
+        },
+        { 'linkText': 'Tangsa Lakhum Unicode proposal',
+          'ref': 'http://www.unicode.org/L2/L2021/21027-tangsa.pdf'
         },
         {'linkText': 'Resources',
          'ref': '/' + self.LanguageCode + '/downloads/'

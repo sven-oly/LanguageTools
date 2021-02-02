@@ -77,10 +77,10 @@ links = [
     },
     {'linkText': 'Athinkra Character Picker',
      'ref': 'http://nkoconvert.ho.ua/bete-ime/'
-     },
-    #{'linkText': 'Combiners',
-    # 'ref': '/bete/diacritic/'
-    #},
+    },
+    {'linkText': 'Digital Orientalist',
+     'ref': 'https://digitalorientalist.com/2021/01/22/building-tools-with-bete-mende-and-kpelle-users/'
+    },
 ]
 
 class langInfo():

@@ -63,6 +63,9 @@ links = [
     {'linkText': 'ScriptSource',
      'ref': 'https://scriptsource.org/cms/scripts/page.php?item_id=script_detail&key=Kpel'
     },
+    {'linkText': 'Digital Orientalist',
+     'ref': 'https://digitalorientalist.com/2021/01/22/building-tools-with-bete-mende-and-kpelle-users/'
+    }
     # {'linkText': 'Combiners',
     #  'ref': '/kpe/diacritic/'
     #  },

@@ -265,7 +265,14 @@ function toggleConvertedVS(text_area_id, toggle) {
    {% endfor %}
      </ul>
    {% endif %}
+
+   {% if langInfo.info_text %}
+    <h4>{{langInfo.info_text.title}}</h4>
+    <p>{{langInfo.info_text.text}}</p>
+   {% endif %}
+
   </div>
+
   <div>
     <form id='mon_form' action="/feedback/" method="get">
       <input type="submit" value="Send feedback" />

@@ -111,6 +111,7 @@ class LanguagesHomeHandler(webapp2.RequestHandler):
         'font_list': langInfo.unicode_font_list,
         'lang_list': langInfo.lang_list,
         'kb_list': langInfo.kb_list,
+        'langInfo': langInfo,
         'links': langInfo.links,
         'showTools': self.request.get('tools', None),
         'test_data': test_data,

@@ -75,9 +75,9 @@ links = [
     {'linkText': 'Athinkra Character Picker',
      'ref': 'http://athinkra.github.io/mende-kikakui/tools/#?load=0x1e800-mende_kikakui.json'
      },
-    #{'linkText': 'Combiners',
-    # 'ref': '/men/diacritic/'
-    #},
+    {'linkText': 'Digital Orientalist',
+      'ref': 'https://digitalorientalist.com/2021/01/22/building-tools-with-bete-mende-and-kpelle-users/'
+    }
 ]
 
 class langInfo():
