@@ -112,7 +112,7 @@ class CreateKeyboardHandler(webapp2.RequestHandler):
       'unshiftedLayers': unshiftedLayers,
       'shiftedLayers': shiftedLayers,
     }
-    path = os.path.join(os.path.dirname(__file__), 'create_keyboard.html')
+    path = os.path.join(os.path.dirname(__file__), 'HTML/create_keyboard.html')
     self.response.out.write(template.render(path, template_values))
 
 class KeyboardDB(db.Model):

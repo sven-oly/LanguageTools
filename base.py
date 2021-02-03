@@ -429,7 +429,7 @@ class CollationHandler(webapp2.RequestHandler):
       'showTools': self.request.get('tools', None),
       'links': langInfo.links,
     }
-    path = os.path.join(os.path.dirname(__file__), 'collationView.html')
+    path = os.path.join(os.path.dirname(__file__), 'HTML/collationView.html')
     self.response.out.write(template.render(path, template_values))
 
 

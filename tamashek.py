@@ -113,7 +113,7 @@ class TamashekHomeHandler(webapp2.RequestHandler):
       'links': langInstance.links,
       'kb_list': langInstance.kb_list,
     }
-    path = os.path.join(os.path.dirname(__file__), 'demo_Tamashek.html')
+    path = os.path.join(os.path.dirname(__file__), 'HTML/demo_Tamashek.html')
     self.response.out.write(template.render(path, template_values))
 
 

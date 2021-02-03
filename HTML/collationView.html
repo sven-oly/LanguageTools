@@ -75,31 +75,20 @@
   const {{kb.shortName}}_transform =  {{kb.shortName}}.transform;
   {% endfor %}
 
-const logFileText = async file => {
+// Keep for reset.
+var original_text = "";
+
+const readCollationTestData = async file => {
     const response = await fetch(file)
     const text = await response.text();
     const output = document.getElementById('collation_data');
     output.innerHTML = text;
+    original_text = text;
+    var split_text = text.split("\n");
+    var num_lines = split_text.length;
+    output.rows = num_lines
     return text;
 }
-
-// logFileText("{{collation_data.0.test_file}}");
-
-  function readCollationTestData(filename) {
-    //const reader = new FileReader();
-    //reader.addEventListener('load', (event) => {
-    //  img.src = event.target.result;
-    //});
-    //reader.readAsDataURL(filename);
-    var myFile = filename;
-    var reader = new FileReader();
-
-    var result = "";
-    reader.addEventListener('load', function (e) {
-      result = e.target.result;
-    });
-    return result;
-  }
 
   function compare(a, b) {
     if (a > b) {
@@ -110,18 +99,29 @@ const logFileText = async file => {
     }
     return 0;
   }
+
   function sort(direction, id) {
     // TODO: implement sort by lines
-    var textarea = document.getElementById(id); // or whatever...
+    var textarea = document.getElementById(id);
     if (direction == 1) {
       textarea.value = textarea.value.split("\n").sort().join("\n");
     } else {
+      // Reverse
       textarea.value = textarea.value.split("\n").sort(compare).join("\n");
     }
   }
 
+  function resetText(id) {
+    var textarea = document.getElementById(id);
+    textarea.value = original_text;
+  }
+
+  // Function called when any manual edit is made to textarea contents.
+  function noteEditing(id) {
+  }
+
   function onPageLoaded() {
-    var text = logFileText("{{collation_data.0.test_file}}");
+    var text = readCollationTestData("{{collation_data.0.test_file}}");
   }
 
   var encoding_font_list = [
@@ -140,10 +140,12 @@ var unicode_font_list = [
 
   <h1>{{langInfo.Language}}: demonstrate collation of strings</h1>
   <p>
-    <button onclick="sort(1, 'collation_data')">Sort strings</button>
-    <button onclick="sort(-1, 'collation_data')">Reverse sort strings</button>
+    <button onclick="sort(1, 'collation_data');">Sort strings</button>
+    <button onclick="sort(-1, 'collation_data');">Reverse sort strings</button>
+    <button onclick="resetText('collation_data');">Reset text</button>
     <br/>
-    <textarea id="collation_data" rows="10" class="{{langInfo.unicode_font_list.0.family}}">
+    <textarea id="collation_data" rows="10" class="{{langInfo.unicode_font_list.0.family}}"
+              onkeyup="noteEditing('collation_data');">
 
     </textarea>
   </table>

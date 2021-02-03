@@ -121,7 +121,7 @@ class AnanuguYolnguHomeHandler(webapp2.RequestHandler):
       'links': langInstance.links,
       'kb_list': langInstance.kb_list,
     }
-    path = os.path.join(os.path.dirname(__file__), 'demo_anangu.html')
+    path = os.path.join(os.path.dirname(__file__), 'HTML/demo_anangu.html')
     self.response.out.write(template.render(path, template_values))
 
 

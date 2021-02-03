@@ -326,7 +326,7 @@ class TibetanHomeHandler(webapp2.RequestHandler):
       template_values = {
         'font_list': font_list,
       }
-      path = os.path.join(os.path.dirname(__file__), 'demo_tibetan.html')
+      path = os.path.join(os.path.dirname(__file__), 'HTML/demo_tibetan.html')
       self.response.out.write(template.render(path, template_values))
 
 langInstance = langInfo()
