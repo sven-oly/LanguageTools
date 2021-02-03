@@ -10,6 +10,9 @@ handlers:
 - url: /fonts
   static_dir: fonts
 
+- url: /collation
+  static_dir: collation
+
 - url: /css
   static_dir: css
   

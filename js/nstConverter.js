@@ -1,6 +1,6 @@
 // Convert from Latin form of Tangsa to Lakhum Unicode forms:
 
-// Mappings for  Tangsa Lakhum
+// Mappings for Tangsa Lakhum
 var map_encoding_names = [
   'Gam Win',
 ];
@@ -244,7 +244,7 @@ var private_use_map_combined = {
   'uiup': ['\ud81a\udea7\ud81a\udea7'],
   'oat': ['\ud81a\ude70\ud81a\udeb0'],
   'at': ['\ud81a\ude74\ud81a\udeb0'],
-  'vt': ['\ud81a\ude7a\ud81a\udeb0'],
+  'vt': ['\ud81a\ude78\ud81a\udeb0'],
   'et': ['\ud81a\ude7c\ud81a\udeb0'],
   'it': ['\ud81a\ude80\ud81a\udeb0'],
   'ut': ['\ud81a\ude84\ud81a\udeb0'],

@@ -39,6 +39,22 @@ class langInfo():
         'font_name': 'Gam Win',
         'display_name': 'Gam Win',
       },
+      {
+        'font_path': '/fonts/Tangsa/LakhumTSDC.ttf',
+        'font_name': 'Lakhum PUA',
+        'display_name': 'Lakhum PUA',
+      }
+    ]
+
+    # Explicit list of conversions
+    self.converters = [
+      {'source': 'Gam Win', 'target': 'Lakhum PUA',
+       'test_data_file': '/conversion/GamWin_LakhumPUA'},
+      {'source': 'Gam Win', 'target': 'Tangsa Lakhum Unicode',
+       'test_data_file': '/conversion/GanWin_TangsaLakhumUnicode'},
+      {'source': 'Lakhum PUA', 'target': 'Tangsa Lakhum Unicode',
+       'test_data_file': '/conversion/LakhumPUA_TangsaLakhumUnicode'
+       },
     ]
 
     self.unicode_font_list = [
@@ -47,7 +63,7 @@ class langInfo():
        'source': '/fonts/Tangsa/TangsaUnicodeLakhum.ttf',
        },
       {'family': 'Lakhum',
-       'longName': 'Lakhum',
+       'longName': 'Lakhum PUA',
        'source': '/fonts/Tangsa/LakhumTSDC.ttf',
        },
     ]
@@ -70,6 +86,9 @@ class langInfo():
 
       ]
 
+    self.collation_data = [
+      {'test_file': '/collation/nst/nst_collation_data.txt'}
+    ]
     self.info_text = {
       'title': 'Tangsa Lakhum information',
       'text': 'News: This script will be in Unicode 14.0'
@@ -79,11 +98,14 @@ class langInfo():
         {'linkText': 'Keyboard',
          'ref': '/' + self.LanguageCode + '/',
         },
-        {'linkText': 'Keyboard conversions',
-         'ref': '/' + LanguageCode + '/kbtransforms/'
-       },
+        # {'linkText': 'Keyboard transforms',
+        #  'ref': '/' + LanguageCode + '/kbtransforms/'
+        # },
         {'linkText': 'Converter',
           'ref': '/' + self.LanguageCode + '/convertUI/'
+        },
+        {'linkText': 'Collation test',
+         'ref': '/' + self.LanguageCode + '/collation/'
         },
         {'linkText': 'Font conversion summary',
          'ref': '/' + self.LanguageCode + '/encodingRules/'
@@ -136,6 +158,7 @@ app = webapp2.WSGIApplication(
         ('/' + LanguageCode + '/diacritic/', base.DiacriticHandler),
         ('/' + LanguageCode + '/render/', base.EncodingRules),
         ('/' + langInstance.LanguageCode + '/kbtransforms/', base.KeyboardTransforms),
+        ('/' + langInstance.LanguageCode + '/collation/', base.CollationHandler),
     ],
     debug=True,
     config={'langInfo': langInstance}

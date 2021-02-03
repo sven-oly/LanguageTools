@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+
+  <title>{{language}} collation tests</title>
+
+  <!-- Font encoding areas -->
+  <style>
+    {% for encoding in langInfo.encoding_font_list %}
+    @font-face{
+      font-family:'{{encoding.font_name}}';
+      src:url('{{encoding.font_path}}');
+      font-weight:normal;
+      font-style:normal;
+      font-size: 32px;
+    }
+    .{{encoding.font_name}} {
+      font-family:{{encoding.font_name}};
+      font-size: 32px;
+    }
+    {% endfor %}
+  </style>
+  <!-- Unicode fonts -->
+  <style>
+    {% for font in langInfo.unicode_font_list %}
+    @font-face{
+      font-family:'{{font.family}}';
+      src:url('{{font.source}}');
+      font-weight:normal;
+      font-style:normal;
+      font-size: 32px;
+    }
+
+    .{{font.family}} {
+      font-family:{{font.family}};
+      font-size: 32px;
+    }
+    {% endfor %}
+  </style>
+
+  <style>
+    table {
+      border-collapse: collapse;
+    }
+
+    table, th, td {
+      border: 1px solid black;
+    }
+    td {
+    text-align: center;
+    width: 120px;
+    font-size:20px;
+    }
+  </style>
+
+  <script src="/js/utils.js"></script>
+
+  <script>
+  var k = { loadme: Object};
+  k.loadme.prototype = function(a) {
+  return a;
+  }
+  var e = {keyboard: k};
+  var google = {elements: e};
+  </script>
+
+  {% for kb in kb_list %}
+  <!-- {{kb.shortName}} -->
+  <script src="/layouts/{{kb.shortName}}.js"></script>
+  {% endfor %}
+
+  <script>
+  {% for kb in kb_list %}
+  const {{kb.shortName}}_transform =  {{kb.shortName}}.transform;
+  {% endfor %}
+
+const logFileText = async file => {
+    const response = await fetch(file)
+    const text = await response.text();
+    const output = document.getElementById('collation_data');
+    output.innerHTML = text;
+    return text;
+}
+
+// logFileText("{{collation_data.0.test_file}}");
+
+  function readCollationTestData(filename) {
+    //const reader = new FileReader();
+    //reader.addEventListener('load', (event) => {
+    //  img.src = event.target.result;
+    //});
+    //reader.readAsDataURL(filename);
+    var myFile = filename;
+    var reader = new FileReader();
+
+    var result = "";
+    reader.addEventListener('load', function (e) {
+      result = e.target.result;
+    });
+    return result;
+  }
+
+  function compare(a, b) {
+    if (a > b) {
+      return -1;
+    }
+    else if (a < b) {
+      return 1;
+    }
+    return 0;
+  }
+  function sort(direction, id) {
+    // TODO: implement sort by lines
+    var textarea = document.getElementById(id); // or whatever...
+    if (direction == 1) {
+      textarea.value = textarea.value.split("\n").sort().join("\n");
+    } else {
+      textarea.value = textarea.value.split("\n").sort(compare).join("\n");
+    }
+  }
+
+  function onPageLoaded() {
+    var text = logFileText("{{collation_data.0.test_file}}");
+  }
+
+  var encoding_font_list = [
+  {% for encoding in langInfo.encoding_font_list %}"{{encoding.font_name}}",{% endfor %}
+  ];
+
+var unicode_font_list = [
+  {% for font in langInfo.unicode_font_list %}"{{font.family}}",{% endfor %}
+  ];
+
+  </script>
+</head>
+
+
+<body onload="onPageLoaded();">
+
+  <h1>{{langInfo.Language}}: demonstrate collation of strings</h1>
+  <p>
+    <button onclick="sort(1, 'collation_data')">Sort strings</button>
+    <button onclick="sort(-1, 'collation_data')">Reverse sort strings</button>
+    <br/>
+    <textarea id="collation_data" rows="10" class="{{langInfo.unicode_font_list.0.family}}">
+
+    </textarea>
+  </table>
+
+</body>
+</html>

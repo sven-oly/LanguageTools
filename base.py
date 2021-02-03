@@ -410,6 +410,30 @@ class DictionaryInput(webapp2.RequestHandler):
 
 
 # For N languages in the dictionary
+class CollationHandler(webapp2.RequestHandler):
+  def get(self, match=None):
+    req = webapp2.get_request()
+    top_path = req.path.split('/')
+    lang_code = top_path[1]
+
+    langInfo = self.app.config.get('langInfo')
+
+    # user_info = getUserInfo(self.request.url)
+
+    # t = Template("My name is {{ person.first_name }}.")
+
+    template_values = {
+      'langInfo': langInfo,
+      'collation_data' : langInfo.collation_data,
+      'unicodeFontList': langInfo.unicode_font_list,
+      'showTools': self.request.get('tools', None),
+      'links': langInfo.links,
+    }
+    path = os.path.join(os.path.dirname(__file__), 'collationView.html')
+    self.response.out.write(template.render(path, template_values))
+
+
+# For N languages in the dictionary
 class DictionaryN(webapp2.RequestHandler):
   def get(self, match=None):
     req = webapp2.get_request()
@@ -473,6 +497,7 @@ app.router.add((basePath + '/encodingRules/', EncodingRules))
 app.router.add((basePath + '/', LanguagesHomeHandler))
 app.router.add((basePath + 'dictionaryInput', DictionaryInput))
 app.router.add((basePath + 'kbtransforms', KeyboardTransforms))
+app.router.add((basePath + 'collation', CollationHandler))
 
 app.error_handlers[301] = handle_301
 app.error_handlers[404] = handle_404
