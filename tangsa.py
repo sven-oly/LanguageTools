@@ -83,7 +83,6 @@ class langInfo():
          'longName': 'Tangsa',
          #'reference': 'https://tau.olunga.to/keyboard.html'
         },
-
       ]
 
     self.collation_data = [
@@ -91,7 +90,8 @@ class langInfo():
     ]
     self.info_text = {
       'title': 'Tangsa Lakhum information',
-      'text': 'News: This script will be in Unicode 14.0'
+      'text': 'News: This script will be in Unicode 14.0',
+      'source': 'https://www.unicode.org/Public/14.0.0/ucd/UnicodeData-14.0.0d4.txt',
     }
 
     self.links = [

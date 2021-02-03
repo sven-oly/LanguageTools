@@ -38,6 +38,12 @@ encoding_font_list = [
 ]
 
 unicode_font_list = [
+  {'family': 'GentiumUnicode2020',
+   'longName': 'Gentium Unicode 2020',
+   'source': '/fonts/Chatino/GentiumUnicode2020.ttf',
+   'provider': 'Kirk Miller, 3-Feb-2021',
+   'ref': 'https://www.unicode.org/Public/14.0.0/ucd/UnicodeData-14.0.0d4.txt',
+   },
   {'family': 'NotoSans',
    'longName': 'Noto Sans',
    'source': '/fonts/NotoSans-Regular.ttf',
@@ -54,7 +60,7 @@ unicode_font_list = [
 kb_list = [
   {
     'shortName': 'omq6',
-    'longName': 'Chatino upper and lower',
+    'longName': 'Chatino Unicode 14.0',
     'instructions':
       ' \u00a0'
   },
@@ -121,6 +127,16 @@ class langInfo():
     self.Language = 'Chatino'
     self.Language_native = 'Onʌyoteʔa·ká'
 
+    self.info_text = {
+      'title': 'Chatino with superscript tones',
+      'text': 'News: Uppercase tones for C and F will be in Unicode 14.0',
+      'source': 'https://www.unicode.org/Public/14.0.0/ucd/UnicodeData-14.0.0d4.txt',
+    }
+    self.lang_list = [
+      {'shortName':  'omq',
+       'longName': 'Chation',
+       },
+    ]
     # Update this!
     if sys.maxunicode >= 0x10000:
       logging.info('WIDE SYSTEM BUILD!!!')
@@ -317,7 +333,8 @@ langInstance = langInfo()
 app = webapp2.WSGIApplication(
   [
     ('/demo_' + LanguageCode + '/', IndigenousHomeHandler),
-    ('/' + LanguageCode + '/', IndigenousHomeHandler),
+    ('/' + LanguageCode + '/', base.LanguagesHomeHandler),
+#    ('/' + LanguageCode + '/', IndigenousHomeHandler),
     ('/' + LanguageCode + '/convertUI/', ConvertUIHandler),
     ('/' + LanguageCode + '/downloads/', base.Downloads),
     ('/' + LanguageCode + '/converter/', ConvertHandler),

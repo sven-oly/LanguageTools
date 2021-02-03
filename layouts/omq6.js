@@ -15,10 +15,10 @@
 
 var OMQ6_LAYOUT = {
   'id': 'omq6',
-  'title': 'Chatino superscripts upper/lower',
+  'title': 'Chatino superscripts upper/lower, Unicode 14.0',
   'mappings': {
     '': {
-      '': '`ᴬᴮᶜᴰᴱᶠᴳᴴᴵᴶᴷᴸ' +
+      '': '`ᴬᴮ\ua7f2ᴰᴱ\ua7f3ᴳᴴᴵᴶᴷᴸ' +
           'qwertyuiop[]\\' +
           'asdfghjkl;\'' +
           'zxcvbnm,./'
