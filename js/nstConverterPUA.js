@@ -1,6 +1,6 @@
 // Convert from Latin form of Tangsa to Lakhum Private Use Area (PUA) forms:
 
-// Mappings for  Tangsa Lakhum
+// Mappings for Tangsa Lakhum
 var map_encoding_names = [
   'Gam Win',
 ];

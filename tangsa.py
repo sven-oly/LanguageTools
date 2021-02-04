@@ -71,11 +71,9 @@ class langInfo():
     self.kb_list = [
       {'shortName': 'nstUnicode',
        'longName': 'Tangsa Unicode',
-       #'reference': 'https://www.nomoa.com/tonga/life/mapu-he-ngalu/keyboard/',
        },
       {'shortName': 'nstPUA',
        'longName': 'Tangsa PUA',
-       #'reference': 'https://www.nomoa.com/tonga/life/mapu-he-ngalu/keyboard/',
        },
     ]
     self.lang_list = [
