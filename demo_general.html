@@ -51,40 +51,48 @@
 {% endif %}
 
   <script>
-    var diff_list = [];  // needed for utils.js
+  // For loading keyboard.
+  var k = { loadme: Object};
+  k.loadme.prototype = function(a) {
+  return a;
+  }
+  var e = {keyboard: k};
+  var google = {elements: e};
 
-    // For the keyboard.
-    var controller, visible = true;
-    function onPageLoaded() {
-      var input = document.getElementById('t1');
-      controller = new i18n.input.keyboard.Keyboard();
+  var diff_list = [];  // needed for utils.js
 
-      // TEST!
-      var x = i18n.input.keyboard.Controller;
+  // For the keyboard.
+  var controller, visible = true;
+  function onPageLoaded() {
+    var input = document.getElementById('t1');
+    controller = new i18n.input.keyboard.Keyboard();
 
-      onSizeSelected(document.getElementById("sizeSelector").value, 't1');
-      {% for kb in kb_list %}
-      controller.loadLayout('{{kb.shortName}}');
-      {% endfor %}
-      controller.reposition(input, 3, 4, [5, 0, 0, 0]);
-      controller.activateLayout('{{kb_list.0.shortName}}');
-      controller.register(input);
-      controller.addEventListener(
-          'kc',
-          function() { visible = false; });
+    // TEST!
+    var x = i18n.input.keyboard.Controller;
 
-      controller.addEventListener(
-          'lat',
-          function () {
-              setFontFamily('{{font_list.0.family}}');
-          });
-      input.focus();
+    onSizeSelected(document.getElementById("sizeSelector").value, 't1');
+    {% for kb in kb_list %}
+    controller.loadLayout('{{kb.shortName}}');
+    {% endfor %}
+    controller.reposition(input, 3, 4, [5, 0, 0, 0]);
+    controller.activateLayout('{{kb_list.0.shortName}}');
+    controller.register(input);
+    controller.addEventListener(
+        'kc',
+        function() { visible = false; });
 
-      var selector = document.getElementById("setLayout");
-      onLayoutSelected(selector.value);
+    controller.addEventListener(
+        'lat',
+        function () {
+            setFontFamily('{{font_list.0.family}}');
+        });
+    input.focus();
+
+    var selector = document.getElementById("setLayout");
+    onLayoutSelected(selector.value);
 
 //      setFontFamily(document.getElementById("fontSelector").value);
-    }
+  }
 
     function onLayoutSelected(layoutCode) {
       controller.activateLayout(layoutCode);
@@ -142,7 +150,56 @@
     function onSizeSelected(newSize, textArea) {
       var t1_element = document.getElementById(textArea);
       t1_element.style.fontSize = newSize;
-    }  
+    }
+
+    function lineifyMapping(input) {
+      // Given a kb mapping, create lines of text corresponding to 4 keyboard rows
+      // of 13, 13, 11, and 10
+      input = input.replace(/{{/g, "\u0000");
+      input = input.replace(/}}/g, "\u00a0");
+      var index = 0;
+      var output_list = [];
+      var in_size = input.length;
+      while (index < input.length) {
+        if (input[index] == "\u0000") {
+          // Advance until \u00a0 is found
+          var group = []
+          index += 1;
+          while (index < in_size && input[index] != "\u00a0") {
+            group.push(input[index]);
+            index += 1;
+          }
+          index += 1;  // Move over the 00a0
+          output_list.push(group.join(""));
+        } else {
+          output_list.push(input[index]);
+          index += 1;
+        }
+        if (output_list.length == 13 || output_list.length == 27 ||
+            output_list.length == 39) {
+          output_list.push("\n");
+        }
+      }
+
+      return output_list.join("");
+    }
+    function fillAllKeys(textarea_id, select_layout_id) {
+      var textArea = document.getElementById(textarea_id);
+      var selector = document.getElementById(select_layout_id);
+
+      var kb_info = eval(selector.value);
+      var new_text = "FILL ALL KEYS " + selector.value;
+      var key_layouts = "";
+      for (var item in kb_info.mappings) {
+        key_layouts = key_layouts + item + "\n";
+        var output = "";
+        for (var start in kb_info.mappings[item]) {
+          output += kb_info.mappings[item][start];
+        }
+        key_layouts += lineifyMapping(output) + "\n\n";
+      }
+      textArea.innerHTML = textArea.value = key_layouts;
+    }
 
     // Keyboard info.
     var kb_info = {
@@ -213,6 +270,7 @@ function toggleConvertedVS(text_area_id, toggle) {
     <option value="120px">120</option>
     <option value="240px">240</option>
   </select>
+
   <input type="button" value="Clear text" onclick="clearText()">
   <br />
 
@@ -236,6 +294,8 @@ function toggleConvertedVS(text_area_id, toggle) {
   <div id="codepoint_div">
     <hr>
     <input type="button" value="Code points" onclick="showCodePoints()">
+    <input type="button" value="All keys" onclick="fillAllKeys('t1', 'setLayout');"
+    />
     {% if variation_sequence %}
        <input type="checkbox" name="vsToggle" id="toggleVS" checked
       onchange="toggleConvertedVS('t1', toggleVS);">Toggle variation sequence<br />

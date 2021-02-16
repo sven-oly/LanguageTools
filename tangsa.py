@@ -84,7 +84,20 @@ class langInfo():
       ]
 
     self.collation_data = [
-      {'test_file': '/collation/nst/nst_collation_data.txt'}
+      {'test_file': '/collation/nst/CALMSEA_List.tsv',
+       'format':'tsv',
+       'sort_options' : [
+         {'column': 3, 'method': 'PUA'},
+         {'column': 0, 'method': 'default'},
+         {'column': 2, 'method': 'Gam Win'}
+       ],
+       'convert': {
+         'source_column': 3,
+         'convert_js': 'nstConvert_PUA_Unicode',
+         'function': 'convertLakhumPUAToUnicode'
+        }
+      },
+      # {'test_file': '/collation/nst/nst_collation_data.txt', 'format':'txt'},
     ]
     self.info_text = {
       'title': 'Tangsa Lakhum information',
