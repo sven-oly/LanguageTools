@@ -7649,8 +7649,8 @@ i18n.input.keyboard.Standalone.prototype.commitText = function $i18n$input$keybo
       // If so, remove the extra character
       if (from > 0 && back > 0) {
         var last_code = value.slice(from-1, from)[0].charCodeAt();
-        if (from > 0 && last_code >= 0xfe00 && last_code <= 0xfe0f) back += 1;
-        if (from > 0 &&  last_code >= 0xdc00 && last_code <= 0xdfff) back += 1;
+        if (last_code >= 0xdc00 && last_code <= 0xdfff) back += 1;
+        else if (last_code >= 0xfe00 && last_code <= 0xfe0f) back += 1;
       }
 
       from -= from < back ? from : back;
