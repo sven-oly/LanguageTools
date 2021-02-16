@@ -7645,16 +7645,18 @@ i18n.input.keyboard.Standalone.prototype.commitText = function $i18n$input$keybo
       var value = this.activeInput_.value, from = this.activeInput_.selectionStart, to = this.activeInput_.selectionEnd;
       from > to && (from += to, to = from - to, from -= to);
       !text && 1 == back && from < to && (back = 0);
+      // Test if removing variation sequence FE00 - FE0F or second part of supplementary character
+      // If so, remove the extra character
+      if (from > 0 && back > 0) {
+        var last_code = value.slice(from-1, from)[0].charCodeAt();
+        if (from > 0 && last_code >= 0xfe00 && last_code <= 0xfe0f) back += 1;
+        if (from > 0 &&  last_code >= 0xdc00 && last_code <= 0xdfff) back += 1;
+      }
+
       from -= from < back ? from : back;
       var part1 = value.slice(0, from);
       var last1 = part1.substr(-1);
-      if (last1) {
-        var codep1 = last1.charCodeAt();
-        if (codep1 >= 0xd800 && codep1 <= 0xdbff) {
-          from -= 1;  // It leaves the first part of a supplementary character. Remove it, too.
-        }
-      }
-      this.activeInput_.value = value.slice(0, from) + text + value.slice(to);
+       this.activeInput_.value = value.slice(0, from) + text + value.slice(to);
       from += text.length;
       this.activeInput_.setSelectionRange(from, from);
     }
