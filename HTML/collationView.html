@@ -21,6 +21,7 @@
     }
     {% endfor %}
   </style>
+
   <!-- Unicode fonts -->
   <style>
     {% for font in langInfo.unicode_font_list %}
@@ -129,6 +130,8 @@ const readCollationTestData = async file => {
           var headerCell = document.createElement("TH");
           headerCell.onclick = makeColClick(0, true);
           headerCell.innerHTML = "Input row";
+          headerCell.style.backgroundColor = "yellow";
+
           row.appendChild(headerCell)
           column_headings.push(headerCell.innerHTML);
           for (var col = 0; col < row_entries.length; col ++) {
@@ -244,14 +247,18 @@ function sortTableColumn(col, is_number) {
     // Get sort_field.
     var sort_data = [];
     var rows = table.rows;
-    last_sorted = table_data['last_sort_column'];
 
-    table_data['last_sort_column'] = sort_column;  // TODO Use to reverse order.
+    // Set highlight
+    if (table_data['header_count'] > 0) {
+      rows[0].cells[table_data['last_sort_column']].style.backgroundColor = "white";
+    }
+    // If resorting the same column, reverse order.
+    reverse_sort = (sort_column == table_data['last_sort_column']);
+    table_data['last_sort_column'] = sort_column;
+
     var out_row = table_data['header_count'];
-
     for (var row_num = out_row; row_num < rows.length; row_num++) {
-      var row = rows[row_num];
-      var cells_in_row = row.cells;
+      var cells_in_row = rows[row_num].cells;
       var cell_data = [];
       // Skip header cells
       var text = "";
@@ -278,10 +285,8 @@ function sortTableColumn(col, is_number) {
       sort_data.sort(compareRowsByColumn);
     }
     // Now refill table.
-    var out_row = table_data['header_count'];
     for (var index = 0; index < sort_data.length; index ++) {
-      var source_row = sort_data[index];
-      var cell_data = source_row['cell_data'];
+      var cell_data = sort_data[index]['cell_data'];
       for (var col = 0; col < cell_data.length; col ++) {
         try {
           rows[out_row].cells[col].innerHTML = cell_data[col];
@@ -291,12 +296,9 @@ function sortTableColumn(col, is_number) {
       }
       out_row ++;
     }
-  }
-
-  function onSortColumnSelected(id, sort_column) {
-    // Use menu selection to sort the column of the table.
-    var table = document.getElementById(id);
-    sortTableRows(table, table_data, sort_column);  // Global
+    if (table_data['header_count'] > 0) {
+      rows[0].cells[sort_column].style.backgroundColor = "yellow";
+    }
   }
 
   function onPageLoaded() {
@@ -319,7 +321,7 @@ var unicode_font_list = [
 
   <h1>{{langInfo.Language}}: demonstrate collation of strings</h1>
   <p id="comments"></p>
-  <p><em>Click on column headings to sort.</em></p>
+  <p><em>Click on column headings to sort. Click twice to sort column in reverse.</em></p>
 
     <table id="collation_table">
     </table>
