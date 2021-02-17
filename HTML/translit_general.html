@@ -223,6 +223,9 @@
       if (encodeSelector.value == 'Alaam' || encodeSelector.value == 'Aiton') {
         encodingIndex = 2;
       }
+      if (encodeSelector.value == 'Gam Win') {  // For Tangsa Unicode
+        encodingIndex = 1;
+      }
     }
     // This is defined in some converters, and should eventually be in all.
     if(typeof map_font_to_encoding == 'object') {

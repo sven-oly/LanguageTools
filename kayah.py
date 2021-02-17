@@ -163,20 +163,6 @@ class langInfo():
     self.links = links
 
 
-# Shows keyboards
-class IndigenousHomeHandler(webapp2.RequestHandler):
-    def get(self):
-      template_values = {
-        'language': Language,
-        'langTag': LanguageCode,
-        'font_list': unicode_font_list,
-        'lang_list': None,
-        'kb_list': kb_list,
-        'links': links,
-      }
-      path = os.path.join(os.path.dirname(__file__), 'demo_general.html')
-      self.response.out.write(template.render(path, template_values))
-
 # Presents UI for conversions from font encoding to Unicode.
 class ConvertUIHandler(webapp2.RequestHandler):
     def get(self):
@@ -221,7 +207,7 @@ class ConvertUIHandler(webapp2.RequestHandler):
           'unicodeChars': unicodeChars,
           'combiningChars': unicodeCombiningChars,
       }
-      path = os.path.join(os.path.dirname(__file__), 'translit_general.html')
+      path = os.path.join(os.path.dirname(__file__), 'HTML/translit_general.html')
       self.response.out.write(template.render(path, template_values))
 
 class EncodingRules(webapp2.RequestHandler):
@@ -303,10 +289,10 @@ class DiacriticHandler(webapp2.RequestHandler):
 langInstance = langInfo()
 
 app = webapp2.WSGIApplication([
-      ('/' + LanguageCode + '/', IndigenousHomeHandler),
+      ('/' + LanguageCode + '/', base.LanguagesHomeHandler),
       ('/' + LanguageCode + '/convertUI/', ConvertUIHandler),
       ('/' + LanguageCode + '/downloads/', base.Downloads),
-      ('/' + LanguageCode + '/encodingRules/', EncodingRules),
+      ('/' + LanguageCode + '/encodingRules/', base.EncodingRules),
       ('/' + LanguageCode + '/diacritic/', DiacriticHandler),
     ],
   debug=True,

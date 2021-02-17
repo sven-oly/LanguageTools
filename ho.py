@@ -117,54 +117,6 @@ encodedRanges = [
   (0x20, 0x7b),
 ]
 
-# Presents UI for conversions from font encoding to Unicode.
-class ConvertUIHandler(webapp2.RequestHandler):
-    def get(self):
-
-      # All old characters
-      oldCharList = []
-      for run in encodedRanges:
-        oldCharList.extend([unichr(x) + ' ' for x in xrange(run[0], run[1])])
-
-      oldChars = ''.join(oldCharList)
-      text = self.request.get('text', oldChars)
-      font = self.request.get('font')
-      testStringList = [
-          {'name': 'Test 1', # Note: must escape the single quote.
-           'string': u'\u0004\u0005\u0006\u0007\u0008\u0009' +
-           '\u000a\u000b'},
-      ]
-
-      oldInput = text
-
-      unicodeChars = ''
-      unicodeCombiningChars = ''
-      kb_list = [
-        {'shortName':  LanguageCode,
-         'longName': Language
-        }
-      ]
-
-      template_values = {
-          'font': font,
-          'language': Language,
-          'langTag': LanguageCode,
-          'encodingList': encoding_font_list,
-          'encoding': encoding_font_list[0],
-          'kb_list': kb_list,
-          'unicodeFonts': unicode_font_list,
-          'links': links,
-          'oldChars': oldChars,
-          'oldInput': oldInput,
-          'text': text,
-          'textStrings': testStringList,
-          'showTools': self.request.get('tools', None),
-          'unicodeChars': unicodeChars,
-          'combiningChars': unicodeCombiningChars,
-      }
-      path = os.path.join(os.path.dirname(__file__), 'translit_general.html')
-      self.response.out.write(template.render(path, template_values))
-
 class EncodingRules(webapp2.RequestHandler):
     def get(self):
 
@@ -246,7 +198,7 @@ langInstance = langInfo()
 
 app = webapp2.WSGIApplication([
       ('/' + LanguageCode + '/', IndigenousHomeHandler),
-      ('/' + LanguageCode + '/convertUI/', ConvertUIHandler),
+      ('/' + LanguageCode + '/convertUI/', base.ConvertUIHandler),
       ('/' + LanguageCode + '/downloads/', base.Downloads),
       ('/' + LanguageCode + '/encodingRules/', EncodingRules),
       ('/' + LanguageCode + '/diacritic/', DiacriticHandler),

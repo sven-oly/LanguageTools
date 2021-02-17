@@ -274,6 +274,7 @@ app = webapp2.WSGIApplication(
      ('/rhg/encodingRules/', base.EncodingRules),
      ('/rhg/diacritic/', base.DiacriticHandler),
 
+     # TESTING
      ('/rhg/newkb/', NewKBHandler),
 
      ('/' + langInstance.LanguageCode + '/dictionaryN/', base.DictionaryN),

@@ -243,7 +243,7 @@ class ConvertUIHandler(webapp2.RequestHandler):
           'backend_convert': True,  # For the backend conversion.
           'converter_type': 'WWBURN_Unicode',
       }
-      path = os.path.join(os.path.dirname(__file__), 'translit_general.html')
+      path = os.path.join(os.path.dirname(__file__), 'HTML/translit_general.html')
       self.response.out.write(template.render(path, template_values))
 
 
@@ -326,7 +326,7 @@ class ConvertToZawgyiHandler(webapp2.RequestHandler):
       'unicodeChars': unicodeChars,
       'combiningChars': unicodeCombiningChars,
     }
-    path = os.path.join(os.path.dirname(__file__), 'translit_general.html')
+    path = os.path.join(os.path.dirname(__file__), 'HTML/translit_general.html')
     self.response.out.write(template.render(path, template_values))
 
 

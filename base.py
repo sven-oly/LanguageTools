@@ -249,8 +249,17 @@ class ConvertUIHandler(webapp2.RequestHandler):
       unicodeChars += '\ud804\udd05'
       unicodeChars += '\ud804\udd06'
 
-    unicodeCombiningChars = getCombiningCombos(
+    try:
+      unicodeCombiningChars = getCombiningCombos(
         langInfo.baseHexUTF16, langInfo.diacritic_list)
+    except:
+      unicodeCombiningChars = None
+
+    try:
+      encodingList = langInfo.encoding_font_list
+    except:
+      encodingList = None
+
     try:
       variation_sequence = langInfo.variation_sequence
     except:
@@ -260,7 +269,7 @@ class ConvertUIHandler(webapp2.RequestHandler):
         'font': font,
         'language': langInfo.Language,
         'langTag': langInfo.LanguageCode,
-        'encodingList': langInfo.encoding_font_list,
+        'encodingList': encodingList,
         'lang_list': langInfo.lang_list,
         'kb_list': langInfo.kb_list,
         'direction': text_direction,
@@ -276,7 +285,7 @@ class ConvertUIHandler(webapp2.RequestHandler):
         'combiningChars': unicodeCombiningChars,
         'variation_sequence': variation_sequence,
     }
-    path = os.path.join(os.path.dirname(__file__), 'translit_general.html')
+    path = os.path.join(os.path.dirname(__file__), 'HTML/translit_general.html')
     self.response.out.write(template.render(path, template_values))
 
 # Create a string with combinations of the combining characters,

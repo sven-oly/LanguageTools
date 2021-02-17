@@ -136,59 +136,6 @@ class IndigenousHomeHandler(webapp2.RequestHandler):
       path = os.path.join(os.path.dirname(__file__), 'demo_general.html')
       self.response.out.write(template.render(path, template_values))
 
-# Presents UI for conversions from font encoding to Unicode.
-class ConvertUIHandler(webapp2.RequestHandler):
-    def get(self):
-
-      # All old characters
-      oldChars = (u'' +
-                  '0123456789:;<=>?@' +
-                  '!@#$%^&*()_+' +
-                  'ABCDEFGHIJKLMNOPQRSTUVWXYZ[ \\ ]^_`' +
-                  'abcdefghijklmnopqrstuvwxyz{|}~\u00a4\u00a5\u00a7' +
-                  ' \u02c6 \u02d9 \u2116 \u20a3 \u20a7 \u2116 \u00b7 \u00b9')
-      text = self.request.get('text', oldChars)
-      font = self.request.get('font')
-      pua_list = [unichr(x) for x in xrange(0xe000, 0xe020)]
-      testStringList = [
-          {'name': 'Private Use', # Note: must escape the single quote.
-           'string': ''.join(pua_list)
-           },
-      ]
-
-      oldInput = u''
-      for i in xrange(0x20, 0x7e):
-        oldInput += unichr(i)
-      for i in xrange(0x2018, 0x201e):
-        oldInput += unichr(i)
-      unicodeChars = ''
-      unicodeCombiningChars = ''
-      kb_list = [
-        {'shortName':  LanguageCode,
-         'longName': Language
-        }
-      ]
-
-      template_values = {
-          'font': font,
-          'language': Language,
-          'langTag': LanguageCode,
-          'encodingList': encoding_font_list,
-          'encoding': encoding_font_list[0],
-          'kb_list': kb_list,
-          'unicodeFonts': unicode_font_list,
-          'links': links,
-          'oldChars': oldChars,
-          'oldInput': oldInput,
-          'text': text,
-          'textStrings': testStringList,
-          'showTools': self.request.get('tools', None),
-          'unicodeChars': unicodeChars,
-          'combiningChars': unicodeCombiningChars,
-      }
-      path = os.path.join(os.path.dirname(__file__), 'translit_general.html')
-      self.response.out.write(template.render(path, template_values))
-
 # AJAX handler for converter
 class ConvertHandler(webapp2.RequestHandler):
     def get(self):

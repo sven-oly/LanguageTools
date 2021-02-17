@@ -168,7 +168,7 @@ class ConvertUIHandler(webapp2.RequestHandler):
           'combiningChars': unicodeCombiningChars,
           'regressionTest': True,
       }
-      path = os.path.join(os.path.dirname(__file__), 'translit_general.html')
+      path = os.path.join(os.path.dirname(__file__), 'HTML/translit_general.html')
       self.response.out.write(template.render(path, template_values))
 
 class EncodingRules(webapp2.RequestHandler):

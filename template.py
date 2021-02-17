@@ -87,6 +87,12 @@ class langInfo():
     self.encoding_font_list = encoding_font_list
 
     self.lang_list = [LanguageCode]  # This may be extended
+
+    kb_list = [
+      {'shortName': LanguageCode,
+       'longName': LanguageCode,
+       },
+    ]
     self.kb_list = kb_list
     self.links = links
 
@@ -100,21 +106,6 @@ diacritic_list = [unichr(x) for x in range(0x1c24, 0x1c37)]
 #TODO: Fill in base consonant
 default_base_consonant = u'\u1c00'
 
-# Shows keyboards
-class IndigenousHomeHandler(webapp2.RequestHandler):
-    def get(self):
-      template_values = {
-        'language': Language,
-        'langTag': LanguageCode,
-        'font_list': unicode_font_list,
-        'lang_list': None,
-        'kb_list': kb_list,
-        'links': links,
-      }
-      path = os.path.join(os.path.dirname(__file__), 'demo_general.html')
-      self.response.out.write(template.render(path, template_values))
-
-
 kb_list = [
   {'shortName': LanguageCode,
    'longName': LanguageCode,
@@ -125,84 +116,9 @@ diacritic_list = [unichr(x) for x in range(0xa926, 0xa92d)]
 
 default_base_consonant = u'\u1c00'
 
-# Shows keyboards
-class IndigenousHomeHandler(webapp2.RequestHandler):
-    def get(self):
-      template_values = {
-        'language': Language,
-        'langTag': LanguageCode,
-        'font_list': unicode_font_list,
-        'lang_list': None,
-        'kb_list': kb_list,
-        'links': links,
-      }
-      path = os.path.join(os.path.dirname(__file__), 'demo_general.html')
-      self.response.out.write(template.render(path, template_values))
-
 encodedRanges = [
   (0x20, 0x7b),
 ]
-# Presents UI for conversions from font encoding to Unicode.
-class ConvertUIHandler(webapp2.RequestHandler):
-    def get(self):
-
-      # All old characters
-      oldCharList = []
-#   oldCharList.extend([unichr(x) + ' ' for x in xrange(run[0], run[1]))
-
-      oldChars = ''.join(oldCharList)
-      text = self.request.get('text', oldChars)
-      font = self.request.get('font')
-      testStringList = [
-          {'name': 'Test 1', # Note: must escape the single quote.
-           'string': u'\u0004\u0005\u0006\u0007\u0008\u0009' +
-           '\u000a\u000b'},
-      ]
-
-      oldInput = text
-
-      unicodeChars = ''
-      unicodeCombiningChars = ''
-      kb_list = [
-        {'shortName':  LanguageCode,
-         'longName': Language
-        }
-      ]
-
-      template_values = {
-          'font': font,
-          'language': Language,
-          'langTag': LanguageCode,
-          'encodingList': encoding_font_list,
-          'encoding': encoding_font_list[0],
-          'kb_list': kb_list,
-          'unicodeFonts': unicode_font_list,
-          'links': links,
-          'oldChars': oldChars,
-          'oldInput': oldInput,
-          'text': text,
-          'textStrings': testStringList,
-          'showTools': self.request.get('tools', None),
-          'unicodeChars': unicodeChars,
-          'combiningChars': unicodeCombiningChars,
-      }
-      path = os.path.join(os.path.dirname(__file__), 'translit_general.html')
-      self.response.out.write(template.render(path, template_values))
-
-class EncodingRules(webapp2.RequestHandler):
-    def get(self):
-
-      template_values = {
-        'converterJS': '/js/' + LanguageCode + 'Converter.js',
-        'language': Language,
-        'langTag': LanguageCode,
-        'encoding_list': encoding_font_list,
-        'unicode_list': unicode_font_list,
-        'kb_list': kb_list,
-        'links': links,
-      }
-      path = os.path.join(os.path.dirname(__file__), 'fontsView.html')
-      self.response.out.write(template.render(path, template_values))
 
 class RenderPage(webapp2.RequestHandler):
     def get(self):
@@ -269,11 +185,11 @@ class DiacriticHandler(webapp2.RequestHandler):
 langInstance = langInfo()
 
 app = webapp2.WSGIApplication([
-  ('/' + LanguageCode + '/', IndigenousHomeHandler),
-  ('/' + LanguageCode + '/convertUI/', ConvertUIHandler),
+  ('/' + LanguageCode + '/', base.LanguagesHomeHandler),
+  ('/' + LanguageCode + '/convertUI/', base.ConvertUIHandler),
   ('/' + LanguageCode + '/downloads/', base.Downloads),
-  ('/' + LanguageCode + '/encodingRules/', EncodingRules),
-  ('/' + LanguageCode + '/diacritic/', DiacriticHandler),
+  ('/' + LanguageCode + '/encodingRules/', base.EncodingRules),
+  ('/' + LanguageCode + '/diacritic/', base.DiacriticHandler),
 ], debug=True,
                               config={'langInfo': langInstance}
 )
