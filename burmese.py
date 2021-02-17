@@ -17,6 +17,7 @@ from __future__ import print_function
 
 import base
 
+# import
 import transliterate
 import transrule_my_wwburn
 
@@ -174,7 +175,7 @@ class ConvertUIHandler(webapp2.RequestHandler):
       font = self.request.get('font')
 
       oldInput = u''
-      for i in xrange(0x20, 0x80):
+      for i in range(0x20, 0x80):
         oldInput += unichr(i)
         oldInput += unichr(0x20) + unichr(0x20)
       oldInput += unichr(0x000a)
@@ -214,7 +215,6 @@ class ConvertUIHandler(webapp2.RequestHandler):
       oldInput += unichr(0x2030)
       oldInput += unichr(0x2039)
       oldInput += unichr(0x2122)
-
 
       unicodeChars = ''
       unicodeCombiningChars = ''
@@ -259,15 +259,15 @@ class ConvertToZawgyiHandler(webapp2.RequestHandler):
     font = self.request.get('font')
 
     oldInput = u''
-    for i in xrange(0x20, 0x80):
+    for i in range(0x20, 0x80):
       oldInput += unichr(i)
       oldInput += unichr(0x20) + unichr(0x20)
     oldInput += unichr(0x000a)
-    for i in xrange(0xa0, 0xaf):
+    for i in range(0xa0, 0xaf):
       oldInput += unichr(i)
       oldInput += unichr(0x20) + unichr(0x20)
     oldInput += unichr(0x000a)
-    for i in xrange(0xb0, 0xf9):
+    for i in range(0xb0, 0xf9):
       oldInput += unichr(i)
       oldInput += unichr(0x20) + unichr(0x20)
     oldInput += unichr(0x000a)
@@ -465,7 +465,21 @@ class DiacriticHandler(webapp2.RequestHandler):
     path = os.path.join(os.path.dirname(__file__), 'diacritics.html')
     self.response.out.write(template.render(path, template_values))
 
+# Perform transliteration using Okell transcript with modifications
+class TransliterateHandler(webapp2.RequestHandler):
+  def get(self):
+    # Load existing transliterations
+
+    template_values = {
+      'language': Language,
+      'base_char': base_consonant.encode('utf-8'),
+      'base_hex': ['%4x' % ord(x) for x in base_consonant],
+      'unicode_font_list': unicode_font_list,
+    }
+    path = os.path.join(os.path.dirname(__file__), 'diacritics.html')
+    self.response.out.write(template.render(path, template_values))
 langInstance = langInfo()
+
 
 app = webapp2.WSGIApplication([
     ('/demo_my/', IndigenousHomeHandler),
@@ -476,6 +490,7 @@ app = webapp2.WSGIApplication([
     ('/my/convertToZawgyi/', ConvertToZawgyiHandler),
     ('/my/encodingRules/', EncodingRules),
     ('/my/diacritic/', DiacriticHandler),
+    ('/my/transliterate/', TransliterateHandler),
   ],
   debug=True,
   config = {'langInfo': langInstance}

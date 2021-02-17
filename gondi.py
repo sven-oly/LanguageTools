@@ -469,7 +469,7 @@ class DictionaryInput(webapp2.RequestHandler):
         'unicodeFontList': unicode_font_dict[lang_code],
         'links': links,
       }
-      path = os.path.join(os.path.dirname(__file__), 'dictionaryInput.html')
+      path = os.path.join(os.path.dirname(__file__), 'HTML/dictionaryInput.html')
       self.response.out.write(template.render(path, template_values))
 
 # Declare the communications with the base class.

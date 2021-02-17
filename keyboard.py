@@ -144,7 +144,7 @@ class SetUpKeyboardHandler(webapp2.RequestHandler):
       'kboards': entries,
     }
 
-    path = os.path.join(os.path.dirname(__file__), 'setup_keyboard.html')
+    path = os.path.join(os.path.dirname(__file__), 'HTML/setup_keyboard.html')
     self.response.out.write(template.render(path, template_values))
     return
 

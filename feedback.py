@@ -39,7 +39,7 @@ class FeedbackHandler(webapp2.RequestHandler):
     logging.info('Feedback input = %s %s %s' % (template_values['language'],
     	template_values['font'], template_values['sampleText']))
 
-    path = os.path.join(os.path.dirname(__file__), 'feedback.html')
+    path = os.path.join(os.path.dirname(__file__), 'HTML/feedback.html')
     self.response.out.write(template.render(path, template_values))
 
   def post(self):
@@ -98,7 +98,7 @@ class FeedbackHandler(webapp2.RequestHandler):
     }
     logging.info("EMail result: %s\n" % (result))
 
-    path = os.path.join(os.path.dirname(__file__), 'sendfeedback.html')
+    path = os.path.join(os.path.dirname(__file__), 'HTML/sendfeedback.html')
     self.response.out.write(template.render(path, template_values))
 
 

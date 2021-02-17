@@ -70,7 +70,7 @@ class DownloadKBText(webapp2.RequestHandler):
       'infile': infile,
       'outfile': outfile,
     }
-    path = os.path.join(os.path.dirname(__file__), 'download/keyboardTemplate.html')
+    path = os.path.join(os.path.dirname(__file__), 'HTML/keyboardTemplate.html')
     self.response.out.write(template.render(path, template_values))
 
 # Error catching

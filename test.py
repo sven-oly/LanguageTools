@@ -44,7 +44,7 @@ class testHandler(webapp2.RequestHandler):
 
       }
 
-      path = os.path.join(os.path.dirname(__file__), 'test_burmese.html')
+      path = os.path.join(os.path.dirname(__file__), 'HTML/test_burmese.html')
       self.response.out.write(template.render(path, template_values))
 
 class testLocaleHandler(webapp2.RequestHandler):
@@ -68,7 +68,7 @@ class testLocaleHandler(webapp2.RequestHandler):
           'value': 1,
         'isMobile': isMobile,
       }
-      path = os.path.join(os.path.dirname(__file__), 'testLocales.html')
+      path = os.path.join(os.path.dirname(__file__), 'HTML/testLocales.html')
       self.response.out.write(template.render(path, template_values))
 
 
@@ -80,7 +80,7 @@ class LayoutToKeyMan(webapp2.RequestHandler):
       'kb_js': kbname,
       'kb_layout': kbname.upper() + '_LAYOUT',
     }
-    path = os.path.join(os.path.dirname(__file__), 'kbkeyman.html')
+    path = os.path.join(os.path.dirname(__file__), 'HTML/kbkeyman.html')
     self.response.out.write(template.render(path, template_values))
 
 class LayoutToCldr(webapp2.RequestHandler):
@@ -91,7 +91,7 @@ class LayoutToCldr(webapp2.RequestHandler):
       'kb_js': kbname,
       'kb_layout': kbname.upper() + '_LAYOUT',
     }
-    path = os.path.join(os.path.dirname(__file__), 'kbks2cdr.html')
+    path = os.path.join(os.path.dirname(__file__), 'HTML/kbks2cdr.html')
     self.response.out.write(template.render(path, template_values))
 
 class ProcessJsToXml(webapp2.RequestHandler):
@@ -134,7 +134,7 @@ class SelectFile(webapp2.RequestHandler):
   def get(self):
     template_values = {
     }
-    path = os.path.join(os.path.dirname(__file__), 'upload.html')
+    path = os.path.join(os.path.dirname(__file__), 'HTML/upload.html')
     self.response.out.write(template.render(path, template_values))
 
 

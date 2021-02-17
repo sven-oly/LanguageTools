@@ -279,7 +279,7 @@ class AllFontTest(webapp2.RequestHandler):
       'LanguageTag': LanguageTag
     }
 
-    path = os.path.join(os.path.dirname(__file__), 'allFonts.html')
+    path = os.path.join(os.path.dirname(__file__), 'HTML/allFonts.html')
     self.response.out.write(template.render(path, template_values))
 
 

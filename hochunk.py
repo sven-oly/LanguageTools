@@ -231,24 +231,6 @@ class RenderPage(webapp2.RequestHandler):
       self.response.out.write(template.render(path, template_values))
 
 
-class AllFontTest(webapp2.RequestHandler):
-  def get(self):
-    utext = self.request.get("utext", "")
-    encodedText = self.request.get("encodedText", "")
-    logging.info('AllFontTest utext =>%s<' % utext)
-    template_values = {
-      'scriptName': Language,
-      'fontFamilies': all_cherokee_unicode_fonts,
-      'encodedText': encodedText,
-      'utext': utext,
-      'language': Language,
-      'LanguageTag': LanguageTag
-    }
-
-    path = os.path.join(os.path.dirname(__file__), 'allFonts.html')
-    self.response.out.write(template.render(path, template_values))
-
-
 langInstance = langInfo()
 
 app = webapp2.WSGIApplication([

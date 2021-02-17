@@ -327,7 +327,7 @@ class KeyboardTransforms(webapp2.RequestHandler):
       'links': langInfo.links,
       'showTools': self.request.get('tools', None),
     }
-    path = os.path.join(os.path.dirname(__file__), 'keyboardTransforms.html')
+    path = os.path.join(os.path.dirname(__file__), 'HTML/keyboardTransforms.html')
     self.response.out.write(template.render(path, template_values))
 
 class Downloads(webapp2.RequestHandler):
@@ -352,7 +352,7 @@ class Downloads(webapp2.RequestHandler):
         'file_list': text_file_list,
         'showTools': self.request.get('tools', None),
     }
-    path = os.path.join(os.path.dirname(__file__), 'downloads.html')
+    path = os.path.join(os.path.dirname(__file__), 'HTML/downloads.html')
     self.response.out.write(template.render(path, template_values))
 
 class RenderPage(webapp2.RequestHandler):
