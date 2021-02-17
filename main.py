@@ -58,7 +58,7 @@ class MainHandler(webapp2.RequestHandler):
       template_values = {
         'langlist': LanguageList,
       }
-      path = os.path.join(os.path.dirname(__file__), 'languagetools.html')
+      path = os.path.join(os.path.dirname(__file__), 'HTML/languagetools.html')
       self.response.out.write(template.render(path, template_values))
 
 

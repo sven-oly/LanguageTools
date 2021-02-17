@@ -259,7 +259,7 @@ class NewKBHandler(webapp2.RequestHandler):
         'kb_list': langInfo.kb_list,
         'links': langInfo.links,
     }
-    path = os.path.join(os.path.dirname(__file__), 'rhg_keyboard.html')
+    path = os.path.join(os.path.dirname(__file__), 'HTML/rhg_keyboard.html')
     self.response.out.write(template.render(path, template_values))
 
 

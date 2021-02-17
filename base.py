@@ -405,7 +405,7 @@ class DictionaryInput(webapp2.RequestHandler):
 
         'links': langInfo.links,
       }
-      path = os.path.join(os.path.dirname(__file__), 'dictionaryInput.html')
+      path = os.path.join(os.path.dirname(__file__), 'HTML/dictionaryInput.html')
       self.response.out.write(template.render(path, template_values))
 
 
@@ -458,7 +458,7 @@ class DictionaryN(webapp2.RequestHandler):
 
       'links': langInfo.links,
     }
-    path = os.path.join(os.path.dirname(__file__), 'dictionaryN.html')
+    path = os.path.join(os.path.dirname(__file__), 'HTML/dictionaryN.html')
     self.response.out.write(template.render(path, template_values))
 
 # Create an instance of the template and add to configuration.

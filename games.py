@@ -52,7 +52,7 @@ class WordSearchHandler(webapp2.RequestHandler):
       'wordTestData': wordData,
       'maxunicode': sys.maxunicode,
     }
-    path = os.path.join(os.path.dirname(__file__), 'wordsearch.html')
+    path = os.path.join(os.path.dirname(__file__), 'HTML/wordsearch.html')
     self.response.out.write(template.render(path, template_values))
 
 

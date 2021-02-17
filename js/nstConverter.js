@@ -7,6 +7,7 @@ var map_encoding_names = [
 
 var private_use_map_combined = {
   // Gam Win --> Lakhum personal area code
+  'tv': ['𖪰𖩺'],  // ???
   'mnvungz': ['\ud81a\ude9c\ud81a\udeac\ud81a\ude7a\ud81a\ude84\ud81a\ude90'],
   'mznvungz': ['\ud81a\ude9c\ud81a\udeac\ud81a\ude7a\ud81a\ude84\ud81a\ude90'],
   'mnaungz': ['\ud81a\ude9c\ud81a\udeac\ud81a\ude74\ud81a\ude84\ud81a\ude90'],

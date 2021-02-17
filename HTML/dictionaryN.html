@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+
+  <title>Enter data for {{lang}} translations</title>
+
+  <link rel="stylesheet" href="/css/blueprint/screen.css" type="text/css" media="screen">
+  <link rel="stylesheet" href="/css/blueprint/print.css" type="text/css" media="print"> 
+  <!--[if lt IE 8]>
+    <link rel="stylesheet" href="/css/blueprint/ie.css" type="text/css" media="screen, projection">
+  <![endif]-->
+
+  <link rel="stylesheet" type="text/css" href="/css/fonts.css">
+
+  <style>
+  textarea {
+    width: 350px;
+	height: 100px;
+	border: 3px solid #cccccc;
+	padding: 5px;
+	font-size: 18px;
+    font-variant-ligatures: normal;
+	}
+
+  table {
+    border: 1px solid #ddd;
+    padding: 8px;
+    font-size: 16px;
+    white-space:pre;
+  }
+  table tr:nth-child(even){background-color: #f2f2f2;}
+
+  td {white-space:pre}
+  </style>
+
+  <style>
+   {% for item in dictionaryNData %}
+    @font-face{
+      font-family:"{{item.font.family}}";
+      src:url("{{item.font.source}}");
+      font-weight:normal;
+      font-style:normal;
+    }
+    {% endfor %}
+  </style>
+
+  <script src="/js/text_utils.js"></script>
+  <script src="/js/utils.js"></script>
+
+  <script src="/js/vk-debug.js"></script>
+
+  <script>
+  // Globals.
+  // Keeping track for editing rows of text.
+  let edit_mode = false;
+  let edit_row_num = -1;
+  let edit_cell_num = -1;
+  let edit_cell = null;
+
+  let unsaved_data = false;
+
+  let lang_index = 0;
+  let num_langs = {{dictionaryNData|length}};
+  let kb_array = [
+    {% for item in dictionaryNData %}'{{item.kbShortName}}',{% endfor %}
+  ];
+  let lang_array = [
+    {% for item in dictionaryNData %}'{{item.langName}}',{% endfor %}
+  ];
+  let fontlist = [
+    {% for item in dictionaryNData %}'{{item.font.family}}',{% endfor %}
+  ];
+  let textdirection = [
+    {% for item in dictionaryNData %}'{{item.direction}}',{% endfor %}
+  ];
+
+  function setKeyCapsFont(newFontFamily) {
+    var keycaps = document.getElementsByClassName("vk-cap");
+    for (var i = 0; i < keycaps.length; i++ ) {
+      keycaps[i].style.fontFamily = newFontFamily;
+    }
+  }
+
+  function initKeyboard(textAreaID) {
+      var input = document.getElementById(textAreaID);
+      controller = new i18n.input.keyboard.Keyboard();
+      {% for item in dictionaryNData %}controller.loadLayout('{{item.kbShortName}}');{% endfor %}
+      controller.reposition(input, 2, 1, [1, 1, 0, 0]);
+      controller.register(input);
+      controller.addEventListener('kc', function() { visible = false; });
+      var selector = document.getElementById('selectKeyboard');
+      controller.activateLayout('{{dictionaryNData.0.kbShortName}}');
+  }
+
+function addRowN(tabs) {
+  var regex = />NL</gi  // to allow new lines within a cell
+  for(var tab = 0; tab < tabs.length; tab++){
+
+    text = tabs[tab].replace(regex, '\n');
+    addRowItem(tab, text);
+  }
+}
+
+function addRowItem(index, value) {
+  var table = document.getElementById("output_table");
+  let rows = table.rows;
+  var row = null;
+  var row_num = rows.length - 1;
+  if (index == 0) {
+    // Create new row.
+    row_num += 1;
+    row = table.insertRow(-1);
+  } else {
+    // Get last row
+    row = rows[rows.length-1];
+  }
+  var cell1 = row.insertCell(index);
+  cell1.style.direction = textdirection[index];
+  if (textdirection[index] == "rtl") {
+    cell1.style.textAlign = "right";
+  }
+  cell1.style.fontFamily = fontlist[index];
+  cell1.contentEditable = true;
+  cell1.innerHTML = value;
+
+  // Function to support edit in the text area.
+  cell1.onclick = function() { editCell(cell1, row_num, index); };
+  unsaved_data = true;
+}
+
+// Download TSV file.
+function download_tsv() {
+  var table = document.getElementById("output_table");
+  var rows = table.rows;
+  var num_rows = rows.length;
+  var tsv = '';
+  // Skip the headers.
+  const regex = /\u000a/gi;  // To allow multi-line contents
+
+  for (var i = 1; i < num_rows; i++) {
+    var cells = rows.item(i).cells;
+    let num_cells = cells.length;
+    for (j = 0; j < num_cells; j++) {
+      let v = cells[j].innerText;
+      let output = v.replace(regex, '>NL<');  // Store special
+
+      tsv += output;
+      if (j < (num_cells - 1)) {
+        tsv += "\t";
+      }
+    }
+    if (i < num_rows - 1) {
+      tsv += "\n";
+    }
+  };
+  console.log(tsv);
+  var hiddenElement = document.createElement('a');
+  hiddenElement.href = 'data:text/tsv;charset=utf-8,' + encodeURI(tsv);
+  hiddenElement.target = '_blank';
+  var page_element = document.getElementById("label");
+  var label = page_element.value;
+
+  hiddenElement.download = 'dictionary_' +
+    {% for item in dictionaryNData %}'{{item.languageCode}}_' +{% endfor %} label + '.tsv';
+  hiddenElement.click();
+
+  // Clear table contents after first row.
+  for (var i = 0; i < num_rows -1; i++) {
+    table.deleteRow(-1);
+  };
+  unsaved_data = false;
+};
+
+function submitOnEnter(source, event){
+    // Shift-enter enters new line in the input.
+    if(event.which === 13 && !event.shiftKey) {
+      // Prevents the addition of a new line in the text field (not needed in a lot of cases)
+      event.preventDefault();
+      if (edit_mode) {
+        // Return data to cell
+        updateCellContent(source, edit_cell);
+      } else {
+        getAndStoreText(source);
+      }
+  }
+}
+
+function onTextFocus(id) {
+  // Needed?
+}
+
+function updateCellContent(source, edit_cell) {
+  edit_cell.innerHTML = source.value;
+  edit_mode = false;
+
+  // Keyboard and name back to new line
+  controller.activateLayout(kb_array[0]);
+  var lang_title = document.getElementById("lang_name");
+  lang_title.value = lang_title.innerHTML = lang_array[0];
+  source.dir = textdirection[0];
+  source.style.fontFamily = fontlist[0];
+
+  // Clear the input
+  source.value = source.innerHTML = '';
+
+}
+
+function editCell(cell, row, col) {
+  // Paste cell data into keyboard input area
+  var edit_area = document.getElementById("lang2_input");
+  edit_area.innerHTML = edit_area.value = cell.innerText;
+  edit_cell = cell;
+
+  // Set keyboard type
+  controller.activateLayout(kb_array[col]);
+  var lang_title = document.getElementById("lang_name");
+  lang_title.value = lang_title.innerHTML = lang_array[col] + " (edit)";
+  edit_area.dir = textdirection[col];
+  edit_area.style.fontFamily = fontlist[0];
+
+  // Set edit mode so Enter puts it back in the right place.
+  edit_mode = true;
+  edit_row_num = row;
+  edit_cell_num = col;
+
+  // Set input to that item.
+  edit_area.focus();
+}
+
+// Switch keyboard, font to next index.
+function getAndStoreText(dict_input) {
+  // Get data from the field.
+  // Store into the right column of the table.
+  addRowItem(lang_index, dict_input.value);
+
+  // Next language
+   lang_index += 1;
+
+  if (lang_index < num_langs) {
+    // Get data from the field.
+    // Store into the right column of the table.
+
+  } else {
+    lang_index = 0;
+  }
+
+  // Clear it
+  dict_input.value = dict_input.innerHtml = '';
+  // Update label on the field.
+  var lang_title = document.getElementById("lang_name");
+  lang_title.value = lang_title.innerHTML = lang_array[lang_index];
+
+  // Switch to new keyboard.
+  controller.activateLayout(kb_array[lang_index]);
+  dict_input.dir = textdirection[lang_index];
+  dict_input.style.fontFamily = fontlist[lang_index];
+
+  // Put focus back in this area.
+  dict_input.focus();
+}
+
+function Upload() {
+  // Load with data from file, split by tabs.
+  // Or split by tab.
+  var fileUpload = document.getElementById("fileUpload");
+  var regex = /^([ a-zA-Z0-9\s_\\.\-:\(\)])+(.tsv|.txt)$/;
+  if (regex.test(fileUpload.value.toLowerCase())) {
+    if (typeof (FileReader) != "undefined") {
+      var reader = new FileReader();
+      reader.onload = function (e) {
+        // Function to process uploaded data
+        var table = document.getElementById("output_table");
+        var rows = e.target.result.split("\n");
+        for (var i = 0; i < rows.length; i++) {
+          var tabs = rows[i].split('\t');
+          addRowN(tabs);
+        }
+      }
+      reader.readAsText(fileUpload.files[0]);
+    } else {
+      alert("This browser does not support HTML5.");
+    }
+  } else {
+    alert("Please upload a valid text file.");
+  }
+}
+
+function setKeyCapsFont(newFontFamily) {
+  var keycaps = document.getElementsByClassName("vk-cap");
+  for (var i = 0; i < keycaps.length; i++ ) {
+    keycaps[i].style.fontFamily = newFontFamily;
+  }
+}
+
+function onPageLoaded() {
+  init();
+}
+
+function init() {
+  // Fill in if needed.
+  initKeyboard('lang2_input');
+  var lang_input = document.getElementById("lang2_input")
+  lang_input.focus();
+
+  // Set first language
+  lang_index = 0;
+  var lang_title = document.getElementById("lang_name");
+  lang_title.value = lang_title.innerHTML = lang_array[lang_index];
+  lang_input.dir = textdirection[lang_index];
+  lang_input.style.fontFamily = fontlist[lang_index];
+}
+
+// Warn before exiting with unsaved data.
+window.onbeforeunload = function(e) {
+  if (!unsaved_data) return;
+
+  e = e || window.event;
+
+  // For IE and Firefox prior to version 4
+  if (e) {
+    e.returnValue = 'Unsaved data will be lost. Are you sure you want to close this?';
+  }
+  // For Safari
+  return 'Unsaved data will be lost. Are you sure you want to close this?';
+}
+
+  </script>
+  </head>
+
+  <body onload="onPageLoaded();">
+  <h1>Dictionary Input Tool</h1>
+  <div class="container">
+
+  <div class="span-20">
+    <h3 id="lang_name">{{lang2}}</h3>
+      <textarea id="lang2_input" style="font-family:{{unicodeFontList.0.family}};"
+                onfocus="onTextFocus(this);"
+                onkeypress="submitOnEnter(this, event);" spellcheck="false"></textarea>
+  </div>
+
+  <div class="span-1 last">
+
+  </div>
+
+  <div class="span-19">
+    Data label <input id="label" size='10'>
+    <button onclick="download_tsv()">Download TSV</button>
+    &ensp;&ensp;&ensp;&ensp;&ensp;
+   To load a .tsv file:<input type="file" id="fileUpload" />
+   <input type="button" id="upload" value="Upload data file (.tsv)" onclick="Upload()" />
+    <br />
+    <br />
+
+    <table id="output_table">
+       <tr>
+         {% for item in dictionaryNData %}
+           <td width="450px">{{item.langName}}</td>
+         {% endfor %}
+       </tr>
+    </table>
+
+  </div>
+  <div class="span-4 last">
+    {% if user_nickname %}
+           <h4>Welcome {{user_nickname}}</h4>
+    {% if user_logout %}
+    <a href={{user_logout}}>Logout</a>
+    {% endif %}
+    {% else %}
+    <a href='{{user_login_url}}'>Log in</a>
+    {% endif %}
+
+         {% if isAdmin %}
+        <hr>
+        <h4>Admin Functions</h4>
+        <ul>
+          <li><a href="/db/manageDB/">Manage Databases</a></li>
+          <li><a href="/users/">Manage users</a></li>
+          <!-- <li><a href="/db/resetDbEntries/">Reset Database Entries</a> -->
+        </ul>
+        {% endif %}
+
+   {% if links %}
+   <h4>Useful links</h4>
+     <ul>
+   {% for link in links %}
+      <li>
+        <a href="{{link.ref}}" target="_blank">{{link.linkText}}</a>
+     </li>
+   {% endfor %}
+     </ul>
+   {% endif %}
+
+  {% for lang in dictionaryNData %}
+      {% if lang.helptext %}
+   <a href="/help/{{lang.languageCode}}/wordlist_input_help.html" target="_blank"
+    title="How to use this page">{{lang.helptext}}</a><br />
+      {% endif %}
+   {% endfor %}
+
+  </div>
+  </div> <!-- container -->
+
+</body>
+</html>
