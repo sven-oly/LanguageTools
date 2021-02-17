@@ -81,7 +81,7 @@ xyz
       'rules': rules,
       'ruleID': ruleID,
     }
-    path = os.path.join(os.path.dirname(__file__), 'transliterate.html')
+    path = os.path.join(os.path.dirname(__file__), 'HTML/transliterate.html')
     self.response.out.write(template.render(path, template_values))
 
     
