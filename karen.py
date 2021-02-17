@@ -267,7 +267,7 @@ class DiacriticHandler(webapp2.RequestHandler):
         'table': table,
         'unicode_font_list': unicode_font_list,
     }
-    path = os.path.join(os.path.dirname(__file__), 'diacritics.html')
+    path = os.path.join(os.path.dirname(__file__), 'HTML/diacritics.html')
     self.response.out.write(template.render(path, template_values))
 
 

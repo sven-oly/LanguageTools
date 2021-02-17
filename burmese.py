@@ -462,10 +462,10 @@ class DiacriticHandler(webapp2.RequestHandler):
         'table': table,
         'unicode_font_list': unicode_font_list,
     }
-    path = os.path.join(os.path.dirname(__file__), 'diacritics.html')
+    path = os.path.join(os.path.dirname(__file__), 'HTML/diacritics.html')
     self.response.out.write(template.render(path, template_values))
 
-# Perform transliteration using Okell transcript with modifications
+# TODO: Perform transliteration using Okell transcript with modifications
 class TransliterateHandler(webapp2.RequestHandler):
   def get(self):
     # Load existing transliterations
@@ -476,7 +476,8 @@ class TransliterateHandler(webapp2.RequestHandler):
       'base_hex': ['%4x' % ord(x) for x in base_consonant],
       'unicode_font_list': unicode_font_list,
     }
-    path = os.path.join(os.path.dirname(__file__), 'diacritics.html')
+    # !!! POINT TO CORRECT HTML
+    path = os.path.join(os.path.dirname(__file__), 'HTML/diacritics.html')
     self.response.out.write(template.render(path, template_values))
 langInstance = langInfo()
 

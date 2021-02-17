@@ -120,6 +120,8 @@ encodedRanges = [
   (0x20, 0x7b),
 ]
 
+
+# Generalize the langInfo.
 class RenderPage(webapp2.RequestHandler):
     def get(self):
 
@@ -139,7 +141,7 @@ class RenderPage(webapp2.RequestHandler):
       path = os.path.join(os.path.dirname(__file__), 'renderCombos.html')
       self.response.out.write(template.render(path, template_values))
 
-
+# Generalize the langInfo.
 class DiacriticHandler(webapp2.RequestHandler):
   def get(self):
     global default_base_consonant
@@ -178,7 +180,7 @@ class DiacriticHandler(webapp2.RequestHandler):
         'table': table,
         'unicode_font_list': unicode_font_list,
     }
-    path = os.path.join(os.path.dirname(__file__), 'diacritics.html')
+    path = os.path.join(os.path.dirname(__file__), 'HTML/diacritics.html')
     self.response.out.write(template.render(path, template_values))
 
 

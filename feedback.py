@@ -152,7 +152,7 @@ class GetFeedbackHandler(webapp2.RequestHandler):
 
     logging.info('feedbackResults: %s' % results)
     
-    path = os.path.join(os.path.dirname(__file__), 'feedbackResults.html')
+    path = os.path.join(os.path.dirname(__file__), 'HTML/feedbackResults.html')
     self.response.out.write(template.render(path, template_values))
 
 app = webapp2.WSGIApplication([

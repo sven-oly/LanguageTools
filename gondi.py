@@ -41,18 +41,19 @@ encoding_font_dict = {
   'esg': encoding_font_list,
   'gno': [
     {
-    'font_path': '/fonts/Gondi/YTJT.otf',
-    'font_name': None,
-    'display_name': 'None',
-  },],
+      'font_path': '/fonts/Gondi/YTJT.otf',
+      'font_name': None,
+      'display_name': 'None',
+    }
+  ],
   'wsg': encoding_font_list,
 }
 unicode_font_list = [
-    {
-        'family': 'NotoSansGondiGunjala',
-        'longName': 'Noto Sans Gunjala',
-        'source': '/fonts/Gondi/NotoSansGunjalaGondi-Regular.ttf',
-    },
+  {
+      'family': 'NotoSansGondiGunjala',
+      'longName': 'Noto Sans Gunjala',
+      'source': '/fonts/Gondi/NotoSansGunjalaGondi-Regular.ttf',
+  },
   {
     'family': 'NotoSansGondiMasaram',
     'longName': 'Noto Sans Masaram',
@@ -99,10 +100,10 @@ kb_list = [
 
 kb_list_dict = {
   'gon': kb_list,
-  'esg': [{'shortName': 'esg_masaram','longName': 'Gondi Masaram 2' },
-          {'shortName': 'gon_masaram','longName': 'Gondi Masaram' },],
-  'gno': [{'shortName': 'gon_gunjala', 'longName': 'Gondi Gonjala'}, ],
-  'wsg': [  {'shortName': 'gon_masaram','longName': 'Gondi Masaram' },],
+  'esg': [{'shortName': 'esg_masaram', 'longName': 'Gondi Masaram 2'},
+          {'shortName': 'gon_masaram', 'longName': 'Gondi Masaram'}],
+  'gno': [{'shortName': 'gon_gunjala', 'longName': 'Gondi Gonjala'}],
+  'wsg': [{'shortName': 'gon_masaram', 'longName': 'Gondi Masaram'}],
 }
 
 lang_name_dict = {
@@ -145,7 +146,7 @@ links = [
     {'linkText': 'Converter',
      'ref': '/' + LanguageCodeStandin + '/convertUI/'},
     {'linkText': 'Font conversion summary',
-      'ref': '/' + LanguageCodeStandin + '/encodingRules/'
+     'ref': '/' + LanguageCodeStandin + '/encodingRules/'
     },
     {'linkText': 'Dictionary entry',
    'ref': '/' + LanguageCodeStandin + '/dictionaryInput/'
@@ -174,17 +175,19 @@ links = [
      },
 ]
 
-def fixLinks(link_template, langCode):
+
+def fixLinks(link_template, langcode):
   new_links = []
   for link in links:
     new_link = {
       'linkText': link['linkText'],
-      'ref': link['ref'].replace(LanguageCodeStandin, langCode)
+      'ref': link['ref'].replace(LanguageCodeStandin, langcode)
     }
     new_links.append(new_link)
   return new_links
 
-class langInfo():
+
+class langInfo:
   def __init__(self):
     self.LanguageCode = 'gon'
     self.Language = u'Gondi'
@@ -202,9 +205,10 @@ class langInfo():
     self.baseHexUTF16 = u'\ud81a\udee7'
 
     self.lang_list = [
-      { 'shortName': self.LanguageCode,
+      {
+        'shortName': self.LanguageCode,
         'longName': self.Language,
-        }
+      }
     ]
     self.encoding_font_list = encoding_font_list
     self.kb_list = kb_list
@@ -219,12 +223,13 @@ class langInfo():
     self.kb2 = ''
 
     self.dictionaryNData = [
-      {'langName': 'Aheri Gondi', 'langNative': 'Aheri Gondi',
-       'languageCode': 'esg',
+      {
+        'langName': 'Aheri Gondi', 'langNative': 'Aheri Gondi',
+        'languageCode': 'esg',
         'kbShortName': 'gon_masaram', 'kbLongName': 'Gondi Masaram',
-        'font': { 'family': 'GondiMasaram',
-          'longName': 'Gondi Masaram',
-          'source': '/fonts/Gondi/NotoSansMasaramGondi-Regular.ttf'},
+        'font': {'family': 'GondiMasaram',
+                 'longName': 'Gondi Masaram',
+                 'source': '/fonts/Gondi/NotoSansMasaramGondi-Regular.ttf'},
         'direction': 'ltr',
       },
       {'langName': 'Northern Gondi', 'langNative': 'Northern Gondi',
@@ -251,13 +256,14 @@ class langInfo():
                 'source': '/fonts/Gondi/NotoSansGunjalaGondi-Regular.ttf'},
        'direction': 'ltr',
        },
-      {'langName': 'English', 'langNative': 'English',
-       'languageCode': 'en',
-       'kbShortName': 'en', 'kbLongName': 'English',
+      {
+        'langName': 'English', 'langNative': 'English',
+        'languageCode': 'en',
+        'kbShortName': 'en', 'kbLongName': 'English',
         'font': {'family': 'Latin',
-                'longName': 'Noto Sans',
-                'source': '/fonts/NotoSans-Regular.ttf'
-                },
+                 'longName': 'Noto Sans',
+                 'source': '/fonts/NotoSans-Regular.ttf'
+                 },
         'direction': 'ltr',
         'helptext': 'Instructions'
       },
@@ -280,6 +286,7 @@ class IndigenousHomeHandler(webapp2.RequestHandler):
       }
       path = os.path.join(os.path.dirname(__file__), 'demo_general.html')
       self.response.out.write(template.render(path, template_values))
+
 
 diacritic_lists = {
   'gno': [u'\U00011D8A', u'\U00011D8B', u'\U00011D8C', u'\U00011D8D', u'\U00011D8E',
@@ -309,6 +316,8 @@ encodedRanges = [
     0x2010, (0x2013, 0x2015), 0x2018, 0x2019,
     (0x2020, 0x2022), 0x2026, 0x2030, 0x2039,
 ]
+
+
 # Presents UI for conversions from font encoding to Unicode.
 class ConvertUIHandler(webapp2.RequestHandler):
     def get(self):
@@ -329,7 +338,7 @@ class ConvertUIHandler(webapp2.RequestHandler):
       text = self.request.get('text', oldChars)
       font = self.request.get('font')
       testStringList = [
-          {'name': 'Test 1', # Note: must escape the single quote.
+          {'name': 'Test 1',  # Note: must escape the single quote.
            'string': u'\u0004\u0005\u0006\u0007\u0008\u0009' +
            '\u000a\u000b'},
       ]
@@ -397,7 +406,7 @@ class RenderPage(webapp2.RequestHandler):
         'encoding_list': encoding_font_list,
         'unicode_list': unicode_font_list,
         'kb_list': kb_list,
-        'links': fixLinks(links, lang_code),
+        'links': fixLinks(links, LanguageCode),
       }
       path = os.path.join(os.path.dirname(__file__), 'renderCombos.html')
       self.response.out.write(template.render(path, template_values))
@@ -426,7 +435,7 @@ class DiacriticHandler(webapp2.RequestHandler):
     singles = [' ', 'none']
     for y in diacritic_lists[lang_code]:
       row = [y + ' (%4x)' %ord(y[0])]
-      singles.append(base_consonant + y);
+      singles.append(base_consonant + y)
       for x in diacritic_lists[lang_code]:
         text = base_consonant + y + x
         combos.append({'text': text,
@@ -445,7 +454,7 @@ class DiacriticHandler(webapp2.RequestHandler):
         'table': table,
         'unicode_font_list': unicode_font_dict[lang_code],
     }
-    path = os.path.join(os.path.dirname(__file__), 'diacritics.html')
+    path = os.path.join(os.path.dirname(__file__), 'HTML/diacritics.html')
     self.response.out.write(template.render(path, template_values))
 
 class DictionaryInput(webapp2.RequestHandler):
@@ -453,12 +462,6 @@ class DictionaryInput(webapp2.RequestHandler):
       req = webapp2.get_request()
       top_path = req.path.split('/')
       lang_code = top_path[1]
-
-      # user_info = getUserInfo(self.request.url)
-
-      oldOsageInput = self.request.get("text", "")
-      unicodeInput = self.request.get("utext", "")
-      latinInput = self.request.get("latintext", "")
 
       template_values = {
         'lang': Language,
