@@ -34,15 +34,15 @@ class langInfo():
     self.Language_native = 'Tangsa'
 
     self.encoding_font_list = [
-      {
-        'font_path': '/fonts/NotoSans-Regular.ttf',
-        'font_name': 'Gam Win',
-        'display_name': 'Gam Win',
-      },
+      # {
+      #   'font_path': '/fonts/NotoSans-Regular.ttf',
+      #   'font_name': 'Gam Win',
+      #   'display_name': 'Gam Win',
+      # },
       {
         'font_path': '/fonts/Tangsa/LakhumTSDC.ttf',
         'font_name': 'Lakhum PUA',
-        'display_name': 'Lakhum PUA',
+        'display_name': 'Gam Win & Lakhum PUA',
       }
     ]
 

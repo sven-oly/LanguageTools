@@ -110,6 +110,7 @@ class langInfo():
     self.Language = Language
     self.Language_native = Language_native
     self.test_data = u''
+    self.encoding_font_list = encoding_font_list
     self.unicode_font_list = unicode_font_list
     self.lang_list = [LanguageCode]
     self.kb_list = kb_list
@@ -117,20 +118,6 @@ class langInfo():
 
     self.text_file_list = []
 
-
-# Shows keyboards
-class IndigenousHomeHandler(webapp2.RequestHandler):
-    def get(self):
-      template_values = {
-        'language': Language,
-        'langTag': LanguageCode,
-        'font_list': unicode_font_list,
-        'lang_list': None,
-        'kb_list': kb_list,
-        'links': links,
-      }
-      path = os.path.join(os.path.dirname(__file__), 'demo_general.html')
-      self.response.out.write(template.render(path, template_values))
 
 # Presents UI for conversions from font encoding to Unicode.
 class ConvertUIHandler(webapp2.RequestHandler):
@@ -181,40 +168,6 @@ class ConvertUIHandler(webapp2.RequestHandler):
       path = os.path.join(os.path.dirname(__file__), 'HTML/translit_general.html')
       self.response.out.write(template.render(path, template_values))
 
-class EncodingRules(webapp2.RequestHandler):
-    def get(self):
-
-      template_values = {
-        'converterJS': '/js/' + LanguageCode + 'Converter.js',
-        'language': Language,
-        'langTag': LanguageCode,
-        'encoding_list': encoding_font_list,
-        'unicode_list': unicode_font_list,
-        'kb_list': kb_list,
-        'links': links,
-      }
-      path = os.path.join(os.path.dirname(__file__), 'fontsView.html')
-      self.response.out.write(template.render(path, template_values))
-
-class RenderPage(webapp2.RequestHandler):
-    def get(self):
-
-      kb_list = [
-        {'shortName':  LanguageCode,
-         'longName': Language + ' Unicode'
-        }
-      ]
-      template_values = {
-        'converterJS': "/js/' + LanguageCode + 'Converter.js",
-        'language': Language,
-        'encoding_list': encoding_font_list,
-        'unicode_list': unicode_font_list,
-        'kb_list': kb_list,
-        'links': links,
-      }
-      path = os.path.join(os.path.dirname(__file__), 'renderCombos.html')
-      self.response.out.write(template.render(path, template_values))
-
 
 class DiacriticHandler(webapp2.RequestHandler):
   def get(self):
@@ -263,7 +216,7 @@ app = webapp2.WSGIApplication([
     ('/' + LanguageCode + '/', ConvertUIHandler),
     ('/' + LanguageCode + '/convertUI/', ConvertUIHandler),
     ('/' + LanguageCode + '/downloads/', base.Downloads),
-    ('/' + LanguageCode + '/encodingRules/', EncodingRules),
+    ('/' + LanguageCode + '/encodingRules/', base.EncodingRules),
     ('/' + LanguageCode + '/diacritic/', DiacriticHandler),
   ],
   debug=True,

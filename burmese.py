@@ -91,7 +91,10 @@ links = [
     {'linkText': 'Font conversion summary',
       'ref': '/my/encodingRules/'
     },
-    {'linkText': 'Resources',
+    {'linkText': 'Diacritics',
+   'ref': '/my/diacritic/'
+   },
+  {'linkText': 'Resources',
       'ref': '/my/downloads/'
     },
     {'linkText': 'Unicode Myanmar',
@@ -142,25 +145,15 @@ class langInfo():
     self.Language = Language
     self.Language_native = Language_native
     self.test_data = u''
+    self.diacritic_list = diacritic_list
+    self.base_consonant = u'\u1000'
+
     self.unicode_font_list = unicode_font_list
     self.lang_list = ['my']
     self.kb_list = kb_list
     self.links = links
 
     self.text_file_list = []
-
-# Shows keyboard
-class IndigenousHomeHandler(webapp2.RequestHandler):
-    def get(self):
-      template_values = {
-        'language': Language,
-        'font_list': unicode_font_list,
-        'lang_list': None,
-        'kb_list': kb_list,
-        'links': links,
-      }
-      path = os.path.join(os.path.dirname(__file__), 'demo_general.html')
-      self.response.out.write(template.render(path, template_values))
 
 # Presents UI for conversions from font encoding to Unicode.
 class ConvertUIHandler(webapp2.RequestHandler):
@@ -330,45 +323,6 @@ class ConvertToZawgyiHandler(webapp2.RequestHandler):
     self.response.out.write(template.render(path, template_values))
 
 
-class EncodingRules(webapp2.RequestHandler):
-    def get(self):
-
-      kb_list = [
-        {'shortName':  LanguageCode,
-         'longName': Language + ' Unicode'
-        }
-      ]
-      template_values = {
-        'converterJS': '/js/' + LanguageCode + 'Converter.js',
-        'language': Language,
-        'encoding_list': encoding_font_list,
-        'unicode_list': unicode_font_list,
-        'kb_list': kb_list,
-        'links': links,
-      }
-      path = os.path.join(os.path.dirname(__file__), 'fontsView.html')
-      self.response.out.write(template.render(path, template_values))
-
-class RenderPage(webapp2.RequestHandler):
-    def get(self):
-
-      kb_list = [
-        {'shortName':  LanguageCode,
-         'longName': Language + ' Unicode'
-        }
-      ]
-      template_values = {
-        'converterJS': "/js/' + LanguageCode + 'Converter.js",
-        'language': Language,
-        'encoding_list': encoding_font_list,
-        'unicode_list': unicode_font_list,
-        'kb_list': kb_list,
-        'links': links,
-      }
-      path = os.path.join(os.path.dirname(__file__), 'renderCombos.html')
-      self.response.out.write(template.render(path, template_values))
-
-
 # Convert text in URL, with JSON return
 class ConvertHandler(webapp2.RequestHandler):
   def post(self):
@@ -438,33 +392,6 @@ class ConvertHandler(webapp2.RequestHandler):
     self.response.out.write(json.dumps(obj))
 
 
-class DiacriticHandler(webapp2.RequestHandler):
-  def get(self):
-    # Generate combinations of base + diacritic pairs
-    combos = []
-    table = []
-    for x in diacritic_list:
-      row = [x + ' (%4x)' %ord(x[0])]
-      for y in diacritic_list:
-        text = base_consonant + x + y
-        combos.append({'text': text,
-                       'codes': ['%4x ' % ord(c) for c in text]})
-        row.append(text)
-      table.append(row)
-
-    template_values = {
-        'language': Language,
-        'base_char': base_consonant.encode('utf-8'),
-        'base_hex': ['%4x' % ord(x) for x in base_consonant],
-        'diacritics': [x for x in diacritic_list],
-        'diacritics_hex': ['%4x ' % ord(y[0]) for y in diacritic_list],
-        'combinations': combos,
-        'table': table,
-        'unicode_font_list': unicode_font_list,
-    }
-    path = os.path.join(os.path.dirname(__file__), 'HTML/diacritics.html')
-    self.response.out.write(template.render(path, template_values))
-
 # TODO: Perform transliteration using Okell transcript with modifications
 class TransliterateHandler(webapp2.RequestHandler):
   def get(self):
@@ -483,14 +410,14 @@ langInstance = langInfo()
 
 
 app = webapp2.WSGIApplication([
-    ('/demo_my/', IndigenousHomeHandler),
-    ('/my/', IndigenousHomeHandler),
+    ('/demo_my/', base.LanguagesHomeHandler),
+    ('/my/', base.LanguagesHomeHandler),
     ('/my/convertUI/', ConvertUIHandler),
     ('/my/downloads/', base.Downloads),
     ('/my/converter/', ConvertHandler),
     ('/my/convertToZawgyi/', ConvertToZawgyiHandler),
-    ('/my/encodingRules/', EncodingRules),
-    ('/my/diacritic/', DiacriticHandler),
+    ('/my/encodingRules/', base.EncodingRules),
+    ('/my/diacritic/', base.DiacriticHandler),
     ('/my/transliterate/', TransliterateHandler),
   ],
   debug=True,

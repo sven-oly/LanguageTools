@@ -117,7 +117,7 @@ class LanguagesHomeHandler(webapp2.RequestHandler):
         'test_data': test_data,
         'variation_sequence': variation_sequence,
     }
-    path = os.path.join(os.path.dirname(__file__), 'demo_general.html')
+    path = os.path.join(os.path.dirname(__file__), 'HTML/demo_general.html')
     self.response.out.write(template.render(path, template_values))
 
 
@@ -318,7 +318,7 @@ class EncodingRules(webapp2.RequestHandler):
         'links': langInfo.links,
         'showTools': self.request.get('tools', None),
     }
-    path = os.path.join(os.path.dirname(__file__), 'fontsView.html')
+    path = os.path.join(os.path.dirname(__file__), 'HTML/fontsView.html')
     self.response.out.write(template.render(path, template_values))
 
 class KeyboardTransforms(webapp2.RequestHandler):
@@ -390,7 +390,7 @@ class RenderPage(webapp2.RequestHandler):
       'links': langInfo.links,
       'showTools': self.request.get('tools', None),
     }
-    path = os.path.join(os.path.dirname(__file__), 'renderCombos.html')
+    path = os.path.join(os.path.dirname(__file__), 'HTML/renderCombos.html')
     self.response.out.write(template.render(path, template_values))
 
 class DictionaryInput(webapp2.RequestHandler):
@@ -507,6 +507,7 @@ app.router.add((basePath + '/', LanguagesHomeHandler))
 app.router.add((basePath + 'dictionaryInput', DictionaryInput))
 app.router.add((basePath + 'kbtransforms', KeyboardTransforms))
 app.router.add((basePath + 'collation', CollationHandler))
+app.router.add((basePath + 'combos', RenderPage))
 
 app.error_handlers[301] = handle_301
 app.error_handlers[404] = handle_404

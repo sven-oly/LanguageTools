@@ -50,8 +50,8 @@ links = [
     {'linkText': 'Keyboard',
      'ref': '/win/'
     },
-    {'linkText': 'Converter',
-     'ref': '/win/convertUI/'},
+    # {'linkText': 'Converter',
+    #  'ref': '/win/convertUI/'},
     {'linkText': 'Font conversion summary',
       'ref': '/win/encodingRules/'
     },
@@ -89,19 +89,6 @@ class langInfo():
     self.kb_list = kb_list
     self.links = links
 
-
-# Shows keyboard for Hoocak
-class IndigenousHomeHandler(webapp2.RequestHandler):
-    def get(self):
-      template_values = {
-        'language': Language,
-        'font_list': unicode_font_list,
-        'lang_list': None,
-        'kb_list': kb_list,
-        'links': links,
-      }
-      path = os.path.join(os.path.dirname(__file__), 'demo_general.html')
-      self.response.out.write(template.render(path, template_values))
 
 # Presents UI for conversions from font encoding to Unicode.
 class ConvertUIHandler(webapp2.RequestHandler):
@@ -208,33 +195,14 @@ class EncodingRules(webapp2.RequestHandler):
         'kb_list': kb_list,
         'links': links,
       }
-      path = os.path.join(os.path.dirname(__file__), 'fontsView.html')
-      self.response.out.write(template.render(path, template_values))
-
-class RenderPage(webapp2.RequestHandler):
-    def get(self):
-
-      kb_list = [
-        {'shortName':  LanguageTag,
-         'longName': Language,
-        }
-      ]
-      template_values = {
-        'converterJS': "/js/winConverter.js",
-        'language': Language,
-        'encoding_list': encoding_font_list,
-        'unicode_list': unicode_font_list,
-        'kb_list': kb_list,
-        'links': links,
-      }
-      path = os.path.join(os.path.dirname(__file__), 'renderCombos.html')
+      path = os.path.join(os.path.dirname(__file__), 'HTML/fontsView.html')
       self.response.out.write(template.render(path, template_values))
 
 
 langInstance = langInfo()
 
 app = webapp2.WSGIApplication([
-    ('/' + LanguageCode + '/', IndigenousHomeHandler),
+    ('/' + LanguageCode + '/', base.LanguagesHomeHandler),
     ('/' + LanguageCode + '/convertUI/', ConvertUIHandler),
     ('/' + LanguageCode + '/downloads/', base.Downloads),
     ('/' + LanguageCode + '/encodingRules/', EncodingRules),

@@ -74,7 +74,7 @@ links = [
 ]
 
 
-class langInfo():
+class langInfo:
   def __init__(self):
     self.LanguageCode = 'chr'
     self.Language = 'Cherokee'
@@ -82,6 +82,17 @@ class langInfo():
     self.unicodeChars = [unichr(x) for x in range(0x13a0, 0x13fd)]
     self.unicodeChars.extend([unichr(x) for x in range(0xaa70, 0xabbf)])
     self.unicode_font_list = unicode_font_list
+    self.encoding_font_list = encoding_font_list
+
+    self.kb_list = [
+      {'shortName':  'chr',
+       'longName': 'Cherokee'
+       },
+      {'shortName':  'chr_phone',
+       'longName': 'Cherokee Phonetic'
+       }
+    ]
+    self.lang_list = ['chr']
     self.links = links
 
     self.dictionaryLang1 = self.LanguageCode
@@ -131,7 +142,7 @@ class CherokeeIndigenousHomeHandler(webapp2.RequestHandler):
         'kb_list': kb_list,
         'links': links,
       }
-      path = os.path.join(os.path.dirname(__file__), 'demo_general.html')
+      path = os.path.join(os.path.dirname(__file__), 'HTML/demo_general.html')
       self.response.out.write(template.render(path, template_values))
 
 # Presents UI for conversions from font encoding to Unicode.
@@ -146,7 +157,7 @@ class CherokeeConvertUIHandler(webapp2.RequestHandler):
       text = self.request.get('text', oldChars)
       font = self.request.get('font')
       testStringList = [
-          {'name': 'Test 1', # Note: must escape the single quote.
+          {'name': 'Test 1',  # Note: must escape the single quote.
            'string': u'\u0004\u0005\u0006\u0007\u0008\u0009' +
            '\u000a\u000b'},
       ]
@@ -226,45 +237,6 @@ class CherokeeConvertHandler(webapp2.RequestHandler):
       self.response.out.write(json.dumps(result))
 
 
-class CherokeeEncodingRules(webapp2.RequestHandler):
-    def get(self):
-
-      kb_list = [
-        {'shortName':  'ccp',
-         'longName': 'Cherokee Unicode'
-        }
-      ]
-      template_values = {
-        'converterJS': "/js/chrConverter.js",
-        'language': Language,
-        'encoding_list': encoding_font_list,
-        'unicode_list': unicode_font_list,
-        'kb_list': kb_list,
-        'links': links,
-      }
-      path = os.path.join(os.path.dirname(__file__), 'fontsView.html')
-      self.response.out.write(template.render(path, template_values))
-
-class CherokeeRenderPage(webapp2.RequestHandler):
-    def get(self):
-
-      kb_list = [
-        {'shortName':  'ccp',
-         'longName': 'Cherokee Unicode'
-        }
-      ]
-      template_values = {
-        'converterJS': "/js/ccpConverter.js",
-        'language': Language,
-        'encoding_list': encoding_font_list,
-        'unicode_list': unicode_font_list,
-        'kb_list': kb_list,
-        'links': links,
-      }
-      path = os.path.join(os.path.dirname(__file__), 'renderCombos.html')
-      self.response.out.write(template.render(path, template_values))
-
-
 class AllFontTest(webapp2.RequestHandler):
   def get(self):
     utext = self.request.get("utext", "")
@@ -286,11 +258,11 @@ class AllFontTest(webapp2.RequestHandler):
 langInstance = langInfo()
 
 app = webapp2.WSGIApplication(
-    [('/chr/', CherokeeIndigenousHomeHandler),
+    [('/chr/', base.LanguagesHomeHandler),
      ('/chr/convertUI/', CherokeeConvertUIHandler),
      ('/chr/downloads/', base.Downloads),
      ('/chr/converter/', CherokeeConvertHandler),
-     ('/chr/encodingRules/', CherokeeEncodingRules),
+     ('/chr/encodingRules/', base.EncodingRules),
      ('/chr/AllFonts/', AllFontTest ),
      ('/' + langInstance.LanguageCode + '/dictionaryN/', base.DictionaryN),
 

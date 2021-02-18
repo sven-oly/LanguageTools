@@ -205,19 +205,6 @@ class langInfo():
     ]
 
 
-# Shows keyboard for Chakma
-class ChakmaIndigenousHomeHandler(webapp2.RequestHandler):
-    def get(self):
-      template_values = {
-        'language': 'Chakma',
-        'font_list': unicode_font_list,
-        'lang_list': None,
-        'kb_list': kb_list,
-        'links': links,
-      }
-      path = os.path.join(os.path.dirname(__file__), 'demo_general.html')
-      self.response.out.write(template.render(path, template_values))
-
 # Presents UI for conversions from font encoding to Unicode.
 class ChakmaConvertUIHandler(webapp2.RequestHandler):
     def get(self):
@@ -314,8 +301,8 @@ class TestURLHandler(webapp2.RequestHandler):
 langInstance = langInfo()
 
 app = webapp2.WSGIApplication(
-    [('/demo_ccp/', ChakmaIndigenousHomeHandler),
-     ('/ccp/', ChakmaIndigenousHomeHandler),
+    [('/demo_ccp/', base.LanguagesHomeHandler),
+     ('/ccp/', base.LanguagesHomeHandler),
      ('/ccp/convertUI/', ChakmaConvertUIHandler),
      ('/ccp/downloads/', base.Downloads),
      ('/ccp/encodingRules/', base.EncodingRules),

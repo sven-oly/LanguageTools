@@ -143,14 +143,14 @@ links = [
     {'linkText': 'Keyboard',
      'ref': '/' + LanguageCodeStandin + '/'
     },
-    {'linkText': 'Converter',
-     'ref': '/' + LanguageCodeStandin + '/convertUI/'},
-    {'linkText': 'Font conversion summary',
-     'ref': '/' + LanguageCodeStandin + '/encodingRules/'
-    },
-    {'linkText': 'Dictionary entry',
-   'ref': '/' + LanguageCodeStandin + '/dictionaryInput/'
-   },
+    # {'linkText': 'Converter',
+    #  'ref': '/' + LanguageCodeStandin + '/convertUI/'},
+    # {'linkText': 'Font conversion summary',
+    #  'ref': '/' + LanguageCodeStandin + '/encodingRules/'
+    # },
+   #  {'linkText': 'Dictionary entry',
+   # 'ref': '/' + LanguageCodeStandin + '/dictionaryInput/'
+   # },
   {'linkText': 'Resources',
       'ref': '/' + LanguageCode + '/downloads/'
     },
@@ -270,24 +270,6 @@ class langInfo:
     ]
 
 
-# Shows keyboards
-class IndigenousHomeHandler(webapp2.RequestHandler):
-    def get(self):
-      req = webapp2.get_request()
-      top_path = req.path.split('/')
-      lang_code = top_path[1]
-      template_values = {
-        'language': lang_name_dict[lang_code],
-        'langTag': lang_code,
-        'font_list': unicode_font_dict[lang_code],
-        'lang_list': None,
-        'kb_list': kb_list_dict[lang_code],
-        'links': fixLinks(links, lang_code),
-      }
-      path = os.path.join(os.path.dirname(__file__), 'demo_general.html')
-      self.response.out.write(template.render(path, template_values))
-
-
 diacritic_lists = {
   'gno': [u'\U00011D8A', u'\U00011D8B', u'\U00011D8C', u'\U00011D8D', u'\U00011D8E',
           u'\U00011D90', u'\U00011D91', u'\U00011D93', u'\U00011D94', u'\U00011D95',
@@ -347,13 +329,7 @@ class ConvertUIHandler(webapp2.RequestHandler):
 
       unicodeChars = ''
       unicodeCombiningChars = ''
-      kb_list = [
-        {'shortName':  LanguageCode,
-         'longName': Language
-        }
-      ]
 
-      new_links = []
       template_values = {
         'font': font,
         'language': lang_name_dict[lang_code],
@@ -372,43 +348,6 @@ class ConvertUIHandler(webapp2.RequestHandler):
           'combiningChars': unicodeCombiningChars,
       }
       path = os.path.join(os.path.dirname(__file__), 'HTML/translit_general.html')
-      self.response.out.write(template.render(path, template_values))
-
-class EncodingRules(webapp2.RequestHandler):
-    def get(self):
-      req = webapp2.get_request()
-      top_path = req.path.split('/')
-      lang_code = top_path[1]
-
-      template_values = {
-        'converterJS': '/js/' + LanguageCode + 'Converter.js',
-        'language': lang_name_dict[lang_code],
-        'langTag': lang_code,
-        'encoding_list': encoding_font_list,
-        'unicode_list': unicode_font_list,
-        'kb_list': kb_list,
-        'links': fixLinks(links, lang_code),
-      }
-      path = os.path.join(os.path.dirname(__file__), 'fontsView.html')
-      self.response.out.write(template.render(path, template_values))
-
-class RenderPage(webapp2.RequestHandler):
-    def get(self):
-
-      kb_list = [
-        {'shortName':  LanguageCode,
-         'longName': Language + ' Unicode'
-        }
-      ]
-      template_values = {
-        'converterJS': "/js/' + LanguageCode + 'Converter.js",
-        'language': Language,
-        'encoding_list': encoding_font_list,
-        'unicode_list': unicode_font_list,
-        'kb_list': kb_list,
-        'links': fixLinks(links, LanguageCode),
-      }
-      path = os.path.join(os.path.dirname(__file__), 'renderCombos.html')
       self.response.out.write(template.render(path, template_values))
 
 
@@ -479,31 +418,33 @@ class DictionaryInput(webapp2.RequestHandler):
 langInstance = langInfo()
 
 app = webapp2.WSGIApplication([
-  ('/' + 'esg' + '/', IndigenousHomeHandler),
-  ('/' + 'gno' + '/', IndigenousHomeHandler),
-  ('/' + 'wsg' + '/', IndigenousHomeHandler),
-  ('/' + LanguageCode + '/', IndigenousHomeHandler),
+  ('/' + 'esg' + '/', base.LanguagesHomeHandler),
+  ('/' + 'gno' + '/', base.LanguagesHomeHandler),
+  ('/' + 'wsg' + '/', base.LanguagesHomeHandler),
+  ('/' + LanguageCode + '/', base.LanguagesHomeHandler),
 
   ('/' + 'esg' + '/convertUI/', ConvertUIHandler),
   ('/' + 'gno' + '/convertUI/', ConvertUIHandler),
   ('/' + 'wsg'+ '/convertUI/', ConvertUIHandler),
   ('/' + LanguageCode + '/convertUI/', ConvertUIHandler),
+
   ('/' + LanguageCode + '/downloads/', base.Downloads),
 
-  ('/' + 'gon' + '/dictionaryInput/', DictionaryInput),
-  ('/' + 'esg' + '/dictionaryInput/', DictionaryInput),
-  ('/' + 'gno' + '/dictionaryInput/', DictionaryInput),
-  ('/' + 'wsg' + '/dictionaryInput/', DictionaryInput),
+  ('/' + 'gon' + '/dictionaryInput/', base.DictionaryInput),
+  ('/' + 'esg' + '/dictionaryInput/', base.DictionaryInput),
+  ('/' + 'gno' + '/dictionaryInput/', base.DictionaryInput),
+  ('/' + 'wsg' + '/dictionaryInput/', base.DictionaryInput),
 
-  ('/' + 'esg' + '/encodingRules/', EncodingRules),
-  ('/' + 'gno' + '/encodingRules/', EncodingRules),
-  ('/' + 'wsg' + '/encodingRules/', EncodingRules),
-  ('/' + LanguageCode + '/encodingRules/', EncodingRules),
+  ('/' + 'esg' + '/encodingRules/', base.EncodingRules),
+  ('/' + 'gno' + '/encodingRules/', base.EncodingRules),
+  ('/' + 'wsg' + '/encodingRules/', base.EncodingRules),
+  ('/' + LanguageCode + '/encodingRules/', base.EncodingRules),
 
-  ('/' + 'esg' + '/diacritic/', DiacriticHandler),
-  ('/' + 'gno' + '/diacritic/', DiacriticHandler),
-  ('/' + 'wsg' + '/diacritic/', DiacriticHandler),
-  ('/' + LanguageCode + '/diacritic/', DiacriticHandler),
+  ('/' + 'esg' + '/diacritic/', base.DiacriticHandler),
+  ('/' + 'gno' + '/diacritic/', base.DiacriticHandler),
+  ('/' + 'wsg' + '/diacritic/', base.DiacriticHandler),
+  ('/' + LanguageCode + '/diacritic/', base.DiacriticHandler),
+
   ('/' + langInstance.LanguageCode + '/dictionaryN/', base.DictionaryN),
 ], debug=True,
     config={'langInfo': langInstance}

@@ -199,19 +199,6 @@ class langInfo():
        },
     ]
 
-# Shows keyboards
-class IndigenousHomeHandler(webapp2.RequestHandler):
-    def get(self):
-      template_values = {
-        'language': Language,
-        'langTag': LanguageCode,
-        'font_list': unicode_font_list,
-        'lang_list': None,
-        'kb_list': kb_list,
-        'links': links,
-      }
-      path = os.path.join(os.path.dirname(__file__), 'demo_general.html')
-      self.response.out.write(template.render(path, template_values))
 
 # Presents UI for conversions from font encoding to Unicode.
 class ConvertUIHandler(webapp2.RequestHandler):
@@ -292,53 +279,17 @@ class ConvertHandler(webapp2.RequestHandler):
       self.response.out.write(json.dumps(result))
 
 
-class EncodingRules(webapp2.RequestHandler):
-    def get(self):
-
-      template_values = {
-        'converterJS': '/js/' + LanguageCode + 'Converter.js',
-        'language': Language,
-        'langTag': LanguageCode,
-        'encoding_list': encoding_font_list,
-        'unicode_list': unicode_font_list,
-        'kb_list': kb_list,
-        'links': links,
-      }
-      path = os.path.join(os.path.dirname(__file__), 'fontsView.html')
-      self.response.out.write(template.render(path, template_values))
-
-class RenderPage(webapp2.RequestHandler):
-    def get(self):
-
-      kb_list = [
-        {'shortName':  LanguageCode,
-         'longName': Language + ' Unicode'
-        }
-      ]
-      template_values = {
-        'converterJS': "/js/' + LanguageCode + 'Converter.js",
-        'language': Language,
-        'encoding_list': encoding_font_list,
-        'unicode_list': unicode_font_list,
-        'kb_list': kb_list,
-        'links': links,
-      }
-      path = os.path.join(os.path.dirname(__file__), 'renderCombos.html')
-      self.response.out.write(template.render(path, template_values))
-
-
 # Global in this file.
 langInstance = langInfo()
 
 app = webapp2.WSGIApplication(
   [
-    ('/demo_' + LanguageCode + '/', IndigenousHomeHandler),
+    ('/demo_' + LanguageCode + '/', base.LanguagesHomeHandler),
     ('/' + LanguageCode + '/', base.LanguagesHomeHandler),
-#    ('/' + LanguageCode + '/', IndigenousHomeHandler),
     ('/' + LanguageCode + '/convertUI/', ConvertUIHandler),
     ('/' + LanguageCode + '/downloads/', base.Downloads),
     ('/' + LanguageCode + '/converter/', ConvertHandler),
-    ('/' + LanguageCode + '/encodingRules/', EncodingRules),
+    ('/' + LanguageCode + '/encodingRules/', base.EncodingRules),
     ('/' + LanguageCode + '/dictionaryInput/', base.DictionaryInput),
     ('/' + langInstance.LanguageCode + '/dictionaryN/', base.DictionaryN),
   ],
