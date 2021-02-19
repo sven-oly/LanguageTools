@@ -2,12 +2,16 @@
 # -*- coding: utf-8 -*-
 
 from __future__ import print_function
-import codecs
+
+# For Python 2 and 3 compatibility
+# from builtins import chr
+
 
 import logging
 
 import re
 import sys
+import unicodedata
 import xml.etree.ElementTree as ET
 
 # Default transliteration framework.
@@ -30,6 +34,7 @@ import xml.etree.ElementTree as ET
 allPhases = None
 debug_output = False
 
+
 class Rule():
   # Stores one rule of a phase, including substitution information
   def __init__(self, pattern, substitution,
@@ -39,6 +44,7 @@ class Rule():
                in_context=None,
                before_reposition=None,
                after_reposition=None,
+               normalize=None,
                id=0):
     self.id = id
     self.pattern = pattern
@@ -62,6 +68,16 @@ class Phase():
     self.rules = []     # Old tuples
     self.RuleList = []  # Rule objects
     self.phase_id = id
+    self.normalize = None
+
+  def setNormalize(self, norm_string):
+    # Check for valid form
+    name_type = norm_string.replace('::', '')
+    if name_type in ['NFC', 'NFD', 'NFKC', 'NFKD']:
+      self.normalize = name_type
+
+  def normalizeText(self, text):
+    return unicodedata.normalize(self.normalize, text)
 
   def fillRules(self, rulelist):
     global debug_output
@@ -69,10 +85,10 @@ class Phase():
     # set up pattern and subst value for each rule
     parts_splitter = re.compile('>|→')
     rule_pattern = re.compile(
-      '(?P<before_context>[^\{]*)(?P<left_context_mark>\{?)(?P<in_context>[^\}>→]*)\
-(?P<right_context_mark>\}?)(?P<after_context>[^>→]*)\
+      '(?P<before_context>[^{]*)(?P<left_context_mark>{?)(?P<in_context>[^}>→]*)\
+(?P<right_context_mark>}?)(?P<after_context>[^>→]*)\
 [>→](?P<before_reposition>[^|]*)(?P<reposition_mark>\|?)(?P<after_reposition>[^;]*)'\
-'(?P<final_semicolon>;?)(?P<comment>#?.*)')
+'(?P<final_semicolon>;?)(\s*)(?P<comment>\#?.*)')
 
     index = 0
     for rule1 in rulelist:
@@ -121,6 +137,8 @@ class Phase():
         # TODO: Separate rule parsing
         # newRule = Rule.fromString(rule_string)
         # self.RuleList.append(newRule)
+
+        # TODO: Add NFC, NFD normalizations
         try:
           newPair = (pattern, subst)
           self.rules.append(newPair)
@@ -157,28 +175,42 @@ class Phase():
 
   def apply(self, intext):
     # takes each rule (pattern, substitute), applying to intext
+
+    # Apply special normalization first
+    if self.normalize:
+      intext = self.normalizeText(intext)
+    result = ''
     for rule in self.rules:
       result = re.sub(rule[0], rule[1], intext)
       intext = result
     return result
 
+  def getInfo(self):
+    return '%s %s'
+
+  def getRulesStrings(self):
+    return self.RuleList
+
 
 def extractShortcuts(ruleString):
   # Shortcuts are clauses of the form "$id = re;  What about a literal ";?
   # also remove comment lines and blank lines
-  shorcutPattern = '(\$\w+)\s*=\s*([^;]*)'
-  matches = re.findall(shorcutPattern, ruleString)
+  shorcut_pattern = '(\$\w+)\s*=\s*([^;]*)'
+  matches = re.findall(shorcut_pattern, ruleString)
 
   shortcuts = {}
   for m in matches:
     shortcuts[m[0]] = m[1]
 
   # Remove shortcuts and comments from input.
-  shorcutPattern = '\$(\w+)\s*=\s*([^;]*);\n'
-  commentPattern = '#[^\n]*\n+'
-  stripped = re.sub(shorcutPattern, '', ruleString)
-  smaller = re.sub(commentPattern, "", stripped)
-  return (shortcuts, smaller)
+  shorcut_pattern = '\$(\w+)\s*=\s*([^;]*);\n'
+  commentPattern = '#[^\n]*\n+'  # Handle comments at ends of lines, too.
+  multipleNewlinePattern = '\s*\n+'
+  stripped = re.sub(shorcut_pattern, '', ruleString)
+  smaller = re.sub(commentPattern, "\n", stripped)
+  smaller = re.sub(multipleNewlinePattern, "\n", smaller)
+
+  return shortcuts, smaller
 
 
 def expandShortcuts(shortcuts, inlist):
@@ -199,7 +231,7 @@ def splitPhases(ruleString):
 def testZawgyiConvert():
   z1 = 'ဘယ္'
   u1 = ConvertZawgyiToUnicode(z1)
-
+  return u1
 
 def ConvertZawgyiToUnicode(ztext):
   # Run the phases over the data.
@@ -230,22 +262,24 @@ def uStringToHex(string):
 def subBackSlash(pattern):
   return '\\' + pattern.group(0)[1:]
 
+
 def decodeHexU(uhexcode):
   # Convert \uhhhh in input hex code match to Unicode character
   text = uhexcode.group(0)[2:]
-  return unichr(int(text, 16)).encode('utf-8')
-
+  return chr(int(text, 16)).encode('utf-8')
 
 class Transliterate():
   # Accepting a set of rules, create a transliterator with phases,
   # ready to apply them.
 
-  def __init__(self, raw_rules, description='Default conversion'):
+  def __init__(self, raw_rules, description='Default conversion', debug=False):
     # Get the short cuts.
-    print('--------------- __init__ TRANSLITERATE raw_rules = %s. description = %s' %
+    if (debug):
+      print('--------------- __init__ TRANSLITERATE raw_rules = %s. description = %s' %
                   (raw_rules, description))
     # logging.info('--------------- __init__ TRANSLITERATE raw_rules = %s. description = %s' %
     #              (raw_rules, description))
+    self.debug_mode = debug
 
     self.description = description
     # Convert Unicode escapes to characters
@@ -253,24 +287,37 @@ class Transliterate():
 
     (self.shortcuts, self.reduced) = extractShortcuts(self.raw_rules)
     # Expand short cuts.
+    if (debug):
+      print('shortcuts: %s' % self.shortcuts)
+      print('Reduced: %s' % self.reduced)
+
     self.expanded = expandShortcuts(self.shortcuts, self.reduced)
+    if (debug):
+      print('expanded: %s' % self.expanded)
 
     self.phaseStrings = splitPhases(self.expanded)
+    if (debug):
+      print('phaseStrings: %s' % self.phaseStrings)
 
-    # Create the phase objects
+      # Create the phase objects
     self.phaseList = []
     index = 0
     for phase in self.phaseStrings:
       self.phaseList.append(Phase(index))
+      new_phase = self.phaseList[-1]
       rule_lines = phase.split('\n')
       phase_rules = []
       for r in rule_lines:
         # TODO: Handle lines with semicolon as left side of rule
         rule_parts = r.rsplit(';', 1)
         if rule_parts[0]:
-          phase_rules.append(rule_parts[0])
+          # Handle Special case for ::NFC and ::NFD
+          if rule_parts[0] == "::NFC" or rule_parts[0] == "::NFD":
+            new_phase.setNormalize(rule_parts[0])
+          else:
+            phase_rules.append(rule_parts[0])
         # Omit empty lines
-      self.phaseList[index].fillRules(phase_rules)
+      new_phase.fillRules(phase_rules)
       index += 1
 
     # Range of current string, for passing information to substFunction.
@@ -289,6 +336,14 @@ class Transliterate():
       print('  %3d rules in phase %2d' % (len(self.phaseList[index].rules), index))
       index += 1
 
+  def printPhases(self):
+    for phase in self.phaseStrings:
+      self.printPhase(phase)
+
+  def printPhase(self, phase_num):
+    phase = self.phaseList[phase_num]
+    # TODO: Print the rules for the phase
+
   def getSummary(self):
     # Print the statistics
     result = {
@@ -300,10 +355,10 @@ class Transliterate():
     }
     return result
 
-  def substFunction(matchObj):
+  def substFunction(self, matchObj):
     return 'UNFINISHED'
 
-  def applyPhase(self, index, instring,  debug):
+  def applyPhase(self, index, instring, debug):
     # It should do:
     #  a. Find rule that matches from the start
     #  b. if a match, substitute text and move start as required
@@ -312,75 +367,83 @@ class Transliterate():
     # For each rule, apply to instring.
     self.start = 0
     self.limit = len(instring) - 1
-    ruleList = self.phaseList[index].RuleList
+    this_phase = self.phaseList[index]
+    ruleList = this_phase.RuleList
     try:
-      print('---------------applyPhase line 316  phase %s, instring = >%s<' % (index, instring))
-      print('---------------applyPhase line 317  phase has %s rules' % (len(ruleList)))
+      if debug:
+        print('---------------applyPhase line 316  phase %s, instring = >%s<' % (index, instring))
+        print('---------------applyPhase line 317  phase has %s rules' % (len(ruleList)))
     except AttributeError as e:
-      print('--------------- applyPhase Error e = %s.' % (e))
+      print('--------------- applyPhase %s to %s Error e = %s.' % (index, instring, e))
 
-    currentString = instring
-    print('UUUUUUUUUUUUU current = %s', currentString)
-    matchObj = True
+    if this_phase.normalize:
+      instring = this_phase.normalizeText(instring)
+
+    current_string = instring
+    if debug:
+      print('UUUUUUUUUUUUU current = %s' % current_string)
+    match_obj = True
     while self.start <= self.limit:
       # Look for a rule that matches
-      ruleIndex = 0
-      matchObj = None
-      self.limit = len(currentString) - 1
+      rule_index = 0
+      match_obj = None
+      self.limit = len(current_string) - 1
 
-      foundRule = None
+      found_rule = None
       for rule in ruleList:
         # Try to match each rule at the current start point.
         re_pattern = rule.re_pattern
-        #print('Trying RRRRRRRRule = %s. current = %s' % (rule.re_pattern, currentString[self.start:]))
-
         try:
           # look at the current position.
-          matchObj = re_pattern.match(currentString[self.start:])
+          match_obj = re_pattern.match(current_string[self.start:])
           # matchObj = re.match(rule.pattern, currentString[self.start:])
         except TypeError as e:
           print('***** TypeError EXCEPTION %s in phase %s, rule %s: %s -> %s' % (e,
-            index, ruleIndex, uStringToHex(rule.pattern), uStringToHex(rule.subst)))
+            index, rule_index, uStringToHex(rule.pattern), uStringToHex(rule.subst)))
         except:
           e = sys.exc_info()[0]
           print('***** EXCEPTION %s in phase %s, rule %s: %s -> %s' % (e,
-            index, ruleIndex, uStringToHex(rule.pattern), uStringToHex(rule.subst)))
+            index, rule_index, uStringToHex(rule.pattern), uStringToHex(rule.subst)))
 
-        if matchObj:
+        if match_obj:
           # Do just one substitution!
-          foundRule = True
-          print('MATCHING RRRRRRRRule = %s. current = %s' % (rule, currentString))
+          found_rule = True
+          if debug:
+            print('MATCHING Rule in phase %s= %s --> %s. current = %s' % (
+              index, rule.pattern, rule.subst, current_string))
 
           # Size of last part of old string after the replacement
-          cSize = len(currentString) - matchObj.end(0) - self.start  # Last part of old string not matched
+          c_size = len(current_string) - match_obj.end(0) - self.start  # Last part of old string not matched
           if not rule.before_reposition:
             substitution = rule.after_reposition
           else:
             # TODO: Handle case of before and after substitutions.
             substitution = rule.subst
-          print('AFTER GETTING SUBSTITUTION Rule = %s. current = %s' % (str(rule.pattern), currentString))
+          if debug:
+            print('SUBSTITUTION Rule = %s --> %s. current = %s' % (
+              str(rule.pattern), rule.subst, current_string))
           if not substitution:
             substitution = ''
           try:
-            outstring = re.sub(rule.pattern, substitution, currentString[self.start:], 1)
+            outstring = re.sub(rule.pattern, substitution, current_string[self.start:], 1)
+            if debug:
+              print('  Substition gives outstring: %s, %s' % (outstring, len(outstring)))
           except TypeError as e:
             outstring = u'&*&*& %s &*&*&' % substitution
           # Try to advance start.
-          print('&&&&&&&&&&  after substitution after substitution after substitution after substitution: >>>%s<<<' %
-                ((len(currentString[0:self.start]))))
-          print('&&&&&&&&&&  outstring: type=%s, %s' % (type(outstring), len(outstring)))
           try:
-            newString = currentString[0:self.start] + str(outstring)
+            new_string = current_string[0:self.start] + str(outstring)
           except:
             print('!!!!!!!!!!! ERROR with substitution start = %s, currentString length = %s !!!!!!!!' %
-                  (self.start, len(currentString)))
-            print('!!!!!!!!!!!  last part = %s, outstring = %s' % (currentString[self.start:], outstring))
-            print('!!!!!!!!!!!  first part = %s, outstring = %s' % (currentString[0:self.start], outstring))
-          self.limit = len(newString) - 1
+                  (self.start, len(current_string)))
+            print('!!!!!!!!!!!  last part = %s, outstring = %s' % (current_string[self.start:], outstring))
+            print('!!!!!!!!!!!  first part = %s, outstring = %s' % (current_string[0:self.start], outstring))
+          self.limit = len(new_string) - 1
 
           # Figure out the new start and limit.
           # New: don't advance if all the text is after the reposition mark.
-          print('!!!!!!!!!!!   before_reposition before_reposition before_reposition before_reposition rule = %s' %
+          if debug:
+            print('!!!!!!!!!!!   before_reposition before_reposition before_reposition before_reposition rule = %s' %
                 rule.after_reposition)
           if not rule.before_reposition:
             self.start = self.start  # Unchanged
@@ -388,43 +451,47 @@ class Transliterate():
             # Find the location of the '|' in the result,
             # Remove that, and set the new position
             # Backwards from this place, to self.start
-            print('!!!!!!!!!!!  after_reposition = %s' % currentString)
-            for pos in range(self.limit - cSize, self.start, -1):
-              if newString[pos] == u'|':
+            if debug:
+              print('!!!!!!!!!!!  after_reposition = %s' % current_string)
+            for pos in range(self.limit - c_size, self.start, -1):
+              if new_string[pos] == u'|':
                 self.start = pos
-                newString = newString[0:pos] + newString[pos+1:]
+                new_string = new_string[0:pos] + new_string[pos+1:]
                 break
           else:
-            print('!!!!!!!!!!!  NO reposition = %s' % currentString)
-            self.start = self.limit - cSize + 1
-          currentString = newString
-          print('after reposition after reposition after reposition after reposition')
+            if debug:
+              print('!!!!!!!!!!!  NO reposition = %s' % current_string)
+            self.start = self.limit - c_size + 1
+          current_string = new_string
           break
-        ruleIndex += 1
+        rule_index += 1
 
       # Rule loop complete
-      if not foundRule:
+      if not found_rule:
         # Increment position since no rule matched
         self.start += 1
 
-    print('OUTPUTPUTPUTPUTPUTPUT = %s' % currentString)
-    return currentString
-
+    if debug:
+      print('OUTPUT Phase %s = %s' % (index, current_string))
+    return current_string
 
   def transliterate(self, instring, debug=None):
     # Apply each phase to the incoming string or string list.
-    print('--------------- TRANSLITERATE type = %s. data = %s' % (type(instring), instring))
+    if debug:
+      print('---- TRANSLITERATE data = %s' % (instring))
     # logging.info('--------------- TRANSLITERATE type = %s. data = %s' % (type(instring), instring))
 
     if type(instring) == list:
       # Repeat on each list item.
       print('****  calling with list item >%s<' % instring)
       return [self.transliterate(item, debug) for item in instring]
-    print('---------------transliterate line 422 instring = %s' % instring)
+    if debug:
+      print('---------------transliterate line 422 instring = %s' % instring)
 
     for phase_index in range(len(self.phaseList)):
-      print('---------------transliterate line 425  phase %d = >%s<' % (phase_index, self.phaseList))
-      print('---------------transliterate line 426  instring = >%s<' % (instring))
+      if debug:
+        print('---------------transliterate line 425  phase %d = >%s<' % (phase_index, self.phaseList))
+        print('---------------transliterate line 426  instring = >%s<' % (instring))
       outstring = 'NOT SET'
       try:
         outstring = self.applyPhase(phase_index, instring, debug)
@@ -434,7 +501,8 @@ class Transliterate():
       instring = outstring
 
     # ?? .decode('unicode-escape')
-    print('****** outstring = %s' % outstring)
+    if debug:
+      print('****** outstring = %s' % outstring)
     return outstring
 
 # Derived class that takes an XML file from CLDR and create a transliterator from it

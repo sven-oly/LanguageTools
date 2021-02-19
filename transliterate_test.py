@@ -6,7 +6,6 @@ import difflib
 import os
 import sys
 
-#import translit_zawgyi
 import transliterate
 
 # ----------------- TESTING ------------------
@@ -42,7 +41,10 @@ def transliterateFile(trans, encoding, fileName):
 
 
 def testXmlInput(file_path):
-  xml_transliterator = transliterate.TranslitXML(file_path)
+  try:
+    xml_transliterator = transliterate.TranslitXML(file_path)
+  except FileNotFoundError:
+    xml_transliterator = None
   # TODO: Now what to do with it!
   return xml_transliterator
 
