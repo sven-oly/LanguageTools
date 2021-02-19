@@ -170,6 +170,7 @@ def main(argv=None):
 
   for out in output:
     print('%s→%s' % (out[0][0], out[-1]))
+#    print('%s' % (out[-1]))  # Just the transliterated result
 
   # Start testing the transliterator with Burmese text.
   

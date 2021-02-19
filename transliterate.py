@@ -128,6 +128,8 @@ class Phase():
 
         # Handle those without before_context
         # Use context information to create context rules
+        if len(parts) < 2:
+          print('Parts expects > 1: %s' % parts)
         subst = re.sub(' ', '', uStringsFixPlaceholder(parts[1]))
         if left_context_mark:
           pattern_string = '(%s)%s(%s)' % (before_context, in_context, after_context)
