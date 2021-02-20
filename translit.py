@@ -79,6 +79,8 @@ class DoTranslitHandler(webapp2.RequestHandler):
     input = self.request.get('input', 'No input')
     input = urllib.unquote(input.encode('utf-8'))
 
+    logging.info('DoTranslitHandler rules = %s' % rules)
+
     out_text = "not transliterated"
     try:
       trans = Transliterate(rules, 'description')

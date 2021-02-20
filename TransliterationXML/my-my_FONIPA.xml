@@ -24,6 +24,8 @@ For terms of use, see http://www.unicode.org/copyright.html -->
 # Definitions
 #
 
+# See https://en.wikipedia.org/wiki/Help:IPA/Burmese
+
 # Dependent vowel signs
 $vs_AA = \u102B;
 $vs_aa = \u102C;

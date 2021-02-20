@@ -249,11 +249,11 @@ def main(argv=None):
   trans = transliterate.Transliterate(translit_zawgyi.ZAWGYI_UNICODE_TRANSLITERATE)
   
   # New is not working yet.
-  # trans = Transliterate(ZAWGYI_UNICODE_TRANSLITERATE_2)
-  #trans.summary()
-  #testPhase1a(trans)
-  #testPhase1(trans)
-  #testPhase2(trans)
+  trans = Transliterate(ZAWGYI_UNICODE_TRANSLITERATE_2)
+  trans.summary()
+  testPhase1a(trans)
+  testPhase1(trans)
+  testPhase2(trans)
   biggerTest(trans)
   biggerTest2(trans)
 

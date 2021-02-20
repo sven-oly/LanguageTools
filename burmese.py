@@ -14,20 +14,40 @@
 # limitations under the License.
 #
 from __future__ import print_function
+#from builtins import chr
 
 import base
 
 # import
 import transliterate
+# Special transliteration for Burmese to Latin
+import translit_burmese_rules
 import transrule_my_wwburn
 
 import json
 import logging
 import os
+import sys
 import urllib
 import webapp2
 
 from google.appengine.ext.webapp import template
+
+# For Python 2.x. and Python
+try:
+  unichr
+except NameError:
+  unichr = chr
+
+try:
+  UNICODE_EXISTS = bool(type(unicode))
+except NameError:
+  unicode = lambda s: str(s)
+
+try:
+  xrange
+except NameError:
+  xrange = range
 
 Language = 'Burmese'
 Language_native = 'မြန်မာဘာသာ'
@@ -85,24 +105,27 @@ unicode_font_list = [
 
 links = [
     {'linkText': 'Converter',
-      'ref': '/my/convertUI/'},
+     'ref': '/my/convertUI/'},
     {'linkText': 'Convert to Zawgyi',
-      'ref': '/my/convertToZawgyi/'},
+    'ref': '/my/convertToZawgyi/'},
     {'linkText': 'Font conversion summary',
-      'ref': '/my/encodingRules/'
+     'ref': '/my/encodingRules/'
     },
     {'linkText': 'Diacritics',
-   'ref': '/my/diacritic/'
-   },
-  {'linkText': 'Resources',
-      'ref': '/my/downloads/'
+     'ref': '/my/diacritic/'
+     },
+    {'linkText': 'Resources',
+     'ref': '/my/downloads/'
     },
     {'linkText': 'Unicode Myanmar',
-      'ref': 'http://unicode.org/charts/PDF/U1000.pdf'
+     'ref': 'http://unicode.org/charts/PDF/U1000.pdf'
     },
     {'linkText': 'Combiners',
      'ref': '/my/diacritic/'
-     },
+    },
+    {'linkText': 'Transliteration',
+     'ref': '/my/transliterate/',
+    },
 ]
 
 
@@ -122,21 +145,6 @@ kb_list = [
   {'shortName': 'my',
    'longName': 'Burmese Unicode'
    },
-  {'shortName': 'shn_keyman',
-   'longName': 'Shan Keyman layout'
-   },
-  {'shortName': 'shn',
-   'longName': 'Shan'
-   },
-  {'shortName': 'mnw',
-   'longName': 'Mon Unicode'
-   },
-  {'shortName': 'mnw_mul',
-   'longName': 'MUL Unicode, Mon/Burmese'
-   },
-  {'shortName': 'ksw',
-   'longName': 'S\'gaw Karen'
-   },
 ]
 
 class langInfo():
@@ -154,6 +162,8 @@ class langInfo():
     self.links = links
 
     self.text_file_list = []
+
+langInstance = langInfo()
 
 # Presents UI for conversions from font encoding to Unicode.
 class ConvertUIHandler(webapp2.RequestHandler):
@@ -391,22 +401,79 @@ class ConvertHandler(webapp2.RequestHandler):
              'errmsg': 'Null input'}
     self.response.out.write(json.dumps(obj))
 
-
-# TODO: Perform transliteration using Okell transcript with modifications
+# TODO: Perform transliteration using Okell/JKW and others
 class TransliterateHandler(webapp2.RequestHandler):
   def get(self):
     # Load existing transliterations
 
+    translit_rules_list = [
+      {'name': 'Okell/JKW',
+       'rules': translit_burmese_rules.TRANSLIT_MY_OKELL_JW,
+       },
+      {'name': 'FONIPA', 'rules': translit_burmese_rules.TRANSLIT_MY_FONIPA,
+        },
+      {'name': 'Myanmar-Latin', 'rules': translit_burmese_rules.TRANSLIT_MY_LATIN,
+       },
+      ]
+
     template_values = {
-      'language': Language,
-      'base_char': base_consonant.encode('utf-8'),
-      'base_hex': ['%4x' % ord(x) for x in base_consonant],
-      'unicode_font_list': unicode_font_list,
+      'language': langInstance.Language,
+      'langTag': langInstance.LanguageCode,
+      'font_list': langInstance.unicode_font_list,
+      'lang_list': langInstance.lang_list,
+      'kb_list': langInstance.kb_list,
+      'langInfo': langInfo,
+      'links': langInstance.links,
+      'showTools': self.request.get('tools', None),
+      'test_data': '',
+      'translit_rules_list': translit_rules_list,
     }
-    # !!! POINT TO CORRECT HTML
-    path = os.path.join(os.path.dirname(__file__), 'HTML/diacritics.html')
+    path = os.path.join(os.path.dirname(__file__), 'HTML/burmese_transliteration.html')
     self.response.out.write(template.render(path, template_values))
-langInstance = langInfo()
+
+
+# !!! TODO: adapt to new transliteration for Burmese --> Latin
+class DoTranslitHandler(webapp2.RequestHandler):
+  def get(self):
+    # Get parameters
+    logging.info('DoTranslitHandler')
+
+    rules = self.request.get('rules', '').decode('unicode-escape')
+    input = self.request.get('input', 'No input')
+    input = urllib.unquote(input.encode('utf-8'))
+
+    logging.info('DoTranslitHandler rules = %s' % rules)
+
+    out_text = "not transliterated"
+    try:
+      trans = transliterate.Transliterate(rules, 'description')
+      logging.info('Transliterator = %s' % trans)
+    except:
+      e = sys.exc_info()[0]
+      logging.error('!! Creating transliterator Error e = %s.' % (e))
+      out_text = '~~~~~~~~~ Creation Error: %s' % e
+
+    logging.info('PHASE STRINGS: %s' % trans.phaseStrings)
+
+    try:
+      out_text = trans.transliterate(input)
+    except:
+      e = sys.exc_info()[0]
+      logging.error('!! Calling transliterate Error e = %s. trans=%s' % (e, trans))
+      logging.info('outText = %s' % (out_text))
+
+    message = ''  # TODO: Fill in with error or success message.
+    error = ''
+    summary = trans.getSummary()
+    result = {
+      'outText': out_text,
+      #'outText' : outText,
+      'message' : message,
+      'error': error,
+      'summary' : ','.join(summary['shortcuts'].values()),
+    }
+    return_string = json.dumps(result)
+    self.response.out.write(return_string)
 
 
 app = webapp2.WSGIApplication([
@@ -419,6 +486,7 @@ app = webapp2.WSGIApplication([
     ('/my/encodingRules/', base.EncodingRules),
     ('/my/diacritic/', base.DiacriticHandler),
     ('/my/transliterate/', TransliterateHandler),
+    ('/my/dotranslit/', DoTranslitHandler),
   ],
   debug=True,
   config = {'langInfo': langInstance}
