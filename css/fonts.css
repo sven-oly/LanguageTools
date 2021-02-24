@@ -26,7 +26,7 @@ element.style {
 /* Myanmar script */
   @font-face {
     font-family: 'NotoSansMyanmar';
-    src: url('/fonts/NotoSansMyanmar-Regular.otf');
+    src: url('/fonts/Myanmar/NotoSansMyanmar-Regular.ttf');
   }
 
 /* Tamashek */

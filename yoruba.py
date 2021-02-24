@@ -24,8 +24,6 @@ import os
 import urllib
 import webapp2
 
-from google.appengine.ext.webapp import template
-
 Language = 'Yorùbá'
 Language_native = 'Èdè Yorùbá'
 LanguageCode = 'yo'

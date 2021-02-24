@@ -14,6 +14,8 @@
 # limitations under the License.
 #
 from __future__ import print_function
+from __future__ import unicode_literals
+
 #from builtins import chr
 
 import base
@@ -147,6 +149,66 @@ kb_list = [
    },
 ]
 
+class testData():
+  def __init__(self):
+    self.basic_data = [
+      ['ဘဲ ဓာတ် ဂျင် သား', '', '', '', ''],
+      ['ဘဲ ', 'bhell', 'b-eh', 'yes', 'bɛ́'],
+      [' ဓာတ်', 'dharat', 'd-', 'battery', 'daʔ'],
+      ['ဂျင်', 'gyin', 'j-', 'gin', 'dʑɪ̀ɰ̃'],
+      ['သား', 'sarr', 'dh-', 'son', 'ðá'],
+      ['ဂုဏ်', 'gun', 'g-', 'honor', 'ɡòʊɰ̃'],
+
+      ['ဟုတ်', '', 'h-', '', 'hoʊʔ'],
+      ['ယား', '', 'y-', '', 'já'],
+      ['ကုန်', '', 'k-', '', 'kòʊɰ̃'],
+      ['ခုန်', '', 'hk-', '', 'kʰòʊɰ̃'],
+      ['လုပ်', '', 'l-', '', 'loʊʔ'],
+      ['လှုပ်', '', 'hl-', '', 'l̥oʊʔ'],
+
+      ['မတ်', '', '', '', 'maʔ'],
+      ['မှတ်', '', '', '', 'm̥aʔ'],
+      ['နမ်း', '', '', '', 'náɰ̃'],
+      ['နှမ်း', '', '', '', 'n̥áɰ̃'],
+      ['ခန်း', '', '', '', 'kʰàɰ̃'],
+      ['ညစ်', '', '', '', 'ɲɪʔ'],
+      ['ညှစ်', '', '', '', 'ɲ̥ɪʔ'],
+      ['ငါး', '', '', '', 'ŋá'],
+      ['ငှါး', '', '', '', 'ŋ̊á'],
+      ['ပဲ', '', '', '', 'pɛ́'],
+      ['ဖဲ', '', '', '', 'pʰɛ́'],
+      ['စာ', '', '', '', 'sà'],
+      ['ဆာ', '', '', '', 'sʰà'],
+      ['ရှာ', '', '', '', 'ʃà'],
+      ['တတ်', '', '', '', 'taʔ'],
+      ['ထပ်', '', '', '', 'tʰaʔ'],
+      ['ကြဉ်', '', '', '', 'tɕɪ̀ɰ̃'],
+      ['ချင်', '', '', '', 'tɕʰɪ̀ɰ̃'],
+      ['သတ်', '', '', '', 'θaʔ'],
+      ['ဝါး', '', '', '', 'wá'],
+      ['လက်ဝှေ့', '', '', '', 'lɛʔʍḛ'],
+      ['ဇာ', '', '', '', 'zà'],
+      ['အုတ်', '', '', '', 'ʔoʊʔ'],
+      # Vowels
+      ['ီ', '', 'i', '', 'i'],
+      ['ိ', '', 'i', '', 'ḭ'],
+      ['ေ', '', 'ei', '', 'e'],
+      ['လက်', '', 'eh', '', 'ɛ'],
+      ['ာ', '', 'a', '', 'a'],
+      ['ါ', '', 'a', '', 'a̰'],
+      ['ော်', '', 'o', '', 'ɔ'],
+      ['ော', '', 'o', '', 'ɔ'],
+      ['ို', '', 'ou', '', 'o'],
+      ['ု', '', 'u', '', 'u'],
+      ['ူ', '', 'u', '', 'ṵ'],
+      ['လောက် ကောင်း', '', 'au', '', 'aʊ'],
+      ['ရိုက် တိုင်း', '', 'ai', '', 'ai'],
+      ['ကုတ် ကုန်', '', 'ou', '', 'oʊ'],
+      ['အခု', '', 'ə', '', 'əhku'],
+
+    ]
+
+
 class langInfo():
   def __init__(self):
     self.LanguageCode = LanguageCode
@@ -162,6 +224,8 @@ class langInfo():
     self.links = links
 
     self.text_file_list = []
+
+    self.translit_test_data = testData().basic_data
 
 langInstance = langInfo()
 
@@ -425,15 +489,19 @@ class TransliterateHandler(webapp2.RequestHandler):
       'langInfo': langInfo,
       'links': langInstance.links,
       'showTools': self.request.get('tools', None),
-      'test_data': '',
+      'test_data': 'ဓာတ်',  ## !!! langInstance.translit_test_data,
       'translit_rules_list': translit_rules_list,
     }
     path = os.path.join(os.path.dirname(__file__), 'HTML/burmese_transliteration.html')
     self.response.out.write(template.render(path, template_values))
 
+# Globals
+# OkellJKW_Translit = None
 
 # !!! TODO: adapt to new transliteration for Burmese --> Latin
 class DoTranslitHandler(webapp2.RequestHandler):
+#
+
   def get(self):
     # Get parameters
     logging.info('DoTranslitHandler')
@@ -444,16 +512,30 @@ class DoTranslitHandler(webapp2.RequestHandler):
 
     logging.info('DoTranslitHandler rules = %s' % rules)
 
-    out_text = "not transliterated"
+    error = ''  # Set if there's a problem.
+
+    debug = True
+
+    OkellJKW_Translit = None
+    # Create transliterator(s) if needed
+    OkellJKW_Translit = transliterate.Transliterate(
+      translit_burmese_rules.TRANSLIT_MY_OKELL_JW, debug=True)
     try:
-      trans = transliterate.Transliterate(rules, 'description')
-      logging.info('Transliterator = %s' % trans)
+      if not OkellJKW_Translit:
+        logging.info('NEW NEW OKELL')
+        logging.info('*** %s lines' % len(translit_burmese_rules.TRANSLIT_MY_OKELL_JW.split('\n')))
+        OkellJKW_Translit = transliterate.Transliterate(
+          translit_burmese_rules.TRANSLIT_MY_OKELL_JW, debug=True)
     except:
       e = sys.exc_info()[0]
-      logging.error('!! Creating transliterator Error e = %s.' % (e))
+      error = '!!!!! Creating transliterator Error e = %s.' % (e)
+      logging.error(error)
       out_text = '~~~~~~~~~ Creation Error: %s' % e
 
-    logging.info('PHASE STRINGS: %s' % trans.phaseStrings)
+    # !!! FINISH THIS
+    trans = OkellJKW_Translit
+
+    out_text = "not transliterated"
 
     try:
       out_text = trans.transliterate(input)
@@ -462,15 +544,21 @@ class DoTranslitHandler(webapp2.RequestHandler):
       logging.error('!! Calling transliterate Error e = %s. trans=%s' % (e, trans))
       logging.info('outText = %s' % (out_text))
 
-    message = ''  # TODO: Fill in with error or success message.
-    error = ''
-    summary = trans.getSummary()
+    message = 'MESSAGE  #'''  # TODO: Fill in with error or success message.
+    summary_text = "No summary available"
+    if trans:
+      try:
+        summary = trans.getSummary()
+        summary_text = ','.join(summary['shortcuts'].values())
+      except AttributeError:
+        summary_text = "No summary available"
+
     result = {
       'outText': out_text,
       #'outText' : outText,
       'message' : message,
       'error': error,
-      'summary' : ','.join(summary['shortcuts'].values()),
+      'summary' : summary_text,
     }
     return_string = json.dumps(result)
     self.response.out.write(return_string)

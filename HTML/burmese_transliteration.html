@@ -263,8 +263,8 @@ function toggleConvertedVS(text_area_id, toggle) {
     var inputObj = document.getElementById(inputarea);
     var inputtext = escape(inputObj.value);
     var encodedInput = encodeURIComponent(inputObj.value);
-    var rule ruleObj = document.getElementById(rulearea);
-    var ruletext = escape(ruleaObj.value);
+    var ruleObj = document.getElementById(rulearea);
+    var ruletext = escape(ruleObj.value);
 
 	var target = "/my/dotranslit/?input=" + encodedInput + "&rules=" + ruletext;
 	//xmlhttp.open("POST", target, true);
@@ -272,9 +272,12 @@ function toggleConvertedVS(text_area_id, toggle) {
 	var size = target.length;
 	xmlhttp.send(null);
   }
-
 </script>
 
+  <script type="text/javascript">
+    function setTranslitOption(selector) {
+    }
+  </script>
   <link rel="stylesheet" type="text/css" href="/css/keyboard.css" />
 
   <style>{% for font in font_list %}{% if forloop.first %}
@@ -348,9 +351,12 @@ function toggleConvertedVS(text_area_id, toggle) {
     <div id="translit_test"></div>
     <input type="button" id="translit_test_button" value="Test Translit"
            onclick="requestTransliterate('t1', 'outputarea', 'rulearea', 'messagearea', 'summaryarea');">
-    outputarea, rulearea, messagearea, summaryarea
-
-    <textarea id="outputarea" spellcheck="false" columns="15"></textarea>
+    Transliterator: <select onchange="setTranslitOption(this.value)" id="translit_selecdtor">
+      {% for tlit in translit_rules_list %}
+      <option value="{{tlit.name}}">{{tlit.name}}</option>
+      {% endfor %}
+      <option value="All">All</option>
+    </select>    <textarea id="outputarea" spellcheck="false" rows="2" columns="15"></textarea>
     <textarea id="rulearea" spellcheck="false" columns="15"></textarea>
     <textarea id="messagearea" spellcheck="false" columns="15"></textarea>
     <textarea id="summaryarea" spellcheck="false" columns="15"></textarea>

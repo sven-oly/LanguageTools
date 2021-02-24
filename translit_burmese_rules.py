@@ -1,21 +1,10 @@
 #!/usr/local/bin/python
 # -*- coding: utf-8 -*-
-from __future__ import print_function
+from __future__ import unicode_literals
 
 # Includes the text for the 3 transliteration starting points.
 
-TRANSLIT_MY_OKELL_JW = """
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE supplementalData SYSTEM "../../common/dtd/ldmlSupplemental.dtd">
-<!-- Copyright © 1991-2015 Unicode, Inc.
-CLDR data files are interpreted according to the LDML specification (http://unicode.org/reports/tr35/)
-For terms of use, see http://www.unicode.org/copyright.html -->
-<supplementalData>
-  <version number="$Revision$" />
-  <transforms>
-    <transform source="my" target="my_Okell_JKW" direction="forward" alias="my-okell_jkw">
-      <tRule><![CDATA[
-
+TRANSLIT_MY_OKELL_JW = u"""
 # Burmese to Okell transliteration, with modifications by Julian Wheatley
 
 #
@@ -409,25 +398,9 @@ $asat → ;
 [\u200B-\u200D] → ;
 
 ::NFC;
-
-      ]]></tRule>
-    </transform>
-  </transforms>
-</supplementalData>
 """
 
 TRANSLIT_MY_FONIPA = """
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE supplementalData SYSTEM "../../common/dtd/ldmlSupplemental.dtd">
-<!-- Copyright © 1991-2015 Unicode, Inc.
-CLDR data files are interpreted according to the LDML specification (http://unicode.org/reports/tr35/)
-For terms of use, see http://www.unicode.org/copyright.html -->
-<supplementalData>
-	<version number="$Revision$" />
-	<transforms>
-		<transform source="my" target="my_FONIPA" direction="forward" alias="my-fonipa-t-my">
-			<tRule><![CDATA[
-
 # Pronunciation rules for Burmese.
 #
 # The following rules are lexical and heuristic: lexical in the sense
@@ -830,24 +803,9 @@ $asat → ;
 [\u200B-\u200D] → ;
 
 ::NFC;
-
-			]]></tRule>
-		</transform>
-	</transforms>
-</supplementalData>
 """
 
 TRANSLIT_MY_LATIN = """
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE supplementalData SYSTEM "../../common/dtd/ldmlSupplemental.dtd">
-<!-- Copyright © 2020 Unicode, Inc.
-CLDR data files are interpreted according to the LDML specification (http://unicode.org/reports/tr35/)
-For terms of use, see http://www.unicode.org/copyright.html -->
-<supplementalData>
-    <version number="$Revision$" />
-    <transforms>
-        <transform source="my" target="my_Latn" direction="forward" draft="contributed" alias="Burmese-Latin Myanmar-Latin my-Latn-t-my">
-            <tRule><![CDATA[
 # Author: Arne Mauser, Moe Aung Naing
 # Description: Myanmar Romanization
 
@@ -1403,7 +1361,4 @@ $consonants = [\u1000-\u1021];
 \u103D > w;
 
 ::NFC;
-			]]></tRule>
-        </transform>
-    </transforms>
-</supplementalData>"""
+"""

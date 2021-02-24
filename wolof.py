@@ -19,8 +19,6 @@ import webapp2
 
 import base
 
-from google.appengine.ext.webapp import template
-
 Language = 'Wolof'
 Language_native = '???ᰶ'
 LanguageCode = 'wo'

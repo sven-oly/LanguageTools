@@ -23,8 +23,6 @@ import sys
 import urllib
 import webapp2
 
-from google.appengine.ext.webapp import template
-
 encoding_font_list = [
     # {
     #   'font_path':'/fonts/zawghawa/jk/ZaghawaBeria_PUA.otf',

@@ -14,7 +14,7 @@
 var MYH_LAYOUT = {
   'id': 'myh',
   'title': 'qʷi·qʷi·diččaq',
-  'source': 'http://www.languagegeek.com/nwc/keymaps/WakashanCanada/MakahNum.pdf',
+  'source': 'http://www.makahmuseum.com/makah-keyboard/',
   'mappings': {
     '': {
       '': '{{ḥ}}!{{ʷ}}{{š}}{{č}}{{ƛ}}{{ŋ}}{{x\u030c}}{{ɫ}}{{ʔ}}{{\u00B0}}-=' +

@@ -122,7 +122,8 @@ with open("GamWinPUA_05Feb2002.tsv") as fd:
   map_list = ['var private_use_map_combined = {']
   for item in in_items:
     unicode = pua_to_unicode(item[1])
-    map_list.append("    '%s': ['%s', '%s']," % (item[0], item[1], unicode))
+    # Unicode output first, then PUA
+    map_list.append("    '%s': ['%s', '%s']," % (item[0], unicode, item[1]))
     #print('%s = %s ' % (item[1], unicode))
   map_list.append("    ' ': [' '],")
   map_list.append("  }")
@@ -135,8 +136,8 @@ with open("GamWinPUA_05Feb2002.tsv") as fd:
     reg_ex.append(item[0])
   reg_ex.append("\u0020")
   reg_ex.append(",")
+  reg_ex.append("\.")
   reg_ex.append(".")
-  reg_ex.append("\u000a")
 
   print('|'.join(reg_ex))
 

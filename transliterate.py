@@ -4,7 +4,7 @@
 from __future__ import print_function
 
 # For Python 2 and 3 compatibility
-# from builtins import chr
+#from builtins import chr
 
 
 import logging
@@ -34,6 +34,12 @@ import xml.etree.ElementTree as ET
 allPhases = None
 debug_output = False
 
+def ensure_unicode(x):
+  if sys.version_info < (3, 0):
+    what = type(x)
+    if what is not 'unicode':
+      return x.decode('utf-8')
+  return x
 
 class Rule():
   # Stores one rule of a phase, including substitution information
@@ -48,7 +54,7 @@ class Rule():
                id=0):
     self.id = id
     self.pattern = pattern
-    self.re_pattern = re.compile(pattern, re.UNICODE)
+    self.re_pattern = re.compile(self.pattern, re.UNICODE)
     self.subst = substitution
     self.context = context
     self.in_context = in_context
@@ -77,18 +83,20 @@ class Phase():
       self.normalize = name_type
 
   def normalizeText(self, text):
-    return unicodedata.normalize(self.normalize, text)
+    # print('NORMALIZE %s' % text)
+    return text
+    # !!!! return unicodedata.normalize(self.normalize, text.encode('utf-8'))
 
   def fillRules(self, rulelist):
     global debug_output
 
     # set up pattern and subst value for each rule
-    parts_splitter = re.compile('>|→')
+    parts_splitter = re.compile(u'>|→', re.UNICODE)
     rule_pattern = re.compile(
-      '(?P<before_context>[^{]*)(?P<left_context_mark>{?)(?P<in_context>[^}>→]*)\
+      u'(?P<before_context>[^{]*)(?P<left_context_mark>{?)(?P<in_context>[^}>→]*)\
 (?P<right_context_mark>}?)(?P<after_context>[^>→]*)\
 [>→](?P<before_reposition>[^|]*)(?P<reposition_mark>\|?)(?P<after_reposition>[^;]*)'\
-'(?P<final_semicolon>;?)(\s*)(?P<comment>\#?.*)')
+'(?P<final_semicolon>;?)(\s*)(?P<comment>\#?.*)', re.UNICODE)
 
     index = 0
     for rule1 in rulelist:
@@ -117,15 +125,13 @@ class Phase():
           before_context = re.sub(' ', '', uStringsFixPlaceholder(groups['before_context']))
           in_context = re.sub(' ', '', uStringsFixPlaceholder(groups['in_context']))
 
-      rule1 = rule1.strip()
-      rule = re.sub('\n', '', rule1)
+      rule = re.sub('\n', '', rule1.strip())
       # Remove comment lines.
       # TODO: remove final semicolon
       if rule and rule[0] != '#':
         # TODO: Use matched results instead of simple split
         parts = parts_splitter.split(rule)
         pattern = re.sub(' ', '', parts[0]) # but don't remove quoted space
-
         # Handle those without before_context
         # Use context information to create context rules
         if len(parts) < 2:
@@ -140,7 +146,6 @@ class Phase():
         # newRule = Rule.fromString(rule_string)
         # self.RuleList.append(newRule)
 
-        # TODO: Add NFC, NFD normalizations
         try:
           newPair = (pattern, subst)
           self.rules.append(newPair)
@@ -152,17 +157,17 @@ class Phase():
                                     before_reposition=before_reposition,
                                     after_reposition=after_reposition,
                                     id=index))  # Rule objects
-        except IndexError as e:
-          print('IndexError e = %s. Phase %s, %d rule = %s' % (e, self.phase_id, index, rule1))
+        except IndexError as before_context:
+          print('IndexError before_context = %s. Phase %s, %d rule = %s' % (before_context, self.phase_id, index, rule1))
           print('  Rule = >>%s<< %d' % (rule, len(rule)))
           break
-        except ValueError as e:
-          print('ValueError e = %s. Phase %s, %d rule = %s' % (e, self.phase_id, index, rule1))
+        except ValueError as value_error:
+          print('ValueError value_error = %s. Phase %s, %d rule = %s' % (value_error, self.phase_id, index, rule1))
           print('  Rule = >>%s<< %d' % (rule, len(rule)))
           break
         except:
-          e = sys.exc_info()[0]
-          print('!! Error e = %s. Phase %s, %d rule = %s' % (e, self.phase_id, index, rule1))
+          other_error = sys.exc_info()[0]
+          print('!! Other error other_error = %s. Phase %s, %d rule = %s' % (other_error, self.phase_id, index, rule1))
           print('  Rule = >>%s<< %d characters' % (rule, len(rule)))
           break
       index += 1
@@ -276,11 +281,9 @@ class Transliterate():
 
   def __init__(self, raw_rules, description='Default conversion', debug=False):
     # Get the short cuts.
-    if (debug):
-      print('--------------- __init__ TRANSLITERATE raw_rules = %s. description = %s' %
-                  (raw_rules, description))
-    # logging.info('--------------- __init__ TRANSLITERATE raw_rules = %s. description = %s' %
-    #              (raw_rules, description))
+    # if (debug):
+    #   logging.info('--------- TRANSLITERATE __init__: raw_rules = %s. description = %s' %
+    #               (raw_rules.encode('utf-8'), description))
     self.debug_mode = debug
 
     self.description = description
@@ -289,17 +292,17 @@ class Transliterate():
 
     (self.shortcuts, self.reduced) = extractShortcuts(self.raw_rules)
     # Expand short cuts.
-    if (debug):
-      print('shortcuts: %s' % self.shortcuts)
-      print('Reduced: %s' % self.reduced)
+    # if (debug):
+    #   logging.info('shortcuts: %s' % self.shortcuts)
+    #   logging.info('Reduced: %s' % self.reduced.encode('utf-8'))
 
     self.expanded = expandShortcuts(self.shortcuts, self.reduced)
-    if (debug):
-      print('expanded: %s' % self.expanded)
+    # if (debug):
+    #   logging.info('expanded: %s' % self.expanded.encode('utf-8'))
 
     self.phaseStrings = splitPhases(self.expanded)
-    if (debug):
-      print('phaseStrings: %s' % self.phaseStrings)
+    # if (debug):
+    #   logging.info('phaseStrings: %s' % self.phaseStrings)
 
       # Create the phase objects
     self.phaseList = []
@@ -373,17 +376,17 @@ class Transliterate():
     ruleList = this_phase.RuleList
     try:
       if debug:
-        print('---------------applyPhase line 316  phase %s, instring = >%s<' % (index, instring))
+        print('---------------applyPhase line 316  phase %s, instring = >%s<' % (index, instring.encode('utf-8')))
         print('---------------applyPhase line 317  phase has %s rules' % (len(ruleList)))
     except AttributeError as e:
-      print('--------------- applyPhase %s to %s Error e = %s.' % (index, instring, e))
+      print('--------------- applyPhase %s to %s Error e = %s.' % (index, instring.encode('utf-8'), e))
 
     if this_phase.normalize:
       instring = this_phase.normalizeText(instring)
 
     current_string = instring
     if debug:
-      print('UUUUUUUUUUUUU current = %s' % current_string)
+      print('UUUUUUUUUUUUU current = %s' % current_string.encode('utf-8'))
     match_obj = True
     while self.start <= self.limit:
       # Look for a rule that matches
@@ -422,20 +425,31 @@ class Transliterate():
             # TODO: Handle case of before and after substitutions.
             substitution = rule.subst
           if debug:
-            print('SUBSTITUTION Rule = %s --> %s. current = %s' % (
+            logging.info('SUBSTITUTION Rule = %s --> %s. current = %s' % (
               str(rule.pattern), rule.subst, current_string))
           if not substitution:
-            substitution = ''
+            substitution = u''
           try:
             outstring = re.sub(rule.pattern, substitution, current_string[self.start:], 1)
             if debug:
-              print('  Substition gives outstring: %s, %s' % (outstring, len(outstring)))
+              print('  Substitution gives outstring: %s, %s' % (outstring.encode('utf-8'), len(outstring)))
           except TypeError as e:
             outstring = u'&*&*& %s &*&*&' % substitution
+          except UnicodeDecodeError as e:
+            print('CURRENT_STRING = %s' % (current_string))
+            print('rule.pattern = %s' % (rule.pattern))
+            print('substitution = %s' % (substitution))
+            print('##### re.sub problem with rule.pattern = %s, sub = %s, current_string[] = %s' %
+                  (rule.pattern.encode('utf-8'), substitution.encode('utf-8'), current_string[self.start:].encode('utf-8')))
+            logging.error('##### re.sub problem with rule.pattern = %s, sub = %s, current_string[] = %s' %
+                          (rule.pattern.encode('utf-8'), substitution.encode('utf-8'), current_string[self.start:].encode('utf-8')))
           # Try to advance start.
+          new_string = ''
           try:
-            new_string = current_string[0:self.start] + str(outstring)
-          except:
+            new_string = current_string[0:self.start] + outstring
+          except :
+            other_error = sys.exc_info()[0]
+            print('Error %s' % other_error)
             print('!!!!!!!!!!! ERROR with substitution start = %s, currentString length = %s !!!!!!!!' %
                   (self.start, len(current_string)))
             print('!!!!!!!!!!!  last part = %s, outstring = %s' % (current_string[self.start:], outstring))
@@ -480,8 +494,8 @@ class Transliterate():
   def transliterate(self, instring, debug=None):
     # Apply each phase to the incoming string or string list.
     if debug:
-      print('---- TRANSLITERATE data = %s' % (instring))
-    # logging.info('--------------- TRANSLITERATE type = %s. data = %s' % (type(instring), instring))
+    #   print('---- TRANSLITERATE data = %s' % (instring))
+      logging.info('--------------- TRANSLITERATE type = %s. data = %s' % (type(instring), instring))
 
     if type(instring) == list:
       # Repeat on each list item.
@@ -490,16 +504,19 @@ class Transliterate():
     if debug:
       print('---------------transliterate line 422 instring = %s' % instring)
 
+    instring = ensure_unicode(instring)
     for phase_index in range(len(self.phaseList)):
       if debug:
         print('---------------transliterate line 425  phase %d = >%s<' % (phase_index, self.phaseList))
         print('---------------transliterate line 426  instring = >%s<' % (instring))
-      outstring = 'NOT SET'
+      outstring = u'NOT SET'
+      outstring = self.applyPhase(phase_index, instring, debug)
       try:
         outstring = self.applyPhase(phase_index, instring, debug)
       except:
         e = sys.exc_info()[0]
-        logging.error('!! Calling applyPhase Error e = %s. outstring=%s' % (e, outstring))
+        logging.error('!! Calling applyPhase Error e = %s. phase_index =%s, instring = %s' %
+                      (e, phase_index, instring))
       instring = outstring
 
     # ?? .decode('unicode-escape')
