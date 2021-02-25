@@ -104,8 +104,14 @@ class LanguagesHomeHandler(webapp2.RequestHandler):
     except:
       variation_sequence = None
 
+    try:
+      encoded_ranges = langInfo.encoded_ranges
+    except:
+      encoded_ranges = None
+
     template_values = {
         'direction': text_direction,
+        'encoded_ranges': encoded_ranges,
         'language': langInfo.Language,
         'langTag': langInfo.LanguageCode,
         'font_list': langInfo.unicode_font_list,

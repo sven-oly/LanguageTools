@@ -40,7 +40,7 @@ var LOM_LOMA_LAYOUT = {
           'ZXCVBNM<>?'
     }
   },
-  'transform': {
+  'transform': {  // These are to Font encodings.
     'a': '\u01a2',
     'e': '\u01ab',
     'ee': '\u01aa',
@@ -62,4 +62,4 @@ var LOM_LOMA_LAYOUT = {
 
 // Load the layout and inform the keyboard to switch layout if necessary.
 google.elements.keyboard.loadme(LOM_LOMA_LAYOUT);
-en = LOM_LOMA_LAYOUT;
+lom_Loma = LOM_LOMA_LAYOUT;

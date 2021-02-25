@@ -71,6 +71,10 @@ links = [
     #  },
 ]
 
+encodedRanges = [
+  [0xc0, 0x179],
+]
+
 class langInfo():
   def __init__(self):
     self.LanguageCode = LanguageCode
@@ -84,6 +88,8 @@ class langInfo():
     self.lang_list = [LanguageCode]  # This may be extended
     self.kb_list = kb_list
     self.links = links
+
+    self.encoded_ranges = encodedRanges
 
     # For additional resources for download
     self.text_file_list = []
@@ -101,9 +107,6 @@ diacritic_list = [unichr(x) for x in range(0xa926, 0xa92d)]
 default_base_consonant = u'\u1c00'
 
 
-encodedRanges = [
-  (0xc0, 0x179),
-]
 # Presents UI for conversions from font encoding to Unicode.
 class ConvertUIHandler(webapp2.RequestHandler):
     def get(self):

@@ -39,6 +39,7 @@ unicode_font_list = [
       'family': 'JG Loma',
       'longName': 'JG Loma',
       'source': '/fonts/African_font_encodings/JG Loma.ttf',
+      'note': "Not Unicode"
     },
 ]
 
@@ -50,31 +51,29 @@ kb_list = [
 
 links = [
     {'linkText': 'Keyboard',
-     'ref': '/' + LanguageCode + '/'
+     'ref': '/' + LanguageCode + '/',
     },
     # {'linkText': 'Converter',
     #  'ref': '/' + LanguageCode + '/convertUI/'},
     # {'linkText': 'Font conversion summary',
     #   'ref': '/' + LanguageCode + '/encodingRules/'
     # },
-    # {'linkText': 'Resources',
-    #   'ref': '/' + LanguageCode + '/downloads/'
-    # },
-    # {'linkText': 'Unicode page',
-    #  'ref': 'https://www.unicode.org/charts/PDF/U1C00.pdf'
-    # },
+    {'linkText': 'Keyboard transforms',
+     'ref': '/' + LanguageCode + '/kbtransforms/'
+    },
+    {'linkText': 'Unicode proposal',
+     'ref': 'http://www.unicode.org/L2/L2017/17233-n4837-loma.pdf'
+    },
     # {'linkText': 'Lepcha script',
     #  'ref': 'https://en.wikipedia.org/wiki/Lepcha_alphabet'
     # },
     {'linkText': 'Loma Wikipedia',
      'ref': 'https://en.wikipedia.org/wiki/Loma_language'
     },
-    # {'linkText': 'Ethnolog',
-    #  'ref': 'https://www.ethnologue.com/language/lep'
-    # },
-    # {'linkText': 'Combiners',
-    #  'ref': '/lep/diacritic/'
-    #  },
+]
+
+encodedRanges = [
+  (0xa2, 0x1d6),
 ]
 
 class langInfo():
@@ -84,7 +83,7 @@ class langInfo():
     self.Language_native = Language_native
     self.test_data = u'FILL IN'
     # !!!! NOTE
-    # self.unicode_font_list = encoding_font_list
+    self.unicode_font_list = encoding_font_list
     self.encoding_font_list = encoding_font_list
 
     self.lang_list = [LanguageCode]  # This may be extended
@@ -94,22 +93,16 @@ class langInfo():
     # For additional resources for download
     self.text_file_list = []
 
+    self.encoded_ranges = encodedRanges
+
     # TODO: Fill in the rest of the common data.
 
 # TODO: Fill in with diacritics
-diacritic_list = [unichr(x) for x in range(0x1c24, 0x1c37)]
+diacritic_list = []
 #TODO: Fill in base consonant
 default_base_consonant = u'\u1c00'
 
 
-diacritic_list = [unichr(x) for x in range(0xa926, 0xa92d)]
-
-default_base_consonant = u'\u1c00'
-
-
-encodedRanges = [
-  (0xa2, 0x1d6),
-]
 # Presents UI for conversions from font encoding to Unicode.
 class ConvertUIHandler(webapp2.RequestHandler):
     def get(self):
@@ -173,7 +166,7 @@ class DiacriticHandler(webapp2.RequestHandler):
     singles = [' ', 'none']
     for y in diacritic_list:
       row = [y + ' (%4x)' %ord(y[0])]
-      singles.append(base_consonant + y);
+      singles.append(base_consonant + y)
       for x in diacritic_list:
         text = base_consonant + y + x
         combos.append({'text': text,
@@ -204,6 +197,7 @@ app = webapp2.WSGIApplication([
   ('/' + LanguageCode + '/downloads/', base.Downloads),
   ('/' + LanguageCode + '/encodingRules/', base.EncodingRules),
   ('/' + LanguageCode + '/diacritic/', DiacriticHandler),
+  ('/' + langInstance.LanguageCode + '/kbtransforms/', base.KeyboardTransforms),
 ], debug=True,
                               config={'langInfo': langInstance}
 )

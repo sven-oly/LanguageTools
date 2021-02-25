@@ -183,6 +183,7 @@
 
       return output_list.join("");
     }
+
     function fillAllKeys(textarea_id, select_layout_id) {
       var textArea = document.getElementById(textarea_id);
       var selector = document.getElementById(select_layout_id);
@@ -199,6 +200,21 @@
         key_layouts += lineifyMapping(output) + "\n\n";
       }
       textArea.innerHTML = textArea.value = key_layouts;
+    }
+
+    function fillEncodedRange(textarea_id) {
+      var textArea = document.getElementById(textarea_id);
+      var output = "";
+      var encoded_ranges = {{ encoded_ranges }};
+      for (var item = 0; item <  encoded_ranges.length; item += 1) {
+        var start = encoded_ranges[item][0];
+        var end = encoded_ranges[item][1];
+        for (var code = start; code <= end; code += 1) {
+          output += String.fromCharCode(code) + ' ';
+        }
+        // TODO?: output += "\n";
+      }
+      textArea.innerHTML = textArea.value = output;
     }
 
     // Keyboard info.
@@ -296,6 +312,10 @@ function toggleConvertedVS(text_area_id, toggle) {
     <input type="button" value="Code points" onclick="showCodePoints()">
     <input type="button" value="All keys" onclick="fillAllKeys('t1', 'setLayout');"
     />
+    {% if encoded_ranges %}
+      <input type="button" value="Encoded range" onclick="fillEncodedRange('t1');"
+
+    {% endif %}
     {% if variation_sequence %}
        <input type="checkbox" name="vsToggle" id="toggleVS" checked
       onchange="toggleConvertedVS('t1', toggleVS);">Toggle variation sequence<br />
