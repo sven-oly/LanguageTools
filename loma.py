@@ -64,16 +64,17 @@ links = [
     {'linkText': 'Unicode proposal',
      'ref': 'http://www.unicode.org/L2/L2017/17233-n4837-loma.pdf'
     },
-    # {'linkText': 'Lepcha script',
-    #  'ref': 'https://en.wikipedia.org/wiki/Lepcha_alphabet'
-    # },
+    {'linkText': 'Omniglot script',
+     'ref': 'https://www.omniglot.com/writing/loma.htm'
+    },
     {'linkText': 'Loma Wikipedia',
      'ref': 'https://en.wikipedia.org/wiki/Loma_language'
     },
 ]
 
 encodedRanges = [
-  (0xa2, 0x1d6),
+  [0xa2, 0x1C5],
+  [0x1C7, 0x1d6],
 ]
 
 class langInfo():
@@ -81,12 +82,12 @@ class langInfo():
     self.LanguageCode = LanguageCode
     self.Language = Language
     self.Language_native = Language_native
-    self.test_data = u'FILL IN'
+    self.test_data = u''
     # !!!! NOTE
-    self.unicode_font_list = encoding_font_list
+    self.unicode_font_list = unicode_font_list
     self.encoding_font_list = encoding_font_list
 
-    self.lang_list = [LanguageCode]  # This may be extended
+    self.lang_list = [self.LanguageCode]  # This may be extended
     self.kb_list = kb_list
     self.links = links
 

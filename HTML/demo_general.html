@@ -258,7 +258,7 @@ function toggleConvertedVS(text_area_id, toggle) {
   {% if lang_list %}
   Language: <select onchange="onLanguageSelected(this.value, 't1')">
     {% for lang in lang_list %}
-    <option value="{{lang.shortName}}" select="">{{lang.longName}}</option>
+    <option value="{{lang}}" select="">{{lang}}</option>
     {% endfor %}
   </select>
   {% endif %}
