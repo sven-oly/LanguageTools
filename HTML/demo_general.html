@@ -192,7 +192,7 @@
       var new_text = "FILL ALL KEYS " + selector.value;
       var key_layouts = "";
       for (var item in kb_info.mappings) {
-        key_layouts = key_layouts + item + "\n";
+        key_layouts = key_layouts + "Layer = '" + item + "'\n";
         var output = "";
         for (var start in kb_info.mappings[item]) {
           output += kb_info.mappings[item][start];
