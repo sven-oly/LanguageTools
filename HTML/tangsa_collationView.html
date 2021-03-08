@@ -88,6 +88,11 @@
 
   const collation_string = `{{collation_string}}`;
 
+  // For conversions as needed
+  var converter_PUA_to_Unicode = nstConverter_obj['conversions']['GW_to_Unicode'].convert;
+  var converter_pua = nstConverter_obj['conversions']['GW_to_PUA'].convert;
+  var converter_unicode = nstConverter_obj['conversions']['GW_to_Unicode'].convert;
+
   //const readCollationTestData = async file => {
   //    const response = await fetch(file)
   //    const text = await response.text();
@@ -95,6 +100,11 @@
   //}
 
   function loadCollationString(text) {
+    var columns_headings = ['CALMSEA', 'Phonemic (following Gam Win)',
+      'Muishvung (Gam Win’s system)',	'Muishvung PUA (Lakhum Mossang’s system)',
+      'Lakum Unicode',
+      'Name of Unicode characters (consonants without final -a)', 'Notes',
+    ]
     // Record results in a global object.
     table_data['text'] = text;
     table_data['last_sort_column'] = 0;
@@ -114,6 +124,7 @@
     var max_columns = 0;  // Actually set when header row is found.
     var header_count = 0;
     var data_row = 0;
+
     for (var line = 0; line < num_lines; line ++) {
       var line_content = split_text[line].trim();
       if (line_content[0] == "#") {
@@ -123,10 +134,10 @@
         var row = output_table.insertRow(table_row);
         table_row += 1;
         var row_entries = line_content.split("\t");
-        if (line_content[0] == "!") {
+        if (table_row == 1) {
           // Header row.
           if (row_entries.length > max_columns) {
-            max_columns = Math.max(max_columns, row_entries.length);
+            max_columns = columns_headings.length;
           }
           header_count += 1;
           line_content[0] = '';
@@ -137,11 +148,11 @@
 
           row.appendChild(headerCell)
           column_headings.push(headerCell.innerHTML);
-          for (var col = 0; col < row_entries.length; col ++) {
+          for (var col = 0; col < columns_headings.length; col ++) {
             var headerCell = document.createElement("TH");
             headerCell.onclick = makeColClick(col+1, false);
 
-            var col_text = row_entries[col];
+            var col_text = columns_headings[col];
             if (col_text[0] == "!") {
               col_text = col_text.substring(1);
             }
@@ -153,14 +164,29 @@
           var cell = row.insertCell(0);
           data_row ++;
           cell.innerHTML = data_row;
+          var source_column = 0;
           for (var col = 0; col < Math.max(max_columns, row_entries.length); col ++) {
             var cell = row.insertCell(col+1);
-            if (col < row_entries.length) {
-              cell.innerHTML = row_entries[col];
+            if (col == 4) {
+              // Lakhum Unicode
+              cell.innerHTML = converter_unicode(row_entries[3]);
+              cell.style.fontFamily = 'LakhumUnicode';
+              var uni_hex = utf16common(cell.innerHTML, "", " ", null, []);
+              cell.title = uni_hex;  // Hint
+            } else if (source_column < row_entries.length) {
+              cell.innerHTML = row_entries[source_column];
+              if (source_column == 3) {
+                var hex = utf16common(cell.innerHTML, "", " ", null, []);
+                cell.title = hex;  // Hint
+                cell.style.fontFamily = 'LakhumPUA';
+              }
+              source_column++;
             } else {
+              // Lakhum Unicode
               cell.innerHTML = "";
             }
           }
+
         }
       }
     }
@@ -246,6 +272,27 @@
     return 0;
   }
 
+  // Convert to Tangsa Unicode to compare PUA values
+  function compareRowsByColumnUnicode(a, b) {
+    var atext = converter_PUA_to_Unicode(a['text']);
+    var btext = converter_PUA_to_Unicode(b['text']);
+    if (reverse_sort) {
+      if (atext > btext) {
+       return -1;
+      } else if (atext < btext) {
+       return 1;
+      }
+      return 0;
+    } else {
+      if (atext < btext) {
+       return -1;
+      } else if (atext > btext) {
+        return 1;
+      }
+      return 0;
+    }
+  }
+
   function sortTableRows(table, table_data, sort_column, is_number) {
     // Get sort_field.
     var sort_data = [];
@@ -285,7 +332,12 @@
     if (is_number) {
       sort_data.sort(compareRowsByColumnNumber);
     } else {
-      sort_data.sort(compareRowsByColumn);
+      if (column_to_sort != 4) {
+        sort_data.sort(compareRowsByColumn);
+      } else {
+        // Special case for PUA data
+        sort_data.sort(compareRowsByColumnUnicode);
+      }
     }
     // Now refill table.
     for (var index = 0; index < sort_data.length; index ++) {

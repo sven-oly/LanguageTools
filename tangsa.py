@@ -81,7 +81,7 @@ class langInfo():
     self.characters_encode = {
       'encoding': 'gamwin',
       'consonant': ['b', 'ch', 'd', 'f', 'g', 'gh', 'h',] ,
-      'vowel': ['a', 'aw', 'e', 'i', 'o', 'u', 'ue', 'uiu', 'v'],
+      'vowel': ['a', 'aw', 'e', 'i', 'o', 'u', 'ue', 'ui', 'uiu', 'v'],
       'tonemarks': ['x', 'z', 'c'],  # Single 'c'
     }
 
@@ -120,11 +120,23 @@ class langInfo():
          {'column': 0, 'method': 'default'},
          {'column': 2, 'method': 'Gam Win'}
        ],
-       'convert': {
-         'source_column': 3,
-         'convert_js': 'nstConvert_PUA_Unicode',
-         'function': 'convertLakhumPUAToUnicode'
-        }
+       'convert': [
+         {
+           'source_column': 3, 'target_column': 4,
+           'convert_js': 'nstConverter_obj',
+           'type': 'GW_to_PUA'
+         },
+         {
+           'source_column': 3, 'target_column': 6,
+           'convert_js': 'nstConverter_obj',
+           'type': 'GW_to_PUA'
+         }
+       ],
+       'sort': [
+         {'column': 4, 'function': 'PUA_to_Unicode'},
+         {'column': 6, 'function': ''},
+
+        ],
       },
       # {'test_file': '/collation/nst/nst_collation_data.txt', 'format':'txt'},
     ]
@@ -255,6 +267,37 @@ class EncodingRules(webapp2.RequestHandler):
     path = os.path.join(os.path.dirname(__file__), 'HTML/tangsa_encodingConvert.html')
     self.response.out.write(template.render(path, template_values))
 
+
+# For N languages in the dictionary
+class CollationHandler(webapp2.RequestHandler):
+  def get(self, match=None):
+    req = webapp2.get_request()
+    top_path = req.path.split('/')
+    lang_code = top_path[1]
+
+    langInfo = self.app.config.get('langInfo')
+    try:
+      collation_string = langInfo.collation_string
+    except:
+      collation_string = None
+
+    # user_info = getUserInfo(self.request.url)
+
+    # t = Template("My name is {{ person.first_name }}.")
+
+    template_values = {
+      'langInfo': langInfo,
+      'collation_data' : langInfo.collation_data,
+      'collation_string': langInfo.collation_string,
+      'converters': langInfo.converters,
+      'unicodeFontList': langInfo.unicode_font_list,
+      'showTools': self.request.get('tools', None),
+      'links': langInfo.links,
+    }
+    path = os.path.join(os.path.dirname(__file__), 'HTML/tangsa_collationView.html')
+    self.response.out.write(template.render(path, template_values))
+
+
 langInstance = langInfo()
 app = webapp2.WSGIApplication(
     [
@@ -267,7 +310,7 @@ app = webapp2.WSGIApplication(
         ('/' + LanguageCode + '/diacritic/', base.DiacriticHandler),
         ('/' + LanguageCode + '/render/', base.EncodingRules),
         ('/' + langInstance.LanguageCode + '/kbtransforms/', base.KeyboardTransforms),
-        ('/' + langInstance.LanguageCode + '/collation/', base.CollationHandler),
+        ('/' + langInstance.LanguageCode + '/collation/', CollationHandler),
         ('/' + langInstance.LanguageCode + '/readfile/', ReadFileHandler),
     ],
     debug=True,

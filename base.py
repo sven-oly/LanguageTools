@@ -461,6 +461,7 @@ class CollationHandler(webapp2.RequestHandler):
       'langInfo': langInfo,
       'collation_data' : langInfo.collation_data,
       'collation_string': langInfo.collation_string,
+      'converters': langInfo.converters,
       'unicodeFontList': langInfo.unicode_font_list,
       'showTools': self.request.get('tools', None),
       'links': langInfo.links,

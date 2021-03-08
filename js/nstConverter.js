@@ -437,7 +437,7 @@ function preParseLatin(instring) {
 // Conversion of the "v" is specialized to "𖪒" U+16A92 instead of the
 // regular conversion to U+16A78.
 const consonant = "((htt|ht|ng|ny|ts|[gknpst]|[bdfhjlmnprstwy])[cxz]?)";
-const vowel = "(aw|ue|uiu|[aeiouv])";
+const vowel = "(aw|ue|ui|uiu|[aeiouv])";
 
 const cvcv_regex = new RegExp(consonant + "v" + consonant + vowel, "g");
 
