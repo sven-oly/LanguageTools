@@ -83,19 +83,70 @@
 
   function onPageLoaded() {
     var codetable = document.getElementById('codetable');
+    // Old code to be replaced.
     buildEncodingTable(codetable);
+{% if encoding_tables %}
 
-    // var transform_table = document.getElementById('transform_table');
-    // buildingTransformTable(transform_table);
+    // Build based on encoding table descriptions.
+    selected_table = document.getElementById('selectTable').value;
+    var output_table = document.getElementById('encoding_table_area');
+    buildEncodingTableFromData(output_table, encoding_tables[selected_table]);
+{% endif %}
+
+{%if converter_list %}
+  setupConverterSelector('converter_select', converter_list);
+{% endif %}
   }
 
   var encoding_font_list = [
-  {% for encoding in encoding_list %}"{{encoding.font_name}}",{% endfor %}
+  {% for encoding in encoding_list %}"{{encoding.font_name}}"{% if not forloop.last %},{% endif %}{% endfor %}
   ];
 
 var unicode_font_list = [
   {% for font in unicode_list %}"{{font.family}}",{% endfor %}
   ];
+
+// Data describing columns and contents.
+{% if encoding_tables %}
+const encoding_tables = {
+    {% for item, columns in encoding_tables.items %}"{{item}}":
+      [{% for dict in columns %}
+       { {% for k, v in dict.items %}"{{ k }}": "{{ v }}"{% if not forloop.last %},{% endif %}
+        {% endfor %}}{% if not forloop.last %},{% endif %}
+        {% endfor %}
+     ]{% if not forloop.last %},{% endif %}
+   {% endfor %}{% if not forloop.last %},{% endif %}
+  };
+{% endif %}
+
+function buildEncodingTableFromData(table, encoding_table_data) {
+  // Remove existing rows.
+  if (table.rows) {
+    var rowCount = table.rows.length;
+    for (var x=rowCount-1; x>0; x--) {
+       table.deleteRow(x);
+    }
+    table.deleteTHead();
+  }
+
+  var header = table.createTHead();
+  var row = header.insertRow(0);
+  var name = encoding_table_data;
+  var column_data = encoding_table_data;
+  var outIndex = 0;
+  for (var column in column_data) {
+    row.insertCell(outIndex).innerHTML = column_data[column]['title'];
+    outIndex++;
+  }
+  // Find the source for each column and add the values into rows.
+
+}
+
+// Rebuild table and display.
+function onEncodingSelected(selector, output_id) {
+  var table = document.getElementById(output_id)
+  buildEncodingTableFromData(table, encoding_tables[selector.value]);
+}
 
 function buildEncodingTable(table) {
   var fontsize="14px";
@@ -162,22 +213,30 @@ function buildEncodingTable(table) {
 
       // Add the Unicode hex for hover info.
       // TODO: show as full Unicode numeric values
-      cellUni.title = charsToHexString(items[encodingIndex]);
+      cellUni.title = utf16common(items[encodingIndex], "U+", " ", null, []);
       outIndex += 1;
     }
    rowNum += 1;
   }
 }
 
-function buildingTransformTable(table) {
-  var fontsize="14px";
-  var code;
-  // Update headers.
-  var header = table.createTHead();
-  var row = header.insertRow(0);
-  row.insertCell(0).innerHTML = "keys in";
-  row.insertCell(1).innerHTML = "output";
+// TODO: Set these up with the converter.
+//
+var converter_list = [{% for converter in converter_list %}
+  { {% for k, v in converter.items %}"{{k}}": "{{v}}",{%endfor%}{% if not forloop.last %},{% endif %}
+  {% endfor %} }{% if not forloop.last %},{% endif %}
+];
+//
+var convert_data_list = [ {% for entry in conversion_data %}
+  { {% for k, v in entry.items %}"{{k}}": "{{v}}"{%endfor%}{% if not forloop.last %},{% endif %}
+  {% endfor %} }{% if not forloop.last %},{% endif %}
+];
+function setupConverterSelector(selector_id) {
 }
+
+function changeConverter(selector) {
+}
+
   </script>
 </head>
 
@@ -188,11 +247,32 @@ function buildingTransformTable(table) {
   <p>This table gives the code points and characters shown in several
     font encodings for {{language}}. Conversions to Unicode appear for each entry.
   <p>Hint: hover over the Unicode conversions for the hex code points (UTF-16).
+
+  {% if encoding_tables %}
+    DisplayTable: <select id='selectTable' onchange="onEncodingSelected(this, 'encoding_table_area')">
+      {% for table, value in encoding_tables.items %}
+      <option value="{{table}}" select="">{{table}}</option>
+      {% endfor %}
+    </select>
+
+    {% if converter_list%}
+    DisplayTable: <select id='converter_select' onchange="changeConverter(this)">
+
+    </select>
+    {% endif %}
+    <br/>
+
+    <!-- TEMPORARY -->
+  <h2>Encoding table</h2>
+  <table id='encoding_table_area' border="3">
+  <br/><br/>
+  {% endif %}
+  <h2>Old code table</h2>
   <table id='codetable' border="1">
+
   </table>
 
-  <!-- TEMPORARY -->
-  <table id='transform_table' border="3">
+
 
   </table>
 </body>

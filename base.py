@@ -313,18 +313,34 @@ class EncodingRules(webapp2.RequestHandler):
   def get(self, match=None):
 
     langInfo = self.app.config.get('langInfo')
+    try:
+      encoding_tables = langInfo.encoding_tables
+    except:
+      encoding_tables = None
+
+    try:
+      converter_list = langInfo.converters
+    except:
+      converter_list = None
+    try:
+      conversion_data = langInfo.conversion_data
+    except:
+      conversion_data = None
 
     template_values = {
         'converterJS': '/js/' + langInfo.LanguageCode + 'Converter.js',
+        'converter_list': converter_list,
+        'conversion_data': conversion_data,
         'language': langInfo.Language,
         'lang_list': langInfo.lang_list,
         'encoding_list': langInfo.encoding_font_list,
+        'encoding_tables': encoding_tables,
         'unicode_list': langInfo.unicode_font_list,
         'kb_list': langInfo.kb_list,
         'links': langInfo.links,
         'showTools': self.request.get('tools', None),
     }
-    path = os.path.join(os.path.dirname(__file__), 'HTML/fontsView.html')
+    path = os.path.join(os.path.dirname(__file__), 'HTML/encodingConvert.html')
     self.response.out.write(template.render(path, template_values))
 
 class KeyboardTransforms(webapp2.RequestHandler):
@@ -432,6 +448,10 @@ class CollationHandler(webapp2.RequestHandler):
     lang_code = top_path[1]
 
     langInfo = self.app.config.get('langInfo')
+    try:
+      collation_string = langInfo.collation_string
+    except:
+      collation_string = None
 
     # user_info = getUserInfo(self.request.url)
 
@@ -440,6 +460,7 @@ class CollationHandler(webapp2.RequestHandler):
     template_values = {
       'langInfo': langInfo,
       'collation_data' : langInfo.collation_data,
+      'collation_string': langInfo.collation_string,
       'unicodeFontList': langInfo.unicode_font_list,
       'showTools': self.request.get('tools', None),
       'links': langInfo.links,

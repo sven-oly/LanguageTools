@@ -203,22 +203,6 @@ function parseSyllable(text) {
   }
 }
 
-// Constants
-var nondigits = "[^\u1040-\u1049]";
-var consonant = "[\u1000-\u1021]";
-var vowelsign = "[\u102d, \u102e, \u1032, \u102f, \u1030, \u102b, \u102c]";
-
-// ZAWGYI MYANMAR CONSONANT SIGN MEDIAL RA
-// This character has multiple representations in the Zawgyi font.
-var zawgyi_medialra = "[\u103B\u107E-\u1084]";
-
-// Translation of transliteration-based 5 pass conversion into Javascript.
-function g3ZawgyiConverter(zawgyi_in) {
-
-  // output = output.replace(patttern, replacement);
-
-}
-
 
 // Returns list of encoding detection rules that match the text.
 function matchG3DetectRules(text) {

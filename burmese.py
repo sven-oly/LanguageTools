@@ -126,7 +126,7 @@ links = [
      'ref': '/my/diacritic/'
     },
     {'linkText': 'Transliteration',
-     'ref': '/my/transliterate/',
+     'ref': 'https://langtools3.wm.r.appspot.com/translit/',
     },
 ]
 

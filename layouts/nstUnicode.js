@@ -13,7 +13,7 @@
 
 var NST_UNICODE_LAYOUT = {
   'id': 'nstUnicode',
-  'title': 'Tansa Unicode',
+  'title': 'Tangsa Unicode',
   'mappings': {
     '': {
       '': '`{{\ud81a\udec1}}{{\ud81a\udec2}}{{\ud81a\udec3}}{{\ud81a\udec4}}{{\ud81a\udec5}}{{\ud81a\udec6}}' +
@@ -63,33 +63,33 @@ var NST_UNICODE_LAYOUT = {
     }
   },
   'transform': {
-    '\u21D3\ue400': '\ue402',  // o
-    '\u21D3\ue401': '\ue403',  // O
-    '\u21D3\ue404': '\ue406',  // a
-    '\u21D3\ue405': '\ue407',  // A
-    '\u21D3\ue454': '\ue456',  // v
-    '\u21D3\ue455': '\ue457',  // V
-    '\u21D3\ue408': '\ue40a',  // e
-    '\u21D3\ue409': '\ue40b',  // E
-    '\u21D3\ue40c': '\ue40e',  // i
-    '\u21D3\ue40d': '\ue40f',  // I
-    '\u21D3\ue410': '\ue412',  // u
-    '\u21D3\ue411': '\ue413',  // U
-    '\u21D3\ue414': '\ue453',  // w
-    '\u21D3\ue415': '\ue416',  // W
-    '\u21D3\ue417': '\ue419',  // j
-    '\u21D3\ue418': '\ue41a',  // J
-    '\u21D3\ue444': '\ue41c',  // x
-    '\u21D3\ue448': '\ue41d',  // X
-    '\u21D3\ue433': '\ue41e',  // X
-    '\u21D3\ue420': '\ue421',  // q
-    '\u21D3\ue41f': '\ue422',  // Q
-    '\u21D3\ue423': '\ue425',  // z
-    '\u21D3\ue424': '\ue426',  // Z
-    '\u21D3\ue427': '\ue429',  // r
-    '\u21D3\ue428': '\ue42a',  // R
-    '\u21D3\ue43d': '\ue446',  // T
-    '\u21D3\ue43e': '\ue447',  // t
+    '\u21D3\ud81a\ude70': '\ud81a\ude72',  // o
+    '\u21D3\ud81a\ude71': '\ud81a\ude73',  // O
+    '\u21D3\ud81a\ude74': '\ud81a\ude74',  // a
+    '\u21D3\ud81a\ude75': '\ud81a\ude77',  // A
+    '\u21D3\ud81a\udec4': '\ud81a\udec6',  // v
+    '\u21D3\ud81a\udec5': '\ud81a\udec7',  // V
+    '\u21D3\ud81a\ude78': '\ud81a\ude7a',  // e
+    '\u21D3\ud81a\ude79': '\ud81a\ude7b',  // E
+    '\u21D3\ud81a\ude7c': '\ud81a\ude7e',  // i
+    '\u21D3\ud81a\ude7d': '\ud81a\ude7f',  // I
+    '\u21D3\ud81a\ude80': '\ud81a\ude82',  // u
+    '\u21D3\ud81a\ude81': '\ud81a\ude83',  // U
+    '\u21D3\ud81a\ude84': '\ud81a\udec3',  // w
+    '\u21D3\ud81a\ude85': '\ud81a\ude86',  // W
+    '\u21D3\ud81a\ude87': '\ud81a\ude89',  // j
+    '\u21D3\ud81a\ude88': '\ud81a\ude8a',  // J
+    '\u21D3\ud81a\udeb4': '\ud81a\ude8c',  // x
+    '\u21D3\ud81a\udeb8': '\ud81a\ude8d',  // X
+    '\u21D3\ud81a\udea3': '\ud81a\ude8e',  // X
+    '\u21D3\ud81a\ude90': '\ud81a\ude91',  // q
+    '\u21D3\ud81a\ude8f': '\ud81a\ude92',  // Q
+    '\u21D3\ud81a\ude93': '\ud81a\ude95',  // z
+    '\u21D3\ud81a\ude94': '\ud81a\ude96',  // Z
+    '\u21D3\ud81a\ude97': '\ud81a\ude99',  // r
+    '\u21D3\ud81a\ude98': '\ud81a\ude9a',  // R
+    '\u21D3\ud81a\udead': '\ud81a\udeb6',  // T
+    '\u21D3\ud81a\udeae': '\ud81a\udeb7',  // t
 
     '\u21D3\u21D3': '[',  // Cancel the dead key
   }

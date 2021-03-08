@@ -192,7 +192,7 @@ class EncodingRules(webapp2.RequestHandler):
         'kb_list': kb_list,
         'links': links,
       }
-      path = os.path.join(os.path.dirname(__file__), 'HTML/fontsView.html')
+      path = os.path.join(os.path.dirname(__file__), 'HTML/encodingConvert.html')
       self.response.out.write(template.render(path, template_values))
 
 

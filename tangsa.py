@@ -14,13 +14,19 @@
 # limitations under the License.
 #
 
+import tangsa_data
+import tangsa_GamWin_convert_test_new
+
 import webapp2
 
 # Use routines from this base class
 import base
 
 import logging
+import os
 import sys
+
+from google.appengine.ext.webapp import template
 
 LanguageCode = 'nst'
 
@@ -44,17 +50,6 @@ class langInfo():
         'font_name': 'Lakhum PUA',
         'display_name': 'Gam Win & Lakhum PUA',
       }
-    ]
-
-    # Explicit list of conversions
-    self.converters = [
-      {'source': 'Gam Win', 'target': 'Lakhum PUA',
-       'test_data_file': '/conversion/GamWin_LakhumPUA'},
-      {'source': 'Gam Win', 'target': 'Tangsa Lakhum Unicode',
-       'test_data_file': '/conversion/GanWin_TangsaLakhumUnicode'},
-      {'source': 'Lakhum PUA', 'target': 'Tangsa Lakhum Unicode',
-       'test_data_file': '/conversion/LakhumPUA_TangsaLakhumUnicode'
-       },
     ]
 
     self.unicode_font_list = [
@@ -82,6 +77,40 @@ class langInfo():
          #'reference': 'https://tau.olunga.to/keyboard.html'
         },
       ]
+
+    self.characters_encode = {
+      'encoding': 'gamwin',
+      'consonant': ['b', 'ch', 'd', 'f', 'g', 'gh', 'h',] ,
+      'vowel': ['a', 'aw', 'e', 'i', 'o', 'u', 'ue', 'uiu', 'v'],
+      'tonemarks': ['x', 'z', 'c'],  # Single 'c'
+    }
+
+    # Explicit list of conversions
+    self.converters = [
+      {'filename': 'nstConverter',
+       'longname': 'Tangsa Converter'}
+    ]
+
+    # Description of encoding tables to compute and display.
+    self.encoding_tables = {
+      'GamWin to Lakhum':   # name of the table
+       [{'title': 'GamWin', 'source': ['nstconverter', 'key', 'sort'],
+         'font': 'Arial', 'isUnicode': False},
+        {'title': 'Lakhum PUA', "source": ['nstconverter', 1],  # 2nd output column
+         'font': 'LakhumPUA', 'isUnicode': False},
+        {'title': 'Lakhum Unicode', "source": ['nstconverter', 0],  # 1st output column
+         'font': 'LakhumUnicode', 'isUnicode': True},
+        ],
+     'PUA to Unicode':
+       [{'title': 'Lakhum PUA', "source":
+         [0xe400, 0xe458],  # ['nstconverter_PUA_Unicode', 'key']
+         'font': 'LakhumPUA', 'isUnicode': False},
+        {'title': 'Lakhum Unicode', "source": ['nstconverter_PUA_Unicode', 0],
+         'font': 'LakhumUnicode', 'isUnicode': True},
+        ]
+     }
+
+    self.collation_string = tangsa_data.collation_data
 
     self.collation_data = [
       {'test_file': '/collation/nst/CALMSEA_List.tsv',
@@ -154,8 +183,77 @@ class langInfo():
     self.test_data = ''
     self.test_chars = ['']
 
+    self.conversion_data = [
+      {'name': 'wordlist data',
+       'column_contents': tangsa_GamWin_convert_test_new.columns,
+       'data': tangsa_GamWin_convert_test_new.gamWin_convert_test_data,
+      },
+      {'name': 'conversion rules data',
+       'column_contents': tangsa_data.collation_columns,
+       'data': tangsa_data.collation_data,
+      }
+    ]
     return
 
+class ReadFileHandler(webapp2.RequestHandler):
+  def get(self, match=None):
+    # Match is the actual url route matched.
+    req = webapp2.get_request()
+    # Can use this for additional information
+    langInfo = self.app.config.get('langInfo')
+
+    filename = 'testdata/GamWin_convert_test.tsv'
+    path = os.path.join(os.path.split(__file__)[0], filename)
+    with open(path, 'rb') as f:
+      page_content = f.read().decode('utf-8').split('\n')
+    self.response.write(page_content)
+
+
+# Special version for Tangsa
+class EncodingRules(webapp2.RequestHandler):
+  def get(self, match=None):
+
+    langInfo = self.app.config.get('langInfo')
+    try:
+      encoding_tables = langInfo.encoding_tables
+    except:
+      encoding_tables = None
+
+    try:
+      converter_list = langInfo.converters
+    except:
+      converter_list = None
+    try:
+      conversion_data = langInfo.conversion_data
+    except:
+      conversion_data = None
+    pua_range = [0xe400, 0xe458]
+
+    # Extract expected values in PUA.
+    gamwin_lines = tangsa_data.gamwin_test_data.split('\n')
+    gamwin_test_pua = {}
+    for line in gamwin_lines:
+      items = line.split('\t')
+      if (len(items) > 3):
+        gamwin_test_pua[items[1]] = items[5]
+
+    template_values = {
+      'converterJS': '/js/' + langInfo.LanguageCode + 'Converter.js',
+      'converter_list': converter_list,
+      'conversion_data': conversion_data,
+      'gamwin_test_data': gamwin_test_pua,
+      'language': langInfo.Language,
+      'lang_list': langInfo.lang_list,
+      'encoding_list': langInfo.encoding_font_list,
+      'encoding_tables': encoding_tables,
+      'pua_range': pua_range,
+      'unicode_list': langInfo.unicode_font_list,
+      'kb_list': langInfo.kb_list,
+      'links': langInfo.links,
+      'showTools': self.request.get('tools', None),
+    }
+    path = os.path.join(os.path.dirname(__file__), 'HTML/tangsa_encodingConvert.html')
+    self.response.out.write(template.render(path, template_values))
 
 langInstance = langInfo()
 app = webapp2.WSGIApplication(
@@ -165,11 +263,12 @@ app = webapp2.WSGIApplication(
         ('/' + LanguageCode + '/convertUI/', base.ConvertUIHandler),
         ('/' + LanguageCode + '/converter/', base.ConvertUIHandler),
         ('/' + LanguageCode + '/downloads/', base.Downloads),
-        ('/' + LanguageCode + '/encodingRules/', base.EncodingRules),
+        ('/' + LanguageCode + '/encodingRules/', EncodingRules),  # Local special version
         ('/' + LanguageCode + '/diacritic/', base.DiacriticHandler),
         ('/' + LanguageCode + '/render/', base.EncodingRules),
         ('/' + langInstance.LanguageCode + '/kbtransforms/', base.KeyboardTransforms),
         ('/' + langInstance.LanguageCode + '/collation/', base.CollationHandler),
+        ('/' + langInstance.LanguageCode + '/readfile/', ReadFileHandler),
     ],
     debug=True,
     config={'langInfo': langInstance}

@@ -192,6 +192,7 @@ var lakhum_Unicode_PUA = {
 }
 
 function replaceMappedText(intext, mapping) {
+    var outtext_list = [];
     for (var index = 0; index < intext.length; index ++) {
        var c = parsedText[index];
        out = c;
@@ -201,8 +202,9 @@ function replaceMappedText(intext, mapping) {
            out = result;
          }
        }
-       outtext += out;
+       outtext_list.push(out);
      }
+  return "".join(outtext_list)
 }
 
 // First, replace all single characters with their Unicode equivalents.

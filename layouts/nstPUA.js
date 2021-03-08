@@ -13,7 +13,7 @@
 
 var NST_PUA_LAYOUT = {
   'id': 'nstPUA',
-  'title': 'Tansa PUA',
+  'title': 'Tangsa PUA',
   'mappings': {
     '': {
       '': '`{{\ue449}}{{\ue44a}}{{\ue44b}}{{\ue44c}}{{\ue44e}}{{\ue43f}}{{\ue44f}}{{\ue450}}{{\ue451}}{{\ue452}}-=' +

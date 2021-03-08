@@ -30,16 +30,19 @@ import xml.etree.ElementTree as ET
 #   for each clause in phrase,
 #     replace with result in all cases
 
-# Globals
-allPhases = None
-debug_output = False
-
 def ensure_unicode(x):
   if sys.version_info < (3, 0):
     what = type(x)
     if what is not 'unicode':
       return x.decode('utf-8')
   return x
+
+# The class for turning the transliterator text description
+# into phases and rules.
+class TranslitParser():
+  def __init__(self):
+    return
+
 
 class Rule():
   # Stores one rule of a phase, including substitution information
@@ -76,6 +79,15 @@ class Phase():
     self.phase_id = id
     self.normalize = None
 
+    # For creating the parts of the phase.
+    self.parts_splitter = re.compile(u'>|→', re.UNICODE)
+
+    self.rule_pattern = re.compile(
+      u'(?P<before_context>[^{]*)(?P<left_context_mark>{?)(?P<in_context>[^}>→]*)\
+(?P<right_context_mark>}?)(?P<after_context>[^>→]*)\
+[>→](?P<before_reposition>[^|]*)(?P<reposition_mark>\|?)(?P<after_reposition>[^;]*)\
+(?P<final_semicolon>;?)(\s*)(?P<comment>\#?.*)', re.UNICODE)
+
   def setNormalize(self, norm_string):
     # Check for valid form
     name_type = norm_string.replace('::', '')
@@ -88,15 +100,7 @@ class Phase():
     # !!!! return unicodedata.normalize(self.normalize, text.encode('utf-8'))
 
   def fillRules(self, rulelist):
-    global debug_output
-
     # set up pattern and subst value for each rule
-    parts_splitter = re.compile(u'>|→', re.UNICODE)
-    rule_pattern = re.compile(
-      u'(?P<before_context>[^{]*)(?P<left_context_mark>{?)(?P<in_context>[^}>→]*)\
-(?P<right_context_mark>}?)(?P<after_context>[^>→]*)\
-[>→](?P<before_reposition>[^|]*)(?P<reposition_mark>\|?)(?P<after_reposition>[^;]*)'\
-'(?P<final_semicolon>;?)(\s*)(?P<comment>\#?.*)', re.UNICODE)
 
     index = 0
     for rule1 in rulelist:
@@ -106,7 +110,7 @@ class Phase():
       context = rule1.find('}')
 
       # Extract parts for context, matching, and output with respositioning
-      test_match = rule_pattern.match(rule1)
+      test_match = self.rule_pattern.match(rule1)
       context = None
       left_context_mark = None
       before_context = None
@@ -130,7 +134,7 @@ class Phase():
       # TODO: remove final semicolon
       if rule and rule[0] != '#':
         # TODO: Use matched results instead of simple split
-        parts = parts_splitter.split(rule)
+        parts = self.parts_splitter.split(rule)
         pattern = re.sub(' ', '', parts[0]) # but don't remove quoted space
         # Handle those without before_context
         # Use context information to create context rules
@@ -374,12 +378,6 @@ class Transliterate():
     self.limit = len(instring) - 1
     this_phase = self.phaseList[index]
     ruleList = this_phase.RuleList
-    try:
-      if debug:
-        print('---------------applyPhase line 316  phase %s, instring = >%s<' % (index, instring.encode('utf-8')))
-        print('---------------applyPhase line 317  phase has %s rules' % (len(ruleList)))
-    except AttributeError as e:
-      print('--------------- applyPhase %s to %s Error e = %s.' % (index, instring.encode('utf-8'), e))
 
     if this_phase.normalize:
       instring = this_phase.normalizeText(instring)

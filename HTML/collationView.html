@@ -88,10 +88,15 @@ function makeColClick(col, is_number) {
   };
 }
 
-const readCollationTestData = async file => {
-    const response = await fetch(file)
-    const text = await response.text();
+const collation_string = `{{collation_string}}`;
 
+//const readCollationTestData = async file => {
+//    const response = await fetch(file)
+//    const text = await response.text();
+//    loadCollationString(text);
+//}
+
+function loadCollationString(text) {
     // Record results in a global object.
     table_data['text'] = text;
     table_data['last_sort_column'] = 0;
@@ -302,7 +307,9 @@ function sortTableColumn(col, is_number) {
   }
 
   function onPageLoaded() {
-    var text = readCollationTestData("{{collation_data.0.test_file}}");
+        loadCollationString(collation_string);
+
+    // var text = readCollationTestData("{{collation_data.0.test_file}}");
   }
 
   var encoding_font_list = [

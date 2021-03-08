@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+
+  <link rel="stylesheet" href="/css/blueprint/screen.css" type="text/css" media="screen">
+  <link rel="stylesheet" href="/css/blueprint/print.css" type="text/css" media="print">
+
+  <title>{{language}} encoding conversions to Unicode</title>
+
+  <!-- Font encoding areas -->
+  <style>
+    {% for encoding in encoding_list %}
+    @font-face{
+      font-family:'{{encoding.font_name}}';
+      src:url('{{encoding.font_path}}');
+      font-weight:normal;
+      font-style:normal;
+      font-size: 32px;
+    }
+    .{{encoding.font_name}} {
+      font-family:{{encoding.font_name}};
+      font-size: 32px;
+    }
+    {% endfor %}
+  </style>
+  <!-- Unicode fonts -->
+  <style>
+    {% for font in unicode_list %}
+    @font-face{
+      font-family:'{{font.family}}';
+      src:url('{{font.source}}');
+      font-weight:normal;
+      font-style:normal;
+      font-size: 32px;
+    }
+
+    .{{font.family}} {
+      font-family:{{font.family}};
+      font-size: 32px;
+    }
+    {% endfor %}
+  </style>
+
+  <style>
+    table {
+      border-collapse: collapse;
+    }
+
+    table, th, td {
+      border: 1px solid black;
+    }
+    td {
+    text-align: center;
+    width: 120px;
+    font-size:20px;
+    }
+  </style>
+
+  <!-- Path to convert with code tables and other  this for the converter. -->
+  <script>
+    var private_use_map_combined = undefined;
+  </script>
+  <script src="{{converterJS}}"></script>
+
+  <script src="/js/utils.js"></script>
+
+  <script>
+  var k = { loadme: Object};
+  k.loadme.prototype = function(a) {
+  return a;
+  }
+  var e = {keyboard: k};
+  var google = {elements: e};
+  </script>
+
+  {% for kb in kb_list %}
+  <!-- {{kb.shortName}} -->
+  <script src="/layouts/{{kb.shortName}}.js"></script>
+  {% endfor %}
+
+  <script>
+  {% for kb in kb_list %}
+  const {{kb.shortName}}_transform =  {{kb.shortName}}.transform;
+  {% endfor %}
+
+  function onPageLoaded() {
+{% if encoding_tables %}
+
+    // Build based on encoding table descriptions.
+    // selected_table = document.getElementById('selectTable').value;
+    // var output_table = document.getElementById('encoding_table_area');
+    // buildEncodingTableFromData(output_table, encoding_tables[selected_table]);
+{% endif %}
+
+    var codetable = document.getElementById('codetable');
+    // Old code to be replaced.
+    var unexpected = buildEncodingTable(codetable, nstConverter_obj);
+    if (unexpected.length > 0) {
+      document.getElementById('unexpected_results').innerHTML = unexpected;
+    } else {
+      document.getElementById('unexpected_results').innerHTML = "All GamWin tests pass!";
+    }
+    var pua_unicode_table = document.getElementById('PUA_to_unicode');
+    buildPrivateUseToUnicodeTable(pua_unicode_table, pua_range, nstConverter_obj);
+
+{%if converter_list %}
+  setupConverterSelector('converter_select', converter_list);
+{% endif %}
+  }
+
+  var encoding_font_list = [
+  {% for encoding in encoding_list %}"{{encoding.font_name}}"{% if not forloop.last %},{% endif %}{% endfor %}
+  ];
+
+var unicode_font_list = [
+  {% for font in unicode_list %}"{{font.family}}",{% endfor %}
+  ];
+
+// Data describing columns and contents.
+{% if encoding_tables %}
+const encoding_tables = {
+    {% for item, columns in encoding_tables.items %}"{{item}}":
+      [{% for dict in columns %}
+       { {% for k, v in dict.items %}"{{ k }}": "{{ v }}"{% if not forloop.last %},{% endif %}
+        {% endfor %}}{% if not forloop.last %},{% endif %}
+        {% endfor %}
+     ]{% if not forloop.last %},{% endif %}
+   {% endfor %}{% if not forloop.last %},{% endif %}
+  };
+{% endif %}
+
+function buildPrivateUseToUnicodeTable(table, data_range, nst_converter) {
+  var column_data = ['PUA code', 'PUA character', 'Unicode character', 'Unicode value'];
+  var header = table.createTHead();
+  var row = header.insertRow(0);
+
+  var outIndex = 0;
+  var outRow = 0;
+  for (var column in column_data) {
+    row.insertCell(outIndex).innerHTML = column_data[column];
+    outIndex++;
+  }
+  outRow ++;
+
+  var cell;
+
+  var converter = nst_converter['conversions']['PUA_to_Unicode'];
+  var convert_function = converter['convert'];
+  for (var code = data_range[0]; code <= data_range[1]; code ++) {
+    outIndex = 0;
+    row = table.insertRow(outRow);
+    row.insertCell(outIndex++).innerHTML = code.toString(16);
+    var pua_char = String.fromCharCode(code)
+    cell = row.insertCell(outIndex++)
+    cell.innerHTML = pua_char;
+    cell.style.fontFamily = 'Lakhum PUA';
+    cell.style.fontSize = "30px";
+
+    var uni_char = convert_function(pua_char);
+    cell = row.insertCell(outIndex++);
+    cell.innerHTML =  uni_char;
+    cell.style.fontFamily = 'LakhumUnicode';
+    cell.style.fontSize = "30px";
+    cell.style.fontWeight = "1100";
+    var uni_hex = utf16common(uni_char, "", " ", null, []);
+    cell.title = uni_hex;  // Hint
+    row.insertCell(outIndex++).innerHTML = uni_hex
+
+    outRow ++;
+  }
+}
+
+function buildEncodingTableFromData(table, encoding_table_data) {
+  // Remove existing rows.
+  if (table.rows) {
+    var rowCount = table.rows.length;
+    for (var x=rowCount-1; x>0; x--) {
+       table.deleteRow(x);
+    }
+    table.deleteTHead();
+  }
+
+  var header = table.createTHead();
+  var row = header.insertRow(0);
+  var name = encoding_table_data;
+  var column_data = encoding_table_data;
+  var outIndex = 0;
+  for (var column in column_data) {
+    row.insertCell(outIndex).innerHTML = column_data[column]['title'];
+    outIndex++;
+  }
+  // Find the source for each column and add the values into rows.
+}
+
+// Expected conversion results.
+var gamwin_pua = {
+{% for k, v in gamwin_test_data.items %}
+  '{{k}}': '{{v}}',
+{% endfor %}
+};
+
+// Rebuild table and display.
+function onEncodingSelected(selector, output_id) {
+  var table = document.getElementById(output_id)
+  buildEncodingTableFromData(table, encoding_tables[selector.value]);
+}
+
+// Output GamWin conversions to PUA and Unicode.
+// TODO Add expected results.
+function buildEncodingTable(table, converter_obj) {
+  var column_data = ['GamWin', 'Lakhum PUA', 'Lakhum Unicode'];
+
+  var converter_pua = converter_obj['conversions']['GW_to_PUA'];
+  var converter_unicode = converter_obj['conversions']['GW_to_Unicode'];
+
+  var fontsize="14px";
+  var code;
+  // Update headers.
+  var header = table.createTHead();
+  var row = header.insertRow(0);
+
+  var outIndex = 0;
+  for (var col in column_data) {
+    var row = table.rows[0];
+    row.insertCell(outIndex).innerHTML = column_data[col];
+    outIndex += 1;
+  }
+  code_list = [];
+  if (private_use_map_combined === undefined) {
+    return;
+  }
+  // Gather all the GamWin values to convert.
+  for (code in private_use_map_combined) {
+    if (code.length > 1 || code.charCodeAt(0) < 0x100) {
+      code_list.push(code);
+    }
+  }
+  code_list.sort();
+
+  var unexpected_result = [];
+
+  var rowNum = 1;  // Skip the headers
+  for (var index in code_list) {
+    var code = code_list[index];
+    var row = table.insertRow(rowNum);
+
+    // Add coded output.
+    var outIndex = 0;
+
+    var cell = row.insertCell(outIndex);
+    cell.innerHTML = code; // the encoded value
+    cell.style.fontSize = "30px";
+
+    outIndex += 1;
+    var cell_pua = row.insertCell(outIndex);
+    text_pua = converter_pua.convert(code);
+    cell_pua.innerHTML = text_pua;
+    cell_pua.style.fontFamily = 'LakhumPUA';
+    cell_pua.style.fontSize = "30px";
+    cell_pua.title = utf16common(text_pua, "0x", " ", null, []);
+
+    // Check if the conversion is as expected.
+    var expected = gamwin_pua[code];
+    if (expected && (expected != text_pua)) {
+      var message = ("Not expected for " + code + " actual: " + utf16common(expected, "0x", " ", null, []) +
+        ". Actual = " + utf16common(text_pua, "0x", " ", null, []));
+      cell_pua.style.backgroundColor = 'orange';
+      unexpected_result.push(message);
+    }
+
+    // Unicode conversion.
+    outIndex += 1;
+    var cellUni = row.insertCell(outIndex);
+    var uni_result = converter_unicode.convert(code);
+    cellUni.innerHTML = uni_result;
+
+    var fontStringUni = unicode_font_list[0];
+    cellUni.style.fontFamily = 'LakhumUnicode';
+    cellUni.style.fontSize = "30px";
+
+    // Add the Unicode hex for hover info.
+    // TODO: show as full Unicode numeric values
+    cellUni.title = utf16common(uni_result, "U+", " ", null, []);
+    rowNum += 1;
+  }
+  return unexpected_result;
+}
+
+// TODO: Set these up with the converter.
+//
+var converter_list = [{% for converter in converter_list %}
+  { {% for k, v in converter.items %}"{{k}}": "{{v}}",{%endfor%}{% if not forloop.last %},{% endif %}
+  {% endfor %} }{% if not forloop.last %},{% endif %}
+];
+//
+var convert_data_list = [ //{% for entry in conversion_data %}
+   //{% for k, v in entry.items %}{{k}}{% if not forloop.last %},{% endif %} {%endfor%}{% if not forloop.last %},{% endif %}
+ // {% endfor %} ]{% if not forloop.last %},{% endif %}
+];
+
+var pua_range = [{{pua_range.0}}, {{pua_range.1}}];
+
+function setupConverterSelector(selector_id) {
+}
+
+function changeConverter(selector) {
+}
+
+  </script>
+</head>
+
+
+<body onload="onPageLoaded();">
+<div class="container">
+
+  <h1>{{language}} encoding converters to Unicode</h1>
+  <p>This table gives the code points and characters for conversions of {{language}} script. Conversions to Unicode appear for each entry.
+  <p>Hint: hover over the Unicode conversions for the hex code points (UTF-16).
+
+  <H2 id="unexpected_results"></H2>
+
+  <div class="span-10">
+    <h2>GamWin to Lakhum</h2>
+    <table id='codetable' border="1">
+    </table>
+  </div>
+  <div class="span-2">
+    <p></p>
+  </div>
+  <div class="span-8">
+    <!-- PUA to Unicode conversion -->
+    <h2>PUA to Unicode conversion</h2>
+    <table id='PUA_to_unicode' border="3">
+    </table>
+  </div>
+  <div class="span-1-last">
+  </div>
+
+
+</div>
+</body>
+</html>

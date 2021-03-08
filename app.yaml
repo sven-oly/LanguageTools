@@ -7,6 +7,10 @@ handlers:
   static_files: favicon.ico
   upload: favicon\.ico
 
+- url: /testdata/.*
+  static_dir: testdata
+  application_readable: true
+
 - url: /fonts
   static_dir: fonts
 

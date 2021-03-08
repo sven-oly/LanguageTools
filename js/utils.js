@@ -95,20 +95,20 @@ function utf16common(text, prefix, suffix, asciitoo, highlight_list)
     return utf16common(text, "", " ", true, diff_list)
   }
 
-  function isConsonant(num) {
+  function isBurmeseConsonant(num) {
     return (0x1000 <= num && num <= 0x102a) || num == 0x103f || num == 0x104e;
   }
 
-  function isSubscriptConsonant(num) {
+  function isBurmeseSubscriptConsonant(num) {
     return (0x1000 <= num && num <= 0x1019) || num == 0x101c || num == 0x101e ||
 	    num == 0x1020 || num == 0x1021;
   }
 
-  function isMedial(num) {
+  function isBurmeseMedial(num) {
     return (0x103b <= num && num <= 0x103e);
   }
 
-  function isVowelSign(num) {
+  function isBurmeseVowelSign(num) {
     return (0x102b <= num && num <= 0x1030) || num == 0x1032;
   }
 
@@ -200,7 +200,7 @@ function parseSyllable(text) {
 
 // Constants
 var nondigits = "[^\u1040-\u1049]";
-var consonant = "[\u1000-\u1021]";
+var burmese_consonant = "[\u1000-\u1021]";
 var vowelsign = "[\u102d, \u102e, \u1032, \u102f, \u1030, \u102b, \u102c]";
 
 // ZAWGYI MYANMAR CONSONANT SIGN MEDIAL RA
