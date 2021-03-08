@@ -27,8 +27,8 @@ var NST_UNICODE_LAYOUT = {
     },
     's': {
       '': '~!@#$%^&*()_+' +
-          '{{\ud81a\ude94}}{{\ud81a\ude89}}{{\ud81a\ude7d}}{{\ud81a\ude9d}}{{\ud81a\udea8}}{{\ud81a\udebe}}' +
-            '{{\ud81a\ude85}}{{\ud81a\ude83}}{{\ud81a\ude71}}{{\ud81a\udea9}}{}|' +
+          '{{\ud81a\ude94}}{{\ud81a\ude89}}{{\ud81a\ude7d}}{{\ud81a\ude9d}}{{\ud81a\udeaf}}{{\ud81a\udebe}}' +
+            '{{\ud81a\ude85}}{{\ud81a\ude81}}{{\ud81a\ude71}}{{\ud81a\udea9}}{}|' +
           '{{\ud81a\ude75}}{{\ud81a\udeb4}}{{\ud81a\udebc}}{{\ud81a\udea9}}{{\ud81a\udea3}}{{\ud81a\udeb7}}' +
             '{{\ud81a\ude8d}}{{\ud81a\udea1}}{{\ud81a\udeb2}}:"' +
           '{{\ud81a\ude99}}{{\ud81a\udeba}}{{\ud81a\udebd}}{{\ud81a\ude79}}{{\ud81a\udea6}}{{\ud81a\udeb8}}' +
@@ -67,29 +67,29 @@ var NST_UNICODE_LAYOUT = {
     '\u21D3\ud81a\ude71': '\ud81a\ude73',  // O
     '\u21D3\ud81a\ude74': '\ud81a\ude74',  // a
     '\u21D3\ud81a\ude75': '\ud81a\ude77',  // A
-    '\u21D3\ud81a\udec4': '\ud81a\udec6',  // v
-    '\u21D3\ud81a\udec5': '\ud81a\udec7',  // V
-    '\u21D3\ud81a\ude78': '\ud81a\ude7a',  // e
-    '\u21D3\ud81a\ude79': '\ud81a\ude7b',  // E
-    '\u21D3\ud81a\ude7c': '\ud81a\ude7e',  // i
-    '\u21D3\ud81a\ude7d': '\ud81a\ude7f',  // I
-    '\u21D3\ud81a\ude80': '\ud81a\ude82',  // u
-    '\u21D3\ud81a\ude81': '\ud81a\ude83',  // U
-    '\u21D3\ud81a\ude84': '\ud81a\udec3',  // w
-    '\u21D3\ud81a\ude85': '\ud81a\ude86',  // W
-    '\u21D3\ud81a\ude87': '\ud81a\ude89',  // j
-    '\u21D3\ud81a\ude88': '\ud81a\ude8a',  // J
-    '\u21D3\ud81a\udeb4': '\ud81a\ude8c',  // x
-    '\u21D3\ud81a\udeb8': '\ud81a\ude8d',  // X
-    '\u21D3\ud81a\udea3': '\ud81a\ude8e',  // X
-    '\u21D3\ud81a\ude90': '\ud81a\ude91',  // q
-    '\u21D3\ud81a\ude8f': '\ud81a\ude92',  // Q
-    '\u21D3\ud81a\ude93': '\ud81a\ude95',  // z
-    '\u21D3\ud81a\ude94': '\ud81a\ude96',  // Z
-    '\u21D3\ud81a\ude97': '\ud81a\ude99',  // r
-    '\u21D3\ud81a\ude98': '\ud81a\ude9a',  // R
-    '\u21D3\ud81a\udead': '\ud81a\udeb6',  // T
-    '\u21D3\ud81a\udeae': '\ud81a\udeb7',  // t
+    '\u21D3\ud81a\ude78': '\ud81a\ude7a',  // v
+    '\u21D3\ud81a\ude7c': '\ud81a\ude7e',  // e
+    '\u21D3\ud81a\ude7d': '\ud81a\ude7f',  // E
+    '\u21D3\ud81a\ude79': '\ud81a\ude7b',  // V
+    '\u21D3\ud81a\ude80': '\ud81a\ude82',  // i
+    '\u21D3\ud81a\ude81': '\ud81a\ude83',  // I
+    '\u21D3\ud81a\ude84': '\ud81a\ude86',  // u
+    '\u21D3\ud81a\ude85': '\ud81a\ude87',  // U
+    '\u21D3\ud81a\ude88': '\ud81a\ude8a',  // w
+    '\u21D3\ud81a\ude89': '\ud81a\ude8b',  // W
+    '\u21D3\ud81a\ude8c': '\ud81a\ude8e',  // j
+    '\u21D3\ud81a\ude8d': '\ud81a\ude8f',  // J
+    '\u21D3\ud81a\udeb6': '\ud81a\ude91',  // x
+    '\u21D3\ud81a\udeba': '\ud81a\ude92',  // X
+
+    '\u21D3\ud81a\ude95': '\ud81a\ude96',  // q
+    '\u21D3\ud81a\ude94': '\ud81a\ude97',  // Q
+    '\u21D3\ud81a\ude98': '\ud81a\ude9a',  // z
+    '\u21D3\ud81a\ude99': '\ud81a\ude9b',  // Z
+    '\u21D3\ud81a\ude9c': '\ud81a\ude9e',  // r
+    '\u21D3\ud81a\ude9d': '\ud81a\ude9f',  // R
+    '\u21D3\ud81a\udeb0': '\ud81a\udeb9',  // t
+    '\u21D3\ud81a\udeaf': '\ud81a\udeb8',  // T
 
     '\u21D3\u21D3': '[',  // Cancel the dead key
   }
