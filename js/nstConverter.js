@@ -485,8 +485,12 @@ function nst_convertText(intext, encodingIndex) {
       if (private_use_map_combined[c] instanceof Array) {
         result = private_use_map_combined[c][encodingIndex];
       } else {
-        // It's a single value,
-        result = private_use_map_combined[c];
+        // It's a single value. Convert only for PUA to Unicode
+        if (encodingIndex == 0) {
+            result = private_use_map_combined[c];
+        } else {
+            result = null;
+        }
       }
       if (result) {
         out = result;
