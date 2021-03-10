@@ -72,7 +72,7 @@ var NST_PUA_LAYOUT = {
     '\u21D3\ue418': '\ue41a',  // J
     '\u21D3\ue444': '\ue41c',  // x
     '\u21D3\ue448': '\ue41d',  // X
-    '\u21D3\ue433': '\ue41e',  // X
+    '\u21D3\ue433': '\ue41e',  // y
     '\u21D3\ue420': '\ue421',  // q
     '\u21D3\ue41f': '\ue422',  // Q
     '\u21D3\ue423': '\ue425',  // z

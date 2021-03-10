@@ -424,7 +424,7 @@ foot	ja¹	yaz		y az
 guts	pe¹	pez		p ez	
 hair/head	kʰu² mul¹	khux mulz	 	kh ux m uz l	
 hair/body	ɣən¹ mul¹	ghvnz mulz	 	gh vz n m uz l	Lakhum writes initial /ɣ/
-hand/arm	jəuk	yvuk	 	j vz uq k	
+hand/arm	jəuk	yvuk	 	y vz uq k	
 head	kʰu²	khux		kh ux	
 heart	muŋ² po¹	mungx poz	 	m ux -ng p oz 	
 horn	əruŋ²	vrungx		vz r ux –ng	
@@ -464,7 +464,7 @@ child/son	əsa¹	vsaz		vz s az
 grandchild 	əsɯu¹	vsuiuz	 	vz s uiuz	
 father	əβa¹	vwaz		vz w az	
 mother	əɲɯu¹	vnyuiuz		vz ny uiuz	
-grandfather	əʨi²	vjix		vz j ix	
+grandfather	əʨi²	vjix		vz j ix	
 grandmother	əβi¹	vwiz		vz w iz	
 elder brother	əpʰu¹	vphuz		vz ph uz	
 younger brother	əno²	vnox		vz n ox	
@@ -503,9 +503,9 @@ otter	tərəm²	tvrvmx		t short.uez r ax m ix
 horse	məre¹	mvrez		m short.uez r ez 	
 horse	kum²rɔ²	kumxrawx	 	k ux m r awx	
 ant	sɯi¹sɔ²	suiyzsawx		s uiz iz s awx	
-tiger	ʨaʔ	jaq		j aq	
-elephant	ʨɔ¹	jawz		j awz	
-deer	ʨuk	juk		j uq k	
+tiger	ʨaʔ	jaq		j aq	
+elephant	ʨɔ¹	jawz		j awz	
+deer	ʨuk	juk		j uq k	
 deer (small)	kʰi³ji²	khicyix		kh ic y ix	
 bear	ʨapbɔ²	jvpbawx		j vz p b awx	
 cattle	man²sɯu²	manxsuiux		m az n s uiux	
@@ -546,7 +546,7 @@ stone	luŋ¹	lungz		l uz -ng
 sun	ʃal²	shalx		r vx ux -ng sh ax l	
 day	rəuŋ²nɯiʔ	rvungxnuiyq		r vx ux -ng nh uiz iq	
 thunder	rəuŋ²muk	rvungxmuk		r vx ux -ng m uz k	
-tree	pul² juŋ²	pulxjungx		p ux l	
+tree	pul² ʨuŋ²	pulxjungx		p ux l j ux -ng	
 wood	pul²	pulx		p ux l	
 wind	rəuŋ²ɣɯl¹	rvungxghuilz		r vx ux -ng gh iuz l	
 branch	pul²pʰak	pulxphak		p ux l ph az g	
@@ -575,17 +575,17 @@ spear	paʔ	paq		p aq
 cooking pot	tɯk	tuik		t uiz k	
 plate	pan²	panx		p ax n	
 mat	dəm²	dvmx		d ax m ix	
-bed	ʨɯŋ¹	juingz		j uiz –ng	
+bed	ʨɯŋ¹	juingz		j uiz –ng	
 steps	hi kʰu²	hixkhux phac	 	h ix kh ux ph ac	
 door	ka³lɯ²	kacluix		k ac l uix	
 fireplace	təp	tvp		t vz p	
-firewood	ʨan²	janx		j ax n	
+firewood	ʨan²	janx		j ax n	
 festival	mol²	moalx	ox	m ox l	
 drum	nuŋ²	nungx		n ux –ng	
 gong	ɲam²	nyamx		ny ax –ng	
-cymbal	ʨok	jok		j oz k	
-left side	jauk pʰər²	yauk phvrx	 	j az uq k ph ax r ix	
-right side	jauk keʔ	yauk keq	 	j az uq k k eq 	
+cymbal	ʨok	jok		j oz k	
+left side	jauk pʰər²	yauk phvrx	 	y az uq k ph ax r ix	
+right side	jauk keʔ	yauk keq	 	y az uq k k eq  	
 far (v.)	əlu¹	vluz		vz l uz	
 near (v.)	əɲek	vnyek		vz ny ez k	
 year	rəuŋ² βɔ³	rvungx wawc	 	r vx ux -ng w awc	
@@ -604,14 +604,14 @@ four	bəli³	bvlic		b short.uez l ic
 five	bəŋa³	bvngac		b short.uez n ac	
 six	təruk	tvruk		t short.uez r uq k	
 seven	məʃi²	mvshix		m short.uez sh ix	
-eight	təʨət	tvjvt		t short.uez j vz t	
+eight	təʨət	tvjvt		t short.uez j vz t	
 nine	təkɯu¹	tvkuiuz		t short.uez k uiz	
 ten	rokʃi¹	rokshiz	 	r oz k sh iz	
 twenty	rokn̪ɯi³	roknhuiyc		r oz k nh uic ic	
 hundred	ʃa³ ʃi¹	shac shiz	 	sh ac sh iz	
 (be) many (v.)	pəuŋ³ həl³	pvungc hvlc	 	p ac uc -ng h vc l	
-be born	ʨɔ²	jawx		j awx	
-be born.NOMZ	əʨɔ³	vjawc		az j awc	
+be born	ʨɔ²	jawx		j awx	
+be born.NOMZ	əʨɔ³	vjawc		az j awc	
 sleep	kətsoəl²	kvtsovlx		k short.uez ts ox vx l	
 sleep.NOMZ	əkətsoəl²	vkvtsovlx		vz k short.uez ts ox vx l	
 weep	kʰoər²	khovrz		kh ox vx r	
@@ -680,10 +680,10 @@ smell	ʃe³	shec		sh ec
 smell.NOMZ	əʃe³	vshec		vz sh ec	
 ask	βi¹	wiz		w iz	
 ask.NOMZ	əβi¹	vwiz		vz wi z	
-speak	kəjak	kvjak		k short.uez j aq g	
-speak.NOMZ	kəja¹	kvjaz		k short.uez j az	
-tell	ʨuŋ²	jungx		j ux -ng	
-tell.NOMZ	əʨuŋ³	vjungc		vz j uc -ng	
+speak	kəʨak	kvyak		k short.uez y aq g	
+speak.NOMZ	kəʨa¹	kvyaz		k short.uez y az	
+tell	ʨuŋ²	jungx		j ux -ng	
+tell.NOMZ	əʨuŋ³	vjungc		vz j uc -ng	
 thin	əβar²	vwarx		vz w ax r	
 thin 	əre²	vrex		vz r ex	
 old	əke¹	vkez		vz k ez	
@@ -703,7 +703,7 @@ short	ətut	vtut		vz t uz t
 sweet	ərɯm²	vruimx		vz r uix m	
 bitter	əkʰɯp	vkhuip		vz kh uiz p	
 sour	əhi²	vhix		vz h ix	
-cold (weather)	rəuŋ² suŋ³	rvungxsungc	𖪲𖩻𖪇𖪐𖪤𖪅𖪐	r vx ux -ng s uc -ng
+cold (weather)	rəuŋ² suŋ³	rvungxsungc		r vx ux -ng s uc -ng
 cold	əkɯiʔ	vkuiyq		vz k uiz iq	
 hot	əkal²	vkalx		vz k ax l	
 hot (weather)	rəuŋ² lɯm³	rvungx luimc	 	r vx ux -ng l uic m	
@@ -717,7 +717,7 @@ green	əβɯl¹	vwuilz		vz w uiz l
 thick	ətʰəi¹	vhtvyz		vz ht vz iz	
 sharp	ət̪ʰɯi²	vhttuiyx		v htt uix ix	
 heavy	əliʔ	vliq		v l iq	
-lightweight	əʨɔ¹	vjawz		v j awz	
+lightweight	əʨɔ¹	vjawz		v j awz	
 eat (rice)	saʔ	saq		s aq	
 eat (rice).NOMZ	əsəi¹	vsvyz		vz s vz iz	
 eat (dishes)	pʰəuk	phvuk		ph vz uz k	
@@ -785,7 +785,9 @@ hunt	ŋəm² ləm³	ngvmx lvmc	 	ng vx m l vc m
 burn	kʰam³	khamc		kh ac m	
 burn.NOMZ	əkʰam³	vkhamc		vz kh ac m	
 cut	soəl³	sovlc		s oc vc l	
-cut.NOMZ	əsoəl³	vsovlc		vz s oc vc l	
+cut.NOMZ	əsoəl³	vsovlc		vz s oc vc l
+cut	ʨum¹	jumz		j uz m
+cut.NOMZ	əʨum³	vjumc		vz j uc m	
 cut	ʨum¹	jumz		j uz m	
 cut.NOMZ	əʨum³	vjumc		vz j uc m	
 boil	boəm²	bovmx		b ox vx m	‘bubbling’

@@ -303,6 +303,10 @@ var private_use_map_combined = {
     'sh': ['𖪴', ''],
     'ts': ['𖪶', ''],
     'gh': ['𖪷', ''],
+    'mz': ['\ud81a\ude9c', '\ue427'],
+    'mc': ['\ud81a\ude9d', '\ue428'],
+    'mq': ['\ud81a\ude9e', '\ue429'],
+    'mx': ['\ud81a\ude9f', '\ue42a'],
     'f': ['𖪺', ''],
     'k': ['𖪠', ''],
     'g': ['𖪢', ''],
@@ -424,7 +428,7 @@ var gamwin_latin_chars =
     "erx|irz|irc|irx|urz|urc|urx|awrz|awrc|awrx|uirz|uirc|uirx|uerz|uerc|uerx|uiurz|uiurc|uiurx|ok|ak|vk|ek|ik|uk|" +
     "awk|uik|uek|uiuk|ovp|oap ~ op|op|ap|vp|ep|ip|up|awp|uip|uep|uiup|ovt|oat|at|vt|et|it|ut|awt|uit|uet|uiut|oz|" +
     "oc|ox|az|ac|ax|vz|vc|vx|ez|ec|ex|iz|ic|ix|uz|uc|ux|awz|awc|awx|uiz|uic|uix|uez|uec|uex|uiuz|uiuc|uiux|htt|th|" +
-    "ht|ch|kh|ng|ny|ph|nh|sh|ts|gh|f|k|g|s|y|w|p|b|m|n|h|l|t|d|r|j|v|,|\.|\u000a|.";
+    "ht|ch|kh|ng|ny|ph|nh|sh|ts|gh|mz|mc|mq|mx|f|k|g|s|y|w|p|b|m|n|h|l|t|d|r|j|v|,|\.|\u000a|.";
 
 function preParseLatin(instring) {
   //  var regex1 = new RegExp(tangsa_latin_chars, "gi");
@@ -441,9 +445,13 @@ const vowel = "(aw|ue|ui|uiu|[aeiouv])";
 
 const cvcv_regex = new RegExp(consonant + "v" + consonant + vowel, "g");
 
-function handleCvCV(intext) {
+function handleCvCV(intext, encoding_index) {
   if (intext.match(cvcv_regex)) {
-   return intext.replace(cvcv_regex, "$1𖪒$3$5");
+    if (encoding_index == 0) {
+       return intext.replace(cvcv_regex, "$1𖪒$3$5");   // Unicode
+    } else {
+       return intext.replace(cvcv_regex, "$1$3$5");   // PUA
+    }
    } else {
    return intext;
    }
@@ -466,7 +474,7 @@ function nst_convertText(intext, encodingIndex) {
 
   // Handle special case of "v" vowel in pattern consonant-v-consonant-vowel.
   var low_text = intext.toLowerCase();
-  var handled_v_text = handleCvCV(low_text);
+  var handled_v_text = handleCvCV(low_text, encodingIndex);
   // Break into the blocks tht can be individually transformed.
   var parsedText = preParseLatin(handled_v_text);
   var result = "";

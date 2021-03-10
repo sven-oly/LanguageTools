@@ -65,7 +65,7 @@ var NST_UNICODE_LAYOUT = {
   'transform': {
     '\u21D3\ud81a\ude70': '\ud81a\ude72',  // o
     '\u21D3\ud81a\ude71': '\ud81a\ude73',  // O
-    '\u21D3\ud81a\ude74': '\ud81a\ude74',  // a
+    '\u21D3\ud81a\ude74': '\ud81a\ude76',  // a
     '\u21D3\ud81a\ude75': '\ud81a\ude77',  // A
     '\u21D3\ud81a\ude78': '\ud81a\ude7a',  // v
     '\u21D3\ud81a\ude7c': '\ud81a\ude7e',  // e
@@ -81,7 +81,7 @@ var NST_UNICODE_LAYOUT = {
     '\u21D3\ud81a\ude8d': '\ud81a\ude8f',  // J
     '\u21D3\ud81a\udeb6': '\ud81a\ude91',  // x
     '\u21D3\ud81a\udeba': '\ud81a\ude92',  // X
-
+    '\u21D3\ud81a\udea5': '\ud81a\udeB3',  // y
     '\u21D3\ud81a\ude95': '\ud81a\ude96',  // q
     '\u21D3\ud81a\ude94': '\ud81a\ude97',  // Q
     '\u21D3\ud81a\ude98': '\ud81a\ude9a',  // z

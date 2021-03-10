@@ -271,7 +271,13 @@ class ConvertUIHandler(webapp2.RequestHandler):
     except:
       variation_sequence = None
 
+    try:
+      converters = langInfo.converters
+    except:
+      converters = None
+
     template_values = {
+        'converters': converters,
         'font': font,
         'language': langInfo.Language,
         'langTag': langInfo.LanguageCode,
@@ -348,8 +354,14 @@ class KeyboardTransforms(webapp2.RequestHandler):
 
     langInfo = self.app.config.get('langInfo')
 
+    try:
+      converter_list = langInfo.converters
+    except:
+      converter_list = None
+
     template_values = {
       'converterJS': '/js/' + langInfo.LanguageCode + 'Converter.js',
+      'converter_list': converter_list,
       'language': langInfo.Language,
       'lang_list': langInfo.lang_list,
       'encoding_list': langInfo.encoding_font_list,
@@ -458,6 +470,7 @@ class CollationHandler(webapp2.RequestHandler):
     # t = Template("My name is {{ person.first_name }}.")
 
     template_values = {
+      'language': langInfo.Language,
       'langInfo': langInfo,
       'collation_data' : langInfo.collation_data,
       'collation_string': langInfo.collation_string,
@@ -532,10 +545,10 @@ app = webapp2.WSGIApplication(
 app.router.add((basePath + '/downloads/', Downloads))
 app.router.add((basePath + '/encodingRules/', EncodingRules))
 app.router.add((basePath + '/', LanguagesHomeHandler))
-app.router.add((basePath + 'dictionaryInput', DictionaryInput))
-app.router.add((basePath + 'kbtransforms', KeyboardTransforms))
-app.router.add((basePath + 'collation', CollationHandler))
-app.router.add((basePath + 'combos', RenderPage))
+app.router.add((basePath + '/dictionaryInput/', DictionaryInput))
+app.router.add((basePath + '/kbtransforms/', KeyboardTransforms))
+app.router.add((basePath + '/collation/', CollationHandler))
+app.router.add((basePath + '/combos/', RenderPage))
 
 app.error_handlers[301] = handle_301
 app.error_handlers[404] = handle_404

@@ -1,9 +1,12 @@
 <!DOCTYPE html>
 <html>
+<link rel="stylesheet" href="/css/blueprint/screen.css" type="text/css" media="screen">
+<link rel="stylesheet" href="/css/blueprint/print.css" type="text/css" media="print">
+
 <head>
   <meta charset="utf-8"/>
 
-  <title>{{language}} keyboard transformations</title>
+  <title>Keyboard transformations {{language}}</title>
 
   <!-- Font encoding areas -->
   <style>
@@ -20,9 +23,8 @@
       font-size: 32px;
     }
     {% endfor %}
-  </style>
+
   <!-- Unicode fonts -->
-  <style>
     {% for font in unicode_list %}
     @font-face{
       font-family:'{{font.family}}';
@@ -37,9 +39,7 @@
       font-size: 32px;
     }
     {% endfor %}
-  </style>
 
-  <style>
     table {
       border-collapse: collapse;
     }
@@ -53,14 +53,11 @@
     font-size:20px;
     }
   </style>
+  <script src="{{converterJS}}"></script>
 
   <!-- Path to convert with code tables and other  this for the converter. -->
-  <script>
-    var private_use_map_combined = undefined;
-  </script>
-<!--  <script src="{{converterJS}}"></script>-->
-
   <script src="/js/utils.js"></script>
+    var private_use_map_combined = undefined;
 
   <script>
   var k = { loadme: Object};
@@ -85,7 +82,8 @@
 
   function onPageLoaded() {
     var transform_table = document.getElementById('transform_table');
-    buildingTransformTable(transform_table);
+    var transform_table2 = document.getElementById('transform_table2');
+    buildingTransformTable(transform_table, transform_table2);
   }
 
   var encoding_font_list = [
@@ -96,19 +94,47 @@ var unicode_font_list = [
   {% for font in unicode_list %}"{{font.family}}",{% endfor %}
   ];
 
-function buildingTransformTable(table) {
+  // TODO: update to work with more than Tangsa conversions.
+  var converter_PUA_to_Unicode = nstConverter_obj['conversions']['GW_to_Unicode'].convert;
+
+  var reverse_sort = false;
+  // Convert to Tangsa Unicode to compare PUA values
+  function compareRowsByColumnUnicode(a, b) {
+    var atext = converter_PUA_to_Unicode(a);
+    var btext = converter_PUA_to_Unicode(b);
+    if (reverse_sort) {
+      if (atext > btext) {
+       return -1;
+      } else if (atext < btext) {
+       return 1;
+      }
+      return 0;
+    } else {
+      if (atext < btext) {
+       return -1;
+      } else if (atext > btext) {
+        return 1;
+      }
+      return 0;
+    }
+  }
+
+function buildingTransformTable(table1, table2) {
   var fontsize="14px";
   var code;
-  // Update headers.
-  var header = table.createTHead();
-  var row = table.insertRow(0);
+
   if (kb_list === undefined) {
     return;
   }
-
+  var tables = [table1, table2];
   var rowNum = 0;
 
   for (var kb_index in kb_list) {
+    var rowNum = 0;
+    table = tables[kb_index];
+    var header = table.createTHead();
+    var row = table.insertRow(0);
+
     var kb = kb_list[kb_index];
     var this_transform = kb.transform;
     if (!this_transform) continue;
@@ -124,7 +150,7 @@ function buildingTransformTable(table) {
     for (pattern in this_transform) {
       pattern_list.push(pattern);
     }
-    pattern_list.sort();
+    pattern_list.sort(compareRowsByColumnUnicode);
 
     for (var index in pattern_list) {
       var pattern = pattern_list[index];
@@ -146,9 +172,10 @@ function buildingTransformTable(table) {
       cell2.style.fontSize = "24px";
 
       cell1.innerHTML = pattern;
+      cell1.title = utf16common(pattern, "", " ", null, []);
       cell2.innerHTML = result;
 
-      cell2.title = charsToHexString(result);
+      cell2.title = utf16common(result, "", " ", null, []);
     }
   }
 }
@@ -158,13 +185,19 @@ function buildingTransformTable(table) {
 
 <body onload="onPageLoaded();">
 
+<div class="container">
   <h1>{{language}} keyboard transforms</h1>
   <p>The following are transforms in the keyboards for {{language}}.
-  <p>Hint: hover over the Unicode conversions for the hex code points (UTF-16).
+  <p>Hint: hover over the Unicode conversions for the hex code points.
 
-  <!-- TEMPORARY -->
-  <table id='transform_table' border="3">
-
-  </table>
+  <div class="span-10">
+    <table id='transform_table' border="3">
+    </table>
+  </div>
+  <div class="span-10">
+    <table id='transform_table2' border="3">
+    </table>
+  </div>
+</div>
 </body>
 </html>

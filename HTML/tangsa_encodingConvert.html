@@ -6,7 +6,7 @@
   <link rel="stylesheet" href="/css/blueprint/screen.css" type="text/css" media="screen">
   <link rel="stylesheet" href="/css/blueprint/print.css" type="text/css" media="print">
 
-  <title>{{language}} encoding conversions to Unicode</title>
+  <title>Encoding conversions {{language}}</title>
 
   <!-- Font encoding areas -->
   <style>
@@ -23,9 +23,8 @@
       font-size: 32px;
     }
     {% endfor %}
-  </style>
+
   <!-- Unicode fonts -->
-  <style>
     {% for font in unicode_list %}
     @font-face{
       font-family:'{{font.family}}';
@@ -40,9 +39,7 @@
       font-size: 32px;
     }
     {% endfor %}
-  </style>
 
-  <style>
     table {
       border-collapse: collapse;
     }
@@ -103,10 +100,6 @@
     }
     var pua_unicode_table = document.getElementById('PUA_to_unicode');
     buildPrivateUseToUnicodeTable(pua_unicode_table, pua_range, nstConverter_obj);
-
-{%if converter_list %}
-  setupConverterSelector('converter_select', converter_list);
-{% endif %}
   }
 
   var encoding_font_list = [
@@ -243,6 +236,7 @@ function buildEncodingTable(table, converter_obj) {
   var rowNum = 1;  // Skip the headers
   for (var index in code_list) {
     var code = code_list[index];
+    if (code.match('V')) continue;  // Special case to remove <V class=""></V>
     var row = table.insertRow(rowNum);
 
     // Add coded output.
@@ -287,12 +281,6 @@ function buildEncodingTable(table, converter_obj) {
   return unexpected_result;
 }
 
-// TODO: Set these up with the converter.
-//
-var converter_list = [{% for converter in converter_list %}
-  { {% for k, v in converter.items %}"{{k}}": "{{v}}",{%endfor%}{% if not forloop.last %},{% endif %}
-  {% endfor %} }{% if not forloop.last %},{% endif %}
-];
 //
 var convert_data_list = [ //{% for entry in conversion_data %}
    //{% for k, v in entry.items %}{{k}}{% if not forloop.last %},{% endif %} {%endfor%}{% if not forloop.last %},{% endif %}

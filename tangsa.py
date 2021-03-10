@@ -47,7 +47,7 @@ class langInfo():
       # },
       {
         'font_path': '/fonts/Tangsa/LakhumTSDC.ttf',
-        'font_name': 'Lakhum PUA',
+        'font_name': 'LakhumPUA',
         'display_name': 'Gam Win & Lakhum PUA',
       }
     ]
@@ -85,11 +85,12 @@ class langInfo():
       'tonemarks': ['x', 'z', 'c'],  # Single 'c'
     }
 
-    # Explicit list of conversions
-    self.converters = [
-      {'filename': 'nstConverter',
-       'longname': 'Tangsa Converter'}
-    ]
+    # Explicit dictionary of conversions
+    self.converters = {'filename': 'nstConverter',
+                       'convert_obj': 'nstConverter_obj',
+                       'conversions': ['GW_to_PUA', 'GW_to_Unicode', 'PUA_to_Unicode'],
+                       'longname': 'Tangsa Converter',
+      }
 
     # Description of encoding tables to compute and display.
     self.encoding_tables = {
@@ -160,7 +161,10 @@ class langInfo():
          'ref': '/' + self.LanguageCode + '/collation/'
         },
         {'linkText': 'Font conversion summary',
-         'ref': '/' + self.LanguageCode + '/encodingRules/'
+          'ref': '/' + self.LanguageCode + '/encodingRules/'
+        },
+        {'linkText': 'KB transforms',
+          'ref': '/' + self.LanguageCode + '/kbtransforms/'
         },
         {'linkText': 'Tangsa languages',
          'ref': 'https://en.wikipedia.org/wiki/Tangsa_language'
@@ -286,6 +290,7 @@ class CollationHandler(webapp2.RequestHandler):
     # t = Template("My name is {{ person.first_name }}.")
 
     template_values = {
+      'language': langInfo.Language,
       'langInfo': langInfo,
       'collation_data' : langInfo.collation_data,
       'collation_string': langInfo.collation_string,

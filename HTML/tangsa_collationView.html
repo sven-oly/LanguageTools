@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8"/>
 
-  <title>{{language}} collation tests</title>
+  <title>Collation tests {{language}}</title>
 
   <!-- Font encoding areas -->
   <style>
@@ -53,7 +53,7 @@
     }
   </style>
 
-  {% if converters %}<script src="/js/{{converters.0.filename}}.js"></script>{% endif %}
+  {% if converters %}<script src="/js/{{converters.filename}}.js"></script>{% endif %}
 
   <script src="/js/utils.js"></script>
 
@@ -102,7 +102,7 @@
   function loadCollationString(text) {
     var columns_headings = ['CALMSEA', 'Phonemic (following Gam Win)',
       'Muishvung (Gam Win’s system)',	'Muishvung PUA (Lakhum Mossang’s system)',
-      'Lakum Unicode',
+      'Lakhum Unicode',
       'Name of Unicode characters (consonants without final -a)', 'Notes',
     ]
     // Record results in a global object.
@@ -303,7 +303,9 @@
       rows[0].cells[table_data['last_sort_column']].style.backgroundColor = "white";
     }
     // If resorting the same column, reverse order.
-    reverse_sort = (sort_column == table_data['last_sort_column']);
+    if (sort_column == table_data['last_sort_column']) {
+      reverse_sort = !reverse_sort;
+    }
     table_data['last_sort_column'] = sort_column;
 
     var out_row = table_data['header_count'];
