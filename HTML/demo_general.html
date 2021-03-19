@@ -30,7 +30,7 @@
     <style>
      {% for font in font_list %}
       .{{font.family}} {
-      font-family: "{{font.family}},Arial";
+      font-family: "{{font.family}}";
       font-size:18px;
       }
       {% endfor %}
@@ -81,17 +81,17 @@
         'kc',
         function() { visible = false; });
 
-    controller.addEventListener(
-        'lat',
-        function () {
-            setFontFamily('{{font_list.0.family}}');
-        });
+    //controller.addEventListener(
+    //    'lat',
+    //    function () {
+    //        setFontFamily('{{font_list.0.family}}');
+    //    });
     input.focus();
 
     var selector = document.getElementById("setLayout");
     onLayoutSelected(selector.value);
 
-//      setFontFamily(document.getElementById("fontSelector").value);
+      setFontFamily(document.getElementById("fontSelector").value);
   }
 
     function onLayoutSelected(layoutCode) {
@@ -140,7 +140,7 @@
 
       var t1_element = document.getElementById('t1');
       t1_element.className = newFontFamily;
-      t1_element.style.fontFamily = newFontFamily; //  + ",Arial";
+      t1_element.style.fontFamily = newFontFamily;
     }
 
     function onLanguageSelected(newLangTag, textArea) {
@@ -259,7 +259,7 @@ function toggleConvertedVS(text_area_id, toggle) {
   {% if lang_list %}
   Language: <select onchange="onLanguageSelected(this.value, 't1')">
     {% for lang in lang_list %}
-    <option value="{{lang}}" select="">{{lang}}</option>
+    <option value="{{lang}}" select="">{{lang.longName}}</option>
     {% endfor %}
   </select>
   {% endif %}

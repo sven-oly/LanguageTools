@@ -75,8 +75,10 @@
 
   <script>
   var kb_list = [];
+  var kb_fonts = [];
   {% for kb in kb_list %}
   kb_list.push({{kb.shortName}});
+  kb_fonts.push("{{kb.fontFamily}}");
   const {{kb.shortName}}_transform =  {{kb.shortName}}.transform;
   {% endfor %}
 
@@ -168,7 +170,7 @@ function buildingTransformTable(table1, table2) {
       cell1.style.width = "200px";
       var cell2 = row.insertCell(1);
       var fontStringUni = unicode_font_list[0];
-      cell2.style.fontFamily = fontStringUni;
+      cell2.style.fontFamily = kb_fonts[kb_index];
       cell2.style.fontSize = "24px";
 
       cell1.innerHTML = pattern;

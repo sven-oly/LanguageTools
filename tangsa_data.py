@@ -213,7 +213,7 @@ gamwin_test_data = """
 0x6d	m	m	𖪫	m	
 0x6d	mnaungz	mnaungz	𖪜𖪬𖩴𖪄𖪐	mnaungz	
 0x6d	mnvungz	mnvungz	𖪜𖪬𖩸𖪄𖪐	mnvungz	
-0x6d	mrvkueq	mrvkueq	𖪫𖪲𖪒𖪠𖪖	mrvkueq	𖪒
+0x6d	mrvkueq	mrvkueq		mrvkueq	
 0x6d	mznaungz	mznaungz	𖪜𖪬𖩴𖪄𖪐	mznaungz	
 0x6d	mznvungz	mznvungz	𖪜𖪬𖩸𖪄𖪐	mznvungz	
 0x6e	n	n	𖪬	n	
@@ -406,6 +406,10 @@ gamwin_test_data = """
 0x76	vz	vz	𖩸	vz	
 0x77	w	w	𖪦	w	
 0x79	y	y	𖪥	y	
+0x74  tvghuiyz tvghuiyz  tvghuiyz 
+0x74  tvguiyz tvguiyz  tvguiyz 
+0x7f  vthuimx vthuimx 𖩸𖪹𖪏𖪫  vthuimx 
+0x7f  thuimx  thuimx  𖪹𖪏𖪫 thuimx  𖪹𖪏𖪫
 """
 
 collation_data = """
@@ -469,7 +473,7 @@ grandmother	əβi¹	vwiz		vz w iz
 elder brother	əpʰu¹	vphuz		vz ph uz	
 younger brother	əno²	vnox		vz n ox	
 mother’s brother	əgu¹	vghuz		vz gh uz	
-father’s brother	əβəuŋ²	vwvungx		vz w ax ux -ng	
+father’s brother	əβəuŋ²	vwvungx		vz w ax ux -ng	
 father’s sister	əŋɯi¹	vnguiyz		vz ng uiz iz	
 mother’s sister	əsɯi¹	vsuiyz		vz s uiz iz	
 daughter-in-law	nəm² ɲɯu¹	nvmx nyuiuz	  	n vx m ny uiz uz	
@@ -598,8 +602,8 @@ second day after tomorrow	t̪ɯm² nəp	thuimx nvp	 	th uix m 
 yesterday	m¹ja³	mzyac		mz y ac	
 day before yesterday	t̪ʰa¹ra³	httazrac		htt az r ac	
 one	əʃi¹	vshiz		vz sh iz	
-two	ən̪ɯi³	vnhuiyc		vz nh uic ic	
-three	ət̪ɯm²	vthuimx		vz th uix m	
+two	ən̪ɯi³	vnhuiyc		vz nh uic ic	
+three	ət̪ɯm²	vthuimx		vz th uix m	
 four	bəli³	bvlic		b short.uez l ic	
 five	bəŋa³	bvngac		b short.uez n ac	
 six	təruk	tvruk		t short.uez r uq k	
@@ -675,7 +679,7 @@ hear.NOMZ	ətai¹	vtayz		vz t az iz
 sing	ʃi²	shix		sh ix	
 sing.NOMZ	əʃi³	vshic		vz sh ix	
 smell	t̪ɯŋ²	thuingx		th uix -ng	
-smell.NOMZ	ət̪ɯŋ³	vthuingc		vz th uic -ng	
+smell.NOMZ	ət̪ɯŋ³	vthuingc		vz th uic -ng	
 smell	ʃe³	shec		sh ec	
 smell.NOMZ	əʃe³	vshec		vz sh ec	
 ask	βi¹	wiz		w iz	
@@ -688,7 +692,7 @@ thin	əβar²	vwarx		vz w ax r
 thin 	əre²	vrex		vz r ex	
 old	əke¹	vkez		vz k ez	
 alive	ət̪ərəuŋ²	vthvrvungx		vz th short.uez r vz uz ng	
-ill	ət̪ɯu¹	vthuiuz		vz th uiuz	
+ill	ət̪ɯu¹	vthuiuz		vz th uiuz	
 fat	əpɯ¹	vpuiz		vz p uiz	
 itchy	ətsɯk	vtsuik		vz ts uiq k	
 new	əɲal²	vnyalx		vz ny ax l	

@@ -212,6 +212,7 @@ class testData():
 class langInfo():
   def __init__(self):
     self.LanguageCode = LanguageCode
+    self.LanguageTag = None
     self.Language = Language
     self.Language_native = Language_native
     self.test_data = u''
@@ -575,6 +576,7 @@ app = webapp2.WSGIApplication([
     ('/my/diacritic/', base.DiacriticHandler),
     ('/my/transliterate/', TransliterateHandler),
     ('/my/dotranslit/', DoTranslitHandler),
+    ('/my/AllFonts/', base.AllFontTest ),
   ],
   debug=True,
   config = {'langInfo': langInstance}

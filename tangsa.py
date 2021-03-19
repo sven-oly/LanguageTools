@@ -45,30 +45,31 @@ class langInfo():
       #   'font_name': 'Gam Win',
       #   'display_name': 'Gam Win',
       # },
-      {
-        'font_path': '/fonts/Tangsa/LakhumTSDC.ttf',
-        'font_name': 'LakhumPUA',
-        'display_name': 'Gam Win & Lakhum PUA',
-      }
+      {'family': 'Lakhum',
+       'longName': 'Lakhum PUA 2021',
+       'source': '/fonts/Tangsa/Lakhum.ttf',
+       },
     ]
 
     self.unicode_font_list = [
       {'family': 'LakhumUnicode',
        'longName': 'Tangsa Lakhum Unicode',
-       'source': '/fonts/Tangsa/TangsaUnicodeLakhum.ttf',
+       'source': '/fonts/Tangsa//TangsaLakhumUnicode.ttf',
        },
-      {'family': 'Lakhum',
+      {'family': 'LakhumPUA',  # Really a PUA font, not Unicode
        'longName': 'Lakhum PUA',
-       'source': '/fonts/Tangsa/LakhumTSDC.ttf',
+       'source': '/fonts/Tangsa/Lakhum.ttf',
        },
     ]
 
     self.kb_list = [
       {'shortName': 'nstUnicode',
        'longName': 'Tangsa Unicode',
+       'fontFamily': 'LakhumUnicode',
        },
       {'shortName': 'nstPUA',
        'longName': 'Tangsa PUA',
+       'fontFamily': 'LakhumPUA',
        },
     ]
     self.lang_list = [

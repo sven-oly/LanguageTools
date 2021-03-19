@@ -11,7 +11,7 @@ var private_use_map_combined = {
     'mznvungz': ['𖪜𖪬𖩸𖪄𖪐', ''],
     'mnaungz': ['𖪜𖪬𖩴𖪄𖪐', ''],
     'mznaungz': ['𖪜𖪬𖩴𖪄𖪐', ''],
-    'mrvkueq': ['𖪜𖪲𖩸𖪠𖪖', ''],
+    'mrvkueq': ['𖪫𖪲𖪒𖪠𖪖', ''],
     'vungz': ['𖩸𖪄𖪐', ''],
     'vungc': ['𖩹𖪅𖪐', ''],
     'vungx': ['𖩻𖪇𖪐', ''],
@@ -253,6 +253,7 @@ var private_use_map_combined = {
     'ovt': ['𖩰𖩸𖪰', ''],
     'oat': ['𖩰𖪰', ''],
     'at': ['𖩴𖪰', ''],
+    'th': ['𖪹', ''],  // Maybe
     'vt': ['𖩸𖪰', ''],
     'et': ['𖩼𖪰', ''],
     'it': ['𖪀𖪰', ''],
@@ -425,8 +426,8 @@ var gamwin_latin_chars =
     "anx|vnz|vnc|vnx|enz|enc|enx|inz|inc|inx|unz|unc|unx|awnz|awnc|awnx|uinz|uinc|uinx|uenz|uenc|uenx|uiunz|uiunc|" +
     "uiunx|ovlz|ovlc|ovlx|oalz|oalc|oalx|alz|alc|alx|vlz|vlc|vlx|elz|elc|elx|ilz|ilc|ilx|ulz|ulc|ulx|awlz|awlc|awlx|" +
     "uilz|uilc|uilx|uelz|uelc|uelx|uiulz|uiulc|uiulx|ovrz|ovrc|ovrx|oarz|oarc|oarx|arz|arc|arx|vrz|vrc|vrx|erz|erc|" +
-    "erx|irz|irc|irx|urz|urc|urx|awrz|awrc|awrx|uirz|uirc|uirx|uerz|uerc|uerx|uiurz|uiurc|uiurx|ok|ak|vk|ek|ik|uk|" +
-    "awk|uik|uek|uiuk|ovp|oap ~ op|op|ap|vp|ep|ip|up|awp|uip|uep|uiup|ovt|oat|at|vt|et|it|ut|awt|uit|uet|uiut|oz|" +
+    "erx|irz|irc|irx|urz|urc|urx|awrz|awrc|awrx|uirz|uirc|uirx|uerz|uerc|uerx|uiurz|uiurc|uiurx|ok|ak|ek|ik|uk|" +
+    "awk|uik|uek|uiuk|ovp|oap ~ op|op|ap|ep|ip|up|awp|uip|uep|uiup|ovt|oat|at|et|it|ut|awt|uit|uet|uiut|oz|" +
     "oc|ox|az|ac|ax|vz|vc|vx|ez|ec|ex|iz|ic|ix|uz|uc|ux|awz|awc|awx|uiz|uic|uix|uez|uec|uex|uiuz|uiuc|uiux|htt|th|" +
     "ht|ch|kh|ng|ny|ph|nh|sh|ts|gh|mz|mc|mq|mx|f|k|g|s|y|w|p|b|m|n|h|l|t|d|r|j|v|,|\.|\u000a|.";
 
@@ -440,7 +441,7 @@ function preParseLatin(instring) {
 // For special GamWin case of vowel v. In context of consonant-v-consonant-vowel,
 // Conversion of the "v" is specialized to "𖪒" U+16A92 instead of the
 // regular conversion to U+16A78.
-const consonant = "((htt|ht|ng|ny|ts|[gknpst]|[bdfhjlmnprstwy])[cxz]?)";
+const consonant = "((htt|ht|ng|ny|ts|[gknpst]h*|[bdfhjlmnprstwy])[cxz]?)";
 const vowel = "(aw|ue|ui|uiu|[aeiouv])";
 
 const cvcv_regex = new RegExp(consonant + "v" + consonant + vowel, "g");

@@ -22,7 +22,7 @@ var NST_UNICODE_LAYOUT = {
              '{{\ud81a\ude84}}{{\ud81a\ude80}}{{\ud81a\ude70}}{{\ud81a\udea7}}{{\u21D3||\u21D3||\u21D3}}]\\' +
           '{{\ud81a\ude74}}{{\ud81a\udea4}}{{\ud81a\ude94}}{{\ud81a\udebb}}{{\ud81a\udea2}}{{\ud81a\udead}}' +
             '{{\ud81a\ude8c}}{{\ud81a\udea0}}{{\ud81a\udeae}};\'' +
-          '{{\ud81a\ude98}}{{\ud81a\udeb6}}{{\ud81a\udeb5}}{{\ud81a\ude78}}{{\ud81a\udeaa}}{{\ud81a\udebc}}' +
+          '{{\ud81a\ude98}}{{\ud81a\udeb6}}{{\ud81a\udeb5}}{{\ud81a\ude78}}{{\ud81a\udeaa}}{{\ud81a\udeac}}' +
             '{{\ud81a\udeab}},./'
     },
     's': {
@@ -31,7 +31,7 @@ var NST_UNICODE_LAYOUT = {
             '{{\ud81a\ude85}}{{\ud81a\ude81}}{{\ud81a\ude71}}{{\ud81a\udea9}}{}|' +
           '{{\ud81a\ude75}}{{\ud81a\udeb4}}{{\ud81a\udebc}}{{\ud81a\udea9}}{{\ud81a\udea3}}{{\ud81a\udeb7}}' +
             '{{\ud81a\ude8d}}{{\ud81a\udea1}}{{\ud81a\udeb2}}:"' +
-          '{{\ud81a\ude99}}{{\ud81a\udeba}}{{\ud81a\udebd}}{{\ud81a\ude79}}{{\ud81a\udea6}}{{\ud81a\udeb8}}' +
+          '{{\ud81a\ude99}}{{\ud81a\udeba}}{{\ud81a\udebd}}{{\ud81a\ude79}}{{\ud81a\udea6}}{{\ud81a\udea8}}' +
             '{{\ud81a\udeb3}}<>?'
     },
     'c': {
@@ -44,10 +44,10 @@ var NST_UNICODE_LAYOUT = {
 
     'sc': {
       '': '~!@#$%^&*()_+' +
-          '{{\ud81a\ude97}}{{\ud81a\ude8b}}{{\ud81a\ude76}}{{\ud81a\ude9f}}{{\ud81a\udeb8}}Y{{\ud81a\ude77}}' +
+          '{{\ud81a\ude97}}{{\ud81a\ude8b}}{{\ud81a\ude76}}{{\ud81a\ude9f}}{{\ud81a\udeb8}}Y{{\ud81a\ude87}}' +
             '{{\ud81a\ude83}}{{\ud81a\ude73}}P{}|' +
           '{{\ud81a\ude77}}SDFGH{{\ud81a\ude8f}}KL:"' +
-          '{{\ud81a\ude9b}}{{\ud81a\ude93}}C{{\ud81a\ude7b}}BNM<>?'
+          '{{\ud81a\ude9b}}{{\ud81a\ude92}}C{{\ud81a\ude7b}}BNM<>?'
     },
     'l,cl': {
       '': '`1234567890-=' +

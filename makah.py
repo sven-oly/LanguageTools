@@ -56,14 +56,20 @@ kb_list = [
 
 links = [
     {'linkText': 'Keyboard',
-     'ref': '/' + LanguageCode + '/'
+      'ref': '/' + LanguageCode + '/'
     },
     {'linkText': 'Language Geek keyboard',
       'ref': 'http://www.languagegeek.com/nwc/keymaps/WakashanCanada/MakahNum.pdf',
     },
     {'linkText': 'Keyboard conversions',
-     'ref': '/' + LanguageCode + '/kbtransforms/'
-     },
+      'ref': '/' + LanguageCode + '/kbtransforms/'
+    },
+    {'linkText': 'Makah keyboard layout',
+      'ref': 'https://makahmuseum.com/makah-keyboard/'
+    },
+    {'linkText': 'Try Makah on Google Input Tools',
+      'ref': 'https://www.google.com/intl/sa/inputtools/try/'
+    },
 ]
 
 class langInfo():

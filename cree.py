@@ -81,54 +81,57 @@ class langInfo():
     ]
 
     self.lang_list = [
-        {'shortName':  'crk_phonetic',
-         'longName': 'ᓀᐦᐃᔭᐍᐏᐣ (Plains Cree)',
-         'nativeName': 'ᓀᐦᐃᔭᐍᐏᐣ'
-        },
-        # {'shortName':  'crk',
-        #  'longName': 'Plains Cree'
-        # },
-        # {'shortName':  'cwd',
-        #  'longName': 'Woods Cree'
-        # },
-        # {'shortName':  'csw',
-        #  'longName': 'Swampy Cree'
-        # },
-        # {'shortName':  'crl',
-        #  'longName': 'Northern East Cree'
-        # },
-        # {'shortName':  'crj',
-        #  'longName': 'Southern East Cree'
-        # },
-        # {'shortName':  'nsk',
-        #  'longName': 'Naskapi'
-        # },
-        # {'shortName':  'moe',
-        #  'longName': 'Montagnais'
-        # },
-        # {'shortName': 'atj',
-        #  'longName':  'Atikamekw'
-        # },
-      ]
+      {'shortName':  'crk_phonetic',
+       'longName': 'ᓀᐦᐃᔭᐍᐏᐣ (Plains Cree)',
+       'nativeName': 'ᓀᐦᐃᔭᐍᐏᐣ'
+       },
+      # {'shortName':  'crk',
+      #  'longName': 'Plains Cree'
+      # },
+      # {'shortName':  'cwd',
+      #  'longName': 'Woods Cree'
+      # },
+      # {'shortName':  'csw',
+      #  'longName': 'Swampy Cree'
+      # },
+      # {'shortName':  'crl',
+      #  'longName': 'Northern East Cree'
+      # },
+      # {'shortName':  'crj',
+      #  'longName': 'Southern East Cree'
+      # },
+      # {'shortName':  'nsk',
+      #  'longName': 'Naskapi'
+      # },
+      # {'shortName':  'moe',
+      #  'longName': 'Montagnais'
+      # },
+      # {'shortName': 'atj',
+      #  'longName':  'Atikamekw'
+      # },
+    ]
 
     self.links = [
-        {'linkText': 'Keyboard',
-         'ref': '/aho/'
-        },
-        {'linkText': 'Converter',
-         'ref': '/' + self.LanguageCode + '/convertUI/'
-        },
-        {'linkText': 'Plains Cree phonetic key sequences',
-         'ref': 'https://www.altlab.dev/plains-cree-syllabics-key-sequences/'
-        },
-        {'linkText': 'Unicode block',
-         'ref': 'https://www.unicode.org/charts/PDF/U1400.pdf'
-        },
-        {'linkText': 'Resources',
-         'ref': '/' + self.LanguageCode + '/downloads/'
-        },
+      {'linkText': 'Keyboard',
+       'ref': '/aho/'
+       },
+      {'linkText': 'Converter',
+       'ref': '/' + self.LanguageCode + '/convertUI/'
+       },
+      {'linkText': 'Plains Cree phonetic key sequences',
+       'ref': 'https://www.altlab.dev/plains-cree-syllabics-key-sequences/'
+       },
+      {'linkText': 'Unicode block',
+       'ref': 'https://www.unicode.org/charts/PDF/U1400.pdf'
+       },
+      {'linkText': 'Resources',
+       'ref': '/' + self.LanguageCode + '/downloads/'
+       },
       {'linkText': 'Language Geek fonts',
        'ref': 'http://www.languagegeek.com/font/fontdownload.html'
+       },
+      {'linkText': 'Try Plains Cree on Google Input Tools',
+       'ref': 'https://www.google.com/intl/sa/inputtools/try/'
        },
     ]
 

@@ -505,7 +505,6 @@ class DictionaryN(webapp2.RequestHandler):
       'kb2': langInfo.kb2,
       'unicodeFontList': langInfo.unicode_font_list,
       'showTools': self.request.get('tools', None),
-
       'links': langInfo.links,
     }
     path = os.path.join(os.path.dirname(__file__), 'HTML/dictionaryN.html')
@@ -515,6 +514,31 @@ class DictionaryN(webapp2.RequestHandler):
 # so values can be passed to the classes
 instance = languageTemplate()
 basePath = '/' + instance.LanguageCode
+
+
+class AllFontTest(webapp2.RequestHandler):
+  def get(self):
+    utext = self.request.get("utext", "")
+    encodedText = self.request.get("encodedText", "")
+
+    langInfo = self.app.config.get('langInfo')
+    try:
+      langTag = langInfo.LanguageTag
+    except:
+      langTag = langInfo.LanguageCode
+
+    template_values = {
+      'scriptName': langInfo.Language,
+      'fontFamilies': langInfo.unicode_font_list,
+      'encodedText': encodedText,
+      'utext': utext,
+      'language': langInfo.Language,
+      'LanguageTag': langTag,
+    }
+
+    path = os.path.join(os.path.dirname(__file__), 'HTML/allFonts.html')
+    self.response.out.write(template.render(path, template_values))
+
 
 # Error catching
 def handle_301(request, response, exception):
