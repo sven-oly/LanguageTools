@@ -416,7 +416,7 @@ collation_data = """
 #CALMSEA List – comparing Gam Win and Lakhum Mossang
 #Nouns
 !CALMSEA	Phonemic (following Gam Win)	Muishvung (Gam Win’s system)	Muishvung PUA (Lakhum Mossang’s system)	Name of Unicode characters (consonants without final -a)	Notes
-belly (exterior)	βuk	wuk		w uz k	
+belly (exterior)	βuk	wuk		w uz k	
 breast	pɯ²	puix		p uix	
 blood	təɣɯi¹	tvghuiyz		t short.uez gh uiz iz	
 bone	ərɔ¹	vrawz		vz r awz	
@@ -549,7 +549,7 @@ star	rɯi¹sɯiʔ	ruiyzsuiyq		r uiz iz s uiz iq
 stone	luŋ¹	lungz		l uz -ng	
 sun	ʃal²	shalx		r vx ux -ng sh ax l	
 day	rəuŋ²nɯiʔ	rvungxnuiyq		r vx ux -ng nh uiz iq	
-thunder	rəuŋ²muk	rvungxmuk		r vx ux -ng m uz k	
+thunder	rəuŋ²muk	rvungxmuk		r vx ux -ng m uz k	
 tree	pul² ʨuŋ²	pulxjungx		p ux l j ux -ng	
 wood	pul²	pulx		p ux l	
 wind	rəuŋ²ɣɯl¹	rvungxghuilz		r vx ux -ng gh iuz l	
@@ -606,7 +606,7 @@ two	ən̪ɯi³	vnhuiyc		vz nh uic ic
 three	ət̪ɯm²	vthuimx		vz th uix m	
 four	bəli³	bvlic		b short.uez l ic	
 five	bəŋa³	bvngac		b short.uez n ac	
-six	təruk	tvruk		t short.uez r uq k	
+six	təruk	tvruk		t short.uez r uq k	
 seven	məʃi²	mvshix		m short.uez sh ix	
 eight	təʨət	tvjvt		t short.uez j vz t	
 nine	təkɯu¹	tvkuiuz		t short.uez k uiz	

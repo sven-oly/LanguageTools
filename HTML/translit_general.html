@@ -305,15 +305,29 @@ function toggleConvertedVS(text_area_id, toggle) {
 {% endif %}
 
 {% if converters %}
-// TODO: finish
 function newConverter(type, input_id, output_id, outtype_id) {
-  var input_area = document.getElementById(input_id);
-  var output_area = document.getElementById(output_id);
-  var output_type = document.getElementById(outtype_id);
-  var result = {{converters.convert_obj}}['conversions'][type].convert(input_area.value);
-  var result_type = {{converters.convert_obj}}['conversions'][type]['to'];
-  output_type.innerHTML = output_type.value = result_type;
-  output_area.innerHTML = output_area.value = result;
+    var input_area = document.getElementById(input_id);
+    var output_area = document.getElementById(output_id);
+    var output_type = document.getElementById(outtype_id);
+    // If a selection has been made, send only that part.
+    const start = input_area.selectionStart;
+    const finish = input_area.selectionEnd;
+    // obtain the selected text region
+    var intext = "";
+    if (start != finish) {
+    intext = input_area.value.substring(start, finish);
+    } else {
+    // Otherwise, the whole text.
+    intext = input_area.value;
+    }
+    var result = {{converters.convert_obj}}['conversions'][type].convert(intext);
+    var result_type = {{converters.convert_obj}}['conversions'][type]['to'];
+    output_type.innerHTML = output_type.value = result_type;
+    output_area.innerHTML = output_area.value = result;
+    // Reset the hex values.
+    updateHex(output_id, 'new_hex');
+    // Rehighlight it.
+    input_area.focus();
 }
 {% endif %}
 
