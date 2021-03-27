@@ -1615,16 +1615,27 @@ i18n.input.keyboard.ParsedLayout.prototype.parseTransforms_ = function $i18n$inp
   hisPruReg && (this.ambiRegex_ = new RegExp("^(" + hisPruReg + ")$"));
 };
 i18n.input.keyboard.ParsedLayout.prototype.transform = function $i18n$input$keyboard$ParsedLayout$$transform$(prevstr, transat, ch) {
-  if (!this.transforms) {
-    return null;
-  }
+  if (!this.transforms) { return null; }
   var str;
-  str = 0 < transat ? prevstr.slice(0, transat) + "\u001d" + prevstr.slice(transat) + ch : prevstr + ch;
-  var longr = this.transforms[0], matchArr = longr.exec(str);
+   if (0 < transat)
+      str = prevstr.slice(0, transat) + "\u001d" + prevstr.slice(transat) + ch;
+   else
+      str = prevstr + ch;
+  var longr = this.transforms[0],
+   matchArr = longr.exec(str);
   if (matchArr) {
-    for (var rs = this.transforms[1], i = 1;i < matchArr.length && !matchArr[i];i++) {
+    for (var rs = this.transforms[1], i = 1;i  < matchArr.length && !matchArr[i];i++) {
     }
-    var matchGroup = i, regobj = rs[matchGroup][0], repl = rs[matchGroup][1], m = regobj.exec(str), rmstr = str.slice(m.index), numseps = -1 < rmstr.search("\u001d") ? 1 : 0, backlen = rmstr.length - numseps - ch.length, newstr = str.replace(regobj, repl), replstr = newstr.slice(m.index), replstr = replstr.replace("\u001d", "");
+    var matchGroup = i,
+     regobj = rs[matchGroup][0],
+      repl = rs[matchGroup][1],
+       m = regobj.exec(str),
+        rmstr = str.slice(m.index),
+         numseps = -1 < rmstr.search("\u001d") ? 1 : 0,
+          backlen = rmstr.length - numseps - ch.length,
+           newstr = str.replace(regobj, repl),
+            replstr = newstr.slice(m.index),
+             replstr = replstr.replace("\u001d", "");
     return{back:backlen, chars:replstr};
   }
   return null;
@@ -3786,21 +3797,30 @@ i18n.input.keyboard.Model.prototype.hasTransforms = function $i18n$input$keyboar
   var parsedLayout = this.layouts_[this.activeLayout_];
   return!!parsedLayout && !!parsedLayout.transforms;
 };
+
+// Returns the number of codes to be removed.
 i18n.input.keyboard.Model.prototype.processBackspace = function $i18n$input$keyboard$Model$$processBackspace$(charsBeforeCaret) {
+  let back = 1;
   this.matchHistory_(charsBeforeCaret);
   var history = this.historyState_, text = history.current.text;
   if (text) {
-    text = text.slice(0, text.length - 1);
+    let last_code = text.charCodeAt(text.length - 1);
+    if ((last_code >= 0xdc00 && last_code <= 0xdfff) ||
+      (last_code >= 0xfe00 && last_code <= 0xfe0f)) back += 1;
+
+    text = text.slice(0, text.length - back);
     history.current.text = text;
     history.current.transat > text.length && (history.current.transat = text.length);
     if (text = history.ambi) {
-      history.ambi = text.slice(0, text.length - 1);
+      history.ambi = text.slice(0, text.length - back);
     }
     history.ambi || (history.previous = {text:"", transat:-1});
   } else {
     history.previous = {text:"", transat:-1}, history.ambi = "", history.current = goog.object.clone(history.previous);
   }
+  return back;
 };
+
 i18n.input.keyboard.Model.prototype.onLayoutLoaded_ = function $i18n$input$keyboard$Model$$onLayoutLoaded_$(layout) {
   if ("hangul" == layout.id) {
     i18n.input.keyboard.Model.loadLayoutScript_("ko");
@@ -7543,7 +7563,8 @@ i18n.input.keyboard.Controller.prototype.commitChars_ = function $i18n$input$key
   var trans = {back:1, chars:""};
   if (this.model_.hasTransforms()) {
     var text = this.inputable_.getTextBeforeCursor(20) || "";
-    keyCode == codes.BACKSPACE ? this.model_.processBackspace(text) : trans = this.model_.translate(chars, text);
+    keyCode == codes.BACKSPACE ? trans.back = this.model_.processBackspace(text)
+                               : trans = this.model_.translate(chars, text);
   } else {
     chars && (trans = {back:0, chars:chars});
   }
@@ -7647,11 +7668,11 @@ i18n.input.keyboard.Standalone.prototype.commitText = function $i18n$input$keybo
       !text && 1 == back && from < to && (back = 0);
       // Test if removing variation sequence FE00 - FE0F or second part of supplementary character
       // If so, remove the extra character
-      if (from > 0 && back > 0) {
-        var last_code = value.slice(from-1, from)[0].charCodeAt();
-        if (last_code >= 0xdc00 && last_code <= 0xdfff) back += 1;
-        else if (last_code >= 0xfe00 && last_code <= 0xfe0f) back += 1;
-      }
+//      if (from > 0 && back > 0) {
+//        var last_code = value.slice(from-1, from)[0].charCodeAt();
+//        if (last_code >= 0xdc00 && last_code <= 0xdfff) back += 1;
+//        else if (last_code >= 0xfe00 && last_code <= 0xfe0f) back += 1;
+//      }
 
       from -= from < back ? from : back;
       var part1 = value.slice(0, from);
