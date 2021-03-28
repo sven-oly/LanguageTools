@@ -118,7 +118,10 @@ class langInfo():
       {'linkText': 'Converter',
        'ref': '/' + self.LanguageCode + '/convertUI/'
        },
-      {'linkText': 'Plains Cree phonetic key sequences',
+      {'linkText': 'Keyboard transforms',
+       'ref': '/' + self.LanguageCode + '/kbtransforms/'
+       },
+      {'linkText': 'Plains Cree Keyboard',
        'ref': 'https://www.altlab.dev/plains-cree-syllabics-key-sequences/'
        },
       {'linkText': 'Unicode block',
@@ -138,7 +141,8 @@ class langInfo():
     self.kb_list = [
       {'shortName':  'crk_phonetic',
        'longName': 'Plains Cree Phonetic',
-       'nativeName': 'ᓀᐦᐃᔭᐍᐏᐣ'
+       'nativeName': 'ᓀᐦᐃᔭᐍᐏᐣ',
+       'fontFamily': 'NotoSansCanadianAboriginal',
        },]
 
     # Resource files
@@ -155,6 +159,7 @@ class langInfo():
       self.unicodeChars = [unichr(x) for x in range(0x1400, 0x167F)]
       self.diacritic_list = []
 
+    self.converters = None
 
     # Python-based transliteration tool.
     self.transliterator = None

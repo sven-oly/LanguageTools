@@ -19,7 +19,7 @@
       font-size: 32px;
     }
     .{{encoding.font_name}} {
-      font-family:{{encoding.font_name}};
+      font-family:"{{encoding.font_name}}";
       font-size: 32px;
     }
     {% endfor %}
@@ -27,7 +27,7 @@
   <!-- Unicode fonts -->
     {% for font in unicode_list %}
     @font-face {
-      font-family:'{{font.family}}';
+      font-family:"{{font.family}}";
       src:url('{{font.source}}');
       font-weight:normal;
       font-style:normal;
@@ -35,7 +35,7 @@
     }
 
     .{{font.family}} {
-      font-family:{{font.family}};
+      font-family:"{{font.family}}";
       font-size: 32px;
     }
     {% endfor %}
@@ -183,6 +183,7 @@ function buildingTransformTable(table1, table2) {
 
       var cell2 = row.insertCell(1);
       var fontStringUni = unicode_font_list[0];
+      cell2.className = fontStringUni;
       cell2.style.fontFamily = fontStringUni;
       cell2.style.fontSize = "24px";
 

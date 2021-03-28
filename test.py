@@ -166,9 +166,10 @@ app = webapp2.WSGIApplication([
     ('/test/', testHandler),
     ('/test/testLocale/', testLocaleHandler),
     ('/test/kbkm/', LayoutToKeyMan),
+    ('/test/kbtoKeyMan/', LayoutToKeyMan),
     ('/test/kbtocldr/', LayoutToCldr),
     ('/test/ProcessJsToXml/', ProcessJsToXml),
     ('/test/SelectFile/', SelectFile),
     ('/test/ReadFile/', ReadProcessFile),
-
-], debug=True)
+  ],
+  debug=True)

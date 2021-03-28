@@ -106,41 +106,50 @@ class langInfo():
 
     self.kb_list = [
       {'shortName': 'phkVar',
-       'longName': 'Phake Variant'
+       'longName': 'Phake Variant',
+       'fontFamily': 'NotoSansMyanmarRegular,arial',
        },
       {'shortName': 'phk',
-       'longName': 'Phake'
+       'longName': 'Phake',
+       'fontFamily': 'NotoSansMyanmarRegular,arial',
        },
       {'shortName': 'aio',
-       'longName': 'Aiton'
+       'longName': 'Aiton',
+       'fontFamily': 'NotoSansMyanmarRegular',
        },
     ]
 
     self.links = [
-        {'linkText': 'Keyboard',
-         'ref': '/phk/'
-        },
-        {'linkText': 'Converter',
-         'ref': '/' + self.LanguageCode + '/convertUI/'
-        },
-        {'linkText': 'Font conversion summary',
-         'ref': '/' + self.LanguageCode + '/encodingRules/'
-        },
-        {'linkText': 'Phake-English dictionary builder',
-         'ref': '/' + self.LanguageCode + '/dictionaryN/'
-        },
-        {'linkText': 'Variation sequences: About those dots',
-         'ref': 'http://unicode.org/faq/vs.html'
-         },
-        {'linkText': 'Myanmar Unicode block',
-         'ref': 'http://www.unicode.org/charts/PDF/U1000.pdf'
-        },
-        {'linkText': 'Myanmar Unicode extension A block',
-         'ref': 'https://www.unicode.org/charts/PDF/UAA60.pdf'
-         },
-        {'linkText': 'Resources',
-         'ref': '/' + self.LanguageCode + '/downloads/'
-        },
+      {'linkText': 'Keyboard',
+       'ref': '/phk/'
+       },
+      {'linkText': 'Converter',
+       'ref': '/' + self.LanguageCode + '/convertUI/'
+       },
+      {'linkText': 'Font conversion summary',
+       'ref': '/' + self.LanguageCode + '/encodingRules/'
+       },
+      {'linkText': 'KB transforms',
+       'ref': '/' + self.LanguageCode + '/kbtransforms/'
+       },
+      {'linkText': 'Combiners',
+       'ref': '/' + self.LanguageCode + '/diacritic/'
+       },
+      {'linkText': 'Phake-English dictionary builder',
+       'ref': '/' + self.LanguageCode + '/dictionaryN/'
+       },
+      {'linkText': 'Variation sequences: About those dots',
+       'ref': 'http://unicode.org/faq/vs.html'
+       },
+      {'linkText': 'Myanmar Unicode block',
+       'ref': 'http://www.unicode.org/charts/PDF/U1000.pdf'
+       },
+      {'linkText': 'Myanmar Unicode extension A block',
+       'ref': 'https://www.unicode.org/charts/PDF/UAA60.pdf'
+       },
+      {'linkText': 'Resources',
+       'ref': '/' + self.LanguageCode + '/downloads/'
+       },
     ]
 
     resource_list = [
@@ -164,16 +173,11 @@ class langInfo():
     # Resource files
     self.text_file_list = resource_list
 
-    self.baseHexUTF16 = u'\ud805\udf00'
-    self.base_consonant = u'\ud805\udf00'
+    self.baseHexUTF16 = u'\u1000\ufe00'
+    self.base_consonant = u'\u1000\ufe00'
 
-    if sys.maxunicode >= 0x10000:
-      self.unicodeChars = [unichr(x) for x in range(0x11700, 0x1173f)]
-      self.diacritic_list = [unichr(x) for x in range(0x1171d, 0x1172c)]
-    else:
-      self.unicodeChars = [unichr(0xd805) + unichr(0xdd00 + x) for x in range(0x00, 0x3f)]
-      self.diacritic_list = [unichr(0xd805) + unichr(0xdd00 + x) for x in range(0x1d, 0x2c)]
-
+    self.unicodeChars = [unichr(x) for x in range(0x1000, 0x105f)]
+    self.diacritic_list = [unichr(x) for x in range(0x102b, 0x103f)]
 
     # Python-based transliteration tool.
     self.transliterator = None
@@ -219,6 +223,7 @@ app = webapp2.WSGIApplication(
         ('/phk/convertUI/', base.ConvertUIHandler),
         ('/phk/downloads/', base.Downloads),
         ('/phk/converter/', base.ConvertUIHandler),
+        ('/' + langInstance.LanguageCode + '/kbtransforms/', base.KeyboardTransforms),
         ('/phk/encodingRules/', base.EncodingRules),
         ('/phk/diacritic/', base.DiacriticHandler),
         ('/phk/render/', base.EncodingRules),

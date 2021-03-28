@@ -62,7 +62,16 @@
   var diff_list = [];  // needed for utils.js
 
   // For the keyboard.
-  var controller, visible = true;
+  // Keyboard info.
+  var kb_info = {
+    {% for kb in kb_list %}{{kb.shortName}}: ["{{kb.longName}}",
+      "{{kb.instructions}}",
+      "{{kb.fontFamily}}"],
+      {%endfor%}
+  };
+  const font_families = [{% for font in font_list %}"{{font.family}}", {% endfor %}];
+
+      var controller, visible = true;
   function onPageLoaded() {
     var input = document.getElementById('t1');
     controller = new i18n.input.keyboard.Keyboard();
@@ -81,17 +90,31 @@
         'kc',
         function() { visible = false; });
 
-    //controller.addEventListener(
-    //    'lat',
-    //    function () {
-    //        setFontFamily('{{font_list.0.family}}');
-    //    });
+    let kb_obj = document.getElementById('kbd');
+
+    // Set font based on keyboard?
+    // Get the font associated with the keyboard, if available.
+    //
+    controller.addEventListener(
+        'lat',
+        function () {
+            var selector = document.getElementById("setLayout");
+            // TODO: Get the current selection?
+            var kb_data = kb_info[selector.value];
+            var font_family = font_families[0];
+            if (kb_data[2]) {
+              font_family = kb_data[2];
+            }
+            setFontFamily(font_family);
+          }
+    );
+
     input.focus();
 
     var selector = document.getElementById("setLayout");
     onLayoutSelected(selector.value);
 
-      setFontFamily(document.getElementById("fontSelector").value);
+    setFontFamily(document.getElementById("fontSelector").value);
   }
 
     function onLayoutSelected(layoutCode) {
@@ -129,6 +152,11 @@
     }
 
     function setKeyCapsFont(newFontFamily) {
+      // All the buttons reset the the font.
+      var buttons = document.getElementsByClassName("vk-btn");
+      for (var i = 0; i < buttons.length; i++ ) {
+        buttons[i].style.fontFamily = newFontFamily;
+      }
       var keycaps = document.getElementsByClassName("vk-cap");
       for (var i = 0; i < keycaps.length; i++ ) {
         keycaps[i].style.fontFamily = newFontFamily;
@@ -189,14 +217,14 @@
       var textArea = document.getElementById(textarea_id);
       var selector = document.getElementById(select_layout_id);
 
-      var kb_info = eval(selector.value);
+      var kb_data = eval(selector.value);
       var new_text = "FILL ALL KEYS " + selector.value;
       var key_layouts = "";
-      for (var item in kb_info.mappings) {
+      for (var item in kb_data.mappings) {
         key_layouts = key_layouts + "Layer = '" + item + "'\n";
         var output = "";
-        for (var start in kb_info.mappings[item]) {
-          output += kb_info.mappings[item][start];
+        for (var start in kb_data.mappings[item]) {
+          output += kb_data.mappings[item][start];
         }
         key_layouts += lineifyMapping(output) + "\n\n";
       }
@@ -218,11 +246,6 @@
       textArea.innerHTML = textArea.value = output;
     }
 
-    // Keyboard info.
-    var kb_info = {
-      {% for kb in kb_list %}{{kb.shortName}}: ["{{kb.longName}}", "{{kb.instructions}}" ],{%endfor%}
-    };
-
 {% if variation_sequence %}
 function toggleConvertedVS(text_area_id, toggle) {
   // TODO: Change variation sequence content of text.
@@ -243,7 +266,7 @@ function toggleConvertedVS(text_area_id, toggle) {
 
   <style>{% for font in font_list %}{% if forloop.first %}
     .vk-box, .vk-btn, .vk-cap, .vi-cap-i, .vk-sf-h, .vk-t, .vk-t-btn {
-        font-family: {{font.family}};
+        font-family: "{{font.family}}";
     }{% endif %}{% endfor %}
     </style>
 

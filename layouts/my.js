@@ -55,7 +55,7 @@ var MY_LAYOUT = {
     '\u200c\u103c([\u1031\u1084])\u001d?([\u1000-\u102a\u103f\u104e])': '$2\u103c$1',
 
     // Reorder medial ra after consonant.
-    '\u103c([\u1000-\u102a\u103f\u104e])': '$1\u103c',
+    //'\u103c([\u1000-\u102a\u103f\u104e])': '$1\u103c',
 
     // Reorder vowel E after consonant
     '\u200c([\u1031\u1084])\u001d?([\u1000-\u102a\u103f\u104e])': '$2$1',

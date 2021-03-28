@@ -36,15 +36,17 @@ encoding_font_list = [
 
 unicode_font_list = [
     {
-        'family': 'JG Kpelle combined',
+        'family': 'JG Kpelle Combined',
         'longName': 'JG Kpelle combined',
         'source':  '/fonts/African_font_encodings/JGKpelleCombined.ttf',
+        'note': 'not Unicode',
     },
 ]
 
 kb_list = [
   {'shortName': LanguageCode + '_' + ScriptCode,
    'longName': Language + ' ' + ScriptCode,
+   'fontFamily': 'JG Kpelle Combined',
    }
 ]
 

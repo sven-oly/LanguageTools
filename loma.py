@@ -28,17 +28,17 @@ ScriptCode = 'Loma'
 
 encoding_font_list = [
   {
-    'family': 'JG Loma',
+    'family': 'JGLoma',
     'longName': 'JG Loma',
-    'font_path': '/fonts/African_font_encodings/JG Loma.ttf',
+    'font_path': '/fonts/African_font_encodings/JGLoma.woff',
   },
 ]
 
 unicode_font_list = [
     {
-      'family': 'JG Loma',
+      'family': 'JGLoma2',
       'longName': 'JG Loma',
-      'source': '/fonts/African_font_encodings/JG Loma.ttf',
+      'source': '/fonts/African_font_encodings/JGLoma.woff',
       'note': "Not Unicode"
     },
 ]
@@ -46,6 +46,8 @@ unicode_font_list = [
 kb_list = [
   {'shortName': LanguageCode + '_' + ScriptCode,
    'longName': Language + ' ' + ScriptCode,
+   'fontFamily': 'JGLoma2',
+   'inputFontFamily': "Arial",
    }
 ]
 
@@ -95,6 +97,8 @@ class langInfo():
     self.text_file_list = []
 
     self.encoded_ranges = encodedRanges
+
+    self.converters = None
 
     # TODO: Fill in the rest of the common data.
 

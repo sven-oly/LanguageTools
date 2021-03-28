@@ -112,7 +112,7 @@ class langInfo():
         'longName': 'Bété Phonetic',
         'jsName': self.LanguageCode + "Phone",
         'instructions': None,
-        'font': 'NotoSansMendeKikakui',
+        'fontFamily': 'JGBete4',
       },
     ]
     self.links = links

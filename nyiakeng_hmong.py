@@ -141,7 +141,6 @@ links = [
     {'linkText': 'Unicode Page',
     'ref': 'https://www.unicode.org/charts/PDF/U1E100.pdf'
     },
-
     {'linkText': 'Combiners',
      'ref': '/nyiakeng/diacritic/'
      },

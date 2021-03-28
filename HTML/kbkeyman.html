@@ -1,6 +1,19 @@
 <html><head>
     <title>Keyboard to Keyman</title>
 
+    <script src="/js/utils.js"></script>
+    <style>
+    textarea {
+        width: 600px;
+        height: 600px;
+        border: 3px solid #cccccc;
+        padding: 5px;
+        font-size: 12px;
+        font-variant-ligatures: normal;
+        resize: vertical;
+        font-family: "Courier New";
+    }
+    </style>
     <script>
     // TESTING
     var loaded_layout = '';
@@ -48,16 +61,18 @@
    var char = String.fromCharCode(k);
     en_map[char] = "K_" + char;
   }
+  en_map['`'] = 'K_BKQUOTE';
   en_map[','] = 'K_COMMA';
   en_map['.'] = 'K_PERIOD';
-  en_map[';'] = 'K_SEMICOLON';
-  en_map['\''] = 'K_SINGLEQUOTE'
-  en_map['['] = 'K_LBRACKET'
-  en_map[']'] = 'K_RBRACKET'
-  en_map['\\'] = 'K_BACKSLASH';
+  en_map[';'] = 'K_COLON';
+  en_map['\''] = 'K_QUOTE'
+  en_map['['] = 'K_LBRKT';
+  en_map[']'] = 'K_RBRKT';
+  en_map['\\'] = 'K_BKSLASH';
   en_map['`'] = 'K_GRAVE';
   en_map['-'] = 'K_HYPHEN';
-  en_map['='] = 'K_EQUALS';
+  en_map['='] = 'K_EQUAL';
+  en_map['/'] = 'K_SLASH';
   return en_map;
 }
 
@@ -70,10 +85,9 @@ function map_qwerty(layer_values, layer_txt, querty_names) {
   let layer_items = parselayerstring(layer_values);
   for (let index = 0; index < en_qwerty_keys.length; index++) {
     let upper = en_qwerty_keys[index].toUpperCase();
-    if (layer_items[index]) {
-      layer_list.push("+ [ " + layer_txt + querty_names[upper] +
-        "] > \'" + layer_items[index] + "\'" + "\n");
-    }
+    // Option - output some as characters (code <= 0xffff)
+    let hex = utf16common(layer_items[index], "U+", " ", true, []);
+    layer_list.push("+ [" + layer_txt + querty_names[upper] + "] > " + hex);
   }
   return layer_list;
 }
@@ -99,7 +113,6 @@ function parselayerstring(layerstring) {
       ret.push(saved);
     }
   }
-
   return ret;
 }
 
@@ -120,39 +133,80 @@ function propContaining(props, field) {
   return null;
 }
 
-function map_en_to_x(xlayout) {
-  // Compute the full mapping from QWERTY keys to the xlayout values.
+function map_en_to_x(layout) {
+  // Compute the full mapping from QWERTY keys to the layout values.
   const qwerty_names = mapnames();
- 
+
+
   // For each layer, map the values and add the text
   // for empty, s, c, sc, l, ls, lc, lsc layers
      // Check if there is any duplicate.
-  var vals = xlayout;
+  var vals = layout['mappings'];
   var layers = []
   let keys = Object.getOwnPropertyNames(vals);
 
+  let comments = getComments(layout);
+  let storeInfo = getStore(layout);
+
   // Need to generalize this to get layer with "".
   let base = propContaining(keys, "");
-  layers.push(map_qwerty(vals[base][""], "", qwerty_names));
+  // Append
+  Array.prototype.push.apply(layers, map_qwerty(vals[base][""], "", qwerty_names))
+  layers.push("\n");
   base = propContaining(keys, "s");
-  layers.push(map_qwerty(vals[base][""], "SHIFT ", qwerty_names));
+
+  Array.prototype.push.apply(layers, map_qwerty(vals[base][""], "SHIFT ", qwerty_names));
+  layers.push("\n");
 
   base = propContaining(keys, "c");
-  layers.push(map_qwerty(vals[base][""], "CTRL ", qwerty_names));
+  Array.prototype.push.apply(layers, map_qwerty(vals[base][""], "CTRL ", qwerty_names));
+  layers.push("\n");
+
   base = propContaining(keys, "sc");
-  layers.push(map_qwerty(vals[base][""], "SHIFT CTRL ", qwerty_names));
+  Array.prototype.push.apply(layers, map_qwerty(vals[base][""], "SHIFT CTRL ", qwerty_names));
   // Add Lock levels as needed.
-  return layers;
+
+  transforms = getTransforms(layout)
+
+  return comments + "\n" + storeInfo + "\n" + layers.join('\n') + "\n" + transforms;
 }
 
+function getComments(layout) {
+    var comment_list = [];
+    comment_list.push("c KeyMan keyboard generated from Google Input Tools format");
+    comment_list.push("c " + Date());
+    comment_list.push("c Source Keyboard File: '{{kb_js}}.js'");
+    comment_list.push("c");
+    comment_list.push(" ");
+
+    return comment_list.join("\n");
+}
+
+function getStore(layout) {
+    let store_list = [];
+    store_list.push("store(&VERSION) '10.0'");
+    store_list.push("store(&NAME) " + "'" + layout['title'] + "'");
+    if (layout['language']) {
+        store_list.push("store(&LANGUAGE) " + layout['language']);
+    }
+    store_list.push("store(&KEYBOARDVERSION) '1.0'");
+    store_list.push(" ");
+
+    return store_list.join("\n");
+}
+
+function getTransforms(layout) {
+    var transform_list = [];
+    // TODO: Fill in
+    return transform_list.join("\n");
+}
 function onPageLoaded() {
   //let LOAD_NAME = {{kb_js}}.google.elements.keyboard.loadme();
   let layout = {{kb_js}};
-  var layers = map_en_to_x(layout['mappings']);
-  //var layers = map_en_to_x(GON_GUNJALA_LAYOUT['mappings']);
+  var results = map_en_to_x(layout);
 
   var output = document.getElementById('output');
-  output.innerHTML = layers.join(" XXXX");
+  output.innerHTML = results;
 }
 
 </script>
