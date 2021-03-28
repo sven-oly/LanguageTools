@@ -170,7 +170,7 @@
             if (col == 4) {
               // Lakhum Unicode
               cell.innerHTML = converter_unicode(row_entries[3]);
-              cell.style.fontFamily = 'LakhumUnicode';
+              cell.style.fontFamily = unicode_font_list[0];
               var uni_hex = utf16common(cell.innerHTML, "", " ", null, []);
               cell.title = uni_hex;  // Hint
             } else if (source_column < row_entries.length) {
@@ -178,7 +178,7 @@
               if (source_column == 3) {
                 var hex = utf16common(cell.innerHTML, "", " ", null, []);
                 cell.title = hex;  // Hint
-                cell.style.fontFamily = 'LakhumPUA';
+                cell.style.fontFamily = unicode_font_list[1];
               }
               source_column++;
             } else {

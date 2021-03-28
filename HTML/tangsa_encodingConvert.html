@@ -11,7 +11,8 @@
   <!-- Font encoding areas -->
   <style>
     {% for encoding in encoding_list %}
-    @font-face{
+    {% if encoding %}
+    @font-face {
       font-family:'{{encoding.font_name}}';
       src:url('{{encoding.font_path}}');
       font-weight:normal;
@@ -22,11 +23,12 @@
       font-family:{{encoding.font_name}};
       font-size: 32px;
     }
+    {% endif %}
     {% endfor %}
 
   <!-- Unicode fonts -->
     {% for font in unicode_list %}
-    @font-face{
+    @font-face {
       font-family:'{{font.family}}';
       src:url('{{font.source}}');
       font-weight:normal;
@@ -39,7 +41,6 @@
       font-size: 32px;
     }
     {% endfor %}
-
     table {
       border-collapse: collapse;
     }
@@ -147,17 +148,17 @@ function buildPrivateUseToUnicodeTable(table, data_range, nst_converter) {
     var pua_char = String.fromCharCode(code)
     cell = row.insertCell(outIndex++)
     cell.innerHTML = pua_char;
-    cell.style.fontFamily = 'Lakhum PUA';
+    cell.style.fontFamily = unicode_font_list[1];
     cell.style.fontSize = "30px";
 
     var uni_char = convert_function(pua_char);
-    cell = row.insertCell(outIndex++);
-    cell.innerHTML =  uni_char;
-    cell.style.fontFamily = 'LakhumUnicode';
-    cell.style.fontSize = "30px";
-    cell.style.fontWeight = "1100";
+    var cell2 = row.insertCell(outIndex++);
+    cell2.innerHTML =  uni_char;
+    cell2.style.fontFamily = unicode_font_list[0];
+    cell2.style.fontSize = "30px";
+    cell2.style.fontWeight = "1100";
     var uni_hex = utf16common(uni_char, "", " ", null, []);
-    cell.title = uni_hex;  // Hint
+    cell2.title = uni_hex;  // Hint
     row.insertCell(outIndex++).innerHTML = uni_hex
 
     outRow ++;
@@ -250,7 +251,7 @@ function buildEncodingTable(table, converter_obj) {
     var cell_pua = row.insertCell(outIndex);
     text_pua = converter_pua.convert(code);
     cell_pua.innerHTML = text_pua;
-    cell_pua.style.fontFamily = 'LakhumPUA';
+    cell_pua.style.fontFamily = unicode_font_list[1];
     cell_pua.style.fontSize = "30px";
     cell_pua.title = utf16common(text_pua, "0x", " ", null, []);
 
@@ -270,7 +271,7 @@ function buildEncodingTable(table, converter_obj) {
     cellUni.innerHTML = uni_result;
 
     var fontStringUni = unicode_font_list[0];
-    cellUni.style.fontFamily = 'LakhumUnicode';
+    cellUni.style.fontFamily = unicode_font_list[0];
     cellUni.style.fontSize = "30px";
 
     // Add the Unicode hex for hover info.

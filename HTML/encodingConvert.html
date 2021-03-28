@@ -92,7 +92,6 @@
     var output_table = document.getElementById('encoding_table_area');
     buildEncodingTableFromData(output_table, encoding_tables[selected_table]);
 {% endif %}
-
 {%if converter_list %}
   setupConverterSelector('converter_select', converter_list);
 {% endif %}
@@ -224,12 +223,12 @@ function buildEncodingTable(table) {
 //
 var converter_list = [{% for converter in converter_list %}
   { {% for k, v in converter.items %}"{{k}}": "{{v}}",{%endfor%}{% if not forloop.last %},{% endif %}
-  {% endfor %} }{% if not forloop.last %},{% endif %}
+  }{% endfor %}
 ];
 //
 var convert_data_list = [ {% for entry in conversion_data %}
   { {% for k, v in entry.items %}"{{k}}": "{{v}}"{%endfor%}{% if not forloop.last %},{% endif %}
-  {% endfor %} }{% if not forloop.last %},{% endif %}
+  }{% endfor %}{% if not forloop.last %},{% endif %}
 ];
 function setupConverterSelector(selector_id) {
 }

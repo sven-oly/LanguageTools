@@ -11,7 +11,7 @@
   <!-- Font encoding areas -->
   <style>
     {% for encoding in encoding_list %}
-    @font-face{
+    @font-face {
       font-family:'{{encoding.font_name}}';
       src:url('{{encoding.font_path}}');
       font-weight:normal;
@@ -26,7 +26,7 @@
 
   <!-- Unicode fonts -->
     {% for font in unicode_list %}
-    @font-face{
+    @font-face {
       font-family:'{{font.family}}';
       src:url('{{font.source}}');
       font-weight:normal;
@@ -53,8 +53,9 @@
     font-size:20px;
     }
   </style>
+  {% if converter_list %}
   <script src="{{converterJS}}"></script>
-
+  {% endif %}
   <!-- Path to convert with code tables and other  this for the converter. -->
   <script src="/js/utils.js"></script>
 
@@ -96,25 +97,35 @@ var unicode_font_list = [
   {% for font in unicode_list %}"{{font.family}}",{% endfor %}
   ];
 
+  {% if converter_list %}
+  {% for conversion in converter_list.conversions %}
+    var {{conversion}} = {{converter_list.convert_obj}}['conversions']['{{conversion}}'].convert;
+    {% endfor %}
+  {% endif %}
+
+  {% if converter_list %}
   // TODO: update to work with more than Tangsa conversions.
   var converter_PUA_to_Unicode = nstConverter_obj['conversions']['GW_to_Unicode'].convert;
+  {% endif %}
 
   var reverse_sort = false;
   // Convert to Tangsa Unicode to compare PUA values
   function compareRowsByColumnUnicode(a, b) {
-    var atext = converter_PUA_to_Unicode(a);
-    var btext = converter_PUA_to_Unicode(b);
+  {% if converter_list %}
+    a = converter_PUA_to_Unicode(a);
+    b = converter_PUA_to_Unicode(b);
+  {% endif %}
     if (reverse_sort) {
-      if (atext > btext) {
+      if (a > b) {
        return -1;
-      } else if (atext < btext) {
+      } else if (a < b) {
        return 1;
       }
       return 0;
     } else {
-      if (atext < btext) {
+      if (a < b) {
        return -1;
-      } else if (atext > btext) {
+      } else if (a > b) {
         return 1;
       }
       return 0;
@@ -168,9 +179,11 @@ function buildingTransformTable(table1, table2) {
       var cell1 = row.insertCell(0);
       cell1.style.fontSize = "24px";
       cell1.style.width = "200px";
+      cell1.style.fontFamily = kb_fonts[kb_index];
+
       var cell2 = row.insertCell(1);
       var fontStringUni = unicode_font_list[0];
-      cell2.style.fontFamily = kb_fonts[kb_index];
+      cell2.style.fontFamily = fontStringUni;
       cell2.style.fontSize = "24px";
 
       cell1.innerHTML = pattern;

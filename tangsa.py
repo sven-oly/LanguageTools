@@ -40,31 +40,27 @@ class langInfo():
     self.Language_native = 'Tangsa'
 
     self.encoding_font_list = [
-      # {
-      #   'font_path': '/fonts/NotoSans-Regular.ttf',
-      #   'font_name': 'Gam Win',
-      #   'display_name': 'Gam Win',
-      # },
-      {'family': 'Lakhum',
-       'longName': 'Lakhum PUA 2021',
+      {'family': 'LakhumP',
+       'longName': 'Lakhum PUA',
        'source': '/fonts/Tangsa/Lakhum.ttf',
        },
     ]
 
     self.unicode_font_list = [
       {'family': 'LakhumUnicode',
-       'longName': 'Tangsa Lakhum Unicode',
-       'source': '/fonts/Tangsa//TangsaLakhumUnicode.ttf',
+       'longName': 'Lakhum Unicode',
+       'source': '/fonts/Tangsa/TangsaLakhumUnicode.ttf',
        },
       {'family': 'LakhumPUA',  # Really a PUA font, not Unicode
        'longName': 'Lakhum PUA',
        'source': '/fonts/Tangsa/Lakhum.ttf',
+       'note': 'Not Unicode',
        },
     ]
 
     self.kb_list = [
       {'shortName': 'nstUnicode',
-       'longName': 'Tangsa Unicode',
+       'longName': 'Lakhum Unicode',
        'fontFamily': 'LakhumUnicode',
        },
       {'shortName': 'nstPUA',
@@ -99,14 +95,14 @@ class langInfo():
        [{'title': 'GamWin', 'source': ['nstconverter', 'key', 'sort'],
          'font': 'Arial', 'isUnicode': False},
         {'title': 'Lakhum PUA', "source": ['nstconverter', 1],  # 2nd output column
-         'font': 'LakhumPUA', 'isUnicode': False},
+         'font': 'Lakhum PUA', 'isUnicode': False},
         {'title': 'Lakhum Unicode', "source": ['nstconverter', 0],  # 1st output column
          'font': 'LakhumUnicode', 'isUnicode': True},
         ],
      'PUA to Unicode':
        [{'title': 'Lakhum PUA', "source":
          [0xe400, 0xe458],  # ['nstconverter_PUA_Unicode', 'key']
-         'font': 'LakhumPUA', 'isUnicode': False},
+         'font': 'Lakhum PUA', 'isUnicode': False},
         {'title': 'Lakhum Unicode', "source": ['nstconverter_PUA_Unicode', 0],
          'font': 'LakhumUnicode', 'isUnicode': True},
         ]
