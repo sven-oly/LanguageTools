@@ -167,7 +167,7 @@
       setKeyCapsFont(newFontFamily);
 
       var t1_element = document.getElementById('t1');
-      t1_element.className = newFontFamily;
+      // t1_element.className = newFontFamily;
       t1_element.style.fontFamily = newFontFamily;
     }
 
@@ -245,12 +245,10 @@
       }
       textArea.innerHTML = textArea.value = output;
     }
-
 {% if variation_sequence %}
 function toggleConvertedVS(text_area_id, toggle) {
   // TODO: Change variation sequence content of text.
   var text_area = document.getElementById(text_area_id);
-
   var text = text_area.value;
   var new_text;
   if (toggle.checked) {
@@ -293,7 +291,7 @@ function toggleConvertedVS(text_area_id, toggle) {
   </select>
   <select onchange="setFontFamily(this.value)" id="fontSelector">
     {% for font in font_list %}
-    <option value="{{font.family}}">{{font.longName}}</option>
+    <option value="{{font.family}}"{% if forloop.first %} selected{%endif%}>{{font.longName}}</option>
     {% endfor %}
     <option value="Arial">Arial</option>
   </select>
@@ -325,9 +323,9 @@ function toggleConvertedVS(text_area_id, toggle) {
   {% endif %}
 
   <div id="t1_div">
-    <textarea id="t1" style="width:600px;font-family:{{font.family.0}};resize:vertical;"
+    <textarea id="t1" style="width:600px;font-family:{{font_list.0.family}};resize:vertical;font-size:24px;"
       rows="10" spellcheck="false"
-      style="font-size:18px;" lang="{%if lang_list.0.shortName %}{{lang_list.0.shortName}}{%endif%}{%if langTag %}{{langTag}}{%endif%}"
+      lang="{%if lang_list.0.shortName %}{{lang_list.0.shortName}}{%endif%}{%if langTag %}{{langTag}}{%endif%}"
       dir="{{direction}}">{{test_data}}</textarea>
   </div>
 

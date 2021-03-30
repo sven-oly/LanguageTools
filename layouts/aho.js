@@ -61,6 +61,8 @@ var AHO_LAYOUT = {
   'transform' : {
     // Reorder vowel E and medial Ra after other letters. Use \u200c as marker.
     '\u200c(\ud805[\udf26\udf1e])(\ud805[\udf00-\udf19])': '$2$1',
+    // Reorder vowel E after other letters. Use \u200c as marker.
+    '\u200c(\ud805[\udf26])(\ud805[\udf00-\udf19])': '$2$1',
 
     // Move e-vowel to right ot other medials.
     '(\ud805\udf26)\u001d?(\ud805[\udf1d-\udf1f])': '$2$1',

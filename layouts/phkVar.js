@@ -60,8 +60,11 @@ var PHK_VAR_LAYOUT = {
     // Reorder vowel E after consonant
     '\u200c(\u1031\ufe00)\u001d?([\u1000-\u102a\u103f\u104e\u1075\u1078\u107a\u109d\uaa61-\uaa7f\ua9f2]\ufe00?)': '$2$1',
 
+    // Compact multiple vowels
+    '(\u200c\u1031\ufe00)\u001d?\u200c(\u1031\ufe00)': '$1',
+
     // Reorder e-vowel + medial ra/ya after consonant.
-    '(\u1031\ufe00)\u001d?([\u103c\u103b])': '$2$1',
+    '(\u1031\ufe00)\u001d?([\u103b-\u103e])': '$2$1',
 
     // 1036 follows 103a
     '\u1036\u001d?\u103a': '\u103a\u1036',

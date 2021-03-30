@@ -86,8 +86,13 @@ function map_qwerty(layer_values, layer_txt, querty_names) {
   for (let index = 0; index < en_qwerty_keys.length; index++) {
     let upper = en_qwerty_keys[index].toUpperCase();
     // Option - output some as characters (code <= 0xffff)
-    let hex = utf16common(layer_items[index], "U+", " ", true, []);
-    layer_list.push("+ [" + layer_txt + querty_names[upper] + "] > " + hex);
+    if (layer_items[index]) {
+      let item = layer_items[index];
+      let hex = utf16common(item, "U+", " ", true, []);
+      layer_list.push("+ [" + layer_txt + querty_names[upper] + "] > " + hex);
+    } else {
+      alert(index + " " + layer_items);
+    }
   }
   return layer_list;
 }
@@ -124,7 +129,7 @@ function propContaining(props, field) {
     }
     let splits = props[i].split(",");
     for (k in splits) {
-      if (splits[k] == field) {
+      if (splits[k].trim() == field) {
         return props[i];
       }
     }
@@ -136,7 +141,6 @@ function propContaining(props, field) {
 function map_en_to_x(layout) {
   // Compute the full mapping from QWERTY keys to the layout values.
   const qwerty_names = mapnames();
-
 
   // For each layer, map the values and add the text
   // for empty, s, c, sc, l, ls, lc, lsc layers
@@ -153,8 +157,8 @@ function map_en_to_x(layout) {
   // Append
   Array.prototype.push.apply(layers, map_qwerty(vals[base][""], "", qwerty_names))
   layers.push("\n");
-  base = propContaining(keys, "s");
 
+  base = propContaining(keys, "s");
   Array.prototype.push.apply(layers, map_qwerty(vals[base][""], "SHIFT ", qwerty_names));
   layers.push("\n");
 
@@ -195,9 +199,92 @@ function getStore(layout) {
     return store_list.join("\n");
 }
 
+function findKeyPartsInMaps(key) {
+  // Look up each part of the transform in the mappings to fin
+  // the key + modifier.
+  // TODO: Check for a regex. If it has ?, *, +, [], (), etc., then it will need expansion.
+  // Also, check for SMP values split
+  let parts = []
+  for (let codePoint of key) {
+    c = codePoint.codePointAt(0);
+    parts.push(String.fromCodePoint(c));  // This works for simple replacement
+  }
+  // Look up each in the mapping to find original key value.
+  return parts;
+}
+
+function leftMatchToContext(left_parts, reverse_map) {
+  // TODO: Add option to
+  let out_list = [];
+  for (index in left_parts) {
+    let part = left_parts[index];
+    let context = reverse_map[part];
+    let v = context.codePointAt();
+    if (context) {
+      if (v > 0x20 && v < 0xff) {
+        out_list.push('"' + context + '"');
+      } else {
+        hex_form = utf16common(context, "U+", " ", true, []);
+        out_list.push(hex_form);
+      }
+    }
+  }
+  return out_list.join(" + ");
+}
+
+function rightMatchToContext(right) {
+  // TODO
+  let hex = utf16common(right, "U+", " ", true, []);
+  return " " + hex;
+}
+
+// Given a key to a map, find the level of the en map that has the characters
+function get_en_layer(map, en_mappings) {
+  let map_keys = map.split(',');
+  for (key in en_mappings) {
+    let en_levels = key.split(',');
+    for (level in en_levels) {
+      if (map_keys[0] == en_levels[level]) {
+        return key;  // This are the EN keys where the output is defined.
+      }
+    }
+  }
+}
+
+// Can this identify dead keys?
 function getTransforms(layout) {
-    var transform_list = [];
+    let transform_list = [];
+    if (!transform_list) return transform_list;
+
+    const en_qwerty = EN_LAYOUT['mappings'];
+    var mappings = layout['mappings'];
+    let reverse_map = {};
+    for (let map in mappings) {
+      let en_map = get_en_layer(map, en_qwerty);
+      let en_items = parselayerstring(en_qwerty[en_map][''])
+      let index = 0;
+
+      let map_string = parselayerstring(mappings[map]['']);
+      for (index = 0; index < map_string.length; index++) {
+        let place = map_string[index];
+        reverse_map[place] = en_items[index];
+      }
+    }
+
+    transform_list.push("c Transforms");
+    let transforms = layout['transform'];
+    // For each key in the transforms dictionary:
+    // 1. map each part of the key to the qwerty keys lower, upper, control, etc.
+    // 2. create KM rule
     // TODO: Fill in
+    for (key in transforms) {
+      let left_match = findKeyPartsInMaps(key);
+      let right_side = transforms[key];
+      let left_format = leftMatchToContext(left_match, reverse_map);
+      let right_format = rightMatchToContext(right_side);
+
+      transform_list.push(left_format + " > " + right_format);
+    }
     return transform_list.join("\n");
 }
 function onPageLoaded() {

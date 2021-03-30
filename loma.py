@@ -27,26 +27,30 @@ LanguageCode = 'lom'
 ScriptCode = 'Loma'
 
 encoding_font_list = [
+  # {
+  #   'family': 'JGLoma41',
+  #   'font_name': 'JGLoma41',
+  #   'longName': 'JG Loma 41',
+  #   'source': '/fonts/African_font_encodings/JG Loma41.ttf',
+  #   'font_path': '/fonts/African_font_encodings/JG Loma41.ttf',
+  #   'note': "Not Unicode"
+  # },
   {
     'family': 'JGLoma',
+    'font_name': 'JGLoma',
     'longName': 'JG Loma',
-    'font_path': '/fonts/African_font_encodings/JGLoma.woff',
+    'source': '/fonts/African_font_encodings/JGLoma.ttf',
+    'font_path': '/fonts/African_font_encodings/JGLoma.ttf',
   },
 ]
 
-unicode_font_list = [
-    {
-      'family': 'JGLoma2',
-      'longName': 'JG Loma',
-      'source': '/fonts/African_font_encodings/JGLoma.woff',
-      'note': "Not Unicode"
-    },
-]
+# Until we have a Unicode font.
+unicode_font_list = encoding_font_list
 
 kb_list = [
   {'shortName': LanguageCode + '_' + ScriptCode,
    'longName': Language + ' ' + ScriptCode,
-   'fontFamily': 'JGLoma2',
+   'fontFamily': 'JGLoma',
    'inputFontFamily': "Arial",
    }
 ]
@@ -85,11 +89,14 @@ class langInfo():
     self.Language = Language
     self.Language_native = Language_native
     self.test_data = u''
-    # !!!! NOTE
+
     self.unicode_font_list = unicode_font_list
     self.encoding_font_list = encoding_font_list
 
-    self.lang_list = [self.LanguageCode]  # This may be extended
+    self.lang_list = {'shortName':  LanguageCode,
+                      'longName': Language,
+                      #'reference': 'https://tau.olunga.to/keyboard.html'
+                      },
     self.kb_list = kb_list
     self.links = links
 

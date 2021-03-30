@@ -87,7 +87,7 @@ class langInfo():
                        'convert_obj': 'nstConverter_obj',
                        'conversions': ['GW_to_PUA', 'GW_to_Unicode', 'PUA_to_Unicode'],
                        'longname': 'Tangsa Converter',
-      }
+    }
 
     # Description of encoding tables to compute and display.
     self.encoding_tables = {
@@ -175,8 +175,25 @@ class langInfo():
     ]
 
     # Resource files
-    self.text_file_list = [
+    resource_list = [
+      {
+        'name': 'KeyMan for Lakhum Tangsa Unicode',
+        'source': '/resources/nst/tangsa_lukhum_unicode_deadkey.kmp',
+        'description': 'Layout ',
+        'instructions': 'Install KeyMan first. Next, Desk/laptop: download file and open.\nMobile: open link.',
+      },
+      {
+        'name': 'Lakhum Tangsa deadkeys #1',
+        'source': '/resources/nst/Tangsa_deadkey_1.png',
+        'description': 'Deadkey reference #1',
+      },
+      {
+        'name': 'Lakhum Tangsa deadkeys #2',
+        'source': '/resources/nst/Tangsa_deadkey_2.png',
+        'description': 'Deadkey reference #2',
+      },
     ]
+    self.text_file_list = resource_list
 
     self.baseHexUTF16 = u'a'
     self.base_consonant = u'a'

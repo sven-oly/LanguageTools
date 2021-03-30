@@ -91,14 +91,6 @@ kb_list = [
    },
 ]
 
-resource_list = [
-  {
-    'name': 'KeyMan Nigerian Pidgin keyboard for Windows and MacOS',
-    'source': '/resources/pcm/pcm.kmp',
-    'description': '(pcm.kmp) for Nigerian Pidgin Unicode'
-  },
-]
-
 
 links = [
     {'linkText': 'Keyboard',
