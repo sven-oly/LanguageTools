@@ -46,9 +46,7 @@ kb_list = [
   {'shortName': LanguageCode,
    'longName': LanguageCode,
    },
-  {'shortName': 'kichwa',
-   'longName': 'kichwa',
-   },]
+
 
 links = [
     {'linkText': 'Keyboard',

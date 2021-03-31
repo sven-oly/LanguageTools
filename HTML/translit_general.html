@@ -350,10 +350,12 @@ function newConverter(type, input_id, output_id, outtype_id) {
 
     <input type="button" value="Clear"
            onclick="clearArea('old_font_input_text', 'old_hex');">
-    Encoding font: <select onchange="onFontSelected(this, 'old_font_input_text');" id="selectEncodingFont">
+ {% if encodingList %}
+       Encoding font: <select onchange="onFontSelected(this, 'old_font_input_text');" id="selectEncodingFont">
       {% for encoding in encodingList %}
       <option value="{{encoding.font_name}}">{{encoding.display_name}}</option>
       {% endfor %}
+ {%endif%}
     </select>
     {% if converters %}
        <br/ ><p>Converters:

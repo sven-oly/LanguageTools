@@ -40,9 +40,13 @@ class langInfo():
     self.Language_native = 'Tangsa'
 
     self.encoding_font_list = [
-      {'family': 'LakhumP',
-       'longName': 'Lakhum PUA',
-       'source': '/fonts/Tangsa/Lakhum.ttf',
+      {
+        'font_path': '/fonts/Tangsa/Lakhum.ttf',
+        'font_name': 'LakhumP',
+        'family': 'LakhumP',
+        'longName': 'Lakhum PUA',
+        'display_name': 'Lakhum PUA',
+        'source': '/fonts/Tangsa/Lakhum.ttf',
        },
     ]
 
@@ -85,7 +89,7 @@ class langInfo():
     # Explicit dictionary of conversions
     self.converters = {'filename': 'nstConverter',
                        'convert_obj': 'nstConverter_obj',
-                       'conversions': ['GW_to_PUA', 'GW_to_Unicode', 'PUA_to_Unicode'],
+                       'conversions': ['GW_to_Unicode', 'PUA_to_Unicode', 'GW_to_PUA'],
                        'longname': 'Tangsa Converter',
     }
 
@@ -177,9 +181,9 @@ class langInfo():
     # Resource files
     resource_list = [
       {
-        'name': 'KeyMan for Lakhum Tangsa Unicode',
-        'source': '/resources/nst/tangsa_lukhum_unicode_deadkey.kmp',
-        'description': 'Layout ',
+        'name': 'KeyMan for Lakhum Tangsa Unicode v1.1',
+        'source': '/resources/nst/tangsa_lakhum_unicode.kmp',
+        'description': 'Layout for Tangsa Lakum Unicode',
         'instructions': 'Install KeyMan first. Next, Desk/laptop: download file and open.\nMobile: open link.',
       },
       {
