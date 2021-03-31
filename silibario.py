@@ -21,34 +21,23 @@ import base
 
 from google.appengine.ext.webapp import template
 
-Language = 'TBD'
+Language = 'Silibario'
 Language_native = '???ᰶ'
-LanguageCode = 'TBD'
-ScriptCode = 'tbd'
+LanguageCode = 'sxx'
+ScriptCode = 'sxx'
 
 encoding_font_list = [
   {
-    'font_path': '/fonts/xyz.ttf',
-    'font_name': 'xyz',
-    'display_name': 'xyz',
+    'font_path': '/fonts/Silibario_Amazonico/NiSans27.ttf',
+    'source': '/fonts/Silibario_Amazonico/NiSans27.ttf',
+    'family': 'nisans27',
+    'font_name': 'nisans27',
+    'display_name': 'Ni Sans 27',
+    'longName': 'Ni Sans 27',
   },
 ]
 
-unicode_font_list = [
-    {
-        'family': 'NotoSansxyz',
-        'longName': 'Noto Sans xyz',
-        'source': '/fonts/NotoSansxyz-Regular.ttf',
-    },
-]
-
-kb_list = [
-  {'shortName': LanguageCode,
-   'longName': LanguageCode,
-   },
-  {'shortName': 'kichwa',
-   'longName': 'kichwa',
-   },]
+unicode_font_list = encoding_font_list
 
 links = [
     {'linkText': 'Keyboard',
@@ -84,13 +73,26 @@ class langInfo():
     self.LanguageCode = LanguageCode
     self.Language = Language
     self.Language_native = Language_native
-    self.test_data = u'FILL IN'
+    self.test_data = u''
     self.unicode_font_list = unicode_font_list
     self.encoding_font_list = encoding_font_list
 
-    self.lang_list = [LanguageCode]  # This may be extended
-
-    self.kb_list = kb_list
+    self.lang_list =     self.lang_list = [
+      {'shortName':  'kichwa',
+       'longName': 'kichwa',
+       #'reference': 'https://tau.olunga.to/keyboard.html'
+       },
+    ]
+    self.kb_list = kb_list = [
+      {'shortName': 'silibario',
+       'longName': 'silibario',
+       'fontFamily': 'nisans27',
+       },
+      {'shortName': 'kichwa',
+       'longName': 'kichwa',
+       'fontFamily': 'Arial',
+       },
+    ]
     self.links = links
 
     # For additional resources for download
@@ -98,19 +100,15 @@ class langInfo():
 
     # TODO: Fill in the rest of the common data.
 
-# TODO: Fill in with diacritics
-diacritic_list = [unichr(x) for x in range(0x300, 0x330)]
-#TODO: Fill in base consonant
-default_base_consonant = u'\0x61'
+    # TODO: Fill in with diacritics
+    self.diacritic_list = [unichr(x) for x in range(0x20, 0xfe)]
+    #TODO: Fill in base consonant
+    self.default_base_consonant = u'\0x61'
 
-kb_list = [
-  {'shortName': LanguageCode,
-   'longName': LanguageCode,
-   },
-]
+
 
 encodedRanges = [
-  (0x20, 0xff),
+  (0x20, 0x7b),
 ]
 
 

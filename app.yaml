@@ -185,6 +185,9 @@ handlers:
 - url: /srb/.*
   script: sora.app
 
+- url: /sxx/.*
+  script: silibario.app
+
 - url: /syl/.*
   script: sylheti.app
 

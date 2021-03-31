@@ -83,7 +83,7 @@ var NST_UNICODE_LAYOUT = {
     '\u21D3\ud81a\ude8d': '\ud81a\ude8f',  // J
     '\u21D3\ud81a\udeb6': '\ud81a\ude91',  // x
     '\u21D3\ud81a\udeba': '\ud81a\ude92',  // X
-    '\u21D3\ud81a\udea5': '\ud81a\udeB3',  // y
+    '\u21D3\ud81a\udea5': '\ud81a\ude93',  // y
     '\u21D3\ud81a\ude95': '\ud81a\ude96',  // q
     '\u21D3\ud81a\ude94': '\ud81a\ude97',  // Q
     '\u21D3\ud81a\ude98': '\ud81a\ude9a',  // z
