@@ -106,7 +106,14 @@ unicode_font_list = [
     'display_name': 'Sunawar_PUA',
     'Source location': 'Combined by author CWC',
   },
-
+  {
+    'source': '/fonts/Sunuwar/Mukdum.ttf',
+    'longName': 'Mukdum',
+    'family': 'Mukdum',
+    'font_path': '/fonts/Sunuwar/Mukdum.ttf',
+    'font_name': 'Mukdum',
+    'display_name': 'Mukdum',
+  },
   {
     'source': '/fonts/Sunuwar/kirat1_PUA_new.ttf',
     'longName': 'Kirat1 PUA',
@@ -184,6 +191,13 @@ class langInfo():
         'instructions': None,
       },
       {
+        'shortName': 'suz_mukdum',
+        'longName': 'Mukdum-Sunuwar',
+        'jsName': 'suz_mukdum',
+        'font': '/fonts/Sunuwar/Mukdum.ttf',
+        'instructions': 'ASCII-based font',
+      },
+      {
         'shortName': 'suz_tikamuli_PUA',
         'longName': 'Sunuwar Tikamuli PUA',
         'jsName': 'suz_tikamuli_PUA',
@@ -229,6 +243,9 @@ app = webapp2.WSGIApplication(
      ('/' + langInstance.LanguageCode + '/encodingRules/', base.EncodingRules),
      ('/' + langInstance.LanguageCode + '/diacritic/', base.DiacriticHandler),
      ('/' + langInstance.LanguageCode + '/dictionaryInput/', base.DictionaryInput),
+     ('/' + langInstance.LanguageCode + '/kbtransforms/', base.KeyboardTransforms),
+     ('/' + langInstance.LanguageCode + '/render/', base.EncodingRules),
+
      ], debug=True,
     config= {'langInfo': langInstance,
     }
