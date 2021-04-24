@@ -16,19 +16,11 @@ var variation_modifier = "\ufe00";
 function vsReplacer(match, match_char, offset, string) {
   return match_char + variation_modifier;
 }
+
 function add_variation_modifiers(text) {
   size = text.length;
   index = 0;
   out_text = text.replace(variation_sequence_code_points, vsReplacer);
-//  while (index < size) {
-//    out_text += text[index];  // Just copy
-//    if (text[index] in variation_sequence_code_points) {
-//      if (index == size -1 || text[index+1] != variation_modifier) {
-//        out_text += variation_modifier;
-//      }
-//    }
-//    index ++;
-//  }
   return out_text;
 }
 
@@ -49,7 +41,7 @@ function remove_variation_modifiers(text) {
 var private_use_map_combined = {
         "A": ["ဢ\ufe00", "ဢ\ufe00", "ဢ"],
         "B": ["ꩰ", "ꩰ", "ꩰ"],
-        "C": ["\u108a", "ဢ\ufe00", "\u109c"],
+        "C": ["\u108a", ":", "\u109c"],
         "D": ["ꩰ", "ꩰ", "ꩰ"],
         "E": ["\u105e\u103a", "\u105e\u103a", "\u105e\u103a"],
         "F": ["\u103a\u1036", "\u103a\u1036", "\u103a\u1036"],
@@ -58,7 +50,7 @@ var private_use_map_combined = {
         "I": ["\u102e", "ီ", "ီ"],
         "J": ["ို", "ို", "ို"],
         "K": ["\u1039\u1000\ufe00", "\u1039\u1000\ufe00", "\u1039\u1000\ufe00"],
-  "L": ["\u1038", "\u1038", ""],
+        "L": ["\u1038", "\u1038", ""],
         "M": ["ံ", "ံ", "ံ"],
         "N": ["\u107a\ufe00", "\u107a\ufe00", "\u107a\ufe00"],
         "O": ["\u1089", "\u1089", "\u103d"],
