@@ -41,7 +41,7 @@ function remove_variation_modifiers(text) {
 var private_use_map_combined = {
         "A": ["ဢ\ufe00", "ဢ\ufe00", "ဢ"],
         "B": ["ꩰ", "ꩰ", "ꩰ"],
-        "C": ["\u108a", ":", "\u109c"],
+        "C": ["\u108a", ":", "\u108a"],
         "D": ["ꩰ", "ꩰ", "ꩰ"],
         "E": ["\u105e\u103a", "\u105e\u103a", "\u105e\u103a"],
         "F": ["\u103a\u1036", "\u103a\u1036", "\u103a\u1036"],
@@ -91,7 +91,7 @@ var private_use_map_combined = {
         "w": ["ဝ\ufe00", "ဝ\ufe00", "ဝ\ufe00"],
         "x": ["ၵ\ufe00", "ၵ\ufe00", "ၵ\ufe00"],
         "y": ["ယ\ufe00", "ယ\ufe00", "ယ\ufe00"],
-        "z": ["\uAA78", "ႃ", "ႃ"],
+        "z": ["\uAA78", "\uAA78", "\uAA78"],
         "@": ["\ua9f2", "\ua9f2", "\u1092"],
         "(": ["(", "(", ", "],
         ")": [")", ")", ", "],

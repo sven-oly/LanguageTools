@@ -57,10 +57,8 @@ var PHK_LAYOUT = {
     '\u200c(\u1031)\u001d?([\u1000-\u102a\u103f\u104e\u1075\u1078\u107a\u109d\uaa61-\uaa7f\ua9f2])': '$2$1',
 
     // Reorder e-vowel + medial ra/ya after consonant.
-    '(\u1031)\u001d?([\u103c\u103b])': '$2$1',
-
-    // Reorder vowel E after other marks
-    // TODO
+    // Reorder e-vowel + medial ra/ya after consonant.
+    '(\u1031)\u001d?([\u103a-\u103e\u105e])': '$2$1',
 
     // 1036 follows 103a
     '\u1036\u001d?\u103a': '\u103a\u1036',
