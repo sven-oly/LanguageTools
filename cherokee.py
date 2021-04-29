@@ -84,6 +84,8 @@ class langInfo:
     self.unicode_font_list = unicode_font_list
     self.encoding_font_list = encoding_font_list
 
+    self.allFonts = True
+
     self.kb_list = [
       {'shortName':  'chr',
        'longName': 'Cherokee'

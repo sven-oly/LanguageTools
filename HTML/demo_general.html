@@ -71,7 +71,17 @@
   };
   const font_families = [{% for font in font_list %}"{{font.family}}", {% endfor %}];
 
-      var controller, visible = true;
+  function toAllFonts(area1, area2) {
+    var area1Elem = document.getElementById(area1);
+    var text1 = area1Elem.value;
+    var text2= '';
+
+    compareUrl = "/{{langTag}}/AllFonts/?utext=" + text1 + "&encodedText=" + text2;
+
+    window.open(compareUrl, '_blank');
+  }
+
+  var controller, visible = true;
   function onPageLoaded() {
     var input = document.getElementById('t1');
     controller = new i18n.input.keyboard.Keyboard();
@@ -327,6 +337,10 @@ function toggleConvertedVS(text_area_id, toggle) {
       rows="10" spellcheck="false"
       lang="{%if lang_list.0.shortName %}{{lang_list.0.shortName}}{%endif%}{%if langTag %}{{langTag}}{%endif%}"
       dir="{{direction}}">{{test_data}}</textarea>
+      <br />
+      {% if allFonts %}
+      <input type="button" onclick="toAllFonts('t1', null);" value="To all fonts">
+      {% endif %}
   </div>
 
   <div id="codepoint_div">

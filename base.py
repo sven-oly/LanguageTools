@@ -109,7 +109,13 @@ class LanguagesHomeHandler(webapp2.RequestHandler):
     except:
       encoded_ranges = None
 
+    try:
+      allFonts = langInfo.allFonts
+    except:
+      allFonts = False
+
     template_values = {
+        'allFonts': allFonts,
         'direction': text_direction,
         'encoded_ranges': encoded_ranges,
         'language': langInfo.Language,
