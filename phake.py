@@ -155,8 +155,8 @@ class langInfo():
     resource_list = [
       {
         'name': 'KeyMan Phake keyboard for mobile and computer',
-        'source': '/resources/phk/phk_v5.kmp',
-        'description': 'Version 1.5 April 2021'
+        'source': '/resources/phk/phk_v1.11.kmp',
+        'description': 'Version 1.11 25-April-2021'
       },
     ]
 
