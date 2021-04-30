@@ -88,16 +88,6 @@ unicode_font_list = [
     'source': '/fonts/Myanmar/NotoSerifMyanmar-Regular.ttf',
   },
   {
-    'family': 'Padauk',
-    'longName': 'Padauk',
-    'source': '/fonts/burmese/Padauk.ttf',
-  },
-  {
-    'family': 'Padauk-book',
-    'longName': 'Padauk-book',
-    'source': '/fonts/burmese/Padauk-book.ttf',
-  },
-  {
     'family': 'BeautiUNI-2',
     'longName': 'BeautiUNI-2',
     'source': '/fonts/burmese/BeautiUNI-2.ttf',
@@ -106,6 +96,41 @@ unicode_font_list = [
     'family': 'BeautiUNI-6',
     'longName': 'BeautiUNI-6',
     'source': '/fonts/burmese/BeautiUNI-6.ttf',
+  },
+  {
+    'family': 'Padauk',
+    'longName': 'Padauk',
+    'source': '/fonts/burmese/Padauk.ttf',
+  },
+  {
+    'family': 'Padauk-book',
+    'longName': 'Padauk book',
+    'source': '/fonts/Myanmar/padauk-book.ttf',
+  },
+  {
+    'family': 'Padauk-Bold',
+    'longName': 'Padauk Bold',
+    'source': '/fonts/Myanmar/Padauk-Bold.ttf',
+  },
+  {
+    'family': 'Padauk Kyaungchikote',
+    'longName': 'Padauk Kyaungchikote',
+    'source': '/fonts/Myanmar/Padauk Kyaungchikote.ttf',
+  },
+  {
+    'family': 'PadaukGrandPro v2',
+    'longName': 'Padauk GrandPro v2',
+    'source': '/fonts/Myanmar/PadaukGrandPro v2.ttf',
+  },
+  {
+    'family': 'PadaukSagar',
+    'longName': 'Padauk Sagar',
+    'source': '/fonts/Myanmar/PadaukSagar.ttf',
+  },
+  {
+    'family': 'PadaukSgaw',
+    'longName': 'Padauk Sgaw',
+    'source': '/fonts/Myanmar/PadaukSgaw.ttf',
   },
 ]
 
@@ -181,6 +206,13 @@ class langInfo():
     self.kb_list = kb_list
     self.links = links
     self.allFonts = True
+
+    self.langCharacters = [0x1004, 0x1010, 0x1011, 0x1015, 0x1019, 0x101a]
+    self.langCharacters.extend([0x101b, 0x101c, 0x101d, 0x1022, 0x102d, 0x102f, 0x102f])
+    self.langCharacters.extend([0x103a, 0x103b, 0x103c, 0x103d, 0x103e, 0x103f])
+    self.langCharacters.extend([c for c in range(0x1075, 0x109a)])
+    self.langCharacters.extend([0x109e, 0x109f])
+    self.all_chars = ' '.join([unichr(x) for x in self.langCharacters])
 
     self.text_file_list = []
 

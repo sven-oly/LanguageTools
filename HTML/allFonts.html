@@ -35,11 +35,16 @@
    </style>
 
    <script>
+   function fillWithUnicode(region_id, text) {
+     var region = document.getElementById(region_id);
+     region.innerHTML = region.value = text;
+   }
    function fillAllWithUnicode() {
+     const unicode_text = "{{all_chars}}";
      area_List = [{% for fontFam in fontFamilies %}"{{fontFam.family|lower}}_area",{% endfor %} "None"];
      for (var i = 0; i < area_List.length - 1; i ++) {
        var name = area_List[i];
-       fillWithUnicode(name, null);
+       fillWithUnicode(name, unicode_text);
      }
    }
 
@@ -96,7 +101,7 @@
   function initKeyboard(textAreaID) {
       var input = document.getElementById(textAreaID);
       controller = new i18n.input.keyboard.Keyboard();
-      controller.loadLayout('{{LanguageTag}}');
+      {% for kb in kb_list %}controller.loadLayout('{{kb.shortName}}');{% endfor %}
       controller.reposition(input, 2, 0, [1, 0, 0, 0]);
       controller.register(input);
       controller.addEventListener('kc', function() { visible = false; });
@@ -160,12 +165,16 @@
              <option value="48pt">48</option>
              <option value="64pt">64</option>
            </select>
+{% if all_chars %}
   <input type="button"
-           onclick="fillAllWithUnicode('Unicode_font_output_text',
-                    'new_hex');"
+           onclick="fillWithUnicode('input_area',
+                    '{{all_chars}}');"
            value="Insert all {{scriptName}} Unicode characters" />
-    Keyboard: <select onchange="onLayoutSelected(this, null, 'UnicodeOsageTools')")" id="selectKeyboard">
-      <option value="{{osa}}">{{Language}} Unicode</option>
+{% endif %}
+      Keyboard: <select onchange="onLayoutSelected(this, null, 'input_area')")" id="selectKeyboard">
+      {% for kb in kb_list %}
+      <option value="{{kb.shortName}}">{{kb.longName}} Unicode</option>
+      {% endfor %}
     </select>
 
   </div>

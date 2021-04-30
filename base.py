@@ -533,13 +533,20 @@ class AllFontTest(webapp2.RequestHandler):
     except:
       langTag = langInfo.LanguageCode
 
+    try:
+      all_chars = langInfo.all_chars
+    except:
+      all_chars = None
+
     template_values = {
       'scriptName': langInfo.Language,
       'fontFamilies': langInfo.unicode_font_list,
       'encodedText': encodedText,
       'utext': utext,
+      'all_chars': all_chars,
       'language': langInfo.Language,
       'LanguageTag': langTag,
+      'kb_list': langInfo.kb_list,
     }
 
     path = os.path.join(os.path.dirname(__file__), 'HTML/allFonts.html')

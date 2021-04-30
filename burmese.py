@@ -225,6 +225,12 @@ class langInfo():
     self.links = links
     self.allFonts = True
 
+    self.langCharacters = [c for c in range(0x1000, 0x1021)]
+    self.langCharacters.extend([c for c in range(0x1023, 0x1027)])
+    self.langCharacters.extend([c for c in range(0x1029, 0x1032)])
+    self.langCharacters.extend([c for c in range(0x1036, 0x104f)])
+    self.all_chars = ' '.join([unichr(x) for x in self.langCharacters])
+
     self.text_file_list = []
 
     self.translit_test_data = testData().basic_data
