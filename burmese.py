@@ -90,7 +90,7 @@ unicode_font_list = [
   {
     'family': 'Padauk-book',
     'longName': 'Padauk-book',
-    'source': '/fonts/burmese/Padauk-book.ttf',
+    'source': '/fonts/Myanmar/Padauk-book.ttf',
   },
   {
     'family': 'BeautiUNI-2',

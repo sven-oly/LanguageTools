@@ -105,7 +105,7 @@ unicode_font_list = [
   {
     'family': 'Padauk-book',
     'longName': 'Padauk book',
-    'source': '/fonts/Myanmar/padauk-book.ttf',
+    'source': '/fonts/Myanmar/Padauk-book.ttf',
   },
   {
     'family': 'Padauk-Bold',

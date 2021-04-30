@@ -50,7 +50,13 @@
 
    function copyToAll(input_id) {
      var input_id = document.getElementById(input_id);
-     var input_text = input_id.value;
+     var selObj = window.getSelection();
+     var input_text = "";
+     if (selObj && selObj.rangeCount > 0) {
+       var input_text = selObj.toString(0);
+     } else {
+         var input_text = input_id.value;
+     }
      area_List = [{% for fontFam in fontFamilies %}"{{fontFam.family|lower}}_area",{% endfor %} "None"];
      for (var i = 0; i < area_List.length - 1; i ++) {
        var name = area_List[i];
@@ -173,7 +179,7 @@
 {% endif %}
       Keyboard: <select onchange="onLayoutSelected(this, null, 'input_area')")" id="selectKeyboard">
       {% for kb in kb_list %}
-      <option value="{{kb.shortName}}">{{kb.longName}} Unicode</option>
+      <option value="{{kb.shortName}}">{{kb.longName}}</option>
       {% endfor %}
     </select>
 
