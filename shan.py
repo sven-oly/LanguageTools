@@ -51,19 +51,14 @@ try:
 except NameError:
   xrange = range
 
-Language = 'Burmese'
+Language = 'Shan'
 Language_native = 'မြန်မာဘာသာ'
-LanguageCode = 'my'
+LanguageCode = 'shn'
 
 my_wwburn_converter_Unicode = None  # to Unicode
 my_wwburn_converter_Z = None  # to Unicode or maybe to Z?
 
 encoding_font_list = [
-    {
-      'font_path':'/fonts/burmese/ww_burn_.ttf',
-      'font_name':'WWBurn',
-      'display_name': 'WW Burn',
-    },
   {
     'font_path': '/fonts/burmese/WwinBurmese.ttf',
     'font_name': 'WwinBurmese',
@@ -76,6 +71,16 @@ unicode_font_list = [
     'family': 'NotoSansMyanmar',
     'longName': 'Noto Sans Myanmar',
     'source': '/fonts/Myanmar/NotoSansMyanmar-Regular.ttf',
+  },
+  {
+    'family': 'GreatHorKhamYangon',
+    'longName': 'Great Hor Kham Yangon',
+    'source': '/fonts/Myanmar/GreatHorKhamYangon.otf',
+  },
+  {
+    'family': 'KLO SHAN UNI ',
+    'longName': 'Klo Shan Uni',
+    'source': '/fonts/Myanmar/KLO SHAN UNI font.ttf',
   },
   {
     'family': 'NotoSerifsMyanmar',
@@ -106,46 +111,50 @@ unicode_font_list = [
 
 
 links = [
-    {'linkText': 'Converter',
-     'ref': '/my/convertUI/'},
-    {'linkText': 'Convert to Zawgyi',
-    'ref': '/my/convertToZawgyi/'},
-    {'linkText': 'Font conversion summary',
-     'ref': '/my/encodingRules/'
-    },
+    # {'linkText': 'Converter',
+    #  'ref': '/shn/convertUI/'},
+    # {'linkText': 'Font conversion summary',
+    #  'ref': '/shn/encodingRules/'
+    # },
     {'linkText': 'Diacritics',
-     'ref': '/my/diacritic/'
+     'ref': '/shn/diacritic/'
      },
-    {'linkText': 'Resources',
-     'ref': '/my/downloads/'
-    },
+    # {'linkText': 'Resources',
+    #  'ref': '/shn/downloads/'
+    # },
     {'linkText': 'Unicode Myanmar',
      'ref': 'http://unicode.org/charts/PDF/U1000.pdf'
     },
     {'linkText': 'Combiners',
-     'ref': '/my/diacritic/'
+     'ref': '/shn/diacritic/'
     },
-    {'linkText': 'Transliteration',
-     'ref': 'https://langtools3.wm.r.appspot.com/translit/',
-    },
+    # {'linkText': 'Transliteration',
+    #  'ref': 'https://langtools3.wm.r.appspot.com/translit/',
+    # },
 ]
 
-
+# TODO
 diacritic_list = [unichr(x) for x in range(0x102b, 0x103f)]
 
 base_consonant = u'\u1000'
 
 testStringList = [
-  {'name': 'Test  ww_burn samples',
-   'string': u'tÛudufqkH; ' + u't-uH^m%f ' +
-             u'∫uGm;w,f ' + u'ac|;xGufw,f\ ' + u'tdyf&mxw,f ' + u'tawmftwefn' +
-             'tjyefvufrSwf ' + ' tjypfusL;vGefo ' + ' u|rf;usifo ',
-   },
+  # {'name': 'Test  ww_burn samples',
+  #  'string': u'tÛudufqkH; ' + u't-uH^m%f ' +
+  #            u'∫uGm;w,f ' + u'ac|;xGufw,f\ ' + u'tdyf&mxw,f ' + u'tawmftwefn' +
+  #            'tjyefvufrSwf ' + ' tjypfusL;vGefo ' + ' u|rf;usifo ',
+  #  },
 ]
 
 kb_list = [
-  {'shortName': 'my',
-   'longName': 'Burmese Unicode'
+  {'shortName': 'shn_sil_keyman',
+   'longName': 'Shan SIL'
+   },
+  {'shortName': 'shn_keyman',
+   'longName': 'Shan'
+   },
+  {'shortName': 'shn',
+   'longName': 'Shan Unicode'
    },
 ]
 
@@ -154,58 +163,6 @@ class testData():
     self.basic_data = [
       ['ဘဲ ဓာတ် ဂျင် သား', '', '', '', ''],
       ['ဘဲ ', 'bhell', 'b-eh', 'yes', 'bɛ́'],
-      [' ဓာတ်', 'dharat', 'd-', 'battery', 'daʔ'],
-      ['ဂျင်', 'gyin', 'j-', 'gin', 'dʑɪ̀ɰ̃'],
-      ['သား', 'sarr', 'dh-', 'son', 'ðá'],
-      ['ဂုဏ်', 'gun', 'g-', 'honor', 'ɡòʊɰ̃'],
-
-      ['ဟုတ်', '', 'h-', '', 'hoʊʔ'],
-      ['ယား', '', 'y-', '', 'já'],
-      ['ကုန်', '', 'k-', '', 'kòʊɰ̃'],
-      ['ခုန်', '', 'hk-', '', 'kʰòʊɰ̃'],
-      ['လုပ်', '', 'l-', '', 'loʊʔ'],
-      ['လှုပ်', '', 'hl-', '', 'l̥oʊʔ'],
-
-      ['မတ်', '', '', '', 'maʔ'],
-      ['မှတ်', '', '', '', 'm̥aʔ'],
-      ['နမ်း', '', '', '', 'náɰ̃'],
-      ['နှမ်း', '', '', '', 'n̥áɰ̃'],
-      ['ခန်း', '', '', '', 'kʰàɰ̃'],
-      ['ညစ်', '', '', '', 'ɲɪʔ'],
-      ['ညှစ်', '', '', '', 'ɲ̥ɪʔ'],
-      ['ငါး', '', '', '', 'ŋá'],
-      ['ငှါး', '', '', '', 'ŋ̊á'],
-      ['ပဲ', '', '', '', 'pɛ́'],
-      ['ဖဲ', '', '', '', 'pʰɛ́'],
-      ['စာ', '', '', '', 'sà'],
-      ['ဆာ', '', '', '', 'sʰà'],
-      ['ရှာ', '', '', '', 'ʃà'],
-      ['တတ်', '', '', '', 'taʔ'],
-      ['ထပ်', '', '', '', 'tʰaʔ'],
-      ['ကြဉ်', '', '', '', 'tɕɪ̀ɰ̃'],
-      ['ချင်', '', '', '', 'tɕʰɪ̀ɰ̃'],
-      ['သတ်', '', '', '', 'θaʔ'],
-      ['ဝါး', '', '', '', 'wá'],
-      ['လက်ဝှေ့', '', '', '', 'lɛʔʍḛ'],
-      ['ဇာ', '', '', '', 'zà'],
-      ['အုတ်', '', '', '', 'ʔoʊʔ'],
-      # Vowels
-      ['ီ', '', 'i', '', 'i'],
-      ['ိ', '', 'i', '', 'ḭ'],
-      ['ေ', '', 'ei', '', 'e'],
-      ['လက်', '', 'eh', '', 'ɛ'],
-      ['ာ', '', 'a', '', 'a'],
-      ['ါ', '', 'a', '', 'a̰'],
-      ['ော်', '', 'o', '', 'ɔ'],
-      ['ော', '', 'o', '', 'ɔ'],
-      ['ို', '', 'ou', '', 'o'],
-      ['ု', '', 'u', '', 'u'],
-      ['ူ', '', 'u', '', 'ṵ'],
-      ['လောက် ကောင်း', '', 'au', '', 'aʊ'],
-      ['ရိုက် တိုင်း', '', 'ai', '', 'ai'],
-      ['ကုတ် ကုန်', '', 'ou', '', 'oʊ'],
-      ['အခု', '', 'ə', '', 'əhku'],
-
     ]
 
 
@@ -217,10 +174,10 @@ class langInfo():
     self.Language_native = Language_native
     self.test_data = u''
     self.diacritic_list = diacritic_list
-    self.base_consonant = u'\u1000'
+    self.base_consonant = u'\u107c'
 
     self.unicode_font_list = unicode_font_list
-    self.lang_list = ['my']
+    self.lang_list = ['shn']
     self.kb_list = kb_list
     self.links = links
     self.allFonts = True
@@ -316,89 +273,6 @@ class ConvertUIHandler(webapp2.RequestHandler):
       self.response.out.write(template.render(path, template_values))
 
 
-class ConvertToZawgyiHandler(webapp2.RequestHandler):
-  def get(self):
-
-    # All old characters
-    oldChars = (u'\u0001 !"\u0023\u0024%&\'()*+,-./' +
-                '0123456789:;<=>?@' +
-                'ABCDEFGHIJKLMNOPQRSTUVWXYZ[ \\ ]^_`' +
-                'abcdefghijklmnopqrstuvwxyz{|}~')
-    text = self.request.get('text', oldChars)
-    font = self.request.get('font')
-
-    oldInput = u''
-    for i in range(0x20, 0x80):
-      oldInput += unichr(i)
-      oldInput += unichr(0x20) + unichr(0x20)
-    oldInput += unichr(0x000a)
-    for i in range(0xa0, 0xaf):
-      oldInput += unichr(i)
-      oldInput += unichr(0x20) + unichr(0x20)
-    oldInput += unichr(0x000a)
-    for i in range(0xb0, 0xf9):
-      oldInput += unichr(i)
-      oldInput += unichr(0x20) + unichr(0x20)
-    oldInput += unichr(0x000a)
-
-    oldInput += unichr(0xfb)
-    oldInput += unichr(0xff)
-    oldInput += unichr(0x152)
-    oldInput += unichr(0x153)
-    oldInput += unichr(0x160)
-    oldInput += unichr(0x161)
-    oldInput += unichr(0x192)
-    oldInput += unichr(0x2c6)
-    oldInput += unichr(0x000a)
-    oldInput += unichr(0x2013)
-    oldInput += unichr(0x2014)
-    oldInput += unichr(0x2018)
-    oldInput += unichr(0x2019)
-    oldInput += unichr(0x201a)
-    oldInput += unichr(0x201c)
-    oldInput += unichr(0x201d)
-    oldInput += unichr(0x201e)
-    oldInput += unichr(0x2020)
-    oldInput += unichr(0x2021)
-    oldInput += unichr(0x2022)
-    oldInput += unichr(0x2026)
-    oldInput += unichr(0x2030)
-    oldInput += unichr(0x2039)
-    oldInput += unichr(0x2122)
-
-    unicodeChars = ''
-    unicodeCombiningChars = ''
-    kb_list = [
-      {'shortName': LanguageCode,
-       'longName': Language,
-       }
-    ]
-
-    template_values = {
-      'font': font,
-      'language': Language,
-      'langTag': 'myZawgyi',
-      'encodingList': encoding_font_list,
-      'kb_list': kb_list,
-      'unicodeFonts': [{
-        'family': 'ZawgyiOne',
-        'longName': 'Zawgyi One',
-        'source': '/fonts/burmese/ZawgyiOne.ttf',
-      }],
-      'links': links,
-      'oldChars': oldChars,
-      'oldInput': oldInput,
-      'outputFont': 'Zawgyi',
-      'text': text,
-      'textStrings': testStringList,
-      'showTools': self.request.get('tools', None),
-      'unicodeChars': unicodeChars,
-      'combiningChars': unicodeCombiningChars,
-    }
-    path = os.path.join(os.path.dirname(__file__), 'HTML/translit_general.html')
-    self.response.out.write(template.render(path, template_values))
-
-
 # Convert text in URL, with JSON return
 class ConvertHandler(webapp2.RequestHandler):
   def post(self):
@@ -473,14 +347,7 @@ class TransliterateHandler(webapp2.RequestHandler):
     # Load existing transliterations
 
     translit_rules_list = [
-      {'name': 'Okell/JKW',
-       'rules': translit_burmese_rules.TRANSLIT_MY_OKELL_JW,
-       },
-      {'name': 'FONIPA', 'rules': translit_burmese_rules.TRANSLIT_MY_FONIPA,
-        },
-      {'name': 'Myanmar-Latin', 'rules': translit_burmese_rules.TRANSLIT_MY_LATIN,
-       },
-      ]
+        ]
 
     template_values = {
       'language': langInstance.Language,
@@ -567,17 +434,16 @@ class DoTranslitHandler(webapp2.RequestHandler):
 
 
 app = webapp2.WSGIApplication([
-    ('/demo_my/', base.LanguagesHomeHandler),
-    ('/my/', base.LanguagesHomeHandler),
-    ('/my/convertUI/', ConvertUIHandler),
-    ('/my/downloads/', base.Downloads),
-    ('/my/converter/', ConvertHandler),
-    ('/my/convertToZawgyi/', ConvertToZawgyiHandler),
-    ('/my/encodingRules/', base.EncodingRules),
-    ('/my/diacritic/', base.DiacriticHandler),
-    ('/my/transliterate/', TransliterateHandler),
-    ('/my/dotranslit/', DoTranslitHandler),
-    ('/my/AllFonts/', base.AllFontTest ),
+    ('/shn/', base.LanguagesHomeHandler),
+    ('/shn/', base.LanguagesHomeHandler),
+    ('/shn/convertUI/', ConvertUIHandler),
+    ('/shn/downloads/', base.Downloads),
+    ('/shn/converter/', ConvertHandler),
+    ('/shn/encodingRules/', base.EncodingRules),
+    ('/shn/diacritic/', base.DiacriticHandler),
+    ('/shn/transliterate/', TransliterateHandler),
+    ('/shn/dotranslit/', DoTranslitHandler),
+    ('/shn/AllFonts/', base.AllFontTest ),
   ],
   debug=True,
   config = {'langInfo': langInstance}

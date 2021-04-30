@@ -12,21 +12,21 @@
 
 // Implements Shan keyboard based on Keyman Shan implementation.
 
-var SHN2_LAYOUT = {
-  'id': 'shn_keyman',
-  'title': "Shan Keyman",
+var SHN3_LAYOUT = {
+  'id': 'shn_sil_keyman',
+  'title': "Shan SIL Keyman",
   'mappings': {
     '': {
-      '': '`\u1041\u1042\u1043\u1044\u1045\u1046\u1047\u1048\u1049\u1040-=' +
-          '\u1035\u101d{{\u200c\u1031}}\u103a\u1011\u101a\u102f\u102d\u1086\u107d[]\\' +
-          '\u1022\u101e\u1010\u1082\u1075\u1081\u1078\u1076\u101c\u1088\'' +
-          '\u103d{{}}\u1004\u1083\u1015\u107c\u1019\u1087\u1089\u1062'
+      '': '`\u1091\u1092\u1093\u1094\u1095\u1096\u1097\u1098\u1099\u1090-=' +
+          'ၸတၼမဢပၵငဝႁ[]\\' +
+          '{{\u200cေ}}{{\u200cႄ}}်ွိႉႇုူႈ\'' +
+          'ၽထၶလယၺၢ,./'
     },
     's, sc': {
       '': '~!@#$%^&*()_+' +
-          '\u1085{{}}{{\u200c\u1084}}\u101b{{\u1082\u103a}}\u107a\u1030\u102e\u108a{{}}{}|' +
-          '{{}}\u1080\u107b\u107e{{}}{{}}{{}}{{}}\u103b\u1038"' +
-          '{{}}{{}}\u103c{{}}{{}}\u109f\u1036\u104a\u104b?'
+          'ꩡၻꧣ႞ြၿၷရသႀ{}|' +
+          'ဵႅီႂ{{ႂ့}}်ႆ”ႊး“' +
+          '{{}}ꩪꧠꩮျ႟ႃ၊။??'
     },
     'c': {
       '': '`1234567890-=' +
@@ -50,19 +50,19 @@ var SHN2_LAYOUT = {
     // NEW 13-Aug-2018.
     // Reorder e-vowel + medial ra after consonant.
     '\u200c([\u1031\u1084])\u103c': '\u200c\u103c$1',
-    '\u200c\u103c([\u1031\u1084])\u001d?([\u1000-\u102a\u103f\u104e])': '$2\u103c$1',
+    '\u200c\u103c([\u1031\u1084])\u001d?([\u1000-\u102a\u103f\u104e\u1075-\u1081])': '$2\u103c$1',
 
     // Reorder medial ra after consonant.
     '\u103c([\u1000-\u102a\u103f\u104e])': '$1\u103c',
 
     // Reorder vowel E after consonant
-    '\u200c\u1031([\u1000-\u102a\u103f\u104e])': '$1\u1031',
+    '\u200c([\u1031\u1084])([\u1000-\u102a\u103f\u104e\u1075-\u1081])': '$2$1',
 
     // Keep E after medials
     '([\u103c-\u103e]*([\u1031\u1084]))\u001d\u103b': '\u103b$1$2',
-    '([\u103b]*)([\u103d-\u103e]*)\u1031\u001d\u103c': '$1\u103c$2\u1031',
-    '([\u103b\u103c]*)([\u103e]*)\u1031\u001d\u103d': '$1\u103d$2\u1031',
-    '([\u103b-\u103d]*)\u1031\u001d\u103e': '$1\u103e\u1031',
+    '([\u103b]*)([\u103d-\u103e]*)([\u1031\u1084])\u001d\u103c': '$1\u103c$2$3',
+    '([\u103b\u103c]*)([\u103e]*)([\u1031\u1084])\u001d\u103d': '$1\u103d$2$3',
+    '([\u103b-\u103d]*)([\u1031\u1084])\u001d\u103e': '$1\u103e$2',
 
     // Reorder medials without E vowel
     '([\u103c-\u103e]+)\u001d?\u103b': '\u103b$1',
@@ -89,5 +89,5 @@ var SHN2_LAYOUT = {
 };
 
 // Load the layout and inform the keyboard to switch layout if necessary.
-google.elements.keyboard.loadme(SHN2_LAYOUT);
-shn_keyman = SHN2_LAYOUT;
+google.elements.keyboard.loadme(SHN3_LAYOUT);
+shn_sil_keyman = SHN3_LAYOUT;

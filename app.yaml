@@ -182,6 +182,9 @@ handlers:
 - url: /rhg/.*
   script: rohingya.app
 
+- url: /shn/.*
+  script: shan.app
+
 - url: /srb/.*
   script: sora.app
 
