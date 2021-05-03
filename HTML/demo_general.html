@@ -73,7 +73,13 @@
 
   function toAllFonts(area1, area2) {
     var area1Elem = document.getElementById(area1);
-    var text1 = area1Elem.value;
+    var selObj = window.getSelection();
+    var text1 = "";
+    if (selObj && selObj.rangeCount > 0) {
+      text1 = selObj.toString(0);
+    } else {
+      text1 = area1Elem.value;
+    }
     var text2= '';
 
     compareUrl = "/{{langTag}}/AllFonts/?utext=" + text1 + "&encodedText=" + text2;
@@ -155,7 +161,14 @@
 
     function showCodePoints() {
       var src_field = document.getElementById('t1');
-      var code_text = uplus(src_field.value);
+      var input_text = "";
+      var selObj = window.getSelection();
+      if (selObj && selObj.rangeCount > 0) {
+        input_text = selObj.toString(0);
+      } else {
+        input_text = src_field.value;
+      }
+      var code_text = uplus(input_text);
       var dest_field = document.getElementById('codepoints');
       dest_field.value = code_text;
       document.getElementById('t1').focus();
