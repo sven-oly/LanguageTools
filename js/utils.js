@@ -1,3 +1,6 @@
+/* Namespace */
+let Utils = function() {
+}
 
 function toggleDiv(id, toggle) {
     var obj = document.getElementById(id);
@@ -291,4 +294,84 @@ function fromCodePointHex(arguments) {
     chars.push(String.fromCharCode.apply(null, units));
   }
   return chars.join("");
+}
+
+/* Selects new keyboard */
+Utils.prototype.onLayoutSelected = function(layoutCode, area_id, instruction_id) {
+  controller.activateLayout(layoutCode);
+    var info = kb_info[layoutCode];
+    if (info && instruction_id) {
+        var area = document.getElementById(instruction_id);
+        if (area) {
+            area.innerHTML = area.value = info[1];
+        }
+    }
+  document.getElementById(area_id).focus();
+}
+
+/* Clears area and optionally sets focus */
+Utils.prototype.clearText = function(area_id, setfocus) {
+  var field = document.getElementById(area_id);
+  field.value = '';
+  if (setfocus) {
+    field.focus();
+  }
+}
+
+Utils.prototype.setKeyCapsFont = function(newFontFamily) {
+  // All the buttons reset the the font.
+  var buttons = document.getElementsByClassName("vk-btn");
+  for (var i = 0; i < buttons.length; i++ ) {
+    buttons[i].style.fontFamily = newFontFamily;
+  }
+  var keycaps = document.getElementsByClassName("vk-cap");
+  for (var i = 0; i < keycaps.length; i++ ) {
+    keycaps[i].style.fontFamily = newFontFamily;
+  }
+}
+
+Utils.prototype.setFontFamily = function (newFontFamily, area_id) {
+  this.setKeyCapsFont(newFontFamily);
+  var t1_element = document.getElementById(area_id);
+  t1_element.style.fontFamily = newFontFamily;
+}
+
+Utils.prototype.onLanguageSelected = function(newLangTag, textArea) {
+  var t1_element = document.getElementById(textArea);
+  t1_element.lang = newLangTag;
+}
+
+Utils.prototype.onSizeSelected = function(newSize, textArea) {
+  var t1_element = document.getElementById(textArea);
+  t1_element.style.fontSize = newSize;
+}
+
+/* Finds selected code point values and outputs to designated area */
+Utils.prototype.showCodePoints = function(source_id, dest_id) {
+  const src_field = document.getElementById(source_id);
+  let input_text = "";
+  const selObj = window.getSelection();
+  const selected = selObj.toString();
+  if (!selected) {
+    input_text = src_field.value;  // All
+  } else {
+    input_text = selected;  // Only highlighted
+  }
+  const code_text = uplus(input_text);
+  const dest_field = document.getElementById(dest_id);
+  dest_field.value = code_text;
+  document.getElementById('t1').focus();
+}
+
+Utils.prototype.toggleConvertedVS = function(text_area_id, toggle) {
+  // TODO: Change variation sequence content of text.
+  var text_area = document.getElementById(text_area_id);
+  var text = text_area.value;
+  var new_text;
+  if (toggle.checked) {
+      new_text = add_variation_modifiers(text);
+  } else {
+      new_text =remove_variation_modifiers(text);
+  }
+  text_area.innerHTML = text_area.value = new_text;
 }

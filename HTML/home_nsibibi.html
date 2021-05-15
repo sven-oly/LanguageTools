@@ -37,12 +37,19 @@
 
       .default-font {
       font-family: "Arial,Helvetica";
-      font-size:12px;
+      font-size:18px;
       }
-
+      .input-font {
+      font-family: "Arial,Helvetica";
+      font-size:24px;
+      }
     input {font-size:18px;}
     textarea {font-size:18px; height:400px; resize: vertical;}
     </style>
+
+  <!-- special files for Nsibibi -->
+  <script src="/js/nsibibi/English2utf.js"></script>
+  <script src="/js/nsibibi/nsibibi_kb.js"></script>
 
   <script src="/js/utils.js"></script>
   <script src="/js/vk-debug.js"></script>
@@ -205,6 +212,20 @@
       }
       textArea.innerHTML = textArea.value = output;
     }
+{% if variation_sequence %}
+function toggleConvertedVS(text_area_id, toggle) {
+  // TODO: Change variation sequence content of text.
+  var text_area = document.getElementById(text_area_id);
+  var text = text_area.value;
+  var new_text;
+  if (toggle.checked) {
+      new_text = add_variation_modifiers(text);
+  } else {
+      new_text =remove_variation_modifiers(text);
+  }
+  text_area.innerHTML = text_area.value = new_text;
+}
+{% endif %}
   </script>
   <link rel="stylesheet" type="text/css" href="/css/keyboard.css" />
 
@@ -228,17 +249,17 @@
     {% for lang in lang_list %}
     <option value="{{lang}}" select="">{{lang.longName}}</option>
     {% endfor %}
-  </select>
+     </select>
   </span>
-    <span {% if kb_list|length <= 1 %}hidden{%endif%}>
+  <span {% if kb_list|length <= 1 %}hidden{%endif%}>
     Keyboard: <select onchange="utils.onLayoutSelected(this.value, 't1', 'kb_instructions')" id="setLayout">
-    {% for kb in kb_list %}
-    <option value="{{kb.shortName}}" select="">{{kb.longName}}</option>
-    {% endfor %}
+      {% for kb in kb_list %}
+      <option value="{{kb.shortName}}" select="">{{kb.longName}}</option>
+      {% endfor %}
     </select>
   </span>
-  Font: <select onchange="utils.setFontFamily(this.value, 't1')" id="fontSelector">
-    {% for font in font_list %}
+    Font: <select onchange="utils.setFontFamily(this.value, 't1')" id="fontSelector">
+  {% for font in font_list %}
     <option value="{{font.family}}"{% if forloop.first %} selected{%endif%}>{{font.longName}}</option>
     {% endfor %}
     <option value="Arial">Arial</option>
@@ -259,7 +280,9 @@
 
   <input type="button" value="Clear text" onclick="utils.clearText('codepoints');utils.clearText('t1', true);">
   <br />
-
+    <h3>Type here:</h3>
+    <textarea id="input" class='input-font' style="width:200px;height:80px;"
+              rows="1" dir="{{direction}}" spellcheck="false"></textarea>
   <!-- If an original encoding area is needed. -->
   {% if encoded_div %} 
   <textarea id="encodeArea" class='default-font' style="width:600px;height:300px;"
@@ -292,7 +315,7 @@
     {% endif %}
     {% if variation_sequence %}
        <input type="checkbox" name="vsToggle" id="toggleVS" checked
-      onchange="utils.toggleConvertedVS('t1', toggleVS);">Toggle variation sequence<br />
+      onchange="toggleConvertedVS('t1', toggleVS);">Toggle variation sequence<br />
     {% endif %}
     <br />
     <textarea id="codepoints" class='default-font'

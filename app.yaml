@@ -104,6 +104,10 @@ handlers:
 - url: /hoc/.*
   script: ho.app
 
+
+- url: /ig/.*
+  script: nsibibi.app
+
 - url: /kgp/.*
   script: kaingang.app
 

@@ -114,6 +114,11 @@ class LanguagesHomeHandler(webapp2.RequestHandler):
     except:
       allFonts = False
 
+    try:
+      home_html = langInfo.custom_home_template
+    except:
+      home_html = 'HTML/demo_general.html'
+
     template_values = {
         'allFonts': allFonts,
         'direction': text_direction,
@@ -129,7 +134,7 @@ class LanguagesHomeHandler(webapp2.RequestHandler):
         'test_data': test_data,
         'variation_sequence': variation_sequence,
     }
-    path = os.path.join(os.path.dirname(__file__), 'HTML/demo_general.html')
+    path = os.path.join(os.path.dirname(__file__), home_html)
     self.response.out.write(template.render(path, template_values))
 
 
