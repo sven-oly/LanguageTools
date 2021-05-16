@@ -43,13 +43,20 @@
       font-family: "Arial,Helvetica";
       font-size:24px;
       }
-    input {font-size:18px;}
-    textarea {font-size:18px; height:400px; resize: vertical;}
+      .choice-font {
+      font-family: "Arial,Helvetica";
+      font-size:18px;
+      }
+      input {font-size:18px;}
+
+      textarea {font-size:18px; height:400px; resize: vertical;}
+
+      .nsi_button { font-family: "Akagu2020"; }
     </style>
 
-  <!-- special files for Nsibibi -->
-  <script src="/js/nsibibi/English2utf.js"></script>
-  <script src="/js/nsibibi/nsibibi_kb.js"></script>
+  <!-- special files for Nsibidi -->
+  <script src="/js/nsibidi/English2utf.js"></script>
+  <script src="/js/nsibidi/nsibidi_kb.js"></script>
 
   <script src="/js/utils.js"></script>
   <script src="/js/vk-debug.js"></script>
@@ -134,7 +141,8 @@
           }
     );
 
-    input.focus();
+    var input_eng = document.getElementById('input_eng');
+    input_eng.focus();
 
     var selector = document.getElementById("setLayout");
     utils.onLayoutSelected(selector.value, 't1', 'kb_instructions');
@@ -226,6 +234,13 @@ function toggleConvertedVS(text_area_id, toggle) {
   text_area.innerHTML = text_area.value = new_text;
 }
 {% endif %}
+
+/* TODO !!! toggle between hiding and showing the dropdown content */
+function myDropFunction() {
+   let item = document.getElementById("item_menu");
+   toggleVisible("item_menu");
+}
+
   </script>
   <link rel="stylesheet" type="text/css" href="/css/keyboard.css" />
 
@@ -280,20 +295,27 @@ function toggleConvertedVS(text_area_id, toggle) {
 
   <input type="button" value="Clear text" onclick="utils.clearText('codepoints');utils.clearText('t1', true);">
   <br />
-    <h3>Type here:</h3>
-    <textarea id="input" class='input-font' style="width:200px;height:80px;"
-              rows="1" dir="{{direction}}" spellcheck="false"></textarea>
+    <div id="nsibidi_input">
+    <p class="input-font">Type here:
+    <input id="input_eng" onkeyup='nsi.handleMatching("input_eng", "t1", "item_div", "info_id");'
+           class='input-font' style="width:200px;height:35px;" dir="{{direction}}" spellcheck="false"></input>
+    <span id="info_id"></span>
+      <br />
+      <p class="choice-font">Choices:
+      <span class="dropdown" id="item_div" class="dropdown-content">      </span>
+  </div>
   <!-- If an original encoding area is needed. -->
   {% if encoded_div %} 
   <textarea id="encodeArea" class='default-font' style="width:600px;height:300px;"
             rows="10" dir="{{direction}}" spellcheck="false"></textarea>
   <br />
-  <input type="button" value="Convert to Unicode text"
+  <input type="button" value="Codes to Unicode text"
     onclick="convertToUnicode('encodeArea', 't1');">
   <hr>
   {% endif %}
 
   <div id="t1_div">
+    <p class="choice-font">Nsibidi output
     <textarea id="t1" style="width:600px;font-family:{{font_list.0.family}};resize:vertical;font-size:24px;"
       rows="10" spellcheck="false"
       lang="{%if lang_list.0.shortName %}{{lang_list.0.shortName}}{%endif%}{%if langTag %}{{langTag}}{%endif%}"
@@ -312,10 +334,6 @@ function toggleConvertedVS(text_area_id, toggle) {
     {% if encoded_ranges %}
       <input type="button" value="Encoded range" onclick="fillEncodedRange('t1');"
 
-    {% endif %}
-    {% if variation_sequence %}
-       <input type="checkbox" name="vsToggle" id="toggleVS" checked
-      onchange="toggleConvertedVS('t1', toggleVS);">Toggle variation sequence<br />
     {% endif %}
     <br />
     <textarea id="codepoints" class='default-font'

@@ -106,7 +106,7 @@ handlers:
 
 
 - url: /ig/.*
-  script: nsibibi.app
+  script: nsibidi.app
 
 - url: /kgp/.*
   script: kaingang.app

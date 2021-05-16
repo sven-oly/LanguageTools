@@ -39,7 +39,8 @@ LanguageList = [
   ('Gondi', 'gon', 'Gōndi family'),
   ('Gondi Northern (Gunjala)', 'gno', 'Northern Gōndi (Gunjala)'),
   ('Gondi Aheri (Masaram)', 'esg', 'Aheri Gōndi Masaram'),
-  ('Nyaikeng Puachue Hmong', 'nyiakeng', '𞄀𞄩𞄰𞄁𞄦𞄱𞄂𞄤𞄳𞄬𞄃𞄥𞄳'),
+  ('Igbo Nsibidi', 'ig', 'Aheri Gōndi Masaram'),
+  ('Nyaikeng Puachue Hmong', 'Igbo Nsibidi'),
   ('Cherokee', 'chr', 'ᏣᎳᎩ ᎦᏬᏂᎯᏍᏗ'),
   ('Hoocąk (Ho-chunk)', 'win', 'Hoocąk'),
   ('Menoninee', 'mez', 'Oma͞eqnomenew'),
@@ -50,6 +51,7 @@ LanguageList = [
   ('Otomanguean phonetic', 'omq'),
   ('Rohingya', 'rhg', ),
   ('Tamashek', 'tmh', 'ⵜⴰⵎⴰⵌⴰⵆ'),
+  ('Tangsa', 'nst', 'Tangsa'),
   ('Tibetan', 'bod'),
 ]
 
