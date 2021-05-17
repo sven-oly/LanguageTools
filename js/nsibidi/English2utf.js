@@ -326,4 +326,5 @@ null],["vapour","\u6442"],["ditch","\u7BC0"],["tobacco","\u8AAC"],["forest","\u8
 ["pumpkin","\u3A13"],["gum","\u3A14"],["yet","\u6743"],["piece","\u3A15"],["wool","\u3A16"],["insinuation","\u36BD"],
 ["hen","\u3A17"],["molar","\u3A18"],["teeth","\u3A19"],["cord","\u3A1A"],["knot","\u3A1B"],["hair","\u3A1C"],["cat","\u3A1D"],
 ["dam","\u3A1E"],["hole","\u3A1F"],["squirrel","\u3A20"],["egg","\u3A21"],["kite","\u3A22"],["heron","\u3A23"],
-["navel","\u3A24"],["flour","\u3A25"],["utazi","\u3A26"],["current","\u3A27"],["extremity","\u3A28"],["profit","\u3A29"]];
+["navel","\u3A24"],["flour","\u3A25"],["utazi","\u3A26"],["current","\u3A27"],["extremity","\u3A28"],["profit","\u3A29"]
+,["stay still","帰警"]];

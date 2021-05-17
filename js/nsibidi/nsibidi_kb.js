@@ -111,9 +111,9 @@ nsibidi.prototype.handleMatching = function(input_id, output_id, div_id, info_id
   if (key >= " " && key < "0" ) {
     nsiSelectItem(output_area, input_area.value, null, div, input_area);
   }
-  if (key === 'Enter' && input_area.value === "") {
-    nsiSelectItem(output_area, '\r\n', null, div, input_area);
-  }
+//  if (key === 'Enter' && input_area.value === "") {
+//    nsiSelectItem(output_area, '\r\n', null, div, input_area);
+//  }
   let results = nsi.lookupEng(input_area.value);
   if (!results) {
     return null;

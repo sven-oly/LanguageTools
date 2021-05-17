@@ -28,11 +28,10 @@
       src:url('{{font.source}}');
       font-weight:normal;
       font-style:normal;
-      font-size: 16px;
     }
 
     .{{font.family}} {
-      font-family:{{font.family}};
+      font-family:'{{font.family}}';
       font-size: 16px;
     }
 
@@ -62,11 +61,11 @@
   {% for font in langInfo.unicode_font_list %}"{{font.family}}",{% endfor %}
   ];
 
-  function toggleRange(data, table_id) {
+  function showCategory(data, table_id) {
     let table = document.getElementById(table_id);
     /* Clear table */
     var rowCount = table.rows.length;
-    for (var x=rowCount-1; x>0; x--) {
+    for (var x=rowCount-1; x >= 0; x--) {
        table.deleteRow(x);
     }
 
@@ -78,9 +77,10 @@
         let cell0 = row.insertCell(0);
         cell0.innerHTML = data[line][0];
         cell0.width = '300px';
+        cell0.className = 'Akagu2020';
         let cell1 = row.insertCell(1);
         cell1.innerHTML = data[line][1];
-        cell1.className = 'nsi_button';
+        cell1.className = 'Akagu2020';
     };
   }
 
@@ -95,7 +95,7 @@
         // Get first character
         button.innerHTML = button.value = group[0][0].substring(0,1);
         button.onclick = button.onclick = function() {
-            toggleRange(group, 'word_table');
+            showCategory(group, 'word_table');
         };
         div.appendChild(button);
       }
@@ -196,35 +196,6 @@
     <table id="word_table">
 
     </table>
-  </div>
-  <input type="button"
-           onclick="copyToAll('input_area',
-                    null);"
-           value="Copy to all" />
-  Font size: <select id='fontSize'
-             onChange="changeFontSize('fontSize');">
-             <option value="10pt">10</option>
-             <option value="12pt">12</option>
-             <option value="14pt">14</option>
-             <option value="18pt">18</option>
-             <option value="24pt">24</option>
-             <option value="32pt" selected="selected">32</option>
-             <option value="36pt">36</option>
-             <option value="48pt">48</option>
-             <option value="64pt">64</option>
-           </select>
-{% if all_chars %}
-  <input type="button"
-           onclick="fillWithUnicode('input_area',
-                    '{{all_chars}}');"
-           value="Insert all {{scriptName}} Unicode characters" />
-{% endif %}
-      Keyboard: <select onchange="onLayoutSelected(this, null, 'input_area')")" id="selectKeyboard">
-      {% for kb in kb_list %}
-      <option value="{{kb.shortName}}">{{kb.longName}}</option>
-      {% endfor %}
-    </select>
-
   </div>
   </div>
   </body>

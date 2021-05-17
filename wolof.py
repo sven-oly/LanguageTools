@@ -30,6 +30,11 @@ encoding_font_list = [
     'font_name': 'Garay ASCII',
     'display_name': 'Garay ASCII',
   },
+  {
+    'font_path': '/fonts/African_font_encodings/CatyuBasic.ttf',
+    'font_name': 'Catyu Basic',
+    'display_name': 'Catyu Basic',
+  },
 ]
 
 unicode_font_list = [
@@ -38,6 +43,11 @@ unicode_font_list = [
         'longName': 'Garay ASCII',
         'source': '/fonts/African_font_encodings/WOLOF.TTF',
     },
+  {
+    'source': '/fonts/African_font_encodings/CatyuBasic.ttf',
+    'family': 'Catyu Basic',
+    'longName': 'Catyu Basic',
+  },
 ]
 
 links = [
@@ -92,6 +102,9 @@ class langInfo():
     kb_list = [
       {'shortName': LanguageCode + '_' + ScriptCode,
        'longName': Language + ' ' + ScriptCode,
+       },
+      {'shortName': 'wo_Caty',
+       'longName': "Wolof Catyu",
        }
     ]
     self.kb_list = kb_list
