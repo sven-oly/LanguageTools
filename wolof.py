@@ -48,6 +48,11 @@ unicode_font_list = [
     'family': 'Catyu Basic',
     'longName': 'Catyu Basic',
   },
+  {
+    'source': '/fonts/African_font_encodings/CatyuBasic.otf',
+    'family': 'Catyu Basic OTF',
+    'longName': 'Catyu Basic OTF',
+  },
 ]
 
 links = [
@@ -102,9 +107,11 @@ class langInfo():
     kb_list = [
       {'shortName': LanguageCode + '_' + ScriptCode,
        'longName': Language + ' ' + ScriptCode,
+       'font': ['GarayAscii'],
        },
       {'shortName': 'wo_Caty',
        'longName': "Wolof Catyu",
+       'font': ['Catyu Basic', 'Catyu Basic OTF'],
        }
     ]
     self.kb_list = kb_list

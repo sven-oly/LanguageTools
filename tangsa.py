@@ -170,9 +170,13 @@ class langInfo():
         {'linkText': 'Tangsa languages',
          'ref': 'https://en.wikipedia.org/wiki/Tangsa_language'
         },
-        { 'linkText': 'Tangsa Lakhum Unicode proposal',
+        {'linkText': 'Tangsa Lakhum Unicode proposal',
           'ref': 'http://www.unicode.org/L2/L2021/21027-tangsa.pdf'
         },
+        {'linkText': 'KeyMan Tangsa Lakhum help',
+         'ref': 'https://help.keyman.com/keyboard/tangsa_lakhum/1.1/tangsa_lakhum'},
+        {'linkText': 'Download KeyMan keyboard',
+         'ref': 'https://keyman.com/keyboards/tangsa_lakhum'},
         {'linkText': 'Resources',
          'ref': '/' + self.LanguageCode + '/downloads/'
         },

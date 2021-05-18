@@ -19,7 +19,7 @@ var WO_CAT_LAYOUT = {
     ',c': {
       '': '`1234567890-=' +
           '{{\u030a}}wertyuio{{}}[]\\' +
-          'asdfgh{{}}kl;\'' +
+          'asdfghjkl;\'' +
           'zxcvbnm,./'
     },
     's,sc': {
