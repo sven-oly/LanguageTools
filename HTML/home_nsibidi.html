@@ -49,7 +49,7 @@
       }
       input {font-size:18px;}
 
-      textarea {font-size:18px; height:400px; resize: vertical;}
+      textarea {font-size:18px; height:150px; width:600px; resize: vertical;}
 
       .nsi_button { font-family: "Akagu2020"; }
     </style>
@@ -306,7 +306,7 @@ function myDropFunction() {
   </div>
   <!-- If an original encoding area is needed. -->
   {% if encoded_div %} 
-  <textarea id="encodeArea" class='default-font' style="width:600px;height:300px;"
+  <textarea id="encodeArea" class='default-font'
             rows="10" dir="{{direction}}" spellcheck="false"></textarea>
   <br />
   <input type="button" value="Codes to Unicode text"
@@ -325,12 +325,21 @@ function myDropFunction() {
       <input type="button" onclick="toAllFonts('t1', null);" value="To all fonts">
       {% endif %}
   </div>
+    <input type="button" id='toggle_english' value="To English"
+           onclick="nsi.nsibidi2English('t1', 'english_id');">
 
+    <div id="english_div" style="display:none">
+      <textarea id="english_id" rows="1" spellcheck="false"></textarea>
+      <input type="button" id="toggle_eng" value="Close English" onclick="toggleDiv('english_div', 'toggle_eng');">
+    </div>
   <div id="codepoint_div">
     <hr>
-    <input type="button" value="Code points" onclick="utils.showCodePoints('t1', 'codepoints')">
+    <input type="button" value="Code points" onclick="utils.showCodePoints('t1', 'codepoints');">
+
+    <!--
     <input type="button" value="All keys" onclick="fillAllKeys('t1', 'setLayout');"
-    />
+    -->
+
     {% if encoded_ranges %}
       <input type="button" value="Encoded range" onclick="fillEncodedRange('t1');"
 

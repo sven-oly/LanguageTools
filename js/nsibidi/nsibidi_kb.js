@@ -152,6 +152,29 @@ nsibidi.prototype.handleMatching = function(input_id, output_id, div_id, info_id
   return results;
 }
 
-let m0 = nsi.lookupEng('l');
-let m1 = nsi.lookupEng('le');
-let m2 = nsi.lookupEng('leopard');
+/* Look up English text for a single nsibidi character */
+nsibidi.prototype.lookupNsi2English = function(nsi_char) {
+  let size = utfArr.length;
+  for (let i in utfArr) {
+    if (utfArr[i][1] === nsi_char) {
+        return utfArr[i][0];
+    }
+  }
+  return '';
+}
+
+nsibidi.prototype.nsibidi2English = function(nsi_source_id, en_area_id) {
+    /* Lookup each Nsibidi character and output English */
+    /* Check if English area is hidden */
+    let eng_area = document.getElementById(en_area_id);
+    let nsi_source = document.getElementById(nsi_source_id);
+
+    let nsi_text = nsi_source.value;
+    let eng_array = [];
+    for (let c in nsi_text) {
+      eng_array.push(this.lookupNsi2English(nsi_text[c]));
+    }
+    eng_area.value = eng_array.join(' ');
+    // Turn on div about the textarea.
+    eng_area.parentElement.style.display = 'block';
+}
