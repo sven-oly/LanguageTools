@@ -26,27 +26,27 @@ ScriptCode = 'Gara'
 
 encoding_font_list = [
   {
-    'font_path': '/fonts/African_font_encodings/WOLOF.TTF',
-    'font_name': 'Garay ASCII',
-    'display_name': 'Garay ASCII',
-  },
-  {
     'font_path': '/fonts/African_font_encodings/CatyuBasic.ttf',
     'font_name': 'Catyu Basic',
     'display_name': 'Catyu Basic',
   },
+  {
+    'font_path': '/fonts/African_font_encodings/WOLOF.TTF',
+    'font_name': 'Garay ASCII',
+    'display_name': 'Garay ASCII',
+  },
 ]
 
 unicode_font_list = [
-    {
-        'family': 'GarayAscii',
-        'longName': 'Garay ASCII',
-        'source': '/fonts/African_font_encodings/WOLOF.TTF',
-    },
   {
     'source': '/fonts/African_font_encodings/CatyuBasic.ttf',
     'family': 'Catyu Basic',
     'longName': 'Catyu Basic',
+  },
+  {
+    'family': 'GarayAscii',
+    'longName': 'Garay ASCII',
+    'source': '/fonts/African_font_encodings/WOLOF.TTF',
   },
   {
     'source': '/fonts/African_font_encodings/CatyuBasic.otf',
@@ -98,21 +98,25 @@ class langInfo():
     self.LanguageCode = LanguageCode
     self.Language = Language
     self.Language_native = Language_native
-    self.test_data = u'FILL IN'
+    self.test_data = u''
     self.unicode_font_list = unicode_font_list
     self.encoding_font_list = encoding_font_list
 
     self.lang_list = [LanguageCode]  # This may be extended
 
     kb_list = [
+      {'shortName': 'wo_Caty',
+       'longName': "Wolof Catyu",
+       'font': ['Catyu Basic', 'Catyu Basic OTF'],
+       'instructions': 'Uses ASCII range for letters and digits, U+218c - U+2093 for numeric symbols. ' +
+          'Use ";" before digits 1-8 for the numeric symbols for 100 up to 10^15. '+
+          'Shift-space gives narrow non-breaking space (NNBS)' +
+          'Doubled consonants replaces second on with lengthener U+030A.'
+       },
       {'shortName': LanguageCode + '_' + ScriptCode,
        'longName': Language + ' ' + ScriptCode,
        'font': ['GarayAscii'],
        },
-      {'shortName': 'wo_Caty',
-       'longName': "Wolof Catyu",
-       'font': ['Catyu Basic', 'Catyu Basic OTF'],
-       }
     ]
     self.kb_list = kb_list
     self.links = links
