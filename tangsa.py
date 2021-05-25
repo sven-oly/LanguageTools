@@ -185,8 +185,8 @@ class langInfo():
     # Resource files
     resource_list = [
       {
-        'name': 'KeyMan for Lakhum Tangsa Unicode v1.1',
-        'source': '/resources/nst/tangsa_lakhum_unicode.kmp',
+        'name': 'KeyMan for Lakhum Tangsa Unicode v1.2',
+        'source': '/resources/nst/tangsa_lakhum_unicode_1.2.kmp',
         'description': 'Layout for Tangsa Lakum Unicode',
         'instructions': 'Install KeyMan first. Next, Desk/laptop: download file and open.\nMobile: open link.',
       },

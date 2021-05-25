@@ -26,9 +26,9 @@ ScriptCode = 'Gara'
 
 encoding_font_list = [
   {
-    'font_path': '/fonts/African_font_encodings/CatyuBasic.ttf',
-    'font_name': 'Catyu Basic',
-    'display_name': 'Catyu Basic',
+    'font_path': '/fonts/African_font_encodings/CaytuBasic.ttf',
+    'font_name': 'Caytu Basic OTF',
+    'display_name': 'Caytu Basic OTF',
   },
   {
     'font_path': '/fonts/African_font_encodings/WOLOF.TTF',
@@ -39,19 +39,19 @@ encoding_font_list = [
 
 unicode_font_list = [
   {
-    'source': '/fonts/African_font_encodings/CatyuBasic.ttf',
-    'family': 'Catyu Basic',
-    'longName': 'Catyu Basic',
+    'source': '/fonts/African_font_encodings/CaytuBasic.otf',
+    'family': 'Caytu Basic OTF',
+    'longName': 'Caytu Basic OTF',
+  },
+  {
+    'source': '/fonts/African_font_encodings/CaytuBasic.ttf',
+    'family': 'Caytu Basic',
+    'longName': 'Caytu Basic',
   },
   {
     'family': 'GarayAscii',
     'longName': 'Garay ASCII',
     'source': '/fonts/African_font_encodings/WOLOF.TTF',
-  },
-  {
-    'source': '/fonts/African_font_encodings/CatyuBasic.otf',
-    'family': 'Catyu Basic OTF',
-    'longName': 'Catyu Basic OTF',
   },
 ]
 
@@ -106,8 +106,8 @@ class langInfo():
 
     kb_list = [
       {'shortName': 'wo_Caty',
-       'longName': "Wolof Catyu",
-       'font': ['Catyu Basic', 'Catyu Basic OTF'],
+       'longName': "Wolof Caytu",
+       'font': ['Caytu Basic', 'Caytu Basic OTF'],
        'instructions': 'Uses ASCII range for letters and digits, U+218c - U+2093 for numeric symbols. ' +
           'Use ";" before digits 1-8 for the numeric symbols for 100 up to 10^15. '+
           'Shift-space gives narrow non-breaking space (NNBS)' +
