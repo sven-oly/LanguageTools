@@ -124,6 +124,8 @@
 
     let kb_obj = document.getElementById('kbd');
 
+    // If there are keyboard instructions, add them.
+
     // Set font based on keyboard?
     // Get the font associated with the keyboard, if available.
     //
@@ -320,7 +322,6 @@ function myDropFunction() {
       rows="10" spellcheck="false"
       lang="{%if lang_list.0.shortName %}{{lang_list.0.shortName}}{%endif%}{%if langTag %}{{langTag}}{%endif%}"
       dir="{{direction}}">{{test_data}}</textarea>
-      <br />
       {% if allFonts %}
       <input type="button" onclick="toAllFonts('t1', null);" value="To all fonts">
       {% endif %}

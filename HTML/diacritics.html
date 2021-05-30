@@ -30,7 +30,7 @@
     {% for font in unicode_font_list %}
     @font-face{
       font-family:'{{font.family}}';
-      src:url('{{font.source}}');
+      src:url('{{font.source}}'){% if '.ttf' in font.source %}format('truetype'){%endif%}{% if '.TTF' in font.source %}format('truetype'){%endif%}{% if '.otf' in font.source %}format('opentype'){%endif%}{%if '.woff' in font.source %}format('woff'){%endif%};
       font-weight:normal;
       font-style:normal;
       font-size: 32px;

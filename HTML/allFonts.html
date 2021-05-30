@@ -22,7 +22,7 @@
    {% for fontFam in fontFamilies %}
     @font-face{
       font-family:'{{fontFam.family}}';
-      src:url('{{fontFam.source}}');
+      src:url('{{fontFam.source}}'){% if '.ttf' in fontFam.source %}format('truetype'){%endif%}{% if '.TTF' in fontFam.source %}format('truetype'){%endif%}{% if '.otf' in fontFam.source %}format('opentype'){%endif%}{%if '.woff' in fontFam.source %}format('woff'){%endif%};
       font-weight:normal;
       font-style:normal;
       font-size: 32px;
