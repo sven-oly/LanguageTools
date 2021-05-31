@@ -96,12 +96,22 @@ var private_use_map_combined = {
     'ovmz': ['𖩰𖩸𖪫', ''],
     'ovmc': ['𖩱𖩹𖪫', ''],
     'ovmx': ['𖩳𖩻𖪫', ''],
+    'orz': ['𖩰𖪲', '\ue400\ue440'],
+    'orc': ['𖩱𖪲', '\ue401\ue440'],
+    'orx': ['𖩳𖪲', '\ue403\ue440'],
+    'onz': ['𖩰𖪬', '\ue400\ue43a'],
+    'onc': ['𖩱𖪬', '\ue401\ue43a'],
+    'onx': ['𖩳𖪬', '\ue403\ue43a'],
+    'olz': ['𖩰𖪮', '\ue400\ue43c'],
+    'olc': ['𖩱𖪮', '\ue401\ue43c'],
+    'olx': ['𖩳𖪮', '\ue403\ue43c'],
     'omz': ['𖩰𖪫', ''],
     'omc': ['𖩱𖪫', ''],
     'omx': ['𖩳𖪫', ''],
     'oamz': ['𖩰𖪫', ''],
     'oamc': ['𖩱𖪫', ''],
     'oamx': ['𖩳𖪫', ''],
+    'ot': ['𖩰𖪰', '\ue400\ue43e'],
     'amz': ['𖩴𖪫', ''],
     'amc': ['𖩵𖪫', ''],
     'amx': ['𖩷𖪫', ''],
@@ -426,9 +436,9 @@ var gamwin_latin_chars =
     "anx|vnz|vnc|vnx|enz|enc|enx|inz|inc|inx|unz|unc|unx|awnz|awnc|awnx|uinz|uinc|uinx|uenz|uenc|uenx|uiunz|uiunc|" +
     "uiunx|ovlz|ovlc|ovlx|oalz|oalc|oalx|alz|alc|alx|vlz|vlc|vlx|elz|elc|elx|ilz|ilc|ilx|ulz|ulc|ulx|awlz|awlc|awlx|" +
     "uilz|uilc|uilx|uelz|uelc|uelx|uiulz|uiulc|uiulx|ovrz|ovrc|ovrx|oarz|oarc|oarx|arz|arc|arx|vrz|vrc|vrx|erz|erc|" +
-    "erx|irz|irc|irx|urz|urc|urx|awrz|awrc|awrx|uirz|uirc|uirx|uerz|uerc|uerx|uiurz|uiurc|uiurx|ok|ak|ek|ik|uk|" +
+    "erx|irz|irc|irx|olc|olx|olz|onc|onx|onz|orc|orx|orz|urz|urc|urx|awrz|awrc|awrx|uirz|uirc|uirx|uerz|uerc|uerx|uiurz|uiurc|uiurx|ok|ak|ek|ik|uk|" +
     "awk|uik|uek|uiuk|ovp|oap ~ op|op|ap|ep|ip|up|awp|uip|uep|uiup|ovt|oat|at|et|it|ut|awt|uit|uet|uiut|oz|" +
-    "oc|ox|az|ac|ax|vz|vc|vx|ez|ec|ex|iz|ic|ix|uz|uc|ux|awz|awc|awx|uiz|uic|uix|uez|uec|uex|uiuz|uiuc|uiux|htt|th|" +
+    "oc|ot|ox|az|ac|ax|vz|vc|vx|ez|ec|ex|iz|ic|ix|uz|uc|ux|awz|awc|awx|uiz|uic|uix|uez|uec|uex|uiuz|uiuc|uiux|htt|th|" +
     "ht|ch|kh|ng|ny|ph|nh|sh|ts|gh|mz|mc|mq|mx|f|k|g|s|y|w|p|b|m|n|h|l|t|d|r|j|v|,|\.|\u000a|.";
 
 function preParseLatin(instring) {
