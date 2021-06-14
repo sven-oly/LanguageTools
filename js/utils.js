@@ -338,7 +338,7 @@ Utils.prototype.setFontFamily = function (newFontFamily, area_id) {
 
 Utils.prototype.onLanguageSelected = function(newLangTag, textArea) {
   var t1_element = document.getElementById(textArea);
-  t1_element.lang = newLangTag;
+  t1_element.lang = newLangTag['shortName'];
 }
 
 Utils.prototype.onSizeSelected = function(newSize, textArea) {

@@ -39,9 +39,7 @@ var private_use_map_combined = {
     'awq': ['𖪊', ''],
     'uiq': ['𖪎', ''],
     'ueq': ['𖪖', ''],
-    'uiuq': ['𖪘', ''],
-    'uiuq': ['𖪌𖪆', ''],
-    'uiuq': ['𖪎𖪆', ''],
+    'uiuq': ['𖪚', ''],
     'ovyz': ['𖩰𖩸𖪀', ''],
     'ovyc': ['𖩱𖩹𖪁', ''],
     'ovyx': ['𖩳𖩻𖪃', ''],
@@ -428,7 +426,7 @@ var private_use_map_combined = {
 
 var gamwin_latin_chars =
     "mnvungz|mznvungz|mnaungz|mznaungz|mrvkueq|vungz|vungc|vungx|vuk|aungz|aungc|aungx|auk|auz|auc|aux|"+
-    "vuq|auq|ovrz|ovrc|ovrx|uiyq|vyq|oq|aq|vq|eq|iq|uq|awq|uiq|ueq|uiuq|uiuq|uiuq|ovyz|ovyc|ovyx|oayz|oayc|oayx|" +
+    "vuq|auq|ovrz|ovrc|ovrx|uiyq|vyq|oq|aq|vq|eq|iq|uq|awq|uiq|ueq|uiuq|ovyz|ovyc|ovyx|oayz|oayc|oayx|" +
     "ayz|ayc|ayx|vyz|vyc|vyx|uyz|uyc|uyx|uiyz|uiyc|uiyx|ueyz|ueyc|ueyx|ongz|ongc|ongx|angz|angc|angx|vngz|vngc|" +
     "vngx|engz|engc|engx|ingz|ingc|ingx|ungz|ungc|ungx|awngz|awngc|awngx|uingz|uingc|uingx|uengz|uengc|uengx|uiungz" +
     "|uiungc|uiungx|ovmz|ovmc|ovmx|omz|omc|omx|oamz|oamc|oamx|amz|amc|amx|vmz|vmc|vmx|emz|emc|emx|imz|imc|imx|umz|" +
