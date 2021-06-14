@@ -42,7 +42,6 @@ var SUZ_JENTICHA_PUA_LAYOUT = {
   },
   'transform': {
     '^': '^',  // Placeholder
-    '\uED7A\uED70': '\ued7a',
   }
 };
 

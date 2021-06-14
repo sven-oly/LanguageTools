@@ -10,23 +10,28 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+// Uses ASCII range for letters and digits, U+218c - U+2093 for numeric symbols
+// ; before digits 1-8 give the numeric symbols for 100 up to 10^15.
+// Shift-space gives narrow non-breaking space (NNBS)
+// Doubled consonants replaces second on with lengthener U+030A.
 
-var WO_CAT_LAYOUT = {
-  'id': 'wo_Caty',
+var WO_CAY_LAYOUT = {
+  'id': 'wo_Cayt',
   'title': 'Wolof Catya script',
   'direction': 'ltr',
   'mappings': {
     ',c': {
       '': '`1234567890-=' +
-          '{{\u030a}}wertyuio{{}}[]\\' +
+          '{{\u030a}}wertyuiop[]\\' +
           'asdfghjkl;\'' +
           'zxcvbnm,./'
     },
     's,sc': {
       '': '~!@#$%^&*()_+' +
-          '{{}}{{}}E{{}}{{}}{{}}{{}}{{}}{{}}{{}}{}|' +
+          'Q{{}}E{{}}{{}}{{}}{{}}{{}}{{}}{{}}{}|' +
           '{{}}{{}}D{{}}G{{}}J{{}}{{}}:"' +
-          '{{}}{{}}C{{}}{{}}{{}}M<>?'
+          '{{}}{{}}C{{}}{{}}{{\u005e}}M<>?' +
+          '{{\u202f}}'
     },
     'l,cl': {
       '': '`1234567890-=' +
@@ -67,9 +72,19 @@ var WO_CAT_LAYOUT = {
     'GG': 'G\u030a',  // Doubled consonants
     'JJ': 'J\u030a',  // Doubled consonants
     'MM': 'M\u030a',  // Doubled consonants
-}
+
+    // Number symbols for 10^2, 10^3, 10^6, ... 10^15
+    ';1': '\u218c',
+    ';2': '\u218d',
+    ';3': '\u218e',
+    ';4': '\u218f',
+    ';5': '\u2190',
+    ';6': '\u2191',
+    ';7': '\u2192',
+    ';8': '\u2193',
+  }
 };
 
 // Load the layout and inform the keyboard to switch layout if necessary.
-google.elements.keyboard.loadme(WO_CAT_LAYOUT);
+google.elements.keyboard.loadme(WO_CAY_LAYOUT);
 wo_Caty = WO_CAT_LAYOUT;

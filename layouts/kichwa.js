@@ -17,13 +17,13 @@ let KICHWA_LAYOUT = {
     ',c': {
       '': '`1234567890-=' +
           'ew{{sh}}rtyuiopj[]' +
-          'asd{{ts}}ghckl{{⫽}}ñ' +
+          'asd{{ts}}ghckl{{ll}}ñ' +
           'fxvb{{ch}}nmq,.'
     },
     's,sc': {
       '': '~!@#$%^&*()_+' +
           'EW{{SH}}RTYUIOPJ{}' +
-          'ASD{{TS}}GHCKL{{⫽}}Ñ' +
+          'ASD{{TS}}GHCKL{{LL}}Ñ' +
           'fxvb{{ch}}nmq{{}}?'
     },
     'l,cl': {
