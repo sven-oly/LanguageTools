@@ -10,7 +10,7 @@
     {% for encoding in langInfo.encoding_font_list %}
     @font-face{
       font-family:'{{encoding.font_name}}';
-      src:url('{{encoding.font_path}}'){% if '.ttf' in encoding.font_path %}format('truetype'){%endif%}{% if '.TTF' in encoding.font_path %}format('truetype'){%endif%}{% if '.otf' in encoding.font_path %}format('opentype'){%endif%}{%if '.woff' in encoding.font_path %}format('woff'){%endif%};
+      src:url('{{encoding.font_path}}') {% if '.ttf' in encoding.font_path %}format('truetype'){%endif%}{% if '.TTF' in encoding.font_path %}format('truetype'){%endif%}{% if '.otf' in encoding.font_path %}format('opentype'){%endif%}{%if '.woff' in encoding.font_path %}format('woff'){%endif%};
       font-weight:normal;
       font-style:normal;
       font-size: 32px;
@@ -27,7 +27,7 @@
     {% for font in langInfo.unicode_font_list %}
     @font-face{
       font-family:'{{font.family}}';
-      src:url('{{font.source}}'){% if '.ttf' in font.source %}format('truetype'){%endif%}{% if '.TTF' in font.source %}format('truetype'){%endif%}{% if '.otf' in font.source %}format('opentype'){%endif%}{%if '.woff' in font.source %}format('woff'){%endif%};
+      src:url('{{font.source}}') {% if '.ttf' in font.source %}format('truetype'){%endif%}{% if '.TTF' in font.source %}format('truetype'){%endif%}{% if '.otf' in font.source %}format('opentype'){%endif%}{%if '.woff' in font.source %}format('woff'){%endif%};
       font-weight:normal;
       font-style:normal;
       font-size: 16px;
