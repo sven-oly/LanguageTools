@@ -101,7 +101,7 @@ def ProcessSharedStrings(path_to_doc, output_dir, converter):
 
   # copy other things
   for info in newzip.infolist():
-    print 'COPY %s' % info.filename
+    print ('COPY %s' % info.filename)
     if info.filename not in docPartsOut:
       copyfile = newzip.read(info.filename)
       outzip.writestr(info, copyfile)

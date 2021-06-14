@@ -85,27 +85,19 @@ def convertDoc(doc, unicodeFont, debugInfo=None):
     runNum = 0
     runNum = 1
     for run in runs:
-      if len(run.text):
+      # Consider empty text, too.
+      fontObj = run.font
+      fontName = fontObj.name
+
+      if fontName in FONTS_TO_CONVERT:
         thisText = run.text
-        fontObj = run.font
-        fontName = fontObj.name
-        if debugInfo:
-          print ('  Run #%1d in font >%s<. Text(%d) =  >%s<' % (
-              runNum, fontName, len(run.text), run.text))
-        if fontName not in FONTS_TO_CONVERT:
-          if debugInfo:
-            print('  ** Font %s not in FONTS_TO_CONVERT' % fontName)
-          continue
-        if thisText:
-          if debugInfo:
-            print('  ****** WORKING TO CONVERT data in font %s' % fontName)
-          convertedText = checkAndConvertText(thisText)
-          if thisText != convertedText:
-            numConverts += 1
-            run.text = convertedText
-            fontObj.name = unicodeFont
-          else:
-            notConverted += 1
+        convertedText = checkAndConvertText(thisText)
+        fontObj.name = unicodeFont
+        if thisText != convertedText:
+          numConverts += 1
+          run.text = convertedText
+        else:
+          notConverted += 1
       runNum += 1
     paraNum += 1
 

@@ -7,7 +7,7 @@ import re
 
 debug = False
 
-# Mappings for both arjyban, sujoyan, alaam, etc. encodings.
+# Mappings for different font encodings.
 FONTS_TO_CONVERT = {
     'Phake Script': 0,
     'Phake Ramayana': 0,
@@ -117,17 +117,22 @@ class converter():
       self.oldFonts = oldFontList
       # Name of the substitute Unicode font, if provided
 
+      self.variation_sequence_code_points = \
+        r'([\u1000\u1002\u1004\u1010\u1011\u1015\u1019\u101a\u101c\u101d\u1022\u1031\u1075\u1078\u1080\uaa60\uaa61\uaa62\uaa63\uaa64\uaa65\uaa66\uaa6b\uaa6c\uaa6f\uaa7a])'
+      self.variation_modifier = "\ufe00"
+      self.add_variation_selectors = True  # !!! TODO
+
       if newFont:
           self.unicodeFont = newFont
       else:
-          self.unicodeFont = 'Noto Sans Myanmar'
+          self.unicodeFont = 'Noto Serif Myanmar'
 
     # Consider the font information if relevant, e.g., underlining.
     # fontInfo: a list of font data for this code, including formatting for each piece.
-    def convertText(self, textIn, convertToLower=False, fontTextInfo=None, fontIndex=0,
-                    fontIndex=0):
-        if not isinstance(textIn, basestring):
-           return textIn
+    def convertText(self, textIn, convertToLower=False, fontTextInfo=None, fontIndex=0):
+        # TODO: What is this???
+        #  if not isinstance(textIn, basestring):
+        #    return textIn
 
         if self.debug:
             print('convertText: fontTextInfo = %s' % fontTextInfo)
@@ -135,9 +140,6 @@ class converter():
         if not fontTextInfo:
             # Only raw text, without formatting or structure information.
             return self.convertString(textIn, None, fontIndex, convertToLower)
-        # TODO: Remove the test
-        if textIn.find('yW ka / kW tX') >= 0:
-          x = 1
 
         # Take the data from the fontTextInfo field.
         convertList = []
@@ -160,7 +162,7 @@ class converter():
       convertedList = []
       convertResult = u''
 
-      for index in xrange(len(textIn)):
+      for index in range(len(textIn)):
         c = textIn[index];
 
         out = c
@@ -177,41 +179,52 @@ class converter():
 
       re.UNICODE
       # Handle more complex replacements.
-      ePattern = ur'([\u1031\u103c\u103d])([\u1000-\u1029\u1048\u1075-\u1081\uaa60-\uaa7a\uaa7e\uaa7f])'
-      eReplace = ur'\2\1'
+      ePattern = r'([\u1031\u103c\u103d])([\u1000-\u1029\u1048\u1075-\u1081\uaa60-\uaa7a\uaa7e\uaa7f])'
+      eReplace = r'\2\1'
       convertResult = re.sub(ePattern, eReplace, convertResult)
 
-      spaceCombPattern = ur' ([\u102f\u103d]`)'
-      spaceCombReplace = ur'\1 '
+      spaceCombPattern = r' ([\u102f\u103d]`)'
+      spaceCombReplace = r'\1 '
       convertResult = re.sub(spaceCombPattern, spaceCombReplace, convertResult)
 
-      spaceCombPattern = ur'([\u103b\u103d]) \u102f'
-      spaceCombReplace = ur'\1\u102f '
+      spaceCombPattern = r'([\u103b\u103d]) (\u102f)'
+      spaceCombReplace = r'\1\2 '
       convertResult = re.sub(spaceCombPattern, spaceCombReplace, convertResult)
 
       # Doubled combiners
-      pattern = ur'\u103a\u103a'
-      replacement = ur'\u103a\u00a0\u103a'
+      pattern = r'\u103a\u103a'
+      replacement = '\u103a\u00a0\u103a'
       convertResult = re.sub(pattern, replacement, convertResult)
 
-      pattern = ur'\u102e\u102e'
-      replacement = ur'\u102e\u00a0\u102e'
+      pattern = r'\u102e\u102e'
+      replacement = '\u102e\u00a0\u102e'
       convertResult = re.sub(pattern, replacement, convertResult)
 
-      pattern = ur'\u1036\u1036'
-      replacement = ur'\u1036\u00a0\u1036'
+      pattern = r'\u1036\u1036'
+      replacement = '\u1036\u00a0\u1036'
       convertResult = re.sub(pattern, replacement, convertResult)
 
-      pattern = ur'\u109d\u109d'
-      replacement = ur'\u109d\u00a0\u109d'
+      pattern = r'\u109d\u109d'
+      replacement = '\u109d\u00a0\u109d'
       convertResult = re.sub(pattern, replacement, convertResult)
 
       # Ellipsis
-      pattern = ur'\.\.\.'
-      replacement = ur'\u2026'
+      pattern = r'\.\.\.'
+      replacement = '\u2026'
       convertResult = re.sub(pattern, replacement, convertResult)
 
+      ## TODO: Add variation selectors.
+      if self.add_variation_selectors:
+        pattern = self.variation_sequence_code_points
+        replacement = r'\1' + '\ufe00'
+        convertResult = re.sub(pattern, replacement, convertResult)
+
       return convertResult
+
+    def processParagraphRuns(para):
+      # Nothing special
+      return para
+
 
 def testConvert():
   return

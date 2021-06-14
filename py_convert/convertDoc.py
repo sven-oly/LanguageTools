@@ -10,6 +10,8 @@ import xml.etree.ElementTree as ET
 import convertUtil
 import convertWord
 
+import docx
+
 # The version using docx
 
 # TIMESTAMP for version information.
@@ -58,7 +60,7 @@ class convertDocx():
     self.input_path = input_path
     self.output_dir = output_dir
     self.converter = converter
-    self.old_fonts = converter.oldFonts
+    self.old_fonts = converter.oldFonts  # List of font names
     self.unicode_font = converter.unicodeFont
     self.debug = debug
 
@@ -118,13 +120,24 @@ class convertDocx():
     print('  OUTPATH = %s' % outpath)
 
     # copy other things
-    for info in newzip.infolist():
+    info_parts = newzip.infolist();
+    for info in info_parts:
       if info.filename not in docPartsOut:
         copyfile = newzip.read(info.filename)
         outzip.writestr(info, copyfile)
       else:
         # Skipping the new data for now.
-        outzip.writestr(info, docPartsOut[info.filename])
+        if isinstance(docPartsOut[info.filename], docx.document.Document):
+          try:
+            outzip.write(info, docPartsOut[info.filename])
+          except TypeError as e:
+            print("ERROR: Cannot zip %s" % (info.filename))
+        else:
+          try:
+            outzip.writestr(info, docPartsOut[info.filename])
+          except TypeError as e:
+            print("ERROR: Cannot zip %s" % (info.filename))
+
         if self.debug:
           print('Adding %s' % info.filename)
 
@@ -169,15 +182,15 @@ class convertDocx():
             if node.text:
               textBoxText.append(node)
 
-    print('@@@@@@ %d draw text found' % len(drawingContentText))
-    print('@@@@@@ %d text box text found' % len(textBoxText))
-    print('@@@@@@ %d paragraphs found' % len(self.paragraphs))
+    print('@@@@@@ %d draw text' % len(drawingContentText))
+    print('@@@@@@ %d text box text' % len(textBoxText))
+    print('@@@@@@ %d paragraphs' % len(self.paragraphs))
     print('@@@@@@ docfile_name = %s' % docfile_name)
 
     if not drawingContentText and not textBoxText and docfile_name == 'word/document.xml':
       # Handle this with only DocX functions.
-      convertWord.convertOneDoc(self.input_path, docfile_name, self.converter)
-      return
+      doc = convertWord.convertOneDoc(self.input_path, self.converter)
+      return doc
 
     # This contains drawings and possibly other things that can't be parsed with the docx
     # library. Process all the paragraphs and text items.

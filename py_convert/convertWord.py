@@ -32,11 +32,10 @@ toLowerCase = True  # False
 
 # Check for text and convert the old font encoded parts of the strings.
 # It assumes that the font has been detected.
-def checkAndConvertText(textIn, converter):
+def checkAndConvertText(textIn, converter, fontIndex):
   if not textIn or textIn[0] == '=':
     # Ignore function calls
     return textIn
-  fontIndex = 0
   fontTextInfo = None
   result = converter.convertText(textIn, fontIndex=fontIndex)
   return result
@@ -365,52 +364,80 @@ def convertParagraph(para, converter, unicodeFont, debugInfo=False):
   numConverts = 0
   notConverted = 0
   runs = para.runs
-  if debugInfo:
+  if False and debugInfo:
     print('    %d runs in paragraph' % (len(runs)))
     print('    paragraph text = %s' % (para.text))
   runNum = 0
   runNum = 1
   fontsInRun = []
   for run in runs:
-    if debugInfo:
+    if False and debugInfo:
       print('    run %d text = (%d) %s' % (runNum, len(run.text), run.text))
-      print('run element = %s' % run._element)
-      print('run parent = %s' % run._element.getparent())
+      print('      element = %s, parent = %s' % (run._element, run._element.getparent()))
     fontsInRun.append(run.font)
 
-    if len(run.text):
-      thisText = run.text
-      fontObj = run.font
-      fontName = fontObj.name
-      # print('$$$$ name  = %s' % inspect.getmembers(fontObj.name))q
-      if debugInfo:
-        print('  Run #%1d in font >%s<. Text(%d) =  >%s<' % (
-          runNum, fontName, len(run.text), run.text))
+    thisText = run.text
+    fontObj = run.font
+    fontName = fontObj.name
+    # print('$$$$ name  = %s' % inspect.getmembers(fontObj.name))q
+    if False and debugInfo:
+      print('  Run #%1d in font >%s<. Text(%d) =  >%s<' % (
+        runNum, fontName, len(run.text), run.text))
 
+    try:
       if converter.forceFont:
         fontObj.name = unicodeFont
+    except:
+      pass
 
-      if thisText:
-        convertedText = checkAndConvertText(thisText, converter)
-        if thisText != convertedText:
-          numConverts += 1
+    try:
+      font_index = converter.oldFonts.index(fontName)
+
+      fontObj.name = unicodeFont  ## Change font even if text is empty.
+
+      convertedText = checkAndConvertText(thisText, converter, font_index)
+      if '၁' == convertedText:
+        x=1
+      if thisText != convertedText:
+        if False and debugInfo:
+          print('    Converted %s to %s' % (thisText, convertedText))
+        numConverts += 1
+        try:
           run.text = convertedText
-          fontObj.name = unicodeFont
-        else:
-          notConverted += 1
-    if debugInfo:
+        except Exception as e:
+          print('** Text assignment error %s with %s' % (e, convertedText))
+      else:
+        notConverted += 1
+    except ValueError as e:
+      continue
+
+    if False and debugInfo:
       print('Fonts in run %s' % fontsInRun)
     if len(fontsInRun) > 1:
       compareFonts(fontsInRun[0], fontsInRun[1])
     runNum += 1
 
     # Additional processing as needed.
-  converter.processParagraphRuns(para)
+    try:
+      converter.processParagraphRuns(para)
+    except:
+      pass
+
+  # Check for multiple fonts in runs
+  fonts_in_runs = {}
+  run_text = []
+  for run in runs:
+    if run.font.name:
+      fonts_in_runs[run.font.name] = run
+      run_text.append([run.text, run.font.name])
+  if False and debugInfo and len(fonts_in_runs) > 1:
+    print('*** Multiple fonts in run: %s' % (fonts_in_runs.keys()))
+    print('** Run text : %s' % (run_text))
 
   return numConverts
 
 
-def convertTables(doc, converter, unicodeFont):
+def convertTables(doc, converter, unicodeFont, debug=False):
   # Look at the paragraphs in each cell of each table
   numConverted = 0
 
@@ -421,7 +448,7 @@ def convertTables(doc, converter, unicodeFont):
       for cell in table.row_cells(row_num):
         p = cell.paragraphs
         for p in cell.paragraphs:
-          numConverted += convertParagraph(p, converter, unicodeFont)
+          numConverted += convertParagraph(p, converter, unicodeFont, debug)
       row_num += 1
   return numConverted
 
@@ -442,7 +469,7 @@ def convertDoc(doc, converter, unicodeFont, debugInfo=None):
     if style.name.find('Default') >= 0:
       print('DEFAULT %s' % style.font.name)
       style.font.name = unicodeFont
-    print('Style %s: %s' % (style.name, style.type))
+    ## print('Style %s: %s' % (style.name, style.type))
 
   # Headers and footers
   for section in sections:
@@ -450,11 +477,11 @@ def convertDoc(doc, converter, unicodeFont, debugInfo=None):
     for p in header.paragraphs:
       numConverts += convertParagraph(p, converter, unicodeFont)
 
-  numConverts += convertTables(doc, converter, unicodeFont)
+  numConverts += convertTables(doc, converter, unicodeFont, debugInfo)
 
   paraNum = 0
   for para in paragraphs:
-    num_converted = convertParagraph(para, converter, unicodeFont)
+    num_converted = convertParagraph(para, converter, unicodeFont, debugInfo)
     numConverts += num_converted
     paraNum += 1
 
@@ -471,10 +498,11 @@ def compareFonts(f1, f2):
 
 
 # Process one DOCX, substituting text in the old font with converted values.
-def convertOneDoc(path_to_doc, converter, unicodeFont='Noto Sans Adlam New',
+def convertOneDoc(path_to_doc, converter,
                   outpath=None, isString=False):
   print('Converting in file: %s' % path_to_doc)
 
+  unicodeFont = converter.unicodeFont
   doc = Document(path_to_doc)
 
   (numConverts, numNoteConverted) = convertDoc(
@@ -487,7 +515,7 @@ def convertOneDoc(path_to_doc, converter, unicodeFont='Noto Sans Adlam New',
     print('  ** Saved new version to file %s\n' % unicode_path_to_doc)
   else:
     print('  @@@ No conversion done, so no new file created.\n')
-
+  return doc
 
 def processArgs(argv):
   if len(sys.argv) <= 1:
