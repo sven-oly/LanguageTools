@@ -231,8 +231,6 @@ class ConvertUIHandler(webapp2.RequestHandler):
       test_char_list = langInfo.test_chars
     except AttributeError:
       oldInput = u''
-      for i in xrange(0x23, 0xf1):
-        oldInput += unichr(i)
 
     oldChars = (u'\u0001 !"\u0023\u0024%&\'()*+,-./' +
                 '0123456789:;<=>?@' +

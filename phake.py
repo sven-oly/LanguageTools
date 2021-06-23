@@ -177,7 +177,7 @@ class langInfo():
     self.transliterator = None
 
    # Test data for showing in converter.
-    self.test_data = u'V: ဢ︀ꩬ︀ၵ︀ꩡ︀ထ︀ၸ︀တ︀ယ︀ီက︀လ︀\nN: ဢꩬၵꩡထၸတယီကလ'
+    self.test_data = ''  ##u'V: ဢ︀ꩬ︀ၵ︀ꩡ︀ထ︀ၸ︀တ︀ယ︀ီက︀လ︀\nN: ဢꩬၵꩡထၸတယီကလ'
 
     self.dictionaryLang1 = 'phk'
     self.dictionaryLang2 = 'en'

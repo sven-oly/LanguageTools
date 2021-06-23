@@ -173,15 +173,7 @@ class langInfo():
     self.transliterator = None
 
    # Test data for showing in converter.
-    self.test_data = u"""'𑜱𑜴𑜳𑜴𑜵𑜶𑜷𑜸𑜹𑜰
-𑜫 ‌𑜦 𑜍 𑜄 𑜊 𑜥 𑜩 𑜢 𑜨 𑜆 𑜂 𑜧
-𑜡 𑜏 𑜓 𑜇 𑜖 𑜑 𑜩 𑜀 𑜎 𑜠 '
- 𑜁 𑜋 𑜌 𑜈 𑜃 𑜉 𑜼 𑜽
-𑜾
-𑜝 ​𑜣  𑜥
-𑜒​𑜞​𑜔​𑜕​𑜗​𑜿​𑜙​𑜕
-𑜘𑜐
-"""
+    self.test_data = u""
 
     self.dictionaryLang1 = 'aho'
     self.dictionaryLang2 = 'en'
