@@ -4,7 +4,216 @@ Here we have tools for prototyping keyboards, fonts, and conversion needed for t
 In particular, this site supports languages that are not (yet) well represented on the internet. For example, 
 a community in Africa may use characters that are not available on a default keyboard.
 
+# Add your own language tools to this archive.
+LanguageTools provides a framwork for implementing keyboards, converters, and other tools
+for many languages.
+
+The project runs using Google AppEngine. It currently uses Python2 server side routines
+with Django templating. Keyboard layouts are implemented as JavaScript data files and encoding conversion
+is done using JavaScript routines.
+
+This is a GitHub project, so anyone can access and use the source code.
+
+## Steps to add support for your language
+You are welcome to download this GitHub project and create tools for your own language community.
+
+I also welcome collaboration and would be happy to host contributions on
+[languagetools-153419.appspot.com](https://languagetools-153419.appspot.com/). If you'd like to add your tools,
+use the GitHub procedures to create a Pull Request and ask me to review. If all looks OK,
+I will add this to the active site.
+
+### Create a Python server-side file
+The server side Python2 file handles URLs for your language and the applications you implement for the language.
+There are some global variables, but most of the values should be referenced in the langInfo class.
+
+The langInfo data is passed to HTML templates with Django. In many cases, the classes in
+base.py can be used as implementations for keyboard, conversions, and several other common functions.
+
+1. Copy template.py with a good name for your language. Save as a .py file in the same directory.
+
+2. Fill in basics including:
+* Language name and code as strings
+* Range of character code points used
+* Font(s) used including Unicode fonts and font encodings (see below for where to put them). Add the paths
+relative to the main directory, e.g., '/fonts/lang'
+  
+3. Add links relevant to your implementation in the links array
+
+Note that each link includes text displayed as well as a link to another page in LanguageTools or
+an external reference. It is often useful to point to information about the language, writing system,
+and other frequently needed information.
+
+````
+links = [
+{'linkText': 'Keyboard',
+'ref': '/' + LanguageCode + '/'
+},
+````
+Links to other pages in this application start with '/' followed by the Language code.
+
+4. Add references at the end of the .py file for the particular pages you wish to use for this language
+
+In most cases, use the methods of the base class. These methods pass information from the langInfo
+object to the Django template.
+
+````
+app = webapp2.WSGIApplication([
+  ('/' + LanguageCode + '/', base.LanguagesHomeHandler),
+
+````
+
+5. Add font references
+   
+Note that the formats for font descripts are different for encoding fonts and Unicode fonts:
+````
+# Encoding fonts:
+    self.encoding_font_list = [
+      {
+        'font_path': '/fonts/ahom_aiton/PHAKE.TTF',
+        'font_name': 'Phake',
+        'display_name': 'Phake',
+      },
+      ...
+    ]
+
+# Unicode font list:
+    self.unicode_font_list = [
+      {'source': '/fonts/language/myfont.ttf',
+       'family': 'theFontFamilyName',
+       'longName': 'human readable font name',
+       },
+       ...
+    ]
+````
+
+6. Add references to keyboard layouts
+
+The kb_list value in langInfo sets up one or more keyboards as defined in layouts, below. The
+shortName refers to the actual name of the file in the layouts directory.
+
+If provided, fontFamily gives the names of the fonts to be used with each keyboard.
+````buildoutcfg
+    self.kb_list = [
+      {'shortName': 'phkVar',
+       'longName': 'Phake Variant',
+       'fontFamily': 'NotoSansMyanmarRegular,arial',
+       },
+````
+
+#### Add font files
+In the fonts/ directory, add a new folder for the fonts needed with the name of the language.
+Add any Unicode fonts or custom font encodings in that directory.
+
+### Write a layout file in JavaScript
+In the layouts directory, copy an existing layout such as en.js, renaming it to reflect the
+language and particular layout option. Note that the name of the this JavaScript file is the same as
+shortName in the kb_list given in the .py file for the language.
+
+Set up the indentifying information for the layout with a variable name using the language code and "_LAYOUT".
+
+Set the id to be the same as the layout file name (without .js).
+
+Add an appropriate title for the layout. This often includes the name of the language in that
+language.
+
+At the bottom of the file, set the _LAYOUT variable for the loadme function.
+
+Add a variable with the language code as used in the keyboard shortName set to the _LAYOUT name.
+
+````buildoutcfg
+var EN_LAYOUT = {
+  'id': 'en',
+  'title': 'English QWERTY',
+  
+  ...
+  
+google.elements.keyboard.loadme(EN_LAYOUT);
+en = EN_LAYOUT;
+````
+
+#### Defining the keyboard layout
+The mappings part of the JavaScript file defines values that appear on the virtual keyboard as well
+as the output from each virtual key. Mappings are provided for up to 8 layers. The default layer is
+is referenced by an empty string value. Shift layer is give with 's', an control-alt layer is indicated by 'c'.
+
+The contents of each layer is give by a single string of values. By default, a single character
+indicates the contents of the layer, starting from the upper left of the keyboard.
+
+In this example, the QWERTY default and shift layers are defined. 
+````buildoutcfg
+mappings': {
+  '': {
+    '': '`1234567890-=' +
+        'qwertyuiop[]\\' +
+        'asdfghjkl;\'' +
+        'zxcvbnm,./'
+    },
+    's': {
+      '': '~!@#$%^&*()_+' +
+          'QWERTYUIOP{}|' +
+          'ASDFGHJKL:"' +
+          'ZXCVBNM<>?'
+    },
+````
+
+Unicode escape sequences may be used instead of a string literal. For example, '\u0041' may be sub
+be used instead of 'A'. This is useful for entering characters that are not easy to type or
+read.
+
+In many cases, a single key should produce more than a single code point. In this case, a single keystroke's output
+can be entered with double braces surrounding the output, e.g., {{\u0041b}} in the codes for
+a layer will case a single key to produce "Ab" as its output.
+
+#### Transforms
+TODO: Add description of key transforms here, with example. Myanmar output is one example of fairly
+complex transforms in use to reorder keys. See my.js.
+
+Phonetic keyboards such as the Cherokee or Plains Cree are implemented by substitutions of Unicode output based on one or more 
+ASCII characters. See chr_phone.js and crk_phonetic.js as examples.
+
+### Add the code to app.yaml
+
+Add the language code as a URL path, pointing to the Python server code. Here, for example,
+is an entry that connects the paths starting with "/cpp/" to the file chakma.py.
+````buildoutcfg
+- url: /ccp/.*
+  script: chakma.app
+````
+
+## Running this project on your local computer
+To test your language tools, set up Google AppEngine on your local computer. Here are instructions for setting up
+[AppEngine with Python 2.7](https://cloud.google.com/appengine/docs/standard/python/setting-up-environment)
+
+[Run a local server](https://cloud.google.com/appengine/docs/standard/python/tools/using-local-server) to test
+your keyboard and other parts on your local computer (Mac, Windows, Linux).
+
+You may also create a new AppEngine project of your own using this code base. Uploading and setting
+up your own AppEngine site is [documented here](https://cloud.google.com/appengine).
+
+In the main directory for the project., start the development server from a command line.
+````
+dev_appserver.py . &
+````
+
+In your favorite browser, load localhost at port 8080. Append the language code you added in the
+app.yaml file. For example, for langauge code "xyz", this URL will activate your Python code for the
+base page for your language.
+
+``
+http://localhost:8080/xyz/
+``
+
+Note any error messages in the terminal window where the dev_server is running. Fix any errors in the
+Python code that are reported there. When the page loads, you should see at least the basics of
+your languages home page.
+
+You can (and should) use the browser's inspector to understand the code generated by the Python
+server side code with Django. And you may set breakpoints to debug JavaScript code, including that for
+loading keyboards and converters.
+
 # Keyboard prototypes
+LanguageTools provides a way to quickly try different layout and transform rules for your language.
+A few examples of keyboard options are describe here.
 
 ## Yoruba language and extended Latin
 The Yoruba language uses Latin characters beyond the A-Z on an English langauge keyboard. These include the following
@@ -95,14 +304,26 @@ This is illustrated in the prototype keyboard here: http://languagetools-153419.
 In this prototype, additional rules provide shortcuts, such as "A", "I", "O" instead of doubled lowercase "aa".
 This provides additional space on the shift layout for combinations that may be needed in writing other languages.
 
-In additiona, the caps-lock layer of the prototype keyboard selects standard English QWERTY layout, making it easy for a
+In addition, the caps-lock layer of the prototype keyboard selects standard English QWERTY layout, making it easy for a
 user to create and edit multilingual text. Naturally, it is also possible to create a version with a French or
 other language's layout for writing in a second different language.
 
 ## Additional keyboard notes
+Note that many languages use multiple keyboard layouts, e.g., QWERTY and Dvorak keyboard for English. The limitation is
+usually the availability on the platforms that a person uses.
 
 # Fonts and prototyping
+Many fonts are publicly downloadable without charge for personal use. Common formats include TrueType (.ttf),
+OpenType (.otf), and Web Open Font Format (.woff). These can be used in most desktop applications including
+word processing, spreadsheets, presentation software, simple notes, and many others.
+
+## Creating custom fonts
+It is also possible to create your own fonts using such tools as [FontForge](https://fontforge.org/en-US/), an open
+source project that is free to download and use. Fonts include many concepts that may be new. Try
+reading online about [font design with FontForge](http://designwithfontforge.com/en-US/Introduction.html) and other
+resources such as video tutorials, e.g, [FontForge Master Class](https://www.youtube.com/watch?v=5O4bIAzbebI).
 
 # Writing systems not yet in Unicode
+LanguageTools works well with non-Unicode fonts as well as Unicode.
 
-## TODO: include text for this.
+Just add the fonts to the encoded font list and set up keyboard layouts as needed.
