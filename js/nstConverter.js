@@ -288,7 +288,7 @@ var private_use_map_combined = {
     'uz': ['𖪄', ''],
     'uc': ['𖪅', ''],
     'ux': ['𖪇', ''],
-    'awz': ['𖩼', ''],
+    'awz': ['𖪈', '\ue414'],
     'awc': ['𖪉', ''],
     'awx': ['𖪋', ''],
     'uiz': ['𖪌', ''],
@@ -333,6 +333,9 @@ var private_use_map_combined = {
     'r': ['𖪲', ''],
     'j': ['𖪵', ''],
     'v': ['𖩸', ''],
+    'x': ['𖪺', '\ue448'],
+    'z': ['𖪾', '\ue458'],
+    'dh': ['𖪼','\ue42c'],
     // PUA to Unicode here.
     '\uE400':	'\ud81a\ude70',
     '\uE401':	'\ud81a\ude71',
@@ -434,10 +437,11 @@ var gamwin_latin_chars =
     "anx|vnz|vnc|vnx|enz|enc|enx|inz|inc|inx|unz|unc|unx|awnz|awnc|awnx|uinz|uinc|uinx|uenz|uenc|uenx|uiunz|uiunc|" +
     "uiunx|ovlz|ovlc|ovlx|oalz|oalc|oalx|alz|alc|alx|vlz|vlc|vlx|elz|elc|elx|ilz|ilc|ilx|ulz|ulc|ulx|awlz|awlc|awlx|" +
     "uilz|uilc|uilx|uelz|uelc|uelx|uiulz|uiulc|uiulx|ovrz|ovrc|ovrx|oarz|oarc|oarx|arz|arc|arx|vrz|vrc|vrx|erz|erc|" +
-    "erx|irz|irc|irx|olc|olx|olz|onc|onx|onz|orc|orx|orz|urz|urc|urx|awrz|awrc|awrx|uirz|uirc|uirx|uerz|uerc|uerx|uiurz|uiurc|uiurx|ok|ak|ek|ik|uk|" +
+    "erx|irz|irc|irx|olc|olx|olz|onc|onx|onz|orc|orx|orz|urz|urc|urx|awrz|awrc|awrx|uirz|uirc|uirx|uerz|uerc|uerx|uiurz|" +
+    "uiurc|uiurx|ok|ak|ek|ik|uk|dh|" +
     "awk|uik|uek|uiuk|ovp|oap ~ op|op|ap|ep|ip|up|awp|uip|uep|uiup|ovt|oat|at|et|it|ut|awt|uit|uet|uiut|oz|" +
     "oc|ot|ox|az|ac|ax|vz|vc|vx|ez|ec|ex|iz|ic|ix|uz|uc|ux|awz|awc|awx|uiz|uic|uix|uez|uec|uex|uiuz|uiuc|uiux|htt|th|" +
-    "ht|ch|kh|ng|ny|ph|nh|sh|ts|gh|mz|mc|mq|mx|f|k|g|s|y|w|p|b|m|n|h|l|t|d|r|j|v|,|\.|\u000a|.";
+    "ht|ch|kh|ng|ny|ph|nh|sh|ts|gh|mz|mc|mq|mx|f|k|g|s|y|w|p|b|m|n|h|l|t|d|r|j|v|x|z|,|\.|\u000a|.";
 
 function preParseLatin(instring) {
   //  var regex1 = new RegExp(tangsa_latin_chars, "gi");
