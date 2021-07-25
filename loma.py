@@ -22,7 +22,7 @@ import base
 from google.appengine.ext.webapp import template
 
 Language = 'Loma'
-Language_native = '???ᰶ'
+Language_native = 'Löömàgòòi'
 LanguageCode = 'lom'
 ScriptCode = 'Loma'
 
@@ -70,8 +70,8 @@ links = [
     {'linkText': 'Unicode proposal',
      'ref': 'http://www.unicode.org/L2/L2017/17233-n4837-loma.pdf'
     },
-    {'linkText': 'Omniglot script',
-     'ref': 'https://www.omniglot.com/writing/loma.htm'
+    {'linkText': 'Omniglot Loma syllabary',
+     'ref': 'https://www.omniglot.com/writing/lomasyllabary.htm'
     },
     {'linkText': 'Loma Wikipedia',
      'ref': 'https://en.wikipedia.org/wiki/Loma_language'
@@ -107,6 +107,9 @@ class langInfo():
 
     self.converters = None
 
+    self.kb_messages = [
+      'The phonetic input codes used for each Loma syllable can be changed easily. Use feedback to suggest changes.'
+    ]
     # TODO: Fill in the rest of the common data.
 
 # TODO: Fill in with diacritics

@@ -43,6 +43,7 @@ LanguageList = [
   ('Nyaikeng Puachue Hmong', 'Igbo Nsibidi'),
   ('Cherokee', 'chr', 'ᏣᎳᎩ ᎦᏬᏂᎯᏍᏗ'),
   ('Hoocąk (Ho-chunk)', 'win', 'Hoocąk'),
+  ('Makah', 'myh'),
   ('Menoninee', 'mez', 'Oma͞eqnomenew'),
   ('Mende', 'men'),
   ('Myanmar', 'my', 'မြန်မာဘာသာ'),
@@ -53,6 +54,7 @@ LanguageList = [
   ('Tamashek', 'tmh', 'ⵜⴰⵎⴰⵌⴰⵆ'),
   ('Tangsa', 'nst', 'Tangsa'),
   ('Tibetan', 'bod'),
+  ('Wolof', 'wo'),
 ]
 
 class MainHandler(webapp2.RequestHandler):
