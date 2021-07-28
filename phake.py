@@ -52,6 +52,12 @@ class langInfo():
        'family': 'NotoSerif Myanmar Light',
        'longName': 'Noto Serif Myanmar Light',
        },
+      {'source': '/fonts/Phake/PhakeRamayanaUnicode.otf',
+       'family': 'PhakeRamayanaUniNew',
+       'longName': 'Ramayana New Unicode 28-Jul-2021',
+       'info': 'Dotted form by Ben Mitchell, 28-Jul-2021',
+       'download': 'no',
+       },
       {'source': '/fonts/Phake/GhinKhao-Bold.otf',
        'family': 'GhinKhao-Bold',
        'longName': 'GhinKhao Bold',
@@ -93,6 +99,18 @@ class langInfo():
      'family': 'NotoSerif Myanmar Thin',
      'longName': 'Noto Serif Myanmar Thin',
      },
+    ]
+
+    # Just provide some of these fonts for download at this time.
+    self.public_font_resources = [
+      {'source': '/fonts/Myanmar/NotoSerifMyanmar-Light.ttf',
+       'family': 'NotoSerif Myanmar Light',
+       'longName': 'Noto Serif Myanmar Light',
+       },
+      { 'source': '/fonts/Myanmar/NotoSerifMyanmar-Regular.ttf',
+        'family': 'NotoSerif Myanmar Regular',
+        'longName': 'Noto Serif Myanmar Regular',
+      },
     ]
 
     self.lang_list = [
@@ -151,6 +169,9 @@ class langInfo():
       {'linkText': 'Myanmar Unicode extension A block',
        'ref': 'https://www.unicode.org/charts/PDF/UAA60.pdf'
        },
+      {'linkText': 'Representing Myanmar in Unicode',
+       'ref': 'https://www.unicode.org/notes/tn11/UTN11_4.pdf'
+      },
       {'linkText': 'Resources',
        'ref': '/' + self.LanguageCode + '/downloads/'
        },
@@ -171,7 +192,10 @@ class langInfo():
     self.base_consonant = u'\u1000\ufe00'
 
     self.unicodeChars = [unichr(x) for x in range(0x1000, 0x105f)]
-    self.diacritic_list = [unichr(x) for x in range(0x102b, 0x103f)]
+    self.diacritic_list = [unichr(x) for x in range(0x102d, 0x1031)]
+    self.diacritic_list.append(unichr(0x1036))
+    self.diacritic_list.extend([unichr(x) for x in range(0x1039, 0x103e)])
+    self.diacritic_list.append(unichr(0xa9e5))
 
     # Python-based transliteration tool.
     self.transliterator = None

@@ -179,6 +179,12 @@ class DiacriticHandler(webapp2.RequestHandler):
   def get(self, match=None):
     langInfo = self.app.config.get('langInfo')
 
+    base_num = self.request.get('base', None)
+    if base_num:
+      base_char = unichr(int(base_num, base=16))
+    else:
+      base_char = langInfo.base_consonant
+
     # Generate combinations of base + diacritic pairs
     combos = []
     table = []
@@ -191,7 +197,7 @@ class DiacriticHandler(webapp2.RequestHandler):
         row = [x + ' (%4x)' % ord(x)]
       row_names.append(row[0])
       for y in langInfo.diacritic_list:
-        text = langInfo.base_consonant + x + y
+        text = base_char + x + y
         combos.append({'text': text,
                        'codes': ['%4x ' % ord(c) for c in text]})
         row.append(text)
@@ -205,7 +211,7 @@ class DiacriticHandler(webapp2.RequestHandler):
     template_values = {
         'direction': text_direction,
         'language': langInfo.Language,
-        'base_char': langInfo.base_consonant.encode('utf-8'),
+        'base_char': base_char.encode('utf-8'),
         'base_hex': ['%4x' % ord(x) for x in langInfo.base_consonant],
         'diacritics': [x for x in langInfo.diacritic_list],
         'diacritics_hex': row_names,  #['%4x ' % ord(y) for y in langInfo.diacritic_list],
