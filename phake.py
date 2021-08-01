@@ -54,8 +54,8 @@ class langInfo():
        },
       {'source': '/fonts/Phake/PhakeRamayanaUnicode.otf',
        'family': 'PhakeRamayanaUniNew',
-       'longName': 'Ramayana New Unicode 28-Jul-2021',
-       'info': 'Dotted form by Ben Mitchell, 28-Jul-2021',
+       'longName': 'Ramayana New Unicode 29-Jul-2021',
+       'info': 'Dotted form by Ben Mitchell, 29-Jul-2021. https://github.com/ohbendy/Phake-Ramayana/blob/main/PhakeRamayanaUnicode.otf',
        'download': 'no',
        },
       {'source': '/fonts/Phake/GhinKhao-Bold.otf',
@@ -194,7 +194,8 @@ class langInfo():
     self.unicodeChars = [unichr(x) for x in range(0x1000, 0x105f)]
     self.diacritic_list = [unichr(x) for x in range(0x102d, 0x1031)]
     self.diacritic_list.append(unichr(0x1036))
-    self.diacritic_list.extend([unichr(x) for x in range(0x1039, 0x103e)])
+    self.diacritic_list.extend([unichr(x) for x in range(0x103a, 0x103e)])
+    self.diacritic_list.append(unichr(0x105e))
     self.diacritic_list.append(unichr(0xa9e5))
 
     # Python-based transliteration tool.
