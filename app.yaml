@@ -213,6 +213,9 @@ handlers:
 - url: /to/.*
   script: tongan.app
 
+- url: /xmf/.*
+  script: mingrelian.app
+
 - url: /unr/.*
   script: mundari.app
 

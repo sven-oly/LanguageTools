@@ -46,6 +46,7 @@ LanguageList = [
   ('Makah', 'myh'),
   ('Menoninee', 'mez', 'Oma͞eqnomenew'),
   ('Mende', 'men'),
+  ('Mingrelian', 'xmf'),
   ('Myanmar', 'my', 'မြန်မာဘာသာ'),
   ('Navajo', 'nv', 'Diné bizaad'),
   ('Oneida', 'one', 'Onʌyoteʔa·ká·'),
