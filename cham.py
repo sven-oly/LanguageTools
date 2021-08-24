@@ -30,6 +30,11 @@ LanguageCode = 'cja'
 
 encoding_font_list = [
   {
+    'font_path': '/fonts/Cham/EFEOPanrang.ttf',
+    'font_name': 'EFEOPanrang',
+    'display_name': 'EFEO Panrang',
+  },
+  {
     'font_path': '/fonts/Cham/JG ChamCambodia.ttf',
     'font_name': 'JGChamCambodia',
     'display_name': 'JG Cham Cambodia',
@@ -37,14 +42,19 @@ encoding_font_list = [
     'note': 'Font by Jason Glavy',
   },
   {
-    'font_path': '/fonts/Cham/EFEOPanrang.ttf',
-    'font_name': 'EFEOPanrang',
-    'display_name': 'EFEO Panrang',
-  },
-  {
     'font_path': '/fonts/Cham/JG ChamVN.ttf',
     'font_name': 'JGChamVN',
     'display_name': 'JG ChamVN',
+  },
+  {
+    'font_path': '/fonts/Cham/EFEOParik.ttf',
+    'font_name': 'EFEOParik',
+    'display_name': 'EFEO Parik',
+  },
+  {
+    'font_path': '/fonts/Cham/EFEOUdong.ttf',
+    'font_name': 'EFEOUdong',
+    'display_name': 'EFEO Udong',
   },
 ]
 
@@ -64,16 +74,11 @@ unicode_font_list = [
       'longName': 'Cham OI Kulbleng',
       'source': '/fonts/Cham/Cham OI_Kulbleng.ttf',
     },
-    {
-        'family': 'ChamOITangin',
-        'longName': 'Cham OI Trangin (extended Unicode)',
-        'source': '/fonts/Cham\ OI_Tangin_0.ttf',
-    },
-    {
-        'family': 'ChamOIKulbleng',
-        'longName': 'Cham OI Kulbleng (extended Unicode)',
-        'source': '/fonts/Cham/Cham OI_Kulbleng.ttf'
-    },
+  {
+    'family': 'ChamOI_Tangin',
+    'longName': 'Cham OI_Tangin',
+    'source': '/fonts/Cham/Cham OI_Tangin.ttf',
+  },
 ]
 
 kb_list = [
