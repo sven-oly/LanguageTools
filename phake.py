@@ -48,23 +48,19 @@ class langInfo():
     ]
 
     self.unicode_font_list = [
+      {'source': '/fonts/Phake/PhakeRamayanaUnicode.otf',
+       'family': 'PhakeRamayanaUnicode',
+       'longName': 'Ramayana Unicode 29-Jul-2021',
+       'info': 'Dotted form by Ben Mitchell, 29-Jul-2021. https://github.com/ohbendy/Phake-Ramayana/blob/main/PhakeRamayanaUnicode.otf',
+       'download': 'no',
+       },
       {'source': '/fonts/Myanmar/NotoSerifMyanmar-Light.ttf',
        'family': 'NotoSerif Myanmar Light',
        'longName': 'Noto Serif Myanmar Light',
        },
-      {'source': '/fonts/Phake/PhakeRamayanaUnicode.otf',
-       'family': 'PhakeRamayanaUniNew',
-       'longName': 'Ramayana New Unicode 29-Jul-2021',
-       'info': 'Dotted form by Ben Mitchell, 29-Jul-2021. https://github.com/ohbendy/Phake-Ramayana/blob/main/PhakeRamayanaUnicode.otf',
-       'download': 'no',
-       },
       {'source': '/fonts/Phake/GhinKhao-Bold.otf',
        'family': 'GhinKhao-Bold',
        'longName': 'GhinKhao Bold',
-       },
-      {'source': '/fonts/Phake/PhakeRamayanaUnicode.ttf',
-       'family': 'PhakeRamayanaUnicode',
-       'longName': 'Phake Ramayana Unicode',
        },
       { 'source': '/fonts/Padauk-Regular.ttf',
           'family': 'Padauk',
@@ -114,7 +110,7 @@ class langInfo():
     ]
 
     self.lang_list = [
-      {'shortName': 'phk',
+      {"shortName": "phk",
        'longName': 'Phake'
        },
       {'shortName': 'kht',
@@ -129,11 +125,11 @@ class langInfo():
     self.kb_list = [
       {'shortName': 'phkVar',
        'longName': 'Phake Variant',
-       'fontFamily': 'NotoSansMyanmarRegular,arial',
+       'fontFamily': 'PhakeRamayanaUnicode,arial',
        },
       {'shortName': 'phk',
        'longName': 'Phake',
-       'fontFamily': 'NotoSansMyanmarRegular,arial',
+       'fontFamily': 'PhakeRamayanaUnicode,arial',
        },
       {'shortName': 'aio',
        'longName': 'Aiton',
@@ -180,8 +176,8 @@ class langInfo():
     resource_list = [
       {
         'name': 'KeyMan Phake keyboard for mobile and computer',
-        'source': '/resources/phk/phk_v1.11.kmp',
-        'description': 'Version 1.11 25-April-2021'
+        'source': '/resources/phk/phk_1.14.kmp',
+        'description': 'Version 1.14 19-Aug-2021'
       },
     ]
 
@@ -196,8 +192,18 @@ class langInfo():
     self.diacritic_list.append(unichr(0x1036))
     self.diacritic_list.extend([unichr(x) for x in range(0x103a, 0x103e)])
     self.diacritic_list.append(unichr(0x105e))
+    self.diacritic_list.append(unichr(0x109d))
     self.diacritic_list.append(unichr(0xa9e5))
 
+    # These are pairs that need to be reversed to appear correctly
+    self.diacritic_reverse_pairs = [
+      [[0x102d, 0x102e], [0x103a, 0x103b, 0x103c, 0x103d, 0x105e]],
+      [[0x102f, 0x1030], [0x102c, 0x102e, 0x103a, 0x103b, 0x103c, 0x103d, 0x105e, 0xa9e5]],
+      [[0x1036], [0x102c, 0x102e, 0x102f, 0x1030, 0x103a, 0x103b, 0x103c, 0x103d, 0x105e, 0xa9e5]],
+      [[0x103c], [0x103a, 0x103b, 0x105e]],
+      [[0x103d], [0x103a, 0x103c, 0x105e]],
+      [[0xa9e5], [0x103a, 0x103b, 0x103c, 0x105e]]
+    ]
     # Python-based transliteration tool.
     self.transliterator = None
 

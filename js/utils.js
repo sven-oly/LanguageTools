@@ -330,15 +330,15 @@ Utils.prototype.setKeyCapsFont = function(newFontFamily) {
   }
 }
 
-Utils.prototype.setFontFamily = function (newFontFamily, area_id) {
-  this.setKeyCapsFont(newFontFamily);
+Utils.prototype.setFontFamily = function (newFontFamily, area_id, resetKeyboard=true) {
+  if (resetKeyboard) this.setKeyCapsFont(newFontFamily);
   var t1_element = document.getElementById(area_id);
   t1_element.style.fontFamily = newFontFamily;
 }
 
 Utils.prototype.onLanguageSelected = function(newLangTag, textArea) {
   var t1_element = document.getElementById(textArea);
-  t1_element.lang = newLangTag['shortName'];
+  t1_element.lang = newLangTag;
 }
 
 Utils.prototype.onSizeSelected = function(newSize, textArea) {

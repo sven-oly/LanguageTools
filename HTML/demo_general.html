@@ -35,8 +35,8 @@
       {% endfor %}
 
       .default-font {
-      font-family: "Arial,Helvetica";
-      font-size:12px;
+      font-family: "{{font_list.0.family}}";
+      font-size:18px;
       }
 
     input {font-size:18px;}
@@ -225,14 +225,14 @@
   <span {% if lang_list|length <= 1 %}hidden{% endif %}>
     Language: <select onchange="utils.onLanguageSelected(this.value, 't1')">
     {% for lang in lang_list %}
-    <option value="{{lang}}" select="">{{lang.longName}}</option>
+    <option value="{{lang.shortName}}" select="">{{lang.longName}}</option>
     {% endfor %}
   </select>
   </span>
     <span {% if kb_list|length <= 1 %}hidden{%endif%}>
     Keyboard: <select onchange="utils.onLayoutSelected(this.value, 't1', 'kb_instructions')" id="setLayout">
     {% for kb in kb_list %}
-    <option value="{{kb.shortName}}" select="">{{kb.longName}}</option>
+    <option value="{{kb.shortName}}">{{kb.longName}}</option>
     {% endfor %}
     </select>
   </span>
@@ -272,7 +272,7 @@
   <div id="t1_div">
     <textarea id="t1" style="width:600px;font-family:{{font_list.0.family}};resize:vertical;font-size:24px;"
       rows="10" spellcheck="false"
-      lang="{%if lang_list.0.shortName %}{{lang_list.0.shortName}}{%endif%}{%if langTag %}{{langTag}}{%endif%}"
+      lang="{%if lang_list.0.shortName %}{%endif%}{%if langTag %}{{langTag}}{%endif%}"
       dir="{{direction}}">{{test_data}}</textarea>
       <br />
       {% if allFonts %}

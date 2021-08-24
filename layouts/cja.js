@@ -10,23 +10,23 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-// Mingrelian in Georgian script
+// Just started
 
-var XMF_LAYOUT = {
-  'id': 'xmf',
-  'title': 'მარგალური ნინა',
+var CJA_LAYOUT = {
+  'id': 'cja',
+  'title': 'ꨌꩌ',
   'mappings': {
     ',c': {
-      '': '`1234567890-=' +
-          'ქწერტყუიოპ[]\\' +
-          'ასდფგჰჯკლ;\'' +
-          'ზხცვბნმ,./'
+      '': 'ꩀ꩑꩒꩓꩔꩕꩖꩗꩘꩙꩐ꨮ꨻ꩌ' +
+          'ꨊꨥꨃꨣꨓꨢꨂꨁꨅꨚ' +
+          'ꨀꨧꨕꨛꨈꨨꨎꨆꨈ•\'' +
+          'ꨐꨒꨌꨡꨝꨗꨟ;  '
     },
     's,sc': {
-      '': '~!@#$%^&*()_+' +
-          'ᲥᲭᲔᲦᲗᲸᲣᲲᲝᲞ{}|' +
-          'ᲐᲨᲓᲤᲒᲰᲟᲷᲚ:"' +
-          'ძხჩვბნმ<>?'
+      '': 'ꨊꩄꩅꩆꩇꩈꩉꩊ꩎ꩋꩃꨱ꨺' +
+          'ꨋꨶꨔꨴꨳꨰꨭꨲꨜꨯꨫ꨸꨸\uAA2B\uAA38\uAA38' +
+          'ꨄꨦꨖ(ꨉꩍꨏꨇꨵ:"' +
+          'ꨑ)ꨍꨙꨞꨘꨠ꨹꩜?'
     },
     'l,cl': {
       '': '`1234567890-=' +
@@ -47,6 +47,5 @@ var XMF_LAYOUT = {
 };
 
 // Load the layout and inform the keyboard to switch layout if necessary.
-google.elements.keyboard.loadme(XMF_LAYOUT);
-xmf = XMF_LAYOUT;
-
+google.elements.keyboard.loadme(CJA_LAYOUT);
+cja = CJA_LAYOUT;

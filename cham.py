@@ -30,16 +30,21 @@ LanguageCode = 'cja'
 
 encoding_font_list = [
   {
-    'font_path': '/fonts/JG ChamCambodia.ttf',
+    'font_path': '/fonts/Cham/JG ChamCambodia.ttf',
     'font_name': 'JGChamCambodia',
     'display_name': 'JG Cham Cambodia',
     'source': 'http://glavyfonts.com/asian.html',
     'note': 'Font by Jason Glavy',
   },
   {
-    'font_path': '/fonts/EFEOPanrang.ttf',
+    'font_path': '/fonts/Cham/EFEOPanrang.ttf',
     'font_name': 'EFEOPanrang',
     'display_name': 'EFEO Panrang',
+  },
+  {
+    'font_path': '/fonts/Cham/JG ChamVN.ttf',
+    'font_name': 'JGChamVN',
+    'display_name': 'JG ChamVN',
   },
 ]
 
@@ -47,7 +52,17 @@ unicode_font_list = [
     {
         'family': 'NotoSansCham',
         'longName': 'Noto Sans Cham',
-        'source': '/fonts/NotoSansCham-Regular.ttf',
+        'source': '/fonts/Cham/NotoSansCham-Regular.ttf',
+    },
+    {
+      'family': 'EFEOCamThrahTimes',
+      'longName': 'EFEO Cam Thrah Times',
+      'source': '/fonts/Cham/EFEO Cam Thrah Times.otf',
+    },
+    {
+      'family': 'ChamOI_Kulbleng',
+      'longName': 'Cham OI Kulbleng',
+      'source': '/fonts/Cham/Cham OI_Kulbleng.ttf',
     },
     {
         'family': 'ChamOITangin',
@@ -57,13 +72,13 @@ unicode_font_list = [
     {
         'family': 'ChamOIKulbleng',
         'longName': 'Cham OI Kulbleng (extended Unicode)',
-        'source': '/fonts/Cham OI_Kulbleng.ttf'
+        'source': '/fonts/Cham/Cham OI_Kulbleng.ttf'
     },
 ]
 
 kb_list = [
-  {'shortName': LanguageCode,
-   'longName': LanguageCode,
+  {'shortName': 'cja',
+   'longName': 'Eastern Cham',
    },
 ]
 
@@ -71,8 +86,8 @@ links = [
     {'linkText': 'Keyboard',
      'ref': '/' + LanguageCode + '/'
     },
-    # {'linkText': 'Converter',
-    # 'ref': '/' + LanguageCode + '/convertUI/'},
+    {'linkText': 'Converter',
+      'ref': '/' + LanguageCode + '/convertUI/'},
     {'linkText': 'Font conversion summary',
       'ref': '/' + LanguageCode + '/encodingRules/'
     },
@@ -94,6 +109,8 @@ links = [
     {'linkText': 'Combiners',
      'ref': '/cja/diacritic/'
      },
+    {'linkText': "kauthara.org",
+     'ref': 'https://kauthara.org/'}
 ]
 
 
@@ -213,6 +230,7 @@ class DiacriticHandler(webapp2.RequestHandler):
 langInstance = langInfo()
 
 app = webapp2.WSGIApplication([
+    ('/' + LanguageCode + '/', base.LanguagesHomeHandler),
     ('/' + LanguageCode + '/', ConvertUIHandler),
     ('/' + LanguageCode + '/convertUI/', ConvertUIHandler),
     ('/' + LanguageCode + '/downloads/', base.Downloads),

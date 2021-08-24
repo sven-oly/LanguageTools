@@ -27,7 +27,7 @@ var XMF_LATN_LAYOUT = {
           '{{Ç̌}}ʤERTYUIOP{{P̌}}{{T̆}}Ƨ' +
           'ASD{{Ǩ}}GHJKLƔꞆ' +
           '{{Ž}}X{{Ç}}VBNM,.{{Ş}}'
-    },
+          },
     'l,cl': {
       '': '`1234567890-=' +
           'qwertyuiop[]\\' +

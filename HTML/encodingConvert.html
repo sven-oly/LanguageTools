@@ -148,24 +148,24 @@ function onEncodingSelected(selector, output_id) {
 }
 
 function buildEncodingTable(table) {
-  var fontsize="14px";
+  const fontsize="14px";
   var code;
   // Update headers.
-  var header = table.createTHead();
-  var row = header.insertRow(0);
+  let header = table.createTHead();
+  let row = header.insertRow(0);
+  let outIndex = 0;
   row.insertCell(outIndex).innerHTML = "Hex Code";
   row.insertCell(outIndex).innerHTML = "Unicode";
+  outIndex += 2;
 
-  var outIndex = 2;
   for (var i = 0 ; i < encoding_font_list.length; i ++) {
-    var row = table.rows[0];
+    row = table.rows[0];
     row.insertCell(outIndex).innerHTML = encoding_font_list[i];
     outIndex += 1;
-    row.insertCell(outIndex).innerHTML = encoding_font_list[i] +
-               " to " +unicode_font_list[0];
+    row.insertCell(outIndex).innerHTML = " to Unicode";
     outIndex += 1;
   }
-  code_list = [];
+  const code_list = [];
   if (private_use_map_combined === undefined) {
     return;
   }
@@ -176,8 +176,8 @@ function buildEncodingTable(table) {
 
   var rowNum = 1;  // Skip the headers
   for (var index in code_list) {
-    var code = code_list[index];
-    var row = table.insertRow(rowNum);
+    const code = code_list[index];
+    row = table.insertRow(rowNum);
 
     var items = private_use_map_combined[code];
 
@@ -187,7 +187,7 @@ function buildEncodingTable(table) {
     cell2.innerHTML = code;
 
     // Add coded output.
-    var outIndex = 2;
+    outIndex = 2;
     for (var i = 0; i<items.length; i ++) {
       if(typeof map_font_to_encoding == 'object') {
         encodingIndex =  map_font_to_encoding[encoding_font_list[i]];
@@ -236,6 +236,23 @@ function setupConverterSelector(selector_id) {
 function changeConverter(selector) {
 }
 
+// Changes the Uniocode font applied to each converted column in table.
+function setUnicodeFontColumns(unicodeFont, tableId) {
+  const table = document.getElementById(tableId);
+  const numberColumns = table.rows[0].cells.length;
+  const numberRows = table.rows.length;
+
+  // Unicode columns are 3, 5, 7, ...
+  for (let col = 3; col < numberColumns; col += 2) {
+    for (let row = 1; row < numberRows; row += 1) {
+      const cell = table.rows[row].cells[col];
+      if (cell) {
+        cell.style.fontFamily = unicodeFont;
+      }
+    }
+  }
+}
+
   </script>
 </head>
 
@@ -246,6 +263,14 @@ function changeConverter(selector) {
   <p>This table gives the code points and characters shown in several
     font encodings for {{language}}. Conversions to Unicode appear for each entry.
   <p>Hint: hover over the Unicode conversions for the hex code points (UTF-16).
+
+    <p>
+    Unicode Font: <select onchange="setUnicodeFontColumns(this.value, 'codetable')" id="fontSelector">
+      {% for font in unicode_list %}
+      <option value="{{font.family}}"{% if forloop.first %} selected{%endif%}>{{font.longName}}</option>
+      {% endfor %}
+      <option value="Arial">Arial</option>
+    </select>
 
   {% if encoding_tables %}
     DisplayTable: <select id='selectTable' onchange="onEncodingSelected(this, 'encoding_table_area')">

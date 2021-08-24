@@ -10,23 +10,22 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-// Mingrelian in Georgian script
 
-var XMF_LAYOUT = {
-  'id': 'xmf',
-  'title': 'მარგალური ნინა',
+var IG_LAYOUT = {
+  'id': 'ig',
+  'title': 'Igbo input for Nsibidi',
   'mappings': {
     ',c': {
-      '': '`1234567890-=' +
-          'ქწერტყუიოპ[]\\' +
-          'ასდფგჰჯკლ;\'' +
-          'ზხცვბნმ,./'
+      '': '{{\u0300}}1234567890-=' +
+          'qw\u00e9rtyuiop[]{{\u0323}}' +
+          '\u00e1sdfghjkl;\'' +
+          'zxcvbnm,./'
     },
     's,sc': {
-      '': '~!@#$%^&*()_+' +
-          'ᲥᲭᲔᲦᲗᲸᲣᲲᲝᲞ{}|' +
-          'ᲐᲨᲓᲤᲒᲰᲟᲷᲚ:"' +
-          'ძხჩვბნმ<>?'
+      '': '~!@#$%^&*(){{\u0301}}+' +
+          'QW\u00e8RTYUIOP{}|' +
+          '\u00e0SDFGHJKL:"' +
+          'ZXCVB\u0144\u1e3f<>?'
     },
     'l,cl': {
       '': '`1234567890-=' +
@@ -42,11 +41,26 @@ var XMF_LAYOUT = {
     }
   },
   'transform': {
-    '^': '^',  // Placeholder
+    // Replace with combined characdters
+    'a\u0300': '\u00e0',
+    'a\u0301': '\u00e1',
+    'e\u0300': '\u00e8',
+    'e\u0301': '\u00ed',
+    'i\u0301': '\u00ed',
+    'i\u0300': '\u00ec',
+    'i\u0323': '\u1ecb',
+    'o\u0300': '\u00f2',
+    'o\u0301': '\u00f3',
+    'o\u0323': '\u1ecd',
+    'u\u0300': '\u00f9',
+    'u\u0301': '\u00fa',
+    'u\u0323': '\u1ee5',
+    'm\u0301': '\u1e3f',
+    'u\u0323': '\u1ee5',
+    'n\u0301': '\u0144',
   }
 };
 
 // Load the layout and inform the keyboard to switch layout if necessary.
-google.elements.keyboard.loadme(XMF_LAYOUT);
-xmf = XMF_LAYOUT;
-
+google.elements.keyboard.loadme(IG_LAYOUT);
+ig = IG_LAYOUT;

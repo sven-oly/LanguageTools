@@ -107,8 +107,13 @@ diacritic_list = [unichr(x) for x in range(0x300, 0x330)]
 default_base_consonant = u'\0x61'
 
 kb_list = [
-  {'shortName': LanguageCode,
-   'longName': LanguageCode,
+  {'shortName': 'ig',
+   'longName': 'Igbo',
+   'fontFamily':'arial',
+   },
+  {'shortName': 'en',
+   'longName': 'English',
+   'fontFamily':'arial',
    },
 ]
 

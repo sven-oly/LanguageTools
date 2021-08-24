@@ -68,8 +68,13 @@ var PHK_VAR_LAYOUT = {
     // Reorder e-vowel + medial ra/ya after consonant.
     '(\u1031\ufe00)\u001d?([\u103a-\u103e\u105e])': '$2$1',
 
-    // 1036 follows 103a
-    '\u1036\u001d?([\u103a\ua9e5])': '$1\u1036',
+    // 102f follows 109d
+    '\u102f\u001d?([\u109d])': '$1\u102f',
+    // 1036 follows 102f & 103a
+    '\u1036\u001d?([\u102f\u103a\u103d\ua9e5])': '$1\u1036',
+
+    // Doubled 'n' - test
+    'ꩫ\ufe00ꩫ\ufe00': '\ua9e7\ufe00',
   },
 };
 
