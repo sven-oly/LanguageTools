@@ -198,6 +198,9 @@ handlers:
 - url: /syl/.*
   script: sylheti.app
 
+- url: /tcy/.*
+  script: tulu.app
+
 - url: /tai/.*
   script: ahom.app
 
