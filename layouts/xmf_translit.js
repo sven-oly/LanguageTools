@@ -10,25 +10,24 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-// Mingrelian in Latin script
-//Source: https://keyman.com/keyboards/colchis_latin?bcp47=xmf-latn
+// Mingrelian in Georgian script
 
-var XMF_LATN_LAYOUT = {
-  'id': 'xmf_Latn',
-  'title': 'margaluri nina',
+var XMF_LAYOUT = {
+  'id': 'xmf',
+  'title': 'მარგალური ნინა',
   'mappings': {
     ',c': {
-      '': '"1234567890*-' +
-          'qʒertyuiopɣƨ,' +
-          'asdfghjklşⱬ' +
-          'zxcvbnmꞇç.'
+      '': '`1234567890-=' +
+          'ქწერტყუიოპ[]\\' +
+          'ასდფგჰჯკლ;\'' +
+          'ზხცვბნმ,./'
     },
     's,sc': {
-      '': '{{S||\u02d8||\u0306}}!\'^+%&/()=?_' +
-          'QƷERTYUIOPƔƧ;' +
-          'ASDFGHJKLŞⱫ' +
-          'ZXCVBNMꞆ{{Ç}}:'
-          },
+      '': '~!@#$%^&*()_+' +
+          'ᲥᲭᲔᲦᲗᲸᲣᲲᲝᲞ{}|' +
+          'ᲐᲨᲓᲤᲒᲰᲟᲷᲚ:"' +
+          'ძხჩვბნმ<>?'
+    },
     'l,cl': {
       '': '`1234567890-=' +
           'qwertyuiop[]\\' +
@@ -43,22 +42,11 @@ var XMF_LATN_LAYOUT = {
     }
   },
   'transform': {
-    // Doubled letters adds
-    'ʒ(ʒ)': '$1\u0306',
-    'k(k)': '$1\u0306',
-    'p(p)': '$1\u0306',
-    't(t)': '$1\u0306',
-    'z(z)': '$1\u0306',
-    'ç(ç)': '$1\u0306',
-    'Ʒ(Ʒ)': '$1\u0306',
-    'K(K)': '$1\u0306',
-    'P(P)': '$1\u0306',
-    'T(T)': '$1\u0306',
-    'Z(Z)': '$1\u0306',
-    'Ç(Ç)': '$1\u0306',
+    '^': '^',  // Placeholder
   }
 };
 
 // Load the layout and inform the keyboard to switch layout if necessary.
-google.elements.keyboard.loadme(XMF_LATN_LAYOUT);
-xmf_Latn = XMF_LATN_LAYOUT;
+google.elements.keyboard.loadme(XMF_LAYOUT);
+xmf = XMF_LAYOUT;
+

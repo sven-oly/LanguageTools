@@ -10,24 +10,24 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-// Mingrelian in Latin script
-//Source: https://keyman.com/keyboards/colchis_latin?bcp47=xmf-latn
+// Laz in Latin script
+// Source: https://keyman.com/keyboards/lazuri
 
-var XMF_LATN_LAYOUT = {
-  'id': 'xmf_Latn',
-  'title': 'margaluri nina',
+var LZZ_LATN_LAYOUT = {
+  'id': 'lzz_Latn',
+  'title': 'lazuri nena',
   'mappings': {
     ',c': {
-      '': '"1234567890*-' +
-          'qʒertyuiopɣƨ,' +
-          'asdfghjklşⱬ' +
-          'zxcvbnmꞇç.'
+      '': '\"1234567890*-' +
+          'q{{ʒ}}er{{t}}yuıo{{p}}{{ğ}}{{ü}},' +
+          'asdfghj{{k}}l{{ş}}i' +
+          '{{z}}xcvbnm{{ö}}{{ç}},'
     },
     's,sc': {
       '': '{{S||\u02d8||\u0306}}!\'^+%&/()=?_' +
-          'QƷERTYUIOPƔƧ;' +
-          'ASDFGHJKLŞⱫ' +
-          'ZXCVBNMꞆ{{Ç}}:'
+          'Q{{Ʒ}}ERTYUIOP{{Ğ}}{{Ü}};' +
+          'ASDFGHJKLŞİ' +
+          '{{Z}}XCVBNM{{Ö}}{{Ç}}:'
           },
     'l,cl': {
       '': '`1234567890-=' +
@@ -60,5 +60,5 @@ var XMF_LATN_LAYOUT = {
 };
 
 // Load the layout and inform the keyboard to switch layout if necessary.
-google.elements.keyboard.loadme(XMF_LATN_LAYOUT);
-xmf_Latn = XMF_LATN_LAYOUT;
+google.elements.keyboard.loadme(LZZ_LATN_LAYOUT);
+lzz_Latn = LZZ_LATN_LAYOUT;

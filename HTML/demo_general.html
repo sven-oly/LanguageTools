@@ -40,7 +40,9 @@
       }
 
     input {font-size:18px;}
-    textarea {font-size:18px; height:400px; resize: vertical;}
+    textarea {font-size:18px; height:200px; resize: vertical;}
+
+    #instruction_area {font-size:18px;}
     </style>
 
   <script src="/js/utils.js"></script>
@@ -271,15 +273,17 @@
 
   <div id="t1_div">
     <textarea id="t1" style="width:600px;font-family:{{font_list.0.family}};resize:vertical;font-size:24px;"
-      rows="10" spellcheck="false"
+      rows="5" spellcheck="false"
       lang="{%if lang_list.0.shortName %}{%endif%}{%if langTag %}{{langTag}}{%endif%}"
       dir="{{direction}}">{{test_data}}</textarea>
+    {% if allFonts %}
       <br />
-      {% if allFonts %}
       <input type="button" onclick="toAllFonts('t1', null);" value="To all fonts">
       {% endif %}
   </div>
-
+  <div id="instruction_area">
+    <p id="kb_instructions"></p>
+  </div>
   <div id="codepoint_div">
     <hr>
     <input type="button" value="Code points" onclick="utils.showCodePoints('t1', 'codepoints')">
@@ -300,11 +304,6 @@
   </div>
     <input type="button" value="-> Unicode text" onclick="hexToOutput('codepoints', 't1');">
   <br>
-
-  <div id="instruction_area">
-    <br />
-    <p id="kb_instructions"></p>
-  </div>
   </div>
 
   <div class="span-4 last">
