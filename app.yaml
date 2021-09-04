@@ -150,6 +150,9 @@ handlers:
 - url: /lep/.*
   script: lepcha.app
 
+- url: /lzz/.*
+  script: laz.app
+
 - url: /men/.*
   script: mendekikakui.app
 
