@@ -19,6 +19,7 @@
       font-family:{{encoding.font_name}};
       font-size: 32px;
     }
+
     {% endfor %}
   </style>
   <!-- Unicode fonts -->
@@ -100,7 +101,9 @@
   var encoding_font_list = [
   {% for encoding in encoding_list %}"{{encoding.font_name}}"{% if not forloop.last %},{% endif %}{% endfor %}
   ];
-
+  var encoding_display_names = [
+  {% for encoding in encoding_list %}"{{encoding.display_name}}"{% if not forloop.last %},{% endif %}{% endfor %}
+  ];
 var unicode_font_list = [
   {% for font in unicode_list %}"{{font.family}}",{% endfor %}
   ];
@@ -154,15 +157,21 @@ function buildEncodingTable(table) {
   let header = table.createTHead();
   let row = header.insertRow(0);
   let outIndex = 0;
-  row.insertCell(outIndex).innerHTML = "Hex Code";
-  row.insertCell(outIndex).innerHTML = "Unicode";
-  outIndex += 2;
+  let cell1 = row.insertCell(outIndex);
+  cell1.innerHTML = "Hex Code";
+  outIndex += 1;
+  let cell2 = row.insertCell(outIndex)
+  cell2.innerHTML = "Unicode";
+  cell2.style.borderRight = "thick solid";
+  outIndex += 1;
 
   for (var i = 0 ; i < encoding_font_list.length; i ++) {
     row = table.rows[0];
-    row.insertCell(outIndex).innerHTML = encoding_font_list[i];
+    row.insertCell(outIndex).innerHTML = encoding_display_names[i];
     outIndex += 1;
-    row.insertCell(outIndex).innerHTML = " to Unicode";
+    cell2 = row.insertCell(outIndex)
+    cell2.innerHTML = "to Unicode";
+    cell2.style.borderRight = "thick solid";
     outIndex += 1;
   }
   const code_list = [];
@@ -179,16 +188,17 @@ function buildEncodingTable(table) {
     const code = code_list[index];
     row = table.insertRow(rowNum);
 
-    var items = private_use_map_combined[code];
+    const items = private_use_map_combined[code];
 
-    var cell1 = row.insertCell(0);
-    var cell2 = row.insertCell(1);
+    cell1 = row.insertCell(0);
+    cell2 = row.insertCell(1);
+    cell2.style.borderRight = "thick solid";
     cell1.innerHTML = "0x" + code.charCodeAt(0).toString(16);
     cell2.innerHTML = code;
 
     // Add coded output.
     outIndex = 2;
-    for (var i = 0; i<items.length; i ++) {
+    for (var i = 0; i<encoding_font_list.length; i ++) {
       if(typeof map_font_to_encoding == 'object') {
         encodingIndex =  map_font_to_encoding[encoding_font_list[i]];
       } else {
@@ -204,16 +214,19 @@ function buildEncodingTable(table) {
 
       // Unicode conversion.
       var cellUni = row.insertCell(outIndex);
+      cellUni.style.borderRight = "thick solid";
+        if (encodingIndex < items.length) {
+        cellUni.innerHTML = items[encodingIndex];
+        var fontStringUni = unicode_font_list[0];
+        cellUni.style.fontFamily = fontStringUni;
+        cellUni.style.fontSize = "30px";
 
-      cellUni.innerHTML = items[encodingIndex];
-      var fontStringUni = unicode_font_list[0];
-      cellUni.style.fontFamily = fontStringUni;
-      cellUni.style.fontSize = "30px";
-
-      // Add the Unicode hex for hover info.
-      // TODO: show as full Unicode numeric values
-      cellUni.title = utf16common(items[encodingIndex], "U+", " ", null, []);
+        // Add the Unicode hex for hover info.
+        // TODO: show as full Unicode numeric values
+        cellUni.title = utf16common(items[encodingIndex], "U+", " ", null, []);
+      }
       outIndex += 1;
+
     }
    rowNum += 1;
   }
