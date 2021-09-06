@@ -4,13 +4,59 @@
 // https://translit.cc/ge/
 
 // https://www.oxfordhandbooks.com/view/10.1093/oxfordhb/9780190690694.001.0001/oxfordhb-9780190690694-appendix-2
-var map_encoding_names = [
-  'Georgian'];
+const map_encoding_names = [
+  'Georgian', 'Latin'];
 
-var private_use_map_combined = {
+const private_use_map_combined = {
   '\u0020': [' '],
+  'ა': 'a',
+  'ბ': 'b',
+  'ჟ': 'ǯ',
+  'მ': 'm',
+  'ი': 'i',
+  'შ': 'š',
+  'უ': 'u',
+  'თ': 't',
+  'დ': 'd',
+  'ო': 'o',
+  'ნ': 'n',
+  'ლ': 'l',
+  'რ': 'r',
+  'გ': 'g',
+  'კ': 'ḳ',
+  'ქ': 'k',
+  'ს': 's',
+  'ც': 'c',
+  'ჩ': 'č',
+  'ე': 'e',
+  'ხ': 'x',
+  'აა': 'ā',
+  'ტ': 'ṭ',
+  'ფ': 'p',
+  'ზ': 'z',
+  'ვ': 'v',
+  'წ': "ts'",
+  'ყ': 'gh',
+  'ჰ': 'h',
+  'ჯ': 'j',
+  'პ': "p'",
+    // TODO: Sort these.
   // ...
 };
+
+// Source of the data below: https://omniglot.com/writing/mingrelian.htm
+const georSample = `
+აჟამ ჟიუშთი დო ჟინუა ნჟილაგარიში არიკი ართი ქევანას ცხოვრენც აჟამ ჟიუშთი
+დო მაჟირას ჟინუა ნჟილაგარი. ათე ჟინუა ნჟილაგარი ორე თინერი კოჩი, მუდგას
+მეჩანს კოცნი მუში სიცოხლეს ვეუაფე თინა ქაატუას, ოკო გინაგაფუას. აჟამ
+ჟიუშთი ორე თინერი - მუთუნს ვემეჩანს კოცს. ქეშეხვადეს თენენქ ართიანს.`;
+
+const latnSample = `
+aǯam ǯiušti do ǯinua nǯilagariši ariḳi arti kevanas cxovrenc aǯam ǯiušti
+do mažiras ǯinua nǯilagari. ate ǯinua nǯilagari ore tineri ḳoči, mudgas
+mečans ḳocni muši sicoxles ve՚uape tina kāṭuas, oḳo ginagapuas. aǯam
+ǯiušti ore tineri - mutuns vemečans ḳocs. kešexvades tenenk artians.`;
+
 
 function toLower(instring) {
   // If code in range 13a0-1eef, add ab70-13a0
@@ -19,11 +65,11 @@ function toLower(instring) {
 }
 
 function convertEncodingToUnicode(inbox, outbox, encodingIndex) {
-  var inarea = document.getElementById(inbox);
-  var outarea = document.getElementById(outbox);
+  const inarea = document.getElementById(inbox);
+  const outarea = document.getElementById(outbox);
 
   // First, replace all single characters with their Unicode equivalents.
-  var intext = inarea.value;
+  const intext = inarea.value;
   var outtext = "";
   var out;
   for (var index = 0; index < intext.length; index ++) {

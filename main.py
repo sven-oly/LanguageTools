@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-#!/usr/bin/env python
+# !/usr/bin/env python
 #
 # Copyright 2007 Google Inc.
 #
@@ -16,14 +16,11 @@
 # limitations under the License.
 #
 
-import tibetan
 
 import translit
 
-import json
 import logging
 import os
-import urllib
 import webapp2
 
 from google.appengine.ext.webapp import template
@@ -60,25 +57,27 @@ LanguageList = [
   ('Wolof', 'wo'),
 ]
 
+
 class MainHandler(webapp2.RequestHandler):
     def get(self):
-      template_values = {
-        'langlist': LanguageList,
-      }
-      path = os.path.join(os.path.dirname(__file__), 'HTML/languagetools.html')
-      self.response.out.write(template.render(path, template_values))
+        template_values = {
+          'langlist': LanguageList,
+        }
+        path = os.path.join(os.path.dirname(__file__), 'HTML/languagetools.html')
+        self.response.out.write(template.render(path, template_values))
 
 
 class DownloadKBText(webapp2.RequestHandler):
-  def get(self):
-    infile = self.request.get("infile", "")
-    outfile = self.request.get("outfile", "")
-    template_values = {
-      'infile': infile,
-      'outfile': outfile,
-    }
-    path = os.path.join(os.path.dirname(__file__), 'HTML/keyboardTemplate.html')
-    self.response.out.write(template.render(path, template_values))
+    def get(self):
+        infile = self.request.get("infile", "")
+        outfile = self.request.get("outfile", "")
+        template_values = {
+          'infile': infile,
+          'outfile': outfile,
+        }
+        path = os.path.join(os.path.dirname(__file__), 'HTML/keyboardTemplate.html')
+        self.response.out.write(template.render(path, template_values))
+
 
 # Error catching
 def handle_404(request, response, exception):
@@ -86,6 +85,7 @@ def handle_404(request, response, exception):
     response.write('Sorry, but we cannot find that page in MAIN. Please try again.\n\n')
     response.write('Request = %s\n' % request.url)
     response.set_status(404)
+
 
 def handle_500(request, response, exception):
     logging.exception(exception)

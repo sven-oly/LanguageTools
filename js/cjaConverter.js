@@ -1,18 +1,21 @@
 // Mappings for Western and Eastern Cham font encodings
 var map_encoding_names = [
   'JG Cham Cambodia',
-  'EFEO Panrang'
+  'EFEO Panrang',
+  'JG ChamVN',
+  'EFEO Parik',
+  'EFEO Udong'
 ];
 
 var private_use_map_combined = {
   '\u0020': [' ', ' '],
-  '\u0021': ['\uaa44', '\uaa44'],
-  '\u0022': ['\"', '\"'],
-  '\u0023': ['\uaa46', '\uaa46'],
-  '\u0024': ['\uaa47', '\uaa47'],
-  '\u0025': ['\uaa22 ?', '\uaa48'],
-  '\u0026': ['\uaa24 ?', '\uaa4a'],
-    '\u0027': ['?', '\''],
+  '\u0021': ['\uaa44', '\uaa44', '?', '\uaa44', '\uaa44'],
+  '\u0022': ['\uaa4c', '\"', '\uaa4c', '\"', '\"'],
+  '\u0023': ['\uaa46', '\uaa46', '', '\uaa46', '\uaa46'],
+  '\u0024': ['\uaa47', '\uaa47', '?', '\uaa47', '\uaa47'],
+  '\u0025': ['\uaa22 ?', '\uaa48', '?', '\uaa48', '\uaa48'],
+  '\u0026': ['\uaa24 ?', '\uaa4a', '?', '\uaa4a', '\uaa4a'],
+    '\u0027': ['\uaa2e', '\'', '\'', '\'', '\''],
     '\u0028': ['\uaa4b', '\uaa4b'],
     '\u0029': ['\uaa43', '\uaa43'],
     '\u002a': ['\uaa16\uaa36', '\uaa4e'],
@@ -44,7 +47,7 @@ var private_use_map_combined = {
     '\u0044': ['\uaa1b', '\uaa16'],
     '\u0045': ['??', '\uaa30'],
     '\u0046': ['(', '('],
-    '\u0047': ['\uaa09', '\uaa09'],
+    '\u0047': ['\uaa09', '\uaa09', '\uaa09'],
     '\u0048': ['??', '\uaa4d'],
     '\u0049': ['\uaa32', '\uaa32'],
     '\u004a': ['\uaa0F', '\uaa0f'],

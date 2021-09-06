@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-#!/usr/bin/env python
+# !/usr/bin/env python
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -19,7 +19,7 @@ import webapp2
 import base
 
 Language = 'Laz'
-Language_native = '???ᰶ'
+Language_native = 'lazuri nena'
 LanguageCode = 'lzz'
 ScriptCode = 'latn'
 
@@ -42,7 +42,7 @@ unicode_font_list = [
 links = [
     {'linkText': 'Keyboard',
      'ref': '/' + LanguageCode + '/'},
-    {'linkText': 'Lax Wikipedia',
+    {'linkText': 'Laz Wikipedia',
      'ref': 'https://en.wikipedia.org/wiki/Laz_language'},
     # {'linkText': 'Font conversion summary',
     #   'ref': '/' + LanguageCode + '/encodingRules/'
@@ -69,42 +69,42 @@ links = [
 
 
 class langInfo:
-  def __init__(self):
-    self.LanguageCode = LanguageCode
-    self.Language = Language
-    self.Language_native = Language_native
-    self.test_data = u''
-    self.unicode_font_list = unicode_font_list
-    self.encoding_font_list = encoding_font_list
+    def __init__(self):
+        self.LanguageCode = LanguageCode
+        self.Language = Language
+        self.Language_native = Language_native
+        self.test_data = u''
+        self.unicode_font_list = unicode_font_list
+        self.encoding_font_list = encoding_font_list
 
-    self.lang_list = [LanguageCode]  # This may be extended
+        self.lang_list = [LanguageCode]  # This may be extended
 
-    self.kb_list = [
-      {'shortName': 'lzz_Latn',
-       'longName': 'Laz Latin',
-       'instructions': 'Type ʒʒ, kk, pp, tt, zz, çç, ƷƷ, KK \u2026 to add \u02d8 --> ʒ̆ k̆ p̆ t̆ z̆ ç̆ Ʒ̆ K̆ \u2026',
-       'source': 'https://keyman.com/keyboards/lazuri',
-       },
-      # {'shortName': 'lzz_Geor',
-      #  'longName': 'Laz Georgian',
-      #  },
-    ]
-    self.links = links
+        self.kb_list = [
+          {'shortName': 'lzz_Latn',
+           'longName': 'Laz Latin',
+           'instructions': 'Type ʒʒ, kk, pp, tt, zz, çç, ƷƷ, KK \u2026 to ' +
+                           'add \u02d8 --> ʒ̆ k̆ p̆ t̆ z̆ ç̆ Ʒ̆ K̆ \u2026',
+           'source': 'https://keyman.com/keyboards/lazuri',
+           },
+          # {'shortName': 'lzz_Geor',
+          #  'longName': 'Laz Georgian',
+          #  },
+        ]
+        self.links = links
 
-    # For additional resources for download
-    self.text_file_list = []
+        # For additional resources for download
+        self.text_file_list = []
 
-    # TODO: Fill in the rest of the common data.
+        # TODO: Fill in the rest of the common data.
 
+        # TODO: Fill in with diacritics
+        self.diacritic_list = [unichr(x) for x in range(0x306, 0x306)]
+        # TODO: Fill in base consonant
+        self.default_base_consonant = u'\0x61'
 
-# TODO: Fill in with diacritics
-diacritic_list = [unichr(x) for x in range(0x306, 0x306)]
-#TODO: Fill in base consonant
-default_base_consonant = u'\0x61'
-
-encodedRanges = [
-  (0x20, 0xff),
-]
+        self.encodedRanges = [
+          (0x20, 0xff),
+        ]
 
 
 langInstance = langInfo()

@@ -299,11 +299,12 @@ function fromCodePointHex(arguments) {
 /* Selects new keyboard */
 Utils.prototype.onLayoutSelected = function(layoutCode, area_id, instruction_id) {
   controller.activateLayout(layoutCode);
-    var info = kb_info[layoutCode];
+    const info = kb_info[layoutCode];
+    const instruction_parts = info[1].replaceAll('\u000a', '<br />');
     if (info && instruction_id) {
         var area = document.getElementById(instruction_id);
         if (area) {
-            area.innerHTML = area.value = info[1];
+            area.innerHTML = area.value = instruction_parts;
         }
     }
   document.getElementById(area_id).focus();

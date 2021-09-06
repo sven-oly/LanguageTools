@@ -11,22 +11,23 @@
 // limitations under the License.
 
 // Mingrelian in Georgian script
+// Source: https://translit.cc/ge/
 
-var XMF_LAYOUT = {
-  'id': 'xmf',
-  'title': 'მარგალური ნინა',
+var XMF_TRANS_LIT_LAYOUT = {
+  'id': 'xmf_translit',
+  'title': 'translit.cc/ge/',
   'mappings': {
     ',c': {
       '': '`1234567890-=' +
-          'ქწერტყუიოპ[]\\' +
-          'ასდფგჰჯკლ;\'' +
+          'ყვერთyუიოფ[]\\' +
+          'აბდფგჰჯქლ;\'' +
           'ზხცვბნმ,./'
     },
     's,sc': {
       '': '~!@#$%^&*()_+' +
-          'ᲥᲭᲔᲦᲗᲸᲣᲲᲝᲞ{}|' +
-          'ᲐᲨᲓᲤᲒᲰᲟᲷᲚ:"' +
-          'ძხჩვბნმ<>?'
+          'QWERTYUIOP{}|' +
+          'ASDFGHJKL:"' +
+          'ZXCVBNM<>?'
     },
     'l,cl': {
       '': '`1234567890-=' +
@@ -42,11 +43,26 @@ var XMF_LAYOUT = {
     }
   },
   'transform': {
-    '^': '^',  // Placeholder
+    'ქ\'': 'კ',  // k'
+    'ფ\'': 'პ',  // p'
+    'ზჰ':  'ჟ',
+    'ზჰ': 'ჟ',
+    'თ\'': 'ტ',
+    'თს': 'ც',
+    'გჰ': 'ღ',
+    'სჰ': 'შ',
+    'ცჰ': 'ჩ',
+    'ც\'': 'წ',
+    'თს': 'ც',
+    'დზ': 'ძ',
+    'ც\'': 'წ',  // ts'
+    'ჩ\'': 'ჭ',
+    'ქჰ':  'ხ',
+    '--': '—',
   }
 };
 
 // Load the layout and inform the keyboard to switch layout if necessary.
-google.elements.keyboard.loadme(XMF_LAYOUT);
-xmf = XMF_LAYOUT;
+google.elements.keyboard.loadme(XMF_TRANS_LIT_LAYOUT);
+xmf_translit = XMF_TRANS_LIT_LAYOUT;
 

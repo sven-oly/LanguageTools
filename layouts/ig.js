@@ -10,22 +10,22 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-
+// keys [ ] \ | add diacritics to some vowels, m, and n.
 var IG_LAYOUT = {
   'id': 'ig',
   'title': 'Igbo input for Nsibidi',
   'mappings': {
     ',c': {
-      '': '{{\u0300}}1234567890-=' +
-          'qw\u00e9rtyuiop[]{{\u0323}}' +
-          '\u00e1sdfghjkl;\'' +
+      '': '`1234567890-=' +
+          'qwertyuiop[]\\' +
+          'asdfghjkl;\'' +
           'zxcvbnm,./'
     },
     's,sc': {
-      '': '~!@#$%^&*(){{\u0301}}+' +
-          'QW\u00e8RTYUIOP{}|' +
-          '\u00e0SDFGHJKL:"' +
-          'ZXCVB\u0144\u1e3f<>?'
+      '': '~!@#$%^&*()_+' +
+          'QWERTYUIOP{}|' +
+          'ASDFGHJKL:"' +
+          'ZXCVBNM<>?'
     },
     'l,cl': {
       '': '`1234567890-=' +
@@ -41,24 +41,31 @@ var IG_LAYOUT = {
     }
   },
   'transform': {
-    // Replace with combined characdters
-    'a\u0300': '\u00e0',
-    'a\u0301': '\u00e1',
-    'e\u0300': '\u00e8',
-    'e\u0301': '\u00ed',
-    'i\u0301': '\u00ed',
-    'i\u0300': '\u00ec',
-    'i\u0323': '\u1ecb',
-    'o\u0300': '\u00f2',
-    'o\u0301': '\u00f3',
-    'o\u0323': '\u1ecd',
-    'u\u0300': '\u00f9',
-    'u\u0301': '\u00fa',
-    'u\u0323': '\u1ee5',
-    'm\u0301': '\u1e3f',
-    'u\u0323': '\u1ee5',
-    'n\u0301': '\u0144',
-  }
+    // Replace with combined characters
+    'a\\[': '\u00e1',
+    'a\\]': '\u00e0',
+    'a\\\\': '\u1ea1',
+    'e\\]': '\u00e8',
+    'e\\[': '\u00e9',
+    'e\\\\': '\u1eb9',
+    'i\\]': '\u00ec',
+    'i\\[': '\u00ed',
+    'i\\\\': '\u1ecb',
+    'o\\]': '\u00f2',
+    'o\\[': '\u00f3',
+    'o\\\\': '\u1ecd',
+    'u\\]': '\u00f9',
+    'u\\[': '\u00fa',
+    'u\\\\': '\u1ee5',
+    'm\\[': '\u1e3f',
+    'm\\]': 'm\u0300',
+    'm\\|': '\u1E41',
+    'm\\\\': '\u1e43',
+    'n\\[': '\u0144',
+    'n\\\\': '\u1e47',
+    'n\\]': '\u01F9',
+    'n\\|': '\u00F1',
+  },
 };
 
 // Load the layout and inform the keyboard to switch layout if necessary.
