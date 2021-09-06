@@ -86,6 +86,8 @@ private_use_map_combined = {
   '\u006b': ['\udb80\udc6b'],
   '\u006c': ['\udb80\udc6c'],
   '\u006d': ['\udb80\udc6d'],
+  '\u006e': ['\udb80\udc6e'],
+  '\u006f': ['\udb80\udc6f'],
 
   '\u0070': ['\udb80\udc70'],
   '\u0071': [''],
