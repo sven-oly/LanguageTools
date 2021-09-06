@@ -251,6 +251,17 @@ function myDropFunction() {
    toggleVisible("item_menu");
 }
 
+// Intercept copying to remove ZWSP between words.
+function removeZwspCopy(region_id) {
+  const region = document.getElementById(region_id);
+  let text = region.value.replaceAll('\u200b', '');
+  navigator.clipboard.writeText(text).then(function() {
+    /* clipboard successfully set */
+  }, function() {
+    alert('Copy failed');
+  });
+  return text;
+ }
   </script>
   <link rel="stylesheet" type="text/css" href="/css/keyboard.css" />
 
@@ -340,36 +351,39 @@ function myDropFunction() {
       <textarea id="t1" style="width:600px;font-family:{{font_list.0.family}};resize:vertical;font-size:24px;"
       rows="10" spellcheck="false"
       lang="{%if lang_list.0.shortName %}{{lang_list.0.shortName}}{%endif%}{%if langTag %}{{langTag}}{%endif%}"
-      dir="{{direction}}">{{test_data}}</textarea>
+      dir="{{direction}}" oncopy="removeZwspCopy('t1');">{{test_data}}</textarea>
       {% if allFonts %}
       <input type="button" onclick="toAllFonts('t1', null);" value="To all fonts">
       {% endif %}
   </div>
-    <input type="button" id='toggle_english' value="To Latin"
-           onclick="nsi.nsibidi2Words('t1', 'english_id', 'inputLangSelector');">
+    <input type="button" id='toggle_latin' value="To Latin"
+           onclick="nsi.nsibidi2Words('t1', 'latin_id', 'inputLangSelector');">
+    <input type="button" id="code_points"
+           value="Code points"
+           onclick="utils.showCodePoints('t1', 'codepoints');">
 
-    <div id="english_div" style="display:none">
-      <textarea id="english_id" rows="1" spellcheck="false"></textarea>
-      <input type="button" id="toggle_eng" value="Close English" onclick="toggleDiv('english_div', 'toggle_eng');">
+
+    <div id="latin_div" style="display:none">
+      <textarea id="latin_id" rows="1" spellcheck="false"></textarea>
+      <input type="button" id="close_latin" value="Close Latin" onclick="toggleDiv('latin_div', 'toggle_latin');">
     </div>
-  <div id="codepoint_div">
-    <hr>
-    <input type="button" value="Code points" onclick="utils.showCodePoints('t1', 'codepoints');">
-
+  <div id="codepoint_div" style="display:none">
     <!--
     <input type="button" value="All keys" onclick="fillAllKeys('t1', 'setLayout');"
     -->
 
     {% if encoded_ranges %}
       <input type="button" value="Encoded range" onclick="fillEncodedRange('t1');"
-
     {% endif %}
     <br />
+    <p class="choice-font">Code points</p>
     <textarea id="codepoints" class='default-font'
      style="width:600px;height:100px;resize:vertical;" spellcheck="false"
      rows="5"></textarea>
-  </div>
     <input type="button" value="-> Unicode text" onclick="hexToOutput('codepoints', 't1');">
+    <input type="button" id="toggle_codepoints" value="Close Code points"
+           onclick="toggleDiv('codepoint_div', 'code_points');">
+  </div>
   <br>
   </div>
 

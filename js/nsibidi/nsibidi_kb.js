@@ -144,21 +144,22 @@ nsiSelectItem = function(output_area, raw_input, result, input_div, input_area) 
     } else {
         output_area.value = output_area.value + raw_input;
     }
-    // Clear drop down after selection. UNDO?
-    clearDiv(input_div);
+    clearDiv(input_area);
+    info_area.innerHTML = '';
+
     input_area.innerHTML = input_area.value = "";
     input_area.focus();
 }
 
-nsibidi.prototype.nsiSelectIndexedItem = function(output_area, relativeItemNum, input_area, input_div) {
+nsibidi.prototype.nsiSelectIndexedItem = function(output_area, relativeItemNum, input_area, info_area) {
     // Insert the Nsibii character when you select it.
     const item = this.currentResults[relativeItemNum + this.currentBase];
     if (item) {
         output_area.value = output_area.value + item[1] + this.wordSeparator;
     }
     // Clear drop down after selection. UNDO?
-    clearDiv(input_div);
-    input_area.innerHTML = input_area.value = "";
+//    clearDiv(input_div);
+    info_area.innerHTML = input_area.value = "";
     input_area.focus();
     this.currentResults = null;
     this.currentBase = 0;

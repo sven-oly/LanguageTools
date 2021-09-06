@@ -361,7 +361,9 @@ Utils.prototype.showCodePoints = function(source_id, dest_id) {
   const code_text = uplus(input_text);
   const dest_field = document.getElementById(dest_id);
   dest_field.value = code_text;
-  document.getElementById('t1').focus();
+  src_field.focus();
+  const parent = dest_field.parentElement;
+  parent.style.display = 'block';
 }
 
 Utils.prototype.toggleConvertedVS = function(text_area_id, toggle) {
