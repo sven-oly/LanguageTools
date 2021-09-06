@@ -111,7 +111,6 @@ class langInfo:
        'longName': 'Mingrelian Georgian',
        'source': 'GBoard Mingrelian',
        'instructions': "Based on GBoard Mingrelian",
-
        },
     ]
     self.links = links

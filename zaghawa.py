@@ -81,12 +81,6 @@ links = [
     {'linkText': 'Zaghawa Wikipedia',
      'ref': 'https://en.wikipedia.org/wiki/Zaghawa_language'
     },
-
-#    {'linkText': 'Combiners',
-#     'ref': '/rhg/diacritic/'
-#     },
-#    {'linkText': 'Keyboard layout suggestion',
-#     'ref': '',
 ]
 
 class langInfo():
