@@ -129,27 +129,34 @@ function toLower(instring) {
 }
 
 function convertEncodingToUnicode(inbox, outbox, encodingIndex) {
-  var inarea = document.getElementById(inbox);
-  var outarea = document.getElementById(outbox);
+  const inarea = document.getElementById(inbox);
+  const outarea = document.getElementById(outbox);
+  const intext = inarea.value;
 
+  let outtext = convertPhkToUnicode(intext, encodingIndex)
+  if (outarea) {
+    outarea.innerHTML = outarea.value = outtext;
+  }
+}
+
+function convertPhkToUnicode(intext, encodingIndex) {
   // First, replace all single characters with their Unicode equivalents.
-  var intext = inarea.value;
-  var outtext = "";
-  var out;
-  for (var index = 0; index < intext.length; index ++) {
-    var c = intext[index];
+  let outtext = "";
+  let out;
+  for (let index = 0; index < intext.length; index ++) {
+    const c = intext[index];
     out = c;
     if (c in private_use_map_combined) {
-      var result = private_use_map_combined[c][encodingIndex];
+      const result = private_use_map_combined[c][encodingIndex];
       if (result) {
-	out = result;
+	    out = result;
       }
     }
     outtext += out;
   }
 
   // Insert more complex replacements here.
-  var newText = outtext;
+  let newText = outtext;
   ePattern = /([\u1031\u103c]\ufe00?)([\u1000-\u1029\u1075-\u1081\uaa60-\uaa7a]\ufe00?)/gi;
   eReplace = "$2$1";
   newText = outtext.replace(ePattern, eReplace);
@@ -189,8 +196,50 @@ function convertEncodingToUnicode(inbox, outbox, encodingIndex) {
   newText = newText.replace(pattern, replacement);
 
   // Consider doubled combiners, e.g., 103a twice.
-  if (outarea) {
-    outarea.innerHTML = outarea.value = newText;
-  }
+
   return newText;
+}
+
+const banchobMap = {
+  'N': 'ŋ',
+  'M': 'ñ',
+  'j': 'ɛ',
+  'v': 'ü',
+  'z': 'ə',
+  'q': 'ɔ',
+  'I': 'ī',
+  'E': 'ē',
+  'J': 'ɛ̄',
+  'V': 'ǖ',
+  'Z': 'ə̄',
+  'A': 'ā',
+  'U': 'ū',
+  'O': 'ō',
+  'Q': 'ɔ̄',
+  '1': '¹',
+  '2': '²',
+  '3': '³',
+  '4': '⁴',
+  '5': '⁵',
+  '6': '⁶',
+  '7': '⁷',
+  '8': '⁸',
+  '9': '⁹',
+};
+
+function convertBanchob(intext) {
+let outtext = [];
+  let out;
+  for (let index = 0; index < intext.length; index ++) {
+    const c = intext[index];
+    out = c;
+    if (c in banchobMap) {
+      const result = banchobMap[c];
+      if (result) {
+	    out = result;
+      }
+    }
+    outtext.apend(out);
+  }
+  return ''.join(outtext);
 }

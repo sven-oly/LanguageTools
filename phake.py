@@ -52,7 +52,6 @@ class langInfo():
        'family': 'PhakeRamayanaUnicode',
        'longName': 'Ramayana Unicode 29-Jul-2021',
        'info': 'Dotted form by Ben Mitchell, 29-Jul-2021. https://github.com/ohbendy/Phake-Ramayana/blob/main/PhakeRamayanaUnicode.otf',
-       'download': 'no',
        },
       {'source': '/fonts/Myanmar/NotoSerifMyanmar-Light.ttf',
        'family': 'NotoSerif Myanmar Light',
@@ -99,6 +98,7 @@ class langInfo():
 
     # Just provide some of these fonts for download at this time.
     self.public_font_resources = [
+      self.unicode_font_list[0],
       {'source': '/fonts/Myanmar/NotoSerifMyanmar-Light.ttf',
        'family': 'NotoSerif Myanmar Light',
        'longName': 'Noto Serif Myanmar Light',
