@@ -288,11 +288,11 @@ class convertDocx():
                 (newFontIndex, actualFont) = self.isOldFontNode(rprchild)
                 if newFontIndex >= 0:
                   # In font encoded node
-                  inEncodedFont = True
+                  self.inEncodedFont = True
                   fontIndex = newFontIndex
                 else:
                   # Check if we are switching out. If so, handle accumulated text
-                  if inEncodedFont:
+                  if self.inEncodedFont:
                     # TODO: Even if no text, reset the encoded font
                     if collectedText:
                       (newConvertedCount, emptiedElements) = \
@@ -308,7 +308,7 @@ class convertDocx():
                     self.rprFormatData = []
                     formatTextInfo = []
                     textElements = []
-                    inEncodedFont = False
+                    self.inEncodedFont = False
           elif re.search('}t', rchild.tag):
             # For all the paragraph text.
             paragraphTextStarts.append(len(paragraphText))
@@ -319,7 +319,11 @@ class convertDocx():
             paragraphFonts.append(actualFont)
             paragraph_info.adddata(rchild, fontNode)
 
-            treat_as_no_break = self.converter.checkContentsForMerge(rchild.text)
+            try:
+              treat_as_no_break = self.converter.checkContentsForMerge(rchild.text)
+            except:
+              treat_as_no_break = False
+
             if fontFound and (self.inEncodedFont or treat_as_no_break) and rchild.text:
               # Consider the text across the runs as a unit
               if self.accumulate_text:
@@ -337,7 +341,7 @@ class convertDocx():
             else:
               notEncoded = rchild.text
               if notEncoded and False and debug_output:
-                print(' &&& fontFound = %s, inEncodedFont = %s, actual = %s' %
+                print(' &&& fontFound = %s, self.inEncodedFont = %s, actual = %s' %
                       (fontFound, self.inEncodedFont, actualFont))
                 print('notEncoded = >%s<' % notEncoded)
 
@@ -353,7 +357,10 @@ class convertDocx():
     # and punctuation across font differences.
     # Use self.paragraph_runs and paragraphText to do sentence-level stuff
     # if needed.
-    self.converter.processXmlParagraphRuns(self.paragraph_runs)
+    try:
+      self.converter.processXmlParagraphRuns(self.paragraph_runs)
+    except:
+      pass
 
     self.paragraphs_converted[para] = True
     return conversions, allEmptiedTextElements, convertedText
@@ -583,7 +590,7 @@ class convertDocx():
       # Mostly a check for
       notEncoded = rchild.text
       if notEncoded and False and debug_output:
-        print(' &&& fontFound = %s, inEncodedFont = %s, actual = %s' %
+        print(' &&& fontFound = %s, self.inEncodedFont = %s, actual = %s' %
               (fontFound, self.inEncodedFont, actualFont))
         print('notEncoded = >%s<' % notEncoded)
 

@@ -361,6 +361,7 @@ class copyConverter():
 
 # Handles sentence conversion if needed.
 def convertParagraph(para, converter, unicodeFont, debugInfo=False):
+  skipped_fonts = set()  # Record any that were not converted.
   numConverts = 0
   notConverted = 0
   runs = para.runs
@@ -390,11 +391,17 @@ def convertParagraph(para, converter, unicodeFont, debugInfo=False):
     except:
       pass
 
+    if fontName == None and thisText != '':
+      x = thisText  # Catch places where font name is not set
+
+    if fontName == "Phake Script":
+      x = thisText
+
     try:
+      ## If font is not in the list to convert, skip it!
       font_index = converter.oldFonts.index(fontName)
 
       fontObj.name = unicodeFont  ## Change font even if text is empty.
-
       convertedText = checkAndConvertText(thisText, converter, font_index)
       if '၁' == convertedText:
         x=1
@@ -409,6 +416,8 @@ def convertParagraph(para, converter, unicodeFont, debugInfo=False):
       else:
         notConverted += 1
     except ValueError as e:
+      if fontName:
+        skipped_fonts.add(fontName)
       continue
 
     if False and debugInfo:
@@ -434,6 +443,9 @@ def convertParagraph(para, converter, unicodeFont, debugInfo=False):
     print('*** Multiple fonts in run: %s' % (fonts_in_runs.keys()))
     print('** Run text : %s' % (run_text))
 
+  # Check for skipped fonts
+  if len(skipped_fonts) > 0:
+    x = skipped_fonts
   return numConverts
 
 

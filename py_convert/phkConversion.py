@@ -118,7 +118,7 @@ class converter():
       # Name of the substitute Unicode font, if provided
 
       self.variation_sequence_code_points = \
-        r'([\u1000\u1002\u1004\u1010\u1011\u1015\u1019\u101a\u101c\u101d\u1022\u1031\u1075\u1078\u1080\uaa60\uaa61\uaa62\uaa63\uaa64\uaa65\uaa66\uaa6b\uaa6c\uaa6f\uaa7a])'
+        r'([\u1000\u1002\u1004\u1010\u1011\u1015\u1019\u101a\u101c\u101d\u1022\u1031\u1075\u1078\u107a\u1080\uaa60\uaa61\uaa62\uaa63\uaa64\uaa65\uaa66\uaa6b\uaa6c\uaa6f\uaa7a])'
       self.variation_modifier = "\ufe00"
       self.add_variation_selectors = True  # !!! TODO
 
