@@ -48,6 +48,10 @@
       }
       input {font-size:18px;}
 
+      .instructions {
+        font-size:18px;
+      }
+
       textarea {font-size:18px; height:150px; width:600px; resize: vertical;}
 
       #choose_one {font-size:18px; height:320px; width:150px; resize: vertical;}
@@ -84,7 +88,7 @@
   var kb_info = {
     {% for kb in kb_list %}{{kb.shortName}}: ["{{kb.longName}}",
       "{{kb.instructions}}",
-      "{{kb.fontFamily}}"],
+      "{{kb.fontFamily}}", "XYZ"],
       {%endfor%}
   };
   const font_families = [{% for font in font_list %}"{{font.family}}", {% endfor %}];
@@ -113,7 +117,6 @@
     var input = document.getElementById(input_area_id);
     controller = new i18n.input.keyboard.Keyboard();
 
-    // TEST!
     var x = i18n.input.keyboard.Controller;
 
     utils.onSizeSelected(document.getElementById("sizeSelector").value, 't1');
@@ -144,17 +147,17 @@
             if (kb_data[2]) {
               font_family = kb_data[2];
             }
-            //utils.setFontFamily(font_family, 't1', false);
+            //utils.setFontFamily(font_family, 'input_area', false);
           }
     );
 
-    var input_area = document.getElementById('input_area');
-    input_area.focus();
-
     var selector = document.getElementById("setLayout");
-    utils.onLayoutSelected(selector.value, 't1', 'kb_instructions');
+    utils.onLayoutSelected(selector.value, 'input_area', 'kb_instructions');
 
     utils.setFontFamily(document.getElementById("fontSelector").value, 't1');
+
+    var input_area = document.getElementById('input_area');
+    input_area.focus();
   }
 
     function toggle() {
@@ -291,13 +294,15 @@ function myDropFunction() {
     <div id="nsibidi_input">
     <p class="input-font">Type here:
     <input id="input_area"
-           onkeyup='nsi.handleMatching("input_area", "inputLangSelector", "t1", "item_div", "info_id",
+           onkeyup='nsi.handleMatching("input_area", "inputLangSelector", "t1", "results_count",
            "choose_table");'
            class='input-font' style="width:200px;height:35px;" dir="{{direction}}" spellcheck="false"></input>
-    <span id="info_id"></span>
+      <span id='results_count'></span>
       <br />
-      <p class="choice-font">Choices:
-      <span class="dropdown" id="item_div" class="dropdown-content">      </span>
+      <h3>How to type Nsibidi:</h3>
+      <div id="instruction_area">
+        <p id="kb_instructions" class="instructions"></p>
+      </div>
   </div>
   <!-- If an original encoding area is needed. -->
   {% if encoded_div %} 
@@ -310,30 +315,29 @@ function myDropFunction() {
   {% endif %}
 
   <div id="t1_div">
+    <p class="choice-font">Nsibidi output</p>
     Font: <select onchange="utils.setFontFamily(this.value, 't1', false)" id="fontSelector">
-    {% for font in font_list %}
-    <option value="{{font.family}}"{% if forloop.first %} selected{%endif%}>{{font.longName}}</option>
-    {% endfor %}
-    <option value="Arial">Arial</option>
-  </select>
-    Size: <select onchange="utils.onSizeSelected(this.value, 't1');" id="sizeSelector">
-    <option value="10px">10</option>
-    <option value="14px">14</option>
-    <option value="18px">18</option>
-    <option value="24px" selected>24</option>
-    <option value="32px">32</option>
-    <option value="48px">48</option>
-    <option value="48px">60</option>
-    <option value="72px">72</option>
-    <option value="96px">96</option>
-    <option value="120px">120</option>
-    <option value="240px">240</option>
-  </select>
-    <input type="button" value="Clear text" onclick="utils.clearText('codepoints');utils.clearText('t1', true);">
+      {% for font in font_list %}
+      <option value="{{font.family}}"{% if forloop.first %} selected{%endif%}>{{font.longName}}</option>
+      {% endfor %}
+      <option value="Arial">Arial</option>
+    </select>
+      Size: <select onchange="utils.onSizeSelected(this.value, 't1');" id="sizeSelector">
+        <option value="10px">10</option>
+        <option value="14px">14</option>
+        <option value="18px">18</option>
+        <option value="24px" selected>24</option>
+        <option value="32px">32</option>
+        <option value="48px">48</option>
+        <option value="48px">60</option>
+        <option value="72px">72</option>
+        <option value="96px">96</option>
+        <option value="120px">120</option>
+        <option value="240px">240</option>
+      </select>
+      <input type="button" value="Clear text" onclick="utils.clearText('codepoints');utils.clearText('t1', true);">
 
-
-    <p class="choice-font">Nsibidi output
-    <textarea id="t1" style="width:600px;font-family:{{font_list.0.family}};resize:vertical;font-size:24px;"
+      <textarea id="t1" style="width:600px;font-family:{{font_list.0.family}};resize:vertical;font-size:24px;"
       rows="10" spellcheck="false"
       lang="{%if lang_list.0.shortName %}{{lang_list.0.shortName}}{%endif%}{%if langTag %}{{langTag}}{%endif%}"
       dir="{{direction}}">{{test_data}}</textarea>
@@ -367,11 +371,6 @@ function myDropFunction() {
   </div>
     <input type="button" value="-> Unicode text" onclick="hexToOutput('codepoints', 't1');">
   <br>
-
-  <div id="instruction_area">
-    <br />
-    <p id="kb_instructions"></p>
-  </div>
   </div>
 
   <div class="span-4 last">

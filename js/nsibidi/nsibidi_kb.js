@@ -14,6 +14,7 @@ let nsibidi = function() {
     this.currentResults = null;
     this.currentBase = 0;
     this.fontName = "Akagu2020";
+    this.wordSeparator = '\u200b';  // ZWSP
 }
 
 nsibidi.prototype.sortFirst = function(a,b) {
@@ -153,7 +154,7 @@ nsibidi.prototype.nsiSelectIndexedItem = function(output_area, relativeItemNum, 
     // Insert the Nsibii character when you select it.
     const item = this.currentResults[relativeItemNum + this.currentBase];
     if (item) {
-        output_area.value = output_area.value + item[1];
+        output_area.value = output_area.value + item[1] + this.wordSeparator;
     }
     // Clear drop down after selection. UNDO?
     clearDiv(input_div);
@@ -175,7 +176,7 @@ clearDiv = function(input_div) {
 }
 
 nsibidi.prototype.handleMatching = function(
-  input_id, input_lang_id, output_id, div_id, info_id, choice_table_id) {
+  input_id, input_lang_id, output_id, info_id, choice_table_id) {
   const e = window.event;
   const key = e.key;
 
@@ -185,7 +186,8 @@ nsibidi.prototype.handleMatching = function(
   this.input_area = input_area;
   const output_area = document.getElementById(output_id);
   const choice_table = document.getElementById(choice_table_id);
-  let div = document.getElementById(div_id);
+  const info_area = document.getElementById(info_id);
+
   if (!input_area) return null;
 
   const input_lang_selector = document.getElementById(input_lang_id);
@@ -193,12 +195,12 @@ nsibidi.prototype.handleMatching = function(
 
   // Insert some characters directly including punctuation, space, return.
   if (key !== "'" && key >= " " && key < "0" ) {
-    nsiSelectItem(output_area, input_area.value, null, div, input_area);
+    nsiSelectItem(output_area, input_area.value, null, info_area, input_area);
   }
   if (key >= "0" && key <= "9" ) {
     if (this.currentResults) {
         const itemNum = parseInt(key);
-        this.nsiSelectIndexedItem(output_area, itemNum, input_area, div);
+        this.nsiSelectIndexedItem(output_area, itemNum, input_area, info_area);
         this.clearChoiceTable(choice_table)
     }
   }
@@ -231,15 +233,13 @@ nsibidi.prototype.handleMatching = function(
 
   // Check for return or tab. Accept what's typed.
   if (key === 'Enter' || key == "Tab") {
-    nsiSelectItem(output_area, input_area.value, results[0], div, input_area);
+    nsiSelectItem(output_area, input_area.value, results[0], info_area, input_area);
     this.clearChoiceTable(choice_table)
     return results;
   }
-  clearDiv(div);
 
   /* Show number of results found total */
-  if (info_id) {
-    info_area = document.getElementById(info_id);
+  if (info_area) {
     info_area.innerHTML = info_area.value = results.length + " matches";
   }
 
@@ -252,23 +252,6 @@ nsibidi.prototype.handleMatching = function(
 
   // Make sure we are getting correct input area.
   input_area.focus();
-
-/*  if (results.length <= limit) {
-    // Populate and show results
-    let div = document.getElementById(div_id);
-    for (let i in results) { // put parts of the text in each
-        let button = document.createElement("button");
-        let span = document.createElement("span");
-        span.innerHTML = " " + results[i][0];
-        button.innerHTML = button.value = results[i][1];
-        button.className = 'nsi_button';
-        button.onclick = button.onclick = function() {
-            nsiSelectItem(output_area, input_area.value, results[i], div, input_area);
-        };
-        div.appendChild(span);
-        div.appendChild(button);
-    };
-  }*/
   return results;
 }
 
@@ -299,7 +282,7 @@ nsibidi.prototype.fillChoiceTable = function(choice_table) {
   let rowNum = 0;
   let header = choice_table.createTHead();
   let row = header.insertRow(0);
-  row.insertCell(0).innerHTML = 'Start: ' + this.currentBase;
+  row.insertCell(0).innerHTML = this.currentBase + '...';
   rowNum += 1;
   const maxToShow =
       Math.min(this.currentResults.length - this.currentBase, 10);
@@ -316,7 +299,7 @@ nsibidi.prototype.fillChoiceTable = function(choice_table) {
    row.insertCell(2).innerHTML = this.currentResults[index][0];
    rowNum += 1;
   }
-  if (index < this.currentResults.length) {
+  if (index < this.currentResults.length - 1) {
     row = header.insertRow(rowNum);
     row.insertCell(0).innerHTML = '...';
   }
@@ -336,11 +319,10 @@ nsibidi.prototype.lookupNsi2English = function(nsi_char) {
 }
 
 /* Look up text for a single nsibidi character */
-nsibidi.prototype.lookupNsi2En = function(nsi_char, word_list) {
-  let size = utfArr.word_list;
+nsibidi.prototype.lookupNsi2En = function(en_word, word_list) {
   for (let i in word_list) {
-    if ((typeof word_list[i][1] == Array && word_list[i][1].has(nsi_char)) ||
-        (word_list[i][1] === nsi_char )) {
+    if ((typeof word_list[i][1] == Array && word_list[i][1] === en_word) ||
+        (word_list[i][1] === en_word)) {
           return word_list[i][0];
     }
   }
@@ -348,19 +330,18 @@ nsibidi.prototype.lookupNsi2En = function(nsi_char, word_list) {
 }
 
 /* Look up text for a single nsibidi character */
-nsibidi.prototype.lookupNsi2Ig = function(nsi_char, word_list) {
-  let size = utfArr.word_list;
+nsibidi.prototype.lookupNsi2Ig = function(nsi_word, word_list) {
   for (let i in word_list) {
-    if ((typeof word_list[i] == Array && word_list[i].has(nsi_char)) ||
-        (word_list[i] === nsi_char )) {
+    if ((word_list[i] === nsi_word) ||
+        (typeof word_list[i] === 'object' && word_list[i].includes(nsi_word))) {
           return i;
     }
   }
   return '';
 }
 nsibidi.prototype.nsibidi2Words = function(nsi_source_id, output_area_id, input_lang_id) {
-    /* Lookup each Nsibidi character and output English */
-    /* Check if English area is hidden */
+    /* Lookup each Nsibidi character and output Latin words */
+    /* Check if Latin output area is hidden */
     let output_area = document.getElementById(output_area_id);
     let nsi_source = document.getElementById(nsi_source_id);
 
@@ -383,8 +364,9 @@ nsibidi.prototype.nsibidi2Words = function(nsi_source_id, output_area_id, input_
 
     let nsi_text = nsi_source.value;
     let eng_array = [];
-    for (let c in nsi_text) {
-      eng_array.push(lookup_funct(nsi_text[c], word_list));
+    const words = nsi_text.split(/[\s\u200b]/);  // Use ZWSP and other white space
+    for (let i in words) {
+      eng_array.push(lookup_funct(words[i], word_list));
     }
     output_area.value = eng_array.join(' ');
     // Turn on div about the textarea.

@@ -42,12 +42,6 @@ unicode_font_list = [
     },
 ]
 
-kb_list = [
-  {'shortName': LanguageCode,
-   'longName': LanguageCode,
-   },
-]
-
 links = [
     {'linkText': 'Keyboard',
      'ref': '/' + LanguageCode + '/'
@@ -90,7 +84,27 @@ class langInfo():
 
     self.lang_list = [LanguageCode]  # This may be extended
 
-    self.kb_list = kb_list
+    self.kb_list = [
+      {'shortName': 'ig',
+       'longName': 'Igbo',
+       'fontFamily':'arial',
+       'instructions':
+         'Typed Igbo words and note the options shown on the right. ' +
+         'For letters with accents or dots, type the base letter, then use keys for [, ], \\\\ and |.\u000a' +
+         '• [ adds acute accent \u00b4 on a, e, i, o, u, m, n\u000a' +
+         '• ] adds grave accent \u0060 on a, e, i, o, u, m, n\u000a' +
+         '• \\\\ adds dot below \u0020\u0323 on a, e, i, o, u, m, n\u000a' +
+         '• | after n gives ñ, | after m gives ṁ\u000a' +
+         'To select a displayed option, type corresponding digit 0-9.\u000a' +
+         'Use Page Up and Page Down to show more selection options.'
+       },
+      {'shortName': 'en',
+       'longName': 'English',
+       'fontFamily':'arial',
+       'instructions': 'Type letters to look up nsibidi matches for English words.\u000a'
+
+       },
+    ]
     self.links = links
 
     # For additional resources for download
@@ -106,16 +120,6 @@ diacritic_list = [unichr(x) for x in range(0x300, 0x330)]
 #TODO: Fill in base consonant
 default_base_consonant = u'\0x61'
 
-kb_list = [
-  {'shortName': 'ig',
-   'longName': 'Igbo',
-   'fontFamily':'arial',
-   },
-  {'shortName': 'en',
-   'longName': 'English',
-   'fontFamily':'arial',
-   },
-]
 
 encodedRanges = [
   (0x20, 0xff),
