@@ -30,17 +30,18 @@ LanguageCode = 'cja'
 
 encoding_font_list = [
   {
-    'font_path': '/fonts/Cham/EFEOPanrang.ttf',
-    'font_name': 'EFEOPanrang',
-    'display_name': 'EFEO Panrang',
-  },
-  {
     'font_path': '/fonts/Cham/JG ChamCambodia.ttf',
     'font_name': 'JGChamCambodia',
     'display_name': 'JG Cham Cambodia',
     'source': 'http://glavyfonts.com/asian.html',
     'note': 'Font by Jason Glavy',
   },
+  {
+    'font_path': '/fonts/Cham/EFEOPanrang.ttf',
+    'font_name': 'EFEOPanrang',
+    'display_name': 'EFEO Panrang',
+  },
+
   {
     'font_path': '/fonts/Cham/JG ChamVN.ttf',
     'font_name': 'JGChamVN',
