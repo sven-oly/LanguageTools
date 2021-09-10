@@ -60,8 +60,8 @@ links = [
     {'linkText': 'Keyboard',
      'ref': '/' + LanguageCode + '/'
     },
-    # {'linkText': 'Converter',
-    #  'ref': '/' + LanguageCode + '/convertUI/'},
+    {'linkText': 'Transliterate',
+     'ref': '/' + LanguageCode + '/translit/'},
     # {'linkText': 'Font conversion summary',
     #   'ref': '/' + LanguageCode + '/encodingRules/'
     # },
@@ -135,6 +135,7 @@ langInstance = langInfo()
 app = webapp2.WSGIApplication([
   ('/' + LanguageCode + '/', base.LanguagesHomeHandler),
   ('/' + LanguageCode + '/convertUI/', base.ConvertUIHandler),
+  ('/' + LanguageCode + '/translit/', base.ConvertUIHandler),  # Change to TransListHandler
   ('/' + LanguageCode + '/downloads/', base.Downloads),
   ('/' + LanguageCode + '/encodingRules/', base.EncodingRules),
   ('/' + LanguageCode + '/diacritic/', base.DiacriticHandler),

@@ -4,45 +4,59 @@
 // https://translit.cc/ge/
 
 // https://www.oxfordhandbooks.com/view/10.1093/oxfordhb/9780190690694.001.0001/oxfordhb-9780190690694-appendix-2
-const map_encoding_names = [
-  'Georgian', 'Latin'];
+
+// https://en.wikipedia.org/wiki/Mingrelian_language#Alphabet
+// Mkhedruli     Transliteration IPA transcription
+const map_encoding_names = ['Latin', 'Latin', 'IPA'];
+
+const sources = [
+    "// https://en.wikipedia.org/wiki/Mingrelian_language#Alphabet",
+    "// https://www.oxfordhandbooks.com/view/10.1093/oxfordhb/9780190690694.001.0001/oxfordhb-9780190690694-appendix-2",
+    "// https://en.wikipedia.org/wiki/Mingrelian_language#Alphabet",
+];
 
 const private_use_map_combined = {
-  '\u0020': [' '],
-  'ა': 'a',
-  'ბ': 'b',
-  'ჟ': 'ǯ',
-  'მ': 'm',
-  'ი': 'i',
-  'შ': 'š',
-  'უ': 'u',
-  'თ': 't',
-  'დ': 'd',
-  'ო': 'o',
-  'ნ': 'n',
-  'ლ': 'l',
-  'რ': 'r',
-  'გ': 'g',
-  'კ': 'ḳ',
-  'ქ': 'k',
-  'ს': 's',
-  'ც': 'c',
-  'ჩ': 'č',
-  'ე': 'e',
-  'ხ': 'x',
-  'აა': 'ā',
-  'ტ': 'ṭ',
-  'ფ': 'p',
-  'ზ': 'z',
-  'ვ': 'v',
-  'წ': "ts'",
-  'ყ': 'gh',
-  'ჰ': 'h',
-  'ჯ': 'j',
-  'პ': "p'",
-    // TODO: Sort these.
-  // ...
+    "ა": ["a", "a", "ɑ"],
+    "ბ": ["b", "b", "b"],
+    "გ": ["g", "g", "ɡ"],
+    "დ": ["d", 'd', "d"],
+    "ე": ["e", 'e', "ɛ"],
+    "ვ": ["v", 'v', "v"],
+    "ზ": ["z", 'z', "z"],
+    "თ": ["t", 't', "t"],
+    "ი": ["i", 'i', "i"],
+    "კ": ["ǩ", 'ḳ', "kʼ"],
+    "ლ": ["l", 'l', "l"],
+    "მ": ["m", "m", "m"],
+    "ნ": ["n", 'n', "n"],
+    "ჲ": ["y", "j"],
+    "ო": ["o", 'o', "ɔ"],
+    "პ": ["p̌", 'p\'', "pʼ"],
+    "ჟ": ["Ⱬ", 'ǯ', "ʒ"],  // j as alternative
+    "რ": ["r", 'r', "r"],
+    "ს": ["s", 's', "s"],
+    "ტ": ["t̆", 'ṭ', "tʼ"],
+    "უ": ["u", 'u', "u"],
+    "ჷ": ["ƨ", "ə"],
+    "ფ": ["p", 'p', "p"],
+    "ქ": ["k", 'k', "k"],
+    "ღ": ["ɣ", "ɣ"],
+    "ყ": ["ɥ", 'gh', "qʼ"],
+    "ჸ": ["ꞇ", "ʔ"],
+    "შ": ["ş", 'š', "ʃ"],
+    "ჩ": ["ç", 'č', "t͡ʃ"],
+    "ც": ["ʒ", 'c', "t͡s"],  // ts as alternative
+    "ძ": ["ž", "d͡z"],
+    "წ": ["ǯ", 'ts\'', "t͡sʼ"], // tz as alternative
+    "ჭ": ["ç̌", "t͡ʃʼ"],
+    "ხ": ["x", 'x', "x"],
+    "ჯ": ["ʤ", 'j', "d͡ʒ"],
+    "ჰ": ["h", 'h', "h"],
+    'აა': ['aa', 'ā', "ɑɑ"],
 };
+//  '\u0020': [' '],
+//  'პ': "p'",
+//};
 
 // Source of the data below: https://omniglot.com/writing/mingrelian.htm
 const georSample = `
@@ -77,7 +91,7 @@ function convertEncodingToUnicode(inbox, outbox, encodingIndex) {
     out = c;
     if (c in private_use_map_combined) {
       // Only one mapping is implemented as of 25-Oct-2019
-      var result = private_use_map_combined[c];  // [encodingIndex];
+      var result = private_use_map_combined[c][encodingIndex];
       if (result) {
 	out = result;
       }
