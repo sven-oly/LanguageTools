@@ -12,11 +12,11 @@ js2py.translate_file('phkConverter.js', 'phkConverter.py')
 
 # Using readlines()
 outputLines = []
-infileName = 'joined.txt'  #  Originally wasq'Phake_Dictionary_Ailot_Final.txt'
+infileName = '/Users/craig/Desktop/Projects/PhakeData/joined.txt'  #  Originally wasq'Phake_Dictionary_Ailot_Final.txt'
 count = 0
 
-# These
-phakeFields = ['lx', 'le', 'pl', 'xv']
+# These should be converted.:wq
+phakeFields = ['lx', 'le', 'pl', 'se', 'xv']
 banchobFields = ['ph', 'pd', 'xr']
 textFields = ['de', 'ge', 'xe']
 eval_res, converterFile = js2py.run_file('phkConverter.js')
@@ -102,7 +102,11 @@ with open(infileName, 'r', encoding='utf-8') as f:
               content =\
                     converterFile.convertPhkToUnicode(content, encodingIndex)
                 # print('\ph == %s' % convertedLine)
-            elif tag in banchobFields or tag in textFields:
+            elif tag in banchobFields:
+              before = content
+              content = convertBanchob(content)
+              #print('Banchob %s -=-> %s' % (before, content))
+            elif tag in textFields:
               content = bracketedRe.sub(replaceBonchob, content)
             # Am I missing any Bonchob?
             output = '\\' + tag + ' ' + content
@@ -112,8 +116,8 @@ with open(infileName, 'r', encoding='utf-8') as f:
 # Convert each line
 print('%d input lines found' % len(outputLines))
 
-# outFileName = 'Phake_Dictionary_Ailot_Final_Unicode.txt'
-outFileName = 'output.txt'
+outFileName = '/Users/craig/Desktop/Projects/PhakeData/Phake_Dictionary_Ailot_Final_Unicode.txt'
+#outFileName = 'output.txt'
 
 outfile = open(outFileName, 'w', encoding='utf-8')
 # Separate with newlines and remove extra newlines.
@@ -123,8 +127,8 @@ for s in outputLines:
     out = s.replace('\u200d', '\n').rstrip()
   else:
     out = s
-  if s.find('\u200d') >= 0:
-    print('output = %s\n         %s' % (s, out))
+  # if s.find('\u200d') >= 0:
+  #   print('output = %s\n         %s' % (s, out))
   outfile.write(out + '\n')
 #
 outfile.close()

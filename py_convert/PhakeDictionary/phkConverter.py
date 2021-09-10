@@ -8,11 +8,11 @@ var = Scope( JS_BUILTINS )
 set_global_object(var)
 
 # Code follows:
-var.registers(['remove_variation_modifiers', 'add_variation_modifiers', 'variation_sequence_code_points', 'vsReplacer', 'convertEncodingToUnicode', 'convertPhkToUnicode', 'toLower', 'variation_modifier', 'private_use_map_combined', 'map_encoding_names'])
+var.registers(['private_use_map_combined', 'add_variation_modifiers', 'remove_variation_modifiers', 'toLower', 'map_encoding_names', 'vsReplacer', 'variation_modifier', 'convertEncodingToUnicode', 'convertPhkToUnicode', 'variation_sequence_code_points'])
 @Js
 def PyJsHoisted_vsReplacer_(match, match_char, offset, string, this, arguments, var=var):
     var = Scope({'match':match, 'match_char':match_char, 'offset':offset, 'string':string, 'this':this, 'arguments':arguments}, var)
-    var.registers(['match_char', 'match', 'offset', 'string'])
+    var.registers(['string', 'offset', 'match', 'match_char'])
     return (var.get('match_char')+var.get('variation_modifier'))
 PyJsHoisted_vsReplacer_.func_name = 'vsReplacer'
 var.put('vsReplacer', PyJsHoisted_vsReplacer_)
@@ -29,7 +29,7 @@ var.put('add_variation_modifiers', PyJsHoisted_add_variation_modifiers_)
 @Js
 def PyJsHoisted_remove_variation_modifiers_(text, this, arguments, var=var):
     var = Scope({'text':text, 'this':this, 'arguments':arguments}, var)
-    var.registers(['text', 'char'])
+    var.registers(['char', 'text'])
     var.put('size', var.get('text').get('length'))
     var.put('index', Js(0.0))
     var.put('out_text', Js(''))
@@ -51,7 +51,7 @@ var.put('toLower', PyJsHoisted_toLower_)
 @Js
 def PyJsHoisted_convertEncodingToUnicode_(inbox, outbox, encodingIndex, this, arguments, var=var):
     var = Scope({'inbox':inbox, 'outbox':outbox, 'encodingIndex':encodingIndex, 'this':this, 'arguments':arguments}, var)
-    var.registers(['outarea', 'outbox', 'encodingIndex', 'outtext', 'inbox', 'inarea', 'intext'])
+    var.registers(['intext', 'inbox', 'outtext', 'inarea', 'outbox', 'encodingIndex', 'outarea'])
     var.put('inarea', var.get('document').callprop('getElementById', var.get('inbox')))
     var.put('outarea', var.get('document').callprop('getElementById', var.get('outbox')))
     var.put('intext', var.get('inarea').get('value'))
@@ -63,7 +63,7 @@ var.put('convertEncodingToUnicode', PyJsHoisted_convertEncodingToUnicode_)
 @Js
 def PyJsHoisted_convertPhkToUnicode_(intext, encodingIndex, this, arguments, var=var):
     var = Scope({'intext':intext, 'encodingIndex':encodingIndex, 'this':this, 'arguments':arguments}, var)
-    var.registers(['newText', 'encodingIndex', 'out', 'c', 'outtext', 'result', 'intext', 'index'])
+    var.registers(['intext', 'newText', 'outtext', 'encodingIndex', 'out', 'c', 'result', 'index'])
     var.put('outtext', Js(''))
     pass
     #for JS loop
