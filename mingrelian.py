@@ -27,9 +27,9 @@ ScriptCode = 'Geor'
 
 encoding_font_list = [
   {
-    'font_path': '/fonts/xyz.ttf',
-    'font_name': 'Noto Georgian',
-    'display_name': 'Noto Georgian',
+    'font_path': '/fonts/Georgian/akolkhn.otf',
+    'font_name': 'akolkhn',
+    'display_name': 'Akolkhn',
   },
 ]
 
@@ -54,6 +54,11 @@ unicode_font_list = [
     'longName': 'Noto Serif Georgian Light',
     'source': '/fonts/Georgian/NotoSerifGeorgian-Light.ttf',
   },
+  {
+    'family': 'bpg_glaho',
+    'longName': 'BPG Glaho',
+    'source': '/fonts/Georgian/bpg_glaho.ttf',
+  },
 ]
 
 links = [
@@ -62,7 +67,10 @@ links = [
     },
     {'linkText': 'Transliterate',
      'ref': '/' + LanguageCode + '/translit/'},
-    # {'linkText': 'Font conversion summary',
+    {'linkText': 'KB transforms',
+     'ref': '/' + LanguageCode + '/kbtransforms/'
+     },
+  # {'linkText': 'Font conversion summary',
     #   'ref': '/' + LanguageCode + '/encodingRules/'
     # },
     # {'linkText': 'Resources',
@@ -136,6 +144,7 @@ app = webapp2.WSGIApplication([
   ('/' + LanguageCode + '/', base.LanguagesHomeHandler),
   ('/' + LanguageCode + '/convertUI/', base.ConvertUIHandler),
   ('/' + LanguageCode + '/translit/', base.ConvertUIHandler),  # Change to TransListHandler
+  ('/' + langInstance.LanguageCode + '/kbtransforms/', base.KeyboardTransforms),
   ('/' + LanguageCode + '/downloads/', base.Downloads),
   ('/' + LanguageCode + '/encodingRules/', base.EncodingRules),
   ('/' + LanguageCode + '/diacritic/', base.DiacriticHandler),

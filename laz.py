@@ -44,6 +44,9 @@ links = [
      'ref': '/' + LanguageCode + '/'},
     {'linkText': 'Laz Wikipedia',
      'ref': 'https://en.wikipedia.org/wiki/Laz_language'},
+    {'linkText': 'KB transforms',
+     'ref': '/' + LanguageCode + '/kbtransforms/'
+     },
     # {'linkText': 'Font conversion summary',
     #   'ref': '/' + LanguageCode + '/encodingRules/'
     # },
@@ -112,6 +115,7 @@ langInstance = langInfo()
 app = webapp2.WSGIApplication([
   ('/' + LanguageCode + '/', base.LanguagesHomeHandler),
   ('/' + LanguageCode + '/convertUI/', base.ConvertUIHandler),
+  ('/' + langInstance.LanguageCode + '/kbtransforms/', base.KeyboardTransforms),
   ('/' + LanguageCode + '/downloads/', base.Downloads),
   ('/' + LanguageCode + '/encodingRules/', base.EncodingRules),
   ('/' + LanguageCode + '/diacritic/', base.DiacriticHandler),
