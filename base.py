@@ -293,6 +293,7 @@ class ConvertUIHandler(webapp2.RequestHandler):
 
     template_values = {
         'converters': converters,
+        'isTransLit': False,
         'font': font,
         'language': langInfo.Language,
         'langTag': langInfo.LanguageCode,
@@ -559,6 +560,113 @@ class AllFontTest(webapp2.RequestHandler):
     }
 
     path = os.path.join(os.path.dirname(__file__), 'HTML/allFonts.html')
+    self.response.out.write(template.render(path, template_values))
+
+# Presents UI for conversions from one Unicode script to another.
+# TODO: use common elements with ConvertUIHandler
+class TranslitHandler(webapp2.RequestHandler):
+  def get(self, match=None):
+
+    langInfo = self.app.config.get('langInfo')
+
+    # All old characters
+    try:
+      oldInput = langInfo.test_chars[0]
+      test_char_list = langInfo.test_chars
+    except AttributeError:
+      oldInput = u''
+
+    oldChars = (u'\u0001 !"\u0023\u0024%&\'()*+,-./' +
+                '0123456789:;<=>?@' +
+                'ABCDEFGHIJKLMNOPQRSTUVWXYZ[ \\ ]^_`' +
+                'abcdefghijklmnopqrstuvwxyz{|}~')
+    text = self.request.get('text', oldChars)
+    font = self.request.get('font')
+    testStringList = [
+      {'name': 'Test 1', # Note: must escape the single quote.
+       'string': u'\u0004\u0005\u0006\u0007\u0008\u0009' +
+                 '\u000a\u000b'},
+    ]
+
+    try:
+      text_direction = langInfo.direction
+    except AttributeError:
+      text_direction = 'ltr'
+
+    # Handle non-Unicode output.
+    # try:
+    #   outputFont = langInfo.outputFont
+    # except:
+    #   outputFont = 'Unicode'
+    try:
+      outputFont = langInfo.outputScript
+    except:
+      outputFont = 'Unicode'
+
+    try:
+      unicodeChars = langInfo.unicodChars
+    except:
+      unicodeChars = '\ud804\udd00'
+      unicodeChars += '\ud804\udd03'
+      unicodeChars += '\ud804\udd04'
+      unicodeChars += '\ud804\udd05'
+      unicodeChars += '\ud804\udd06'
+
+    try:
+      unicodeCombiningChars = getCombiningCombos(
+        langInfo.baseHexUTF16, langInfo.diacritic_list)
+    except:
+      unicodeCombiningChars = None
+
+    try:
+      encodingList = langInfo.encoding_font_list
+    except:
+      encodingList = None
+
+    try:
+      variation_sequence = langInfo.variation_sequence
+    except:
+      variation_sequence = None
+
+    try:
+      converters = langInfo.converters
+    except:
+      converters = None
+
+    try:
+      translit_encoding_list = langInfo.translit_encoding_list
+    except:
+      translit_encoding_list = None
+    try:
+      translit_kb_list = langInfo.translit_kb_list
+    except:
+      translit_kb_list = None
+
+    template_values = {
+      'converters': converters,
+      'isTransLit': True,
+      'font': font,
+      'language': langInfo.Language,
+      'langTag': langInfo.LanguageCode,
+      'encodingList': encodingList,
+      'lang_list': langInfo.lang_list,
+      'kb_list': langInfo.kb_list,
+      'direction': text_direction,
+      'unicodeFonts': langInfo.unicode_font_list,
+      'links': langInfo.links,
+      'oldChars': oldChars,
+      'oldInput': oldInput,
+      'outputFont': outputFont,
+      'text': text,
+      'textStrings': testStringList,
+      'translit_encoding_list': translit_encoding_list,
+      'translit_kb_list': translit_kb_list,
+      'showTools': self.request.get('tools', None),
+      'unicodeChars': unicodeChars,
+      'combiningChars': unicodeCombiningChars,
+      'variation_sequence': variation_sequence,
+    }
+    path = os.path.join(os.path.dirname(__file__), 'HTML/translit_general.html')
     self.response.out.write(template.render(path, template_values))
 
 

@@ -1,16 +1,37 @@
 // Mappings for Georgian script to Latin for Caucasian languages
-// ა ბ გ დ ე ვ ზ თ ი კ ლ მ ნ ო პ ჟ რ ს ტ უ ფ ქ ღ ყ შ ჩ ც ძ წ ჭ ხ ჯ ჰ — « »
-// a b g d e v z t i k' l m n o p' zh r s t' u p k gh q sh ch ts dz ts' ch' kh j h — « »
 // https://translit.cc/ge/
 
 
-let langConverter = function() {
+let langConvertClass = function() {
   this.langCode = 'xmf';
   this.langName = 'Mingrelian';
+
+  // Each element includes input, output, and compute options.
+  this.transforms = [
+    {input: 'ASCII Georgian', output:'Unicode Georgian', 'compute': langConvertClass.prototype.ascii2Georgian},
+    {input: 'ASCII Georgian', output:'Unicode Latin',
+      'compute': this.ascii2Latin},
+    {input: 'Unicode Georgian', output:'Unicode Latin',
+      'compute': this.Georgian2Latin},
+  ];
 };
 
-langConverter.prototype.translitInfo = function() {
-  return (map_translit_output, map_translit_sources, private_use_map_combined);
+// The object returned.
+const langConverter = new langConvertClass();
+
+langConvertClass.prototype.getTransforms = function() {
+    return this.transforms;
+}
+
+langConvertClass.prototype.getLangCode = function() {
+  return this.langCode;
+}
+
+langConvertClass.prototype.translitInfo = function() {
+  return [translit_source,
+          map_translit_output,
+          map_translit_sources,
+          private_use_map_combined];
 }
 
 // https://www.oxfordhandbooks.com/view/10.1093/oxfordhb/9780190690694.001.0001/oxfordhb-9780190690694-appendix-2
@@ -18,6 +39,7 @@ langConverter.prototype.translitInfo = function() {
 // https://en.wikipedia.org/wiki/Mingrelian_language#Alphabet
 // Mkhedruli     Transliteration IPA transcription
 const map_translit_output = ['Wiki Latin', 'Oxford Handbook Latin', 'Wiki IPA'];
+const translit_source = 'Georgian';
 
 const map_translit_sources = [
     "// https://en.wikipedia.org/wiki/Mingrelian_language#Alphabet",
@@ -65,11 +87,16 @@ const private_use_map_combined = {
     'აა': ['aa', 'ā', "ɑɑ"],
 };
 
-langConverter.prototype.decodingInfo = function() {
-  return (map_translit_output, map_translit_sources, encoding_lookup);
+langConvertClass.prototype.decodingInfo = function() {
+  return encoding_data;
 }
-// For font AkolkhetyN to Georgian Unicode.
-const encoding_names = [['Akolkhety', 'Unicode']];
+// Font encoding information.
+// Map by font name, index in lookup table, output encoding, output scrit. AkolkhetyN to Georgian Unicode.
+const encoding_data = {
+    'Akolkhety': [0, 'Unicode', 'Georgian'],
+    'AcadMtavr': [0, 'Unicode', 'Georgian'],
+    'LitNusx': [0, 'Unicode', 'Georgian'],
+    };
 const encoding_lookup = {
     '\u0021': ['!'],
     '\u0022': ['\"'],
@@ -179,10 +206,36 @@ function toLower(instring) {
 }
 
 // TODO: Finish connecting these
-langConverter.prototype.transliterate = function() {
+
+langConvertClass.prototype.ascii2Georgian = function(text_in) {
+    const encodingIndex = 0;
+    return transformText(text_in, encoding_lookup, encodingIndex);
 }
 
-langConverter.prototype.toUnicode = function() {
+langConvertClass.prototype.ascii2Latin = function(text_in) {
+    const encodingIndex = 0;
+    const georgianOut = transformText(text_in, encoding_lookup, encodingIndex);
+    return transformText(georgianOut, private_use_map_combined, encodingIndex);
+}
+
+langConvertClass.prototype.Georgian2Latin = function(text_in) {
+    const encodingIndex = 0;
+    return transformText(text_in, private_use_map_combined, encodingIndex);
+}
+
+langConverter.transforms = [
+    {input: 'ASCII Georgian', output:'Unicode Georgian',
+     compute: langConvertClass.prototype.ascii2Georgian},
+    {input: 'ASCII Georgian', output:'Unicode Latin',
+      compute: langConvertClass.prototype.ascii2Latin},
+    {input: 'Unicode Georgian', output:'Unicode Latin',
+      compute: langConvertClass.prototype.Georgian2Latin},
+  ];
+
+langConvertClass.prototype.transliterate = function() {
+}
+
+langConvertClass.prototype.toUnicode = function() {
 }
 
 function transliterate(inbox, outbox, tranlitIndex) {
@@ -190,15 +243,22 @@ function transliterate(inbox, outbox, tranlitIndex) {
 }
 
 function convertEncodingToUnicode(inbox, outbox, encodingIndex) {
-  transformText(inbox, outbox, encoding_lookup, encodingIndex);
+  transformTextBox(inbox, outbox, encoding_lookup, encodingIndex);
 }
 
-function transformText(inbox, outbox, transformer, encodingIndex) {
+function transformTextBox(inbox, outbox, transformer, encodingIndex) {
   const inarea = document.getElementById(inbox);
   const outarea = document.getElementById(outbox);
-
-  // First, replace all single characters with their Unicode equivalents.
   const intext = inarea.value;
+  const newText = transformText(intext, transformer, encodingIndex);
+
+  if (outarea) {
+    outarea.innerHTML = outarea.value = newText;
+  }
+}
+
+function transformText(intext, transformer, encodingIndex) {
+  // First, replace all single characters with their Unicode equivalents.
   var outtext = "";
   var out;
   for (var index = 0; index < intext.length; index ++) {
@@ -217,8 +277,5 @@ function transformText(inbox, outbox, transformer, encodingIndex) {
   // Insert more complex replacements here.
   var newText = outtext;
 
-  if (outarea) {
-    outarea.innerHTML = outarea.value = newText;
-  }
   return newText;
 }

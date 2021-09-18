@@ -18,8 +18,6 @@ import webapp2
 
 import base
 
-from google.appengine.ext.webapp import template
-
 Language = 'Mingrelian'
 Language_native = 'მარგალური ნინა'
 LanguageCode = 'xmf'
@@ -30,6 +28,16 @@ encoding_font_list = [
     'font_path': '/fonts/Georgian/akolkhn.otf',
     'font_name': 'akolkhn',
     'display_name': 'Akolkhn',
+  },
+  {
+    'font_path': '/fonts/Georgian/AcadMtavr_new.ttf',
+    'font_name': 'AcadMtavr',
+    'display_name': 'AcadMtavr',
+  },
+  {
+    'font_path': '/fonts/Georgian/LitNusx.otf',
+    'font_name': 'LitNusx',
+    'display_name': 'LitNusx',
   },
 ]
 
@@ -62,25 +70,33 @@ unicode_font_list = [
 ]
 
 links = [
-    {'linkText': 'Keyboard',
-     'ref': '/' + LanguageCode + '/'
+    {
+      'linkText': 'Keyboard',
+      'ref': '/' + LanguageCode + '/'
     },
-    {'linkText': 'Transliterate',
-     'ref': '/' + LanguageCode + '/translit/'},
-    {'linkText': 'KB transforms',
-     'ref': '/' + LanguageCode + '/kbtransforms/'
+    {
+      'linkText': 'Convert',
+      'ref': '/' + LanguageCode + '/convert/'},
+    {
+      'linkText': 'Transliterate',
+      'ref': '/' + LanguageCode + '/translit/'},
+    {
+      'linkText': 'KB transforms',
+      'ref': '/' + LanguageCode + '/kbtransforms/'
      },
-  # {'linkText': 'Font conversion summary',
+    # {'linkText': 'Font conversion summary',
     #   'ref': '/' + LanguageCode + '/encodingRules/'
     # },
     # {'linkText': 'Resources',
     #   'ref': '/' + LanguageCode + '/downloads/'
     # },
-    {'linkText': 'Unicode block',
-     'ref': 'https://en.wikipedia.org/wiki/Georgian_(Unicode_block)'
+    {
+      'linkText': 'Unicode block',
+      'ref': 'https://en.wikipedia.org/wiki/Georgian_(Unicode_block)'
     },
-    {'linkText': 'Omniglot',
-     'ref': 'https://omniglot.com/writing/mingrelian.htm'
+    {
+      'linkText': 'Omniglot',
+      'ref': 'https://omniglot.com/writing/mingrelian.htm'
     },
     # {'linkText': 'Wikipedi page',
     #  'ref': 'https://en.wikipedia.org/wiki/Lepcha_language'
@@ -123,6 +139,34 @@ class langInfo:
     ]
     self.links = links
 
+    # For Georgian to Latin
+    self.translit_kb_list = [
+      {'shortName': LanguageCode,
+       'longName': 'Mingrelian Georgian',
+       'source': 'GBoard Mingrelian',
+       'instructions': "Based on GBoard Mingrelian",
+       },
+      {'shortName': 'en',
+       'longName': 'Latin font encoding',
+       },
+    ]
+    self.translit_encoding_list = [
+      {
+        'font_path': '/fonts/Georgian/akolkhn.otf',
+        'font_name': 'akolkhn',
+        'display_name': 'Akolkhn ASCII',
+      },
+      {
+        'font_name': 'NotoSansGeorgianRegular',
+        'display_name': 'Noto Sans Georgian Regular',
+        'font_path': '/fonts/Georgian/NotoSansGeorgian-Regular.ttf',
+      },
+      {
+        'font_name': 'NotoSerifGeorgianRegular',
+        'display_name': 'Noto Serif Georgian',
+        'font_path': '/fonts/Georgian/NotoSerifGeorgian-Regular.ttf',
+      },
+    ]
     # For additional resources for download
     self.text_file_list = []
 
@@ -137,13 +181,16 @@ class langInfo:
       (0x20, 0xff),
     ]
 
+    # To handle transliteration
+    self.outputScript = 'Mingrelian Unicode'
+
 
 langInstance = langInfo()
 
 app = webapp2.WSGIApplication([
   ('/' + LanguageCode + '/', base.LanguagesHomeHandler),
-  ('/' + LanguageCode + '/convertUI/', base.ConvertUIHandler),
-  ('/' + LanguageCode + '/translit/', base.ConvertUIHandler),  # Change to TransListHandler
+  ('/' + LanguageCode + '/convert/', base.ConvertUIHandler),  #
+  ('/' + LanguageCode + '/translit/', base.TranslitHandler),  # Transliterates to Latin
   ('/' + langInstance.LanguageCode + '/kbtransforms/', base.KeyboardTransforms),
   ('/' + LanguageCode + '/downloads/', base.Downloads),
   ('/' + LanguageCode + '/encodingRules/', base.EncodingRules),
