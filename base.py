@@ -604,13 +604,9 @@ class TranslitHandler(webapp2.RequestHandler):
       outputFont = 'Unicode'
 
     try:
-      unicodeChars = langInfo.unicodChars
+      unicodeChars = langInfo.unicodeChars
     except:
-      unicodeChars = '\ud804\udd00'
-      unicodeChars += '\ud804\udd03'
-      unicodeChars += '\ud804\udd04'
-      unicodeChars += '\ud804\udd05'
-      unicodeChars += '\ud804\udd06'
+      unicodeChars = ''
 
     try:
       unicodeCombiningChars = getCombiningCombos(

@@ -25,17 +25,32 @@ ScriptCode = 'latn'
 
 encoding_font_list = [
   {
-    'font_path': '/fonts/xyz.ttf',
-    'font_name': 'xyz',
-    'display_name': 'xyz',
+    'font_path': '/fonts/Georgian/akolkhn.otf',
+    'font_name': 'akolkhn',
+    'display_name': 'Akolkhn ASCII',
+  },
+  {
+    'font_path': '/fonts/Georgian/AcadMtavr_new.ttf',
+    'font_name': 'AcadMtavr',
+    'display_name': 'AcadMtavr ASCII',
+  },
+  {
+    'font_path': '/fonts/Georgian/LitNusx.otf',
+    'font_name': 'LitNusx',
+    'display_name': 'LitNusx ASCII',
   },
 ]
 
 unicode_font_list = [
     {
-        'family': 'NotoSans',
-        'longName': 'Noto Sans',
-        'source': '/fonts/NotoSans-Regular.ttf',
+      'family': 'NotoSans',
+      'longName': 'Noto Sans',
+      'source': '/fonts/NotoSans-Regular.ttf',
+    },
+    {
+      'family': 'NotoSerif',
+      'longName': 'Noto Serif',
+      'source': '/fonts/NotoSerif-Regular.ttf',
     },
 ]
 
@@ -45,8 +60,9 @@ links = [
     {'linkText': 'Laz Wikipedia',
      'ref': 'https://en.wikipedia.org/wiki/Laz_language'},
     {'linkText': 'KB transforms',
-     'ref': '/' + LanguageCode + '/kbtransforms/'
-     },
+     'ref': '/' + LanguageCode + '/kbtransforms/'},
+    {'linkText': 'Transliterate',
+     'ref': '/' + LanguageCode + '/translit/'},
     # {'linkText': 'Font conversion summary',
     #   'ref': '/' + LanguageCode + '/encodingRules/'
     # },
@@ -95,6 +111,26 @@ class langInfo:
         ]
         self.links = links
 
+        self.translit_encoding_list = [
+          encoding_font_list[0], encoding_font_list[1], encoding_font_list[2],
+          {
+            'font_name': 'NotoSansGeorgianRegular',
+            'display_name': 'Noto Sans Georgian Regular',
+            'font_path': '/fonts/Georgian/NotoSansGeorgian-Regular.ttf',
+          },
+          {
+            'font_name': 'NotoSerifGeorgianRegular',
+            'display_name': 'Noto Serif Georgian',
+            'font_path': '/fonts/Georgian/NotoSerifGeorgian-Regular.ttf',
+          },
+        ]
+        self.translit_kb_list = [
+          self.kb_list[0],
+          {'shortName': 'en',
+           'longName': 'Latin font encoding',
+           },
+        ];
+
         # For additional resources for download
         self.text_file_list = []
 
@@ -115,6 +151,7 @@ langInstance = langInfo()
 app = webapp2.WSGIApplication([
   ('/' + LanguageCode + '/', base.LanguagesHomeHandler),
   ('/' + LanguageCode + '/convertUI/', base.ConvertUIHandler),
+  ('/' + LanguageCode + '/translit/', base.TranslitHandler),  # Transliterates to Latin
   ('/' + langInstance.LanguageCode + '/kbtransforms/', base.KeyboardTransforms),
   ('/' + LanguageCode + '/downloads/', base.Downloads),
   ('/' + LanguageCode + '/encodingRules/', base.EncodingRules),

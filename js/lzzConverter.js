@@ -3,18 +3,11 @@
 
 
 let langConvertClass = function() {
-  this.langCode = 'xmf';
-  this.langName = 'Mingrelian';
+  this.langCode = 'lzz';
+  this.langName = 'Laz';
 
   // Each element includes input, output, and compute options.
-  this.transforms = [
-    {input: 'Unicode Georgian', output:'Unicode Latin',
-      'compute': this.Georgian2Latin},
-    {input: 'ASCII Georgian', output:'Unicode Georgian',
-      'compute': langConvertClass.prototype.ascii2Georgian},
-    {input: 'ASCII Georgian', output:'Unicode Latin',
-      'compute': this.ascii2Latin},
-  ];
+  // transforms are set below.
 };
 
 // The object returned.
@@ -65,7 +58,7 @@ const private_use_map_combined = {
     "ჲ": ["y", "j"],
     "ო": ["o", 'o', "ɔ"],
     "პ": ["p̌", 'p\'', "pʼ"],
-    "ჟ": ["Ⱬ", 'ǯ', "ʒ"],  // j as alternative
+    "ჟ": ["j", 'ǯ', "ʒ"],  // j as alternative
     "რ": ["r", 'r', "r"],
     "ს": ["s", 's', "s"],
     "ტ": ["t̆", 'ṭ', "tʼ"],
@@ -73,8 +66,8 @@ const private_use_map_combined = {
     "ჷ": ["ƨ", "ə"],
     "ფ": ["p", 'p', "p"],
     "ქ": ["k", 'k', "k"],
-    "ღ": ["ɣ", "ɣ"],
-    "ყ": ["ɥ", 'gh', "qʼ"],
+    "ღ": ["ğ", 'ɣ', "ɣ"],
+    "ყ": ["q", 'gh', "qʼ"],
     "ჸ": ["ꞇ", "ʔ"],
     "შ": ["ş", 'š', "ʃ"],
     "ჩ": ["ç", 'č', "t͡ʃ"],
@@ -83,7 +76,7 @@ const private_use_map_combined = {
     "წ": ["ǯ", 'ts\'', "t͡sʼ"], // tz as alternative
     "ჭ": ["ç̌", "t͡ʃʼ"],
     "ხ": ["x", 'x', "x"],
-    "ჯ": ["ʤ", 'j', "d͡ʒ"],
+    "ჯ": ["c", 'j', "d͡ʒ"],
     "ჰ": ["h", 'h', "h"],
     'აა': ['aa', 'ā', "ɑɑ"],
 };
@@ -225,11 +218,11 @@ langConvertClass.prototype.Georgian2Latin = function(text_in) {
 }
 
 langConverter.transforms = [
-    {input: 'ASCII Georgian', output:'Unicode Georgian',
+    {input: 'ASCII Georgian', output:'Laz Georgian',
      compute: langConvertClass.prototype.ascii2Georgian},
-    {input: 'ASCII Georgian', output:'Unicode Latin',
+    {input: 'ASCII Georgian', output:'Laz Latin',
       compute: langConvertClass.prototype.ascii2Latin},
-    {input: 'Unicode Georgian', output:'Unicode Latin',
+    {input: 'Unicode Georgian', output:'Laz Latin',
       compute: langConvertClass.prototype.Georgian2Latin},
   ];
 

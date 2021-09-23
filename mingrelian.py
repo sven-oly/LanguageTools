@@ -27,17 +27,17 @@ encoding_font_list = [
   {
     'font_path': '/fonts/Georgian/akolkhn.otf',
     'font_name': 'akolkhn',
-    'display_name': 'Akolkhn',
+    'display_name': 'Akolkhn ASCII',
   },
   {
     'font_path': '/fonts/Georgian/AcadMtavr_new.ttf',
     'font_name': 'AcadMtavr',
-    'display_name': 'AcadMtavr',
+    'display_name': 'AcadMtavr ASCII',
   },
   {
     'font_path': '/fonts/Georgian/LitNusx.otf',
     'font_name': 'LitNusx',
-    'display_name': 'LitNusx',
+    'display_name': 'LitNusx ASCII',
   },
 ]
 
@@ -151,11 +151,7 @@ class langInfo:
        },
     ]
     self.translit_encoding_list = [
-      {
-        'font_path': '/fonts/Georgian/akolkhn.otf',
-        'font_name': 'akolkhn',
-        'display_name': 'Akolkhn ASCII',
-      },
+      encoding_font_list[0], encoding_font_list[1], encoding_font_list[2],
       {
         'font_name': 'NotoSansGeorgianRegular',
         'display_name': 'Noto Sans Georgian Regular',

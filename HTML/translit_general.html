@@ -96,13 +96,11 @@
 
   function clearArea(outId, outArea) {
     const output_text = document.getElementById(outId);
-    output_text.innerHTML = inText;
-    output_text.value = "";
+    output_text.innerHTML = output_text.value = '';
 
     const hex_output = document.getElementById(outArea);
     if (hex_output) {
-      hex_output.innerHTML = "";
-      hex_output.value = "";
+      hex_output.innerHTML = hex_output.value = "";
 	}
   }
 
@@ -434,7 +432,7 @@ function newConverter(type, input_id, output_id, outtype_id) {
 
      <input type="button" value="Clear"
             onclick="clearArea('old_font_input_text', 'old_hex');">
-     {% if isTransList %}
+     {% if isTransLit %}
         Source font: <select onchange="onFontSelected(this, 'old_font_input_text');" id="selectEncodingFont">
         {% for encoding in translit_encoding_list %}
         <option value="{{encoding.font_name}}">{{encoding.display_name}}</option>
@@ -512,29 +510,30 @@ function newConverter(type, input_id, output_id, outtype_id) {
      <br />
      <input type="button" value="Clear"
             onclick="clearArea('Unicode_font_output_text', 'new_hex');">
-     <input type="button"
+     {% if unicodeChars %}<input type="button"
             onclick="fillWithUnicodeText('Unicode_font_output_text',
                      'new_hex');"
-            value="Unicode chars" />
+            value="Unicode chars" />{% endif %}
         Select font: <select onchange="onFontSelected(this, 'Unicode_font_output_text');" id="selectFont">
        {% for font in unicodeFonts %}
        <option value="{{font.family}}">{{font.longName}}</option>
        {% endfor %}
     </select>
-   {% if lang_list %}
+   {% if lang_list|length > 1%}
    Language: <select onchange="onLanguageSelected(this.value, 'Unicode_font_output_text')">
      {% for lang in lang_list %}
      <option value="{{lang.shortName}}" select="">{{lang.longName}}</option>
      {% endfor %}
    </select>
    {% endif %}
-
-     {% if kb_list|length > 1 %}
+  <br />
+     {% if not isTransLit and kb_list|length > 1 %}
         Keyboard: <select onchange="onLayoutSelected(this, null, 'Unicode{{language}}Tools');" id="selectKeyboard2">
         {% for kb in kb_list %}
         <option value="{{kb.shortName}}">{{kb.longName}} Unicode</option>
         {% endfor %}
       </select>
+
      {% endif %}
 
      <input type="checkbox" name="showNewTools" id="showNewTools"
@@ -557,7 +556,7 @@ function newConverter(type, input_id, output_id, outtype_id) {
        <input type="button" value="Regression test"
             onclick="regression(0);">  <!-- TODO: Pass the encoding index -->
         {% endif %}
-    <input type="button"
+         <input type="button"
            onclick="fillWithUnicodeCombiners('Unicode_font_output_text',
                     'new_hex');"
            value="Unicode combining chars" />
