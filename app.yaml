@@ -159,6 +159,9 @@ handlers:
 - url: /mez/.*
   script: menoninee.app
 
+- url: /mn/.*
+  script: mongolian.app
+
 - url: /mor/.*
   script: moro.app
 
@@ -188,6 +191,9 @@ handlers:
 
 - url: /rhg/.*
   script: rohingya.app
+
+- url: /rw/.*
+  script: kinyarwanda.app
 
 - url: /shn/.*
   script: shan.app
