@@ -70,6 +70,9 @@ links = [
     {'linkText': 'Try Makah on Google Input Tools',
       'ref': 'https://www.google.com/intl/sa/inputtools/try/'
     },
+    {'linkText': 'Resources / Downloads',
+     'ref': '/' + LanguageCode + '/downloads/'
+     },
 ]
 
 class langInfo():
@@ -86,7 +89,14 @@ class langInfo():
     self.links = links
 
     # For additional resources for download
-    self.text_file_list = []
+    resource_list = [
+      {
+        'name': 'KeyMan Makah Mobile + desktop',
+        'source': '/resources/' + LanguageCode + '/makah.kmp',
+        'description': 'Version 1.0 .kmp includes Mobile 30-Oct-2021  '
+      },
+    ]
+    self.text_file_list = resource_list
 
     # TODO: Fill in the rest of the common data.
 

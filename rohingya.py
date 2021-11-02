@@ -102,14 +102,9 @@ unicode_font_list = [
 
 resource_list = [
   {
-    'name': 'KeyMan Rohingya Installer',
-    'source': '/resources/rhg/RohingyaInstaller.kmp',
-    'description': '(.kmp) for Rohingya Unicode'
-  },
-  {
-    'name': 'KeyMan Layout',
-    'source': '/resources/rhg/RohingyaKeyboardLayout.kmn',
-    'description': '(.kmn) for Rohingya Unicode'
+    'name': 'KeyMan Rohingya Mobile + desktop',
+    'source': '/resources/rhg/rohingya_1.1.kmp',
+    'description': 'Version 1.1 .kmp includes Mobile 30-Oct-2021  '
   },
 ]
 
@@ -175,7 +170,7 @@ class langInfo():
                          +  'nn-> tana; '
                          + 'hh -> harabhay; '
                          + 'tt -> tahala; '
-                         + 'shift-space -> sakin'
+                         + 'shift-space -> sakin; '
                          + 'doubled consonant -> tassi'
         ),
       },

@@ -51,6 +51,14 @@ unicode_font_list = [
    },
 ]
 
+resource_list = [
+  {
+    'name': 'KeyMan Oneida Mobile + desktop',
+    'source': '/resources/one/oneida.kmp',
+    'description': 'Version 1.1 .kmp includes Mobile 30-Oct-2021  '
+  },
+]
+
 kb_list = [
   {'shortName': LanguageCode + '3',
    'longName': Language + ' Unicode V3',
@@ -105,6 +113,9 @@ links = [
     {'linkText': 'Oneida NSN',
      'ref': 'https://oneida-nsn.gov/'
     },
+    {'linkText': 'Resources / Downloads',
+     'ref': '/one/downloads/'
+     },
 ]
 
 class langInfo():
@@ -117,6 +128,7 @@ class langInfo():
     self.encoding_font_list = encoding_font_list
 
     self.unicode_font_list = unicode_font_list
+    self.text_file_list = resource_list
 
     self.kb_list = kb_list
     self.links = links

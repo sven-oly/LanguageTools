@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-#!/usr/bin/env python
+# !/usr/bin/env python
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,7 +14,6 @@
 # limitations under the License.
 #
 
-import sys
 import webapp2
 
 # Use routines from this base class
@@ -23,7 +22,7 @@ import base
 
 # Handling Ahom and other language codes for testing font and conversions.
 # Should this be inherited from base.languageTemplate?
-class langInfo():
+class langInfo:
   def __init__(self):
     self.LanguageCode = 'phk'
     self.Language = 'Tai Phake'
@@ -51,24 +50,29 @@ class langInfo():
       {'source': '/fonts/Phake/PhakeRamayanaUnicode.otf',
        'family': 'PhakeRamayanaUnicode',
        'longName': 'Ramayana Unicode 29-Jul-2021',
-       'info': 'Dotted form by Ben Mitchell, 29-Jul-2021. https://github.com/ohbendy/Phake-Ramayana/blob/main/PhakeRamayanaUnicode.otf',
+       'info': 'Dotted form by Ben Mitchell, 29-Jul-2021. ' +
+               'https://github.com/ohbendy/Phake-Ramayana/blob/main/PhakeRamayanaUnicode.otf',
        },
-      {'source': '/fonts/Myanmar/NotoSerifMyanmar-Light.ttf',
-       'family': 'NotoSerif Myanmar Light',
-       'longName': 'Noto Serif Myanmar Light',
-       },
-      {'source': '/fonts/Phake/GhinKhao-Bold.otf',
-       'family': 'GhinKhao-Bold',
-       'longName': 'GhinKhao Bold',
-       },
-      { 'source': '/fonts/Padauk-Regular.ttf',
-          'family': 'Padauk',
-          'longName': 'Padauk',
-        },
-        { 'source': '/fonts/Myanmar/NotoSansMyanmar-Regular.ttf',
-          'family': 'NotoSansMyanmarRegular',
-          'longName': 'Noto Sans Myanmar Regular',
-        },
+      {
+        'source': '/fonts/Myanmar/NotoSerifMyanmar-Light.ttf',
+        'family': 'NotoSerif Myanmar Light',
+        'longName': 'Noto Serif Myanmar Light',
+      },
+      {
+        'source': '/fonts/Phake/GhinKhao-Bold.otf',
+        'family': 'GhinKhao-Bold',
+        'longName': 'GhinKhao Bold',
+      },
+      {
+        'source': '/fonts/Padauk-Regular.ttf',
+        'family': 'Padauk',
+        'longName': 'Padauk',
+      },
+      {
+        'source': '/fonts/Myanmar/NotoSansMyanmar-Regular.ttf',
+        'family': 'NotoSansMyanmarRegular',
+        'longName': 'Noto Sans Myanmar Regular',
+      },
       {'source': '/fonts/Myanmar/NotoSansMyanmar-Medium.ttf',
        'family': 'NotoSansMyanmarMedium',
        'longName': 'Noto Sans Myanmar Medium',
@@ -81,19 +85,21 @@ class langInfo():
        'family': 'NotoSansMyanmarThin',
        'longName': 'Noto Sans Myanmar Thin',
        },
-      { 'source': '/fonts/Myanmar/NotoSerifMyanmar-Regular.ttf',
-          'family': 'NotoSerif Myanmar Regular',
-          'longName': 'Noto Serif Myanmar Regular',
-        },
-      {'source': '/fonts/Myanmar/NotoSerifMyanmar-Medium.ttf',
-       'family': 'NotoSerif Myanmar Medium',
-       'longName': 'Noto Serif Myanmar Medium',
-       },
-
-    {'source': '/fonts/Myanmar/NotoSerifMyanmar-Thin.ttf',
-     'family': 'NotoSerif Myanmar Thin',
-     'longName': 'Noto Serif Myanmar Thin',
-     },
+      {
+        'source': '/fonts/Myanmar/NotoSerifMyanmar-Regular.ttf',
+        'family': 'NotoSerif Myanmar Regular',
+        'longName': 'Noto Serif Myanmar Regular',
+      },
+      {
+        'source': '/fonts/Myanmar/NotoSerifMyanmar-Medium.ttf',
+        'family': 'NotoSerif Myanmar Medium',
+        'longName': 'Noto Serif Myanmar Medium',
+      },
+      {
+        'source': '/fonts/Myanmar/NotoSerifMyanmar-Thin.ttf',
+        'family': 'NotoSerif Myanmar Thin',
+        'longName': 'Noto Serif Myanmar Thin',
+      },
     ]
 
     # Just provide some of these fonts for download at this time.
@@ -103,20 +109,24 @@ class langInfo():
        'family': 'NotoSerif Myanmar Light',
        'longName': 'Noto Serif Myanmar Light',
        },
-      { 'source': '/fonts/Myanmar/NotoSerifMyanmar-Regular.ttf',
+      {
+        'source': '/fonts/Myanmar/NotoSerifMyanmar-Regular.ttf',
         'family': 'NotoSerif Myanmar Regular',
         'longName': 'Noto Serif Myanmar Regular',
       },
     ]
 
     self.lang_list = [
-      {"shortName": "phk",
-       'longName': 'Phake'
-       },
-      {'shortName': 'kht',
-       'longName': 'Khamti'
-       },
-      {'shortName':  'aio',
+      {
+        "shortName": "phk",
+        'longName': 'Phake'
+      },
+      {
+        'shortName': 'kht',
+        'longName': 'Khamti'
+      },
+      {
+        'shortName':  'aio',
         'longName': 'Aiton'
        },
 
@@ -156,28 +166,33 @@ class langInfo():
       {'linkText': 'Phake-English dictionary builder',
        'ref': '/' + self.LanguageCode + '/dictionaryN/'
        },
-      {'linkText': 'Variation sequences: About those dots',
-       'ref': 'http://unicode.org/faq/vs.html'
-       },
-      {'linkText': 'Myanmar Unicode block',
-       'ref': 'http://www.unicode.org/charts/PDF/U1000.pdf'
-       },
-      {'linkText': 'Myanmar Unicode extension A block',
-       'ref': 'https://www.unicode.org/charts/PDF/UAA60.pdf'
-       },
-      {'linkText': 'Representing Myanmar in Unicode',
-       'ref': 'https://www.unicode.org/notes/tn11/UTN11_4.pdf'
+      {
+        'linkText': 'Variation sequences: About those dots',
+        'ref': 'http://unicode.org/faq/vs.html'
       },
-      {'linkText': 'Resources',
-       'ref': '/' + self.LanguageCode + '/downloads/'
-       },
+      {
+        'linkText': 'Myanmar Unicode block',
+        'ref': 'http://www.unicode.org/charts/PDF/U1000.pdf'
+      },
+      {
+        'linkText': 'Myanmar Unicode extension A block',
+        'ref': 'https://www.unicode.org/charts/PDF/UAA60.pdf'
+      },
+      {
+        'linkText': 'Representing Myanmar in Unicode',
+        'ref': 'https://www.unicode.org/notes/tn11/UTN11_4.pdf'
+      },
+      {
+        'linkText': 'Resources',
+        'ref': '/' + self.LanguageCode + '/downloads/'
+      },
     ]
 
     resource_list = [
       {
         'name': 'KeyMan Phake keyboard for mobile and computer',
         'source': '/resources/phk/phk_1.14.kmp',
-        'description': 'Version 1.14 19-Aug-2021'
+        'description': 'Version 1.14 26-Oct-2021 updated'
       },
     ]
 
@@ -207,9 +222,8 @@ class langInfo():
     # Python-based transliteration tool.
     self.transliterator = None
 
-   # Test data for showing in converter.
-    self.test_data = ''  ##u'V: ဢ︀ꩬ︀ၵ︀ꩡ︀ထ︀ၸ︀တ︀ယ︀ီက︀လ︀\nN: ဢꩬၵꩡထၸတယီကလ'
-
+    # Test data for showing in converter.
+    self.test_data = ''
     self.dictionaryLang1 = 'phk'
     self.dictionaryLang2 = 'en'
     self.kb1 = ''
@@ -219,14 +233,16 @@ class langInfo():
     self.variation_sequence = True
 
     self.dictionaryNData = [
-      {'langName': self.Language, 'langNative': '',
-       'languageCode': self.LanguageCode,
+      {
+        'langName': self.Language, 'langNative': '',
+        'languageCode': self.LanguageCode,
         'kbShortName': 'phkVar', 'kbLongName': self.Language,
-        'font': { 'family': self.unicode_font_list[0]['family'],
+        'font': {
+          'family': self.unicode_font_list[0]['family'],
           'longName': self.unicode_font_list[0]['longName'],
           'source':self.unicode_font_list[0]['source'],
-                  },
-       'direction': 'ltr',
+        },
+        'direction': 'ltr',
       },
       {'langName': 'English', 'langNative': 'English',
        'languageCode': 'en',
@@ -239,6 +255,7 @@ class langInfo():
        'helptext': 'Instructions'
        },
     ]
+
 
 langInstance = langInfo()
 app = webapp2.WSGIApplication(
