@@ -58,6 +58,7 @@
       #choose_table {font-size:18px; height:320px; width:250px; resize: vertical;}
 
       .nsi_button { font-family: "Akagu2020"; }
+      button { font-size:16px; }
     </style>
 
   <!-- special files for Nsibidi -->
@@ -245,12 +246,6 @@ function toggleConvertedVS(text_area_id, toggle) {
 }
 {% endif %}
 
-/* TODO !!! toggle between hiding and showing the dropdown content */
-function myDropFunction() {
-   let item = document.getElementById("item_menu");
-   toggleVisible("item_menu");
-}
-
 // Intercept copying to remove ZWSP between words.
 function removeZwspCopy(region_id) {
   const region = document.getElementById(region_id);
@@ -277,7 +272,7 @@ function removeZwspCopy(region_id) {
   <div class="container">
     <div class="span-1">  
     </div>
-  <div class="span-16">
+  <div class="span-18">
     <h2>{{language}} Keyboard</h2>
 
   <span {% if lang_list|length <= 1 %}hidden{% endif %}>
@@ -295,18 +290,18 @@ function removeZwspCopy(region_id) {
     </select>
   </span>
 
-  Input language: <select id='inputLangSelector'>
+  Language: <select id='inputLangSelector'>
     <option value='ig'>Igbo</option>
     <option value='en'>English</option>
   </select>
-
-  <input type="button" value="Clear text" onclick="utils.clearText('input_area', true);">
+  <input type="checkbox" name="partMatchToggle" id="partMatchToggle">Partial match
+  <input type="button" value="Clear input" onclick="utils.clearText('input_area', true);">
   <br />
     <div id="nsibidi_input">
     <p class="input-font">Type here:
     <input id="input_area"
            onkeyup='nsi.handleMatching("input_area", "inputLangSelector", "t1", "results_count",
-           "choose_table");'
+           "choose_table", "partMatchToggle");'
            class='input-font' style="width:200px;height:35px;" dir="{{direction}}" spellcheck="false"></input>
       <span id='results_count'></span>
       <br />

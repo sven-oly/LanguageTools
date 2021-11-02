@@ -21,38 +21,27 @@ import base
 
 from google.appengine.ext.webapp import template
 
-Language = 'TBD'
-Language_native = '???ᰶ'
-LanguageCode = 'TBD'
-ScriptCode = 'tbd'
+Language = 'Mongolian'
+Language_native = ''
+LanguageCode = 'mn'
+ScriptCode = 'Mong'
 
 links = [
   {'linkText': 'Keyboard',
    'ref': '/' + LanguageCode + '/'
    },
-  # {'linkText': 'Converter',
-  #  'ref': '/' + LanguageCode + '/convertUI/'},
+  {'linkText': 'Mongolian Unicode',
+   'ref': 'https://www.unicode.org/charts/PDF/U1800.pdf'},
+  {'linkText': 'Mongolian Unicode Supplement',
+   'ref': 'https://www.unicode.org/charts/PDF/U11660.pdf'},
+  {'linkText': 'Mongolian script',
+   'ref': 'https://en.wikipedia.org/wiki/Mongolian_script'},
   # {'linkText': 'Font conversion summary',
   #   'ref': '/' + LanguageCode + '/encodingRules/'
   # },
   # {'linkText': 'Resources',
   #   'ref': '/' + LanguageCode + '/downloads/'
   # },
-  # {'linkText': 'Unicode page',
-  #  'ref': 'https://www.unicode.org/charts/PDF/U1C00.pdf'
-  # },
-  # {'linkText': 'Lepcha script',
-  #  'ref': 'https://en.wikipedia.org/wiki/Lepcha_alphabet'
-  # },
-  # {'linkText': 'Wikipedi page',
-  #  'ref': 'https://en.wikipedia.org/wiki/Lepcha_language'
-  # },
-  # {'linkText': 'Ethnolog',
-  #  'ref': 'https://www.ethnologue.com/language/lep'
-  # },
-  # {'linkText': 'Combiners',
-  #  'ref': '/lep/diacritic/'
-  #  },
 ]
 
 
@@ -61,21 +50,17 @@ class langInfo:
         self.LanguageCode = LanguageCode
         self.Language = Language
         self.Language_native = Language_native
-        self.test_data = u'FILL IN'
+        self.test_data = u''
+        self.direction = 'writing-mode: vertical-lr';
         self.unicode_font_list = [
           {
-            'family': 'NotoSansxyz',
-            'longName': 'Noto Sans xyz',
-            'source': '/fonts/NotoSansxyz-Regular.ttf',
+            'family': 'NotoSansMongolian-Regular',
+            'longName': 'Noto Sans Mongolian-Regular',
+            'source': '/fonts/NotoSansMongolian-Regular.ttf',
           },
         ]
 
         self.encoding_font_list = [
-          {
-            'font_path': '/fonts/xyz.ttf',
-            'font_name': 'xyz',
-            'display_name': 'xyz',
-          },
         ]
 
         self.lang_list = [LanguageCode]  # This may be extended

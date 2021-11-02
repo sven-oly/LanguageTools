@@ -15,6 +15,7 @@ let nsibidi = function() {
     this.currentBase = 0;
     this.fontName = "Akagu2020";
     this.wordSeparator = '\u200b';  // ZWSP
+    this.partialMatchValue = null;
 }
 
 nsibidi.prototype.sortFirst = function(a,b) {
@@ -107,11 +108,39 @@ nsibidi.prototype.lookupIgbo = function(input) {
   return this.lookupMatches(input, this.igTree);
 }
 
+// Search values not starting from the first.
+nsibidi.prototype.partialMatchLookup = function (input, data) {
+  const x = 1;
+  let results = [];
+
+    const keys = data.keys();
+    while (keys.next()) {
+      for (let word in keys.value) {
+        if (word.search(input) >= 0) {
+            results.push(word);
+        }
+      }
+    }
+    //data.forEach((value, key) => { results.push(value)});
+    // const wordList;
+    // Check each of the words with search()
+    // word.search(input)
+    // if search >= 0, found it
+    //results.push(word);
+  return results;
+}
+
+
 // Given a tree of data and an input, return the matches
 nsibidi.prototype.lookupMatches = function(input, data) {
     if (!data || !input) return null;
     let result;
 
+    // TODO: use partialMatchValue to determine how to match
+    if (this.partialMatchValue) {
+      result = this.partialMatchLookup(input,data);
+    }
+    // Match from first character.
     let first = input.substring(0,1);  // First character for lookup
     const sublist = data.get(first);
     if (sublist) {
@@ -121,33 +150,30 @@ nsibidi.prototype.lookupMatches = function(input, data) {
         for (i in sublist) {
           let test = sublist[i][0].substring(0,insize);
           if (test === input) {
-              if (Array.isArray(sublist[i][1])) {
-                  // TODO: unpack multiple items??
-                  // Or handle at display time?
-                  for (let second in sublist[i][1]) {
-                      result.push([sublist[i][0], sublist[i][1][second] ]);
-                  }
-              } else {
-                // Just one item.
-                result.push(sublist[i]);
-                }
+            if (Array.isArray(sublist[i][1])) {
+              // TODO: unpack multiple items??
+              // Or handle at display time?
+              for (let second in sublist[i][1]) {
+                result.push([sublist[i][0], sublist[i][1][second] ]);
+              }
+            } else {
+              // Just one item.
+              result.push(sublist[i]);
+            }
           }
         }
     }
     return result;  // List of possible matches
 }
 
-nsiSelectItem = function(output_area, raw_input, result, input_div, input_area) {
+nsibidi.prototype.nsiSelectItem = function(output_area, raw_input, result, input_area, info_area) {
     // Insert the Nsibii character when you select it.
     if (result) {
-        output_area.value = output_area.value + result[1];
+        output_area.value = output_area.value + result[1] + this.wordSeparator;
     } else {
-        output_area.value = output_area.value + raw_input;
+        output_area.value = output_area.value + raw_input + this.wordSeparator;
     }
-    clearDiv(input_area);
-    info_area.innerHTML = '';
-
-    input_area.innerHTML = input_area.value = "";
+    input_area.innerHTML = info_area.innerHTML = "";
     input_area.focus();
 }
 
@@ -157,27 +183,14 @@ nsibidi.prototype.nsiSelectIndexedItem = function(output_area, relativeItemNum, 
     if (item) {
         output_area.value = output_area.value + item[1] + this.wordSeparator;
     }
-    // Clear drop down after selection. UNDO?
-//    clearDiv(input_div);
     info_area.innerHTML = input_area.value = "";
     input_area.focus();
     this.currentResults = null;
     this.currentBase = 0;
 }
 
-clearDiv = function(input_div) {
-    // Clear drop down after selection. UNDO?
-    buttons = input_div.getElementsByTagName("button");
-    spans = input_div.getElementsByTagName("span");
-    let length = buttons.length;
-    for (i = length-1; i >= 0; i--) {
-      buttons[i].remove();
-      spans[i].remove();
-    }
-}
-
 nsibidi.prototype.handleMatching = function(
-  input_id, input_lang_id, output_id, info_id, choice_table_id) {
+  input_id, input_lang_id, output_id, info_id, choice_table_id, partial_match_id) {
   const e = window.event;
   const key = e.key;
 
@@ -188,6 +201,8 @@ nsibidi.prototype.handleMatching = function(
   const output_area = document.getElementById(output_id);
   const choice_table = document.getElementById(choice_table_id);
   const info_area = document.getElementById(info_id);
+  // Get the current toggle setting.
+  this.partialMatchValue = document.getElementById(partial_match_id).checked;
 
   if (!input_area) return null;
 
@@ -196,7 +211,7 @@ nsibidi.prototype.handleMatching = function(
 
   // Insert some characters directly including punctuation, space, return.
   if (key !== "'" && key >= " " && key < "0" ) {
-    nsiSelectItem(output_area, input_area.value, null, info_area, input_area);
+    this.nsiSelectItem(output_area, input_area.value, null, input_area, info_area);
   }
   if (key >= "0" && key <= "9" ) {
     if (this.currentResults) {
@@ -206,7 +221,6 @@ nsibidi.prototype.handleMatching = function(
     }
   }
   if (key === "PageDown") {
-    // TODO: change the contents
     if (this.currentBase + this.pageSize <= this.currentResults.length) {
         this.currentBase = Math.min(this.currentResults.length, this.currentBase + this.pageSize);
         this.fillChoiceTable(choice_table);
@@ -234,7 +248,7 @@ nsibidi.prototype.handleMatching = function(
 
   // Check for return or tab. Accept what's typed.
   if (key === 'Enter' || key == "Tab") {
-    nsiSelectItem(output_area, input_area.value, results[0], info_area, input_area);
+    this.nsiSelectItem(output_area, input_area.value, results[0], input_area, info_area);
     this.clearChoiceTable(choice_table)
     return results;
   }

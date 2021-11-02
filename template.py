@@ -21,10 +21,10 @@ import base
 
 from google.appengine.ext.webapp import template
 
-Language = 'TBD'
-Language_native = '???ᰶ'
-LanguageCode = 'TBD'
-ScriptCode = 'tbd'
+Language = 'Kinyarwanda'
+Language_native = 'Kinyarwanda'
+LanguageCode = 'rw'
+ScriptCode = 'Latn'
 
 links = [
   {'linkText': 'Keyboard',
@@ -64,9 +64,9 @@ class langInfo:
         self.test_data = u'FILL IN'
         self.unicode_font_list = [
           {
-            'family': 'NotoSansxyz',
-            'longName': 'Noto Sans xyz',
-            'source': '/fonts/NotoSansxyz-Regular.ttf',
+            'family': 'Kernedumwero',
+            'longName': 'Kernedumwero',
+            'source': '/fonts/Kinyarwanda/Kernedumwero.otf',
           },
         ]
 

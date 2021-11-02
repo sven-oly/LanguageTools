@@ -147,8 +147,8 @@ links = [
     {'linkText': 'Tikamuli Unicode Proposal',
       'ref': 'http://www.unicode.org/L2/L2010/10465-tikamuli.pdf'
     },
-    {'linkText': 'Kõits-Bleshe-Sunuwar Unicode Proposal',
-      'ref': '  http://unicode.org/L2/L2011/11218-n4028-jenticha.pdf'
+    {'linkText': 'Kõits-Bleshe-Sunuwar Unicode Proposal 2021',
+      'ref': '  https://www.unicode.org/L2/L2021/21157-sunuwar.pdf'
     },
     {'linkText': 'Sunuwar Wikipedia',
      'ref': 'https://en.wikipedia.org/wiki/Sunwar_language'

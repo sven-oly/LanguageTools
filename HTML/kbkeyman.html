@@ -91,7 +91,7 @@ function map_qwerty(layer_values, layer_txt, querty_names) {
       let hex = utf16common(item, "U+", " ", true, []);
       layer_list.push("+ [" + layer_txt + querty_names[upper] + "] > " + hex);
     } else {
-      alert(index + " " + layer_items);
+      alert('Missing value for index ' + index + ' layer ' + layer_txt + " " + layer_items);
     }
   }
   return layer_list;

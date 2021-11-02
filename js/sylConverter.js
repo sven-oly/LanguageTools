@@ -5,7 +5,7 @@ var map_encoding_names = [
   'SumraL'];
 
 // aa00 is the base
-var private_use_map_combined = {
+const private_use_map_combined = {
     '\u0021': ['!'],
     '\u0022': ['\"'],
     '\u0023': ['#'],
