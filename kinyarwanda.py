@@ -61,9 +61,9 @@ class langInfo:
         self.LanguageCode = LanguageCode
         self.Language = Language
         self.Language_native = Language_native
-        self.test_data = u'FILL IN'
+        self.test_data = u''
         self.unicode_font_list = [
-          {
+          {  # This is a font encoding for testing.
             'family': 'Kernedumwero',
             'longName': 'Kernedumwero',
             'source': '/fonts/Kinyarwanda/Kernedumwero.otf',
