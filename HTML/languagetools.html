@@ -47,28 +47,15 @@
       <h3>Available languages:</h3>
         <ul class="default">
         {% for lang in langlist %}
-          <li>{{lang.0}} ({{lang.1}}) {{lang.2}}
+          <li><a href="/{{lang.1}}/">{{lang.0}}</a> ({{lang.1}}) {{lang.2}}
           </li>
         {% endfor %}
-          <li>Fulani / Fulfulde / Pular in Adlamscript (ful)</li>
-           <li>Osage language (osa)</li>
+          <li><a href="http://adlamtesting.appspot.com/">Fulani / Fulfulde / Pular</a> (ff) Adlams script</li>
+          <li><a href="http://osagelanguagetools.appspot.com/">Osage</a> (osa)</li><br />
        </ul>
     
     </div>  <!-- span-12 -->
 
-    <div class="span-6 last">
-    <h4>Links:</h4>
-      {% for lang in langlist %}
-        <a href="/{{lang.1}}/">{{lang.0}}</a>
-        <br />
-       {% endfor %}
-       <a href="http://adlamtesting.appspot.com/">Fulani / Fulfulde / Pular in Adlam</a>
-       <br />
-       <a href="http://osagelanguagetools.appspot.com/">Osage language</a>
-    </div> <!-- span-4 -->
-  
-  </div> <!-- container -->
-  <div class="container">
     <!-- TURN ON WHEN READY -->
     <div class="span-12 last">
     <h2>Levels of language support on the web</h2>
@@ -108,14 +95,14 @@
           "housing" & "houses" -> "house"</li>
         <li>In some cases, conversion to Unicode encoding</li>
         <li>Handwritten character input</li>
+        <li>Optical character recognition (OCR)</li>
       </ul>
     <li>Highest level: requires extensive data and processing.
       <ul>
         <li>Full user interface translation in products</li>
         <li>Machine Translation</li>
-        <li>Voice understanding</li>
-		<li>Speech to text</li>
-		<li>Optical character recognition (OCR)</li>
+		<li>Speech to text (STT) or Voice understandi</li>
+        <li>Text to speech (TTS)</li>
 	  </ul>
 	</li>
 
@@ -126,7 +113,7 @@
   <div>
     <p>Note that the icon for this project is provided by <a href="http://www.languageicon.org/">languageicon.org</a></p>
     <form id='mon_form' action="/feedback/" method="get">
-      <input type="submit" value="Send feedback" />
+      <input type="submit" value="Send feedback or request your language" />
       <input type="hidden" name='language' value='Main'>
       <input type="hidden" name='font' value=''>
     </form>

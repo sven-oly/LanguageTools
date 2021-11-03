@@ -68,8 +68,8 @@ handlers:
 - url: /ccp/.*
   script: chakma.app
 
-- url: /chr/.*
-  script: cherokee.app
+- url: /cho/.*
+  script: choctaw.app
 
 - url: /cr/.*
   script: cree.app

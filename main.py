@@ -55,13 +55,46 @@ LanguageList = [
   ('Tangsa', 'nst', 'Tangsa'),
   ('Tibetan', 'bod'),
   ('Wolof', 'wo'),
+  ('Bangali', 'bn'),
+  ('Bassa', 'bsq'),
+  ('Bataj Simalungun', 'bts'),
+  ('Choctaw', 'cho'),
+  ('Cree', 'cr'),
+  ('Lenape', 'del'),
+  ('Ho', 'hoc'),
+  ('Igbo', 'ig'),
+  ('Kaingang', 'kgp'),
+  ('Kpelle', 'kpe'),
+  ('Loma', 'lom'),
+  ('Tai Viet script', 'tavt'),
+  ('Ho-Chunk', 'win'),
+  ('Karen', 'ksw'),
+  ('Lampung', 'lampung'),
+  ('Lepcha', 'lep'),
+  ('Laz', 'lzz'),
+  ('Mongolian', 'mn'),
+  ('Mende Kikakui', 'men'),
+  ('Wancho', 'nnp'),
+  ('Ojibwe', 'oj'),
+  ('Kinyarwanda', 'rw'),
+  ('Shan', 'shn'),
+  ('Sora', 'srb'),
+  ('Tulu', 'tcy'),
+  ('Tamashek', 'tmh'),
+  ('Tongan', 'to'),
+  ('Sunuwar', 'suz'),
+  ('Mingrelian', 'xmf'),
+  ('Mundari', 'unr'),
+  ('Yoruba', 'yo'),
+  ('Zaghawa', 'zag'),
+  ('Burmese', 'my'),
 ]
 
 
 class MainHandler(webapp2.RequestHandler):
     def get(self):
         template_values = {
-          'langlist': LanguageList,
+          'langlist': sorted(LanguageList, key=lambda lang: lang[0])
         }
         path = os.path.join(os.path.dirname(__file__), 'HTML/languagetools.html')
         self.response.out.write(template.render(path, template_values))

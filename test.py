@@ -56,8 +56,8 @@ class testLocaleHandler(webapp2.RequestHandler):
       logging.info("user agent = %s" % self.request.headers['user-agent'])
       logging.info("country = %s" % self.request.headers['X-AppEngine-Country'])
 
-      isMobile = self.request.get('mobile')
       uastring = self.request.headers.get('user_agent')
+      isMobile = self.request.get('mobile') or ("Mobile" in uastring)
       if isMobile or ("Mobile" in uastring and "Safari" in uastring):
         logging.info('Mobile')
         isMobile = True
