@@ -68,7 +68,10 @@ class testLocaleHandler(webapp2.RequestHandler):
           'value': 1,
         'isMobile': isMobile,
       }
-      path = os.path.join(os.path.dirname(__file__), 'HTML/testLocales.html')
+      if isMobile:
+        path = os.path.join(os.path.dirname(__file__), 'HTML/testMobile.html')
+      else:
+        path = os.path.join(os.path.dirname(__file__), 'HTML/testLocales.html')
       self.response.out.write(template.render(path, template_values))
 
 

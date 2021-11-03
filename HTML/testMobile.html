@@ -1,0 +1,430 @@
+<html>
+  <head>
+    <title>MOBILE version</title>
+    <script>
+      // From Chromium public source
+      https://github.com/chromium/chromium/blob/master/chrome/app/resources/locale_settings.grd
+      var chromium_locales = [
+          "am", "ar", "bg", "bn", "ca", "cs",
+          "da", "de", "el", "en-GB", "en", "es", "es-419", "et", "fa",
+          "fi", "fil", "fr", "gu", "he", "hi", "hr", "hu", "id", "it",
+          "ja", "kn", "ko", "lt", "lv", "ml", "mr", "ms", "nl", "no",
+          "pl", "pt-BR", "pt-PT", "ro", "ru", "sk", "sl", "sr", "sv",
+          "sw", "ta", "te", "th", "tr", "uk", "vi", "zh-CN", "zh-TW"];
+
+      // javascript/closure/i18n/datetimesymbols.js var
+      closure_basic_locales = [ "af", "am", "ar", "ar-DZ", "ar-EG",
+      "az", "be", "bg", "bn", "br", "bs", "ca", "chr", "cs", "cy",
+      "da", "de", "de-AT", "de-CH", "el", "en", "en-AU", "en-CA",
+      "en-GB", "en-IE", "en-IN", "en-ISO", "en-SG", "en-US", "en-ZA",
+      "es", "es-419", "es-ES", "es-MX", "es-US", "et", "eu", "fa",
+      "fi", "fil", "fr", "fr-CA", "ga", "gl", "gsw", "gu", "haw",
+      "he", "hi", "hr", "hu", "hy", "id", "in", "is", "it", "iw",
+      "ja", "ka", "kk", "km", "kn", "ko", "ky", "ln", "lo", "lt",
+      "lv", "mk", "ml", "mn", "mo", "mr", "ms", "mt", "my", "nb",
+      "ne", "nl", "no", "no-NO", "or", "pa", "pl", "pt", "pt-BR",
+      "pt-PT", "ro", "ru", "sh", "si", "sk", "sl", "sq", "sr",
+      "sr-Latn", "sv", "sw", "ta", "te", "th", "tl", "tr", "uk", "ur",
+      "uz", "vi", "zh", "zh-CN", "zh-HK", "zh-TW", "zu"];
+
+      // https://searchfox.org/mozilla-central/source/intl/icu/source/data/locales
+      var mozilla_icu_locales = [
+          "af-NA", "af-ZA", "af", "agq-CM", "agq", "ak-GH", "ak",
+          "am-ET", "am", "ar-001", "ar-AE", "ar-BH", "ar-DJ", "ar-DZ",
+          "ar-EG", "ar-EH", "ar-ER", "ar-IL", "ar-IQ", "ar-JO",
+          "ar-KM", "ar-KW", "ar-LB", "ar-LY", "ar-MA", "ar-MR",
+          "ar-OM", "ar-PS", "ar-QA", "ar-SA", "ar-SD", "ar-SO",
+          "ar-SS", "ar-SY", "ar-TD", "ar-TN", "ar-YE", "ar", "ars",
+          "as-IN", "as", "asa-TZ", "asa", "ast-ES", "ast", "az-AZ",
+          "az-Cyrl-AZ", "az-Cyrl", "az-Latn-AZ", "az-Latn", "az",
+          "bas-CM", "bas", "be-BY", "be", "bem-ZM", "bem", "bez-TZ",
+          "bez", "bg-BG", "bg", "bm-ML", "bm", "bn-BD", "bn-IN", "bn",
+          "bo-CN", "bo-IN", "bo", "br-FR", "br", "brx-IN", "brx",
+          "bs-BA", "bs-Cyrl-BA", "bs-Cyrl", "bs-Latn-BA", "bs-Latn",
+          "bs", "ca-AD", "ca-ES", "ca-FR", "ca-IT", "ca", "ccp-BD",
+          "ccp-IN", "ccp", "ce-RU", "ce", "cgg-UG", "cgg", "chr-US",
+          "chr", "ckb-IQ", "ckb-IR", "ckb", "cs-CZ", "cs", "cy-GB",
+          "cy", "da-DK", "da-GL", "da", "dav-KE", "dav", "de-AT",
+          "de-BE", "de-CH", "de-DE", "de-IT", "de-LI", "de-LU", "de",
+          "dje-NE", "dje", "dsb-DE", "dsb", "dua-CM", "dua", "dyo-SN",
+          "dyo", "dz-BT", "dz", "ebu-KE", "ebu", "ee-GH", "ee-TG",
+          "ee", "el-CY", "el-GR", "el", "en-001", "en-150", "en-AG",
+          "en-AI", "en-AS", "en-AT", "en-AU", "en-BB", "en-BE",
+          "en-BI", "en-BM", "en-BS", "en-BW", "en-BZ", "en-CA",
+          "en-CC", "en-CH", "en-CK", "en-CM", "en-CX", "en-CY",
+          "en-DE", "en-DG", "en-DK", "en-DM", "en-ER", "en-FI",
+          "en-FJ", "en-FK", "en-FM", "en-GB", "en-GD", "en-GG",
+          "en-GH", "en-GI", "en-GM", "en-GU", "en-GY", "en-HK",
+          "en-IE", "en-IL", "en-IM", "en-IN", "en-IO", "en-JE",
+          "en-JM", "en-KE", "en-KI", "en-KN", "en-KY", "en-LC",
+          "en-LR", "en-LS", "en-MG", "en-MH", "en-MO", "en-MP",
+          "en-MS", "en-MT", "en-MU", "en-MW", "en-MY", "en-NA",
+          "en-NF", "en-NG", "en-NH", "en-NL", "en-NR", "en-NU",
+          "en-NZ", "en-PG", "en-PH", "en-PK", "en-PN", "en-PR",
+          "en-PW", "en-RH", "en-RW", "en-SB", "en-SC", "en-SD",
+          "en-SE", "en-SG", "en-SH", "en-SI", "en-SL", "en-SS",
+          "en-SX", "en-SZ", "en-TC", "en-TK", "en-TO", "en-TT",
+          "en-TV", "en-TZ", "en-UG", "en-UM", "en-US-POSIX", "en-US",
+          "en-VC", "en-VG", "en-VI", "en-VU", "en-WS", "en-ZA",
+          "en-ZM", "en-ZW", "en", "eo", "es-419", "es-AR", "es-BO",
+          "es-BR", "es-BZ", "es-CL", "es-CO", "es-CR", "es-CU",
+          "es-DO", "es-EA", "es-EC", "es-ES", "es-GQ", "es-GT",
+          "es-HN", "es-IC", "es-MX", "es-NI", "es-PA", "es-PE",
+          "es-PH", "es-PR", "es-PY", "es-SV", "es-US", "es-UY",
+          "es-VE", "es", "et-EE", "et", "eu-ES", "eu", "ewo-CM",
+          "ewo", "fa-AF", "fa-IR", "fa", "ff", "fi-FI", "fi",
+          "fil-PH", "fil", "fo-DK", "fo-FO", "fo", "fr-BE", "fr-BF",
+          "fr-BI", "fr-BJ", "fr-BL", "fr-CA", "fr-CD", "fr-CF",
+          "fr-CG", "fr-CH", "fr-CI", "fr-CM", "fr-DJ", "fr-DZ",
+          "fr-FR", "fr-GA", "fr-GF", "fr-GN", "fr-GP", "fr-GQ",
+          "fr-HT", "fr-KM", "fr-LU", "fr-MA", "fr-MC", "fr-MF",
+          "fr-MG", "fr-ML", "fr-MQ", "fr-MR", "fr-MU", "fr-NC",
+          "fr-NE", "fr-PF", "fr-PM", "fr-RE", "fr-RW", "fr-SC",
+          "fr-SN", "fr-SY", "fr-TD", "fr-TG", "fr-TN", "fr-VU",
+          "fr-WF", "fr-YT", "fr", "fur-IT", "fur", "fy-NL", "fy",
+          "ga-IE", "ga", "gd-GB", "gd", "gl-ES", "gl", "gsw-CH",
+          "gsw-FR", "gsw-LI", "gsw", "gu-IN", "gu", "guz-KE", "guz",
+          "gv-IM", "gv", "ha-GH", "ha-NE", "ha-NG", "ha", "haw-US",
+          "haw", "he-IL", "he", "hi-IN", "hi", "hr-BA", "hr-HR", "hr",
+          "hsb-DE", "hsb", "hu-HU", "hu", "hy-AM", "hy", "ia-001",
+          "ia", "id-ID", "id", "ig-NG", "ig", "ii-CN", "ii", "in-ID",
+          "in", "is-IS", "is", "it-CH", "it-IT", "it-SM", "it-VA",
+          "it", "iw-IL", "iw",
+          // "ja-JP-TRADITIONAL",
+          "ja-JP", "ja",
+          "jgo-CM", "jgo", "jmc-TZ", "jmc", "jv-ID", "jv", "ka-GE",
+          "ka", "kab-DZ", "kab", "kam-KE", "kam", "kde-TZ", "kde",
+          "kea-CV", "kea", "khq-ML", "khq", "ki-KE", "ki", "kk-KZ",
+          "kk", "kkj-CM", "kkj", "kl-GL", "kl", "kln-KE", "kln",
+          "km-KH", "km", "kn-IN", "kn", "ko-KP", "ko-KR", "ko",
+          "kok-IN", "kok", "ks-IN", "ks", "ksb-TZ", "ksb", "ksf-CM",
+          "ksf", "ksh-DE", "ksh", "ku-TR", "ku", "kw-GB", "kw",
+          "ky-KG", "ky", "lag-TZ", "lag", "lb-LU", "lb", "lg-UG",
+          "lg", "lkt-US", "lkt", "ln-AO", "ln-CD", "ln-CF", "ln-CG",
+          "ln", "lo-LA", "lo", "lrc-IQ", "lrc-IR", "lrc", "lt-LT",
+          "lt", "lu-CD", "lu", "luo-KE", "luo", "luy-KE", "luy",
+          "lv-LV", "lv", "mas-KE", "mas-TZ", "mas", "mer-KE", "mer",
+          "mfe-MU", "mfe", "mg-MG", "mg", "mgh-MZ", "mgh", "mgo-CM",
+          "mgo", "mi-NZ", "mi", "mk-MK", "mk", "ml-IN", "ml", "mn-MN",
+          "mn", "mo", "mr-IN", "mr", "ms-BN", "ms-MY", "ms-SG", "ms",
+          "mt-MT", "mt", "mua-CM", "mua", "my-MM", "my", "mzn-IR",
+          "mzn", "naq-NA", "naq", "nb-NO", "nb-SJ", "nb", "nd-ZW",
+          "nd", "nds-DE", "nds-NL", "nds", "ne-IN", "ne-NP", "ne",
+          "nl-AW", "nl-BE", "nl-BQ", "nl-CW", "nl-NL", "nl-SR",
+          "nl-SX", "nl", "nmg-CM", "nmg", "nn-NO", "nn", "nnh-CM",
+          "nnh",
+          // "no-NO-NY",
+          "no-NO", "no", "nus-SS", "nus", "nyn-UG",
+          "nyn", "om-ET", "om-KE", "om", "or-IN", "or", "os-GE",
+          "os-RU", "os", "pa-Arab-PK", "pa-Arab", "pa-Guru-IN",
+          "pa-Guru", "pa-IN", "pa-PK", "pa", "pl-PL", "pl", "ps-AF",
+          "ps", "pt-AO", "pt-BR", "pt-CH", "pt-CV", "pt-GQ", "pt-GW",
+          "pt-LU", "pt-MO", "pt-MZ", "pt-PT", "pt-ST", "pt-TL", "pt",
+          "qu-BO", "qu-EC", "qu-PE", "qu", "rm-CH", "rm", "rn-BI",
+          "rn", "ro-MD", "ro-RO", "ro", "rof-TZ", "rof", "root",
+          "ru-BY", "ru-KG", "ru-KZ", "ru-MD", "ru-RU", "ru-UA", "ru",
+          "rw-RW", "rw", "rwk-TZ", "rwk", "sah-RU", "sah", "saq-KE",
+          "saq", "sbp-TZ", "sbp", "sd-PK", "sd", "se-FI", "se-NO",
+          "se-SE", "se", "seh-MZ", "seh", "ses-ML", "ses", "sg-CF",
+          "sg", "sh-BA", "sh-CS", "sh-YU", "sh", "shi-Latn-MA",
+          "shi-Latn", "shi-MA", "shi-Tfng-MA", "shi-Tfng", "shi",
+          "si-LK", "si", "sk-SK", "sk", "sl-SI", "sl", "smn-FI",
+          "smn", "sn-ZW", "sn", "so-DJ", "so-ET", "so-KE", "so-SO",
+          "so", "sq-AL", "sq-MK", "sq-XK", "sq", "sr-BA", "sr-CS",
+          "sr-Cyrl-BA", "sr-Cyrl-CS", "sr-Cyrl-ME", "sr-Cyrl-RS",
+          "sr-Cyrl-XK", "sr-Cyrl-YU", "sr-Cyrl", "sr-Latn-BA",
+          "sr-Latn-CS", "sr-Latn-ME", "sr-Latn-RS", "sr-Latn-XK",
+          "sr-Latn-YU", "sr-Latn", "sr-ME", "sr-RS", "sr-XK", "sr-YU",
+          "sr", "sv-AX", "sv-FI", "sv-SE", "sv", "sw-CD", "sw-KE",
+          "sw-TZ", "sw-UG", "sw", "ta-IN", "ta-LK", "ta-MY", "ta-SG",
+          "ta", "te-IN", "te", "teo-KE", "teo-UG", "teo", "tg-TJ",
+          "tg",
+          //"th-TH-TRADITIONAL",
+          "th-TH", "th", "ti-ER", "ti-ET",
+          "ti", "tk-TM", "tk", "tl-PH", "tl", "to-TO", "to", "tr-CY",
+          "tr-TR", "tr", "tt-RU", "tt", "twq-NE", "twq", "tzm-MA",
+          "tzm", "ug-CN", "ug", "uk-UA", "uk", "ur-IN", "ur-PK", "ur",
+          "uz-AF", "uz-Arab-AF", "uz-Arab", "uz-Cyrl-UZ", "uz-Cyrl",
+          "uz-Latn-UZ", "uz-Latn", "uz-UZ", "uz", "vai-Latn-LR",
+          "vai-Latn", "vai-LR", "vai-Vaii-LR", "vai-Vaii", "vai",
+          "vi-VN", "vi", "vun-TZ", "vun", "wae-CH", "wae", "wo-SN",
+          "wo", "xh-ZA", "xh", "xog-UG", "xog", "yav-CM", "yav",
+          "yi-001", "yi", "yo-BJ", "yo-NG", "yo", "yue-CN",
+          "yue-Hans-CN", "yue-Hans", "yue-Hant-HK", "yue-Hant",
+          "yue-HK", "yue", "zgh-MA", "zgh", "zh-CN", "zh-Hans-CN",
+          "zh-Hans-HK", "zh-Hans-MO", "zh-Hans-SG", "zh-Hans",
+          "zh-Hant-HK", "zh-Hant-MO", "zh-Hant-TW", "zh-Hant",
+          "zh-HK", "zh-MO", "zh-SG", "zh-TW", "zh", "zu-ZA", "zu"
+      ];
+
+      function difflocales(in_locales, out_locales) {
+          var in_set = new Set(in_locales);
+          var out_set = new Set(out_locales);
+          var missing_in_output = new Set();
+          for (let locale of in_set.keys()) {
+              if (!out_set.has(locale)) {
+                  missing_in_output.add(locale);
+              }
+          }
+          return missing_in_output;
+      }
+
+      function testDateTimeForRealSupport(locale) {
+          var date = new Date(Date.UTC(2008, 11, 7, 3, 0, 0));
+          var options = { };  // Default for en-us is "12/6/2008"
+          const formatter = new Intl.DateTimeFormat(locale, options);
+
+          var formatted = formatter.format(date);
+          return formatted;
+      }
+
+      function testRelativeTimeForRealSupport(locale) {
+          var quantity = -1;
+          var options = { numeric: 'auto', localeMatcher: 'lookup'};
+          const formatter = new Intl.RelativeTimeFormat(locale, options);
+
+          var formatted = formatter.format(quantity, 'day');
+          return formatted;
+      }
+
+      // Run DateTimeFormatter for all locales
+      function runlocales(locales) {
+          const en_result = testDateTimeForRealSupport('en');
+
+          // Check how many of these give results the same as 'en'
+          var same_count = 0;
+          var same_locales = [];
+
+          var result_mozilla =
+              Intl.DateTimeFormat.supportedLocalesOf(mozilla_icu_locales);
+
+          for (let locale of result_mozilla) {
+              var result = testDateTimeForRealSupport(locale);
+              if (result == en_result) {
+                  same_count ++;
+                  same_locales.push(locale);
+              }
+          }
+
+          id = document.getElementById("p_intl_datetime");
+          id.innerHTML = id.value =
+              'DateTimeFormat on ' + result_mozilla.length +
+              ' locales gives ' + same_count + 
+              ' results are the same as "en": ' + same_locales;
+
+          if (Intl.RelativeTimeFormat) {
+              const en_relativetime = testRelativeTimeForRealSupport('en');
+              var same_locales_relative = [];
+              var same_count_relative = 0;
+              for (let locale of result_mozilla) {
+                  var result = testRelativeTimeForRealSupport(locale);
+                  if (result == en_relativetime) {
+                      same_count_relative ++;
+                      same_locales_relative.push(locale);
+                  }
+              }
+              var sameStuff = partitionLocalesWithRegion(
+                  new Set(same_locales_relative));
+              
+              id = document.getElementById("p_intl_relativetime");
+              id.innerHTML = id.value =
+                  'RelativeTimeFormat: on ' + result_mozilla.length +
+                  ' locales, ' + same_count_relative + 
+                  ' results are the same as "en": ' + sameStuff[0].join(', ') +
+                  ' | ' + sameStuff[1].join(', ');
+          } else {
+              id = document.getElementById("p_intl_relativetime");
+              id.innerHTML = id.value = 'Intl.RelativeTimeFormat is not implemented!';
+          }
+      }
+
+
+      // Compute the overlap of these two sets
+      function intersectSet(set1, set2) {
+          var intersection = new Set([...set1].filter(x => set2.has(x)));
+          return intersection;
+      }
+
+      // Find the set of all in set1 but not in set 2.
+      function diffSet(set1, set2) {
+          var diff = new Set([...set1].filter(x => !set2.has(x)));
+          return diff;
+      }
+      
+      // Finds the sets of 
+      function intersectSupportedLocalesOf(localesIn) {
+          var localeSets = {};
+          if (Intl.Collator) {
+              localeSets['Collator'] =
+                  new Set(Intl.Collator.supportedLocalesOf(localesIn));
+          }
+          
+          if (Intl.DateTimeFormat) {
+              localeSets['DateTimeFormat'] =
+                  new Set(Intl.DateTimeFormat.supportedLocalesOf(localesIn));
+          }
+
+          // Collator doesn't have as many locales directly supported,
+          // so don't use it as the base set of supported locales.
+          var commonSet = localeSets['DateTimeFormat'];
+
+          // Check if class is implemented within Intl object.
+          if (Intl.ListFormat) {
+              localeSets['ListFormat'] =
+                  new Set(Intl.ListFormat.supportedLocalesOf(localesIn));
+          }
+
+          if (Intl.NumberFormat) {
+              localeSets['NumberFormat'] =
+                  new Set(Intl.NumberFormat.supportedLocalesOf(localesIn));
+          }
+          
+          if (Intl.PluralRules) {
+              localeSets['PluralRules'] =
+                  new Set(Intl.PluralRules.supportedLocalesOf(localesIn));
+          }
+          
+          if (Intl.RelativeTimeFormat) {
+              localeSets['RelativeTimeFormat'] =
+                  new Set(Intl.RelativeTimeFormat.supportedLocalesOf(localesIn));
+          }
+          
+          for (var api in localeSets) {
+              if (api != 'Collator') {
+                  commonSet = intersectSet(commonSet, localeSets[api]);
+              }
+          }
+          
+          var missing = diffSet(localesIn, commonSet);
+          return [commonSet, missing, localeSets];
+      }
+
+      function loadLocales(name, locales, id) {
+          const m_locales = intersectSupportedLocalesOf(locales);
+          var item = document.getElementById(id);
+
+          var apiMap = m_locales[2];
+          var apis = [];
+          for (var key in apiMap) {
+              apis.push(key + ': ' + apiMap[key].size);
+          }
+          var apiName = id + '_apis';
+          var apisObj = document.getElementById(apiName);
+          if (apisObj) {
+              apisObj.innerHTML = apis.join(', ');
+          }
+          var missingItemList = Array.from(m_locales[1]);
+          var missingItems = missingItemList.join(', ');
+          var item = document.getElementById(id + '_missing');
+          item.innerHTML = item.value =
+              name + ' locales [' +
+              m_locales.length + '] give ' + m_locales[0].size +
+              ' supportedLocalesOf (except collator).';
+
+          var missingObj = document.getElementById(id + '_missing');
+          var missingGroups = partitionLocalesWithRegion(m_locales[1]);
+          missingObj.innerHTML = 'Missing [' +
+              m_locales[1].size + '] = ' +  missingGroups[0].join(', ')
+          if (missingGroups[1].length > 0) {
+              missingObj.innerHTML += ' *|*|*|*|*' + missingGroups[1].join(', ');
+          }
+
+          var supportedObj = document.getElementById(id + '_supported');
+          var supportedGroups = partitionLocalesWithRegion(m_locales[0]);
+          supportedObj.innerHTML = 'Supported [' +
+              m_locales[0].size + '] = ' +  supportedGroups[0].join(', ')
+
+              + ' *|*|*|*|*' + supportedGroups[1].join(', ');
+      }
+
+      function partitionLocalesWithRegion(localeList) {
+          var subregions = [];
+          var nosubregions = [];
+          for (let code of localeList.keys()) {
+              if (code.indexOf('-') >= 0) {
+                  subregions.push(code);
+              } else {
+                  nosubregions.push(code);
+              }
+          }
+          return [nosubregions, subregions];
+      }
+
+      function addItemList(previousNode, items) {
+          var list = document.createElement('ul');
+          for (item in items) {
+              var liItem = document.createElement('li');
+              liItem.appendChild(document.createTextNode(item));
+              list.appendChild(liItem);
+          }
+      }
+
+
+      function setup() {
+          document.getElementById("main").innerHTML =
+              "navigator.appName is " + navigator.userAgent;
+
+          loadLocales('ICU',
+                      mozilla_icu_locales,
+                      'p_intersection_results_mozilla');          
+
+          loadLocales('Closure basic',
+                      closure_basic_locales,
+                      'p_intersection_results_closure');          
+
+          loadLocales('Chromium UI',
+                      chromium_locales,
+                      'p_intersection_results_chromium');          
+
+          runlocales(mozilla_icu_locales);
+      }
+
+    </script>
+  </head>
+
+  <body onload="setup();">
+    <h1>Testing locale support with Intl.DateTime formatting</h1>
+    <h2 id="main"></h2>
+    <p id='local_counts'/>
+
+    {% if isMobile %}
+    <h1>This is the mobile layout!</h1>
+    {% endif %}
+
+    <h2>Intersections of the locales supported by Intl classes</h2>
+    <p>These are results from intersecting the sets of locales
+    supported by the 6 classes in the Intl object: Collator,
+    DateTimeFormat, ListFormat, NumberFormat, PluralRules, and RelativeTime</p>
+    <h3>Chromium's UI locales</h3>
+    <p id='p_intersection_results_chromium'/>
+    <p id='p_intersection_results_chromium_apis' />
+    <p id='p_intersection_results_chromium_missing' />
+    <p id='p_intersection_results_chromium_supported' />
+
+    <h3>Closures basic locales</h3>
+    <p id='p_intersection_results_closure'/>
+    <p id='p_intersection_results_closure_apis' />
+    <p id='p_intersection_results_closure_missing' />
+    <p id='p_intersection_results_closure_supported' />
+
+    <h3>ICU locales</h3>
+    <p id='p_intersection_results_mozilla'/>
+    <p id='p_intersection_results_mozilla_apis' />
+    <p id='p_intersection_results_mozilla_missing' />
+    <p id='p_intersection_results_mozilla_supported' />
+    
+    <h2>Running format with Intl functions</h2>
+    <p>When locales gives the same results as "en", it suggesting that either:
+      <ul>
+        <li>It has the same data for the formatter for this case, or</li>
+        <li>The locale data is incomplete, and the formatting is falling back to "en".
+          </ul>
+      
+      <h3>DateTime formatting</h3>
+    <p id="p_intl_datetime"/>
+
+        <h3>RelativeTime "yesterday"</h3>
+    <p id="p_intl_relativetime"/>
+
+  </body>
+</html>
