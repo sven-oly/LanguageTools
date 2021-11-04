@@ -73,6 +73,12 @@ links = [
 ]
 
 kb_list = [
+  {'shortName': 'win2',
+   'longName': Language + " 2",
+   'instructions': 'Ogonek at upper left, caron right of zero, shift-upper left to macron. ' +
+     'Double these to get original grave, dash, and tilde. ' +
+     'Use for ą, ę, į, ų, ǧ, š, ž, ā, ų̄, etc.'
+   },
   {'shortName': 'win_latn',
    'longName': Language + " Latin",
    }
