@@ -85,8 +85,13 @@ class langInfo:
 
         self.kb_list = [
           {'shortName': LanguageCode,
-           'longName': LanguageCode,
-           },
+           'longName': 'Chahta traditional',
+           'instructions': "Use ctrl-alt layer for dotted A, etc.",
+          },
+          {'shortName': 'cho2',
+            'longName': 'Chahta Dead Key',
+            'instructions': "Use these as dead keys: \" \' ` ; + vowel",
+          },
         ]
 
         self.links = links

@@ -13,19 +13,31 @@
 
 var CHO_LAYOUT = {
   'id': 'cho',
-  'title': 'Chahta Anumpa',
+  'title': 'Chahta traditional',
   'mappings': {
-    ',c': {
+    '': {
       '': '`1234567890-=' +
           'qwertyuiop[]\\' +
-          'asdfghjkl;\'' +
-          'zxcvbnm,./'
+          'asdfghjklʋ\'' +
+          'zxcvbnm,.{{S||_||\u0331}}'
     },
-    's,sc': {
+    'c': {
+      '': '`1234567890-=' +
+          'q\u1ea1ertyuiop[]\\' +
+          'asdfghjk\u0142;\'' +
+          'zxcvbⁿm,./'
+    },
+    's': {
       '': '~!@#$%^&*()_+' +
           'QWERTYUIOP{}|' +
-          'ASDFGHJKL:"' +
-          'ZXCVBNM<>?'
+          'ASDFGHJKLƲ"' +
+          'ZXCVBNM;:?'
+    },
+    'sc': {
+      '': '~!@#$%^&*()_+' +
+          'Q\u1ea0ERTYUIOP{}|' +
+          'ASDFGHJK\u0141:"' +
+          'ZXCVBⁿM<>?'
     },
     'l,cl': {
       '': '`1234567890-=' +
