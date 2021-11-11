@@ -21,9 +21,9 @@ import base
 
 from google.appengine.ext.webapp import template
 
-Language = 'TDD'
-Language_native = 'TBD'
-LanguageCode = 'CODE'
+Language = 'Elfdalian'
+Language_native = 'övdalsk'
+LanguageCode = 'ovd'
 ScriptCode = 'Latn'
 
 links = [
@@ -41,9 +41,9 @@ links = [
   # {'linkText': 'Unicode page',
   #  'ref': 'https://www.unicode.org/charts/PDF/U1C00.pdf'
   # },
-  # {'linkText': 'Lepcha script',
-  #  'ref': 'https://en.wikipedia.org/wiki/Lepcha_alphabet'
-  # },
+  {'linkText': 'Elfdalian Wikipedia',
+   'ref': 'https://en.wikipedia.org/wiki/https://en.wikipedia.org/wiki/Elfdalian'
+  },
   # {'linkText': 'Wikipedi page',
   #  'ref': 'https://en.wikipedia.org/wiki/Lepcha_language'
   # },
@@ -86,6 +86,7 @@ class langInfo:
         self.kb_list = [
           {'shortName': LanguageCode,
            'longName': LanguageCode,
+           'instructions': 'Ogonek at upper left, Ð at right'
            },
         ]
 

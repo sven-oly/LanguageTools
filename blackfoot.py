@@ -21,10 +21,10 @@ import base
 
 from google.appengine.ext.webapp import template
 
-Language = 'TDD'
-Language_native = 'TBD'
-LanguageCode = 'CODE'
-ScriptCode = 'Latn'
+Language = 'Blackfoot'
+Language_native = 'ᓱᖽᐧᖿ (Siksiká)'
+LanguageCode = 'bla'
+ScriptCode = 'Cans'
 
 links = [
   {'linkText': 'Keyboard',
@@ -44,9 +44,9 @@ links = [
   # {'linkText': 'Lepcha script',
   #  'ref': 'https://en.wikipedia.org/wiki/Lepcha_alphabet'
   # },
-  # {'linkText': 'Wikipedi page',
-  #  'ref': 'https://en.wikipedia.org/wiki/Lepcha_language'
-  # },
+  {'linkText': 'Blackfoot Wikipedi',
+   'ref': 'https://en.wikipedia.org/wiki/Blackfoot_language'
+  },
   # {'linkText': 'Ethnolog',
   #  'ref': 'https://www.ethnologue.com/language/lep'
   # },
@@ -63,13 +63,50 @@ class langInfo:
         self.Language_native = Language_native
         self.test_data = u''
         self.unicode_font_list = [
-          {'family': 'NotoSerif',
-           'longName': 'Noto Serif',
-           'source': '/fonts/NotoSerif-Regular.ttf',
+          { 'source': '/fonts/cree/NotoSansCanadianAboriginal-Regular.ttf',
+            'family': 'NotoSansCanadianAboriginal',
+            'longName': 'Noto Sans Canadian Aboriginal',
+            },
+
+          { 'family': 'bjcrus',
+            'longName': 'BJ Cree',
+            'source': '/fonts/cree/bjcrus.ttf'
+            },
+          {'family': 'oskiblackfoot5',
+           'longName': 'Oski Blackfoot',
+           'source': '/fonts/cree/oskiblackfoot5.ttf'
            },
-          {'family': 'NotoSans',
-           'longName': 'Noto Sans',
-           'source': '/fonts/NotoSans-Regular.ttf',
+          { 'family': 'kisiska',
+            'longName': 'Kisiska',
+            'source': '/fonts/cree/kisiska.otf'
+            },
+          { 'family': 'aboriginalSans',
+            'longName': 'Aboriginal Sans',
+            'source': '/fonts/cree/AboriginalSansREGULAR.ttf'
+            },
+          {'family': 'aboriginalSerif',
+           'longName': 'Aboriginal Serif',
+           'source': '/fonts/cree/Aboriginal Serif REGULAR 939.ttf'
+           },
+          {'family': 'Euphemia',
+           'longName': 'Euphemia regular',
+           'source': '/fonts/cree/Euphemia UCAS Regular 2.6.6.ttf',
+           'origin': 'http://tiro.com/syllabics/resources/'
+           },
+          {'family': 'Uqammaq',
+           'longName': 'Uqammaq regular',
+           'source': '/fonts/cree/Uqammaq_Regular.ttf',
+           'origin': 'http://tiro.com/syllabics/resources/'
+           },
+          {'family': 'Pigiarniq',
+           'longName': 'Pigiarniq regular',
+           'source': '/fonts/cree/Pigiarniq_Regular.ttf',
+           'origin': 'http://tiro.com/syllabics/resources/'
+           },
+          {'family': 'Masinahikan_h',
+           'longName': 'Masinahikan',
+           'source': '/fonts/cree/Masinahikan_h.ttf',
+           'origin': 'languagegeek.com'
            },
         ]
 

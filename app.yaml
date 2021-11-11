@@ -50,6 +50,9 @@ handlers:
 - url: /bete/.*
   script: bete.app
 
+- url: /bla/.*
+  script: blackfoot.app
+
 - url: /bn/.*
   script: bangali.app
 
@@ -104,7 +107,6 @@ handlers:
 - url: /hoc/.*
   script: ho.app
 
-
 - url: /ig/.*
   script: nsibidi.app
 
@@ -117,11 +119,17 @@ handlers:
 - url: /lom/.*
   script: loma.app
 
+- url: /lut/.*
+  script: lushootseed.app
+
 - url: /myh/.*
   script: makah.app
 
 - url: /omq/.*
   script: omq.app
+
+- url: /ovd/.*
+  script: elfdalian.app
 
 - url: /tavt/.*
   script: taivietscript.app

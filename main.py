@@ -57,7 +57,6 @@ LanguageList = [
   ('Wolof', 'wo'),
   ('Bangali', 'bn'),
   ('Bassa', 'bsq'),
-  ('Bataj Simalungun', 'bts'),
   ('Choctaw', 'cho'),
   ('Cree', 'cr'),
   ('Lenape', 'del'),
@@ -71,7 +70,6 @@ LanguageList = [
   ('Karen', 'ksw'),
   ('Lampung', 'lampung'),
   ('Lepcha', 'lep'),
-  ('Laz', 'lzz'),
   ('Mongolian', 'mn'),
   ('Mende Kikakui', 'men'),
   ('Wancho', 'nnp'),
@@ -83,11 +81,12 @@ LanguageList = [
   ('Tamashek', 'tmh'),
   ('Tongan', 'to'),
   ('Sunuwar', 'suz'),
-  ('Mingrelian', 'xmf'),
   ('Mundari', 'unr'),
   ('Yoruba', 'yo'),
   ('Zaghawa', 'zag'),
   ('Burmese', 'my'),
+  ('Elfdalian', 'ovd', 'övdalsk')  # Added 9-Nov-2021
+  ('Blackfoot', 'bla', 'ᓱᖽᐧᖿ')  # Added 10-Nov-2021
 ]
 
 

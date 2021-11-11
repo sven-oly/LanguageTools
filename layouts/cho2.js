@@ -54,13 +54,13 @@ var CHO2_LAYOUT = {
   },
   'transform': {
     '\"a': '\u028A',  // latin upsilon
-    '\"A': '\u01B1',  // latin upsilon
+    '\"A': 'Ʋ',  // latin upsilon
     '\"e': '\u028A\u0331',  // latin upsilon with line below
-    '\"E': '\u01B1\u0331',  // latin upsilon
+    '\"E': 'Ʋ\u0331',  // latin upsilon
     '\"i': '\u028A\u0301',  // latin upsilon with line below
-    '\"I': '\u01B1\u0301 ',  // latin upsilon
+    '\"I': 'Ʋ\u0301 ',  // latin upsilon
     '\"o': '\u028A\u0301\u0331',  // latin upsilon with acute
-    '\"O': '\u01B1\u0301\u0331',  // latin upsilon
+    '\"O': 'Ʋ\u0301\u0331',  // latin upsilon
     '\"y': '\u00B7',  // latin upsilon
     '\'a': 'a\u0331',
     '\'e': 'e\u0331',

@@ -21,9 +21,9 @@ import base
 
 from google.appengine.ext.webapp import template
 
-Language = 'TDD'
-Language_native = 'TBD'
-LanguageCode = 'CODE'
+Language = 'Lushootseed'
+Language_native = 'xʷəlšucid'
+LanguageCode = 'lut'
 ScriptCode = 'Latn'
 
 links = [
@@ -41,15 +41,15 @@ links = [
   # {'linkText': 'Unicode page',
   #  'ref': 'https://www.unicode.org/charts/PDF/U1C00.pdf'
   # },
-  # {'linkText': 'Lepcha script',
-  #  'ref': 'https://en.wikipedia.org/wiki/Lepcha_alphabet'
-  # },
+  {'linkText': 'Lushootseed Wikipedia',
+   'ref': 'https://en.wikipedia.org/wiki/Lushootseed'
+  },
   # {'linkText': 'Wikipedi page',
   #  'ref': 'https://en.wikipedia.org/wiki/Lepcha_language'
   # },
-  # {'linkText': 'Ethnolog',
-  #  'ref': 'https://www.ethnologue.com/language/lep'
-  # },
+  {'linkText': 'LanguageGeek keyboard',
+   'ref': 'https://www.languagegeek.com/keyboardmaps/blackfoot_syllabicskbd.html'
+  },
   # {'linkText': 'Combiners',
   #  'ref': '/lep/diacritic/'
   #  },
@@ -61,7 +61,7 @@ class langInfo:
         self.LanguageCode = LanguageCode
         self.Language = Language
         self.Language_native = Language_native
-        self.test_data = u''
+        self.test_data = u'"x̌əqusəb čəxʷə c’agʷačib"'
         self.unicode_font_list = [
           {'family': 'NotoSerif',
            'longName': 'Noto Serif',
