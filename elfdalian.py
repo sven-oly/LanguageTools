@@ -35,9 +35,9 @@ links = [
   # {'linkText': 'Font conversion summary',
   #   'ref': '/' + LanguageCode + '/encodingRules/'
   # },
-  # {'linkText': 'Resources',
-  #   'ref': '/' + LanguageCode + '/downloads/'
-  # },
+  {'linkText': 'Resources',
+    'ref': '/' + LanguageCode + '/downloads/'
+  },
   # {'linkText': 'Unicode page',
   #  'ref': 'https://www.unicode.org/charts/PDF/U1C00.pdf'
   # },
@@ -101,8 +101,13 @@ class langInfo:
             (0x20, 0xff),
         ]
 
-        # For additional resources for download
-        self.text_file_list = []
+        self.text_file_list = [
+          {
+            'name': 'KeyMan Elfdalian Mobile + desktop',
+            'source': '/resources/ovd/elfdalian.kmp',
+            'description': 'Version 1.1 .kmp includes Mobile 11-Nov-2021'
+          },
+        ]
 
         # TODO: Fill in the rest of the common data.
 
@@ -112,9 +117,10 @@ langInstance = langInfo()
 app = webapp2.WSGIApplication([
   ('/' + LanguageCode + '/', base.LanguagesHomeHandler),
   ('/' + LanguageCode + '/convertUI/', base.ConvertUIHandler),
-  ('/' + LanguageCode + '/downloads/', base.Downloads),
+  ('/' + langInstance.LanguageCode + '/downloads/', base.Downloads),
   ('/' + LanguageCode + '/encodingRules/', base.EncodingRules),
   ('/' + LanguageCode + '/diacritic/', base.DiacriticHandler),
+  ('/' + LanguageCode + '/keyman/', base.KeyManHandler),
 ], debug=True,
   config={'langInfo': langInstance}
 )

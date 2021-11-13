@@ -132,7 +132,13 @@ class langInfo:
         ];
 
         # For additional resources for download
-        self.text_file_list = []
+        self.text_file_list = [
+          {
+            'name': 'KeyMan Laz Latin Mobile + desktop',
+            'source': '/resources/lzz/lazlatin.kmp',
+            'description': 'Version 1.0 .kmp includes Mobile 12-Nov-2021'
+          },
+        ]
 
         # TODO: Fill in the rest of the common data.
 
@@ -156,6 +162,7 @@ app = webapp2.WSGIApplication([
   ('/' + LanguageCode + '/downloads/', base.Downloads),
   ('/' + LanguageCode + '/encodingRules/', base.EncodingRules),
   ('/' + LanguageCode + '/diacritic/', base.DiacriticHandler),
+  ('/' + LanguageCode + '/keyman/', base.KeyManHandler),
 ], debug=True,
                               config={'langInfo': langInstance}
 )

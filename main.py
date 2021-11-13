@@ -85,8 +85,8 @@ LanguageList = [
   ('Yoruba', 'yo'),
   ('Zaghawa', 'zag'),
   ('Burmese', 'my'),
-  ('Elfdalian', 'ovd', 'övdalsk')  # Added 9-Nov-2021
-  ('Blackfoot', 'bla', 'ᓱᖽᐧᖿ')  # Added 10-Nov-2021
+  ('Elfdalian', 'ovd', 'övdalsk'),  # Added 9-Nov-2021
+  ('Blackfoot', 'bla', 'ᓱᖽᐧᖿ'),  # Added 10-Nov-2021
 ]
 
 

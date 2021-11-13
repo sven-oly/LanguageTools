@@ -55,7 +55,7 @@ resource_list = [
   {
     'name': 'KeyMan Oneida Mobile + desktop',
     'source': '/resources/one/oneida.kmp',
-    'description': 'Version 1.1 .kmp includes Mobile 30-Oct-2021  '
+    'description': 'Version 1.1 .kmp includes Mobile 11-Nov-2021  '
   },
 ]
 

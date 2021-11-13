@@ -93,7 +93,7 @@ class langInfo():
       {
         'name': 'KeyMan Makah Mobile + desktop',
         'source': '/resources/' + LanguageCode + '/makah.kmp',
-        'description': 'Version 1.0 .kmp includes Mobile 30-Oct-2021  '
+        'description': 'Version 1.0 .kmp includes Mobile 11-Nov-2021  '
       },
     ]
     self.text_file_list = resource_list
