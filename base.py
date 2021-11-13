@@ -666,6 +666,36 @@ class TranslitHandler(webapp2.RequestHandler):
     self.response.out.write(template.render(path, template_values))
 
 
+# Exports keyboards to Keyman format
+class KeyManHandler(webapp2.RequestHandler):
+  def get(self, match=None):
+
+    langInfo = self.app.config.get('langInfo')
+    # To possibly limit fonts from download
+    try:
+      public_unicode_fonts = langInfo.public_font_resources
+    except:
+      public_unicode_fonts = langInfo.unicode_font_list
+
+    try:
+      text_file_list = langInfo.text_file_list
+    except:
+      text_file_list = None
+
+    template_values = {
+      'language': langInfo.Language,
+      'language_native': langInfo.Language_native,
+      'unicode_font_list': public_unicode_fonts,
+      'kb_list': langInfo.kb_list,
+      'langTag': langInfo.LanguageCode,
+      'font_list': langInfo.unicode_font_list,
+      'lang_list': langInfo.lang_list,
+    }
+    home_html = 'HTML/km_kb.html'
+    path = os.path.join(os.path.dirname(__file__), home_html)
+    self.response.out.write(template.render(path, template_values))
+
+
 # Error catching
 def handle_301(request, response, exception):
   logging.exception(exception)
@@ -699,6 +729,7 @@ app.router.add((basePath + '/dictionaryInput/', DictionaryInput))
 app.router.add((basePath + '/kbtransforms/', KeyboardTransforms))
 app.router.add((basePath + '/collation/', CollationHandler))
 app.router.add((basePath + '/combos/', RenderPage))
+app.router.add((basePath + '/keyman/', KeyManHandler))
 
 app.error_handlers[301] = handle_301
 app.error_handlers[404] = handle_404
