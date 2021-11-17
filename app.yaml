@@ -230,6 +230,9 @@ handlers:
 - url: /suz/.*
   script: sunuwar.app
 
+- url: /ta/.*
+  script: tamil.app
+
 - url: /to/.*
   script: tongan.app
 

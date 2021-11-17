@@ -52,7 +52,7 @@ class languageTemplate():
     self.lang_list = []
     self.links = [
         {'linkText': 'Keyboard',
-         'ref': '/aho/'
+         'ref': '/' + self.LanguageCode + '/',
         },
         {'linkText': 'Converter',
          'ref': self.LanguageCode + '/converter/'},
