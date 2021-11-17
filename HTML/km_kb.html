@@ -204,6 +204,22 @@
     }{% endif %}{% endfor %}
     </style>
 
+  <script>
+    function callKmCreator() {
+      const kmOutput = document.getElementById('kmOutput');
+      const selector = document.getElementById('setLayout');
+      // The keyboard layout information.
+      const layout = eval(selector.value);
+
+      const exportCtrAlt = document.getElementById('exportCtrAlt');
+      const exportMobile = document.getElementById('exportMobile');
+      const exportTransforms = document.getElementById('exportTransforms');
+
+      keymanCreator.createKeymanData(
+        kmOutput, layout,
+        exportCtrAlt.checked, exportMobile.checked, exportTransforms.checked);
+    }
+  </script>
   
   </head>
 <body onload="onPageLoaded()">
@@ -259,7 +275,7 @@
          onchange="">Export Transforms?
 
     <!-- TODO: Add add function that gets these parameters -->
-    <input type="button" value="Create Keyman data" onclick="keymanCreator.createKeymanData('kmOutput');">
+    <input type="button" value="Create Keyman data" onclick="callKmCreator();">
 
     <hr>
 

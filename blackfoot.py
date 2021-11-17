@@ -41,9 +41,9 @@ links = [
   # {'linkText': 'Unicode page',
   #  'ref': 'https://www.unicode.org/charts/PDF/U1C00.pdf'
   # },
-  # {'linkText': 'Lepcha script',
-  #  'ref': 'https://en.wikipedia.org/wiki/Lepcha_alphabet'
-  # },
+  {'linkText': 'Language Geek',
+   'ref': 'https://www.languagegeek.com/keyboardmaps/blackfoot_syllabicskbd.html'
+  },
   {'linkText': 'Blackfoot Wikipedi',
    'ref': 'https://en.wikipedia.org/wiki/Blackfoot_language'
   },

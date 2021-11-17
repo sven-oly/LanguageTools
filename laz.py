@@ -66,9 +66,9 @@ links = [
     # {'linkText': 'Font conversion summary',
     #   'ref': '/' + LanguageCode + '/encodingRules/'
     # },
-    # {'linkText': 'Resources',
-    #   'ref': '/' + LanguageCode + '/downloads/'
-    # },
+    {'linkText': 'Resources',
+      'ref': '/' + LanguageCode + '/downloads/'
+    },
     # {'linkText': 'Unicode page',
     #  'ref': 'https://www.unicode.org/charts/PDF/U1C00.pdf'
     # },

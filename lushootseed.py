@@ -44,9 +44,9 @@ links = [
   {'linkText': 'Lushootseed Wikipedia',
    'ref': 'https://en.wikipedia.org/wiki/Lushootseed'
   },
-  # {'linkText': 'Wikipedi page',
-  #  'ref': 'https://en.wikipedia.org/wiki/Lepcha_language'
-  # },
+  {'linkText': 'Keyman Web',
+   'ref': 'https://keymanweb.com/?_ga=2.156110651.1846595742.1636523819-45143037.1630947216#lut,Keyboard_lushootseed'
+  },
   {'linkText': 'LanguageGeek keyboard',
    'ref': 'https://www.languagegeek.com/keyboardmaps/blackfoot_syllabicskbd.html'
   },
@@ -63,14 +63,22 @@ class langInfo:
         self.Language_native = Language_native
         self.test_data = u'"x̌əqusəb čəxʷə c’agʷačib"'
         self.unicode_font_list = [
+          {'family': 'Lushootseed-School',
+            'longName': 'Lushootseed School',
+            'source': '/fonts/Lushootseed/Lushootseed-School.ttf',
+          },
+          {'family': 'Lushootseed-Sulad',
+          'longName': 'Lushootseed Sulad',
+          ' source': '/fonts/Lushootseed/Lushootseed-Sulad.ttf',
+          },
           {'family': 'NotoSerif',
-           'longName': 'Noto Serif',
-           'source': '/fonts/NotoSerif-Regular.ttf',
-           },
+            'longName': 'Noto Serif',
+            'source': '/fonts/NotoSerif-Regular.ttf',
+          },
           {'family': 'NotoSans',
-           'longName': 'Noto Sans',
-           'source': '/fonts/NotoSans-Regular.ttf',
-           },
+            'longName': 'Noto Sans',
+            'source': '/fonts/NotoSans-Regular.ttf',
+          },
         ]
 
         self.encoding_font_list = [

@@ -6,43 +6,46 @@ let keymanOutput = function() {
 
 var keymanCreator = new keymanOutput();
 
-// Routines for creating keyman output
-keymanOutput.prototype.createKeymanData = function(outId) {
-    const outArea = document.getElementById(outId);
+// Routines for creating Keyman output from Keyboard data.
+keymanOutput.prototype.createKeymanData = function(
+        outArea, layout, outputCtrlAlt, outputMobile, outputTransforms) {
+    const results = map_en_to_x(layout, outputCtrlAlt, outputMobile, outputTransforms);
+    outArea.innerHTML = results;
 }
 
-  const en_qwerty = EN_LAYOUT['mappings'];
-  let en_qwerty_map = en_qwerty[""];
-  if (!en_qwerty_map) {
-    // Need to generalize this.
-    en_qwerty_map = en_qwerty[',c'];
-  }
-  const en_qwerty_keys = en_qwerty_map[""];
+// TODO: Fix this to avoid globals.
+const en_qwerty = EN_LAYOUT['mappings'];
+let en_qwerty_map = en_qwerty[""];
+if (!en_qwerty_map) {
+// Need to generalize this.
+en_qwerty_map = en_qwerty[',c'];
+}
+const en_qwerty_keys = en_qwerty_map[""];
 
-  function mapnames() {
+function mapnames() {
     // Create a map from the keys to the Keyman names.
-   var en_map = {};
-  for (var k = 0x30; k < 0x3a; k++) {
-   var char = String.fromCharCode(k);
-    en_map[char] = "K_" + char;
-  }
-  for (var k = 0x41; k < 0x5b; k++) {
-   var char = String.fromCharCode(k);
-    en_map[char] = "K_" + char;
-  }
-  en_map['`'] = 'K_BKQUOTE';
-  en_map[','] = 'K_COMMA';
-  en_map['.'] = 'K_PERIOD';
-  en_map[';'] = 'K_COLON';
-  en_map['\''] = 'K_QUOTE'
-  en_map['['] = 'K_LBRKT';
-  en_map[']'] = 'K_RBRKT';
-  en_map['\\'] = 'K_BKSLASH';
-  en_map['`'] = 'K_BKQUOTE';
-  en_map['-'] = 'K_HYPHEN';
-  en_map['='] = 'K_EQUAL';
-  en_map['/'] = 'K_SLASH';
-  return en_map;
+    var en_map = {};
+    for (var k = 0x30; k < 0x3a; k++) {
+        var char = String.fromCharCode(k);
+        en_map[char] = "K_" + char;
+    }
+    for (var k = 0x41; k < 0x5b; k++) {
+        let char = String.fromCharCode(k);
+        en_map[char] = "K_" + char;
+    }
+    en_map['`'] = 'K_BKQUOTE';
+    en_map[','] = 'K_COMMA';
+    en_map['.'] = 'K_PERIOD';
+    en_map[';'] = 'K_COLON';
+    en_map['\''] = 'K_QUOTE'
+    en_map['['] = 'K_LBRKT';
+    en_map[']'] = 'K_RBRKT';
+    en_map['\\'] = 'K_BKSLASH';
+    en_map['`'] = 'K_BKQUOTE';
+    en_map['-'] = 'K_HYPHEN';
+    en_map['='] = 'K_EQUAL';
+    en_map['/'] = 'K_SLASH';
+    return en_map;
 }
 
 function map_qwerty(layer_values, layer_txt, querty_names) {
@@ -97,7 +100,7 @@ function propContaining(props, field) {
       return props[i];
     }
     let splits = props[i].split(",");
-    for (k in splits) {
+    for (let k in splits) {
       if (splits[k].trim() == field) {
         return props[i];
       }
@@ -107,15 +110,15 @@ function propContaining(props, field) {
   return null;
 }
 
-function map_en_to_x(layout) {
+function map_en_to_x(layout, outputCtrlAlt, outputMobile, outputTransforms) {
   // Compute the full mapping from QWERTY keys to the layout values.
   const qwerty_names = mapnames();
 
   // For each layer, map the values and add the text
   // for empty, s, c, sc, l, ls, lc, lsc layers
      // Check if there is any duplicate.
-  var vals = layout['mappings'];
-  var layers = []
+  let vals = layout['mappings'];
+  let layers = []
   let keys = Object.getOwnPropertyNames(vals);
 
   let comments = getComments(layout);
@@ -123,32 +126,51 @@ function map_en_to_x(layout) {
 
   // Need to generalize this to get layer with "".
   let base = propContaining(keys, "");
-  // Append
-  Array.prototype.push.apply(layers, map_qwerty(vals[base][""], "", qwerty_names))
-  layers.push("\n");
 
-  base = propContaining(keys, "s");
-  Array.prototype.push.apply(layers, map_qwerty(vals[base][""], "SHIFT ", qwerty_names));
-  layers.push("\n");
+  if (outputMobile) {
+    return generateMobile(qwerty_names, vals, layers, keys);
+  } else {
+      // Append
+      Array.prototype.push.apply(layers, map_qwerty(vals[base][""], "", qwerty_names))
+      layers.push("\n");
 
-  base = propContaining(keys, "c");
-  Array.prototype.push.apply(layers, map_qwerty(vals[base][""], "CTRL ", qwerty_names));
-  layers.push("\n");
+      base = propContaining(keys, "s");
+      Array.prototype.push.apply(layers, map_qwerty(vals[base][""], "SHIFT ", qwerty_names));
+      layers.push("\n");
 
-  base = propContaining(keys, "sc");
-  Array.prototype.push.apply(layers, map_qwerty(vals[base][""], "SHIFT CTRL ", qwerty_names));
-  // Add Lock levels as needed.
+      if (outputCtrlAlt) {
+          base = propContaining(keys, "c");
+          Array.prototype.push.apply(layers, map_qwerty(vals[base][""], "CTRL ", qwerty_names));
+          layers.push("\n");
 
-  transforms = getTransforms(layout)
+          base = propContaining(keys, "sc");
+          Array.prototype.push.apply(layers, map_qwerty(vals[base][""], "SHIFT CTRL ", qwerty_names));
+      }
+      // Add Lock levels as needed.
 
-  return comments + "\n" + storeInfo + "\n" + layers.join('\n') + "\n" + transforms;
+      let transforms = '';
+      if (outputTransforms) {
+        transforms = getTransforms(layout);
+      }
+
+      return comments + "\n" + storeInfo + "\n" + layers.join('\n') + "\n" + transforms;
+  }
 }
 
+function generateMobile(qwerty_names, vals, layers, keys) {
+  let result = '// KEYMAN Mobile result';
+
+  //...
+
+  return result;
+}
+
+
 function getComments(layout) {
-    var comment_list = [];
+    let comment_list = [];
     comment_list.push("c KeyMan keyboard generated from Google Input Tools format");
     comment_list.push("c " + Date());
-    comment_list.push("c Source Keyboard File: '{{kb_js}}.js'");
+    comment_list.push('c Source Keyboard File: ' + layout.id + '.js');
     comment_list.push("c");
     comment_list.push(" ");
 
@@ -226,7 +248,7 @@ function getTransforms(layout) {
     if (!transform_list) return transform_list;
 
     const en_qwerty = EN_LAYOUT['mappings'];
-    var mappings = layout['mappings'];
+    const mappings = layout['mappings'];
     let reverse_map = {};
     for (let map in mappings) {
       let en_map = get_en_layer(map, en_qwerty);
