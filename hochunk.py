@@ -37,21 +37,36 @@ LanguageCode = 'win'
 
 encoding_font_list = [
     {
-      'font_path':'/fonts/Cherokee/CherokeeOLD.ttf',
-      'font_name':'Cherokee_Old',
-      'display_name': 'Cherokee Old',
+      'font_path':'/fonts/hochunk/HOCATR__.TTF',
+      'font_name':'Hocak',
+      'display_name': 'Hocak Old',
     },
 ]
 
 unicode_font_list = [
+  {
+    'family': 'NotoSerif',
+    'longName': 'Noto Serif',
+    'source': '/fonts/NotoSerif-Regular.ttf',
+  },
+  {
+    'family': 'NotoSans',
+    'longName': 'Noto Sans',
+    'source': '/fonts/NotoSans-Regular.ttf',
+  },
+  {
+    'family': 'Roboto',
+    'longName': 'Roboto Regular',
+    'source': '/fonts/Yoruba/Roboto-Regular.ttf',
+  },
 ]
 
 links = [
     {'linkText': 'Keyboard',
      'ref': '/win/'
     },
-    # {'linkText': 'Converter',
-    #  'ref': '/win/convertUI/'},
+    {'linkText': 'Converter',
+     'ref': '/win/convertUI/'},
     {'linkText': 'Font conversion summary',
       'ref': '/win/encodingRules/'
     },
@@ -90,10 +105,12 @@ class langInfo():
     self.Language = Language
     self.Language_native = Language_native
     self.test_data = u''
+    self.encoding_font_list = encoding_font_list
     self.unicode_font_list = unicode_font_list
     self.lang_list = [Language]
     self.kb_list = kb_list
     self.links = links
+    self.allFonts = True
 
 
 # Presents UI for conversions from font encoding to Unicode.
@@ -101,10 +118,8 @@ class ConvertUIHandler(webapp2.RequestHandler):
     def get(self):
 
       # All old characters
-      oldChars = (u'\u0001 !"\u0023\u0024%&\'()*+,-./' +
-                  '0123456789:;<=>?@' +
-                  'ABCDEFGHIJKLMNOPQRSTUVWXYZ[ \\ ]^_`' +
-                  'abcdefghijklmnopqrstuvwxyz{|}~')
+      oldChars = (u"A\u005c  \u0060  \u007e  \u00c0 \u00c8 \u00cc \u00d2 \u00d9" +
+                  u" \u00e0 \u00e8 \u00ec \u00f2 \u00f9 \u011e \u011f")
       text = self.request.get('text', oldChars)
       font = self.request.get('font')
       testStringList = [
@@ -113,16 +128,7 @@ class ConvertUIHandler(webapp2.RequestHandler):
            '\u000a\u000b'},
       ]
 
-      oldInput = u''
-      for i in xrange(0x20, 0x3e):
-        oldInput += unichr(i)
-      for i in xrange(0x40, 0x7f):
-        oldInput += unichr(i)
-      oldInput += unichr(0x000a)
-      for i in xrange(0xf020, 0xf03e):
-        oldInput += unichr(i)
-      for i in xrange(0xf040, 0xf07f):
-        oldInput += unichr(i)
+      oldInput = oldChars
 
       unicodeChars = ''
       unicodeCombiningChars = ''
@@ -185,33 +191,14 @@ class ConvertHandler(webapp2.RequestHandler):
       self.response.out.write(json.dumps(result))
 
 
-class EncodingRules(webapp2.RequestHandler):
-    def get(self):
-
-      kb_list = [
-        {'shortName':  LanguageTag,
-         'longName': Language,
-        }
-      ]
-      template_values = {
-        'converterJS': "/js/winConverter.js",
-        'language': Language,
-        'encoding_list': encoding_font_list,
-        'unicode_list': unicode_font_list,
-        'kb_list': kb_list,
-        'links': links,
-      }
-      path = os.path.join(os.path.dirname(__file__), 'HTML/fontsView.html')
-      self.response.out.write(template.render(path, template_values))
-
-
 langInstance = langInfo()
 
 app = webapp2.WSGIApplication([
     ('/' + LanguageCode + '/', base.LanguagesHomeHandler),
     ('/' + LanguageCode + '/convertUI/', ConvertUIHandler),
     ('/' + LanguageCode + '/downloads/', base.Downloads),
-    ('/' + LanguageCode + '/encodingRules/', EncodingRules),
+    ('/' + LanguageCode + '/encodingRules/', base.EncodingRules),
+    ('/' + LanguageCode + '/AllFonts/', base.AllFontTest ),
   ],
   debug=True,
   config={'langInfo': langInstance}

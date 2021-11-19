@@ -125,6 +125,8 @@ class langInfo():
     self.Language_native = Language_native
     self.lang_list = ['one']
 
+    self.allFonts = True
+
     self.encoding_font_list = encoding_font_list
 
     self.unicode_font_list = unicode_font_list

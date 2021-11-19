@@ -66,7 +66,6 @@ LanguageList = [
   ('Kpelle', 'kpe'),
   ('Loma', 'lom'),
   ('Tai Viet script', 'tavt'),
-  ('Ho-Chunk', 'win'),
   ('Karen', 'ksw'),
   ('Lampung', 'lampung'),
   ('Lepcha', 'lep'),
@@ -78,7 +77,6 @@ LanguageList = [
   ('Shan', 'shn'),
   ('Sora', 'srb'),
   ('Tulu', 'tcy'),
-  ('Tamashek', 'tmh'),
   ('Tongan', 'to'),
   ('Sunuwar', 'suz'),
   ('Mundari', 'unr'),
@@ -87,6 +85,9 @@ LanguageList = [
   ('Burmese', 'my'),
   ('Elfdalian', 'ovd', 'övdalsk'),  # Added 9-Nov-2021
   ('Blackfoot', 'bla', 'ᓱᖽᐧᖿ'),  # Added 10-Nov-2021
+  ('Tamil', 'ta', 'தமிழ்'),
+  ('Santali', 'sat', 'ᱥᱟᱱᱛᱟᱲᱤ'),
+
 ]
 
 

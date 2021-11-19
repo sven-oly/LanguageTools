@@ -52,7 +52,7 @@
      var input_id = document.getElementById(input_id);
      var selObj = window.getSelection();
      var input_text = "";
-     if (selObj && selObj.rangeCount > 0) {
+     if (selObj && selObj.rangeCount > 0 && selObj.toString(0)) {
        var input_text = selObj.toString(0);
      } else {
          var input_text = input_id.value;

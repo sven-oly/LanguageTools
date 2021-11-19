@@ -209,6 +209,9 @@ handlers:
 - url: /srb/.*
   script: sora.app
 
+- url: /sat/.*
+  script: santali.app
+
 - url: /sxx/.*
   script: silibario.app
 

@@ -76,16 +76,16 @@
     var area1Elem = document.getElementById(area1);
     var selObj = window.getSelection();
     var text1 = "";
-    if (selObj && selObj.rangeCount > 0) {
+    if (selObj && selObj.rangeCount > 0 && selObj.toString(0)) {
       text1 = selObj.toString(0);
     } else {
       text1 = area1Elem.value;
     }
     var text2= '';
 
-    compareUrl = "/{{langTag}}/AllFonts/?utext=" + text1 + "&encodedText=" + text2;
+    newUrl = "/{{langTag}}/AllFonts/?utext=" + text1;
 
-    window.open(compareUrl, '_blank');
+    window.open(newUrl, '_blank');
   }
 
   const utils = new Utils();  // Object for utility functions

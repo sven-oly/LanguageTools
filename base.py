@@ -696,6 +696,29 @@ class KeyManHandler(webapp2.RequestHandler):
     self.response.out.write(template.render(path, template_values))
 
 
+class AllFontTest(webapp2.RequestHandler):
+  def get(self):
+    langInfo = self.app.config.get('langInfo')
+    try:
+      public_unicode_fonts = langInfo.public_font_resources
+    except:
+      public_unicode_fonts = langInfo.unicode_font_list
+    utext = self.request.get("utext", "")
+    encodedText = self.request.get("encodedText", "")
+    logging.info('AllFontTest utext =>%s<' % utext)
+    template_values = {
+      'scriptName': langInfo.Language,
+      'fontFamilies': public_unicode_fonts,
+      'encodedText': encodedText,
+      'utext': utext,
+      'language': langInfo.Language,
+      'LanguageTag': langInfo.LanguageCode
+    }
+
+    path = os.path.join(os.path.dirname(__file__), 'HTML/allFonts.html')
+    self.response.out.write(template.render(path, template_values))
+
+
 # Error catching
 def handle_301(request, response, exception):
   logging.exception(exception)
@@ -730,6 +753,7 @@ app.router.add((basePath + '/kbtransforms/', KeyboardTransforms))
 app.router.add((basePath + '/collation/', CollationHandler))
 app.router.add((basePath + '/combos/', RenderPage))
 app.router.add((basePath + '/keyman/', KeyManHandler))
+app.router.add((basePath + '/AllFonts/', AllFontTest ))
 
 app.error_handlers[301] = handle_301
 app.error_handlers[404] = handle_404
