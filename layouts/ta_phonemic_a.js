@@ -11,21 +11,21 @@
 // limitations under the License.
 
 
-var TA_PHONEMIC_B_LAYOUT = {
-  'id': 'ta_phonemic_b',
-  'title': 'தமிழ் phonemic B',
+var TA_PHONEMIC_A_LAYOUT = {
+  'id': 'ta_phonemic_a',
+  'title': 'தமிழ் phonemic A',
   'source': 'https://elangocheran.com/2021/02/11/d-pub-for-keyboards-for-agglutinative-languages-and-abugidas/',
   'mappings': {
     ',c': {
       '': '`1234567890-=' +
-          '{{ண்}}{{ஞ்}}{{ங்}}{{எ}}{{ற்}}{{ய்}}{{உ}}{{ஐ}}{{ந்}}{{ம்}}[]\\' +
-          '{{ட்}}{{ச்}}{{க்}}{{அ}}{{ன்}}{{வ்}}{{இ}}{{த்}}{{ப்}};\'' +
+          '{{ஞ்}}{{ங்}}{{உ}}{{எ}}{{ன்}}{{ய்}}{{ண்}}{{ந்}}{{ம்}}{{ஐ}}[]\\' +
+          '{{ச்}}{{க்}}{{இ}}{{அ}}{{ற்}}{{வ்}}{{ட்}}{{த்}}{{ப்}};\'' +
           '{{ஃ}}{{ஔ}}{{ஒ}}{{ர்}}{{ழ்}}{{ள்}}{{ல்}},./'
     },
     's,sc': {
       '': '~!@#$%^&*()_+' +
-          '{{ஶ்ரீ}}{{ஸ்}}{{ஷ்}}{{ஏ}}TY{{ஊ}}IOP{}|' +
-          '{{ஜ்}}{{ஹ்}}{{க்ஷ்}}{{ஆ}}GH{{ஈ}}KL:"' +
+          'QW{{ஊ}}{{ஏ}}TY{{ஸ்}}{{ஷ்}}{{ஶ்ரீ}}P{}|' +
+          'AS{{ஈ}}{{ஆ}}G{{ஹ்}}{{ஜ்}}{{க்ஷ்}}L:"' +
           'ZX{{ஓ}}VBNM<>?'
     },
     'l,cl': {
@@ -666,11 +666,10 @@ var TA_PHONEMIC_B_LAYOUT = {
     'ஹஒ' : 'ஹொ',
     'ஹஓ' : 'ஹோ',
     'ஹஔ' : 'ஹௌ',
-
     },
 //  'historyPruneRegex': '[ptkcmnsywlrš]?w?[ioaIOA]?'
 };
 
 // Load the layout and inform the keyboard to switch layout if necessary.
-google.elements.keyboard.loadme(TA_PHONEMIC_B_LAYOUT);
-let ta_phonemic_b = TA_PHONEMIC_B_LAYOUT;
+google.elements.keyboard.loadme(TA_PHONEMIC_A_LAYOUT);
+let ta_phonemic_a = TA_PHONEMIC_A_LAYOUT;

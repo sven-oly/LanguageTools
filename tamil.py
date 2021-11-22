@@ -46,37 +46,31 @@ class langInfo():
     ]
 
     self.links = [
-      {'linkText': 'Keyboard',
-       'ref': '/' + self.LanguageCode + '/',
+      # {'linkText': 'Keyboard',
+      #  'ref': '/' + self.LanguageCode + '/',
+      #  },
+      # {'linkText': 'Converter',
+      #  'ref': '/' + self.LanguageCode + '/convertUI/'
+      #  },
+      {'linkText': 'Phonemic Keyboards for Abugida Scripts',
+       'ref': 'https://elangocheran.com/2021/02/11/d-pub-for-keyboards-for-agglutinative-languages-and-abugidas/'
        },
-      {'linkText': 'Converter',
-       'ref': '/' + self.LanguageCode + '/convertUI/'
+      {'linkText': 'Unicode Tamil block',
+       'ref': 'https://unicode.org/charts/PDF/U0B80.pdf'
        },
       {'linkText': 'Keyboard transforms',
        'ref': '/' + self.LanguageCode + '/kbtransforms/'
        },
-      {'linkText': 'Phonemic Keyboards for Abugida Scripts',
-       'ref': 'https://elangocheran.com/2021/02/11/d-pub-for-keyboards-for-agglutinative-languages-and-abugidas/'
-       },
-      {'linkText': 'Unicode block',
-       'ref': 'https://unicode.org/charts/PDF/U0B80.pdf'
-       },
       {'linkText': 'Resources',
        'ref': '/' + self.LanguageCode + '/downloads/'
        },
-      # {'linkText': 'Language Geek fonts',
-      #  'ref': 'http://www.languagegeek.com/font/fontdownload.html'
-      #  },
-      # {'linkText': 'Try Plains Cree on Google Input Tools',
-      #  'ref': 'https://www.google.com/intl/sa/inputtools/try/'
-      #  },
     ]
 
     self.kb_list = [
       {
-        'shortName': 'ta_phonemic',
-        'longName': 'தமிழ் phonemic',
-        'jsName': 'ta_phonemic',
+        'shortName': 'ta_phonemic_a',
+        'longName': 'தமிழ் phonemic A',
+        'jsName': 'ta_phonemic_a',
         'instructions': None,
         'font': '/fonts/NotoSansTamil-Regular.ttf',
       },
@@ -84,6 +78,13 @@ class langInfo():
         'shortName': 'ta_phonemic_b',
         'longName': 'தமிழ் phonemic B',
         'jsName': 'ta_phonemic_b',
+        'instructions': None,
+        'font': '/fonts/NotoSansTamil-Regular.ttf',
+      },
+      {
+        'shortName': 'ta_phonemic_c',
+        'longName': 'தமிழ் phonemic C',
+        'jsName': 'ta_phonemic_c',
         'instructions': None,
         'font': '/fonts/NotoSansTamil-Regular.ttf',
       },
