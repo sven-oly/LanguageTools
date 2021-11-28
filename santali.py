@@ -30,11 +30,11 @@ links = [
   {'linkText': 'Keyboard',
    'ref': '/' + LanguageCode + '/'
    },
-  # {'linkText': 'Converter',
-  #  'ref': '/' + LanguageCode + '/convertUI/'},
-  # {'linkText': 'Font conversion summary',
-  #   'ref': '/' + LanguageCode + '/encodingRules/'
-  # },
+  {'linkText': 'Converter',
+   'ref': '/' + LanguageCode + '/convertUI/'},
+  {'linkText': 'Font conversion summary',
+    'ref': '/' + LanguageCode + '/encodingRules/'
+  },
   # {'linkText': 'Resources',
   #   'ref': '/' + LanguageCode + '/downloads/'
   # },
@@ -47,9 +47,9 @@ links = [
   {'linkText': 'Wikipedi page',
    'ref': 'https://en.wikipedia.org/wiki/Santali_language'
   },
-  # {'linkText': 'Ethnolog',
-  #  'ref': 'https://www.ethnologue.com/language/lep'
-  # },
+  {'linkText': 'Olchiki Ddevelopment & Resource',
+   'ref': 'https://olchikidr.blogspot.com/'
+  },
   # {'linkText': 'Combiners',
   #  'ref': '/lep/diacritic/'
   #  },
@@ -65,7 +65,20 @@ class langInfo:
         self.unicode_font_list = [
           {'family': 'NotoOlChiki',
            'longName': 'Noto Ol Chiki',
-           'source': '/fonts/santali/NotoSansOlChiki-VariableFont_wght.ttf',
+           'source': '/fonts/santali/NotoSansOlChiki-VariableFont_wght.ttf'
+          },
+          {'family': 'GuruGomke-Italic',
+           'longName': 'GuruGomke Italic',
+           'source': '/fonts/santali/GuruGomke-Italic.ttf',
+           },
+          {'family': 'GuruGomke-Regular',
+           'longName': 'GuruGomke Regular',
+           'source': '/fonts/santali/GuruGomke-Regular.ttf',
+           'download': 'https://www.mediawiki.org/wiki/Project_Ol_chiki'
+           },
+          {'family': 'GuruGomke-Bold',
+           'longName': 'GuruGomke Bold',
+           'source': '/fonts/santali/GuruGomke-Bold.ttf',
            },
           {'family': 'UNI-RaghunathMurmu',
            'longName': 'UNI RaghunathMurmu',
@@ -79,9 +92,39 @@ class langInfo:
 
         self.encoding_font_list = [
           {
-            'font_path': '/fonts/xyz.ttf',
-            'font_name': 'xyz',
-            'display_name': 'xyz',
+            'font_path': '/fonts/santali/encoded/Ol_Chiki_Classic.ttf',
+            'font_name': 'Ol_Chiki_Classic',
+            'display_name': 'Ol Chiki Classic',
+            'location': 'https://wesanthals.tripod.com/id19.html'
+          },
+          {
+            'font_path': '/fonts/santali/encoded/Ol_Chiki_Old.ttf',
+            'font_name': 'Ol_Chiki_Old',
+            'display_name': 'Ol Chiki Old',
+            'location': 'https://wesanthals.tripod.com/id19.html'
+          },
+          {
+            'font_path': '/fonts/santali/encoded/Ol_Chiki_Optimum.ttf',
+            'font_name': 'Ol_Chiki_Optimum',
+            'display_name': 'Ol Chiki Optimum',
+            'location': 'https://wesanthals.tripod.com/id19.html'
+          },
+          {
+            'font_path': '/fonts/santali/encoded/Ol_Chiki_Regular.ttf',
+            'font_name': 'Ol_Chiki_Regular',
+            'display_name': 'Ol Chiki Regular',
+            'location': 'https://wesanthals.tripod.com/id19.html'
+          },
+          {
+            'font_path': '/fonts/santali/encoded/Ol_Chiki_Royal.ttf',
+            'font_name': 'Ol_Chiki_Royal',
+            'display_name': 'Ol Chiki Royal',
+            'location': 'https://wesanthals.tripod.com/id19.html'
+          },
+          {
+            'font_path': '/fonts/santali/encoded/olchiki_usara.ttf',
+            'font_name': 'olchiki_usara',
+            'display_name': 'Ol Chiki Usara',
           },
         ]
 
@@ -89,8 +132,16 @@ class langInfo:
 
         self.kb_list = [
           {'shortName': LanguageCode,
-           'longName': LanguageCode,
+           'longName': 'Santali Windows CLDR',
            'source': 'https://unicode-org.github.io/cldr-staging/charts/37/keyboards/layouts/sat.html',
+           },
+          {'shortName': LanguageCode + '2',
+           'longName': "Santali from GBoard",
+           'source': 'from GBoard layout',
+           },
+          {'shortName': LanguageCode + '3',
+           'longName': "Santali Olchiki DR",
+           'source': 'from olchikidr.blogspot.in',
            },
         ]
 
