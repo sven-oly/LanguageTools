@@ -55,6 +55,11 @@ class langInfo():
        'longName': 'Lakhum Unicode',
        'source': '/fonts/Tangsa/TangsaLakhumUnicode.ttf',
        },
+      {'family': 'LakhumTsdc',
+       'longName': 'Lakhum TSDC Nov-2021',
+       'source': '/fonts/Tangsa/lakhum-tsdc-outlined-SVG.ttf',
+       'note': 'Includes PUA E459 &E460',
+       },
       {'family': 'LakhumPUA',  # Really a PUA font, not Unicode
        'longName': 'Lakhum PUA',
        'source': '/fonts/Tangsa/Lakhum.ttf',
@@ -219,7 +224,7 @@ class langInfo():
 
    # Test data for showing in converter.
     self.test_data = ''
-    self.test_chars = ['']
+    self.test_chars = ''
 
     self.conversion_data = [
       {'name': 'wordlist data',
