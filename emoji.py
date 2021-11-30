@@ -127,7 +127,7 @@ class langInfo():
     test_range.extend(unichr(x) for x in xrange(0x00c8, 0x00cf))
     # Plus some others in the U+26XX and other ranges.
 
-    self.test_chars = [' '.join(test_range)]
+    self.test_chars = ' '.join(test_range)
 
 # Global in this file.
 langInstance = langInfo()

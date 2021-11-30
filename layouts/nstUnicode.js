@@ -34,7 +34,7 @@ var NST_UNICODE_LAYOUT = {
           '{{\ud81a\ude75}}{{\ud81a\udeb4}}{{\ud81a\udebc}}{{\ud81a\ude90}}{{\ud81a\udea3}}{{\ud81a\udeb7}}' +
             '{{\ud81a\ude8d}}{{\ud81a\udea1}}{{\ud81a\udeb2}}:"' +
           '{{\ud81a\ude99}}{{\ud81a\udeba}}{{\ud81a\udebd}}{{\ud81a\ude79}}{{\ud81a\udea6}}{{\ud81a\udea8}}' +
-            '{{\ud81a\udeb3}}<>?'
+            '{{\ud81a\udeb3}}{{\ue459}}{{\ue460}}?'
     },
     'c': {
       '': '`1234567890-=' +

@@ -1,10 +1,15 @@
-// Convert from old font-encoding of Cherokee text to Unicode forms:
+const langConverter = new langConverterClass('nv', 'Navajo');
 
 // Mappings for Navajo font encodings
-var map_encoding_names = [
+langConverter.encodingNames = map_encoding_names = [
   'Times New Roman Navajo', 'Century Gothic Navajo', 'Verdana Navajo'];
+langConverter.encoding_data = {
+    'TimesNewRomanNavajo': {index:0, outputEncoding:'Unicode', outputScript:'Latn'},
+    'VerdanaNavajo': {index:0, outputEncoding:'Unicode', outputScript:'Latn'},
+    'CenturyGothicNavajo': {index:0, outputEncoding:'Unicode', outputScript:'Latn'},
+};
 
-var private_use_map_combined = {
+langConverter.one2oneMap =  private_use_map_combined = {
   '\u0020': ['\u0020', '\u0020', '\u0020'],
   '\u0021': ['\u00c1', '\u00c1', '\u00c1'],
   '\u0022': ['\"', '\"', '\"'],

@@ -28,6 +28,8 @@ langConvertClass.prototype.getLangCode = function() {
   return this.langCode;
 }
 
+const translit_source = '';
+
 langConvertClass.prototype.translitInfo = function() {
   return [translit_source,
           map_translit_output,
@@ -47,6 +49,20 @@ const map_translit_sources = [
     "// https://www.oxfordhandbooks.com/view/10.1093/oxfordhb/9780190690694.001.0001/oxfordhb-9780190690694-appendix-2",
     "// https://en.wikipedia.org/wiki/Mingrelian_language#Alphabet",
 ];
+
+langConvertClass.prototype.decodingInfo = function() {
+}
+
+langConvertClass.prototype.getTransforms = function() {
+    return this.transforms;
+}
+
+langConvertClass.prototype.translitInfo = function() {
+  return [translit_source,
+          map_translit_output,
+          map_translit_sources,
+          this.private_use_map_combined];
+}
 
 const private_use_map_combined = {
     "ა": ["a", "a", "ɑ"],

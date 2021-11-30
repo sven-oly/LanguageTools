@@ -1,10 +1,10 @@
-// Convert from old font-encoding of Lepcha text to Unicode forms:
+const langConverter = new langConverterClass('suz', 'Sunuwar');
 
 // Mappings for Sunuwar font encodings
 var map_encoding_names = [
   'TikamuliPUA', 'Jenticha'];
 
-const map_font_to_encoding = {
+langConverter.map_encoding_names = map_font_to_encoding = {
     'Kirat1': 1,
     'Kirat2': 1,
     'Mukdum' : 1,
@@ -14,7 +14,7 @@ const map_font_to_encoding = {
 };
 
 // Conversion to PUA
-var private_use_map_combined = {
+langConverter.one2oneMap = private_use_map_combined = {
     '\u0030': ['\uec30', '\ued30'],
     '\u0031': ['\uec31', '\ued31'],
     '\u0032': ['\uec32', '\ued32'],

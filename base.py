@@ -233,7 +233,7 @@ class ConvertUIHandler(webapp2.RequestHandler):
 
     # All old characters
     try:
-      oldInput = langInfo.test_chars[0]
+      oldInput = langInfo.test_chars
       test_char_list = langInfo.test_chars
     except AttributeError:
       oldInput = u''
@@ -244,11 +244,19 @@ class ConvertUIHandler(webapp2.RequestHandler):
                 'abcdefghijklmnopqrstuvwxyz{|}~')
     text = self.request.get('text', oldChars)
     font = self.request.get('font')
-    testStringList = [
+    try:
+      testStringList = langInfo.testStringList
+    except:
+      testStringList = [
         {'name': 'Test 1', # Note: must escape the single quote.
          'string': u'\u0004\u0005\u0006\u0007\u0008\u0009' +
          '\u000a\u000b'},
-    ]
+      ]
+
+    try:
+      text = langInfo.convertText
+    except:
+      text = self.request.get('text', oldChars)
 
     try:
       text_direction = langInfo.direction
@@ -572,6 +580,7 @@ class TranslitHandler(webapp2.RequestHandler):
     # All old characters
     try:
       oldInput = langInfo.test_chars[0]
+      print("TEST CHARS %s" % langInfo.test_chars)
       test_char_list = langInfo.test_chars
     except AttributeError:
       oldInput = u''

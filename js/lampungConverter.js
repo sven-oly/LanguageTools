@@ -1,6 +1,12 @@
 // Convert from old font-encoding Anangu/Yolngu text to Unicode forms:
+const langConverter = new langConverterClass('lampung', 'Lampung');
 
-var private_use_map = {
+langConverter.encoding_data = {
+    'KagangaLampung21': {index:0, outputEncoding:'Unicode', outputScript:'Lampung PUA'},
+};
+
+// Not complete 27-Nov-2021
+langConverter.one2oneMap = private_use_map = {
     '\u0030': ['\ue8b0'],
     '\u0031': ['\ue8b1'],
     '\u0032': ['\ue8b2'],
@@ -71,31 +77,3 @@ var private_use_map = {
     '\u007e': ['\u09f8'],
 
 };
-
-function convertEncodingToUnicode(inbox, outbox, encodingIndex) {
-  var inarea = document.getElementById(inbox);
-  var outarea = document.getElementById(outbox);
-
-  // First, replace all single characters with their Unicode equivalents.
-  var intext = inarea.value;
-  var outtext = "";
-  var out;
-  for (var index = 0; index < intext.length; index ++) {
-    var c = intext[index];
-    out = c;
-    if (c in private_use_map) {
-      var result = private_use_map[c];
-      if (result) {
-	out = result;
-      }
-    }
-    outtext += out;
-  }
-  // Any more complicated stuff?
-  var newText = outtext;
-
-  if (outarea) {
-    outarea.innerHTML = outarea.value = newText;
-  }
-  return newText;
-}

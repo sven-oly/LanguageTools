@@ -1,11 +1,12 @@
 // Convert from old font-encoding of Lepcha text to Unicode forms:
+const langConverter = new langConverterClass('lep', 'Lepcha');
 
 // Mappings for Lepcha font encodings
-var map_encoding_names = [
+langConverter.map_encoding_names = map_encoding_names = [
   'Shipmoo Lepcha', 'JG Lepcha'];
 
 // 1c00 is the base
-var private_use_map_combined = {
+langConverter.one2oneMap =  private_use_map_combined = {
     '\u0021': ['', '\u1c29\u1c2d'],
     '\u0022': ['', '\u1c29\u1c2e'],
     '\u0023': ['', '\u1c29\u1c2f'],
@@ -144,11 +145,6 @@ var private_use_map_combined = {
     '\u00f2': ['', '\u1c1d\u1c25\u1c24'],
     '\u00f3': ['', '\u1c21\u1c25\u1c24'],
 };
-
-
-function toLower(instring) {
-  return instring.toLowerCase();
-}
 
 function convertEncodingToUnicode(inbox, outbox, encodingIndex) {
   var inarea = document.getElementById(inbox);

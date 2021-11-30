@@ -1,8 +1,15 @@
+const langConverter = new langConverterClass('hnj', 'Green Hmong');
+
 // Mappings for Nyiakeng font
-var map_encoding_names = [
+langConverter.map_encoding_names = map_encoding_names = [
   'Green Hmong'];
 
-var private_use_map_combined = {
+langConverter.encoding_data = {
+    'Mong0_fixed': {index:0, outputEncoding:'Unicode', outputScript:'Nyiakeng Puachue Hmong'},
+    'Mong4_fixed': {index:0, outputEncoding:'Unicode', outputScript:'Nyiakeng Puachue Hmong'},
+    };
+
+langConverter.one2oneMap = private_use_map_combined = {
   '\u0020': [' '],
   '\u0021': ['!'],
   '\u0022': ['\"'],

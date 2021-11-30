@@ -1,9 +1,10 @@
 // Converters from Non-Unicode Burmese encodings to Unicode.
+const langConverter = new langConverterClass('ksw', 'Karen');
 
 // knu.TTF
 const converterType = "knu-unicode";
 
-private_use_map_combined = {
+langConverter.one2oneMap = private_use_map_combined = {
   // TODO: Finish
   '\u0020': ['\u0020'],
   '\u0021': ['\u100a'],

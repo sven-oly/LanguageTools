@@ -6,7 +6,7 @@ var map_encoding_names = [
   'Gam Win PUA',      // Gam Win to PUA
 ];
 
-var private_use_map_combined = {
+langConverter.one2oneMap =  private_use_map_combined = {
     'mnvungz': ['𖪜𖪬𖩸𖪄𖪐', ''],
     'mznvungz': ['𖪜𖪬𖩸𖪄𖪐', ''],
     'mnaungz': ['𖪜𖪬𖩴𖪄𖪐', ''],

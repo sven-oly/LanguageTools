@@ -102,6 +102,16 @@ unicode_font_list = [
     'longName': 'BeautiUNI-6',
     'source': '/fonts/burmese/BeautiUNI-6.ttf',
   },
+  {
+    'family': 'Jasmine Unicode',
+    'longName': 'Jasmine Unicode',
+    'source': '/fonts/Myanmar/Jasmine_Unicode.ttf',
+  },
+  {
+    'family': 'ZawDecode2.0',
+    'longName': 'ZawDecode 2.0 (deprecated)',
+    'source': '/fonts/Myanmar/deprecated/ZawDecode-2.0_Regular.ttf',
+  },
 ]
 
 

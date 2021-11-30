@@ -111,91 +111,18 @@ class langInfo():
     self.kb_list = kb_list
     self.links = links
     self.allFonts = True
-
-
-# Presents UI for conversions from font encoding to Unicode.
-class ConvertUIHandler(webapp2.RequestHandler):
-    def get(self):
-
-      # All old characters
-      oldChars = (u"A\u005c  \u0060  \u007e  \u00c0 \u00c8 \u00cc \u00d2 \u00d9" +
-                  u" \u00e0 \u00e8 \u00ec \u00f2 \u00f9 \u011e \u011f")
-      text = self.request.get('text', oldChars)
-      font = self.request.get('font')
-      testStringList = [
-          {'name': 'Test 1', # Note: must escape the single quote.
-           'string': u'\u0004\u0005\u0006\u0007\u0008\u0009' +
-           '\u000a\u000b'},
-      ]
-
-      oldInput = oldChars
-
-      unicodeChars = ''
-      unicodeCombiningChars = ''
-      kb_list = [
-        {'shortName':  LanguageTag,
-         'longName': Language,
-        }
-      ]
-
-      template_values = {
-          'allFonts': True,
-          'font': font,
-          'language': Language,
-          'langTag': LanguageTag,
-          'encodingList': encoding_font_list,
-          'encoding': {
-              'font_path':'/fonts/Cherokee/CherokeeOLD.ttf',
-              'font_name':'Cherokee_Old',
-              'display_name': 'Cherokee Old',
-          },
-          'kb_list': kb_list,
-          'unicodeFonts': unicode_font_list,
-          'links': links,
-          'oldChars': oldChars,
-          'oldInput': oldInput,
-          'text': text,
-          'textStrings': testStringList,
-          'showTools': self.request.get('tools', None),
-          'unicodeChars': unicodeChars,
-          'combiningChars': unicodeCombiningChars,
-      }
-      path = os.path.join(os.path.dirname(__file__), 'HTML/translit_general.html')
-      self.response.out.write(template.render(path, template_values))
-
-# AJAX handler for converter
-class ConvertHandler(webapp2.RequestHandler):
-    def get(self):
-      # TODO: Get the text values
-      # Call transliterator
-      # Return JSON structure with values.
-
-      transCcp = transliterate.Transliterate(
-        transrule_ccp.TRANS_LIT_RULES,
-        transrule_ccp.DESCRIPTION
-      )
-
-      outText = '\u11103\u11101\u11103'
-      message = 'TBD'
-      error = ''
-
-      result = {
-        'outText' : outText,
-        'message' : message,
-        'error': error,
-        'language': Language,
-        'langTag': LanguageTag,
-        'showTools': self.request.get('tools', None),
-        'summary' : transCcp.getSummary(),
-      }
-      self.response.out.write(json.dumps(result))
+    self.convertText = u'\u00e0\u00c0\u00ec\u00cc\u00f2\u00d2\u00f9\u00d9\u011e\u011f'
+    self.testStringList = [
+      {'name': 'Test 1', # Note: must escape the single quote.
+       'string': u'\u00e0\u00c0\u00ec\u00cc\u00f2\u00d2\u00f9\u00d9\u011e\u011f'},
+    ]
 
 
 langInstance = langInfo()
 
 app = webapp2.WSGIApplication([
     ('/' + LanguageCode + '/', base.LanguagesHomeHandler),
-    ('/' + LanguageCode + '/convertUI/', ConvertUIHandler),
+    ('/' + LanguageCode + '/convertUI/', base.ConvertUIHandler),
     ('/' + LanguageCode + '/downloads/', base.Downloads),
     ('/' + LanguageCode + '/encodingRules/', base.EncodingRules),
     ('/' + LanguageCode + '/AllFonts/', base.AllFontTest ),

@@ -1,12 +1,12 @@
 // Convert from old font-encoding Yoruba Ariya font to Unicode forms:
+const langConverter = new langConverterClass('up', 'Yoruba');
 
 // Mappings for old Yoruba non-Unicode forms
 var map_encoding_names = [
   'Ariya', 'YorubaOK'];
 
 // TODO: Fix YorubaOK mappings
-var private_use_map_combined = {
-  '\u0000': ['\u0000'],
+langConverter.one2oneMap =  private_use_map_combined = {
   '\u0023': ['\u20a6', '$'],
   '\u003c': ['\u1ecd\u0301', '\u1ecd\u0301'],
   '\u003e': ['\u1ecc\u0301', '\u1ecc\u0301'],
@@ -65,36 +65,3 @@ var private_use_map_combined = {
   '\ue01e': ['\u1ecc\u0302', '\u1ecc\u0302'],
   '\ue01f': ['\u0169', '\u0169'],
 };
-
-function convertEncodingToUnicode(inbox, outbox, encodingIndex) {
-  var inarea = document.getElementById(inbox);
-  var outarea = document.getElementById(outbox);
-
-  // First, replace all single characters with their Unicode equivalents.
-  var intext = inarea.value;
-  var outtext = "";
-  var out;
-  for (var index = 0; index < intext.length; index ++) {
-    var c = intext[index];
-    out = c;
-    if (c in private_use_map_combined) {
-      var result = private_use_map_combined[c][encodingIndex];
-      if (result) {
-	out = result;
-      }
-    }
-    outtext += out;
-  }
-  newText = outtext;
-
-  // Next, if needed, move some code points in context to get proper Unicode ordering.
-  // Vowel sign to right of consonants:
-  // ePattern = /\uD804\uDD2c\uD804([\uDD03-\uDD26])/gi;
-  // eReplace = "\uD804$1\uD804\uDD2c";
-  //var newText = outtext.replace(ePattern, eReplace);
-
-  if (outarea) {
-    outarea.innerHTML = outarea.value = newText;
-  }
-  return newText;
-}

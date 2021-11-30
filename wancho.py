@@ -203,7 +203,7 @@ class langInfo():
     self.unicode_font_list = unicode_font_list
 
     # Lists of test characters for the various encodings
-    self.test_chars = [' '.join([unichr(x) for x in range(0x20, 0x7f)])]
+    self.test_chars = ' '.join([unichr(x) for x in range(0x20, 0x7f)])
 
 
 # Global in this file.

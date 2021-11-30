@@ -1,11 +1,19 @@
 // Convert from old font-encoding Rohingya Kuna Leyka and Gonya Lekka
 // Noories to Unicode forms:
+const langConverter = new langConverterClass('nv', 'Navajo');
 
 // Mappings for both encodings.
-var map_encoding_names = [
+langConverter.map_encoding_names = map_encoding_names = [
   'Kuna Leyka', 'Gonya Leyka'];
 
-var private_use_map_combined = {
+// Map by font name, index in lookup table, output encoding, output script.
+langConverter.encoding_data = {
+    'KunaLeykaNoories': {index:0, outputEncoding:'Unicode', outputScript:'Rohingya'},
+    // Are they the same code points?
+    'GuynaLeykaNoories': {index:0, outputEncoding:'Unicode', outputScript:'Rohingya'},
+};
+
+langConverter.one2oneMap =  private_use_map_combined = {
   '\u0621': ['\ud803\udd1e', '\u0000'],  // null
   '\u0622': ['\ud803\udd00', '\u0009'],  // horizontal tab
   '\u0623': ['\ud803\udd00', '\u0009'],  // horizontal tab
@@ -74,109 +82,3 @@ var private_use_map_combined = {
   '\u06f8': ['\ud803\udd38', '\ud803\udd38', '\ud803\udd16'],  // Z
   '\u06f9': ['\ud803\udd39', '\ud803\udd39', '['],  // [
 };
-
-function convertEncodingToUnicode(inbox, outbox, encodingIndex) {
-  var inarea = document.getElementById(inbox);
-  var outarea = document.getElementById(outbox);
-
-  // First, replace all single characters with their Unicode equivalents.
-  var intext = inarea.value;
-  var outtext = "";
-  var out;
-  for (var index = 0; index < intext.length; index ++) {
-    var c = intext[index];
-    out = c;
-    if (c in private_use_map_combined) {
-      var result = private_use_map_combined[c][encodingIndex];
-      if (result) {
-	out = result;
-      }
-    }
-    outtext += out;
-  }
-
-  // TODO: Fix these for Rohingya.
-
-  // Next, move some code points in context to get proper Unicode ordering.
-  // Vowel sign to right of consonants:
-  ePattern = /\uD803\uDD2c\uD803([\uDD03-\uDD26])/gi;
-  eReplace = "\uD803$1\uD803\uDD2c";
-  var newText = outtext.replace(ePattern, eReplace);
-
-  // Move the eVowel over a virama.
-  viramaEPattern = /\ud803([\udd01\udd27-\udd34])\ud803\udd33\ud803([\uDD03-\uDD26])/gi;
-  viramaEReplace = "\ud803\udd33\ud803$2\ud803$1";
-  var result = newText.search(viramaEPattern);
-  while (result >= 0) {
-    newText = newText.replace(viramaEPattern, viramaEReplace);
-    result = newText.search(viramaEPattern);
-  }
-
-  dotPattern = /\ud803([\udd41\udd42])\ud803\udd01/gi;
-  dotReplace = "\ud803\udd01\ud803$1";
-  newText = newText.replace(dotPattern, dotReplace);
-
-  // Replace CHAKMA VOWEL SIGN O + CHAKMA VOWEL SIGN AI with
-  //    CHAKMA VOWEL SIGN OI + CHAKMA O MARK
-  oIPattern = /\ud803\udd2e\ud803\udd2d/gi;
-  oIReplace = "\ud803\udd30\ud803\udd31";
-  newText = newText.replace(oIPattern, oIReplace);
-
-  // Replace
-  //
-  uIPattern = /\ud803\udd2a\ud803\udd2d/gi;
-  uIReplace = "\ud803\udd2d\ud803\udd2a";
-  newText = newText.replace(uIPattern, uIReplace);
-
-  // Replace
-  //
-  iZPattern = /\ud803\udd27\ud803\udd33\ud803\udd20/gi;
-  iZReplace = "\ud803\udd33\ud803\udd20\ud803\udd27";
-  newText = newText.replace(iZPattern, iZReplace);
-
-  iGraveZPattern = /\ud803\udd27\ud803\udd01\ud803\udd33\ud803\udd20/gi;
-  iGraveZReplace = "\ud803\udd33\ud803\udd20\ud803\udd27\ud803\udd01";
-  newText = newText.replace(iGraveZPattern, iGraveZReplace);
-
-  deRPattern = /\ud803\udd28\ud803\udd33\ud803\udd22/gi;
-  deRReplace = "\ud803\udd33\ud803\udd22\ud803\udd28";
-  newText = newText.replace(deRPattern, deRReplace);
-
-  // Reorder with 11101.
-  onePattern = /\ud803\udd01\ud803([\udd28])/gi;
-  oneReplace = "\ud803$1\ud803\udd01";
-  newText = newText.replace(onePattern, oneReplace);
-
-
-  // Fix some modifiers after a space, newline or left parent.
-  spaceModPattern = /([\u000a\u0020]|\u0020\u0040)\ud803([\udd00\udd27-\udd34])/gi;
-  spaceModReplace = "\ud803$2$1";
-  newText = newText.replace(spaceModPattern, spaceModReplace);
-
-  // Fix some virama followed by space or new line.
-  viramaSpacePattern = /\ud803\udd33([\u000a\u0020])\ud803([\udd05])/gi;
-  viramaSpaceReplace = "\ud803\udd33\ud803$2$1";
-  newText = newText.replace(viramaSpacePattern, viramaSpaceReplace);
-
-  // Space modifier space
-  spaceModSpacePattern = /\u0020\ud803([\udd00])\u0020/gi;
-  spaceModSpaceReplace = "\ud803$1\u0020";
-  newText = newText.replace(spaceModSpacePattern, spaceModSpaceReplace);
-
-  // Virama pattern after space.
-  spaceModSpacePattern = /\u0020\ud803\udd33\ud803([\uDD03-\uDD26])/gi;
-  spaceModSpaceReplace = "\ud803\udd33\ud803$1\u0020";
-  newText = newText.replace(spaceModSpacePattern, spaceModSpaceReplace);
-
-  // Diacritics 131 before 130 space.
-  spaceModSpacePattern = /\ud803\udd31\ud803\udd30/gi;
-  spaceModSpaceReplace = "\ud803\udd30\ud803\udd31";
-  newText = newText.replace(spaceModSpacePattern, spaceModSpaceReplace);
-
-  // TODO: Run some reorderings again, e.g., 11131 11127
-
-  if (outarea) {
-    outarea.innerHTML = outarea.value = newText;
-  }
-  return newText;
-}

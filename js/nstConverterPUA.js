@@ -1,12 +1,13 @@
 // Convert from Latin form of Tangsa to Lakhum Private Use Area (PUA) forms:
+const langConverter = new langConverterClass('nst', 'Tangsa');
 
 // Mappings for Tangsa Lakhum
-var map_encoding_names = [
+langConverter.map_encoding_names = map_encoding_names = [
   'Gam Win PUA',
   'Gam Win Unicode',
 ];
 
-var private_use_map_combined = {
+langConverter.one2oneMap =  private_use_map_combined = {
     'mnvungz': ['', '𖪜𖪬𖩸𖪄𖪐'],
     'mznvungz': ['', '𖪜𖪬𖩸𖪄𖪐'],
     'mnaungz': ['', '𖪜𖪬𖩴𖪄𖪐'],

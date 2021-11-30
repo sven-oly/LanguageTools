@@ -29,24 +29,24 @@ import webapp2
 from google.appengine.ext.webapp import template
 
 encoding_font_list = [
-    {
-      'font_path':'/fonts/Rohingya Guanya Leyka.ttf',
-      'font_name':'GuynaLeykaNoories',
-      'display_name': 'Guanya Leyka Noories',
-      'Source location': 'https://sellfy.com/p/OXDH/',
-    },
-    {
-      'font_path':'/fonts/Rohingya Kuna Leyka Noories.ttf',
-      'font_name':'KunaLeykaNoories',
-      'display_name': 'Kuna Leyka Noories',
-      'Source location':' http://fontlibrary.org/en/font/rohingya-kuna-leyka-noories',
-    },
-    # {  # This font does not seem to have usable code points.
-    #   'font_path':'/fonts/Rohingya Gonya Leyka Noories.ttf',
-    #   'font_name':'RohingyaGonyaLeykaNoories',
-    #   'display_name': 'Gonya Leyka Noories',
-    #   'Source location': 'http://fontlibrary.org/en/font/rohingya-gonya-leyka-noories',
-    # },
+  {
+    'font_path':'/fonts/Rohingya Kuna Leyka Noories.ttf',
+    'font_name':'KunaLeykaNoories',
+    'display_name': 'Kuna Leyka Noories',
+    'Source location':' http://fontlibrary.org/en/font/rohingya-kuna-leyka-noories',
+  },
+  {
+    'font_path':'/fonts/Rohingya Guanya Leyka.ttf',
+    'font_name':'GuynaLeykaNoories',
+    'display_name': 'Guanya Leyka Noories',
+    'Source location': 'https://sellfy.com/p/OXDH/',
+  },
+  # {  # This font does not seem to have usable code points.
+  #   'font_path':'/fonts/Rohingya Gonya Leyka Noories.ttf',
+  #   'font_name':'RohingyaGonyaLeykaNoories',
+  #   'display_name': 'Gonya Leyka Noories',
+  #   'Source location': 'http://fontlibrary.org/en/font/rohingya-gonya-leyka-noories',
+  # },
 ]
 
 unicode_font_list = [
@@ -202,8 +202,13 @@ class langInfo():
     self.text_file_list = resource_list
 
     # Lists of test characters for the various encodings
-    self.test_chars = [' '.join([unichr(x) for x in range(0x620, 0x6f9)])]
-
+    range1 = ' '.join([unichr(x) for x in range(0x621, 0x63a)])
+    range2 = ' '.join([unichr(x) for x in range(0x640, 0x652)])
+    range3 = ' '.join([unichr(x) for x in range(0x660, 0x669)])
+    range4 = ' '.join([unichr(x) for x in range(0x6f0, 0x6fa)])
+    self.test_chars = range1 + range2 + range3 + range4
+    #print("TEST CHARS %s" % self.test_chars)
+    #self.test_chars = range1
     self.dictionaryLang1 = 'rhg'
     self.dictionaryLang2 = 'en'
     self.kb1 = ''

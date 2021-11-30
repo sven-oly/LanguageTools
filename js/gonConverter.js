@@ -1,11 +1,16 @@
 // Convert from old font-encoding Yoruba Ariya font to Unicode forms:
+const langConverter = new langConverterClass('gon', 'Gunjala Gondi');
 
 // Mappings for old Yoruba non-Unicode forms
-var map_encoding_names = [
+langConverter.map_encoding_names = map_encoding_names = [
   'Gunjala', ''];
 
+langConverter.encoding_data = {
+    'YTJT': {index:0, outputEncoding:'Unicode', outputScript:'Ahom'},
+    };
+
 // TODO: Fix Gondi Gunjala mappings
-var private_use_map_combined = {
+langConverter.one2oneMap = private_use_map_combined = {
   '\u0000': ['\u0000'],
   '\u0021': ['!', ''],
   '\u0022': ['\ud807\udd2a\ud807\udd45', ''],
@@ -111,36 +116,3 @@ var private_use_map_combined = {
   '\u201d': ['\ud807\udd29\ud807\udd45', ''],
   '\u02c6': ['\u0302', '\u0302'],
 };
-
-function convertEncodingToUnicode(inbox, outbox, encodingIndex) {
-  var inarea = document.getElementById(inbox);
-  var outarea = document.getElementById(outbox);
-
-  // First, replace all single characters with their Unicode equivalents.
-  var intext = inarea.value;
-  var outtext = "";
-  var out;
-  for (var index = 0; index < intext.length; index ++) {
-    var c = intext[index];
-    out = c;
-    if (c in private_use_map_combined) {
-      var result = private_use_map_combined[c][encodingIndex];
-      if (result) {
-	out = result;
-      }
-    }
-    outtext += out;
-  }
-  newText = outtext;
-
-  // Next, if needed, move some code points in context to get proper Unicode ordering.
-  // Vowel sign to right of consonants:
-  // ePattern = /\uD804\uDD2c\uD804([\uDD03-\uDD26])/gi;
-  // eReplace = "\uD804$1\uD804\uDD2c";
-  //var newText = outtext.replace(ePattern, eReplace);
-
-  if (outarea) {
-    outarea.innerHTML = outarea.value = newText;
-  }
-  return newText;
-}

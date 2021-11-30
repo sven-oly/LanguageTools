@@ -66,7 +66,7 @@ kb_list = [
   {'shortName': 'bo' + '_wylie',
    'longName': 'Tibetan' + ' Wylie',
    },
-  {'shortName': 'bo',
+  {'shortName': 'bod',
    'longName': Language,
    },
 
@@ -111,7 +111,7 @@ diacritic_list = [unichr(x) for x in range(0x0f34, 0x0f3a)] + \
 
 class langInfo():
   def __init__(self):
-    self.LanguageCode = 'bo'
+    self.LanguageCode = LanguageCode
     self.Language = 'Tibetan'
     self.Language_native = u'བོད་སྐད།'
     self.direction = 'ltr'
@@ -149,7 +149,7 @@ class langInfo():
     self.unicode_font_list = unicode_font_list
 
     # Lists of test characters for the various encodings
-    self.test_chars = [' '.join([unichr(x) for x in range(0x0f00, 0x0fdb)])]
+    self.test_chars = ' '.join([unichr(x) for x in range(0x0f00, 0x0fdb)])
 
 codepoint_list = [unichr(x) for x in range(0x0f00, 0x0fdb)]
 

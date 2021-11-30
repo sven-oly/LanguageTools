@@ -12,6 +12,9 @@
 
 // https://unicode-org.github.io/cldr-staging/charts/37/keyboards/layouts/sat.html
 var SAT_LAYOUT = {
+  'sources': [
+    'https://unicode-org.github.io/cldr-staging/charts/37/keyboards/layouts/sat.html',
+  ],
   'id': 'sat',
   'title': 'ᱥᱟᱱᱛᱟᱲᱤ Windows',
   'mappings': {

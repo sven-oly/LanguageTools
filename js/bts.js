@@ -1,10 +1,10 @@
-// Convert from old font-encoding Anangu/Yolngu text to Unicode forms:
+const langConverter = new langConverterClass('bts', 'Batak Sinalungun');
 
 // Mappings for both arjyban, sujoyan, alaam, etc. encodings.
 var map_encoding_names = [
   'Mandailing', 'Toban', 'Variants'];
 
-var private_use_map_combined = {
+langConverter.one2oneMap =  private_use_map_combined = {
   '\u0000': ['\u0020', '\u0000', '\u0000'],  // null
   '\u0009': ['\u0009', '\u0009'],  // horizontal tab
   '\u000D': ['\u000D', '\u0000'],  // Carriage return
@@ -223,6 +223,10 @@ var private_use_map_combined = {
   '\u2260': ['\u0000', '\u25cc'], // ≠ --> "dotted circle"
 
 };
+
+langConverter.transformRules = [
+
+]
 
 function convertEncodingToUnicode(inbox, outbox, encodingIndex) {
   var inarea = document.getElementById(inbox);

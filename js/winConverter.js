@@ -1,23 +1,20 @@
 // Convert from old font-encoding of Oneida text to Unicode forms:
+const langConverter = new langConverterClass('win', 'Hoocąk');
 
-let langConvertClass = function() {
-  this.langCode = 'win';
-  this.langName = 'Hoocąk';
+// Font encoding information.
+// Map by font name, index in lookup table, output encoding, output script. AkolkhetyN to Georgian Unicode.
+const encoding_data = {
+    'Hoocąk': [0, 'Unicode', 'Latin'],
+    };
 
-  // Each element includes input, output, and compute options.
-  this.transforms = [
-    {input: 'Hocak Times Roman', output:'Unicode Latin',
-      'compute': this.OldHocak2Latin},
-  ];
-};
+langConverter.map_translit_output = [];
+langConverter.translit_source = 'Hoocąk';
 
-// The object returned.
-const langConverter = new langConvertClass();
 // Mappings for Oneida font encodings
-var map_encoding_names = [
+langConverter.map_encoding_names = [
   'Hocak Old'];
 
-var private_use_map_combined = {
+langConverter.one2oneMap =  private_use_map_combined = {
   '\\': ['\u0328'],
   '`': ['\u030C'],
   '~': ['\u030C'],
@@ -33,43 +30,3 @@ var private_use_map_combined = {
   '\u011e': ['Ǧ'],
   '\u011f': ['ǧ'],
 };
-
-langConvertClass.prototype.OldHocak2Latin = function(text_in) {
-    const encodingIndex = 0;
-    return transformText(text_in, private_use_map_combined, encodingIndex);
-}
-
-function toLower(instring) {
-  // If code in range 13a0-1eef, add ab70-13a0
-  // If code in range 1ef0-1ef5, add 8
-  return instring.toLowerCase();
-}
-
-function convertEncodingToUnicode(inbox, outbox, encodingIndex) {
-  var inarea = document.getElementById(inbox);
-  var outarea = document.getElementById(outbox);
-
-  // First, replace all single characters with their Unicode equivalents.
-  var intext = inarea.value;
-  var outtext = "";
-  var out;
-  for (var index = 0; index < intext.length; index ++) {
-    var c = intext[index];
-    out = c;
-    if (c in private_use_map_combined) {
-      var result = private_use_map_combined[c][encodingIndex];
-      if (result) {
-	out = result;
-      }
-    }
-    outtext += out;
-  }
-
-  // Insert more complex replacements here.
-  var newText = outtext;
-
-  if (outarea) {
-    outarea.innerHTML = outarea.value = newText;
-  }
-  return newText;
-}

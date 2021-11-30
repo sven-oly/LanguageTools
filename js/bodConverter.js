@@ -1,3 +1,19 @@
+const langConverter = new langConverterClass('bod', 'Tibetan');
+
+langConverter.transformRules = [
+  [/[\u200b\u0000]/gi, replace = ""],
+  [/\u0f7a\u0f7a/gi, "\u0f7b"],
+  [/\u0f7c\u0f7c/gi, "\u0f7d"],
+  [/(\u0f0b)([\u0f71-\u0f7d])/gi, "$2$1"],
+  [/(\u0f85)([\u0f71-\u0f7d])([\u0f40-\u0f6a])/gi, "$1$3$2"]
+];
+
+langConverter.encoding_data = {
+    'Ahom': {index:0, outputEncoding:'Unicode', outputScript:'Ahom'},
+    // Are they the same code points?
+    'AhomManuscript': {index:1, outputEncoding:'Unicode', outputScript:'Ahom'},
+};
+
 /**
  * Fix issues with Unicode text including:
  * 1. Reorder vowels right after 0f0b

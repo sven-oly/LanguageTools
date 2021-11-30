@@ -89,7 +89,8 @@
   function onPageLoaded() {
     var transform_table = document.getElementById('transform_table');
     var transform_table2 = document.getElementById('transform_table2');
-    buildingTransformTable(transform_table, transform_table2);
+    var transform_table3 = document.getElementById('transform_table3');
+    buildingTransformTable(transform_table, transform_table2, transform_table3);
   }
 
   const encoding_font_list = [
@@ -135,14 +136,14 @@
     }
   }
 
-function buildingTransformTable(table1, table2) {
+function buildingTransformTable(table1, table2, table3) {
   var fontsize="14px";
   var code;
 
   if (kb_list === undefined) {
     return;
   }
-  var tables = [table1, table2];
+  var tables = [table1, table2, table3];
   var rowNum = 0;
 
   for (var kb_index in kb_list) {
@@ -215,6 +216,10 @@ function buildingTransformTable(table1, table2) {
   </div>
   <div class="span-10">
     <table id='transform_table2' border="3">
+    </table>
+  </div>
+  <div class="span-10">
+    <table id='transform_table3' border="3">
     </table>
   </div>
 </div>

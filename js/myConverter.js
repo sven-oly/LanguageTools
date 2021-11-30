@@ -1,7 +1,13 @@
 // Converters from Non-Unicode Burmese encodings to Unicode.
+const langConverter = new langConverterClass('my', 'Myanmar');
+
+langConverter.encoding_data = {
+    'WWBurn': {index:0, outputEncoding:'Unicode', outputScript:'Myanmar'},
+};
 
 // ww_burn.ttf
-private_use_map_combined = {
+// TODO: Should add WwinBurmese conversion as second
+langConverter.one2oneMap = private_use_map_combined = {
   '\u0020': ['\u0020'],
   '\u0021': ['\u100a'],
   '\u0022': ['\u1013'],

@@ -44,16 +44,6 @@ class langInfo():
             'font_name': 'Aiton',
             'display_name': 'Aiton',
         },
-        {
-            'font_path': '/fonts/ahom_aiton/PHAKE.TTF',
-            'font_name': 'Phake',
-            'display_name': 'Phake',
-        },
-        {
-            'font_path': '/fonts/ahom_aiton/PHAKERAM.TTF',
-            'font_name': 'Phakeram',
-            'display_name': 'Phake Ram',
-        },
     ]
 
     self.unicode_font_list = [

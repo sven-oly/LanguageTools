@@ -102,8 +102,11 @@ links = [
     {'linkText': 'Keyboard',
      'ref': '/' + LanguageCode + '/'
     },
-    # {'linkText': 'Converter',
-    #  'ref': '/' + LanguageCode + '/convertUI/'},
+    {'linkText': 'Converter',
+     'ref': '/' + LanguageCode + '/convertUI/'},
+    {'linkText': 'Font conversion summary',
+     'ref': '/' + LanguageCode + '/encodingRules/'
+     },
     {'linkText': 'Resources',
       'ref': '/' + LanguageCode + '/downloads/'
     },
@@ -115,38 +118,11 @@ class langInfo():
     self.Language = Language
     self.Language_native = Language_native
     self.test_data = u'ẹ ẹ́ ẹ̀ Ẹ Ẹ́ Ẹ̀ ọ ọ́ ọ̀ Ọ́ Ọ̀ ṣ Ṣ ń ǹ n̄ Ń Ǹ N̄ ḿ m̀ m̄ Ḿ M̀ M̄'
+    self.encoding_font_list = encoding_font_list
     self.unicode_font_list = unicode_font_list
     self.lang_list = [Language]
     self.kb_list = kb_list
     self.links = links
-
-
-# AJAX handler for converter
-class ConvertHandler(webapp2.RequestHandler):
-    def get(self):
-      # TODO: Get the text values
-      # Call transliterator
-      # Return JSON structure with values.
-
-      transCcp = transliterate.Transliterate(
-        transrule_ccp.TRANS_LIT_RULES,
-        transrule_ccp.DESCRIPTION
-      )
-
-      outText = '\u11103\u11101\u11103'
-      message = 'TBD'
-      error = ''
-
-      result = {
-        'outText' : outText,
-        'message' : message,
-        'error': error,
-        'language': Language,
-        'langTag': LanguageCode,
-        'showTools': self.request.get('tools', None),
-        'summary' : transCcp.getSummary(),
-      }
-      self.response.out.write(json.dumps(result))
 
 
 langInstance = langInfo()
@@ -156,7 +132,6 @@ app = webapp2.WSGIApplication([
     ('/' + LanguageCode + '/', base.LanguagesHomeHandler),
     ('/' + LanguageCode + '/convertUI/', base.ConvertUIHandler),
     ('/' + LanguageCode + '/downloads/', base.Downloads),
-    ('/' + LanguageCode + '/converter/', ConvertHandler),
     ('/' + LanguageCode + '/encodingRules/', base.EncodingRules),
     ],
   debug=True,

@@ -94,7 +94,6 @@ kb_list = [
    },
 ]
 
-
 links = [
     {'linkText': 'Keyboard',
      'ref': '/' + LanguageCode + '/'
@@ -104,18 +103,18 @@ links = [
     {'linkText': 'Font conversion summary',
       'ref': '/' + LanguageCode + '/encodingRules/'
     },
-   {'linkText': 'Oneida-English dictionary builder',
-   'ref': '/' + LanguageCode + '/dictionaryN/'
-   },
-   {'linkText': 'Resources',
-      'ref': '/' + LanguageCode + '/downloads/'
+    {'linkText': 'Oneida-English dictionary builder',
+      'ref': '/' + LanguageCode + '/dictionaryN/'
+     },
+    {'linkText': 'Resources',
+        'ref': '/' + LanguageCode + '/downloads/'
     },
     {'linkText': 'Oneida NSN',
      'ref': 'https://oneida-nsn.gov/'
     },
     {'linkText': 'Resources / Downloads',
      'ref': '/one/downloads/'
-     },
+    },
 ]
 
 class langInfo():
@@ -163,94 +162,15 @@ class langInfo():
        },
     ]
 
-# Presents UI for conversions from font encoding to Unicode.
-class ConvertUIHandler(webapp2.RequestHandler):
-    def get(self):
-
-      # All old characters
-      oldChars = (u'' +
-                  '0123456789:;<=>?@' +
-                  '!@#$%^&*()_+' +
-                  'ABCDEFGHIJKLMNOPQRSTUVWXYZ[ \\ ]^_`' +
-                  'abcdefghijklmnopqrstuvwxyz{|}~')
-      text = self.request.get('text', oldChars)
-      font = self.request.get('font')
-      testStringList = [
-          {'name': 'Test 1', # Note: must escape the single quote.
-           'string': u'\u0004\u0005\u0006\u0007\u0008\u0009' +
-           '\u000a\u000b'},
-      ]
-
-      oldInput = u''
-      for i in xrange(0x20, 0x7e):
-        oldInput += unichr(i)
-      for i in xrange(0x2018, 0x201e):
-        oldInput += unichr(i)
-      unicodeChars = ''
-      unicodeCombiningChars = ''
-      kb_list = [
-        {'shortName':  LanguageCode,
-         'longName': Language
-        }
-      ]
-
-      template_values = {
-          'font': font,
-          'language': Language,
-          'langTag': LanguageCode,
-          'encodingList': encoding_font_list,
-          'encoding': encoding_font_list[0],
-          'kb_list': kb_list,
-          'unicodeFonts': unicode_font_list,
-          'links': links,
-          'oldChars': oldChars,
-          'oldInput': oldInput,
-          'text': text,
-          'textStrings': testStringList,
-          'showTools': self.request.get('tools', None),
-          'unicodeChars': unicodeChars,
-          'combiningChars': unicodeCombiningChars,
-      }
-      path = os.path.join(os.path.dirname(__file__), 'HTML/translit_general.html')
-      self.response.out.write(template.render(path, template_values))
-
-# AJAX handler for converter
-class ConvertHandler(webapp2.RequestHandler):
-    def get(self):
-      # TODO: Get the text values
-      # Call transliterator
-      # Return JSON structure with values.
-
-      transCcp = transliterate.Transliterate(
-        transrule_ccp.TRANS_LIT_RULES,
-        transrule_ccp.DESCRIPTION
-      )
-
-      outText = '\u11103\u11101\u11103'
-      message = 'TBD'
-      error = ''
-
-      result = {
-        'outText' : outText,
-        'message' : message,
-        'error': error,
-        'language': Language,
-        'langTag': LanguageCode,
-        'showTools': self.request.get('tools', None),
-        'summary' : transCcp.getSummary(),
-      }
-      self.response.out.write(json.dumps(result))
-
-
 langInstance = langInfo()
 
 app = webapp2.WSGIApplication(
   [
     ('/demo_' + langInstance.LanguageCode + '/', base.LanguagesHomeHandler),
     ('/' + langInstance.LanguageCode + '/', base.LanguagesHomeHandler),
-    ('/' + langInstance.LanguageCode + '/convertUI/', ConvertUIHandler),
+    ('/' + langInstance.LanguageCode + '/convertUI/', base.ConvertUIHandler),
     ('/' + langInstance.LanguageCode + '/downloads/', base.Downloads),
-    ('/' + langInstance.LanguageCode + '/converter/', ConvertHandler),
+    ('/' + langInstance.LanguageCode + '/converter/', base.ConvertHandler),
     ('/' + langInstance.LanguageCode + '/encodingRules/', base.EncodingRules),
     ('/' + langInstance.LanguageCode + '/dictionaryN/', base.DictionaryN),
   ],

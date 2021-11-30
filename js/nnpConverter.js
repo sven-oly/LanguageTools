@@ -1,8 +1,10 @@
+const langConverter = new langConverterClass('nnp', 'Wancho');
+
 // Mappings for Wancho
-var map_encoding_names = [
+langConverter.map_encoding_names = map_encoding_names = [
   'Wancho'];
 
-var private_use_map_combined = {
+langConverter.one2oneMap = private_use_map_combined = {
   '\u0024':  ['\ud838\udeFF'],
   'a':  ['\ud838\udeC0'],
   'A':  ['\ud838\udeC1'],

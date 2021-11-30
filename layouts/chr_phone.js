@@ -240,18 +240,18 @@ var CHR_PHONE_LAYOUT = {
     'Y[uU]' : '\u13f3',  // Ᏻ
     'yv' : '\u13FC',   // Ᏼ
     'Y[vV]' : '\u13F4',   // Ᏼ
-    '([A-'a' : '\uab70', // Ꭰ lower
-         'A' : '\u13A0', // Ꭰ
-         'e' : '\uab71',  // Ꭱ
-         'E' : '\u13A1',  // Ꭱ
-         'i' : '\uab72',  // Ꭲ
-         'tsa' : '\uabb3',  // Ꮳ
-         'T[sS][aA]' : '\u13E3',  // Ꮳ
-         'la' : '\uab83',  // Ꮃ
-         'L[aA]' : '\u13B3',  // Ꮃ
-         'gi' : '\uab79',  // Ꭹ
+    'a' : '\uab70', // Ꭰ lower
+    'A' : '\u13A0', // Ꭰ
+    'e' : '\uab71',  // Ꭱ
+    'E' : '\u13A1',  // Ꭱ
+    'i' : '\uab72',  // Ꭲ
+    'tsa' : '\uabb3',  // Ꮳ
+    'T[sS][aA]' : '\u13E3',  // Ꮳ
+    'la' : '\uab83',  // Ꮃ
+    'L[aA]' : '\u13B3',  // Ꮃ
+    'gi' : '\uab79',  // Ꭹ
 
-Za-z])\u200B': '$1' // Avoid transform of capslock letters.
+    '[a-z]\u200B': '$1' // Avoid transform of capslock letters.
   },
   'historyPruneRegex': 's|n|u|a|S|N|U|A'
 };

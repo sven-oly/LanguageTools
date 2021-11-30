@@ -153,6 +153,9 @@ links = [
     {'linkText': 'Combiners',
      'ref': '/shn/diacritic/'
     },
+    {'linkText': 'UN DHR',
+     'ref': 'https://unicode.org/udhr/d/udhr_shn.txt'
+     },
     # {'linkText': 'Transliteration',
     #  'ref': 'https://langtools3.wm.r.appspot.com/translit/',
     # },

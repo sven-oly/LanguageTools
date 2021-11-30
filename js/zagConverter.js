@@ -1,9 +1,10 @@
 // Converters from Non-Unicode Burmese encodings to Unicode.
+const langConverter = new langConverterClass('zag', 'Zaghawa');
 
 // From ZaghawBeria
 // TODO: fill these in with actual code points when the output range is
 // defined.
-private_use_map_combined = {
+langConverter.one2oneMap = private_use_map_combined = {
   '\u0020': ['\u0020'],
   '\u0021': ['\u0021'],
   '\u0022': ['\u0022'],
@@ -145,35 +146,3 @@ private_use_map_combined = {
   '\u0130': ['\udb80\udd30'],
 }
 
-function convertEncodingToUnicode(inbox, outbox, encodingIndex) {
-  var inarea = document.getElementById(inbox);
-  var outarea = document.getElementById(outbox);
-
-  // First, replace all single characters with their Unicode equivalents.
-  var intext = inarea.value;
-  var outtext = "";
-  var out;
-  for (var index = 0; index < intext.length; index ++) {
-    var c = intext[index];
-    out = c;
-    if (c in private_use_map_combined) {
-      var result = private_use_map_combined[c][encodingIndex];
-      if (result) {
-	out = result;
-      }
-    }
-    outtext += out;
-  }
-  var newText = outtext;
-
-  if (outarea) {
-    outarea.innerHTML = outarea.value = newText;
-  }
-  return newText;
-}
-
-
-// Converts Beria text to all lower case in the PUA
-function lowerCasePUA(intext) {
-
-}

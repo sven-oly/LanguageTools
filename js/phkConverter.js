@@ -1,12 +1,36 @@
-// Convert from old font-encoding of Cherokee text to Unicode forms:
+const langConverter = new langConverterClass('phk', 'Tai Phake');
 
 // Mappings for Navajo font encodings
-var map_encoding_names = [
+langConverter.map_encoding_names = map_encoding_names = [
   'Phake Script',
   'Phake Ramayana',
   'Aiton Script',
   'Shan'
 ];
+
+langConverter.transformRules = [
+  [/([\u1031\u103c]\ufe00?)([\u1000-\u1029\u1075-\u1081\uaa60-\uaa7a]\ufe00?)/gi,
+  "$2$1"],
+
+  [/ ([\u102f\u103d])/gi,
+   "$1 "],
+
+  [/([\u103b\u103d]) \u102f/gi, "$1\u102f "],
+
+  [/([\u1031]\ufe00?)([\u103a\u103d]+)/gi, "$2$1 "],
+
+  // Doubled combiners
+  [/\u103a\u103a/gi, "\u103a\u00a0\u103a"],
+
+  [/\u102e\u102e/gi, "\u102e\u00a0\u102e"],
+
+  [/\u1036\u1036/gi, "\u1036\u00a0\u1036"],
+
+  [/\u109d\u109d/gi, "\u109d\u00a0\u109d"],
+
+  // Ellipsis
+  [/\.\.\./gi, "\u2026"],
+]
 
 // These characters take variation sequence modifiers
 var variation_sequence_code_points =
@@ -38,7 +62,7 @@ function remove_variation_modifiers(text) {
   return out_text;
 }
 
-var private_use_map_combined = {
+langConverter.one2oneMap = private_use_map_combined = {
         "A": ["ဢ\ufe00", "ဢ\ufe00", "ဢ"],
         "B": ["ꩰ", "ꩰ", "ꩰ"],
         "C": ["\u108a", ":", "\u108a"],
@@ -124,81 +148,6 @@ var private_use_map_combined = {
         "~": ["~", "~", "~"]
 };
 
-function toLower(instring) {
-  return instring();  // Check if this actually works.
-}
-
-function convertEncodingToUnicode(inbox, outbox, encodingIndex) {
-  const inarea = document.getElementById(inbox);
-  const outarea = document.getElementById(outbox);
-  const intext = inarea.value;
-
-  let outtext = convertPhkToUnicode(intext, encodingIndex)
-  if (outarea) {
-    outarea.innerHTML = outarea.value = outtext;
-  }
-}
-
-function convertPhkToUnicode(intext, encodingIndex) {
-  // First, replace all single characters with their Unicode equivalents.
-  let outtext = "";
-  let out;
-  for (let index = 0; index < intext.length; index ++) {
-    const c = intext[index];
-    out = c;
-    if (c in private_use_map_combined) {
-      const result = private_use_map_combined[c][encodingIndex];
-      if (result) {
-	    out = result;
-      }
-    }
-    outtext += out;
-  }
-
-  // Insert more complex replacements here.
-  let newText = outtext;
-  ePattern = /([\u1031\u103c]\ufe00?)([\u1000-\u1029\u1075-\u1081\uaa60-\uaa7a]\ufe00?)/gi;
-  eReplace = "$2$1";
-  newText = outtext.replace(ePattern, eReplace);
-
-  spaceCombPattern = / ([\u102f\u103d])/gi;
-  spaceCombReplace = "$1 ";
-  newText = newText.replace(spaceCombPattern, spaceCombReplace);
-
-  spaceCombPattern = /([\u103b\u103d]) \u102f/gi;
-  spaceCombReplace = "$1\u102f ";
-  newText = newText.replace(spaceCombPattern, spaceCombReplace);
-
-  pattern = /([\u1031]\ufe00?)([\u103a\u103d]+)/gi;
-  replacement = "$2$1 ";
-  newText = newText.replace(pattern, replacement);
-
-  // Doubled combiners
-  pattern = /\u103a\u103a/gi;
-  replacement = "\u103a\u00a0\u103a";
-  newText = newText.replace(pattern, replacement);
-
-  pattern = /\u102e\u102e/gi;
-  replacement = "\u102e\u00a0\u102e";
-  newText = newText.replace(pattern, replacement);
-
-  pattern = /\u1036\u1036/gi;
-  replacement = "\u1036\u00a0\u1036";
-  newText = newText.replace(pattern, replacement);
-
-  pattern = /\u109d\u109d/gi;
-  replacement = "\u109d\u00a0\u109d";
-  newText = newText.replace(pattern, replacement);
-
-  // Ellipsis
-  pattern = /\.\.\./gi;
-  replacement = "\u2026";
-  newText = newText.replace(pattern, replacement);
-
-  // Consider doubled combiners, e.g., 103a twice.
-
-  return newText;
-}
 
 const banchobMap = {
   'N': 'ŋ',

@@ -1,11 +1,12 @@
 // Convert from old font-encoding of Lepcha text to Unicode forms:
+const langConverter = new langConverterClass('syl', 'Sylheti Nagari');
 
 // Mappings for Lepcha font encodings
-var map_encoding_names = [
+langConverter.map_encoding_names = map_encoding_names = [
   'SumraL'];
 
 // aa00 is the base
-const private_use_map_combined = {
+langConverter.one2oneMap = private_use_map_combined = {
     '\u0021': ['!'],
     '\u0022': ['\"'],
     '\u0023': ['#'],
@@ -147,49 +148,3 @@ const private_use_map_combined = {
     '\u00f3': ['\ua80c\ua80c'],
     '\u00f4': ['\ua806'],
 };
-
-
-function toLower(instring) {
-  return instring.toLowerCase();  // Check if this actually works for CHR.
-}
-
-function convertEncodingToUnicode(inbox, outbox, encodingIndex) {
-  var inarea = document.getElementById(inbox);
-  var outarea = document.getElementById(outbox);
-
-  // First, replace all single characters with their Unicode equivalents.
-  // First, replace all single characters with their Unicode equivalents.
-  var start = inarea.selectionStart;
-  // obtain the index of the last selected character
-  var finish = inarea.selectionEnd;
-  // obtain the selected text
-
-  if (start != finish || finish != 0) {
-    var intext = inarea.value.substring(start, finish);
-  } else {
-    // Otherwise, the whole text.
-    var intext = inarea.value;
-  }
-
-  var outtext = "";
-  var out;
-  for (var index = 0; index < intext.length; index ++) {
-    var c = intext[index];
-    out = c;
-    if (c in private_use_map_combined) {
-      var result = private_use_map_combined[c][encodingIndex];
-      if (result) {
-	out = result;
-      }
-    }
-    outtext += out;
-  }
-
-  // Insert more complex replacements here.
-  var newText = outtext;
-
-  if (outarea) {
-    outarea.innerHTML = outarea.value = newText;
-  }
-  return newText;
-}

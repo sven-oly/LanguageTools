@@ -10,16 +10,18 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-// https://unicode-org.github.io/cldr-staging/charts/37/keyboards/layouts/sat.html
-var SAT_LAYOUT = {
-  'id': 'sat',
-  'title': 'ᱥᱟᱱᱛᱟᱲᱤ Windows',
+var SAT2_LAYOUT = {
+  'sources': [
+    'GBoard Santali layout'
+  ],
+  'id': 'sat2',
+  'title': 'ᱥᱟᱱᱛᱟᱲᱤ GBoard',
   'mappings': {
     ',c': {
-      '': '{{}}᱑᱒᱓᱔᱕᱖᱗᱘᱙᱐-=' +
-          '{{}}{{}}ᱟ{{}}{{}}ᱵᱦᱜᱫᱡᱰᱹ{{}}' +
-          'ᱳᱮᱚᱤᱩᱯᱨᱠᱛᱪᱴ' +
-          'ᱷᱸᱢᱱᱣᱞᱥ,.ᱭ'
+      '': '₹᱑᱒᱓᱔᱕᱖᱗᱘᱙᱐-=' +
+          'ᱣᱮᱨᱛᱭᱩᱤᱳᱯᱹ৳,' +
+          'ᱟᱥᱫᱝᱜᱷᱦᱡᱠᱞᱢᱴ' +
+          'ᱲᱰᱪᱶᱵᱱᱬ᱿᱾ᱽ'
     },
     's,sc': {
       '': '~{{}}{{}}{{}}₹{{}}{{}}{{}}{{}}{{}}{{}}{{}}{{}}' +
@@ -46,5 +48,5 @@ var SAT_LAYOUT = {
 };
 
 // Load the layout and inform the keyboard to switch layout if necessary.
-google.elements.keyboard.loadme(SAT_LAYOUT);
-sat = SAT_LAYOUT;
+google.elements.keyboard.loadme(SAT2_LAYOUT);
+sat2 = SAT2_LAYOUT;

@@ -1,11 +1,12 @@
 // Convert from old font-encoding text to Unicode forms:
+const langConverter = new langConverterClass('bts', 'Batak Simalungun');
 
 // Mappings for multiple encodings
 var map_encoding_names = ['Mandailing', 'Toba', 'Variants'];
 
 // TODO: fill in Toba and Variants.
 
-var private_use_map_combined = {
+langConverter.one2oneMap =  private_use_map_combined = {
   '\u0000': ['', '', ''],  // null
   '\u0009': ['', '', ''],  // horizontal tab
   '\u000D': ['', '', ''],  // Carriage return

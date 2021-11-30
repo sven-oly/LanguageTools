@@ -65,6 +65,8 @@
   </style>
 
   <script src="/js/utils.js"></script>
+  <script src="/js/baseConverter.js"></script>
+
   <script src="/js/{{langTag}}Converter.js"></script>
   <script src="/js/text_utils.js"></script>
 
@@ -75,9 +77,8 @@
     let converterObj;
     if (langConverter) {
       // This works!
-      converterObj = langConverter;
-      const encodingInfo = converterObj.decodingInfo();
-      const translitInfo = converterObj.translitInfo();
+      const encodingInfo = langConverter.decodingInfo();
+      const translitInfo = langConverter.translitInfo();
     }
   </script>
   <script>
@@ -227,6 +228,8 @@
   }
 
   function callConvertEncodingToUnicode(sourceArea, destinationArea, encodeSelectorName) {
+    // Get selected text instead of entire window?
+
     if (isTransliterator) {
       // Get the information for converting.
       let chosenOption = getConverterSelection();
@@ -246,10 +249,25 @@
     // Otherwise use older conversion method.
     let encodingIndex = 0;
     // This is defined in some converters, and should eventually be in all.
+    const encodeSelector = document.getElementById(encodeSelectorName);
+    const encodeSelectorValue = encodeSelector.value;
     if (typeof map_font_to_encoding == 'object') {
-        encodingIndex =  map_font_to_encoding[encodeSelector.value];
+        encodingIndex =  map_font_to_encoding[encodeSelectorValue];
     }
-    convertEncodingToUnicode(sourceArea, destinationArea, encodingIndex);
+    if (langConverter) {
+      if (langConverter.encoding_data) {
+        try {
+          encodingIndex = langConverter.encoding_data[encodeSelectorValue].index;
+        } catch (error) {
+          // Revert to default encoding index.
+          encodingIndex = 0;
+        }
+      }
+      langConverter.convertEncodingToUnicode(sourceArea, destinationArea, encodingIndex);
+    } else {
+      // Old version - not using langConverter object.
+      convertEncodingToUnicode(sourceArea, destinationArea, encodingIndex);
+    }
   }
 
 {% if backend_convert %}
@@ -425,7 +443,7 @@ function newConverter(type, input_id, output_id, outtype_id) {
         {% endif %}
      {% endif %}
      <textarea class="{{encodingList.0.font_name}}" id="old_font_input_text"
-               columns="60" rows="3" style="font-size: 28px;"
+               rows="3" style="font-size: 28px;"
                onchange="updateHex('old_font_input_text', 'old_hex');"
                dir="{{direction}}">{{oldInput}}</textarea>
      <br />
@@ -445,7 +463,7 @@ function newConverter(type, input_id, output_id, outtype_id) {
      {%endif%}
      </select>
      {% if converters %}
-        <br/ ><p>Converters:
+        <p>Converters:
         {% for type in converters.conversions %}
         <input type="button" value="{{type}}"
           onclick="newConverter('{{type}}', 'old_font_input_text', 'Unicode_font_output_text', 'result_type');">{% endfor %}

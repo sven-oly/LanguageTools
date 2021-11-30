@@ -120,7 +120,7 @@ class langInfo():
     self.unicode_font_list = unicode_font_list
 
     # Lists of test characters for the various encodings
-    self.test_chars = [' '.join([unichr(x) for x in range(0xe600, 0xe780)])]
+    self.test_chars = ' '.join([unichr(x) for x in range(0xe600, 0xe780)])
 
     # For dictionary
     self.dictionaryLang1 = "English"

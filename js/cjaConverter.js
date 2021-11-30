@@ -1,4 +1,6 @@
 // Mappings for Western and Eastern Cham font encodings
+const langConverter = new langConverterClass('cja', 'Cham');
+
 var map_encoding_names = [
   'JG Cham Cambodia',
   'EFEO Panrang',
@@ -7,7 +9,15 @@ var map_encoding_names = [
   'EFEO Udong'
 ];
 
-var private_use_map_combined = {
+langConverter.encoding_data = {
+    'JGChamCambodia': {index:0, outputEncoding:'Unicode', outputScript:'Cham'},
+    'EFEOPanrang': {index:1, outputEncoding:'Unicode', outputScript:'Cham'},
+    'JGChamVN': {index:2, outputEncoding:'Unicode', outputScript:'Cham'},
+    'EFEOParik': {index:3, outputEncoding:'Unicode', outputScript:'Cham'},
+    'EFEOUdong': {index:4, outputEncoding:'Unicode', outputScript:'Cham'},
+};
+
+langConverter.one2oneMap = private_use_map_combined = {
   '\u0020': [' ', ' '],
   '\u0021': ['\uaa44', '\uaa44', '?', '\uaa44', '\uaa44'],
   '\u0022': ['\uaa4c', '\"', '\uaa4c', '\"', '\"'],
@@ -107,11 +117,6 @@ var private_use_map_combined = {
     '\u007d': ['\uaa2a\uaa4c', '\uaa38'],
     '\u007e': ['\uaa0a', '\uaa0a'],
 };
-
-
-function toLower(instring) {
-  return instring.toLowerCase();  // Check if this actually works for CHR.
-}
 
 /**
  * Fix issues with Unicode text including:

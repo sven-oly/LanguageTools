@@ -1,10 +1,18 @@
 // Convert from old font-encoding Anangu/Yolngu text to Unicode forms:
+const langConverter = new langConverterClass('ccp', 'Chakma');
 
 // Mappings for both arjyban, sujoyan, alaam, etc. encodings.
-var map_encoding_names = [
+langConverter.map_encoding_names = map_encoding_names = [
   'Arjyban', 'Sujoyan', 'Alaam'];
 
-var private_use_map_combined = {
+langConverter.encoding_data = {
+    'Arjyban': {index:0, outputEncoding:'Unicode', outputScript:'Chakma'},
+    // Are they the same code points?
+    'Sujoyan': {index:1, outputEncoding:'Unicode', outputScript:'Chakma'},
+    'Alaam': {index:1, outputEncoding:'Unicode', outputScript:'Chakma'},
+};
+
+langConverter.one2oneMap =  private_use_map_combined = {
   '\u0000': ['\u0020', '\u0000', '\u0000'],  // null
   '\u0009': ['\u0009', '\u0009'],  // horizontal tab
   '\u000D': ['\u000D', '\u0000'],  // Carriage return
@@ -223,106 +231,58 @@ var private_use_map_combined = {
 
 };
 
-function convertEncodingToUnicode(inbox, outbox, encodingIndex) {
-  var inarea = document.getElementById(inbox);
-  var outarea = document.getElementById(outbox);
-
-  // First, replace all single characters with their Unicode equivalents.
-  var intext = inarea.value;
-  var outtext = "";
-  var out;
-  for (var index = 0; index < intext.length; index ++) {
-    var c = intext[index];
-    out = c;
-    if (c in private_use_map_combined) {
-      var result = private_use_map_combined[c][encodingIndex];
-      if (result) {
-	out = result;
-      }
-    }
-    outtext += out;
-  }
-
-  // Next, move some code points in context to get proper Unicode ordering.
-  // Vowel sign to right of consonants:
-  ePattern = /\uD804\uDD2c\uD804([\uDD03-\uDD26])/gi;
-  eReplace = "\uD804$1\uD804\uDD2c";
-  var newText = outtext.replace(ePattern, eReplace);
+langConverter.transformRules = [
+  [/\uD804\uDD2c\uD804([\uDD03-\uDD26])/gi,
+   "\uD804$1\uD804\uDD2c"],
 
   // Move the eVowel over a virama.
-  viramaEPattern = /\ud804([\udd01\udd27-\udd34])\ud804\udd33\ud804([\uDD03-\uDD26])/gi;
-  viramaEReplace = "\ud804\udd33\ud804$2\ud804$1";
-  var result = newText.search(viramaEPattern);
-  while (result >= 0) {
-    newText = newText.replace(viramaEPattern, viramaEReplace);
-    result = newText.search(viramaEPattern);
-  }
+  [/\ud804([\udd01\udd27-\udd34])\ud804\udd33\ud804([\uDD03-\uDD26])/gi,
+   "\ud804\udd33\ud804$2\ud804$1"],
 
-  dotPattern = /\ud804([\udd41\udd42])\ud804\udd01/gi;
-  dotReplace = "\ud804\udd01\ud804$1";
-  newText = newText.replace(dotPattern, dotReplace);
+  // dotPattern
+  [/\ud804([\udd41\udd42])\ud804\udd01/gi, "\ud804\udd01\ud804$1"],
 
   // Replace CHAKMA VOWEL SIGN O + CHAKMA VOWEL SIGN AI with
   //    CHAKMA VOWEL SIGN OI + CHAKMA O MARK
-  oIPattern = /\ud804\udd2e\ud804\udd2d/gi;
-  oIReplace = "\ud804\udd30\ud804\udd31";
-  newText = newText.replace(oIPattern, oIReplace);
+  [/\ud804\udd2e\ud804\udd2d/gi,
+   "\ud804\udd30\ud804\udd31"],
 
-  // Replace
-  //
-  uIPattern = /\ud804\udd2a\ud804\udd2d/gi;
-  uIReplace = "\ud804\udd2d\ud804\udd2a";
-  newText = newText.replace(uIPattern, uIReplace);
+  // uIPattern
+  [/\ud804\udd2a\ud804\udd2d/gi, "\ud804\udd2d\ud804\udd2a"],
 
-  // Replace
-  //
-  iZPattern = /\ud804\udd27\ud804\udd33\ud804\udd20/gi;
-  iZReplace = "\ud804\udd33\ud804\udd20\ud804\udd27";
-  newText = newText.replace(iZPattern, iZReplace);
+  // iZPattern
+  [/\ud804\udd27\ud804\udd33\ud804\udd20/gi,
+   "\ud804\udd33\ud804\udd20\ud804\udd27"],
 
-  iGraveZPattern = /\ud804\udd27\ud804\udd01\ud804\udd33\ud804\udd20/gi;
-  iGraveZReplace = "\ud804\udd33\ud804\udd20\ud804\udd27\ud804\udd01";
-  newText = newText.replace(iGraveZPattern, iGraveZReplace);
-
-  deRPattern = /\ud804\udd28\ud804\udd33\ud804\udd22/gi;
-  deRReplace = "\ud804\udd33\ud804\udd22\ud804\udd28";
-  newText = newText.replace(deRPattern, deRReplace);
+  // iGraveZPattern
+  [/\ud804\udd27\ud804\udd01\ud804\udd33\ud804\udd20/gi,
+   "\ud804\udd33\ud804\udd20\ud804\udd27\ud804\udd01"],
+  // deRPattern
+  [/\ud804\udd28\ud804\udd33\ud804\udd22/gi,
+    "\ud804\udd33\ud804\udd22\ud804\udd28"],
 
   // Reorder with 11101.
-  onePattern = /\ud804\udd01\ud804([\udd28])/gi;
-  oneReplace = "\ud804$1\ud804\udd01";
-  newText = newText.replace(onePattern, oneReplace);
-
+  [/\ud804\udd01\ud804([\udd28])/gi,
+   "\ud804$1\ud804\udd01"],
 
   // Fix some modifiers after a space, newline or left parent.
-  spaceModPattern = /([\u000a\u0020]|\u0020\u0040)\ud804([\udd00\udd27-\udd34])/gi;
-  spaceModReplace = "\ud804$2$1";
-  newText = newText.replace(spaceModPattern, spaceModReplace);
+  [/([\u000a\u0020]|\u0020\u0040)\ud804([\udd00\udd27-\udd34])/gi,
+   "\ud804$2$1"],
 
   // Fix some virama followed by space or new line.
-  viramaSpacePattern = /\ud804\udd33([\u000a\u0020])\ud804([\udd05])/gi;
-  viramaSpaceReplace = "\ud804\udd33\ud804$2$1";
-  newText = newText.replace(viramaSpacePattern, viramaSpaceReplace);
+  [/\ud804\udd33([\u000a\u0020])\ud804([\udd05])/gi,
+   "\ud804\udd33\ud804$2$1"],
 
   // Space modifier space
-  spaceModSpacePattern = /\u0020\ud804([\udd00])\u0020/gi;
-  spaceModSpaceReplace = "\ud804$1\u0020";
-  newText = newText.replace(spaceModSpacePattern, spaceModSpaceReplace);
+  [/\u0020\ud804([\udd00])\u0020/gi,
+   "\ud804$1\u0020"],
 
   // Virama pattern after space.
-  spaceModSpacePattern = /\u0020\ud804\udd33\ud804([\uDD03-\uDD26])/gi;
-  spaceModSpaceReplace = "\ud804\udd33\ud804$1\u0020";
-  newText = newText.replace(spaceModSpacePattern, spaceModSpaceReplace);
+  [/\u0020\ud804\udd33\ud804([\uDD03-\uDD26])/gi,
+   "\ud804\udd33\ud804$1\u0020"],
 
   // Diacritics 131 before 130 space.
-  spaceModSpacePattern = /\ud804\udd31\ud804\udd30/gi;
-  spaceModSpaceReplace = "\ud804\udd30\ud804\udd31";
-  newText = newText.replace(spaceModSpacePattern, spaceModSpaceReplace);
+  [/\ud804\udd31\ud804\udd30/gi,
+   "\ud804\udd30\ud804\udd31"]
+]
 
-  // TODO: Run some reorderings again, e.g., 11131 11127
-
-  if (outarea) {
-    outarea.innerHTML = outarea.value = newText;
-  }
-  return newText;
-}
