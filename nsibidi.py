@@ -50,9 +50,12 @@ links = [
      'ref': '/' + LanguageCode + '/words/'
     },    # {'linkText': 'Converter',
     #  'ref': '/' + LanguageCode + '/convertUI/'},
-    # {'linkText': 'Font conversion summary',
-    #   'ref': '/' + LanguageCode + '/encodingRules/'
-    # },
+    {'linkText': 'Radical input',
+      'ref': '/' + LanguageCode + '/radicals/'
+    },
+    {'linkText': 'KB transforms',
+     'ref': '/' + LanguageCode + '/kbtransforms/'
+     },
     # {'linkText': 'Resources',
     #   'ref': '/' + LanguageCode + '/downloads/'
     # },
@@ -98,11 +101,17 @@ class langInfo():
          'To select a displayed option, type corresponding digit 0-9.\u000a' +
          'Use Page Up and Page Down to show more selection options.'
        },
+
       {'shortName': 'en',
        'longName': 'English',
        'fontFamily':'arial',
        'instructions': 'Type letters to look up nsibidi matches for English words.\u000a'
-
+       },
+      {'shortName': 'ig_nsi_radicals',
+       'longName': 'Igbo Radical',
+       'fontFamily':'Akagu2020',
+       'instructions':
+         'Type radical keys to get combinations.'
        },
     ]
     self.links = links
@@ -120,10 +129,67 @@ diacritic_list = [unichr(x) for x in range(0x300, 0x330)]
 #TODO: Fill in base consonant
 default_base_consonant = u'\0x61'
 
+# This is a clone of base.py's LanguagesHomeHandler, ignoring the special
+class RadicalsHandler(webapp2.RequestHandler):
+  def get(self, match=None):
+      # Match is the actual url route matched.
+      req = webapp2.get_request()
+      # Can use this for additional information
+      langInfo = self.app.config.get('langInfo')
 
-encodedRanges = [
-  (0x20, 0xff),
-]
+      try:
+        text_direction = langInfo.direction
+      except AttributeError:
+        text_direction = 'ltr'
+
+      try:
+        test_data = langInfo.test_data
+      except AttributeError:
+        test_data = ''
+      try:
+        variation_sequence = langInfo.variation_sequence
+      except:
+        variation_sequence = None
+
+      try:
+        encoded_ranges = langInfo.encoded_ranges
+      except:
+        encoded_ranges = None
+
+      try:
+        allFonts = langInfo.allFonts
+      except:
+        allFonts = False
+
+      # Use the standard demo / keyboard template
+      home_html = 'HTML/demo_general.html'
+
+      kb_radical = [
+        {'shortName': 'ig_nsi_radicals',
+         'longName': 'Igbo Radical',
+         'fontFamily':'Akagu2020',
+         'instructions':
+           'Type radical keys to get combinations.'
+         },
+      ]
+      template_values = {
+        'allFonts': allFonts,
+        'direction': text_direction,
+        'encoded_ranges': encoded_ranges,
+        'language': langInfo.Language,
+        'langTag': langInfo.LanguageCode,
+        'font_list': langInfo.unicode_font_list,
+        'lang_list': langInfo.lang_list,
+        'kb_list': kb_radical,
+        'langInfo': langInfo,
+        'links': langInfo.links,
+        'showTools': self.request.get('tools', None),
+        'test_data': test_data,
+        'variation_sequence': variation_sequence,
+      }
+      path = os.path.join(os.path.dirname(__file__), home_html)
+      self.response.out.write(template.render(path, template_values))
+
 
 class ShowWordsHandler(webapp2.RequestHandler):
   def get(self, match=None):
@@ -153,6 +219,8 @@ app = webapp2.WSGIApplication([
   ('/' + LanguageCode + '/encodingRules/', base.EncodingRules),
   ('/' + LanguageCode + '/diacritic/', base.DiacriticHandler),
   # Custom
+  ('/' + LanguageCode + '/radicals/', RadicalsHandler),
+  ('/' + langInstance.LanguageCode + '/kbtransforms/', base.KeyboardTransforms),
   ('/' + LanguageCode + '/words/', ShowWordsHandler),
 ], debug=True, config={'langInfo': langInstance}
 )
