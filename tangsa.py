@@ -56,8 +56,8 @@ class langInfo():
        'source': '/fonts/Tangsa/TangsaLakhumUnicode.ttf',
        },
       {'family': 'LakhumTsdc',
-       'longName': 'Lakhum TSDC Nov-2021',
-       'source': '/fonts/Tangsa/lakhum-tsdc-outlined-SVG.ttf',
+       'longName': 'Lakhum PUA TSDC Nov-2021',
+       'source': '/fonts/Tangsa/lakhum-tsdc-lined.ttf',
        'note': 'Includes PUA E459 &E460',
        },
       {'family': 'LakhumPUA',  # Really a PUA font, not Unicode
@@ -70,7 +70,7 @@ class langInfo():
     self.kb_list = [
       {'shortName': 'nstUnicode',
        'longName': 'Lakhum Unicode',
-       'fontFamily': 'LakhumUnicode',
+       'fontFamily': 'LakhumTsdc',
        },
       {'shortName': 'nstPUA',
        'longName': 'Tangsa PUA',

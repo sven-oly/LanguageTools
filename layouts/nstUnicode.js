@@ -34,7 +34,7 @@ var NST_UNICODE_LAYOUT = {
           '{{\ud81a\ude75}}{{\ud81a\udeb4}}{{\ud81a\udebc}}{{\ud81a\ude90}}{{\ud81a\udea3}}{{\ud81a\udeb7}}' +
             '{{\ud81a\ude8d}}{{\ud81a\udea1}}{{\ud81a\udeb2}}:"' +
           '{{\ud81a\ude99}}{{\ud81a\udeba}}{{\ud81a\udebd}}{{\ud81a\ude79}}{{\ud81a\udea6}}{{\ud81a\udea8}}' +
-            '{{\ud81a\udeb3}}{{\ue459}}{{\ue460}}?'
+            '{{\ud81a\udeb3}}<>?'
     },
     'c': {
       '': '`1234567890-=' +
@@ -92,6 +92,9 @@ var NST_UNICODE_LAYOUT = {
     '\u21D3\ud81a\ude9d': '\ud81a\ude9f',  // R
     '\u21D3\ud81a\udeb0': '\ud81a\udeb9',  // t
     '\u21D3\ud81a\udeaf': '\ud81a\udeb8',  // T
+
+    '\u21D3\ud81a\udea7': '\ue459',
+    '\u21D3\ud81a\udeb5': '\ue460',
 
     '\u21D3\u21D3': '[',  // Cancel the dead key
   }

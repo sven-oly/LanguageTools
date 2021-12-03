@@ -1,4 +1,5 @@
 // Convert from Latin form of Tangsa to Lakhum Unicode forms:
+const langConverter = new langConverterClass('nst', 'Tangsa Lakhum');
 
 // Mappings for Tangsa Lakhum
 var map_encoding_names = [
@@ -6,6 +7,10 @@ var map_encoding_names = [
   'Gam Win PUA',      // Gam Win to PUA
 ];
 
+langConverter.encoding_data = {
+    'LakhumP': {index:0, outputEncoding:'Unicode', outputScript:'Tangsa'},
+    'Ol_Chiki_Classic': {index:0, outputEncoding:'Unicode', outputScript:'Tangsa'},
+};
 langConverter.one2oneMap =  private_use_map_combined = {
     'mnvungz': ['𖪜𖪬𖩸𖪄𖪐', ''],
     'mznvungz': ['𖪜𖪬𖩸𖪄𖪐', ''],

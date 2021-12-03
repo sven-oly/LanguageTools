@@ -82,6 +82,9 @@ var NST_PUA_LAYOUT = {
     '\u21D3\ue43e': '\ue447',  // t
     '\u21D3\ue43d': '\ue446',  // T
 
+    '\u21D3\ud81a\udea7': '\ue459',
+    '\u21D3\ud81a\udeb5': '\ue460',
+
     '\u21D3\u21D3': '[',  // Cancel the dead key
   }
 };
