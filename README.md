@@ -190,18 +190,29 @@ your keyboard and other parts on your local computer (Mac, Windows, Linux).
 You may also create a new AppEngine project of your own using this code base. Uploading and setting
 up your own AppEngine site is [documented here](https://cloud.google.com/appengine).
 
-In the main directory for the project., start the development server from a command line.
-````
-dev_appserver.py . &
-````
+Next, [install the `pip` program](https://pip.pypa.io/en/stable/installation/) which is a standard program to install Python packages.
+
+In the main directory for the project, install the dependencies by running the command:
+
+```
+pip install -t lib -r requirements.txt
+```
+
+While staying in the main directory of the project, start the development server from a command line.
+
+```
+dev_appserver.py . 
+```
+
+(You can type Control+C to quit the running development server process.)
 
 In your favorite browser, load localhost at port 8080. Append the language code you added in the
 app.yaml file. For example, for langauge code "xyz", this URL will activate your Python code for the
-base page for your language.
+base page for your language. Be sure to include the trailing "/" after the language code "xyz" in the URLs.
 
-``
+```
 http://localhost:8080/xyz/
-``
+```
 
 Note any error messages in the terminal window where the dev_server is running. Fix any errors in the
 Python code that are reported there. When the page loads, you should see at least the basics of
