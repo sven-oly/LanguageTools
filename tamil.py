@@ -88,6 +88,13 @@ class langInfo():
         'instructions': None,
         'font': '/fonts/NotoSansTamil-Regular.ttf',
       },
+      {
+        'shortName': 'ta_phonemic_d',
+        'longName': 'தமிழ் phonemic D',
+        'jsName': 'ta_phonemic_d',
+        'instructions': None,
+        'font': '/fonts/NotoSansTamil-Regular.ttf',
+      },
     ]
 
     # Resource files
