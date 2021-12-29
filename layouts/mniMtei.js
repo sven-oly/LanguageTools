@@ -12,7 +12,7 @@
 
 
 var MNIMTEI_LAYOUT = {
-  'id': 'mnimtei',
+  'id': 'mniMtei',
   'title': 'Meitei KM',
   'mappings': {
     ',c': {
@@ -47,4 +47,4 @@ var MNIMTEI_LAYOUT = {
 
 // Load the layout and inform the keyboard to switch layout if necessary.
 google.elements.keyboard.loadme(MNIMTEI_LAYOUT);
-mnimtei = MNIMTEI_LAYOUT;
+mniMtei = MNIMTEI_LAYOUT;

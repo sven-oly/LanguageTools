@@ -47,6 +47,9 @@ links = [
   {'linkText': 'Meitei Wiki',
    'ref': 'https://en.wikipedia.org/wiki/Meitei_script'
   },
+  {'linkText': "Keyman layout",
+   'ref': 'https://keymanweb.com/?_ga=2.97814175.1460627000.1640752683-7452509.1639359229#mni-mtei,Keyboard_meitei_legacy'
+  },
   # {'linkText': 'Combiners',
   #  'ref': '/lep/diacritic/'
   #  },
@@ -93,7 +96,7 @@ class langInfo:
         self.lang_list = [LanguageCode]  # This may be extended
 
         self.kb_list = [
-          {'shortName': 'mnimtei',
+          {'shortName': 'mniMtei',
            'longName': 'Meitei KM',
            },
         ]
