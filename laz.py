@@ -136,7 +136,12 @@ class langInfo:
           {
             'name': 'KeyMan Laz Latin Mobile + desktop',
             'source': '/resources/lzz/lazlatin.kmp',
-            'description': 'Version 1.0 .kmp includes Mobile 12-Nov-2021'
+            'description': 'Version 1.0 .kmp includes Mobile 4-Dec-2021'
+          },
+          {
+            'name': 'KeyMan Laz Latin words',
+            'source': '/resources/lzz/craig_cornelius.lzz-latn.laz1.model.kmp',
+            'description': 'Version 1.0 Laz word model 4-Dec-2021'
           },
         ]
 

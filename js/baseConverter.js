@@ -3,7 +3,7 @@
 let langConverterClass = function(langCode, langName) {
   this.langCode = langCode;
   this.langName = langName;
-  this.one2oneMap = {};  // For 1-to-1 replacements
+  this.one2oneMap = new Map();  // For 1-to-1 replacements
   this.transformRules = [];  // For more complex regex matching.
   this.translit_source = '';
   this.map_translit_output = null;
@@ -13,10 +13,12 @@ let langConverterClass = function(langCode, langName) {
 };
 
 // Two arrays of characters for conversion
-langConverterClass.prototype.addOne2OneTransforms = function (inChars, outChars) {
+langConverterClass.prototype.addOne2OneTransforms = function (inChars, outChars, index) {
   // If there's a set of 1-to-1 conversions, add them to the
   // Private use map.
-
+  if (index == undefined) {
+    index = 0;
+  }
   if (inChars.length != outChars.length) {
     alert("1-to-1 mapping lengths are different: " + inChars.length +
      " != " + outChars.length);
@@ -25,13 +27,34 @@ langConverterClass.prototype.addOne2OneTransforms = function (inChars, outChars)
   for (var i = 0; i < inChars.length; i++) {
     const inChar = inChars[i];
     const outChar = outChars[i];
-    this.one2oneMap[inChar] = outChar;
+    let tested = this.one2oneMap.has(inChar);
+    if (!this.one2oneMap.has(inChar)) {
+      this.one2oneMap.set(inChar, []);
+    }
+    let current = this.one2oneMap.get(inChar);
+    current[index] = outChar;
+    this.one2oneMap.set(inChar, current);
   }
 }
 
+langConverterClass.prototype.dictionaryToMap = function(dict) {
+  const map = new Map();
+  const keys = Object.keys(dict);
+  for (let i = 0; i < keys.length; i++) {
+    map.set(keys[i], dict[keys[i]]);
+  }
+  return map;
+}
+
 // Adding a single conversion. The input and output may be multiple characters.
-langConverterClass.prototype.addSingleTransform = function (inChars, outChars) {
-  this.one2oneMap[inChars] = outChars;
+langConverterClass.prototype.addSingleTransform = function (inChars, outChars, index) {
+  if (index == undefined) {
+    index = 0;
+  }
+  if (!this.one2oneMap.has(inChar)) {
+      this.one2oneMap.set(inChar, []);
+  }
+  this.one2oneMap[inChars][index] = outChars;
 }
 
 langConverterClass.prototype.convertEncodingToUnicode = function (inbox, outbox, encodingIndex) {
@@ -52,9 +75,10 @@ langConverterClass.prototype.convertEncodingToUnicode = function (inbox, outbox,
   for (let index = 0; index < intext.length; index ++) {
     const c = intext[index];
     out = c;
-    if (c in this.one2oneMap) {
+    if (this.one2oneMap.has(c)) {
       // Null replacements are possible
-      out = this.one2oneMap[c][encodingIndex];
+      const charList = this.one2oneMap.get(c);
+      out = charList[encodingIndex];
     }
     outtext += out;
   }

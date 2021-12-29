@@ -87,6 +87,7 @@ LanguageList = [
   ('Blackfoot', 'bla', 'ᓱᖽᐧᖿ'),  # Added 10-Nov-2021
   ('Tamil', 'ta', 'தமிழ்'),
   ('Santali', 'sat', 'ᱥᱟᱱᱛᱟᱲᱤ'),
+  ('Meitei (Manipuri)', 'mni', 'ꯃꯤꯇꯩ ꯃꯌꯦꯛ'),
 
 ]
 

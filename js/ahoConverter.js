@@ -7,14 +7,14 @@ const langConverter = new langConverterClass('aho', 'Tai Ahom');
 langConverter.map_encoding_names = map_encoding_names = ['Ahom', 'AhomManuscript', 'Aiton'];
 
 langConverter.encoding_data = {
-    'Ahom': {index:0, outputEncoding:'Unicode', outputScript:'Ahom'},
+    'AhomFont': {index:0, outputEncoding:'Unicode', outputScript:'Ahom'},
     // Are they the same code points?
     'AhomManuscript': {index:1, outputEncoding:'Unicode', outputScript:'Ahom'},
     'Aiton': {index:1, outputEncoding:'Unicode', outputScript:'Ahom'},
 };
 
 // 11700
-langConverter.one2oneMap =  private_use_map_combined = {
+private_use_map_combined = {
   'a': ['\ud805\udf21', '\ud805\udf12'],
   'b': ['\ud805\udf08', '\ud805\udf08'],
   'c': ['\ud805\udf0B', '\ud805\udf0B'],
@@ -197,6 +197,8 @@ langConverter.one2oneMap =  private_use_map_combined = {
   '\u2022': ['\u2022', '\u2022', '\ud805\udf33\ud805\udf05'],  // @
   '\u2122': ['\u2122', '\ud805\udf1e', '\ud805\udf33\ud805\udf05'],  // @
 };
+
+langConverter.one2oneMap = langConverter.dictionaryToMap(private_use_map_combined);
 
 function convertEncodingToUnicode(inbox, outbox, encodingIndex) {
   var inarea = document.getElementById(inbox);

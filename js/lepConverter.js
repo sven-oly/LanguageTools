@@ -5,8 +5,14 @@ const langConverter = new langConverterClass('lep', 'Lepcha');
 langConverter.map_encoding_names = map_encoding_names = [
   'Shipmoo Lepcha', 'JG Lepcha'];
 
+
+langConverter.encoding_data = {
+    'Shipmoo': {index:0, outputEncoding:'Unicode', outputScript:'Lepcha'},
+    'JGLepcha': {index:1, outputEncoding:'Unicode', outputScript:'Lepcha'},
+};
+
 // 1c00 is the base
-langConverter.one2oneMap =  private_use_map_combined = {
+private_use_map_combined = {
     '\u0021': ['', '\u1c29\u1c2d'],
     '\u0022': ['', '\u1c29\u1c2e'],
     '\u0023': ['', '\u1c29\u1c2f'],
@@ -146,29 +152,7 @@ langConverter.one2oneMap =  private_use_map_combined = {
     '\u00f3': ['', '\u1c21\u1c25\u1c24'],
 };
 
-function convertEncodingToUnicode(inbox, outbox, encodingIndex) {
-  var inarea = document.getElementById(inbox);
-  var outarea = document.getElementById(outbox);
-
-  // First, replace all single characters with their Unicode equivalents.
-  var start = inarea.selectionStart;
-  // obtain the index of the last selected character
-  var finish = inarea.selectionEnd;
-  // obtain the selected text
-
-  if (start != finish && finish != 0) {
-    var intext = inarea.value.substring(start, finish);
-  } else {
-    // Otherwise, the whole text.
-    var intext = inarea.value;
-  }
-
-  var newText = convertEncoding(intext, encodingIndex);
-  if (outarea) {
-    outarea.innerHTML = outarea.value = newText;
-  }
-  return newText;
-};
+langConverter.one2oneMap = langConverter.dictionaryToMap(private_use_map_combined);
 
 function convertEncoding(intext, encodingIndex) {
   var outtext = "";

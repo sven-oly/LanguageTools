@@ -1,6 +1,6 @@
 // Mappings for Georgian script to Latin for Caucasian languages
 // https://translit.cc/ge/
-
+const langConverter = new langConverterClass('xmf', 'Latn');
 
 let langConvertClass = function() {
   this.langCode = 'xmf';
@@ -16,53 +16,6 @@ let langConvertClass = function() {
       'compute': this.ascii2Latin},
   ];
 };
-
-// The object returned.
-const langConverter = new langConvertClass();
-
-langConvertClass.prototype.getTransforms = function() {
-    return this.transforms;
-}
-
-langConvertClass.prototype.getLangCode = function() {
-  return this.langCode;
-}
-
-const translit_source = '';
-
-langConvertClass.prototype.translitInfo = function() {
-  return [translit_source,
-          map_translit_output,
-          map_translit_sources,
-          private_use_map_combined];
-}
-
-// https://www.oxfordhandbooks.com/view/10.1093/oxfordhb/9780190690694.001.0001/oxfordhb-9780190690694-appendix-2
-
-// https://en.wikipedia.org/wiki/Mingrelian_language#Alphabet
-// Mkhedruli     Transliteration IPA transcription
-const map_translit_output = ['Wiki Latin', 'Oxford Handbook Latin', 'Wiki IPA'];
-const translit_source = 'Georgian';
-
-const map_translit_sources = [
-    "// https://en.wikipedia.org/wiki/Mingrelian_language#Alphabet",
-    "// https://www.oxfordhandbooks.com/view/10.1093/oxfordhb/9780190690694.001.0001/oxfordhb-9780190690694-appendix-2",
-    "// https://en.wikipedia.org/wiki/Mingrelian_language#Alphabet",
-];
-
-langConvertClass.prototype.decodingInfo = function() {
-}
-
-langConvertClass.prototype.getTransforms = function() {
-    return this.transforms;
-}
-
-langConvertClass.prototype.translitInfo = function() {
-  return [translit_source,
-          map_translit_output,
-          map_translit_sources,
-          this.private_use_map_combined];
-}
 
 const private_use_map_combined = {
     "ა": ["a", "a", "ɑ"],
@@ -104,9 +57,63 @@ const private_use_map_combined = {
     'აა': ['aa', 'ā', "ɑɑ"],
 };
 
+// The object returned.
+
+langConvertClass.prototype.getTransforms = function() {
+    return this.transforms;
+}
+
+langConvertClass.prototype.getLangCode = function() {
+  return this.langCode;
+}
+
+langConvertClass.prototype.translitInfo = function() {
+  return [translit_source,
+          map_translit_output,
+          map_translit_sources,
+          private_use_map_combined];
+}
+
+// https://www.oxfordhandbooks.com/view/10.1093/oxfordhb/9780190690694.001.0001/oxfordhb-9780190690694-appendix-2
+
+// https://en.wikipedia.org/wiki/Mingrelian_language#Alphabet
+// Mkhedruli     Transliteration IPA transcription
+const map_translit_output = ['Wiki Latin', 'Oxford Handbook Latin', 'Wiki IPA'];
+const translit_source = 'Georgian';
+
+const map_translit_sources = [
+    "// https://en.wikipedia.org/wiki/Mingrelian_language#Alphabet",
+    "// https://www.oxfordhandbooks.com/view/10.1093/oxfordhb/9780190690694.001.0001/oxfordhb-9780190690694-appendix-2",
+    "// https://en.wikipedia.org/wiki/Mingrelian_language#Alphabet",
+];
+
+langConvertClass.prototype.decodingInfo = function() {
+}
+
+langConvertClass.prototype.getTransforms = function() {
+    return this.transforms;
+}
+
+langConvertClass.prototype.translitInfo = function() {
+  return [translit_source,
+          map_translit_output,
+          map_translit_sources,
+          this.private_use_map_combined];
+}
+
+langConverter.encoding_data = {
+    'akolkhn': {index:0, outputEncoding:'Unicode', outputScript:'Latin'},
+    'AcadMtavr': {index:1, outputEncoding:'Unicode', outputScript:'Latin'},
+    'LitNusx': {index:2, outputEncoding:'Unicode', outputScript:'Latin'},
+    'LitNusx': {index:2, outputEncoding:'Unicode', outputScript:'Latin'},
+};
+
+langConverter.one2oneMap = langConverter.dictionaryToMap(private_use_map_combined);
+
 langConvertClass.prototype.decodingInfo = function() {
   return encoding_data;
 }
+
 // Font encoding information.
 // Map by font name, index in lookup table, output encoding, output scrit. AkolkhetyN to Georgian Unicode.
 const encoding_data = {

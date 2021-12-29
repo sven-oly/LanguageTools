@@ -13,8 +13,16 @@ langConverter.map_encoding_names = map_font_to_encoding = {
     'Prem': 0
 };
 
+langConverter.encoding_data = {
+    'Mukdum': {index:0, outputEncoding:'PUA', outputScript:'Sunuwar'},
+    'Kirat2': {index:1, outputEncoding:'PUA', outputScript:'Sunuwar'},
+    'Kaatich1': {index:1, outputEncoding:'PUA', outputScript:'Sunuwar'},
+    'Kirat1': {index:1, outputEncoding:'PUA', outputScript:'Sunuwar'},
+    'Lonkuch': {index:1, outputEncoding:'PUA', outputScript:'Sunuwar'},
+};
+
 // Conversion to PUA
-langConverter.one2oneMap = private_use_map_combined = {
+const private_use_map_combined = {
     '\u0030': ['\uec30', '\ued30'],
     '\u0031': ['\uec31', '\ued31'],
     '\u0032': ['\uec32', '\ued32'],
@@ -103,10 +111,7 @@ langConverter.one2oneMap = private_use_map_combined = {
     '\u00be': ['\uec33/\uec34', '\u00be'],
 };
 
-
-function toLower(instring) {
-  return instring.toLowerCase();
-}
+langConverter.one2oneMap = langConverter.dictionaryToMap(private_use_map_combined);
 
 function convertEncodingToUnicode(inbox, outbox, encodingIndex) {
   var inarea = document.getElementById(inbox);

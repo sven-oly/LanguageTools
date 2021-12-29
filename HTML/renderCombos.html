@@ -55,11 +55,18 @@
   </style>
 
   <!-- Path to convert with code tables and other  this for the converter. -->
+  <script src="/js/baseConverter.js"></script>
   <script src="{{converterJS}}"></script>
 
   <script src="/js/utils.js"></script>
 
   <script>
+  let private_use_map_combined = undefined;
+  let encoding_data;
+  if (langConverter) {
+    private_use_map_combined = langConverter.one2oneMap;
+    encoding_data = langConverter.encoding_data;
+  }
   function onPageLoaded() {
     var codetable = document.getElementById('codetable');
     buildEncodingTable(codetable);

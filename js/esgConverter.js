@@ -10,7 +10,7 @@ langConverter.encoding_data = {
 };
 
 // TODO: Fix Gondi Masaram mappings
-langConverter.one2oneMap =  private_use_map_combined = {
+private_use_map_combined = {
   '\u0000': ['\u0000'],
   '\u0021': ['!', ''],
   '\u0022': ['\ud807\udd2a\ud807\udd45', ''],
@@ -116,3 +116,5 @@ langConverter.one2oneMap =  private_use_map_combined = {
   '\u201d': ['\ud807\udd29\ud807\udd45', ''],
   '\u02c6': ['\u0302', '\u0302'],
 };
+
+langConverter.one2oneMap = langConverter.dictionaryToMap(private_use_map_combined);

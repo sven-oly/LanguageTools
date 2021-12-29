@@ -103,13 +103,28 @@ unicode_font_list = [
     'source': '/fonts/burmese/BeautiUNI-6.ttf',
   },
   {
-    'family': 'Jasmine Unicode',
+    'family': 'JasmineUnicode',
     'longName': 'Jasmine Unicode',
     'source': '/fonts/Myanmar/Jasmine_Unicode.ttf',
   },
   {
-    'family': 'ZawDecode2.0',
-    'longName': 'ZawDecode 2.0 (deprecated)',
+    'family': 'Pyidaungsu_Regular',
+    'longName': 'Pyidaungsu regular',
+    'source': '/fonts/Myanmar/Pyidaungsu/Pyidaungsu-1.8.3_Regular.ttf',
+  },
+  {
+    'family': 'Pyidaungsu_Numbers',
+    'longName': 'Pyidaungsu Numbers',
+    'source': '/fonts/Myanmar/Pyidaungsu/Pyidaungsu-1.8.3_Numbers.ttf',
+  },
+  {
+    'family': 'Pyidaungsu_Bold',
+    'longName': 'Pyidaungsu Bold',
+    'source': '/fonts/Myanmar/Pyidaungsu/Pyidaungsu-1.8.3_Bold.ttf',
+  },
+  {
+    'family': 'Zawdecode',
+    'longName': 'Zawdecode (deprecated)',
     'source': '/fonts/Myanmar/deprecated/ZawDecode-2.0_Regular.ttf',
   },
 ]
@@ -130,13 +145,13 @@ links = [
      'ref': '/my/downloads/'
     },
     {'linkText': 'Unicode Myanmar',
-     'ref': 'http://unicode.org/charts/PDF/U1000.pdf'
+     'ref': 'https://unicode.org/charts/PDF/U1000.pdf'
     },
     {'linkText': 'Combiners',
      'ref': '/my/diacritic/'
     },
     {'linkText': 'Transliteration',
-     'ref': 'https://langtools3.wm.r.appspot.com/translit/',
+     'ref': 'httpss://langtools3.wm.r.appspot.com/translit/',
     },
 ]
 
@@ -229,6 +244,7 @@ class langInfo():
     self.diacritic_list = diacritic_list
     self.base_consonant = u'\u1000'
 
+    self.encoding_font_list = encoding_font_list
     self.unicode_font_list = unicode_font_list
     self.lang_list = ['my']
     self.kb_list = kb_list
@@ -593,7 +609,8 @@ app = webapp2.WSGIApplication([
     ('/my/diacritic/', base.DiacriticHandler),
     ('/my/transliterate/', TransliterateHandler),
     ('/my/dotranslit/', DoTranslitHandler),
-    ('/my/AllFonts/', base.AllFontTest ),
+    ('/my/AllFonts/', base.AllFontTest),
+    ('/' + LanguageCode + '/kbtransforms/', base.KeyboardTransforms),
   ],
   debug=True,
   config = {'langInfo': langInstance}

@@ -38,8 +38,8 @@ LanguageCode = 'win'
 encoding_font_list = [
     {
       'font_path':'/fonts/hochunk/HOCATR__.TTF',
-      'font_name':'Hocak',
-      'display_name': 'Hocak Old',
+      'font_name':'Hoocąk',
+      'display_name': 'Hoocąk Old',
     },
 ]
 
@@ -125,7 +125,8 @@ app = webapp2.WSGIApplication([
     ('/' + LanguageCode + '/convertUI/', base.ConvertUIHandler),
     ('/' + LanguageCode + '/downloads/', base.Downloads),
     ('/' + LanguageCode + '/encodingRules/', base.EncodingRules),
-    ('/' + LanguageCode + '/AllFonts/', base.AllFontTest ),
+    ('/' + LanguageCode + '/AllFonts/', base.AllFontTest),
+    ('/' + LanguageCode + '/kbtransforms/', base.KeyboardTransforms),
   ],
   debug=True,
   config={'langInfo': langInstance}

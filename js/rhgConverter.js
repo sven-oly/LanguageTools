@@ -82,3 +82,5 @@ langConverter.one2oneMap =  private_use_map_combined = {
   '\u06f8': ['\ud803\udd38', '\ud803\udd38', '\ud803\udd16'],  // Z
   '\u06f9': ['\ud803\udd39', '\ud803\udd39', '['],  // [
 };
+
+langConverter.one2oneMap = langConverter.dictionaryToMap(private_use_map_combined);

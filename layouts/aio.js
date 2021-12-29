@@ -51,7 +51,8 @@ var AIO_LAYOUT = {
           'zxcvbnm<>?'
     }
   },
-
+  'transform' : {
+  }
 };
 
 // Load the layout and inform the keyboard to switch layout if necessary.

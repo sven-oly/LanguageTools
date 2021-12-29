@@ -99,6 +99,7 @@ class langInfo():
     self.Language = Language
     self.Language_native = Language_native
     self.test_data = u''
+    self.encoding_font_list = encoding_font_list
     self.unicode_font_list = unicode_font_list
     self.lang_list = [Language]
     self.kb_list = kb_list

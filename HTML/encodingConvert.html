@@ -4,9 +4,8 @@
   <meta charset="utf-8"/>
 
   <title>{{language}} encoding conversions to Unicode</title>
-
-  <!-- Font encoding areas -->
   <style>
+    <!-- Font encoding areas -->
     {% for encoding in encoding_list %}
     @font-face{
       font-family:'{{encoding.font_name}}';
@@ -18,12 +17,9 @@
     .{{encoding.font_name}} {
       font-family:{{encoding.font_name}};
       font-size: 32px;
-    }
+    }{% endfor %}
 
-    {% endfor %}
-  </style>
   <!-- Unicode fonts -->
-  <style>
     {% for font in unicode_list %}
     @font-face{
       font-family:'{{font.family}}';
@@ -32,19 +28,15 @@
       font-style:normal;
       font-size: 32px;
     }
-
     .{{font.family}} {
       font-family:{{font.family}};
       font-size: 32px;
-    }
-    {% endfor %}
+    }{% endfor %}
   </style>
-
   <style>
     table {
       border-collapse: collapse;
     }
-
     table, th, td {
       border: 1px solid black;
     }
@@ -56,63 +48,58 @@
   </style>
 
   <!-- Path to convert with code tables and other  this for the converter. -->
-  <script>
-    private_use_map_combined = undefined;
-  </script>
   <script src="/js/baseConverter.js"></script>
   <script src="{{converterJS}}"></script>
-
   <script src="/js/utils.js"></script>
 
   <script>
-
-  var k = { loadme: Object};
-  k.loadme.prototype = function(a) {
-  return a;
+  // Get data from converter.
+  let private_use_map_combined = undefined;
+  let encoding_data;
+  if (langConverter) {
+    private_use_map_combined = langConverter.one2oneMap;
+    encoding_data = langConverter.encoding_data;
   }
-  var e = {keyboard: k};
-  var google = {elements: e};
+
+  const k = { loadme: Object};
+  k.loadme.prototype = function(a) {
+    return a;
+  }
+  const e = {keyboard: k};
+  const google = {elements: e};
   </script>
 
   {% for kb in kb_list %}
-  <!-- {{kb.shortName}} -->
-  <script src="/layouts/{{kb.shortName}}.js"></script>
-  {% endfor %}
+  <script src="/layouts/{{kb.shortName}}.js"></script>{% endfor %}
 
   <script>
-  {% for kb in kb_list %}
-  const {{kb.shortName}}_transform =  {{kb.shortName}}.transform;
-  {% endfor %}
-
   function onPageLoaded() {
-    var codetable = document.getElementById('codetable');
+    const codetable = document.getElementById('codetable');
     // Old code to be replaced.
     buildEncodingTable(codetable);
-{% if encoding_tables %}
-
+  {% if encoding_tables %}
     // Build based on encoding table descriptions.
     selected_table = document.getElementById('selectTable').value;
-    var output_table = document.getElementById('encoding_table_area');
+    const output_table = document.getElementById('encoding_table_area');
     buildEncodingTableFromData(output_table, encoding_tables[selected_table]);
-{% endif %}
-{%if converter_list %}
-  setupConverterSelector('converter_select', converter_list);
-{% endif %}
+  {% endif %}
+  {%if converter_list %}
+    setupConverterSelector('converter_select', converter_list);
+  {% endif %}
   }
-
-  var encoding_font_list = [
+  const encoding_font_list = [
   {% for encoding in encoding_list %}"{{encoding.font_name}}"{% if not forloop.last %},{% endif %}{% endfor %}
   ];
-  var encoding_display_names = [
+  const encoding_display_names = [
   {% for encoding in encoding_list %}"{{encoding.display_name}}"{% if not forloop.last %},{% endif %}{% endfor %}
   ];
-var unicode_font_list = [
+  const unicode_font_list = [
   {% for font in unicode_list %}"{{font.family}}",{% endfor %}
   ];
 
-// Data describing columns and contents.
-{% if encoding_tables %}
-const encoding_tables = {
+  // Data describing columns and contents.
+  {% if encoding_tables %}
+  const encoding_tables = {
     {% for item, columns in encoding_tables.items %}"{{item}}":
       [{% for dict in columns %}
        { {% for k, v in dict.items %}"{{ k }}": "{{ v }}"{% if not forloop.last %},{% endif %}
@@ -120,25 +107,23 @@ const encoding_tables = {
         {% endfor %}
      ]{% if not forloop.last %},{% endif %}
    {% endfor %}{% if not forloop.last %},{% endif %}
-  };
-{% endif %}
+  };{% endif %}
 
 function buildEncodingTableFromData(table, encoding_table_data) {
   // Remove existing rows.
   if (table.rows) {
-    var rowCount = table.rows.length;
-    for (var x=rowCount-1; x>0; x--) {
+    let rowCount = table.rows.length;
+    for (let x = rowCount-1; x>0; x--) {
        table.deleteRow(x);
     }
     table.deleteTHead();
   }
 
-  var header = table.createTHead();
-  var row = header.insertRow(0);
-  var name = encoding_table_data;
-  var column_data = encoding_table_data;
-  var outIndex = 0;
-  for (var column in column_data) {
+  const header = table.createTHead();
+  const row = header.insertRow(0);
+  const column_data = encoding_table_data;
+  let outIndex = 0;
+  for (let column in column_data) {
     row.insertCell(outIndex).innerHTML = column_data[column]['title'];
     outIndex++;
   }
@@ -148,13 +133,13 @@ function buildEncodingTableFromData(table, encoding_table_data) {
 
 // Rebuild table and display.
 function onEncodingSelected(selector, output_id) {
-  var table = document.getElementById(output_id)
+  const table = document.getElementById(output_id)
   buildEncodingTableFromData(table, encoding_tables[selector.value]);
 }
 
 function buildEncodingTable(table) {
   const fontsize="14px";
-  var code;
+  let code;
   // Update headers.
   let header = table.createTHead();
   let row = header.insertRow(0);
@@ -167,7 +152,7 @@ function buildEncodingTable(table) {
   cell2.style.borderRight = "thick solid";
   outIndex += 1;
 
-  for (var i = 0 ; i < encoding_font_list.length; i ++) {
+  for (let i = 0 ; i < encoding_font_list.length; i ++) {
     row = table.rows[0];
     row.insertCell(outIndex).innerHTML = encoding_display_names[i];
     outIndex += 1;
@@ -180,17 +165,22 @@ function buildEncodingTable(table) {
   if (private_use_map_combined === undefined) {
     return;
   }
-  for (code in private_use_map_combined) {
-    code_list.push(code);
+
+ for (let key of private_use_map_combined.keys()) {
+    code_list.push(key);
   }
   code_list.sort();
 
-  var rowNum = 1;  // Skip the headers
-  for (var index in code_list) {
+  // Temporary
+  //let maxTextSize = 0;
+  //let maxText = '';
+
+  let rowNum = 1;  // Skip the headers
+  for (let index in code_list) {
     const code = code_list[index];
     row = table.insertRow(rowNum);
 
-    const items = private_use_map_combined[code];
+    const items = private_use_map_combined.get(code);
 
     cell1 = row.insertCell(0);
     cell2 = row.insertCell(1);
@@ -199,30 +189,38 @@ function buildEncodingTable(table) {
     cell2.innerHTML = code;
 
     // Add coded output.
-    outIndex = 2;
-    for (var i = 0; i<encoding_font_list.length; i ++) {
-      if(typeof map_font_to_encoding == 'object') {
-        encodingIndex =  map_font_to_encoding[encoding_font_list[i]];
+    let outIndex = 2;
+    let encodingIndex;
+    let fontName;
+    for (let i = 0; i<encoding_font_list.length; i ++) {
+      if (langConverter.encoding_data) {
+        fontName = encoding_font_list[i];
+        encodingIndex = langConverter.encoding_data[fontName].index;
+      } else if (typeof map_font_to_encoding == 'object') {
+        fontName = encoding_font_list[i];
+        encodingIndex =  encoding_data[encoding_font_list[i]];
       } else {
         encodingIndex = i;
       }
+
       // The encoded value.
-      var cell = row.insertCell(outIndex);
+      const cell = row.insertCell(outIndex);
       cell.innerHTML = code; // the encoded value
-      var fontString = encoding_font_list[i];
-      cell.style.fontFamily = fontString;
+      cell.style.fontFamily = fontName;
       cell.style.fontSize = "30px";
       outIndex += 1;
-
+      // Temporary
+      //if (code.length > maxTextSize) {
+      //  maxTextSize = code.length;
+      //  maxText = code;
+      //}
       // Unicode conversion.
-      var cellUni = row.insertCell(outIndex);
+      const cellUni = row.insertCell(outIndex);
       cellUni.style.borderRight = "thick solid";
-        if (encodingIndex < items.length) {
+      if (encodingIndex < items.length && items[encodingIndex]) {
         cellUni.innerHTML = items[encodingIndex];
-        var fontStringUni = unicode_font_list[0];
-        cellUni.style.fontFamily = fontStringUni;
+        cellUni.style.fontFamily = fontStringUni = unicode_font_list[0];
         cellUni.style.fontSize = "30px";
-
         // Add the Unicode hex for hover info.
         // TODO: show as full Unicode numeric values
         cellUni.title = utf16common(items[encodingIndex], "U+", " ", null, []);
@@ -236,12 +234,12 @@ function buildEncodingTable(table) {
 
 // TODO: Set these up with the converter.
 //
-var converter_list = [{% for converter in converter_list %}
+const converter_list = [{% for converter in converter_list %}
   { {% for k, v in converter.items %}"{{k}}": "{{v}}",{%endfor%}{% if not forloop.last %},{% endif %}
   }{% endfor %}
 ];
 //
-var convert_data_list = [ {% for entry in conversion_data %}
+const convert_data_list = [ {% for entry in conversion_data %}
   { {% for k, v in entry.items %}"{{k}}": "{{v}}"{%endfor%}{% if not forloop.last %},{% endif %}
   }{% endfor %}{% if not forloop.last %},{% endif %}
 ];

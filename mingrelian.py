@@ -87,9 +87,9 @@ links = [
     # {'linkText': 'Font conversion summary',
     #   'ref': '/' + LanguageCode + '/encodingRules/'
     # },
-    # {'linkText': 'Resources',
-    #   'ref': '/' + LanguageCode + '/downloads/'
-    # },
+    {'linkText': 'Resources',
+      'ref': '/' + LanguageCode + '/downloads/'
+    },
     {
       'linkText': 'Unicode block',
       'ref': 'https://en.wikipedia.org/wiki/Georgian_(Unicode_block)'
@@ -164,7 +164,13 @@ class langInfo:
       },
     ]
     # For additional resources for download
-    self.text_file_list = []
+    self.text_file_list = [
+      {
+        'name': 'KeyMan Mingrelian Latin Mobile + desktop',
+        'source': '/resources/xmf/mingrelian.kmp',
+        'description': 'Version 1.0 .kmp includes Mobile 4-Dec-2021'
+      },
+    ]
 
     # TODO: Fill in the rest of the common data.
 
@@ -191,6 +197,7 @@ app = webapp2.WSGIApplication([
   ('/' + LanguageCode + '/downloads/', base.Downloads),
   ('/' + LanguageCode + '/encodingRules/', base.EncodingRules),
   ('/' + LanguageCode + '/diacritic/', base.DiacriticHandler),
+  ('/' + LanguageCode + '/kbtransforms/', base.KeyboardTransforms),
 ], debug=True,
                               config={'langInfo': langInstance}
 )

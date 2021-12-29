@@ -4,7 +4,11 @@ const langConverter = new langConverterClass('nnp', 'Wancho');
 langConverter.map_encoding_names = map_encoding_names = [
   'Wancho'];
 
-langConverter.one2oneMap = private_use_map_combined = {
+langConverter.encoding_data = {
+    'WanchoDipangkar': {index:0, outputEncoding:'Unicode', outputScript:'Wancho'},
+};
+
+private_use_map_combined = {
   '\u0024':  ['\ud838\udeFF'],
   'a':  ['\ud838\udeC0'],
   'A':  ['\ud838\udeC1'],
@@ -65,6 +69,8 @@ langConverter.one2oneMap = private_use_map_combined = {
   '8':  ['\ud838\udeF8'],
   '9':  ['\ud838\udeF9'],
 };
+
+langConverter.one2oneMap = langConverter.dictionaryToMap(private_use_map_combined);
 
 function toLower(instring) {
   return instring.toLowerCase();

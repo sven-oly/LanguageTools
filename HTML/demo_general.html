@@ -47,6 +47,7 @@
 
   <script src="/js/utils.js"></script>
   <script src="/js/vk-debug.js"></script>
+  <script src="/js/baseConverter.js"></script>
 {% if variation_sequence %}
   <script src="/js/{{langTag}}Converter.js"></script>
 {% endif %}
@@ -117,10 +118,10 @@
     controller.addEventListener(
         'lat',
         function () {
-            var selector = document.getElementById("setLayout");
+            const selector = document.getElementById("setLayout");
             // TODO: Get the current selection?
-            var kb_data = kb_info[selector.value];
-            var font_family = font_families[0];
+            const kb_data = kb_info[selector.value];
+            let font_family = font_families[0];  // Default
             if (kb_data[2]) {
               font_family = kb_data[2];
             }
@@ -133,6 +134,10 @@
     var selector = document.getElementById("setLayout");
     utils.onLayoutSelected(selector.value, 't1', 'kb_instructions');
 
+    utils.setFontFamily(document.getElementById("fontSelector").value, 't1');
+  }
+
+  function onPageShow() {
     utils.setFontFamily(document.getElementById("fontSelector").value, 't1');
   }
 
@@ -217,7 +222,7 @@
 
   
   </head>
-<body onload="onPageLoaded()">
+<body onload="onPageLoaded()" onpageshow="onPageShow()">
   <div class="container">
     <div class="span-1">  
     </div>

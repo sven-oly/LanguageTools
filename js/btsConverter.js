@@ -5,8 +5,13 @@ const langConverter = new langConverterClass('bts', 'Batak Simalungun');
 var map_encoding_names = ['Mandailing', 'Toba', 'Variants'];
 
 // TODO: fill in Toba and Variants.
+langConverter.encoding_data = {
+    'Mandailing': {index:0, outputEncoding:'Unicode', outputScript:'Batak Simalungun'},
+    'Toba': {index:1, outputEncoding:'Unicode', outputScript:'Batak Simalungun'},
+    'Variants': {index:2, outputEncoding:'Unicode', outputScript:'Batak Simalungun'},
+};
 
-langConverter.one2oneMap =  private_use_map_combined = {
+private_use_map_combined = {
   '\u0000': ['', '', ''],  // null
   '\u0009': ['', '', ''],  // horizontal tab
   '\u000D': ['', '', ''],  // Carriage return
@@ -213,6 +218,8 @@ langConverter.one2oneMap =  private_use_map_combined = {
   '\u2202': ['', '', ''],
   '\u2260': ['', '', ''], // ≠ --> "dotted circle"
 };
+
+langConverter.one2oneMap = langConverter.dictionaryToMap(private_use_map_combined);
 
 function convertEncodingToUnicode(inbox, outbox, encodingIndex) {
   var inarea = document.getElementById(inbox);

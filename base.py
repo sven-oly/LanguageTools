@@ -270,7 +270,7 @@ class ConvertUIHandler(webapp2.RequestHandler):
       outputFont = 'Unicode'
 
     try:
-      unicodeChars = langInfo.unicodChars
+      unicodeChars = langInfo.unicodeChars
     except:
       unicodeChars = '\ud804\udd00'
       unicodeChars += '\ud804\udd03'

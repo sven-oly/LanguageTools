@@ -6,7 +6,7 @@ langConverter.encoding_data = {
 };
 
 // Not complete 27-Nov-2021
-langConverter.one2oneMap = private_use_map = {
+private_use_map_combined = {
     '\u0030': ['\ue8b0'],
     '\u0031': ['\ue8b1'],
     '\u0032': ['\ue8b2'],
@@ -77,3 +77,5 @@ langConverter.one2oneMap = private_use_map = {
     '\u007e': ['\u09f8'],
 
 };
+
+langConverter.one2oneMap = langConverter.dictionaryToMap(private_use_map_combined);

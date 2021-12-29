@@ -9,7 +9,7 @@ var map_encoding_names = [
 
 langConverter.encoding_data = {
     'LakhumP': {index:0, outputEncoding:'Unicode', outputScript:'Tangsa'},
-    'Ol_Chiki_Classic': {index:0, outputEncoding:'Unicode', outputScript:'Tangsa'},
+    'GamWinPUA': {index:0, outputEncoding:'Unicode', outputScript:'Tangsa'},
 };
 langConverter.one2oneMap =  private_use_map_combined = {
     'mnvungz': ['𖪜𖪬𖩸𖪄𖪐', ''],
@@ -430,7 +430,10 @@ langConverter.one2oneMap =  private_use_map_combined = {
     '\uE455':	'\ud81a\ude79',
     '\uE456':	'\ud81a\ude7A',
     '\uE457':	'\ud81a\ude7B',
-    '\uE458':	'\ud81a\udebE',  }
+    '\uE458':	'\ud81a\udebE',  };
+
+langConverter.one2oneMap = langConverter.dictionaryToMap(private_use_map_combined);
+
 
 var gamwin_latin_chars =
     "mnvungz|mznvungz|mnaungz|mznaungz|mrvkueq|vungz|vungc|vungx|vuk|aungz|aungc|aungx|auk|auz|auc|aux|"+
@@ -520,6 +523,7 @@ function nst_convertText(intext, encodingIndex) {
   // If needed, add more post-processing conversions here
   return outtext_list.join('');
 }
+
 
 // Create a object describing conversions in this file converter.
 var nstConverter_obj = {

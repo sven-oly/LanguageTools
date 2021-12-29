@@ -28,3 +28,4 @@ langConverter.one2oneMap = private_use_map_combined = {
   '>': ['\u0294'],
   '=': ['\u00b7'],
 };
+langConverter.one2oneMap = langConverter.dictionaryToMap(private_use_map_combined);

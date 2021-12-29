@@ -4,8 +4,13 @@ const langConverter = new langConverterClass('tavt', 'Tai Viet');
 langConverter.map_encoding_names = map_encoding_names = [
   'Song Pet', 'White Tai'];
 
+langConverter.encoding_data = {
+    'SongPet': {index:0, outputEncoding:'Unicode', outputScript:'TaiViet'},
+    'WhiteTai': {index:1, outputEncoding:'Unicode', outputScript:'TaiViet'},
+};
+
 // 1c00 is the base
-langConverter.one2oneMap = private_use_map_combined = {
+private_use_map_combined = {
     '\u0021': ['', '\u1c29\u1c2d'],
     '\u0022': ['', '\u1c29\u1c2e'],
     '\u0023': ['', '\u1c29\u1c2f'],
@@ -145,6 +150,8 @@ langConverter.one2oneMap = private_use_map_combined = {
     '\u00f2': ['', '\u1c1d\u1c25\u1c24'],
     '\u00f3': ['', '\u1c21\u1c25\u1c24'],
 };
+
+langConverter.one2oneMap = langConverter.dictionaryToMap(private_use_map_combined);
 
 function convertEncoding(intext, encodingIndex) {
   var outtext = "";

@@ -3,16 +3,20 @@ const langConverter = new langConverterClass('syl', 'Sylheti Nagari');
 
 // Mappings for Lepcha font encodings
 langConverter.map_encoding_names = map_encoding_names = [
-  'SumraL'];
+  'SurmaL'];
+
+langConverter.encoding_data = {
+    'SurmaLRegular': {index:0, outputEncoding:'Unicode', outputScript:'Sylheti Nagari'},
+};
 
 // aa00 is the base
-langConverter.one2oneMap = private_use_map_combined = {
+private_use_map_combined = {
     '\u0021': ['!'],
     '\u0022': ['\"'],
     '\u0023': ['#'],
     '\u0024': ['$'],
     '\u0025': ['%'],
-    '\u0026': [''],
+    '\u0026': ['&'],
     '\u0027': ['\''],
     '\u0028': ['('],
     '\u0029': [')'],
@@ -148,3 +152,5 @@ langConverter.one2oneMap = private_use_map_combined = {
     '\u00f3': ['\ua80c\ua80c'],
     '\u00f4': ['\ua806'],
 };
+
+langConverter.one2oneMap = langConverter.dictionaryToMap(private_use_map_combined);

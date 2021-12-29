@@ -5,8 +5,13 @@ langConverter.map_encoding_names = map_encoding_names = [
   'Phake Script',
   'Phake Ramayana',
   'Aiton Script',
-  'Shan'
 ];
+
+langConverter.encoding_data = {
+    'Phake': {index:0, outputEncoding:'Unicode', outputScript:'Myanmar'},
+    'Phakeramayana': {index:1, outputEncoding:'Unicode', outputScript:'Myanmar'},
+    'Aiton': {index:2, outputEncoding:'Unicode', outputScript:'Myanmar'},
+};
 
 langConverter.transformRules = [
   [/([\u1031\u103c]\ufe00?)([\u1000-\u1029\u1075-\u1081\uaa60-\uaa7a]\ufe00?)/gi,
@@ -62,7 +67,8 @@ function remove_variation_modifiers(text) {
   return out_text;
 }
 
-langConverter.one2oneMap = private_use_map_combined = {
+// This should be a map.
+private_use_map_combined = {
         "A": ["ဢ\ufe00", "ဢ\ufe00", "ဢ"],
         "B": ["ꩰ", "ꩰ", "ꩰ"],
         "C": ["\u108a", ":", "\u108a"],
@@ -74,7 +80,7 @@ langConverter.one2oneMap = private_use_map_combined = {
         "I": ["\u102e", "ီ", "ီ"],
         "J": ["ို", "ို", "ို"],
         "K": ["\u1039\u1000\ufe00", "\u1039\u1000\ufe00", "\u1039\u1000\ufe00"],
-        "L": ["\u1038", "\u1038", ""],
+        "L": ["\u1038", "\u1038", "\u1038"],
         "M": ["ံ", "ံ", "ံ"],
         "N": ["\u107a\ufe00", "\u107a\ufe00", "\u107a\ufe00"],
         "O": ["\u1089", "\u1089", "\u103d"],
@@ -117,15 +123,15 @@ langConverter.one2oneMap = private_use_map_combined = {
         "y": ["ယ\ufe00", "ယ\ufe00", "ယ\ufe00"],
         "z": ["\uAA78", "\uAA78", "\uAA78"],
         "@": ["\ua9f2", "\ua9f2", "\u1092"],
-        "(": ["(", "(", ", "],
-        ")": [")", ")", ", "],
+        "(": ["(", "(", "("],
+        ")": [")", ")", ")"],
         "/": ["\u104b", "\u104b", "\u104b"],
         "\\": ["\u104a", "\u104a", "\u104a"],
         "[": ["\u103c", "\u103c", "\u103c"],
         "|": ["\u103c", "\u103c", "\u1039\u101c\ufe00"],
         "]": ["\u103c", "\u103c", "\u103c"],
         "{": ["\u103c", "\u103c", "\u103c"],
-        "}": ["\u103a\u103d", "\u103a\u103d", "\u106c"],
+        "}": ["\u103a\u103d", "\u103a\u103d", "\u105c"],
         "~": ["", "", "\u1039\u101a\ufe00"],
         "1": ["၁", "၁", "၁"],
         "2": ["၂", "၂", "၂"],
@@ -137,7 +143,6 @@ langConverter.one2oneMap = private_use_map_combined = {
         "8": ["၈", "၈", "၈"],
         "9": ["၉", "၉", "၉"],
         "0": ["၀", "၀", "၀"],
-        " ": ["\u0020", "\u0020", "\u0020"],
         "#": ["\u1036", "\u1036", "\u1036"],
         "$": ["\u102e", "\u102e", "\u102e"],
         "^": ["\u102c", "\u102c", "\u102c"],
@@ -145,9 +150,11 @@ langConverter.one2oneMap = private_use_map_combined = {
         "%": ["\u00a0\u103a", "\u00a0\u103a", "\u00a0\u103a"],
         "&": ["\u00a0\u109d", "&", "\u00a0\u109d"],
         "`": ["`", "`",  "\u1039ꩡ\ufe00"],
-        "~": ["~", "~", "~"]
+        "~": ["~", "~", "\u1039\u101a"]
 };
 
+// Get the data
+langConverter.one2oneMap = langConverter.dictionaryToMap(private_use_map_combined);
 
 const banchobMap = {
   'N': 'ŋ',

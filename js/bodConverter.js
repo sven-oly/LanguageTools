@@ -8,6 +8,8 @@ langConverter.transformRules = [
   [/(\u0f85)([\u0f71-\u0f7d])([\u0f40-\u0f6a])/gi, "$1$3$2"]
 ];
 
+langConverter.one2oneMap = null;
+
 langConverter.encoding_data = {
     'Ahom': {index:0, outputEncoding:'Unicode', outputScript:'Ahom'},
     // Are they the same code points?

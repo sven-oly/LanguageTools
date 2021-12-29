@@ -10,22 +10,7 @@
 
   <!-- Font encoding areas -->
   <style>
-    {% for encoding in encoding_list %}
-    @font-face {
-      font-family:'{{encoding.font_name}}';
-      src:url('{{encoding.font_path}}'){% if '.ttf' in encoding.font_path %}format('truetype'){%endif%}{% if '.TTF' in encoding.font_path %}format('truetype'){%endif%}{% if '.otf' in encoding.font_path %}format('opentype'){%endif%}{%if '.woff' in encoding.font_path %}format('woff'){%endif%};
-      font-weight:normal;
-      font-style:normal;
-      font-size: 32px;
-    }
-    .{{encoding.font_name}} {
-      font-family:'{{encoding.font_name}}';
-      font-size: 32px;
-    }
-    {% endfor %}
-
   <!-- Unicode fonts -->
-
   <style>
   {% for font in unicode_list %}
     @font-face {
@@ -56,6 +41,7 @@
     font-size:20px;
     }
   </style>
+  <script src="/js/baseConverter.js"></script>
   {% if converter_list %}
   <script src="{{converterJS}}"></script>
   {% endif %}
@@ -83,19 +69,7 @@
   {% for kb in kb_list %}
   kb_list.push({{kb.shortName}});
   kb_fonts.push("{{kb.fontFamily}}");
-  const {{kb.shortName}}_transform =  {{kb.shortName}}.transform;
   {% endfor %}
-
-  function onPageLoaded() {
-    var transform_table = document.getElementById('transform_table');
-    var transform_table2 = document.getElementById('transform_table2');
-    var transform_table3 = document.getElementById('transform_table3');
-    buildingTransformTable(transform_table, transform_table2, transform_table3);
-  }
-
-  const encoding_font_list = [
-  {% for encoding in encoding_list %}"{{encoding.family}}",{% endfor %}
-  ];
 
   const unicode_font_list = [
   {% for font in unicode_list %}"{{font.family}}",{% endfor %}
@@ -136,68 +110,132 @@
     }
   }
 
-function buildingTransformTable(table1, table2, table3) {
-  var fontsize="14px";
-  var code;
+  function onPageLoaded() {
+    buildingTransformTable();
+  }
 
+  {% if converter_list %}
+  {% for conversion in converter_list.conversions %}
+    var {{conversion}} = {{converter_list.convert_obj}}['conversions']['{{conversion}}'].convert;
+    {% endfor %}
+  {% endif %}
+
+  {% if converter_list %}
+  // TODO: update to work with more than Tangsa conversions.
+  var converter_PUA_to_Unicode = nstConverter_obj['conversions']['GW_to_Unicode'].convert;
+  {% endif %}
+
+  var reverse_sort = false;
+  // Convert to Tangsa Unicode to compare PUA values
+  function compareRowsByColumnUnicode(a, b) {
+  {% if converter_list %}
+    a = converter_PUA_to_Unicode(a);
+    b = converter_PUA_to_Unicode(b);
+  {% endif %}
+    if (reverse_sort) {
+      if (a > b) {
+       return -1;
+      } else if (a < b) {
+       return 1;
+      }
+      return 0;
+    } else {
+      if (a < b) {
+       return -1;
+      } else if (a > b) {
+        return 1;
+      }
+      return 0;
+    }
+  }
+
+function buildingTransformTable() {
   if (kb_list === undefined) {
     return;
   }
-  var tables = [table1, table2, table3];
-  var rowNum = 0;
 
-  for (var kb_index in kb_list) {
-    var rowNum = 0;
-    table = tables[kb_index];
-    var header = table.createTHead();
-    var row = table.insertRow(0);
+  const fontsize="24px";
+  const cellWidth = "200px";
+  const numberKeyboards = kb_list.length;
 
-    var kb = kb_list[kb_index];
-    var this_transform = kb.transform;
-    if (!this_transform) continue;
-
-    var pattern_list = [];
-    var this_kb_name = kb.title;
-
-    row = table.insertRow(rowNum);
-    rowNum += 1;
-
-    row.insertCell(0).innerHTML = this_kb_name + " input";
-    row.insertCell(1).innerHTML = "output";
+  // Get all the patterns in all the lists.
+  const patternMap = new Map();
+  for (let kb_index in kb_list) {
+    const kb = kb_list[kb_index];
+    const this_transform = kb.transform;
+    // Ignore if no transforms or just a placeholder
+    if (!this_transform ||
+        Object.keys(this_transform).length <= 1) continue;
     for (pattern in this_transform) {
-      pattern_list.push(pattern);
-    }
-    pattern_list.sort(compareRowsByColumnUnicode);
-
-    for (var index in pattern_list) {
-      var pattern = pattern_list[index];
-      var result =  this_transform[pattern];
-      // Make pattern human readable
-      if (pattern != '|') {
-        pattern = pattern.replace('|', ' | ');
+      let result = this_transform[pattern];
+      if (result === pattern) continue;  // No point in identity!
+      let currentArray;
+      if (patternMap.has(pattern)) {
+        // Get the array.
+        currentArray = patternMap.get(pattern);
+      } else {
+        // A new one!
+        currentArray = new Array(numberKeyboards);
       }
-
-      var row = table.insertRow(rowNum);
-      rowNum += 1;
-
-      var cell1 = row.insertCell(0);
-      cell1.style.fontSize = "24px";
-      cell1.style.width = "200px";
-      cell1.style.fontFamily = kb_fonts[kb_index];
-
-      var cell2 = row.insertCell(1);
-      var fontStringUni = kb_fonts[kb_index];
-      cell2.className = fontStringUni;
-      cell2.style.fontFamily = fontStringUni;
-      cell2.style.fontSize = "24px";
-
-      cell1.innerHTML = pattern;
-      cell1.title = utf16common(pattern, "", " ", null, []);
-      cell2.innerHTML = result;
-
-      cell2.title = utf16common(result, "", " ", null, []);
+      currentArray[kb_index] = result;
+      patternMap.set(pattern, currentArray);
     }
-  }
+  };
+
+  // Just one table.
+  let table = document.getElementById('transform_table');
+  const header = table.createTHead();
+  let rowNum = 0;
+  let headerRow = table.insertRow(rowNum);
+
+  let cellIndex = 1;
+
+  headerRow.insertCell(0).innerHTML = "input";
+  for (let kb_index = 0; kb_index < numberKeyboards; kb_index ++) {
+    if (!kb_list[kb_index].transform) continue;
+    if (Object.keys(kb_list[kb_index].transform).length <= 1) continue;
+    // Create headers.
+    const kb = kb_list[kb_index];
+    const headerCell = headerRow.insertCell(cellIndex);
+    headerCell.innerHTML = kb.title +" output";
+    cellIndex += 1;
+  };
+
+  // Now build table based on the patternMap.
+  const patternIterator = patternMap.keys();
+
+  cellIndex = 1;
+  for (let patternKey of patternMap.keys()) {
+    if (patternKey) {
+      const patternRow = patternMap.get(patternKey);
+      // One row for each row of patternMap.
+      rowNum ++;
+      let row = table.insertRow(rowNum);
+      let cell0 = row.insertCell(0);
+      cell0.innerHTML = patternKey;
+      cell0.title = utf16common(patternKey, "", " ", null, []);
+      cell0.style.fontSize = fontsize;
+
+      cellIndex = 1;
+      // !!!
+
+      for (let kb_index = 0; kb_index < numberKeyboards; kb_index ++) {
+        if (!kb_list[kb_index].transform) continue;
+        if (Object.keys(kb_list[kb_index].transform).length <= 1) continue;
+        let result = patternRow[kb_index];
+        let cell = row.insertCell(cellIndex);
+
+        if (result == undefined) result = "";
+
+        cell.innerHTML = result;
+        cell.title = utf16common(result, "", " ", null, []);
+        cell.style.fontSize = fontsize;
+        cell.style.width = cellWidth;
+        cell.style.fontFamily = kb_fonts[kb_index];
+        cellIndex += 1;
+      }
+    }
+  }  // of while loop
 }
   </script>
 </head>
@@ -210,18 +248,10 @@ function buildingTransformTable(table1, table2, table3) {
   <p>The following are transforms in the keyboards for {{language}}.
   <p>Hint: hover over the Unicode conversions for the hex code points.
 
-  <div class="span-10">
-    <table id='transform_table' border="3">
-    </table>
+  <div class="span-20">
+    <table id='transform_table' border='3'></table>
   </div>
-  <div class="span-10">
-    <table id='transform_table2' border="3">
-    </table>
-  </div>
-  <div class="span-10">
-    <table id='transform_table3' border="3">
-    </table>
-  </div>
+
 </div>
 </body>
 </html>

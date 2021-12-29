@@ -4,7 +4,7 @@ const langConverter = new langConverterClass('zag', 'Zaghawa');
 // From ZaghawBeria
 // TODO: fill these in with actual code points when the output range is
 // defined.
-langConverter.one2oneMap = private_use_map_combined = {
+private_use_map_combined = {
   '\u0020': ['\u0020'],
   '\u0021': ['\u0021'],
   '\u0022': ['\u0022'],
@@ -144,5 +144,6 @@ langConverter.one2oneMap = private_use_map_combined = {
   '\u0116': ['\udb80\udd16'],
   '\u0117': ['\udb80\udd17'],
   '\u0130': ['\udb80\udd30'],
-}
+};
 
+langConverter.one2oneMap = langConverter.dictionaryToMap(private_use_map_combined);

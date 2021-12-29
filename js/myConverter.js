@@ -3,11 +3,13 @@ const langConverter = new langConverterClass('my', 'Myanmar');
 
 langConverter.encoding_data = {
     'WWBurn': {index:0, outputEncoding:'Unicode', outputScript:'Myanmar'},
+    'WwinBurmese': {index:1, outputEncoding:'Unicode', outputScript:'Myanmar'},
+
 };
 
 // ww_burn.ttf
 // TODO: Should add WwinBurmese conversion as second
-langConverter.one2oneMap = private_use_map_combined = {
+private_use_map_combined = {
   '\u0020': ['\u0020'],
   '\u0021': ['\u100a'],
   '\u0022': ['\u1013'],
@@ -161,6 +163,8 @@ langConverter.one2oneMap = private_use_map_combined = {
   '\u00f6': ['\u102d\u1036'],
   '\u00f7': ['\u00f7'],
   '\u00f8': ['\u1004\u103a\u1039\u1036'],  }
+
+langConverter.one2oneMap = langConverter.dictionaryToMap(private_use_map_combined);
 
 function convertEncodingToUnicode(inbox, outbox, encodingIndex) {
   var inarea = document.getElementById(inbox);

@@ -3,9 +3,13 @@ const langConverter = new langConverterClass('win', 'Hoocąk');
 
 // Font encoding information.
 // Map by font name, index in lookup table, output encoding, output script. AkolkhetyN to Georgian Unicode.
-const encoding_data = {
+const old_encoding_data = {
     'Hoocąk': [0, 'Unicode', 'Latin'],
     };
+
+langConverter.encoding_data = {
+    'Hoocąk': {index:0, outputEncoding:'Unicode', outputScript:'Latin'},
+};
 
 langConverter.map_translit_output = [];
 langConverter.translit_source = 'Hoocąk';
@@ -14,7 +18,7 @@ langConverter.translit_source = 'Hoocąk';
 langConverter.map_encoding_names = [
   'Hocak Old'];
 
-langConverter.one2oneMap =  private_use_map_combined = {
+private_use_map_combined = {
   '\\': ['\u0328'],
   '`': ['\u030C'],
   '~': ['\u030C'],
@@ -30,3 +34,5 @@ langConverter.one2oneMap =  private_use_map_combined = {
   '\u011e': ['Ǧ'],
   '\u011f': ['ǧ'],
 };
+
+langConverter.one2oneMap = langConverter.dictionaryToMap(private_use_map_combined);

@@ -9,7 +9,7 @@ langConverter.encoding_data = {
     'Mong4_fixed': {index:0, outputEncoding:'Unicode', outputScript:'Nyiakeng Puachue Hmong'},
     };
 
-langConverter.one2oneMap = private_use_map_combined = {
+private_use_map_combined = {
   '\u0020': [' '],
   '\u0021': ['!'],
   '\u0022': ['\"'],
@@ -110,6 +110,8 @@ langConverter.one2oneMap = private_use_map_combined = {
   '\u007d': ['\ud838\udd3b'],
   '\u007e': ['~'],
 };
+
+langConverter.one2oneMap = langConverter.dictionaryToMap(private_use_map_combined);
 
 function toLower(instring) {
   // If code in range 13a0-1eef, add ab70-13a0

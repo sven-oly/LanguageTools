@@ -12,7 +12,7 @@ langConverter.encoding_data = {
     'Alaam': {index:1, outputEncoding:'Unicode', outputScript:'Chakma'},
 };
 
-langConverter.one2oneMap =  private_use_map_combined = {
+private_use_map_combined = {
   '\u0000': ['\u0020', '\u0000', '\u0000'],  // null
   '\u0009': ['\u0009', '\u0009'],  // horizontal tab
   '\u000D': ['\u000D', '\u0000'],  // Carriage return
@@ -230,6 +230,8 @@ langConverter.one2oneMap =  private_use_map_combined = {
   '\u2260': ['\u0000', '\u25cc'], // ≠ --> "dotted circle"
 
 };
+
+langConverter.one2oneMap = langConverter.dictionaryToMap(private_use_map_combined);
 
 langConverter.transformRules = [
   [/\uD804\uDD2c\uD804([\uDD03-\uDD26])/gi,

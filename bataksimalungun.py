@@ -34,17 +34,17 @@ encoding_font_list = [
     # Source: https://ulikozok.com/aksara-batak/batak-font/
     {
         'font_path': '/fonts/batak/MANDAILI.TTF',
-        'font_name': 'MANDAILI',
+        'font_name': 'Mandailing',
         'display_name': 'Mandailing',
     },
     {
         'font_path': '/fonts/batak/VARIANTS.TTF',
-        'font_name': 'VARIANTS',
+        'font_name': 'Variants',
         'display_name': 'Variants',
     },
     {
         'font_path': '/fonts/batak/TOBA____.TTF',
-        'font_name': 'TOBA',
+        'font_name': 'Toba',
         'display_name': 'Toba',
     },
 ]
@@ -109,6 +109,7 @@ class langInfo():
     self.Language = Language
     self.Language_native = Language_native
     self.test_data = u'̄'
+    self.encoding_font_list = encoding_font_list
     self.unicode_font_list = unicode_font_list
     self.lang_list = [Language]
     self.kb_list = kb_list

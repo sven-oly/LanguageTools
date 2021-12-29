@@ -38,18 +38,18 @@ links = [
   # {'linkText': 'Resources',
   #   'ref': '/' + LanguageCode + '/downloads/'
   # },
-  # {'linkText': 'Unicode page',
-  #  'ref': 'https://www.unicode.org/charts/PDF/U1C00.pdf'
-  # },
-  # {'linkText': 'Lepcha script',
-  #  'ref': 'https://en.wikipedia.org/wiki/Lepcha_alphabet'
-  # },
-  {'linkText': 'Wikipedi page',
-   'ref': 'https://en.wikipedia.org/wiki/Santali_language'
+  {'linkText': 'Unicode page',
+   'ref': 'https://www.unicode.org/charts/PDF/U1C50.pdf'
   },
-  {'linkText': 'Olchiki Ddevelopment & Resource',
+  {'linkText': 'Ol Chiki Wikipedia',
+   'ref': 'https://en.wikipedia.org/wiki/Ol_Chiki_script'
+  },
+  {'linkText': 'Olchiki Development & Resource',
    'ref': 'https://olchikidr.blogspot.com/'
   },
+  {'linkText': 'OFDN Converter',
+   'ref': 'https://theofdn.org/openspeaks/language-tool/santali-unicode-converter-release/'
+   },
   # {'linkText': 'Combiners',
   #  'ref': '/lep/diacritic/'
   #  },
@@ -131,6 +131,10 @@ class langInfo:
         self.lang_list = [LanguageCode]  # This may be extended
 
         self.kb_list = [
+          {'shortName': 'satofdn',
+           'longName': 'Santali OFDN',
+           'source': 'https://theofdn.org/openspeaks/language-tool/santali-unicode-converter-release/',
+           },
           {'shortName': LanguageCode,
            'longName': 'Santali Windows CLDR',
            'source': 'https://unicode-org.github.io/cldr-staging/charts/37/keyboards/layouts/sat.html',
@@ -171,7 +175,8 @@ app = webapp2.WSGIApplication([
   ('/' + LanguageCode + '/downloads/', base.Downloads),
   ('/' + LanguageCode + '/encodingRules/', base.EncodingRules),
   ('/' + LanguageCode + '/diacritic/', base.DiacriticHandler),
-  ('/' + LanguageCode + '/AllFonts/', base.AllFontTest ),
+  ('/' + LanguageCode + '/AllFonts/', base.AllFontTest),
+  ('/' + LanguageCode + '/kbtransforms/', base.KeyboardTransforms),
 ], debug=True,
   config={'langInfo': langInstance}
 )

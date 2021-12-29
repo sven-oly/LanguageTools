@@ -105,7 +105,7 @@ class langInfo:
           {
             'name': 'KeyMan Elfdalian Mobile + desktop',
             'source': '/resources/ovd/elfdalian.kmp',
-            'description': 'Version 1.1 .kmp includes Mobile 11-Nov-2021'
+            'description': 'Version 1.1 .kmp includes Mobile 7-Dec-2021'
           },
         ]
 

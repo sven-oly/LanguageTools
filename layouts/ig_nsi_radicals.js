@@ -13,7 +13,7 @@
 // keys [ ] \ | add diacritics to some vowels, m, and n.
 var IG_NSI_RADICAL_LAYOUT = {
   'id': 'ig_nsi_radicals',
-  'title': 'Igbo input for Nsibidi',
+  'title': 'Igbo radicals for Nsibidi',
   'mappings': {
     ',c': {
       '': '`1234567890-=' +

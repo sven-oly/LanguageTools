@@ -36,7 +36,7 @@ LanguageCode = 'syl'
 encoding_font_list = [
   {
     'font_path': '/fonts/SurmaL-Regular.ttf',
-    'font_name': 'SurmaL',
+    'font_name': 'SurmaLRegular',
     'display_name': 'SurmaL',
   },
 ]
