@@ -28,7 +28,7 @@ from google.appengine.ext.webapp import template
 # English name, language code, name in the language.
 LanguageList = [
   (u'A\u1e49angu Yol\u014bu', 'en_anangu', 'Aṉangu-Yolngu'),
-  ('Ahom/Tai/Aiton/Phake', 'aho'),
+  ('Ahom', 'aho'),
   ('Bamum', 'bax'),
   (u'Bété', 'bete'),
   ('Batak Sinalungun', 'bts'),
@@ -74,7 +74,7 @@ LanguageList = [
   ('Wancho', 'nnp'),
   ('Ojibwe', 'oj'),
   ('Kinyarwanda', 'rw'),
-  ('Shan', 'shn'),
+  ('Shan', 'shn', 'လိၵ်ႈတႆ'),
   ('Sora', 'srb'),
   ('Tulu', 'tcy'),
   ('Tongan', 'to'),
@@ -88,7 +88,8 @@ LanguageList = [
   ('Tamil', 'ta', 'தமிழ்'),
   ('Santali', 'sat', 'ᱥᱟᱱᱛᱟᱲᱤ'),
   ('Meitei (Manipuri)', 'mni', 'ꯃꯤꯇꯩ ꯃꯌꯦꯛ'),
-
+  ('Aiton', 'aio', '(တႝ)ဢႝတွꩫ်'),
+  ('Khamti', 'kmt', '(တဲး)ၵမ်းတီ'),
 ]
 
 

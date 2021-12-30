@@ -92,12 +92,6 @@ class langInfo():
         {'shortName':  'aho',
          'longName': 'Tai Ahom'
         },
-        {'shortName':  'kht',
-         'longName': 'Khamti'
-        },
-        {'shortName':  'shn',
-         'longName': 'Shan'
-        },
       ]
 
     self.links = [

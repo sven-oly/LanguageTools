@@ -121,11 +121,11 @@ class langInfo:
             'display_name': 'Ol Chiki Royal',
             'location': 'https://wesanthals.tripod.com/id19.html'
           },
-          {
-            'font_path': '/fonts/santali/encoded/olchiki_usara.ttf',
-            'font_name': 'olchiki_usara',
-            'display_name': 'Ol Chiki Usara',
-          },
+          # {
+          #   'font_path': '/fonts/santali/encoded/olchiki_usara.ttf',
+          #   'font_name': 'olchiki_usara',
+          #   'display_name': 'Ol Chiki Usara',
+          # },
         ]
 
         self.lang_list = [LanguageCode]  # This may be extended
@@ -157,7 +157,7 @@ class langInfo:
         self.default_base_consonant = u'\0x61'
 
         self.encodedRanges = [
-            (0x20, 0xff),
+            (0x30, 0x39), (0x41, 0x5d), (0x61, 0x7d), (0xb9, 0xb9), (0xbc, 0xbe)
         ]
 
         # For additional resources for download

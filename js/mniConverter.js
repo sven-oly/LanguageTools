@@ -12,8 +12,8 @@ langConverter.addOne2OneTransforms(
 );
 
 langConverter.addOne2OneTransforms(
-  "1234567890[]\\",
-  "꯱꯲꯳꯴꯵꯶꯷꯸꯹꯰ꯑꯢꯌ",
+  "1234567890[]\\=",
+  "꯱꯲꯳꯴꯵꯶꯷꯸꯹꯰ꯑꯢꯌꯆ",
   0
 );
 

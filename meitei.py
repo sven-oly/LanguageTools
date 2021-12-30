@@ -32,9 +32,9 @@ links = [
    },
   {'linkText': 'Converter',
    'ref': '/' + LanguageCode + '/convertUI/'},
-  # {'linkText': 'Font conversion summary',
-  #   'ref': '/' + LanguageCode + '/encodingRules/'
-  # },
+  {'linkText': 'Font conversion summary',
+    'ref': '/' + LanguageCode + '/encodingRules/'
+  },
   # {'linkText': 'Resources',
   #   'ref': '/' + LanguageCode + '/downloads/'
   # },
@@ -72,6 +72,7 @@ class langInfo:
           {'family': 'EeyekRegular',
            'longName': 'Eeyek-Regular',
            'source': '/fonts/Meitei/Eeyek-Regular.ttf',
+           'url': 'http://tabish.freeshell.org/eeyek/download.html'
            },
         ]
 
@@ -112,9 +113,11 @@ class langInfo:
 
         self.encodedRanges = [
             (0x30, 0x39), (0x3d, 0x3d), (0x41, 0x47), (0x49, 0x49),
-            (0x4b, 0x4b), (0x4d, 0x4f), (0x52, 0x54), (0x57, 0x7a)
+            (0x4b, 0x4b), (0x4d, 0x4f), (0x52, 0x54), (0x57, 0x58),
+            (0x5a, 0x5c), (0x5f, 0x67), (0x69, 0x6d), (0x6f, 0x73), (0x76, 0x7a)
         ]
 
+        self.convertText = ''
         # For additional resources for download
         self.text_file_list = []
         # TODO: Fill in the rest of the common data.

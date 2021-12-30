@@ -5,28 +5,35 @@
 
   <title>{{language}} encoding conversions to Unicode</title>
   <style>
-    <!-- Font encoding areas -->
+    <!-- Font encodings -->
+        @font-face{
+      font-family:'Arial';
+      font-weight:normal;
+      font-style:normal;
+    }
+    .Arial {
+      font-family:Arial;
+      font-size: 30px;
+    }
     {% for encoding in encoding_list %}
     @font-face{
       font-family:'{{encoding.font_name}}';
       src:url('{{encoding.font_path}}'){% if '.ttf' in encoding.font_path %}format('truetype'){%endif%}{% if '.TTF' in encoding.font_path %}format('truetype'){%endif%}{% if '.otf' in encoding.font_path %}format('opentype'){%endif%}{%if '.woff' in encoding.font_path %}format('woff'){%endif%};
       font-weight:normal;
       font-style:normal;
-      font-size: 32px;
     }
     .{{encoding.font_name}} {
       font-family:{{encoding.font_name}};
-      font-size: 32px;
+      font-size: 30px;
     }{% endfor %}
 
-  <!-- Unicode fonts -->
+    <!-- Unicode fonts -->
     {% for font in unicode_list %}
     @font-face{
       font-family:'{{font.family}}';
       src:url('{{font.source}}'){% if '.ttf' in font.source %}format('truetype'){%endif%}{% if '.TTF' in font.source %}format('truetype'){%endif%}{% if '.otf' in font.source %}format('opentype'){%endif%}{%if '.woff' in font.source %}format('woff'){%endif%};
       font-weight:normal;
       font-style:normal;
-      font-size: 32px;
     }
     .{{font.family}} {
       font-family:{{font.family}};
@@ -68,9 +75,6 @@
   const e = {keyboard: k};
   const google = {elements: e};
   </script>
-
-  {% for kb in kb_list %}
-  <script src="/layouts/{{kb.shortName}}.js"></script>{% endfor %}
 
   <script>
   function onPageLoaded() {
@@ -193,12 +197,11 @@ function buildEncodingTable(table) {
     let encodingIndex;
     let fontName;
     for (let i = 0; i<encoding_font_list.length; i ++) {
+      const fontName = encoding_font_list[i];
       if (langConverter.encoding_data) {
-        fontName = encoding_font_list[i];
         encodingIndex = langConverter.encoding_data[fontName].index;
       } else if (typeof map_font_to_encoding == 'object') {
-        fontName = encoding_font_list[i];
-        encodingIndex =  encoding_data[encoding_font_list[i]];
+        encodingIndex =  encoding_data[fontName];
       } else {
         encodingIndex = i;
       }
@@ -209,17 +212,13 @@ function buildEncodingTable(table) {
       cell.style.fontFamily = fontName;
       cell.style.fontSize = "30px";
       outIndex += 1;
-      // Temporary
-      //if (code.length > maxTextSize) {
-      //  maxTextSize = code.length;
-      //  maxText = code;
-      //}
+
       // Unicode conversion.
       const cellUni = row.insertCell(outIndex);
       cellUni.style.borderRight = "thick solid";
       if (encodingIndex < items.length && items[encodingIndex]) {
         cellUni.innerHTML = items[encodingIndex];
-        cellUni.style.fontFamily = fontStringUni = unicode_font_list[0];
+        cellUni.style.fontFamily = unicode_font_list[0];
         cellUni.style.fontSize = "30px";
         // Add the Unicode hex for hover info.
         // TODO: show as full Unicode numeric values
@@ -271,7 +270,6 @@ function setUnicodeFontColumns(unicodeFont, tableId) {
 
 
 <body onload="onPageLoaded();">
-
   <h1>{{language}} encoding converters to Unicode</h1>
   <p>This table gives the code points and characters shown in several
     font encodings for {{language}}. Conversions to Unicode appear for each entry.
