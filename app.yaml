@@ -44,6 +44,9 @@ handlers:
 - url: /demo_ccp/*
   script: chakma.app
 
+- url: /aio/.*
+  script: aiton.app
+
 - url: /bax/.*
   script: bamum.app
 
@@ -112,6 +115,9 @@ handlers:
 
 - url: /kgp/.*
   script: kaingang.app
+
+- url: /kht/.*
+  script: khamti.app
 
 - url: /kpe/.*
   script: kpelle.app

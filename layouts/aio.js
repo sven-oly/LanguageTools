@@ -52,6 +52,7 @@ var AIO_LAYOUT = {
     }
   },
   'transform' : {
+    '^': '^',  // Placeholder
   }
 };
 

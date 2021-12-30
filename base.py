@@ -26,6 +26,21 @@ import webapp2
 
 from google.appengine.ext.webapp import template
 
+try:
+  unichr
+except NameError:
+  unichr = chr
+
+try:
+  UNICODE_EXISTS = bool(type(unicode))
+except NameError:
+  unicode = lambda s: str(s)
+
+try:
+  xrange
+except NameError:
+  xrange = range
+
 # A base class for handling the general things needed in a language.
 class languageTemplate():
 
@@ -252,11 +267,26 @@ class ConvertUIHandler(webapp2.RequestHandler):
          'string': u'\u0004\u0005\u0006\u0007\u0008\u0009' +
          '\u000a\u000b'},
       ]
-
+    text = ''
+    #print('********* %s' % langInfo.encodedRanges)
+    #try:
+    encode_chars = []
+    # Get conversion data from explicit list of encoded hex values.
     try:
-      text = langInfo.convertText
+      for interval in langInfo.encodedRanges:
+        start = interval[0]
+        end = interval[1] + 1
+
+        for x in range(start, end):
+          encode_chars.append(unichr(x))
+
+      text = ''.join(encode_chars)
     except:
-      text = self.request.get('text', oldChars)
+      print('----- failed')
+      try:
+        text = langInfo.convertText
+      except:
+        text = self.request.get('text', oldChars)
 
     try:
       text_direction = langInfo.direction

@@ -14,23 +14,20 @@
 # limitations under the License.
 #
 
-import os
 import webapp2
 
 import base
 
-from google.appengine.ext.webapp import template
-
 # For Python 2.x. and Python
 try:
-  unichr
+    unichr
 except NameError:
-  unichr = chr
+    unichr = chr
 
-Language = 'TDD'
-Language_native = 'TBD'
-LanguageCode = 'CODE'
-ScriptCode = 'Latn'
+Language = 'Aiton'
+Language_native = '(တႝ)ဢႝတွꩫ်'
+LanguageCode = 'aio'
+ScriptCode = 'Mymr'
 
 links = [
   {'linkText': 'Keyboard',
@@ -44,21 +41,12 @@ links = [
   # {'linkText': 'Resources',
   #   'ref': '/' + LanguageCode + '/downloads/'
   # },
-  # {'linkText': 'Unicode page',
-  #  'ref': 'https://www.unicode.org/charts/PDF/U1C00.pdf'
-  # },
-  # {'linkText': 'Lepcha script',
-  #  'ref': 'https://en.wikipedia.org/wiki/Lepcha_alphabet'
-  # },
-  # {'linkText': 'Wikipedi page',
-  #  'ref': 'https://en.wikipedia.org/wiki/Lepcha_language'
-  # },
+  {'linkText': 'Wikipedi Aiton language',
+   'ref': 'https://en.wikipedia.org/wiki/Aiton_language'
+   },
   # {'linkText': 'Ethnolog',
   #  'ref': 'https://www.ethnologue.com/language/lep'
   # },
-  # {'linkText': 'Combiners',
-  #  'ref': '/lep/diacritic/'
-  #  },
 ]
 
 
@@ -69,21 +57,29 @@ class langInfo:
         self.Language_native = Language_native
         self.test_data = u''
         self.unicode_font_list = [
-          {'family': 'NotoSerif',
-           'longName': 'Noto Serif',
-           'source': '/fonts/NotoSerif-Regular.ttf',
+          {'source': '/fonts/ahom_aiton/Aitongr.ttf',
+           'family': 'Aitongr',
+           'longName': 'Aiton Gr',
            },
-          {'family': 'NotoSans',
-           'longName': 'Noto Sans',
-           'source': '/fonts/NotoSans-Regular.ttf',
+          {'source': '/fonts/ahom_aiton/AitonUni.gr_2.ttf',
+           'family': 'Aitongr2',
+           'longName': 'Aiton Uni Gr2',
+           },
+          {'source': '/fonts/Myanmar/NotoSansMyanmar-Regular.ttf',
+           'family': 'NotoSansMyanmar',
+           'longName': 'Noto Sans Myanmar',
+           },
+          {'source': '/fonts/Myanmar/NotoSerifMyanmar-Light.ttf',
+           'family': 'NotoSerifMyanmarLight',
+           'longName': 'Noto Serif Myanmar Light',
            },
         ]
 
         self.encoding_font_list = [
           {
-            'font_path': '/fonts/xyz.ttf',
-            'font_name': 'xyz',
-            'display_name': 'xyz',
+            'font_path': '/fonts/ahom_aiton/AITON.TTF',
+            'font_name': 'Aiton',
+            'display_name': 'Aiton',
           },
         ]
 
@@ -91,7 +87,7 @@ class langInfo:
 
         self.kb_list = [
           {'shortName': LanguageCode,
-           'longName': LanguageCode,
+           'longName': 'Tai Aiton',
            },
         ]
 

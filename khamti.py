@@ -19,18 +19,10 @@ import webapp2
 
 import base
 
-from google.appengine.ext.webapp import template
-
-# For Python 2.x. and Python
-try:
-  unichr
-except NameError:
-  unichr = chr
-
-Language = 'TDD'
-Language_native = 'TBD'
-LanguageCode = 'CODE'
-ScriptCode = 'Latn'
+Language = 'Khamti'
+Language_native = '(တဲး)ၵမ်းတီ'
+LanguageCode = 'kht'
+ScriptCode = 'Mymr'
 
 links = [
   {'linkText': 'Keyboard',
@@ -50,9 +42,9 @@ links = [
   # {'linkText': 'Lepcha script',
   #  'ref': 'https://en.wikipedia.org/wiki/Lepcha_alphabet'
   # },
-  # {'linkText': 'Wikipedi page',
-  #  'ref': 'https://en.wikipedia.org/wiki/Lepcha_language'
-  # },
+  {'linkText': 'Wikipedi page',
+   'ref': 'https://en.wikipedia.org/wiki/Khamti_language'
+  },
   # {'linkText': 'Ethnolog',
   #  'ref': 'https://www.ethnologue.com/language/lep'
   # },
@@ -69,13 +61,33 @@ class langInfo:
         self.Language_native = Language_native
         self.test_data = u''
         self.unicode_font_list = [
-          {'family': 'NotoSerif',
-           'longName': 'Noto Serif',
-           'source': '/fonts/NotoSerif-Regular.ttf',
-           },
-          {'family': 'NotoSans',
-           'longName': 'Noto Sans',
-           'source': '/fonts/NotoSans-Regular.ttf',
+          { 'source': '/fonts/khamti/NamKio-Regular.ttf',
+            'family': 'NamKio-Regular',
+            'longName': 'NamKio Regular',
+            },
+          { 'source': '/fonts/khamti/NamKio-Bold.ttf',
+            'family': 'NamKio-Bold',
+            'longName': 'NamKio Bold',
+            },
+          { 'source': '/fonts/khamti/NamKioBook-Regular.ttf',
+            'family': 'NamKioBook-Regular',
+            'longName': 'NamKioBook Regular',
+            },
+          { 'source': '/fonts/khamti/NamKioBook-Bold.ttf',
+            'family': 'NamKioBook-Bold',
+            'longName': 'NamKioBook Bold',
+            },
+          { 'source': '/fonts/Padauk-Regular.ttf',
+            'family': 'Padauk',
+            'longName': 'Padauk',
+            },
+          { 'source': '/fonts/Myanmar/NotoSansMyanmar-Regular.ttf',
+            'family': 'NotoSansMyanmar',
+            'longName': 'Noto Sans Myanmar',
+            },
+          {'source': '/fonts/Myanmar/NotoSerifMyanmar-Light.ttf',
+           'family': 'NotoSerifMyanmarLight',
+           'longName': 'Noto Serif Myanmar Light',
            },
         ]
 
@@ -103,7 +115,6 @@ class langInfo:
         self.default_base_consonant = u'\0x61'
 
         self.encodedRanges = [
-            (0x20, 0xff),
         ]
 
         # For additional resources for download

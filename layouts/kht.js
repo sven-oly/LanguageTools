@@ -49,7 +49,9 @@ var KHT_LAYOUT = {
           'zxcvbnm<>?'
     }
   },
-
+  'transform': {
+    '^': '^',  // Placeholder
+  }
 };
 
 // Load the layout and inform the keyboard to switch layout if necessary.

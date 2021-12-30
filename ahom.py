@@ -39,11 +39,6 @@ class langInfo():
             'font_name':'AhomManuscript',
             'display_name': 'Ahom Manuscript',
         },
-        {
-            'font_path': '/fonts/ahom_aiton/AITON.TTF',
-            'font_name': 'Aiton',
-            'display_name': 'Aiton',
-        },
     ]
 
     self.unicode_font_list = [
@@ -62,14 +57,6 @@ class langInfo():
         { 'family': 'AhomUnicode',
           'longName': 'Ahom Manuscript Unicode (prototype)',
           'source': '/fonts/ahom_aiton/AhomUnicode.ttf',
-        },
-        { 'source': '/fonts/ahom_aiton/Aitongr.ttf',
-          'family': 'Aitongr',
-          'longName': 'Aiton Gr',
-        },
-        { 'source': '/fonts/ahom_aiton/AitonUni.gr_2.ttf',
-          'family': 'Aitongr2',
-          'longName': 'Aiton Uni Gr2',
         },
         { 'source': '/fonts/Padauk-Regular.ttf',
           'family': 'Padauk',
@@ -104,9 +91,6 @@ class langInfo():
     self.lang_list = [
         {'shortName':  'aho',
          'longName': 'Tai Ahom'
-        },
-        {'shortName':  'aio',
-         'longName': 'Aiton'
         },
         {'shortName':  'kht',
          'longName': 'Khamti'

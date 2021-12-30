@@ -37,19 +37,19 @@ from google.appengine.ext.webapp import template
 
 # For Python 2.x. and Python
 try:
-  unichr
+    unichr
 except NameError:
-  unichr = chr
+    unichr = chr
 
 try:
-  UNICODE_EXISTS = bool(type(unicode))
+    UNICODE_EXISTS = bool(type(unicode))
 except NameError:
-  unicode = lambda s: str(s)
+    unicode = lambda s: str(s)
 
 try:
-  xrange
+    xrange
 except NameError:
-  xrange = range
+    xrange = range
 
 Language = 'Shan'
 Language_native = 'မြန်မာဘာသာ'
@@ -151,11 +151,11 @@ links = [
      'ref': 'http://unicode.org/charts/PDF/U1000.pdf'
     },
     {'linkText': 'Combiners',
-     'ref': '/shn/diacritic/'
-    },
+     'ref': '/shn/diacritic/'},
+    {'linkText': 'Wiki Shan language',
+     'ref': 'https://en.wikipedia.org/wiki/Shan_language'},
     {'linkText': 'UN DHR',
-     'ref': 'https://unicode.org/udhr/d/udhr_shn.txt'
-     },
+     'ref': 'https://unicode.org/udhr/d/udhr_shn.txt'},
     # {'linkText': 'Transliteration',
     #  'ref': 'https://langtools3.wm.r.appspot.com/translit/',
     # },
@@ -185,6 +185,7 @@ kb_list = [
    'longName': 'Shan Unicode'
    },
 ]
+
 
 class testData():
   def __init__(self):
@@ -332,9 +333,6 @@ class ConvertHandler(webapp2.RequestHandler):
     noreturn = self.request.get('noreturn', None)
     msg = ''
 
-    #logging.info('CONVERT %d characters' % len(input))
-    #logging.info('Input type = >%s<' % input_type)
-
     # THE ACTUAL CONVERSION.
     if True:  ## TODO: Fix later. not my_wwburn_converter_Unicode:
       my_wwburn_converter_Unicode = transliterate.Transliterate(
@@ -402,22 +400,20 @@ class TransliterateHandler(webapp2.RequestHandler):
 # Globals
 # OkellJKW_Translit = None
 
+
 # !!! TODO: adapt to new transliteration for Burmese --> Latin
 class DoTranslitHandler(webapp2.RequestHandler):
-#
-
   def get(self):
     # Get parameters
     logging.info('DoTranslitHandler')
 
     rules = self.request.get('rules', '').decode('unicode-escape')
-    input = self.request.get('input', 'No input')
-    input = urllib.unquote(input.encode('utf-8'))
+    inputData = self.request.get('input', 'No input')
+    inputData = urllib.unquote(inputData.encode('utf-8'))
 
     logging.info('DoTranslitHandler rules = %s' % rules)
 
     error = ''  # Set if there's a problem.
-
     debug = True
 
     OkellJKW_Translit = None
@@ -442,7 +438,7 @@ class DoTranslitHandler(webapp2.RequestHandler):
     out_text = "not transliterated"
 
     try:
-      out_text = trans.transliterate(input)
+      out_text = trans.transliterate(inputData)
     except:
       e = sys.exc_info()[0]
       logging.error('!! Calling transliterate Error e = %s. trans=%s' % (e, trans))
