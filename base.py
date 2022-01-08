@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-#!/usr/bin/env python
+# !/usr/bin/env python
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -20,40 +20,38 @@ import transliterate
 import json
 import logging
 import os
-import sys
-import urllib
 import webapp2
 
 from google.appengine.ext.webapp import template
 
 try:
-  unichr
+    unichr
 except NameError:
-  unichr = chr
+    unichr = chr
 
 try:
-  UNICODE_EXISTS = bool(type(unicode))
+    UNICODE_EXISTS = bool(type(unicode))
 except NameError:
-  unicode = lambda s: str(s)
+    unicode = lambda s: str(s)
 
 try:
-  xrange
+    xrange
 except NameError:
-  xrange = range
+    xrange = range
+
 
 # A base class for handling the general things needed in a language.
-class languageTemplate():
-
+class languageTemplate:
   def __init__(self):
     self.LanguageCode = 'base'
     self.Language = 'General'
     self.Language_native = 'Base Language'
 
     self.encoding_font_list = [
-        { 'font_name': self.Language + 'Font',
-          'display_name': self.Language,
-          'font_path': '/fonts/',
-        },
+        {'font_name': self.Language + 'Font',
+         'display_name': self.Language,
+         'font_path': '/fonts/',
+         },
     ]
 
     self.unicode_font_list = [
@@ -67,22 +65,19 @@ class languageTemplate():
     self.lang_list = []
     self.links = [
         {'linkText': 'Keyboard',
-         'ref': '/' + self.LanguageCode + '/',
-        },
+         'ref': '/' + self.LanguageCode + '/'},
         {'linkText': 'Converter',
          'ref': self.LanguageCode + '/converter/'},
         {'linkText': 'Font conversion summary',
-         'ref': self.LanguageCode + 'encodingRules/'
-        },
+         'ref': self.LanguageCode + 'encodingRules/'},
         {'linkText': 'Resources',
-         'ref': self.LanguageCode + '/downloads/'
-        },
+         'ref': self.LanguageCode + '/downloads/'},
     ]
 
     self.kb_list = [
         {'shortName':  self.LanguageCode,
          'longName': self.Language
-        }
+         }
     ]
 
     self.text_file_list = [
@@ -95,7 +90,8 @@ class languageTemplate():
 
     return
 
-# Explicity NOT PART OF THE CLASS
+# Explicitly NOT PART OF THE CLASS
+
 
 # Shows keyboards for Language
 class LanguagesHomeHandler(webapp2.RequestHandler):
@@ -106,33 +102,33 @@ class LanguagesHomeHandler(webapp2.RequestHandler):
     langInfo = self.app.config.get('langInfo')
 
     try:
-      text_direction = langInfo.direction
+        text_direction = langInfo.direction
     except AttributeError:
-      text_direction = 'ltr'
+        text_direction = 'ltr'
 
     try:
-      test_data = langInfo.test_data
+        test_data = langInfo.test_data
     except AttributeError:
-      test_data = ''
+        test_data = ''
     try:
-      variation_sequence = langInfo.variation_sequence
+        variation_sequence = langInfo.variation_sequence
     except:
-      variation_sequence = None
+        variation_sequence = None
 
     try:
-      encoded_ranges = langInfo.encoded_ranges
+        encoded_ranges = langInfo.encoded_ranges
     except:
-      encoded_ranges = None
+        encoded_ranges = None
 
     try:
-      allFonts = langInfo.allFonts
+        allFonts = langInfo.allFonts
     except:
-      allFonts = False
+        allFonts = False
 
     try:
-      home_html = langInfo.custom_home_template
+        home_html = langInfo.custom_home_template
     except:
-      home_html = 'HTML/demo_general.html'
+        home_html = 'HTML/demo_general.html'
 
     template_values = {
         'allFonts': allFonts,
@@ -163,32 +159,33 @@ class ConvertHandler(webapp2.RequestHandler):
     langInfo = self.app.config.get('langInfo')
 
     try:
-      if langInfo.transliterator:
-        transliterator = transliterate.Transliterate(
-            langInfo.transliterator.TRANS_LIT_RULES,
-            langInfo.transliterator.DESCRIPTION
-        )
+        if langInfo.transliterator:
+            transliterator = transliterate.Transliterate(
+                langInfo.transliterator.TRANS_LIT_RULES,
+                langInfo.transliterator.DESCRIPTION)
     except AttributeError:
-      transliterator = None
+        transliterator = None
 
-    outText = '\u11103\u11101\u11103'
+    out_text = '\u11103\u11101\u11103'
     message = 'TBD'
     error = ''
 
     result = {
-        'outText' : outText,
-        'message' : message,
+        'outText': out_text,
+        'message': message,
         'error': error,
         'language': langInfo.Language,
         'lang_list': langInfo.lang_list,
         'langTag': langInfo.LanguageCode,
         'showTools': self.request.get('tools', None),
-        #'summary' : transliterator.getSummary(),
+        # 'summary' : transliterator.getSummary(),
     }
     self.response.out.write(json.dumps(result))
 
+
 def surrogate_to_utf32(high, low):
     return (high << 10) + low - 0x35fdc00
+
 
 class DiacriticHandler(webapp2.RequestHandler):
   def get(self, match=None):
@@ -196,32 +193,32 @@ class DiacriticHandler(webapp2.RequestHandler):
 
     base_num = self.request.get('base', None)
     if base_num:
-      base_char = unichr(int(base_num, base=16))
+        base_char = unichr(int(base_num, base=16))
     else:
-      base_char = langInfo.base_consonant
+        base_char = langInfo.base_consonant
 
     # Generate combinations of base + diacritic pairs
     combos = []
     table = []
     row_names = []
     for x in langInfo.diacritic_list:
-      if len(x) > 1:
-        utf32 = surrogate_to_utf32(ord(x[0]), ord(x[1]))
-        row = ['%s (0x%x)' % (x, utf32)]
-      else:
-        row = [x + ' (%4x)' % ord(x)]
-      row_names.append(row[0])
-      for y in langInfo.diacritic_list:
-        text = base_char + x + y
-        combos.append({'text': text,
-                       'codes': ['%4x ' % ord(c) for c in text]})
-        row.append(text)
-      table.append(row)
+        if len(x) > 1:
+            utf32 = surrogate_to_utf32(ord(x[0]), ord(x[1]))
+            row = ['%s (0x%x)' % (x, utf32)]
+        else:
+            row = [x + ' (%4x)' % ord(x)]
+        row_names.append(row[0])
+        for y in langInfo.diacritic_list:
+            text = base_char + x + y
+            combos.append({'text': text,
+                           'codes': ['%4x ' % ord(c) for c in text]})
+            row.append(text)
+        table.append(row)
 
     try:
-      text_direction = langInfo.direction
+        text_direction = langInfo.direction
     except AttributeError:
-      text_direction = 'ltr'
+        text_direction = 'ltr'
 
     template_values = {
         'direction': text_direction,
@@ -229,7 +226,7 @@ class DiacriticHandler(webapp2.RequestHandler):
         'base_char': base_char.encode('utf-8'),
         'base_hex': ['%4x' % ord(x) for x in langInfo.base_consonant],
         'diacritics': [x for x in langInfo.diacritic_list],
-        'diacritics_hex': row_names,  #['%4x ' % ord(y) for y in langInfo.diacritic_list],
+        'diacritics_hex': row_names,  # ['%4x ' % ord(y) for y in langInfo.diacritic_list],
         'combinations': combos,
         'showTools': self.request.get('tools', None),
         'table': table,
@@ -295,9 +292,9 @@ class ConvertUIHandler(webapp2.RequestHandler):
 
     # Handle non-Unicode output.
     try:
-      outputFont = langInfo.outputFont
+      output_font = langInfo.outputFont
     except:
-      outputFont = 'Unicode'
+      output_font = 'Unicode'
 
     try:
       unicodeChars = langInfo.unicodeChars
@@ -343,7 +340,7 @@ class ConvertUIHandler(webapp2.RequestHandler):
         'links': langInfo.links,
         'oldChars': oldChars,
         'oldInput': oldInput,
-        'outputFont': outputFont,
+        'outputFont': output_font,
         'text': text,
         'textStrings': testStringList,
         'showTools': self.request.get('tools', None),
@@ -379,13 +376,13 @@ class EncodingRules(webapp2.RequestHandler):
       encoding_tables = None
 
     try:
-      converter_list = langInfo.converters
+        converter_list = langInfo.converters
     except:
-      converter_list = None
+        converter_list = None
     try:
-      conversion_data = langInfo.conversion_data
+        conversion_data = langInfo.conversion_data
     except:
-      conversion_data = None
+        conversion_data = None
 
     template_values = {
         'converterJS': '/js/' + langInfo.LanguageCode + 'Converter.js',
@@ -403,15 +400,16 @@ class EncodingRules(webapp2.RequestHandler):
     path = os.path.join(os.path.dirname(__file__), 'HTML/encodingConvert.html')
     self.response.out.write(template.render(path, template_values))
 
+
 class KeyboardTransforms(webapp2.RequestHandler):
   def get(self, match=None):
 
     langInfo = self.app.config.get('langInfo')
 
     try:
-      converter_list = langInfo.converters
+        converter_list = langInfo.converters
     except:
-      converter_list = None
+        converter_list = None
 
     template_values = {
       'converterJS': '/js/' + langInfo.LanguageCode + 'Converter.js',
@@ -426,6 +424,7 @@ class KeyboardTransforms(webapp2.RequestHandler):
     }
     path = os.path.join(os.path.dirname(__file__), 'HTML/keyboardTransforms.html')
     self.response.out.write(template.render(path, template_values))
+
 
 class Downloads(webapp2.RequestHandler):
   def get(self, match=None):
@@ -609,11 +608,11 @@ class TranslitHandler(webapp2.RequestHandler):
 
     # All old characters
     try:
-      oldInput = langInfo.test_chars[0]
-      print("TEST CHARS %s" % langInfo.test_chars)
-      test_char_list = langInfo.test_chars
+        oldInput = langInfo.test_chars[0]
+        print("TEST CHARS %s" % langInfo.test_chars)
+        test_char_list = langInfo.test_chars
     except AttributeError:
-      oldInput = u''
+        oldInput = u''
 
     oldChars = (u'\u0001 !"\u0023\u0024%&\'()*+,-./' +
                 '0123456789:;<=>?@' +
@@ -622,60 +621,56 @@ class TranslitHandler(webapp2.RequestHandler):
     text = self.request.get('text', oldChars)
     font = self.request.get('font')
     testStringList = [
-      {'name': 'Test 1', # Note: must escape the single quote.
+      {'name': 'Test 1',  # Note: must escape the single quote.
        'string': u'\u0004\u0005\u0006\u0007\u0008\u0009' +
                  '\u000a\u000b'},
     ]
 
     try:
-      text_direction = langInfo.direction
+        text_direction = langInfo.direction
     except AttributeError:
-      text_direction = 'ltr'
+        text_direction = 'ltr'
 
     # Handle non-Unicode output.
-    # try:
-    #   outputFont = langInfo.outputFont
-    # except:
-    #   outputFont = 'Unicode'
     try:
-      outputFont = langInfo.outputScript
+        output_font = langInfo.outputScript
     except:
-      outputFont = 'Unicode'
+        output_font = 'Unicode'
 
     try:
-      unicodeChars = langInfo.unicodeChars
+        unicodeChars = langInfo.unicodeChars
     except:
-      unicodeChars = ''
+        unicodeChars = ''
 
     try:
-      unicodeCombiningChars = getCombiningCombos(
-        langInfo.baseHexUTF16, langInfo.diacritic_list)
+        unicodeCombiningChars = getCombiningCombos(
+          langInfo.baseHexUTF16, langInfo.diacritic_list)
     except:
-      unicodeCombiningChars = None
+        unicodeCombiningChars = None
 
     try:
-      encodingList = langInfo.encoding_font_list
+        encodingList = langInfo.encoding_font_list
     except:
-      encodingList = None
+        encodingList = None
 
     try:
-      variation_sequence = langInfo.variation_sequence
+        variation_sequence = langInfo.variation_sequence
     except:
-      variation_sequence = None
+        variation_sequence = None
 
     try:
-      converters = langInfo.converters
+        converters = langInfo.converters
     except:
-      converters = None
+        converters = None
 
     try:
       translit_encoding_list = langInfo.translit_encoding_list
     except:
       translit_encoding_list = None
     try:
-      translit_kb_list = langInfo.translit_kb_list
+        translit_kb_list = langInfo.translit_kb_list
     except:
-      translit_kb_list = None
+        translit_kb_list = None
 
     template_values = {
       'converters': converters,
@@ -691,7 +686,7 @@ class TranslitHandler(webapp2.RequestHandler):
       'links': langInfo.links,
       'oldChars': oldChars,
       'oldInput': oldInput,
-      'outputFont': outputFont,
+      'outputFont': output_font,
       'text': text,
       'textStrings': testStringList,
       'translit_encoding_list': translit_encoding_list,
@@ -712,14 +707,9 @@ class KeyManHandler(webapp2.RequestHandler):
     langInfo = self.app.config.get('langInfo')
     # To possibly limit fonts from download
     try:
-      public_unicode_fonts = langInfo.public_font_resources
+        public_unicode_fonts = langInfo.public_font_resources
     except:
-      public_unicode_fonts = langInfo.unicode_font_list
-
-    try:
-      text_file_list = langInfo.text_file_list
-    except:
-      text_file_list = None
+        public_unicode_fonts = langInfo.unicode_font_list
 
     template_values = {
       'language': langInfo.Language,
@@ -739,16 +729,16 @@ class AllFontTest(webapp2.RequestHandler):
   def get(self):
     langInfo = self.app.config.get('langInfo')
     try:
-      public_unicode_fonts = langInfo.public_font_resources
+        public_unicode_fonts = langInfo.public_font_resources
     except:
-      public_unicode_fonts = langInfo.unicode_font_list
+        public_unicode_fonts = langInfo.unicode_font_list
     utext = self.request.get("utext", "")
-    encodedText = self.request.get("encodedText", "")
+    encoded_text = self.request.get("encodedText", "")
     logging.info('AllFontTest utext =>%s<' % utext)
     template_values = {
       'scriptName': langInfo.Language,
       'fontFamilies': public_unicode_fonts,
-      'encodedText': encodedText,
+      'encodedText': encoded_text,
       'utext': utext,
       'language': langInfo.Language,
       'LanguageTag': langInfo.LanguageCode
@@ -760,10 +750,11 @@ class AllFontTest(webapp2.RequestHandler):
 
 # Error catching
 def handle_301(request, response, exception):
-  logging.exception(exception)
-  response.write('301 error.\n\n')
-  response.write('Request = %s\n' % request.url)
-  response.set_status(301)
+    logging.exception(exception)
+    response.write('301 error.\n\n')
+    response.write('Request = %s\n' % request.url)
+    response.set_status(301)
+
 
 def handle_404(request, response, exception):
     logging.exception(exception)
@@ -771,11 +762,13 @@ def handle_404(request, response, exception):
     response.write('Request = %s\n' % request.url)
     response.set_status(404)
 
+
 def handle_500(request, response, exception):
     logging.exception(exception)
     response.write('A server error occurred!\n\n')
     response.write('Request = %s\n' % request.url)
     response.set_status(500)
+
 
 app = webapp2.WSGIApplication(
     [
@@ -792,7 +785,7 @@ app.router.add((basePath + '/kbtransforms/', KeyboardTransforms))
 app.router.add((basePath + '/collation/', CollationHandler))
 app.router.add((basePath + '/combos/', RenderPage))
 app.router.add((basePath + '/keyman/', KeyManHandler))
-app.router.add((basePath + '/AllFonts/', AllFontTest ))
+app.router.add((basePath + '/AllFonts/', AllFontTest))
 
 app.error_handlers[301] = handle_301
 app.error_handlers[404] = handle_404

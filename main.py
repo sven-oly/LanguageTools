@@ -90,6 +90,7 @@ LanguageList = [
   ('Meitei (Manipuri)', 'mni', 'ꯃꯤꯇꯩ ꯃꯌꯦꯛ'),
   ('Aiton', 'aio', '(တႝ)ဢႝတွꩫ်'),
   ('Khamti', 'kmt', '(တဲး)ၵမ်းတီ'),
+  ('Kalabari', 'ijn'),
 ]
 
 

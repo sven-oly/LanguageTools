@@ -110,6 +110,9 @@ handlers:
 - url: /hoc/.*
   script: ho.app
 
+- url: /ijn/.*
+  script: kalabari.app
+
 - url: /ig/.*
   script: nsibidi.app
 

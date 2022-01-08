@@ -24,9 +24,9 @@ try:
 except NameError:
     unichr = chr
 
-Language = 'TDD'
-Language_native = 'TBD'
-LanguageCode = 'CODE'
+Language = 'Kalabari'
+Language_native = 'Kalabari'
+LanguageCode = 'ijn'
 ScriptCode = 'Latn'
 
 links = [
@@ -47,9 +47,9 @@ links = [
   # {'linkText': 'THIS SCRIPT',
   #  'ref': 'https://en.wikipedia.org/wiki/XYZ_alphabet'
   # },
-  # {'linkText': 'Wikipedi page',
-  #  'ref': 'https://en.wikipedia.org/wiki/XYZ_language'
-  # },
+  {'linkText': 'Wikipedi page',
+   'ref': 'https://en.wikipedia.org/wiki/Kalabari_language'
+  },
   # {'linkText': 'Ethnolog',
   #  'ref': 'https://www.ethnologue.com/language/XYZ'
   # },

@@ -82,6 +82,9 @@ unicode_font_list = [
   },
 ]
 
+# Cham keyboard onlines: https://kauthara.org/article/110
+# Scriptsource: https://scriptsource.org/cms/scripts/page.php?item_id=entry_detail&uid=ghh7f6svl9
+# https://kauthara.org/keyboard  # Good for keyboard positions.
 kb_list = [
   {'shortName': 'cja',
    'longName': 'Eastern Cham',

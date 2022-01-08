@@ -12,6 +12,15 @@
   <style>
   <!-- Unicode fonts -->
   <style>
+    @font-face{
+      font-family:'Arial';
+      font-weight:normal;
+      font-style:normal;
+    }
+    .Arial {
+      font-family:Arial;
+      font-size: 30px;
+    }
   {% for font in unicode_list %}
     @font-face {
       font-family:'{{font.family}}';
