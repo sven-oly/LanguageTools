@@ -11,22 +11,22 @@
 // limitations under the License.
 
 
-var TA_PHONEMIC_C_LAYOUT = {
-  'id': 'ta_phonemic_c',
-  'title': 'தமிழ் phonemic C',
+var TA_PHONEMIC_D_LAYOUT = {
+  'id': 'ta_phonemic_d',
+  'title': 'தமிழ் phonemic D',
   'source': 'https://elangocheran.com/2021/02/11/d-pub-for-keyboards-for-agglutinative-languages-and-abugidas/',
   'mappings': {
     ',c': {
       '': '`1234567890-=' +
-          '{{ண்}}{{ஞ்}}{{ங்}}{{எ}}{{ஏ}}{{ஊ}}{{உ}}{{ந்}}{{ம்}}{{ய்}}[]\\' +
-          '{{ட்}}{{ச்}}{{க்}}{{அ}}{{ஆ}}{{ஈ}}{{இ}}{{த்}}{{ப்}}{{வ்}}\'' +
-          '{{ழ்}}{{ள்}}{{ல்}}{{ஒ}}{{ஓ}}{{ஐ}}{{ன்}}{{ற்}}{{ர்}}{{ஔ}}'
+          '{{அ}}{{இ}}{{உ}}{{க்}}{{ச்}}{{ட்}}{{த்}}{{ப்}}{{ற்}}{{ஔ}}[]\\' +
+          '{{எ}}{{ஐ}}{{ஒ}}{{ங்}}{{ஞ்}}{{ண்}}{{ந்}}{{ம்}}{{ன்}};\'' +
+          '{{ய்}}{{ர்}}{{ல்}}{{வ்}}{{ழ்}}{{ள்}}{{ஃ}},./'
     },
     's,sc': {
       '': '~!@#$%^&*()_+' +
-          '{{ஶ்ரீ}}{{ஸ்}}{{ஷ்}}{{ஏ}}TY{{ஊ}}IO{{ஃ}}{}|' +
-          '{{ஜ்}}{{ஹ்}}{{க்ஷ்}}{{ஆ}}GH{{ஈ}}KL:"' +
-          'ZXC{{ஓ}}BNM{{,}}{{.}}?'
+          '{{ஆ}}{{ஈ}}{{ஊ}}{{ஶ்ரீ}}{{ஸ்}}{{ஷ்}}UIOP{}|' +
+          '{{ஏ}}S{{ஓ}}{{ஜ்}}{{ஹ்}}{{க்ஷ்}}JKL:"' +
+          'ZXCVBNM<>?'
     },
     'l,cl': {
       '': '`{{௧}}{{௨}}{{௩}}{{௪}}{{௫}}{{௬}}{{௭}}{{௮}}{{௯}}{{௦}}-=' +
@@ -676,5 +676,5 @@ var TA_PHONEMIC_C_LAYOUT = {
 };
 
 // Load the layout and inform the keyboard to switch layout if necessary.
-google.elements.keyboard.loadme(TA_PHONEMIC_C_LAYOUT);
-let ta_phonemic_c = TA_PHONEMIC_C_LAYOUT;
+google.elements.keyboard.loadme(TA_PHONEMIC_D_LAYOUT);
+let ta_phonemic_d = TA_PHONEMIC_D_LAYOUT;
