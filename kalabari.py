@@ -24,8 +24,8 @@ try:
 except NameError:
     unichr = chr
 
-Language = 'Kalabari'
-Language_native = 'Kalabari'
+Language = 'Kalaḇari'
+Language_native = 'Kalaḇari'
 LanguageCode = 'ijn'
 ScriptCode = 'Latn'
 
@@ -88,7 +88,22 @@ class langInfo:
 
         self.kb_list = [
           {'shortName': LanguageCode,
-           'longName': LanguageCode,
+           'longName': 'Kaliḇari 1',
+           'instructions': 'To add diacritic marks:\u000a' +
+                           '· Use upper left key (back quote `) to add a lower dot   \u0323 after a letter such as Ḅ.\u000a' +
+                           '· Shift-back quote to add an accent such as á.\u000a' +
+                           '· Type two underscores to add a line below, e.g., u̱.\u000a' +
+                           'You can also use combinations of these such as á̱.\u000a' +
+                           'And try the Kalaḇari 2 keyboard from the menu above.'
+           },
+          {'shortName': LanguageCode + '2',
+           'longName': 'Kalaḇari 2',
+           'instructions': 'To add diacritic marks:\u000a' +
+                           '· Or type two semicolons ; to add a lower dot  \u0323 after a letter such as b.\u000a' +
+                           '· Type two apostrophes \' to add an accent such as á.\u000a' +
+                           '· Type two back slash \\\\ to add a line below, e.g., u̱.\u000a' +
+                           'You can also use combinations of these such as á̱.\u000a' +
+                           'And try the Kalaḇari 1 keyboard from the menu above.'
            },
         ]
 

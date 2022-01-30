@@ -131,6 +131,9 @@ handlers:
 - url: /lut/.*
   script: lushootseed.app
 
+- url: /mro/.*
+  script: mru.app
+
 - url: /mni/.*
   script: meitei.app
 

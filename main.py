@@ -91,6 +91,7 @@ LanguageList = [
   ('Aiton', 'aio', '(တႝ)ဢႝတွꩫ်'),
   ('Khamti', 'kmt', '(တဲး)ၵမ်းတီ'),
   ('Kalabari', 'ijn'),
+  ('Mru', 'mro'),
 ]
 
 

@@ -109,6 +109,9 @@ links = [
   {'linkText': 'Combiners',
    'ref': '/ccp/diacritic/'
   },
+  {'linkText': 'Video: Chakma technology',
+   'ref': 'https://www.youtube.com/watch?v=xNfe8Sgm3Gk'
+  },
 ]
 
 # Create a string with combinations of the combining characters,

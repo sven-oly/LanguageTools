@@ -10,22 +10,22 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-// Includes combiners for dot below, acute, and line below.
-var IJN_LAYOUT = {
-  'id': 'ijn',
-  'title': 'Kalaḇari 1',
+
+var MRU_LAYOUT = {
+  'id': 'mro',
+  'title': 'Mru',
   'mappings': {
     ',c': {
-      '': '{{\u0323}}1234567890-=' +
-          'qwertyuiop[]\\' +
-          'asdfghjkl;\'' +
-          'zxcvbnm,./'
+      '': '`{{𖩡}}{{𖩢}}{{𖩣}}{{𖩤}}{{𖩥}}{{𖩦}}{{𖩧}}{{𖩨}}{{𖩩}}{{𖩠}}-=' +
+          '{{𖩛}}{{𖩗}}{{𖩘}}{{𖩓}}{{𖩀}}{{𖩂}}{{𖩑}}{{𖩊}}{{𖩒}}{{𖩐}}{{𖩮}}{{𖩯}}\\' +
+          '{{𖩆}}{{𖩔}}{{𖩅}}{{𖩇}}{{𖩁}}{{𖩉}}{{𖩙}}{{𖩌}}{{𖩍}}{{;}}{{’}}' +
+          '{{𖩖}}{{𖩈}}{{𖩋}}{{𖩕}}{{𖩄}}{{𖩏}}{{𖩎}},./'
     },
     's,sc': {
-      '': '{{\u0301}}!@#$%^&*()_+' +
-          'QWERTYUIOP{}|' +
-          'ASDFGHJKL:"' +
-          'ZXCVBNM<>?'
+      '': '~!@#$%^&*()_+' +
+          '{{𖩞}}{{}}{{}}{{𖩝}}{{}}{{}}{{}}{{}}{{}}{{}}{}|' +
+          '{{}}{{}}{{}}{{}}{{}}{{𖩜}}{{}}{{}}{{𖩚}}:"' +
+          '{{}}{{}}{{}}{{}}{{}}{{}}{{𖩃}}<>?'
     },
     'l,cl': {
       '': '`1234567890-=' +
@@ -41,10 +41,10 @@ var IJN_LAYOUT = {
     }
   },
   'transform': {
-    '__': '\u0331',  // Two underscores --> macron below
+    '^': '^',  // Placeholder
   }
 };
 
 // Load the layout and inform the keyboard to switch layout if necessary.
-google.elements.keyboard.loadme(IJN_LAYOUT);
-ijn = IJN_LAYOUT;
+google.elements.keyboard.loadme(MRU_LAYOUT);
+mro = MRU_LAYOUT;

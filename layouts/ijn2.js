@@ -11,12 +11,12 @@
 // limitations under the License.
 
 // Includes combiners for dot below, acute, and line below.
-var IJN_LAYOUT = {
-  'id': 'ijn',
-  'title': 'Kalaḇari 1',
+var IJN2_LAYOUT = {
+  'id': 'ijn2',
+  'title': 'Kalaḇari 2',
   'mappings': {
     ',c': {
-      '': '{{\u0323}}1234567890-=' +
+      '': '{{`}}1234567890-=' +
           'qwertyuiop[]\\' +
           'asdfghjkl;\'' +
           'zxcvbnm,./'
@@ -41,10 +41,12 @@ var IJN_LAYOUT = {
     }
   },
   'transform': {
-    '__': '\u0331',  // Two underscores --> macron below
+    '\'\'': '\u0301',  // Two apostrophes --> acute accent above
+    ';;': '\u0323',  // Two commas --> dot below
+    '\\\\\\\\': '\u0331',  // Two underscores --> macron below
   }
 };
 
 // Load the layout and inform the keyboard to switch layout if necessary.
-google.elements.keyboard.loadme(IJN_LAYOUT);
-ijn = IJN_LAYOUT;
+google.elements.keyboard.loadme(IJN2_LAYOUT);
+ijn2 = IJN_LAYOUT;

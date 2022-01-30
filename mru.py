@@ -14,17 +14,20 @@
 # limitations under the License.
 #
 
-import os
 import webapp2
 
 import base
 
-from google.appengine.ext.webapp import template
+# For Python 2.x. and Python
+try:
+    unichr
+except NameError:
+    unichr = chr
 
-Language = 'Elfdalian'
-Language_native = 'övdalsk'
-LanguageCode = 'ovd'
-ScriptCode = 'Latn'
+Language = 'Mru'
+Language_native = 'TBD'
+LanguageCode = 'mro'
+ScriptCode = 'Mroo'
 
 links = [
   {'linkText': 'Keyboard',
@@ -35,20 +38,24 @@ links = [
   # {'linkText': 'Font conversion summary',
   #   'ref': '/' + LanguageCode + '/encodingRules/'
   # },
-  {'linkText': 'Resources',
-    'ref': '/' + LanguageCode + '/downloads/'
+  {
+    'linkText': 'Keyman keyboard',
+    'ref': 'https://keyman.com/keyboards/mro_phonetic?bcp47=mro-mroo',
   },
-  # {'linkText': 'Unicode page',
-  #  'ref': 'https://www.unicode.org/charts/PDF/U1C00.pdf'
+  # {'linkText': 'Resources',
+  #   'ref': '/' + LanguageCode + '/downloads/'
   # },
-  {'linkText': 'Elfdalian Wikipedia',
-   'ref': 'https://en.wikipedia.org/wiki/https://en.wikipedia.org/wiki/Elfdalian'
+  {'linkText': 'Unicode page',
+   'ref': 'https://www.unicode.org/charts/PDF/U16A40.pdf'
   },
-  # {'linkText': 'Wikipedi page',
-  #  'ref': 'https://en.wikipedia.org/wiki/Lepcha_language'
+  # {'linkText': 'THIS SCRIPT',
+  #  'ref': 'https://en.wikipedia.org/wiki/XYZ_alphabet'
   # },
+  {'linkText': 'Wikipedi page',
+   'ref': 'https://en.wikipedia.org/wiki/Mru_language'
+  },
   # {'linkText': 'Ethnolog',
-  #  'ref': 'https://www.ethnologue.com/language/lep'
+  #  'ref': 'https://www.ethnologue.com/language/XYZ'
   # },
   # {'linkText': 'Combiners',
   #  'ref': '/lep/diacritic/'
@@ -63,18 +70,17 @@ class langInfo:
         self.Language_native = Language_native
         self.test_data = u''
         self.unicode_font_list = [
-          {'family': 'NotoSerif',
-           'longName': 'Noto Serif',
-           'source': '/fonts/NotoSerif-Regular.ttf',
+          {'family': 'NotoMro',
+           'longName': 'Noto Mro',
+           'source': '/fonts/Mru/NotoSansMro-Regular.ttf',
+           },
+          {'family': 'MroUnicode',
+           'longName': 'Mro Unicode',
+           'source': '/fonts/Mru/MroUnicode-Regular.ttf',
            },
           {'family': 'NotoSans',
            'longName': 'Noto Sans',
            'source': '/fonts/NotoSans-Regular.ttf',
-           },
-          {'family': 'InterReg',
-           'longName': 'Inter Regular',
-           'source': '/fonts/Inter/Inter-Regular.otf',
-           'reference': 'https://github.com/rsms/inter',
            },
         ]
 
@@ -89,9 +95,8 @@ class langInfo:
         self.lang_list = [LanguageCode]  # This may be extended
 
         self.kb_list = [
-          {'shortName': LanguageCode,
+          {'shortName': 'mro',
            'longName': LanguageCode,
-           'instructions': 'Ogonek at upper left, Ð at right'
            },
         ]
 
@@ -106,23 +111,8 @@ class langInfo:
             (0x20, 0xff),
         ]
 
-        self.text_file_list = [
-          {
-            'name': 'KeyMan Elfdalian Mobile + desktop',
-            'source': '/resources/ovd/elfdalian1.01.kmp',
-            'description': 'Version 1.01 updated 29-Jan-2022'
-          },
-          {
-            'name': 'KeyMan Elfdalian predictive text',
-            'source': '/resources/ovd/eldalian_words.model.kmp',
-            'description': 'Version 1.0 updated 29-Jan-2022'
-          },
-          {
-            'name': 'Elfdalian predictive text image',
-            'source': '/resources/ovd/Elfdalian_predictive.jpg',
-            'description': 'Screenshot of Android with Keyman predictive text'
-          },
-        ]
+        # For additional resources for download
+        self.text_file_list = []
 
         # TODO: Fill in the rest of the common data.
 
@@ -132,10 +122,9 @@ langInstance = langInfo()
 app = webapp2.WSGIApplication([
   ('/' + LanguageCode + '/', base.LanguagesHomeHandler),
   ('/' + LanguageCode + '/convertUI/', base.ConvertUIHandler),
-  ('/' + langInstance.LanguageCode + '/downloads/', base.Downloads),
+  ('/' + LanguageCode + '/downloads/', base.Downloads),
   ('/' + LanguageCode + '/encodingRules/', base.EncodingRules),
   ('/' + LanguageCode + '/diacritic/', base.DiacriticHandler),
-  ('/' + LanguageCode + '/keyman/', base.KeyManHandler),
 ], debug=True,
   config={'langInfo': langInstance}
 )
