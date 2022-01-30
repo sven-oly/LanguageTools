@@ -232,6 +232,29 @@ class langInfo():
     self.kb1 = 'en'
     self.kb2 = self.kb_list[0]['shortName']
 
+    self.dictionaryNData = [
+      {'langName': self.Language, 'langNative': 'Sunuwar',
+       'languageCode': 'suz',
+       'kbShortName': 'suz_mukdum', 'kbLongName': 'Sunuwar PUA',
+       'font': { 'family': 'Mukdum',
+                 'longName': 'Mukdum',
+                 'source': '/fonts/Sunuwar/Mukdum.ttf',
+                 },
+       'direction': 'ltr',
+       'helptext': ''
+       },
+
+      {'langName': 'English', 'langNative': 'English',
+       'languageCode': 'en',
+       'kbShortName': 'en', 'kbLongName': 'English',
+       'font': {'family': 'Latin',
+                'longName': 'Noto Sans',
+                'source': '/fonts/NotoSans-Regular.ttf'
+                },
+       'direction': 'ltr',
+       'helptext': 'Instructions'
+       },
+    ]
 # Global in this file.
 langInstance = langInfo()
 
@@ -243,6 +266,7 @@ app = webapp2.WSGIApplication(
      ('/' + langInstance.LanguageCode + '/encodingRules/', base.EncodingRules),
      ('/' + langInstance.LanguageCode + '/diacritic/', base.DiacriticHandler),
      ('/' + langInstance.LanguageCode + '/dictionaryInput/', base.DictionaryInput),
+     ('/' + langInstance.LanguageCode + '/dictionaryN/', base.DictionaryN),
      ('/' + langInstance.LanguageCode + '/kbtransforms/', base.KeyboardTransforms),
      ('/' + langInstance.LanguageCode + '/render/', base.EncodingRules),
 
