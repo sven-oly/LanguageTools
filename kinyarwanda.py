@@ -101,7 +101,10 @@ class langInfo:
         self.text_file_list = []
 
         # TODO: Fill in the rest of the common data.
-
+        self.charNameData = {
+            'file': '/resources/rw/Umwero_character_names.tsv',
+            'info': 'Umwero glpyh names'
+        }
 
 langInstance = langInfo()
 
@@ -111,6 +114,7 @@ app = webapp2.WSGIApplication([
   ('/' + LanguageCode + '/downloads/', base.Downloads),
   ('/' + LanguageCode + '/encodingRules/', base.EncodingRules),
   ('/' + LanguageCode + '/diacritic/', base.DiacriticHandler),
+  ('/' + LanguageCode + '/charTable/', base.CharacterTableHandler),
 ], debug=True,
   config={'langInfo': langInstance}
 )

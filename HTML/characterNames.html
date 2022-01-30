@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+
+  <title>Character names for {{language}}</title>
+
+  <link rel="stylesheet" href="/css/blueprint/screen.css" type="text/css" media="screen">
+  <link rel="stylesheet" href="/css/blueprint/print.css" type="text/css" media="print"> 
+  <!--[if lt IE 8]>
+    <link rel="stylesheet" href="/css/blueprint/ie.css" type="text/css" media="screen, projection">
+  <![endif]-->
+
+  <link rel="stylesheet" type="text/css" href="/css/fonts.css">
+
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/d3/3.4.2/d3.js"></script>
+
+    <script>
+    let characterData;  // Gets TSV data from the input file
+    d3.tsv("{{charTable.file}}", function(data) {
+       characterData = data;
+    });
+    </script>
+
+    <style>
+  textarea {
+    width: 600px;
+	height: 120px;
+	border: 3px solid #cccccc;
+	padding: 5px;
+	font-size: 24px;
+	}
+  {
+    font-family: "Courier New";
+  }
+  </style>
+
+  <style>
+    {% for font in unicode_font_list %}
+    @font-face{
+      font-family:'{{font.family}}';
+      src:url('{{font.source}}'){% if '.ttf' in font.source %}format('truetype'){%endif%}{% if '.TTF' in font.source %}format('truetype'){%endif%}{% if '.otf' in font.source %}format('opentype'){%endif%}{%if '.woff' in font.source %}format('woff'){%endif%};
+      font-weight:normal;
+      font-style:normal;
+      font-size: 32px;
+    }
+
+    .{{font.family}} {
+      font-family:{{font.family}};
+      font-size: 32px;
+    }
+    {% endfor %}
+  </style>
+  
+  <script>
+   function onFontSelected(selected, area) {
+     var output_text = document.getElementById(area);
+     var fontFam = selected.value + ", MyFont";
+     output_text.style.fontFamily = fontFam;
+   }
+   
+  function changeFontSize(selected) {
+     var fontObj = document.getElementById(selected);
+     var fontSize = fontObj.value;
+     var div = document.getElementById("combo_table");
+     div.style.fontSize = fontSize;
+   }
+
+    function init() {
+        /* Fill in as needed */
+        // Fill in table from characterData
+        createTable(characterData);
+    }
+
+    function createTable(data) {
+      // Just one table.
+      let headers = [];
+      for (const property in data[0]) {
+        headers.push(property);
+      };
+
+      let table = document.getElementById('namesTable');
+      const header = table.createTHead();
+      let rowNum = 0;
+      let headerRow = table.insertRow(rowNum);
+
+
+      for (let index = 0; index < headers.length; index ++) {
+        const headerCell = headerRow.insertCell(index);
+        headerCell.innerHTML = headers[index];
+      };
+      // Add rows for each code.
+      let cellIndex = 0;
+      for (let item of data) {
+          // One row for each row of patternMap.
+          rowNum ++;
+          let row = table.insertRow(rowNum);
+          for (let cellIndex = 0; cellIndex < headers.length; cellIndex ++) {
+              let cell = row.insertCell(cellIndex);
+              cell.innerHTML = item[headers[cellIndex]];
+              // cell0.title = '';
+              //cell.style.fontSize = fontsize;
+              cell.style.fontFamily = '';  // TODO
+          }
+      }
+  }
+
+  </script>
+
+  </head>
+
+  <body onload="init()">
+  <div class="container">
+    <div class="span-24 last">
+        <p id="demo"></p>
+      <h2>Character table for {{language}}</h2>
+        <h3>{{charTable.info}}</h3>
+      Select font: <select onchange="onFontSelected(this, 'combo_table');" id="selectFont">
+        {% for font in unicode_font_list %}
+        <option value="{{font.family}}">{{font.longName}}</option>
+        {%endfor%}
+      </select>
+      Font size: <select id='fontSize'
+             onChange="changeFontSize('fontSize');">
+             <option value="9pt">9</option>
+             <option value="10pt">10</option>
+             <option value="12pt">12</option>
+             <option value="14pt">14</option>
+             <option value="16pt" selected="selected">16</option>
+             <option value="18pt">18</option>
+             <option value="24pt">24</option>
+             <option value="32pt">32</option>
+             <option value="36pt">36</option>
+             <option value="48pt">48</option>
+             <option value="64pt">64</option>
+           <select/>
+    <br />
+
+    <br />
+
+  <div id="nameTableDiv">
+    <h2>Table of characters</h2>
+    <table id="namesTable">
+
+    </table>
+  </div>
+
+  </div>
+  </div>
+  </body>

@@ -747,6 +747,16 @@ class AllFontTest(webapp2.RequestHandler):
     path = os.path.join(os.path.dirname(__file__), 'HTML/allFonts.html')
     self.response.out.write(template.render(path, template_values))
 
+class CharacterTableHandler(webapp2.RequestHandler):
+  def get(self):
+    langInfo = self.app.config.get('langInfo')
+    template_values = {
+      'language': langInfo.Language,
+      'LanguageTag': langInfo.LanguageCode,
+      'charTable': langInfo.charNameData,
+    }
+    path = os.path.join(os.path.dirname(__file__), 'HTML/characterNames.html')
+    self.response.out.write(template.render(path, template_values))
 
 # Error catching
 def handle_301(request, response, exception):
@@ -786,6 +796,7 @@ app.router.add((basePath + '/collation/', CollationHandler))
 app.router.add((basePath + '/combos/', RenderPage))
 app.router.add((basePath + '/keyman/', KeyManHandler))
 app.router.add((basePath + '/AllFonts/', AllFontTest))
+app.router.add((basePath + '/charTable/', CharacterTableHandler)),
 
 app.error_handlers[301] = handle_301
 app.error_handlers[404] = handle_404
