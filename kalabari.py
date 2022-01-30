@@ -119,7 +119,14 @@ class langInfo:
         ]
 
         # For additional resources for download
-        self.text_file_list = []
+        self.text_file_list = [
+          {
+            'name': 'KeyMan Kalabari prototype',
+            'source': '/resources/ijn/kalabari.kmp',
+            'description': 'Preliminary version 1.0, 29-Jan-2022'
+          },
+
+        ]
 
         # TODO: Fill in the rest of the common data.
 
