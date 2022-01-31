@@ -23,7 +23,13 @@
     </script>
 
     <style>
-  textarea {
+    table, th, td {
+      border: 1px solid black;
+      border-collapse: collapse;
+      text-align: center;
+    }
+
+    textarea {
     width: 600px;
 	height: 120px;
 	border: 3px solid #cccccc;
@@ -53,17 +59,32 @@
   </style>
   
   <script>
-   function onFontSelected(selected, area) {
-     var output_text = document.getElementById(area);
+   function onFontSelected(selected, tableId) {
+     var table = document.getElementById(tableId);
      var fontFam = selected.value + ", MyFont";
-     output_text.style.fontFamily = fontFam;
-   }
-   
+
+     // Special case to handle column 1 of table.
+     for (var i = 1, row; row = table.rows[i]; i++) {
+       //iterate through rows
+       //rows would be accessed using the "row" variable assigned in the for loop
+       cell = row.cells[0];
+       cell.style.fontFamily = fontFam;
+     }
+}
+
   function changeFontSize(selected) {
      var fontObj = document.getElementById(selected);
      var fontSize = fontObj.value;
-     var div = document.getElementById("combo_table");
+     var table = document.getElementById("namesTable");
      div.style.fontSize = fontSize;
+     for (var i = 0, row; row = table.rows[i]; i++) {
+       //iterate through rows
+       //rows would be accessed using the "row" variable assigned in the for loop
+       for (var j = 0, col; col = row.cells[j]; j++) {
+         //iterate through columns
+         //columns would be accessed using the "col" variable assigned in the for loop
+       }
+     }
    }
 
     function init() {
@@ -88,6 +109,8 @@
       for (let index = 0; index < headers.length; index ++) {
         const headerCell = headerRow.insertCell(index);
         headerCell.innerHTML = headers[index];
+        headerCell.style.fontSize = '20pt';
+        headerCell.align="center";
       };
       // Add rows for each code.
       let cellIndex = 0;
@@ -99,8 +122,9 @@
               let cell = row.insertCell(cellIndex);
               cell.innerHTML = item[headers[cellIndex]];
               // cell0.title = '';
-              //cell.style.fontSize = fontsize;
-              cell.style.fontFamily = '';  // TODO
+              cell.style.fontSize = '20pt';
+              if (cellIndex === 0) cell.style.fontFamily = "{{unicode_font_list.0.family}}";  // TODO
+              cell.align="center";
           }
       }
   }
@@ -115,7 +139,7 @@
         <p id="demo"></p>
       <h2>Character table for {{language}}</h2>
         <h3>{{charTable.info}}</h3>
-      Select font: <select onchange="onFontSelected(this, 'combo_table');" id="selectFont">
+      Select font: <select onchange="onFontSelected(this, 'namesTable');" id="selectFont">
         {% for font in unicode_font_list %}
         <option value="{{font.family}}">{{font.longName}}</option>
         {%endfor%}

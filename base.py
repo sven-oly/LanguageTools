@@ -754,6 +754,8 @@ class CharacterTableHandler(webapp2.RequestHandler):
       'language': langInfo.Language,
       'LanguageTag': langInfo.LanguageCode,
       'charTable': langInfo.charNameData,
+      'encoding_font_list': langInfo.encoding_font_list,
+      'unicode_font_list': langInfo.unicode_font_list,
     }
     path = os.path.join(os.path.dirname(__file__), 'HTML/characterNames.html')
     self.response.out.write(template.render(path, template_values))

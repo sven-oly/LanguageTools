@@ -30,8 +30,8 @@ links = [
   {'linkText': 'Keyboard',
    'ref': '/' + LanguageCode + '/'
    },
-  # {'linkText': 'Converter',
-  #  'ref': '/' + LanguageCode + '/convertUI/'},
+  {'linkText': 'Character List',
+   'ref': '/' + LanguageCode + '/charTable/'},
   # {'linkText': 'Font conversion summary',
   #   'ref': '/' + LanguageCode + '/encodingRules/'
   # },
@@ -63,6 +63,11 @@ class langInfo:
         self.Language_native = Language_native
         self.test_data = u''
         self.unicode_font_list = [
+          {  # This is a font encoding for testing.
+            'family': 'UMWERO',
+            'longName': 'UMWERO Jan 2022',
+            'source': '/fonts/Kinyarwanda/UMWERO.otf',
+          },
           {  # This is a font encoding for testing.
             'family': 'Kernedumwero',
             'longName': 'Kernedumwero',
