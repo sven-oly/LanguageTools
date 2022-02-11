@@ -16,17 +16,23 @@ let langConverterClass = function(langCode, langName) {
 langConverterClass.prototype.addOne2OneTransforms = function (inChars, outChars, index) {
   // If there's a set of 1-to-1 conversions, add them to the
   // Private use map.
+  const outSymbols = [...outChars];
+
   if (index == undefined) {
     index = 0;
   }
-  if (inChars.length != outChars.length) {
+  if (inChars.length != outSymbols.length) {
     alert("1-to-1 mapping lengths are different: " + inChars.length +
      " != " + outChars.length);
   }
 
+  // Need to index code points > 0xFFFF
+  // fromCodePoint
   for (var i = 0; i < inChars.length; i++) {
     const inChar = inChars[i];
-    const outChar = outChars[i];
+
+    const outCharCode = outSymbols[i];
+    const outChar = outSymbols[i];
     let tested = this.one2oneMap.has(inChar);
     if (!this.one2oneMap.has(inChar)) {
       this.one2oneMap.set(inChar, []);

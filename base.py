@@ -609,7 +609,6 @@ class TranslitHandler(webapp2.RequestHandler):
     # All old characters
     try:
         oldInput = langInfo.test_chars[0]
-        print("TEST CHARS %s" % langInfo.test_chars)
         test_char_list = langInfo.test_chars
     except AttributeError:
         oldInput = u''
@@ -750,10 +749,19 @@ class AllFontTest(webapp2.RequestHandler):
 class CharacterTableHandler(webapp2.RequestHandler):
   def get(self):
     langInfo = self.app.config.get('langInfo')
+
+    # String containing character name data
+    try:
+      charNames = langInfo.charNames.split('\n')
+      charNames = '!!!'.join(charNames)
+    except:
+      charNames = None
+
     template_values = {
       'language': langInfo.Language,
       'LanguageTag': langInfo.LanguageCode,
-      'charTable': langInfo.charNameData,
+      'charTable': charNames,
+      'charNameData': charNames,
       'encoding_font_list': langInfo.encoding_font_list,
       'unicode_font_list': langInfo.unicode_font_list,
     }

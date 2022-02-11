@@ -32,6 +32,8 @@ links = [
    },
   {'linkText': 'Character List',
    'ref': '/' + LanguageCode + '/charTable/'},
+  {'linkText': 'About Umwero',
+   'ref': '/' + LanguageCode + '/about/'},
   # {'linkText': 'Font conversion summary',
   #   'ref': '/' + LanguageCode + '/encodingRules/'
   # },
@@ -55,6 +57,15 @@ links = [
   #  },
 ]
 
+class AboutPageHandler(webapp2.RequestHandler):
+  def get(self):
+    langInfo = self.app.config.get('langInfo')
+
+    template_values = {
+      'language': langInfo.Language,
+    }
+    path = os.path.join(os.path.dirname(__file__), 'HTML/Umwero/umwero.html')
+    self.response.out.write(template.render(path, template_values))
 
 class langInfo:
     def __init__(self):
@@ -111,6 +122,131 @@ class langInfo:
             'info': 'Umwero glpyh names'
         }
 
+        self.charNames = """Umwero	ASCII	Charname
+\"	\"	Ah
+:	:	Uh
+{	{	Oh
+|	|	Eh
+}	}	Ih
+R	R	Ra
+B	B	Ba
+N	N	Na
+M	M	Ma
+T	T	Ta
+K	K	Ka
+S	S	Sa
+G	G	Ga
+Z	Z	Za
+C	C	Cha
+J	J	Ja
+D	D	Da
+H	H	Ha
+Y	Y	Ya
+W	W	Wa
+V	V	Va
+P	P	Pa
+F	F	Fa
+A	A	Mba
+U	U	Nja
+YY	YY	Nya
+SS	SS	Nsa
+KK	KK	Kya
+ZZ	ZZ	Dza
+HH	HH	Sha
+L	L	Gya
+LL	LL	Ngya
+CC	CC	Nca
+BB	BB	Nb
+Q	Q	Shya
+QQ	QQ	Nshya
+HHH	HHH	Nsh
+NN	NN	Nha
+TT	TT	Nta
+PP	PP	Mpa
+X	X	Tsa
+E	E	NKHA
+EE	EE	NKA
+JJ	JJ	DJA
+O	O	MVA
+FF	FF	MFA
+I	I	PFA
+KKK	KKK	NKYA
+=	=	=
+(	(	(
+.	.	.
+?	?	?
+,	,	, or ;
++	+	+
+-	-	-
+1	1	1
+2	2	2
+3	3	3
+4	4	4
+5	5	5
+6	6	6
+7	7	7
+8	8	8
+9	9	9
+ND	ND	Nda
+NG	NG	Nga
+NZ	NZ	Nza
+HHKW	HHKW	Shkwa
+QKW	QKW	Shykwa
+HHHKW	HHHKW	Nshkwa
+QQKW	QQKW	Nshykwa
+AG	AG	Mbga
+AL	AL	Mbgya
+BBL	BBL	Bgya
+BBG	BBG	Bga
+BBYGW	BBYGW	Bygwa
+NYY	NYY	N-Nya
+NNYY	NNYY	Nh-Nya
+TKW	TKW	Tkwa
+TKK	TKK	Tkya
+NNEW	NNEW	Nhu-Nkwa
+SKW	SKW	Skwa
+SKK	SKK	Skya
+KW	KW	Kwa
+EW	EW	Nkh-Wa
+EEW	EEW	Nkwa
+CKW	CKW	Ckwa
+CCKW	CCKW	Nckwa
+XKW	XKW	Tskwa
+SSKW	SSKW	Nskwa
+SSKK	SSKK	Nskya
+MYY	MYY	Mnya
+ME	ME	M-Nkha
+MYYEW	MYYEW	M+Ny+Nkh-Wa
+DGW	DGW	Dgwa
+NDGW	NDGW	Ndgwa
+DL	DL	Dgya
+NDL	NDL	Ndgya
+JGW	JGW	Jgwa
+UGW	UGW	Njgwa
+ZGW	ZGW	Zgwa
+YYEW	YYEW	Ny-Nkh-Wa
+GW	GW	Gwa
+NZGW	NZGW	Nzgwa
+NEW	NEW	N-Nkh-Wa
+NGW	NGW	Ngwa
+IK	IK	Pfka
+IKK	IKK	Pfkya
+PKK	PKK	Pkya
+FK	FK	Fka
+FKK	FKK	Fkya
+VG	VG	Vga
+VL	VL	Vgya
+OG	OG	Mvga
+OL	OL	Mvgya
+OGW	OGW	Mvgwa
+PK	PK	Pka
+PPKK	PPKK	Mpkya
+PPK	PPK	Mpka
+FFK	FFK	Mfka
+FFKK	FFKK	Mfkya
+RGW	RGW	Rgwa
+RL	RL	Rgya"""
+
 langInstance = langInfo()
 
 app = webapp2.WSGIApplication([
@@ -120,6 +256,8 @@ app = webapp2.WSGIApplication([
   ('/' + LanguageCode + '/encodingRules/', base.EncodingRules),
   ('/' + LanguageCode + '/diacritic/', base.DiacriticHandler),
   ('/' + LanguageCode + '/charTable/', base.CharacterTableHandler),
+  ('/' + LanguageCode + '/about/', AboutPageHandler),
+
 ], debug=True,
   config={'langInfo': langInstance}
 )

@@ -16,10 +16,17 @@
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/d3/3.4.2/d3.js"></script>
 
     <script>
-    let characterData;  // Gets TSV data from the input file
-    d3.tsv("{{charTable.file}}", function(data) {
-       characterData = data;
-    });
+    let charLines = "{{charNameData}}".split("!!!");  // Gets TSV data from the input file
+    let characterData = [];
+    if (characterData == null) {
+        d3.tsv("{{charTable.file}}", function(data) {
+            characterData = data;
+        });
+    } else {
+      for (line in charLines) {
+        characterData.push(charLines[line].split('\t'));
+      }
+    }
     </script>
 
     <style>
@@ -96,17 +103,14 @@
     function createTable(data) {
       // Just one table.
       let headers = [];
-      for (const property in data[0]) {
-        headers.push(property);
-      };
 
       let table = document.getElementById('namesTable');
       const header = table.createTHead();
       let rowNum = 0;
       let headerRow = table.insertRow(rowNum);
 
-
-      for (let index = 0; index < headers.length; index ++) {
+      for (let index = 0; index < data[0].length; index ++) {
+        headers.push(data[0][index]);
         const headerCell = headerRow.insertCell(index);
         headerCell.innerHTML = headers[index];
         headerCell.style.fontSize = '20pt';
@@ -114,13 +118,14 @@
       };
       // Add rows for each code.
       let cellIndex = 0;
-      for (let item of data) {
+      for (let index = 1; index < data.length; index ++) {
           // One row for each row of patternMap.
           rowNum ++;
+          const item = data[index];
           let row = table.insertRow(rowNum);
           for (let cellIndex = 0; cellIndex < headers.length; cellIndex ++) {
               let cell = row.insertCell(cellIndex);
-              cell.innerHTML = item[headers[cellIndex]];
+              cell.innerHTML = item[cellIndex];
               // cell0.title = '';
               cell.style.fontSize = '20pt';
               if (cellIndex === 0) cell.style.fontFamily = "{{unicode_font_list.0.family}}";  // TODO
