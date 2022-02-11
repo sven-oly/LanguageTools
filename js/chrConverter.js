@@ -202,3 +202,5 @@ langConverter.one2oneMap = private_use_map_combined = {
   '\u007f': ['\u2421'],
   '\uf07f': ['\u2421'],
 };
+
+langConverter.one2oneMap = langConverter.dictionaryToMap(private_use_map_combined);

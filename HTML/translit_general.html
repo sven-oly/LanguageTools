@@ -66,8 +66,11 @@
 
   <script src="/js/utils.js"></script>
   <script src="/js/baseConverter.js"></script>
-
-  <script src="/js/{{langTag}}Converter.js"></script>
+    {% if converterName %}
+  <script src="/js/{{converterName}}.js"></script>
+{%else%}}
+    <script src="/js/{{langTag}}Converter.js"></script>
+    {%endif%}
   <script src="/js/text_utils.js"></script>
 
   <script src="/js/vk-debug.js"></script>

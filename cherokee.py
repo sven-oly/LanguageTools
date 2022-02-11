@@ -60,7 +60,10 @@ links = [
     {'linkText': 'Converter',
      'ref': '/chr/convertUI/'},
     {'linkText': 'Font conversion summary',
-      'ref': '/chr/encodingRules/'
+     'ref': '/chr/encodingRules/'
+    },
+    {'linkText': 'Convert to Latin',
+     'ref': '/chr/convertToLatin/'
     },
     {'linkText': 'Resources',
       'ref': '/chr/downloads/'
@@ -147,6 +150,44 @@ class CherokeeIndigenousHomeHandler(webapp2.RequestHandler):
       path = os.path.join(os.path.dirname(__file__), 'HTML/demo_general.html')
       self.response.out.write(template.render(path, template_values))
 
+
+# Transliterate Syllabary to Cherokee Latin
+class CherokeeConvertToLatinHandler(webapp2.RequestHandler):
+  def get(self):
+    langInfo = self.app.config.get('langInfo')
+
+    text = self.request.get('text', '')
+    font = self.request.get('font', None)
+
+    encoding_font_list = base.unicodeFontListToEncodingList(langInfo.unicode_font_list)
+    print('ENCODING FONT LIST = %s' % encoding_font_list)
+    template_values = {
+      'allFonts': True,
+      'converterName': 'chrLatinConverter',
+      'font': font,
+      'language': Language,
+      'langTag': 'chr',
+      'encodingList': encoding_font_list,
+      'encoding': {
+        'font_path':'/fonts/Cherokee/NotoSansCherokee-Regular.ttf',
+        'font_name':'NotoSansCherokee',
+        'display_name': 'Noto Sans Cherokee',
+      },
+      'kb_list': langInfo.kb_list,
+      'unicodeFonts': unicode_font_list,
+      'links': links,
+      'oldChars': '',
+      'oldInput': '',
+      'text': text,
+      'textStrings': '',
+      'showTools': self.request.get('tools', None),
+      'unicodeChars': langInfo.unicodeChars,
+      'combiningChars': [],
+    }
+    path = os.path.join(os.path.dirname(__file__), 'HTML/translit_general.html')
+    self.response.out.write(template.render(path, template_values))
+
+
 # Presents UI for conversions from font encoding to Unicode.
 class CherokeeConvertUIHandler(webapp2.RequestHandler):
     def get(self):
@@ -194,8 +235,8 @@ class CherokeeConvertUIHandler(webapp2.RequestHandler):
           'encodingList': encoding_font_list,
           'encoding': {
               'font_path':'/fonts/Cherokee/CherokeeOLD.ttf',
-              'font_name':'Cherokee_Old',
-              'display_name': 'Cherokee Old',
+              'font_name':'NotoSansCherokee',
+              'display_name': 'Noto Sans Cherokee',
           },
           'kb_list': kb_list,
           'unicodeFonts': unicode_font_list,
@@ -262,6 +303,7 @@ langInstance = langInfo()
 app = webapp2.WSGIApplication(
     [('/chr/', base.LanguagesHomeHandler),
      ('/chr/convertUI/', CherokeeConvertUIHandler),
+     ('/chr/convertToLatin/', CherokeeConvertToLatinHandler),
      ('/chr/downloads/', base.Downloads),
      ('/chr/converter/', CherokeeConvertHandler),
      ('/chr/encodingRules/', base.EncodingRules),

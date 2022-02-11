@@ -365,6 +365,27 @@ def getCombiningCombos(baseHexChar, diacritic_list):
     testString += '\u000a'
   return testString
 
+def encodingFontListToUnicodeList(encodinglist):
+  unicodeList = []
+  for item in encodinglist:
+    unicodeList.append({
+      'family': item['font_name'],
+      'longName': item['display_name'],
+      'source': item['font_path']
+      }
+    )
+  return unicodeList
+
+def unicodeFontListToEncodingList(unicodeList):
+  encodinglist = []
+  for item in unicodeList:
+    encodinglist.append({
+      'font_name': item['family'],
+      'display_name': item['longName'],
+      'font_path': item['source']
+    }
+    )
+  return encodinglist
 
 class EncodingRules(webapp2.RequestHandler):
   def get(self, match=None):
