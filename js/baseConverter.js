@@ -97,6 +97,10 @@ langConverterClass.prototype.convertEncodingToUnicode = function (inbox, outbox,
       newText = newText.replace(transform[0], transform[1]);
     }
   }
+
+  // Any final processing
+  newText = this.postProcessing(newText);
+
   if (outarea) {
     outarea.innerHTML = outarea.value = newText;
   }
@@ -118,4 +122,9 @@ langConverterClass.prototype.getTransforms = function() {
 
 langConverterClass.prototype.decodingInfo = function() {
   return this.encodingData;
+}
+
+// Post processing if needed
+langConverterClass.prototype.postProcessing = function(text) {
+  return text;
 }
