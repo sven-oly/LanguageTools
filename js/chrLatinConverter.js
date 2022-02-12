@@ -190,6 +190,7 @@ langConverter.one2oneMap = langConverter.dictionaryToMap(private_use_map_combine
 langConverter.postProcessing = function(text) {
 
   // Find paragraph boundaries.
+  // TODO: Find sentences within paragraphs, too!
   let blocks = text.split("\n");
   // For each block, move over the initial digits and space, then capitalize.
   for (let b in blocks) {
@@ -197,6 +198,7 @@ langConverter.postProcessing = function(text) {
     let size = block.length;
     let i = 0;
     let done = false;
+    // Skip verse number and spaces to find first word letter.
     while (i < size && !done) {
       let c = block.charAt(i);
       if (c == ' ' || (c >= '0' && c <= '9')) {
@@ -207,7 +209,7 @@ langConverter.postProcessing = function(text) {
         const replaced =
           block.substring(0, i) +
           upper +
-          block.substring(i + 2);
+          block.substring(i + 1);
         block = replaced;
         done = true;
       }
@@ -216,3 +218,12 @@ langConverter.postProcessing = function(text) {
   }
   return blocks.join('\n');
 }
+
+const specialWordsToCapitalize = [
+  'Tsisa', 'Galonedv', 'Dewi',
+  'Nasgi', 'Meli', 'Tsowa',
+    'Galvquodiyu', 'Adanvdo',
+    'Elodv', 'Tsudiyi', 'Tsilusilimi',
+    'Ugvwiyuhi', 'Anitsusi', 'Tlasgo',
+];
+
