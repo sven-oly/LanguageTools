@@ -120,7 +120,27 @@ unicode_font_list = [
   {
     'family': 'Pyidaungsu_Bold',
     'longName': 'Pyidaungsu Bold',
-    'source': '/fonts/Myanmar/Pyidaungsu/Pyidaungsu-1.8.3_Bold.ttf',
+    'source': '/fonts/Myanmar/Pyidaungsu/mmrtext.ttf',
+  },
+  {
+    'family': 'MyanmarText',
+    'longName': 'MyanmarText',
+    'source': '/fonts/Myanmar/PadaukGrandPro v2.ttf',
+  },
+  {
+    'family': 'Myanmar3',
+    'longName': 'Myanmar3',
+    'source': '/fonts/Myanmar/Myanmar3.ttf',
+  },
+  {
+    'family': 'PadauGrandProV2',
+    'longName': 'Padauk Grand Pro V2',
+    'source': '/fonts/Myanmar/PadaukGrandPro v2.ttf',
+  },
+  {
+    'family': 'PaohDragonApp',
+    'longName': 'Paoh Dragon App',
+    'source': '/fonts/Myanmar/PaohDragonApp.ttf',
   },
   {
     'family': 'Zawdecode',
