@@ -89,6 +89,15 @@ encoding_font_list = [
 
 unicode_font_list = [
   {
+    'source': '/fonts/Sunuwar/Mukdum-Regular-Unicode.otf',
+    'longName': 'Mukdum Unicode',
+    'family': 'MukdumUnicode',
+    'font_path': '/fonts/Sunuwar/Mukdum-Regular-Unicode.ttf',
+    'font_name': 'MukdumUnicode',
+    'display_name': 'Mukdum Unicode',
+    'info': 'Derived from Mukdum ASCII, cwc 6-Feb-2022'
+  },
+  {
     'source': '/fonts/Sunuwar/kirat2_PUA.ttf',
     'longName': 'Kirat2 PUA',
     'family': 'kirat2_PUA',

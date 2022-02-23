@@ -33,11 +33,11 @@ links = [
   {'linkText': 'Keyboard',
    'ref': '/' + LanguageCode + '/'
    },
-  # {'linkText': 'Converter',
-  #  'ref': '/' + LanguageCode + '/convertUI/'},
-  # {'linkText': 'Font conversion summary',
-  #   'ref': '/' + LanguageCode + '/encodingRules/'
-  # },
+  {'linkText': 'Converter',
+   'ref': '/' + LanguageCode + '/convertUI/'},
+  {'linkText': 'Font conversion summary',
+    'ref': '/' + LanguageCode + '/encodingRules/'
+  },
   {
     'linkText': 'Keyman keyboard',
     'ref': 'https://keyman.com/keyboards/mro_phonetic?bcp47=mro-mroo',
@@ -86,9 +86,9 @@ class langInfo:
 
         self.encoding_font_list = [
           {
-            'font_path': '/fonts/xyz.ttf',
-            'font_name': 'xyz',
-            'display_name': 'xyz',
+            'font_path': '/fonts/Mru/RiN_____.TTF',
+            'font_name': 'RiyenASCII',
+            'display_name': 'Riyen ASCII',
           },
         ]
 

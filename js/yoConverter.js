@@ -1,12 +1,12 @@
 // Convert from old font-encoding Yoruba Ariya font to Unicode forms:
-const langConverter = new langConverterClass('up', 'Yoruba');
+const langConverter = new langConverterClass('yo', 'Yoruba');
 
 // Mappings for old Yoruba non-Unicode forms
 var map_encoding_names = [
   'Ariya', 'YorubaOK'];
 
 // TODO: Fix YorubaOK mappings
-langConverter.one2oneMap =  private_use_map_combined = {
+private_use_map_combined = {
   '\u0023': ['\u20a6', '$'],
   '\u003c': ['\u1ecd\u0301', '\u1ecd\u0301'],
   '\u003e': ['\u1ecc\u0301', '\u1ecc\u0301'],
@@ -65,3 +65,8 @@ langConverter.one2oneMap =  private_use_map_combined = {
   '\ue01e': ['\u1ecc\u0302', '\u1ecc\u0302'],
   '\ue01f': ['\u0169', '\u0169'],
 };
+
+langConverter.one2oneMap = langConverter.dictionaryToMap(private_use_map_combined);
+
+langConverter.addOne2OneTransforms(
+'c','ẹ', 0);

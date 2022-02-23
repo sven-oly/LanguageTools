@@ -186,8 +186,32 @@ private_use_map_combined = {
 
 langConverter.one2oneMap = langConverter.dictionaryToMap(private_use_map_combined);
 
+capitalizeSentence = function(text) {
+    let size = text.length;
+    let i = 0;
+    let done = false;
+    // Skip verse number and spaces to find first word letter.
+    while (i < size && !done) {
+      let c = text.charAt(i);
+      if (c == ' ' || (c >= '0' && c <= '9')) {
+        i++;
+      } else {
+        // Capitalize this one
+        const upper = text.substring(i, i+1).toUpperCase();
+        const replaced =
+          text.substring(0, i) +
+          upper +
+          text.substring(i + 1);
+        text = replaced;
+        done = true;
+      }
+    }
+    return text;
+}
+
 // Capitalize at start of sentences?
 langConverter.postProcessing = function(text) {
+  if (text === null || undefined === text) return;
 
   // Find paragraph boundaries.
   // TODO: Find sentences within paragraphs, too!
@@ -195,35 +219,54 @@ langConverter.postProcessing = function(text) {
   // For each block, move over the initial digits and space, then capitalize.
   for (let b in blocks) {
     let block = blocks[b];
-    let size = block.length;
-    let i = 0;
-    let done = false;
-    // Skip verse number and spaces to find first word letter.
-    while (i < size && !done) {
-      let c = block.charAt(i);
-      if (c == ' ' || (c >= '0' && c <= '9')) {
-        i++;
-      } else {
-        // Capitalize this one
-        const upper = block.substring(i, i+1).toUpperCase();
-        const replaced =
-          block.substring(0, i) +
-          upper +
-          block.substring(i + 1);
-        block = replaced;
-        done = true;
-      }
+    // Are there any ends of sentences in this block? How about questions or exclamations?
+    let sentences = block.split('. ')
+    for (let s in sentences) {
+      sentences[s] = capitalizeSentence(sentences[s]);
     }
-    blocks[b] = block;
+    // Rebuild the block.
+    blocks[b] = sentences.join('. ');
   }
-  return blocks.join('\n');
+  result = blocks.join('\n');
+
+  return result;
 }
 
-const specialWordsToCapitalize = [
-  'Tsisa', 'Galonedv', 'Dewi',
-  'Nasgi', 'Meli', 'Tsowa',
-    'Galvquodiyu', 'Adanvdo',
-    'Elodv', 'Tsudiyi', 'Tsilusilimi',
-    'Ugvwiyuhi', 'Anitsusi', 'Tlasgo',
-];
 
+// These are words that were capitalized as names from first 13 chapters of Matthew.
+const specialWordsToCapitalize = ['adanelvno', 'adanvdo', 'adina', 'adolehosgisgo', 'agata', 'ageyvno', 'aholino',
+'ale', 'amoni', 'amonino', 'anasgidasgvno', 'ani', 'aniqualisino', 'anisgayano', 'anisginano', 'anitsusi',
+'aquadilanaloyeno', 'aquayadi', 'aquayadino', 'aseno', 'asequo', 'asgayano', 'asgayasgo', 'asginano', 'asgohitsuquino',
+'asiquo', 'awisgini', 'ayadoli', 'ayadoliyuyeno', 'ayelasdisgini', 'ayv', 'ayvyeno', 'dadiloni', 'dadilonino', 'dadiya',
+ 'damino,', 'deganotsalvno', 'detsayadotsehesdi', 'detseyadotsehesdi', 'dewi', 'dewino', 'didawosgi', 'dideloquasgi',
+ 'digesgivsiquono', 'dinigadolino', 'dinigatiyano', 'dinigewi', 'diniyoliquo', 'ditsadanvdvli', 'ditsakanvga',
+ 'dugohvno', 'dulawidvno', 'duleneno', 'dulenvno', 'egimi', 'egimino', 'ehasi', 'ehasino', 'elimi', 'elimino', 'eliqui',
+  'elodv', 'elodvno', 'elodvyeno', 'elodvyi', 'emenv.', 'eminidaqui', 'equahami', 'equahami,', 'equaya', 'equayano',
+  'esi', 'esigi', 'esigi,', 'esigino', 'esino', 'eso', 'esono', 'etsena,', 'gadoge', 'gaduhv', 'gaduhvno', 'gago',
+  'gagoge', 'gagono', 'galitsodeno', 'galoneda', 'galonedv,', 'galonedv.', 'galvladisgini', 'galvladiyeno',
+  'galvquodiyu', 'gehino', 'gelili', 'gelili,', 'gequani', 'getsinugowisvno', 'gila', 'gilaquono', 'gilo', 'gilono',
+  'gilosgini', 'giloyeno', 'gomali,', 'gvniyuquo', 'gvniyuquono', 'gvwasdawadodohino', 'hesigaya', 'hesigayano', 'hia',
+  'hiage', 'hiano', 'hiayeno', 'hinegvyeno', 'hnanano', 'hnaquale', 'hnaquo', 'hnaquono', 'hnawono', 'iga',
+  'igvyisgini', 'igvyiyi', 'igvyu', 'ilaya', 'ilayadi', 'ilayadino', 'ilayagimi', 'ilayagimino', 'iliesa', 'iliesano',
+  'ilvhitlvno', 'inadv', 'isaya', 'isaya,', 'isgoniditlvno', 'isilami', 'isilamino', 'isili', 'isiliyi', 'isiliyi,',
+  'isiliyi.', 'itsadvganvhi', 'itsaisvno', 'itsaliheligesdi', 'itsenasgini,', 'itsesgini', 'itseyataheadi',
+  'itsinanugowayogo', 'itsinegvsgini', 'itsitayoha,', 'itsiyoga,', 'itsiyv', 'iunenvno', 'iyu', 'iyuno', 'iyusgini',
+  'iyusginino', 'iyuyeno', 'kanohedv,', 'lehawi', 'lemayi', 'lequiyano', 'letsili', 'loquoma', 'loquomano', 'lusi',
+  'meli', 'madani', 'madanino', 'madu', 'maduno', 'mamani', 'manasi', 'manasino', 'meli', 'meli,', 'mosi', 'nahiyu',
+  'nahna', 'nahnano', 'nahnayeno', 'nanivno', 'nanivyeno', 'naselidino', 'nasgi', 'nasgino', 'nasgisgini', 'nasgiyeno',
+  'nasoni', 'nasonino', 'nasquosgini', 'nidadodaquisv', 'nigadvno', 'nigadvyeno', 'nigav', 'nigavsgini', 'nihi',
+  'nihino', 'nihisgini', 'nulaquo', 'nusdv', 'nvgasgohino', 'nvwadaleno', 'ogidoda', 'oquedi', 'oquedino', 'osaya',
+  'osayano', 'osdv', 'osiyu', 'quelisi', 'quelisino', 'quida', 'quiligino,', 'quosi', 'quosino', 'sadoni,',
+  'saladayili', 'saladayilino', 'salima', 'salimano', 'sameli', 'sawani', 'sawanino', 'sedani', 'sedani,', 'sedogi',
+  'sedogino', 'sela', 'sidoni,', 'siliyi', 'sodami', 'sodamiyi,', 'solimanv', 'solimanvno', 'solimonv', 'solimonv.',
+  'taya', 'tegaqui', 'tema', 'tlasgi', 'tlasgini', 'tlasgo', 'tlaso', 'tlesdi', 'tlugv', 'tsagvwiyuhi', 'tsani', 'tsani',
+  'tsani.', 'tsanino', 'tsaniyeno', 'tsatlonasdi!', 'tsatseligayeno', 'tsegaqui', 'tsegaqui,', 'tsegaquino',
+  'tsegonaya', 'tsequalani', 'tsequidi', 'tsesi', 'tsesino', 'tsigo', 'tsilaqueli', 'tsilaquelino', 'tsilusilimi',
+  'tsilusilimi,', 'tsimi', 'tsimino', 'tsinitsiyoiyv', 'tsisa', 'tsisa,', 'tsisano', 'tsiyuhino', 'tslamino', 'tsodami',
+   'tsodamino', 'tsodani', 'tsodani,', 'tsodanino', 'tsohiyusv', 'tsolami', 'tsona', 'tsona.', 'tsonayeno', 'tsosaya',
+   'tsosayano', 'tsosiqua', 'tsosiquano', 'tsowa', 'tsowa,', 'tsowano', 'tsuda', 'tsudano', 'tsudiyi', 'tsudiyi,',
+   'tsuduyi,', 'tsunitlvgi', 'udohiyudiyi', 'udohiyuheyayeno', 'udohiyuhiya', 'udohiyuhiyayeno', 'ugvwiyuhi',
+   'ugvwiyusesdisgini', 'ulisigv', 'unadvganonelvno', 'unelanvhi', 'unelanvhiyeno', 'unetsvno', 'uninugotsvno,',
+   'unitsatino', 'unvsidasdino', 'usdi', 'usvnileno', 'usvno', 'utsadvyeno', 'uwowelanvhiayadolvi', 'uyoiyu', 'uyono',
+   'vgvwayetsastanvquono.', 'vtla', 'vtlayeno', 'vv,', 'wasona', 'wasonasgo', 'widusonvno', 'widuyanvhvno', 'yeliquo',
+   'yeliquoyeno', 'yitsigadovsesgini', 'yo', 'yulaya', 'yvwi', 'yvwiyeno'];

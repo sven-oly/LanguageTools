@@ -34,6 +34,9 @@ links = [
    'ref': '/' + LanguageCode + '/charTable/'},
   {'linkText': 'About Umwero',
    'ref': '/' + LanguageCode + '/about/'},
+  {'linkText': 'KB transforms',
+   'ref': '/' + LanguageCode + '/kbtransforms/'
+   },
   # {'linkText': 'Font conversion summary',
   #   'ref': '/' + LanguageCode + '/encodingRules/'
   # },
@@ -75,9 +78,14 @@ class langInfo:
         self.test_data = u''
         self.unicode_font_list = [
           {  # This is a font encoding for testing.
+            'family': 'UMWERO_PUA3',
+            'longName': 'UMWERO PUA 3 Feb 2022',
+            'source': '/fonts/Kinyarwanda/UMWEROPUA3.otf',
+          },
+          {  # This is a font encoding for testing.
             'family': 'UMWERO',
-            'longName': 'UMWERO Jan 2022',
-            'source': '/fonts/Kinyarwanda/UMWERO.otf',
+            'longName': 'UMWERO February 2022',
+            'source': '/fonts/Kinyarwanda/NZELA567.otf',
           },
           {  # This is a font encoding for testing.
             'family': 'Kernedumwero',
@@ -122,62 +130,12 @@ class langInfo:
             'info': 'Umwero glpyh names'
         }
 
-        self.charNames = """Umwero	ASCII	Charname
-\"	\"	Ah
-:	:	Uh
-{	{	Oh
-|	|	Eh
-}	}	Ih
-R	R	Ra
-B	B	Ba
-N	N	Na
-M	M	Ma
-T	T	Ta
-K	K	Ka
-S	S	Sa
-G	G	Ga
-Z	Z	Za
-C	C	Cha
-J	J	Ja
-D	D	Da
-H	H	Ha
-Y	Y	Ya
-W	W	Wa
-V	V	Va
-P	P	Pa
-F	F	Fa
-A	A	Mba
-U	U	Nja
-YY	YY	Nya
-SS	SS	Nsa
-KK	KK	Kya
-ZZ	ZZ	Dza
-HH	HH	Sha
-L	L	Gya
-LL	LL	Ngya
-CC	CC	Nca
-BB	BB	Nb
-Q	Q	Shya
-QQ	QQ	Nshya
-HHH	HHH	Nsh
-NN	NN	Nha
-TT	TT	Nta
-PP	PP	Mpa
-X	X	Tsa
-E	E	NKHA
-EE	EE	NKA
-JJ	JJ	DJA
-O	O	MVA
-FF	FF	MFA
-I	I	PFA
-KKK	KKK	NKYA
-=	=	=
+        self.charNames = """Umwero	Name	ASCII
 (	(	(
-.	.	.
-?	?	?
-,	,	, or ;
 +	+	+
+,	, or ;	,
 -	-	-
+.	.	.
 1	1	1
 2	2	2
 3	3	3
@@ -187,70 +145,135 @@ KKK	KKK	NKYA
 7	7	7
 8	8	8
 9	9	9
-ND	ND	Nda
-NG	NG	Nga
-NZ	NZ	Nza
-HHKW	HHKW	Shkwa
-QKW	QKW	Shykwa
-HHHKW	HHHKW	Nshkwa
-QQKW	QQKW	Nshykwa
-AG	AG	Mbga
-AL	AL	Mbgya
-BBL	BBL	Bgya
-BBG	BBG	Bga
-BBYGW	BBYGW	Bygwa
-NYY	NYY	N-Nya
-NNYY	NNYY	Nh-Nya
-TKW	TKW	Tkwa
-TKK	TKK	Tkya
-NNEW	NNEW	Nhu-Nkwa
-SKW	SKW	Skwa
-SKK	SKK	Skya
-KW	KW	Kwa
-EW	EW	Nkh-Wa
-EEW	EEW	Nkwa
-CKW	CKW	Ckwa
-CCKW	CCKW	Nckwa
-XKW	XKW	Tskwa
-SSKW	SSKW	Nskwa
-SSKK	SSKK	Nskya
-MYY	MYY	Mnya
-ME	ME	M-Nkha
-MYYEW	MYYEW	M+Ny+Nkh-Wa
-DGW	DGW	Dgwa
-NDGW	NDGW	Ndgwa
-DL	DL	Dgya
-NDL	NDL	Ndgya
-JGW	JGW	Jgwa
-UGW	UGW	Njgwa
-ZGW	ZGW	Zgwa
-YYEW	YYEW	Ny-Nkh-Wa
-GW	GW	Gwa
-NZGW	NZGW	Nzgwa
-NEW	NEW	N-Nkh-Wa
-NGW	NGW	Ngwa
-IK	IK	Pfka
-IKK	IKK	Pfkya
-PKK	PKK	Pkya
-FK	FK	Fka
-FKK	FKK	Fkya
-VG	VG	Vga
-VL	VL	Vgya
-OG	OG	Mvga
-OL	OL	Mvgya
-OGW	OGW	Mvgwa
-PK	PK	Pka
-PPKK	PPKK	Mpkya
-PPK	PPK	Mpka
-FFK	FFK	Mfka
-FFKK	FFKK	Mfkya
-RGW	RGW	Rgwa
-RL	RL	Rgya"""
+=	=	=
+?	?	?
+:	Uh	:
+{	Oh	{
+|	Eh	|
+}	Ih	}
+A	Mba	A
+AG	Mbga	AG
+AGW	Agw (!)	AGW
+AL	Mbgya	AL
+AYGW	Aygw (!)	AYGW
+B	Ba	B
+BB	Nb	BB
+BBG	Bga	BBG
+BBL	Bgya	BBL
+BBYGW	Bygwa	BBYGW
+C	Cha	C
+CC	Nca	CC
+CCKW	Nckwa	CCKW
+CKW	Ckwa	CKW
+D	Da	D
+DGW	Dgwa	DGW
+DL	Dgya	DL
+E	NKHA	E
+EE	NKA	EE
+EEW	Nkwa	EEW
+EW	Nkh-Wa	EW
+F	Fa	F
+FF	MFA	FF
+FFK	Mfka	FFK
+FFKK	Mfkya	FFKK
+FK	Fka	FK
+FKK	Fkya	FKK
+G	Ga	G
+GW	Gwa	GW
+H	Ha	H
+HH	Sha	HH
+HHH	Nsh	HHH
+HHHKW	Nshkwa	HHHKW
+HHKW	Shkwa	HHKW
+I	PFA	I
+IK	Pfka	IK
+IKK	Pfkya	IKK
+J	Ja	J
+JGW	Jgwa	JGW
+JJ	DJA	JJ
+K	Ka	K
+KK	Kya	KK
+KKK	NKYA	KKK
+KW	Kwa	KW
+L	Gya	L
+LL	Ngya	LL
+M	Ma	M
+ME	M-Nkha	ME
+MW	Mw (!)	MW
+MYY	Mnya	MYY
+MYYEW	M+Ny+Nkh-Wa	MYYEW
+N	Na	N
+ND	Nda	ND
+NDGW	Ndgwa	NDGW
+NDL	Ndgya	NDL
+NEW	N-Nkh-Wa	NEW
+NG	Nga	NG
+NGW	Ngwa	NGW
+NN	Nha	NN
+NNEW	Nhu-Nkwa	NNEW
+NNYY	Nh-Nya	NNYY
+NYY	N-Nya	NYY
+NZ	Nza	NZ
+NZGW	Nzgwa	NZGW
+O	MVA	O
+OG	Mvga	OG
+OGW	Mvgwa	OGW
+OL	Mvgya	OL
+P	Pa	P
+PK	Pka	PK
+PKK	Pkya	PKK
+PP	Mpa	PP
+PPK	Mpka	PPK
+PPKK	Mpkya	PPKK
+Q	Shya	Q
+QKW	Shykwa	QKW
+QQ	Nshya	QQ
+QQKW	Nshykwa	QQKW
+R	Ra	R
+RGW	Rgwa	RGW
+RL	Rgya	RL
+S	Sa	S
+SKK	Skya	SKK
+SKW	Skwa	SKW
+SS	Nsa	SS
+SSKK	Nskya	SSKK
+SSKW	Nskwa	SSKW
+SW	Sw	SW
+T	Ta	T
+TKK	Tkya	TKK
+TKW	Tkwa	TKW
+TT	Nta	TT
+TTEEW	Tteew (!)	TTEEW
+TTKW	Ttkw (!)	TTKW
+U	Nja	U
+UGW	Njgwa	UGW
+V	Va	V
+VG	Vga	VG
+VL	Vgya	VL
+W	Wa	W
+X	Tsa	X
+XKW	Tskwa	XKW
+Y	Ya	Y
+YY	Nya	YY
+YYEW	Ny-Nkh-Wa	YYEW
+Z	Za	Z
+ZGW	Zgwa	ZGW
+ZZ	Dza	ZZ
+	Times10	Times10
+	Times100	Times100
+	Times1000	Times1000
+	Times10000	Times10000
+	Times10^5	Times10^5
+	Times10^6	Times10^6
+	Times10^7	Times10^7
+	Times10^8	Times10^8
+	Times10^9	Times10^9"""
 
 langInstance = langInfo()
 
 app = webapp2.WSGIApplication([
   ('/' + LanguageCode + '/', base.LanguagesHomeHandler),
+  ('/' + langInstance.LanguageCode + '/kbtransforms/', base.KeyboardTransforms),
   ('/' + LanguageCode + '/convertUI/', base.ConvertUIHandler),
   ('/' + LanguageCode + '/downloads/', base.Downloads),
   ('/' + LanguageCode + '/encodingRules/', base.EncodingRules),

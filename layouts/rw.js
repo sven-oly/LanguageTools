@@ -16,14 +16,14 @@ var RW_LAYOUT = {
   'title': 'Kernedumwero ASCII',
   'mappings': {
     's,sc': {  // Shifted for unmapped characters
-      '': '`1234567890-=' +
-          'qwertyuiop[]\\' +
+      '': '~!@#$%^&*()_+' +
+          'qwertyuiop{}\\' +
           'asdfghjkl;\'' +
           'zxcvbnm,./'
     },
     ',c': {  // default upper case ASCII for Kernedumwero
-      '': '~!@#$%^&*()_+' +
-          'QWERTYUIOP{}|' +
+      '': '`1234567890-=' +
+          'QWERTYUIOP{{\uf300}}{{\uf301}}|' +
           'ASDFGHJKL:"' +
           'ZXCVBNM<>?'
     },
@@ -41,7 +41,16 @@ var RW_LAYOUT = {
     }
   },
   'transform': {
-    '^': '^',  // Placeholder
+    '\uf300\uf300': '\uf302',  // For Numerals 1000
+    '\uf300\uf301': '\uf303',  // For Numerals 10^4
+    '\uf301\uf301': '\uf304',  // 10^5
+    '\uf301\uf300': '\uf309',  // 10^10
+    '\uf302\u001d\uf300': '\uf305',  // For Numerals 10^6
+    '\uf302\u001d\uf301': '\uf306',  // For Numerals 10^7
+    '\uf303\u001d\uf300': '\uf307',  // For Numerals 10^8
+    '\uf303\u001d\uf301': '\uf308',  // For Numerals 10^9
+    '\uf309\u001d\uf300': '\uf400',  // 10^11
+    '\uf309\u001d\uf301': '\uf401',  // 10^12
   }
 };
 

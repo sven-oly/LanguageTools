@@ -128,3 +128,27 @@ langConverterClass.prototype.decodingInfo = function() {
 langConverterClass.prototype.postProcessing = function(text) {
   return text;
 }
+
+// Capitalizes sentences for scripts that have case.
+langConverterClass.prototype.capitalizeSentence = function(text) {
+    let size = text.length;
+    let i = 0;
+    let done = false;
+    // Skip verse number and spaces to find first word letter.
+    while (i < size && !done) {
+      let c = text.charAt(i);
+      if (c == ' ' || (c >= '0' && c <= '9')) {
+        i++;
+      } else {
+        // Capitalize this one
+        const upper = text.substring(i, i+1).toUpperCase();
+        const replaced =
+          text.substring(0, i) +
+          upper +
+          text.substring(i + 1);
+        text = replaced;
+        done = true;
+      }
+    }
+    return text;
+}
