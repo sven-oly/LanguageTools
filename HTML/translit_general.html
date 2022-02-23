@@ -427,21 +427,17 @@ function newConverter(type, input_id, output_id, outtype_id) {
 
   <body onload="onPageLoaded();">
   <div class="container">
-    <div class="span-1">
-    </div>
+
   <div class="span-16">
-
-
      <div id="old_encoding_area">
-     <h3>Source {{language}} font data</h3>
+     <h3>Encoded {{language}} font data</h3>
         {% if isTransLit %}
          <div id="transform_options">
              Convert options:<br />
              <span id="convertBase"></span>
              <!--Convert options:<!input type="radio" id="age1" name="convertOption" -->
-             {% endif %}
+         {% endif %}
 
-         </div>
          {% if translit_kb_list %}
          Keyboard: <select onchange="onLayoutSelected(this, null, 'Unicode{{language}}Tools');" id="selectKeyboardTop">
          {% for kb in translit_kb_list %}
@@ -521,6 +517,7 @@ function newConverter(type, input_id, output_id, outtype_id) {
      </div>
      <br />
     </div>
+
     <div id="unicode_area">
         {% if converters %}
         <h3 id='result_type'></h3>
@@ -567,7 +564,7 @@ function newConverter(type, input_id, output_id, outtype_id) {
         <input type="checkbox" name="vsToggle" id="toggleVS" checked
        onchange="toggleConvertedVS('Unicode_font_output_text', toggleVS);">Toggle variation sequence<br />
      {% endif %}
-
+     </div>
      <div id="Unicode{{language}}Tools"
           {% if showTools %}
           style="display:block;"
@@ -606,10 +603,9 @@ function newConverter(type, input_id, output_id, outtype_id) {
     {% endif %}
    </div>
 
-  </div>  <!-- end of span -->
   <div class="span-4 last">
     {% if user_nickname %}
-    <h4>Welcome {{user_nickname}}
+    <h4>Welcome {{user_nickname}}</h4>
     {% if user_logout %}
     <a href={{user_logout}}>Logout</a>
     {% endif %}
@@ -624,8 +620,6 @@ function newConverter(type, input_id, output_id, outtype_id) {
             <a href="{{link.ref}}">{{link.linkText}}</a>
           </li>
         {% endfor %}
-
-
         </ul>
          {% if isAdmin %}
         <hr>
@@ -636,15 +630,15 @@ function newConverter(type, input_id, output_id, outtype_id) {
         </ul>
         {% endif %}
         <br />
-      <div>
     <form id='mon_form' action="/feedback/" method="get">
       <input type="submit" value="Send feedback" />
       <input type="hidden" name='language' value='{{language}}'>
       <input type="hidden" name='font' value=''>
     </form>
   </div>
+      </div>
+  </div>
 
-    </div>
   </div> <!-- container -->
 
 </body>

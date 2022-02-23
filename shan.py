@@ -60,9 +60,9 @@ my_wwburn_converter_Z = None  # to Unicode or maybe to Z?
 
 encoding_font_list = [
   {
-    'font_path': '/fonts/burmese/WwinBurmese.ttf',
-    'font_name': 'WwinBurmese',
-    'display_name': 'Wwin Burmese',
+    'font_path': '/fonts/Shan/Zawgyi-Tai.ttf',
+    'font_name': 'ZawgyiTai',
+    'display_name': 'Zawgyi-Tai',
   },
 ]
 
@@ -136,11 +136,11 @@ unicode_font_list = [
 
 
 links = [
-    # {'linkText': 'Converter',
-    #  'ref': '/shn/convertUI/'},
-    # {'linkText': 'Font conversion summary',
-    #  'ref': '/shn/encodingRules/'
-    # },
+    {'linkText': 'Converter',
+     'ref': '/shn/convertUI/'},
+    {'linkText': 'Font conversion summary',
+     'ref': '/shn/encodingRules/'
+    },
     {'linkText': 'Diacritics',
      'ref': '/shn/diacritic/'
      },
@@ -167,11 +167,6 @@ diacritic_list = [unichr(x) for x in range(0x102b, 0x103f)]
 base_consonant = u'\u1000'
 
 testStringList = [
-  # {'name': 'Test  ww_burn samples',
-  #  'string': u'tÛudufqkH; ' + u't-uH^m%f ' +
-  #            u'∫uGm;w,f ' + u'ac|;xGufw,f\ ' + u'tdyf&mxw,f ' + u'tawmftwefn' +
-  #            'tjyefvufrSwf ' + ' tjypfusL;vGefo ' + ' u|rf;usifo ',
-  #  },
 ]
 
 kb_list = [
@@ -205,6 +200,7 @@ class langInfo():
     self.diacritic_list = diacritic_list
     self.base_consonant = u'\u107c'
 
+    self.encoding_font_list = encoding_font_list
     self.unicode_font_list = unicode_font_list
     self.lang_list = ['shn']
     self.kb_list = kb_list
@@ -229,54 +225,11 @@ class ConvertUIHandler(webapp2.RequestHandler):
     def get(self):
 
       # All old characters
-      oldChars = (u'\u0001 !"\u0023\u0024%&\'()*+,-./' +
-                  '0123456789:;<=>?@' +
-                  'ABCDEFGHIJKLMNOPQRSTUVWXYZ[ \\ ]^_`' +
-                  'abcdefghijklmnopqrstuvwxyz{|}~')
+      oldChars = (u'')
       text = self.request.get('text', oldChars)
       font = self.request.get('font')
 
       oldInput = u''
-      for i in range(0x20, 0x80):
-        oldInput += unichr(i)
-        oldInput += unichr(0x20) + unichr(0x20)
-      oldInput += unichr(0x000a)
-      for i in xrange(0xa0, 0xaf):
-        oldInput += unichr(i)
-        oldInput += unichr(0x20) + unichr(0x20)
-      oldInput += unichr(0x000a)
-      for i in xrange(0xb0, 0xf9):
-        oldInput += unichr(i)
-        oldInput += unichr(0x20) + unichr(0x20)
-      oldInput += unichr(0x000a)
-      for i in xrange(0xb0, 0xf8):
-        oldInput += unichr(i)
-        oldInput += unichr(0x20) + unichr(0x20)
-      oldInput += unichr(0x000a)
-      oldInput += unichr(0xfb)
-      oldInput += unichr(0xff)
-      oldInput += unichr(0x152)
-      oldInput += unichr(0x153)
-      oldInput += unichr(0x160)
-      oldInput += unichr(0x161)
-      oldInput += unichr(0x192)
-      oldInput += unichr(0x2c6)
-      oldInput += unichr(0x000a)
-      oldInput += unichr(0x2013)
-      oldInput += unichr(0x2014)
-      oldInput += unichr(0x2018)
-      oldInput += unichr(0x2019)
-      oldInput += unichr(0x201a)
-      oldInput += unichr(0x201c)
-      oldInput += unichr(0x201d)
-      oldInput += unichr(0x201e)
-      oldInput += unichr(0x2020)
-      oldInput += unichr(0x2021)
-      oldInput += unichr(0x2022)
-      oldInput += unichr(0x2026)
-      oldInput += unichr(0x2030)
-      oldInput += unichr(0x2039)
-      oldInput += unichr(0x2122)
 
       unicodeChars = ''
       unicodeCombiningChars = ''
