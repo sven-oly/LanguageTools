@@ -94,7 +94,9 @@ class langInfo:
 
     self.kb_list = [
       {'shortName':  'chr_phone',
-       'longName': 'Cherokee Phonetic'
+       'longName': 'Cherokee Phonetic',
+       'instructions':
+       'New: How to type PUA numerals: 0-9, ]0-]9 /0-/9 p0-p6'
        },
       {'shortName':  'chr',
        'longName': 'Cherokee'
