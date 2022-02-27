@@ -44,11 +44,14 @@ encoding_font_list = [
 ]
 
 unicode_font_list = [
-    { 'family': 'NotoSansCheronee',
-      'longName': 'Noto Sans Cherokee',
-      'source': '/fonts/Cherokee/NotoSansCherokee-Regular.ttf'
+    { 'family': 'NotoSansCheroneePlus',
+      'longName': 'Noto Sans Cherokee Plus Numeral PUA',
+      'source': '/fonts/Cherokee/NotoSansCherokeePlus.ttf'
     },
-]
+  { 'family': 'NotoSansCheronee',
+    'longName': 'Noto Sans Cherokee',
+    'source': '/fonts/Cherokee/NotoSansCherokee-Regular.ttf'
+    },]
 
 for f in all_cherokee_unicode_fonts:
   unicode_font_list.append(f)
@@ -90,12 +93,12 @@ class langInfo:
     self.allFonts = True
 
     self.kb_list = [
+      {'shortName':  'chr_phone',
+       'longName': 'Cherokee Phonetic'
+       },
       {'shortName':  'chr',
        'longName': 'Cherokee'
        },
-      {'shortName':  'chr_phone',
-       'longName': 'Cherokee Phonetic'
-       }
     ]
     self.lang_list = ['chr']
     self.links = links

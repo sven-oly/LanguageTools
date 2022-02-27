@@ -3,7 +3,7 @@ var CHR_PHONE_LAYOUT = {
   'title': 'ᏣᎳᎩ ᏗᎧᏁᎢᏍᏗ ᏚᏃᏴᎬ',
   'mappings': {
     'c,': {
-      '': '{{\u0300}}1234567890-=' +
+      '': '{{\u0300}}\uf601\uf602\uf603\uf604\uf605\uf606\uf607\uf608\uf609\uf600-=' +
           'qwe{{}}tyuio{{\u0294}}[]\\' +
           'asd{{}}gh{{}}kl;\{{\u0301}}' +
           '{{\u0323}}{{\u0304}}{{\u0302}}v{{\u030c}}nm,./'
@@ -34,7 +34,34 @@ var CHR_PHONE_LAYOUT = {
     }
   },
   'transform' : {
-    // Based on transliteration of Cherokee to English.
+    // PUA Numerals
+    ']\uf600': '\uf60a',
+    ']\uf601': '\uf60b',
+    ']\uf602': '\uf60c',
+    ']\uf603': '\uf60d',
+    ']\uf604': '\uf60e',
+    ']\uf605': '\uf60f',
+    ']\uf606': '\uf610',
+    ']\uf607': '\uf611',
+    ']\uf608': '\uf612',
+    ']\uf609': '\uf613',
+    '/\uf600': '\uf614',
+    '/\uf601': '\uf615',
+    '/\uf602': '\uf616',
+    '/\uf603': '\uf617',
+    '/\uf604': '\uf618',
+    '/\uf605': '\uf619',
+    '/\uf606': '\uf61a',
+    '/\uf607': '\uf61b',
+    '/\uf608': '\uf61c',
+    '/\uf609': '\uf61d',
+    'ʔ\uf600': '\uf61e',
+    'ʔ\uf601': '\uf61f',
+    'ʔ\uf602': '\uf620',
+    'ʔ\uf603': '\uf621',
+    'ʔ\uf604': '\uf622',
+    'ʔ\uf605': '\uf623',
+    'ʔ\uf606': '\uf624',    // Based on transliteration of Cherokee to English.
     'a' : '\uab70', // Ꭰ lower
     'A' : '\u13A0', // Ꭰ
     'e' : '\uab71',  // Ꭱ
