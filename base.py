@@ -15,11 +15,16 @@
 #
 from django.template import Template
 
+import games
+import languageTemplate
+
 import transliterate
+import wordsearch
 
 import json
 import logging
 import os
+import unicodedata
 import webapp2
 
 from google.appengine.ext.webapp import template
@@ -39,56 +44,6 @@ try:
 except NameError:
     xrange = range
 
-
-# A base class for handling the general things needed in a language.
-class languageTemplate:
-  def __init__(self):
-    self.LanguageCode = 'base'
-    self.Language = 'General'
-    self.Language_native = 'Base Language'
-
-    self.encoding_font_list = [
-        {'font_name': self.Language + 'Font',
-         'display_name': self.Language,
-         'font_path': '/fonts/',
-         },
-    ]
-
-    self.unicode_font_list = [
-        {
-            'source': '/fonts/NotoSans-Regular.ttf',
-            'family': 'NotoSans',
-            'longName': 'Noto Sans',
-        },
-    ]
-
-    self.lang_list = []
-    self.links = [
-        {'linkText': 'Keyboard',
-         'ref': '/' + self.LanguageCode + '/'},
-        {'linkText': 'Converter',
-         'ref': self.LanguageCode + '/converter/'},
-        {'linkText': 'Font conversion summary',
-         'ref': self.LanguageCode + 'encodingRules/'},
-        {'linkText': 'Resources',
-         'ref': self.LanguageCode + '/downloads/'},
-    ]
-
-    self.kb_list = [
-        {'shortName':  self.LanguageCode,
-         'longName': self.Language
-         }
-    ]
-
-    self.text_file_list = [
-    ]
-
-    # Controls display of toggle for variation sequence.
-    self.variation_sequence = False
-
-    self.baseHexUTF16 = u''
-
-    return
 
 # Explicitly NOT PART OF THE CLASS
 
@@ -129,6 +84,23 @@ class LanguagesHomeHandler(webapp2.RequestHandler):
         home_html = langInfo.custom_home_template
     except:
         home_html = 'HTML/demo_general.html'
+
+    # Information on the characters in the Unicode range
+    unicodeCharData = {}
+
+    try:
+      for interval in langInfo.unicodeRanges:
+        start = interval[0]
+        end = interval[1] + 1
+
+        for x in range(start, end):
+          chr = unichr(x)
+          unicodeCharData[chr] = [
+            unicodedata.name(chr), unicodedata.category(chr),
+          ]
+
+    except:
+      print('!!! Unicode range not set')
 
     template_values = {
         'allFonts': allFonts,
@@ -586,7 +558,7 @@ class DictionaryN(webapp2.RequestHandler):
 
 # Create an instance of the template and add to configuration.
 # so values can be passed to the classes
-instance = languageTemplate()
+instance = languageTemplate.languageTemplate()
 basePath = '/' + instance.LanguageCode
 
 
@@ -783,10 +755,77 @@ class CharacterTableHandler(webapp2.RequestHandler):
       'LanguageTag': langInfo.LanguageCode,
       'charTable': charNames,
       'charNameData': charNames,
-      'encoding_font_list': langInfo.encoding_font_list,
+      'kb_list': langInfo.kb_list,
       'unicode_font_list': langInfo.unicode_font_list,
     }
     path = os.path.join(os.path.dirname(__file__), 'HTML/characterNames.html')
+    self.response.out.write(template.render(path, template_values))
+
+class WordSearchHandler(webapp2.RequestHandler):
+  def get(self):
+    langInfo = self.app.config.get('langInfo')
+
+    # String containing character name data
+    try:
+      charNames = langInfo.charNames.split('\n')
+      charNames = '!!!'.join(charNames)
+    except:
+      charNames = None
+
+    try:
+      combiningChars = langInfo.unicodeCombiningChars
+    except:
+      combiningChars = None
+
+    try:
+      letterFillList = langInfo.fillChars
+    except:
+      letterFillList = []
+
+    template_values = {
+      'language': langInfo.Language,
+      'LanguageTag': langInfo.LanguageCode,
+      'kb_list': langInfo.kb_list,
+      'charTable': charNames,
+      'charNameData': charNames,
+      'unicodeCombiningChars': langInfo.unicodeCombiningChars,
+      'letterFillList': letterFillList,
+      'unicode_font_list': langInfo.unicode_font_list,
+    }
+    path = os.path.join(os.path.dirname(__file__), 'HTML/wordsearch.html')
+    self.response.out.write(template.render(path, template_values))
+
+class NumeralsHandler(webapp2.RequestHandler):
+  def get(self):
+    langInfo = self.app.config.get('langInfo')
+
+    # String containing character name data
+    try:
+      charNames = langInfo.charNames.split('\n')
+      charNames = '!!!'.join(charNames)
+    except:
+      charNames = None
+
+    try:
+      combiningChars = langInfo.unicodeCombiningChars
+    except:
+      combiningChars = None
+
+    try:
+      letterFillList = langInfo.fillChars
+    except:
+      letterFillList = []
+
+    template_values = {
+      'language': langInfo.Language,
+      'LanguageTag': langInfo.LanguageCode,
+      'charTable': charNames,
+      'charNameData': charNames,
+      'unicodeCombiningChars': langInfo.unicodeCombiningChars,
+      'letterFillList': letterFillList,
+      'unicode_font_list': langInfo.unicode_font_list,
+    }
+    path = os.path.join(os.path.dirname(__file__), 'HTML/numerals.html')
     self.response.out.write(template.render(path, template_values))
 
 # Error catching
@@ -828,6 +867,17 @@ app.router.add((basePath + '/combos/', RenderPage))
 app.router.add((basePath + '/keyman/', KeyManHandler))
 app.router.add((basePath + '/AllFonts/', AllFontTest))
 app.router.add((basePath + '/charTable/', CharacterTableHandler)),
+app.router.add((basePath + '/wordsearch/', WordSearchHandler)),
+
+app.router.add((basePath + '/numerals/', NumeralsHandler)),
+
+
+app.router.add((basePath + '/games/generatewordsearch/',
+                games.GenerateWordSearchHandler)),
+
+# Future
+#app.router.add((basePath + '/games/generatewordsearchDFS/',
+#                games.GenerateWordSearchDFSHandler)),
 
 app.error_handlers[301] = handle_301
 app.error_handlers[404] = handle_404

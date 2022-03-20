@@ -329,29 +329,41 @@ window.onbeforeunload = function(e) {
   </head>
 
   <body onload="onPageLoaded();">
-  <h1>Dictionary Input Tool</h1>
   <div class="container">
 
-  <div class="span-20">
-    <h3 id="lang_name">{{lang2}}</h3>
+  <div class="span-16">
+    <h1>Wordlist Input Tool</h1>
+    <h2 id="lang_name">{{lang2}}</h2>
       <textarea id="lang2_input" style="font-family:{{unicodeFontList.0.family}};"
                 onfocus="onTextFocus(this);"
                 onkeypress="submitOnEnter(this, event);" spellcheck="false"></textarea>
   </div>
 
-  <div class="span-1 last">
-
-  </div>
-
-  <div class="span-19">
-    Data label <input id="label" size='10'>
+  <div class="span-16 last">
+    <div id="Instructions">
+        <h3>How to use this page:</h3>
+          Type text in the first language, then touch "return". Enter text in the next language,
+          "enter", and repeat."
+        <p></p>
+      {% for lang in dictionaryNData %}
+          {% if lang.helptext %}
+          <a href="/help/{{lang.languageCode}}/wordlist_input_help.html" target="_blank"
+             title="How to use this page">{{lang.helptext}}</a><br />
+          {% endif %}
+      {% endfor %}
+    </div>
+    <div id="saveFile">
+        <h4>Save data:</h4>
+        Download file name: <input id="label" size='10'>
     <button onclick="download_tsv()">Download TSV</button>
-    &ensp;&ensp;&ensp;&ensp;&ensp;
-   To load a .tsv file:<input type="file" id="fileUpload" />
+    </div>
+   <div id="uploadFile">
+       <h4>Load existing file:</h4>
+       To load a .tsv file: <input type="file" id="fileUpload" />
    <input type="button" id="upload" value="Upload data file (.tsv)" onclick="Upload()" />
     <br />
-    <br />
-
+    </div>
+      <div id="textTable">
     <table id="output_table">
        <tr>
          {% for item in dictionaryNData %}
@@ -361,45 +373,46 @@ window.onbeforeunload = function(e) {
     </table>
 
   </div>
-  <div class="span-4 last">
-    {% if user_nickname %}
-           <h4>Welcome {{user_nickname}}</h4>
-    {% if user_logout %}
-    <a href={{user_logout}}>Logout</a>
-    {% endif %}
-    {% else %}
-    <a href='{{user_login_url}}'>Log in</a>
-    {% endif %}
+      </div>
+      <div class="span-4 last">
+          {% if user_nickname %}
+          <h4>Welcome {{user_nickname}}</h4>
+          {% if user_logout %}
+          <a href={{user_logout}}>Logout</a>
+          {% endif %}
+          {% else %}
+          <a href='{{user_login_url}}'>Log in</a>
+          {% endif %}
 
-         {% if isAdmin %}
-        <hr>
-        <h4>Admin Functions</h4>
-        <ul>
-          <li><a href="/db/manageDB/">Manage Databases</a></li>
-          <li><a href="/users/">Manage users</a></li>
-          <!-- <li><a href="/db/resetDbEntries/">Reset Database Entries</a> -->
-        </ul>
-        {% endif %}
+          {% if isAdmin %}
+          <hr>
+          <h4>Admin Functions</h4>
+          <ul>
+              <li><a href="/db/manageDB/">Manage Databases</a></li>
+              <li><a href="/users/">Manage users</a></li>
+              <!-- <li><a href="/db/resetDbEntries/">Reset Database Entries</a> -->
+          </ul>
+          {% endif %}
 
-   {% if links %}
-   <h4>Useful links</h4>
-     <ul>
-   {% for link in links %}
-      <li>
-        <a href="{{link.ref}}" target="_blank">{{link.linkText}}</a>
-     </li>
-   {% endfor %}
-     </ul>
-   {% endif %}
+          {% if links %}
+          <h4>Useful links</h4>
+          <ul>
+              {% for link in links %}
+              <li>
+                  <a href="{{link.ref}}" target="_blank">{{link.linkText}}</a>
+              </li>
+              {% endfor %}
+          </ul>
+          {% endif %}
 
-  {% for lang in dictionaryNData %}
-      {% if lang.helptext %}
-   <a href="/help/{{lang.languageCode}}/wordlist_input_help.html" target="_blank"
-    title="How to use this page">{{lang.helptext}}</a><br />
-      {% endif %}
-   {% endfor %}
+          {% for lang in dictionaryNData %}
+          {% if lang.helptext %}
+          <a href="/help/{{lang.languageCode}}/wordlist_input_help.html" target="_blank"
+             title="How to use this page">{{lang.helptext}}</a><br />
+          {% endif %}
+          {% endfor %}
 
-  </div>
+      </div>
   </div> <!-- container -->
 
 </body>
