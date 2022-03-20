@@ -1,0 +1,22 @@
+#chr_calculator {
+    border: solid black 1px;
+    display: inline-block;
+    padding: 4px;
+    border-radius: 4px;
+}
+#calculator input[type="text"] {
+    text-align: right;
+}
+#buttontable {
+    position: relative;
+}
+#buttontable input {
+    width: 32px;
+    height: 32px;
+    padding: 0px;
+}
+
+p.ImageBorder {border-style: dotted;}
+img.ImageBorder {border-style: solid; width: 25px;}
+
+.notosans {font-size: 12px; }  
