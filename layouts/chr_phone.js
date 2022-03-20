@@ -1,3 +1,4 @@
+// Includes Cherokee Numerals 0, 1-9
 var CHR_PHONE_LAYOUT = {
   'id': 'chr_phone',
   'title': 'ᏣᎳᎩ ᏗᎧᏁᎢᏍᏗ ᏚᏃᏴᎬ',

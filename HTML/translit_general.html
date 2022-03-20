@@ -83,8 +83,6 @@
       const encodingInfo = langConverter.decodingInfo();
       const translitInfo = langConverter.translitInfo();
     }
-  </script>
-  <script>
 
   diff_list = [];
   // When an area is changed, set the hex characters, too.
@@ -244,12 +242,12 @@
       const intext = inarea.value;
       const converterOption = convertOptions[chosenOption];
       const convertFn = converterOption['compute'];  // Function takes the text.
-      const newText = convertFn(intext);
+      const newText = convertFn(intext, chosenOption, langInformation.langCode);
       if (outarea) {
         outarea.innerHTML = outarea.value = newText;
       }
       return;
-    }
+    }langCode
 
     // Otherwise use older conversion method.
     let encodingIndex = 0;
@@ -276,60 +274,6 @@
       convertEncodingToUnicode(sourceArea, destinationArea, encodingIndex);
     }
   }
-
-{% if backend_convert %}
-  // Code to request transliteration (conversion) and handle the return.
-  function callConvertEncodingToUnicodeBackend(source, destinationArea, encodeSelectorName, hexArea) {
-
-    // Get the text and prepare the call to server.
-    source_element = document.getElementById(source);
-    text_in = encodeURIComponent(source_element.value);
-
-    // Prepare for the call to the backendvar xmlhttp;
-	if (window.XMLHttpRequest)
-	  {
-	  // code for IE7+, Firefox, Chrome, Opera, Safari
-	  xmlhttp=new XMLHttpRequest();
-	  }
-	else
-	  {
-	  // code for IE6, IE5
-	  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-	  }
-
-    // Deal with the results
-    xmlhttp.onreadystatechange=function()
-	{
-	  if(xmlhttp.readyState==4) {
-	  	  if (xmlhttp.status != 200) {
-	  	    alert('Bad status =' + xmlhttp.status);
-	  	    return;
-	  	  }
-	      var returned_json = xmlhttp.responseText;
-		  var output_area = document.getElementById(destinationArea);
-		  var json_obj = JSON.parse(returned_json);
-		  // IF DEBUG: alert(json_obj.converted);
-
-          output_area.innerHTML = json_obj.converted;
-          output_area.value = json_obj.converted;
-		  updateHex(destinationArea, hexArea);
-
-	  }
-	}
-
-	// Set up the call.
-    var encodedText = encodeURIComponent(text_in);
-    type = '{{converter_type}}';
-	var encodedTarget = "/convert/?text=" + encodedText + "&type=" + type +
-	  "&noreturn=1";  // UNUSED
-
-	var target = "/{{langTag}}/converter/?text=" + text_in + "&type=" + type +
-	  "&noreturn=1";
-	xmlhttp.open("GET", target, true);
-	var size = target.length;
-	xmlhttp.send(null);
-  }
-{% endif %}
 
 {% if variation_sequence %}
 function toggleConvertedVS(text_area_id, toggle) {
@@ -375,7 +319,10 @@ function newConverter(type, input_id, output_id, outtype_id) {
 {% endif %}
 
   </script>
+  <script src="/js/langinfo/langdata.js"></script>
   <script>
+     const langInformation = new langData("{{language}}", "{{langTag}}");
+
      // Handle new conversion object.
      {% if isTransLit %}
      const isTransliterator = true;
@@ -602,7 +549,7 @@ function newConverter(type, input_id, output_id, outtype_id) {
     <br />
     {% endif %}
    </div>
-
+</div>
   <div class="span-4 last">
     {% if user_nickname %}
     <h4>Welcome {{user_nickname}}</h4>

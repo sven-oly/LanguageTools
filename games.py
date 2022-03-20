@@ -2,6 +2,8 @@
 #!/usr/bin/env python
 #
 
+#from __future__ import standard_library
+#standard_library.install_aliases()
 import re
 import main
 
@@ -15,14 +17,13 @@ import json
 import logging
 import os
 import sys
-import urllib
+#import urllib.request, urllib.parse, urllib.error
 import webapp2
 
 from google.appengine.api import users
 from google.appengine.ext.webapp import template
 
 
-Language = ''
 class WordSearchHandler(webapp2.RequestHandler):
   def get(self):
     logging.info('games WordSearchHandler')
@@ -30,8 +31,6 @@ class WordSearchHandler(webapp2.RequestHandler):
     user_info = getUserInfo(self.request.url)
     user = users.get_current_user()
     rawWordList = self.request.get('words', '')
-    Language = self.request.get('lang', 'xyz')
-    fonts = self.request.get('fonts', 'xyz')
 
     #wordList = re.findall(r"[\w']+", rawWordList)
     #logging.info('games WordSearchHandler wordList = %s' % wordList)
@@ -47,12 +46,12 @@ class WordSearchHandler(webapp2.RequestHandler):
       'user_nickname': user_info[1],
       'user_logout': user_info[2],
       'user_login_url': user_info[3],
-      'language': Language,
-      'fontFamilies': fonts,
+      'language': main.Language,
+      'fontFamilies': main.OsageFonts,
       'wordTestData': wordData,
       'maxunicode': sys.maxunicode,
     }
-    path = os.path.join(os.path.dirname(__file__), 'HTML/wordsearch.html')
+    path = os.path.join(os.path.dirname(__file__), 'wordsearch.html')
     self.response.out.write(template.render(path, template_values))
 
 
@@ -61,8 +60,6 @@ class GenerateWordSearchHandler(webapp2.RequestHandler):
     #logging.info('games GenerateWordSearchHandler')
     user_info = getUserInfo(self.request.url)
     user = users.get_current_user()
-    Language = self.request.get('lang', 'xyz')
-    fonts = self.request.get('fonts', 'xyz')
 
     rawWordList = self.request.get('words', '')
     # logging.info('games WordSearchHandler rawWordList = %s' % rawWordList)
@@ -86,8 +83,8 @@ class GenerateWordSearchHandler(webapp2.RequestHandler):
       'user_nickname': user_info[1],
       'user_logout': user_info[2],
       'user_login_url': user_info[3],
-      'language': Language,
-      'fontFamilies': fonts,
+      'language': main.Language,
+      'fontFamilies': main.OsageFonts,
       'grid': grid,
       'answers': answers,
       'words': words,
@@ -104,8 +101,6 @@ class GenerateWordSearchDFSHandler(webapp2.RequestHandler):
 
     user_info = getUserInfo(self.request.url)
     user = users.get_current_user()
-    Language = self.request.get('lang', 'xyz')
-    fonts = self.request.get('fonts', 'xyz')
 
     rawWordList = self.request.get('words', '')
 
@@ -147,8 +142,8 @@ class GenerateWordSearchDFSHandler(webapp2.RequestHandler):
       'user_nickname': user_info[1],
       'user_logout': user_info[2],
       'user_login_url': user_info[3],
-      'language': Language,
-      'fontFamilies': fonts,
+      'language': main.Language,
+      'fontFamilies': main.OsageFonts,
       'grid': grid,
       'answers': ws.formatAnswers(),
       'words': ws.words,
@@ -164,15 +159,13 @@ class CrosswordHandler(webapp2.RequestHandler):
 
     user_info = getUserInfo(self.request.url)
     user = users.get_current_user()
-    Language = self.request.get('lang', 'xyz')
-    fonts = self.request.get('fonts', 'xyz')
 
     template_values = {
       'user_nickname': user_info[1],
       'user_logout': user_info[2],
       'user_login_url': user_info[3],
-      'language': Language,
-      'fontFamilies': fonts,
+      'language': main.Language,
+      'fontFamilies': main.OsageFonts,
     }
     path = os.path.join(os.path.dirname(__file__), 'crossword.html')
     self.response.out.write(template.render(path, template_values))
@@ -206,8 +199,8 @@ class GenerateCrosswordHandler(webapp2.RequestHandler):
       'user_nickname': user_info[1],
       'user_logout': user_info[2],
       'user_login_url': user_info[3],
-      'language': Language,
-      'fontFamilies': fonts,
+      'language': main.Language,
+      'fontFamilies': main.OsageFonts,
       'grid': grid,
       'answers': answers,
       'words': words,

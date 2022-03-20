@@ -186,6 +186,7 @@ private_use_map_combined = {
 
 langConverter.one2oneMap = langConverter.dictionaryToMap(private_use_map_combined);
 
+// This is specific for Cherokee New Testament text
 capitalizeSentence = function(text) {
     let size = text.length;
     let i = 0;

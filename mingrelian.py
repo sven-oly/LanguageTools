@@ -122,6 +122,10 @@ class langInfo:
     self.lang_list = [LanguageCode]  # This may be extended
 
     self.kb_list = [
+      {'shortName': 'xmf_Latn2',
+       'longName': 'Mingrelian Latin 2',
+       'instructions': 'Type ʒʒ, kk, pp, tt, zz, çç, ƷƷ, KK \u2026 to add \u02d8 --> ʒ̆ k̆ p̆ t̆ z̆ ç̆ Ʒ̆ K̆ \u2026',
+       },
       {'shortName': 'xmf_Latn',
        'longName': 'Mingrelian Latin',
        'instructions': 'Type ʒʒ, kk, pp, tt, zz, çç, ƷƷ, KK \u2026 to add \u02d8 --> ʒ̆ k̆ p̆ t̆ z̆ ç̆ Ʒ̆ K̆ \u2026',

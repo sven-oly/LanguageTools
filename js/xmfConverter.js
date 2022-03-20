@@ -14,47 +14,53 @@ let langConvertClass = function() {
       'compute': langConvertClass.prototype.ascii2Georgian},
     {input: 'ASCII Georgian', output:'Unicode Latin',
       'compute': this.ascii2Latin},
-  ];
+    {input: 'Unicode Georgian', output:'1930s Unicode Latin',
+      'compute': this.Georgian2Latin1930},
+        ];
 };
 
+// Entries for several different transliteration schemes from Georgian
+// to Latin
+// The 4th column is that used by keyboards in the 1930s
+
 const private_use_map_combined = {
-    "ა": ["a", "a", "ɑ"],
-    "ბ": ["b", "b", "b"],
-    "გ": ["g", "g", "ɡ"],
-    "დ": ["d", 'd', "d"],
-    "ე": ["e", 'e', "ɛ"],
-    "ვ": ["v", 'v', "v"],
-    "ზ": ["z", 'z', "z"],
-    "თ": ["t", 't', "t"],
-    "ი": ["i", 'i', "i"],
-    "კ": ["ǩ", 'ḳ', "kʼ"],
-    "ლ": ["l", 'l', "l"],
-    "მ": ["m", "m", "m"],
-    "ნ": ["n", 'n', "n"],
-    "ჲ": ["y", "j"],
-    "ო": ["o", 'o', "ɔ"],
-    "პ": ["p̌", 'p\'', "pʼ"],
-    "ჟ": ["Ⱬ", 'ǯ', "ʒ"],  // j as alternative
-    "რ": ["r", 'r', "r"],
-    "ს": ["s", 's', "s"],
-    "ტ": ["t̆", 'ṭ', "tʼ"],
-    "უ": ["u", 'u', "u"],
-    "ჷ": ["ƨ", "ə"],
-    "ფ": ["p", 'p', "p"],
-    "ქ": ["k", 'k', "k"],
-    "ღ": ["ɣ", "ɣ"],
-    "ყ": ["ɥ", 'gh', "qʼ"],
-    "ჸ": ["ꞇ", "ʔ"],
-    "შ": ["ş", 'š', "ʃ"],
-    "ჩ": ["ç", 'č', "t͡ʃ"],
-    "ც": ["ʒ", 'c', "t͡s"],  // ts as alternative
-    "ძ": ["ž", "d͡z"],
-    "წ": ["ǯ", 'ts\'', "t͡sʼ"], // tz as alternative
-    "ჭ": ["ç̌", "t͡ʃʼ"],
-    "ხ": ["x", 'x', "x"],
-    "ჯ": ["ʤ", 'j', "d͡ʒ"],
-    "ჰ": ["h", 'h', "h"],
-    'აა': ['aa', 'ā', "ɑɑ"],
+    "ა": ["a", "a", "ɑ", "a"],
+    "ბ": ["b", "b", "b", "b"],
+    "გ": ["g", "g", "ɡ", "g"],
+    "დ": ["d", 'd', "d", "d"],
+    "ე": ["e", 'e', "ɛ", "e"],
+    "ვ": ["v", 'v', "v", "v"],
+    "ზ": ["z", 'z', "z", "z"],
+    "თ": ["t", 't', "t", "t"],
+    "ი": ["i", 'i', "i", "i"],
+    "კ": ["ǩ", 'ḳ', "kʼ", "k"],
+    "ლ": ["l", 'l', "l", "l"],
+    "მ": ["m", "m", "m", "m"],
+    "ნ": ["n", 'n', "n", "n"],
+    "ჲ": ["y", "j", "y", "y"],
+    "ო": ["o", 'o', "ɔ", "o"],
+    "პ": ["p̌", 'p\'', "pʼ", "p"],
+    "ჟ": ["Ⱬ", 'ǯ', "ʒ", "ⱬ"],  // j as alternative
+    "რ": ["r", 'r', "r", "r"],
+    "ს": ["s", 's', "s", "s"],
+    "ტ": ["t̆", 'ṭ', "tʼ", "ṫ"],
+    "უ": ["u", 'u', "u", "u"],
+    "ჷ": ["ƨ", "ə", "", "ƨ"],
+    "ფ": ["p", 'p', "p", "f"],
+    "ქ": ["k", 'k', "k", "q"],
+    "ღ": ["ɣ", "ɣ", "", "gh"],
+    "ყ": ["ɥ", 'gh', "qʼ", "ɣ"],
+    "ჸ": ["ꞇ", "ʔ", "", "ꞇ"],
+    "შ": ["ş", 'š', "ʃ", "sh"],
+    "ჩ": ["ç", 'č', "t͡ʃ", "ch"],
+    "ც": ["ʒ", 'c', "t͡s", "c"],  // ts as alternative
+    "ძ": ["ž", "d͡z", "", "dz"],
+    "წ": ["ǯ", 'ts\'', "t͡sʼ", "ʒ"], // tz as alternative
+    "ჭ": ["ç̌", "t͡ʃʼ", "çh", "çh"],
+    "ხ": ["x", 'x', "x", "x"],
+    "ჯ": ["ʤ", 'j', "d͡ʒ", "j"],
+    "ჰ": ["h", 'h', "h", "h"],
+    'აა': ['aa', 'ā', "ɑɑ", "aa"],
 };
 
 // The object returned.
@@ -210,14 +216,14 @@ const encoding_lookup = {
     };
 
 // Source of the data below: https://omniglot.com/writing/mingrelian.htm
-const georSample = `
-აჟამ ჟიუშთი დო ჟინუა ნჟილაგარიში არიკი ართი ქევანას ცხოვრენც აჟამ ჟიუშთი
+const georSample =
+`აჟამ ჟიუშთი დო ჟინუა ნჟილაგარიში არიკი ართი ქევანას ცხოვრენც აჟამ ჟიუშთი
 დო მაჟირას ჟინუა ნჟილაგარი. ათე ჟინუა ნჟილაგარი ორე თინერი კოჩი, მუდგას
 მეჩანს კოცნი მუში სიცოხლეს ვეუაფე თინა ქაატუას, ოკო გინაგაფუას. აჟამ
 ჟიუშთი ორე თინერი - მუთუნს ვემეჩანს კოცს. ქეშეხვადეს თენენქ ართიანს.`;
 
-const latnSample = `
-aǯam ǯiušti do ǯinua nǯilagariši ariḳi arti kevanas cxovrenc aǯam ǯiušti
+const latnSample =
+`aǯam ǯiušti do ǯinua nǯilagariši ariḳi arti kevanas cxovrenc aǯam ǯiušti
 do mažiras ǯinua nǯilagari. ate ǯinua nǯilagari ore tineri ḳoči, mudgas
 mečans ḳocni muši sicoxles ve՚uape tina kāṭuas, oḳo ginagapuas. aǯam
 ǯiušti ore tineri - mutuns vemečans ḳocs. kešexvades tenenk artians.`;
@@ -247,6 +253,15 @@ langConvertClass.prototype.Georgian2Latin = function(text_in) {
     return transformText(text_in, private_use_map_combined, encodingIndex);
 }
 
+// Implementation of 1930s style transliteration from Georgian into
+// Latin script. Includes sentence capitalization.
+langConvertClass.prototype.Georgian2Latin1930 = function(text_in, option, langCode) {
+    // TODO: Implement this version.
+    const encodingIndex = 3;
+    const lowerText = transformText(text_in, private_use_map_combined, encodingIndex);
+    return langConverter.capitalizeSentence(lowerText, langCode);
+}
+
 langConverter.transforms = [
     {input: 'ASCII Georgian', output:'Unicode Georgian',
      compute: langConvertClass.prototype.ascii2Georgian},
@@ -254,7 +269,9 @@ langConverter.transforms = [
       compute: langConvertClass.prototype.ascii2Latin},
     {input: 'Unicode Georgian', output:'Unicode Latin',
       compute: langConvertClass.prototype.Georgian2Latin},
-  ];
+    {input: 'Unicode Georgian', output:'Unicode Latin 1930s',
+      compute: langConvertClass.prototype.Georgian2Latin1930},
+];
 
 langConvertClass.prototype.transliterate = function() {
 }

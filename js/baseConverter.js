@@ -10,6 +10,7 @@ let langConverterClass = function(langCode, langName) {
   this.map_translit_sources = null;
   this.encodingData = null;
   this.encodingNames = null;
+  this.locale = null;  // Used for capitalization.
 };
 
 // Two arrays of characters for conversion
@@ -130,25 +131,21 @@ langConverterClass.prototype.postProcessing = function(text) {
 }
 
 // Capitalizes sentences for scripts that have case.
-langConverterClass.prototype.capitalizeSentence = function(text) {
-    let size = text.length;
-    let i = 0;
-    let done = false;
-    // Skip verse number and spaces to find first word letter.
-    while (i < size && !done) {
-      let c = text.charAt(i);
-      if (c == ' ' || (c >= '0' && c <= '9')) {
-        i++;
-      } else {
-        // Capitalize this one
-        const upper = text.substring(i, i+1).toUpperCase();
-        const replaced =
-          text.substring(0, i) +
-          upper +
-          text.substring(i + 1);
-        text = replaced;
-        done = true;
-      }
-    }
-    return text;
+langConverterClass.prototype.capitalizeSentence = function(text, langCode) {
+  this.locale = langCode;
+  return this.capitalizeLatinText(text, langCode)
+}
+
+langConverterClass.prototype.LatinSentenceReplacer =
+  function(match, p1, p2, p3, offset, string) {
+    // p1 is nondigits, p2 digits, and p3 non-alphanumerics
+    return match.toLocaleUpperCase(this.locale);
+}
+
+langConverterClass.prototype.capitalizeLatinText = function(text) {
+  const regExStartSentence = /(^\s*\w)|(\.\s+\w)/g;
+  const result = text.replace(
+      regExStartSentence,
+      this.LatinSentenceReplacer);
+  return result;
 }
