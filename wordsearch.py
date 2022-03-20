@@ -8,6 +8,7 @@ from __future__ import print_function
 #from builtins import object
 import itertools
 import logging
+import math
 import random
 import sys
 from random import randint
@@ -16,12 +17,20 @@ from random import randint
 # Should we done something with statistics?
 # Check for bad words?
 
-upper_letters = u'𐒰𐒱𐒲𐒳𐒴𐒵𐒶𐒷𐒸𐒹𐒺𐒻𐒼𐒽𐒾𐒿𐓀𐓁𐓂𐓃𐓄𐓅𐓆𐓇𐓈𐓉𐓊𐓋𐓌𐓍𐓎𐓏𐓐𐓑𐓒𐓓'
-lower_letters = u'𐓦𐓷𐓟𐓲𐓵𐓻𐓶𐓣𐓪𐓬𐓘𐓮𐓰𐓢𐓡𐓛𐓤𐓧𐓺𐓸𐓝𐓯𐓜𐓩𐓨𐓠𐓳𐓙𐓫𐓭𐓚𐓱𐓥𐓹𐓞'
+try:
+  unichr
+except NameError:
+  unichr = chr
+
+upper_letters = u'ꠞꠔꠂꠥꠤꠧꠙꠣꠡꠖ?ꠉꠢꠎꠇꠟꠐꠌꠥꠛꠘꠝ'
+lower_letters = u'ꠞꠔꠂꠥꠤꠧꠙꠣꠡꠖ?ꠉꠢꠎꠇꠟꠐꠌꠥꠛꠘꠝ'
 
 letters = lower_letters
 
 debug = True
+
+# Characters that combine with neighboring values to make grapheme clusters
+combiningChars = set([unichr(x) for x in range(0x300, 0x365)] + ['\u2018'])
 
 # Constants for word from the starting point
 RIGHT, DOWN, DOWNRIGHT, UPRIGHT, LEFT, UP, UPLEFT, DOWNLEFT = 0, 1, 2, 3, 4, 5, 6, 7
@@ -66,6 +75,7 @@ class Position(object):
 
 class WordSearch(object):
   def __init__(self, words=None):
+    # Get the fill characters
     self.grid = None
     self.words = words  # The original inputs
     self.token_list = None  # The tokenized word lists.
@@ -96,7 +106,7 @@ class WordSearch(object):
     if self.words:
       self.token_list = []
       for word in self.words:
-        self.token_list.append(self.getTokens(word))
+        self.token_list.append(self.getTokens(word, None))
     # By reversed length of token list.
     self.token_list.sort(key=len, reverse=True)
       #self.token_list = [self.getTokens(x) for x in self.words].sort(key=len, reverse=True)
@@ -119,7 +129,7 @@ class WordSearch(object):
     self.finishGrid()
 
   def setFillLetters(self, fill_letters):
-    self.fill_tokens = self.getTokens(fill_letters)
+    self.fill_tokens = self.getTokens(fill_letters, None)
 
   def generateGrid(self):
     # set it up based on the
@@ -174,8 +184,6 @@ class WordSearch(object):
       possible_positions.pop()
 
       # TODO: Remove from the grid.
-
-
     self.current_solution.pop()
 
     self.current_level -= 1
@@ -249,7 +257,7 @@ class WordSearch(object):
     # Either the words in the list or the clues
     return
 
-  def getTokens(self, word):
+  def getTokens(self, word, diacriticSet):
     '''Get the tokens, not code points.'''
     # TODO: make this smarter utf-16 and diacritics.
     vals = list(word)
@@ -257,6 +265,7 @@ class WordSearch(object):
     index = 0
     while index < len(vals):
       item = ''
+      char = vals[index]
       v = ord(vals[index])
 
       if v >= 0xd800 and v < + 0xdbff:
@@ -265,7 +274,12 @@ class WordSearch(object):
       else:
         item += vals[index]
         index += 1
-      while index < len(vals) and ord(vals[index]) >= 0x300 and ord(vals[index]) <= 0x365:
+
+      # TODO!!! Consider diacritics as well as
+      if index < len(vals):
+        logging.info('Next = %s, in set = %s' % (vals[index], vals[index in DiacriticSet]))
+      while (index < len(vals) and
+        (vals[index] in DiacriticSet or vals[index] in combiningChars)):
         # It's a combining character. Add to the growing item.
         item += vals[index]
         index += 1
@@ -308,21 +322,23 @@ class WordSearch(object):
 
 #### THE OLD IMPLEMENTATION.
 
-def makeGrid(words, size=[10, 10], attempts=10, is_wordsearch=True):
+def makeGrid(words, fillList, diacritics, size=[10, 10], attempts=10, is_wordsearch=True):
   '''Run attemptGrid trying attempts number of times.
 
     Size contains the height and width of the board.
     Word is a list of words it should contain.'''
+
   if debug:
     logging.info('makeGrid: size = %s, is_wordsearch = %s' %
                  (size, is_wordsearch))
+  diacriticsSet = set(diacritics)
 
-  tokenList = [getTokens(x) for x in words].sort(key=len, reverse=True)
+  tokenList = [getTokens(x, diacriticsSet) for x in words].sort(key=len, reverse=True)
   for attempt in range(attempts):
     if debug:
       logging.info('makeGrid: try = %s' % (attempt))
     try:
-      return attemptGrid(words, size, is_wordsearch)
+      return attemptGrid(words, size, fillList, diacriticsSet, is_wordsearch)
     except RuntimeError as e:
       logging.error('AttemptGrid error %s' % e)
       pass
@@ -330,7 +346,7 @@ def makeGrid(words, size=[10, 10], attempts=10, is_wordsearch=True):
   return None, None
 
 
-def attemptGrid(words, size, is_wordsearch=True):
+def attemptGrid(words, size, fillList, diacriticSet, is_wordsearch=True):
   '''Attempt a grid of letters to be a wordsearch
 
     Size contains the height and width of the board.
@@ -338,14 +354,14 @@ def attemptGrid(words, size, is_wordsearch=True):
     Returns the 2D list grid and a dictionary of the words as keys and
     lists of their co-ordinates as values.'''
 
-  # logging.info('tokenList = %s', tokenList)
+  #logging.info('fillList = %s' % fillList)
+  #logging.info('diacriticSet = %s' % diacriticSet)
 
   # Make sure that the board is bigger than even the biggest set of tokens
   tokenList = []
   for w in words:
-    tokenList.append(getTokens(w))
-  if debug:
-    logging.info('tokenList = %s', tokenList)
+    newTokens = getTokens(w, diacriticSet)
+    tokenList.append(newTokens)
 
   sizeCap = (size[0] if size[0] >= size[1] else size[1])
   sizeCap -= 1
@@ -357,9 +373,10 @@ def attemptGrid(words, size, is_wordsearch=True):
 
   # Insert answers and store their locations
   answers = {}
-  for word in words:
-
-    grid, answer, reversed = insertWord(word, grid, None, is_wordsearch)
+  for index in range(0, len(words)):
+    word = words[index]
+    tokens = tokenList[index]
+    grid, answer, reversed = insertWord(tokens, grid, None, is_wordsearch)
     if answer[0][0] == answer[-1][0]:
       direction = 'row'
     elif answer[0][1] == answer[-1][1]:
@@ -375,21 +392,26 @@ def attemptGrid(words, size, is_wordsearch=True):
 
   # Add other characters to fill the empty space, if needed.
   if is_wordsearch:
-    fillEmptyGridSlots(letters, grid, size)
+    fillEmptyGridSlots(fillList, grid, size)
 
   return grid, answers
 
 
 def fillEmptyGridSlots(letters, grid, size):
   # Add other characters to fill the empty space
-  fillTokens = getTokens(letters)
-  numTokens = len(fillTokens)
+  if isinstance(letters, list):
+    fillChars = letters
+  else:
+    fillChars = letters.split(',')
+
+  numTokens = len(fillChars)
   for i, j in itertools.product(list(range(size[1])), list(range(size[0]))):
     if grid[i][j] == ' ':
-      grid[i][j] = fillTokens[randint(0, numTokens - 1)]
+      rInt = randint(0, numTokens - 1)
+      grid[i][j] = fillChars[rInt]
 
 
-def insertWord(word, grid, invalid, is_wordsearch):
+def insertWord(tokens, grid, invalid, is_wordsearch):
   '''Insert a word into the letter grid
 
     'word' will be inserted into the 2D list grid.
@@ -397,11 +419,8 @@ def insertWord(word, grid, invalid, is_wordsearch):
     These coordinates are denote starting points that don't work.
     Returns an updated grid as well as a list of the added word's indices.'''
 
-  if debug:
-    logging.info('insert word %s' % word)
   height, width = len(grid), len(grid[0])
   # TODO: Use the number of combined characters, not just length.
-  tokens = getTokens(word)
   length = len(tokens)
 
   if is_wordsearch:
@@ -500,7 +519,7 @@ def insertWord(word, grid, invalid, is_wordsearch):
     # But for now, just quit.
 
     invalid.append(start)
-    return insertWord(word, grid, invalid, is_wordsearch)
+    return insertWord(tokens, grid, invalid, is_wordsearch)
 
 
 # Returns True if the word fits at the given spot with given direction.
@@ -532,9 +551,8 @@ def tryPlacingWord(tokens, x, y, direction, grid):
   return line
 
 
-def getTokens(word):
+def getTokens(word, diacriticSet=None):
   '''Get the tokens, not code points.'''
-  # TODO: make this smarter utf-16 and diacritics.
   vals = list(word)
   retval = []
   index = 0
@@ -548,10 +566,15 @@ def getTokens(word):
     else:
       item += vals[index]
       index += 1
-    while index < len(vals) and ord(vals[index]) >= 0x300 and ord(vals[index]) <= 0x365:
-      # It's a combining character. Add to the growing item.
-      item += vals[index]
-      index += 1
+    keepOn = True
+    while keepOn and index < len(vals):
+      char = vals[index]
+      if char in diacriticSet or char in combiningChars:
+          # It's a combining character. Add to the growing item.
+          item += vals[index]
+          index += 1
+      else:
+        keepOn = False
     retval.append(item)
   return retval
 
@@ -574,24 +597,18 @@ def printAnswers(answers):
 
 
 # Runs with an array of words
-def generateWordsGrid(words):
-  # words = [u'𐓏𐒻𐒷𐒻𐒷', u'𐓀𐒰𐓓𐒻͘', u'𐓏𐒰𐓓𐒰𐓓𐒷', u'𐒻𐒷𐓏𐒻͘ ', u'𐓈𐒻𐓍𐒷', u'𐒹𐓂𐓏𐒷͘𐒼𐒻',
-  #         u'𐓇𐓈𐓂͘𐓄𐒰𐓄𐒷', u'𐒰̄𐓍𐓣𐓟𐓸𐓟̄𐓛𐓣̄𐓬', u'𐒼𐒰𐓆𐒻𐓈𐒰͘', u'𐓏𐒰𐓇𐒵𐒻͘𐒿𐒰 ',
-  #         u'𐒻𐓏𐒻𐒼𐒻', u'𐓂𐓍𐒰𐒰𐒾𐓎𐓓𐓎𐒼𐒰']
-
-  # Set the size to be the maximum word length.
-  max_xy = 0
-  total_tokens = 0
-
-  for word in words:
-    # logging.info(word)
-    tokens = getTokens(word)
-    total_tokens += len(tokens)
-    if len(tokens) > max_xy:
-      max_xy = len(tokens)
-  # logging.info('max size = %s ' % (max_xy))
-  grid, answers = makeGrid(words, [max_xy + 1, max_xy + 1], 10, True)
-  return grid, answers, words, max_xy + 1
+def generateWordsGrid(words, fillList=None, diacritics=None):
+  # Set the size to us bot the maximum word length and total tokens .
+  diacriticSet = set(diacritics)
+  wordTokens = [getTokens(w, diacriticSet) for w in words]
+  tokenSizes = [len(s) for s in wordTokens]
+  max_xy = max(tokenSizes)
+  totalTokens = sum(tokenSizes)
+  # Grid width/height should be at least a factor times the number of tokens
+  factor = 1.2
+  grid_size = int(math.ceil(max(max_xy, factor * math.sqrt(totalTokens))))
+  grid, answers = makeGrid(words, fillList, diacritics, [grid_size, grid_size], 10, True)
+  return grid, answers, words, grid_size
 
 
 # Use the new Depth First Search method with size suggestion, etc.
@@ -613,14 +630,17 @@ def generateCrosswordsGrid(words):
 
   for word in words:
     # logging.info(word)
-    tokens = getTokens(word)
+    logging.info("*** GET TOKENS ***")
+    tokens = getTokens(word, None)
     total_tokens += len(tokens)
     if len(tokens) > max_xy:
       max_xy = len(tokens)
   # Updated max_xy since it will be an open grid.
   max_xy = int(1.5 * max_xy)
   logging.info('generateCrosswordsGrid max size = %s ' % (max_xy))
-  grid, answers = makeGrid(words, [max_xy + 1, max_xy + 1], 10, False)
+  logging.info('fillList  = %s ' % (fillList))
+
+  grid, answers = makeGrid(words, fillList, diacritics, [max_xy + 1, max_xy + 1], 10, False)
   return grid, answers, words, max_xy + 1
 
 
@@ -642,7 +662,7 @@ def testGrid():
       longest_word = word
       max_xy = len(tokens)
   # logging.info('max size = %s, %s ' % (max_xy, longest_word))
-  grid, answers = makeGrid(words, [max_xy + 1, max_xy + 1], 10, False)
+  grid, answers = makeGrid(words, fillList, diacritics, [max_xy + 1, max_xy + 1], 10, False)
   return grid, answers, words, max_xy + 1
 
 
@@ -665,25 +685,14 @@ def testNewWordSearch(words, args):
   ws.printStats()
   ws.printSolution()
 
+def testSyl():
+  words = 'ꠗꠣꠞꠣ ꠢꠇꠟ ꠝꠣꠘꠥꠡ ꠡꠣꠗꠤꠘꠜꠣꠛꠦ ꠢꠝꠣꠘ ꠁꠎ꠆ꠎꠔ ꠀꠞ ꠢꠇ ꠟꠁꠀ ꠙꠄꠖꠣ ‘ꠅꠄ ꠔꠣꠁꠘꠔꠣꠁꠘꠞ ꠛꠤꠛꠦꠇ ꠀꠞ ꠀꠇꠟ ꠀꠍꠦ ꠅꠔꠣꠞ ꠟꠣꠉꠤ ꠢꠇꠟꠞ ꠄꠇꠎꠘꠦ ꠀꠞꠇꠎꠘꠞ ꠟꠉꠦ ꠛꠤꠞꠣꠖꠞꠤꠞ ꠝꠘ ꠟꠁꠀ ꠀꠌꠞꠘ ꠇꠞꠣ ꠃꠌꠤꠔ'.split(' ')
+  fillList = 'ꠀ,ꠁ,ꠃ,ꠄ,ꠅ,ꠇ,ꠈ,ꠉ,ꠊ,ꠌ,ꠍ,ꠎ,ꠏ,ꠐ,ꠑ,ꠒ,ꠓ,ꠔ,ꠕ,ꠖ,ꠗ,ꠘ,ꠙ,ꠚ,ꠛ,ꠜ,ꠝ,ꠞ,ꠟ,ꠠ,ꠡ,ꠢ'.split(',')
+  diacritics = set([u'\ua802',u'\ua806', u'\ua80b', u'\ua823', u'\ua824', u'\ua825', u'\ua826', u'\ua827'])
+  generateWordsGrid(words, fillList, diacritics)
+
 def main(args):
-  # The Osage works, with diacritics
-  osageWords = [u'𐓏𐒻𐒷𐒻𐒷', u'𐓀𐒰𐓓𐒻͘', u'𐓏𐒰𐓓𐒰𐓓𐒷', u'𐒻𐒷𐓏𐒻͘ ', u'𐓈𐒻𐓍𐒷', u'𐒹𐓂𐓏𐒷͘𐒼𐒻',
-                u'𐓇𐓈𐓂͘𐓄𐒰𐓄𐒷',
-                u'𐒰̄𐓍𐓣𐓟𐓸𐓟̄𐓛𐓣̄𐓬']
-
-  words = [u'𐓣𐓟𐓷𐓣͘', u' 𐓡𐓪𐓷𐓘͘𐓤', u'𐓏𐒻𐒷𐒻𐒷', u'𐓀𐒰𐓓𐒻͘', u'𐓏𐒰𐓓𐒰𐓓𐒷', u'𐒻𐒷𐓏𐒻͘ ', u'𐓈𐒻𐓍𐒷',
-           u'𐒹𐓂𐓏𐒷͘𐒼𐒻',
-           u'𐓇𐓈𐓂͘𐓄𐒰𐓄𐒷', u'𐒰̄𐓍𐓣𐓟𐓸𐓟̄𐓛𐓣̄𐓬', u'𐒼𐒰𐓆𐒻𐓈𐒰͘', u'𐓏𐒰𐓇𐒵𐒻͘𐒿𐒰 ',
-           u'𐒻𐓏𐒻𐒼𐒻', u'𐓂𐓍𐒰𐒰𐒾𐓎𐓓𐓎𐒼𐒰']
-
-  three_words = [u'𐓣𐓟𐓷𐓣͘', u'𐓡𐓪𐓷𐓘͘𐓤', u'𐓏𐒻𐒷𐒻𐒷', u'𐒹𐓂𐓏𐒷͘𐒼𐒻', u'𐒼𐒰𐓆𐒻𐓈𐒰͘',  u'𐒻𐓏𐒻𐒼𐒻', u'𐓀𐒰𐓓𐒻͘', u'𐓂𐓍𐒰𐒰𐒾𐓎𐓓𐓎',  u'𐓏𐒰𐓓𐒰𐓓𐒷',
-                 u'𐒰̄𐓍𐓣𐓟𐓸𐓟']
-  testNewWordSearch(three_words, args)
-
-  #grid, answers = makeGrid(words, [12, 12], 10, False)  # Try with a crossword
-  #printGrid(grid)
-  #printAnswers(answers)
-
+  testSyl()
 
 if __name__ == "__main__":
   print('ARGS = %s' % sys.argv)

@@ -5,6 +5,8 @@
 #from __future__ import standard_library
 #standard_library.install_aliases()
 import re
+
+import languageTemplate
 import main
 
 import wordsearch
@@ -39,15 +41,16 @@ class WordSearchHandler(webapp2.RequestHandler):
     #logging.info('games WordSearchHandler grid = %s' % grid)
     #logging.info('games WordSearchHandler answers = %s' % answers)
     #logging.info('games WordSearchHandler words = %s' % words)
-    wordData = ['𐓷𐓣𐓟𐓣𐓟', '𐓨𐓘𐓻𐓣͘', '𐓷𐓘𐓻𐓘𐓻𐓟', '𐓣𐓟𐓷𐓣͘ ', '𐓰𐓣𐓵𐓟', '𐓡𐓪𐓷𐓟͘𐓤𐓣',
-           '𐓯𐓰𐓪͘𐓬𐓘𐓬𐓟', '𐓘̄𐓵𐓣𐓟𐓸𐓟̄𐓛𐓣̄𐓬', '𐓤𐓘𐓮𐓣𐓰𐓘͘', '𐓷𐓘𐓯𐓝𐓣͘𐓧𐓘'];
+    wordData = [];
 
+    language = 'Sylheti'
+    fonts = []
     template_values = {
       'user_nickname': user_info[1],
       'user_logout': user_info[2],
       'user_login_url': user_info[3],
-      'language': main.Language,
-      'fontFamilies': main.OsageFonts,
+      'language': Language,
+      'fontFamilies': fonts,
       'wordTestData': wordData,
       'maxunicode': sys.maxunicode,
     }
@@ -57,19 +60,26 @@ class WordSearchHandler(webapp2.RequestHandler):
 
 class GenerateWordSearchHandler(webapp2.RequestHandler):
   def get(self):
-    #logging.info('games GenerateWordSearchHandler')
     user_info = getUserInfo(self.request.url)
     user = users.get_current_user()
 
-    rawWordList = self.request.get('words', '')
-    # logging.info('games WordSearchHandler rawWordList = %s' % rawWordList)
+    langInfo = self.app.config.get('langInfo')
+    #logging.info('*** GAMES langInfo = %s' % langInfo)
 
+    rawWordList = self.request.get('words', [])
+    fillList = self.request.get('fillList', [])
+    gridSize = self.request.get('size', 10)
+    diacritics = self.request.get('diacritics', '').split(',')
+    tokenGroups = self.request.get('tokenGroups', [])
+
+    #logging.info('games WordSearchHandler tokenGroups = %s' % tokenGroups)
+    #logging.info('games WordSearchHandler diacritics = %s' % diacritics)
+    #logging.info('games WordSearchHandler fillList = %s' % fillList)
 
     wordList = rawWordList.replace(",", " ").replace("\r", " ").replace("\t", " ").split()
     # logging.info('games WordSearchHandler wordList = %s' % wordList)
-
-    grid, answers, words, grid_width = wordsearch.generateWordsGrid(wordList)
-
+    grid, answers, words, grid_width = wordsearch.generateWordsGrid(wordList, fillList, diacritics)
+    logging.info('games WordSearchHandler grid_width = %s' % grid_width)
     if not grid:
       message = 'Cannot create grid'
     else:
@@ -79,12 +89,15 @@ class GenerateWordSearchHandler(webapp2.RequestHandler):
     #logging.info('games WordSearchHandler answers = %s' % answers)
     #logging.info('games WordSearchHandler words = %s' % words)
 
+    # TODO!
+    language = 'Sylheti'
+    fonts = []
     template_values = {
       'user_nickname': user_info[1],
       'user_logout': user_info[2],
       'user_login_url': user_info[3],
-      'language': main.Language,
-      'fontFamilies': main.OsageFonts,
+      'language': language,
+      'fontFamilies': fonts,
       'grid': grid,
       'answers': answers,
       'words': words,
