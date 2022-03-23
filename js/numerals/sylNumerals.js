@@ -1,39 +1,5 @@
-// Cherokee numerals computations.
+// Sylheti numerals computations.
 
-// Increasing values
-const numeralValuesInc = [
-    0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18,
-    19, 20, 30, 40, 50, 60 ,70, 80, 90, 100, 1000, 1e6, 1e9, 1e12,
-    1e15, 1e18];
-
-
-// Biggest values first for lookup.
-const numeralValues = numeralValuesInc.slice().reverse();
-
-// Code points in Unicode PUA.
-const codePts = [
-    // 0 - 19
-    0xf600, 0xf601, 0xf602, 0xf603, 0xf604, 0xf605, 0xf606, 0xf607,
-    0xf608, 0xf609, 0xf60a, 0xf60b, 0xf60c, 0xf60d, 0xf60e, 0xf60f,
-    0xf610, 0xf611, 0xf612, 0xf613,
-    0xf614, 0xf615, 0xf616, 0xf617, 0xf618, 0xf619, 0xf61a, 0xf61b,
-    0xf61c, 0xf61d, 0xf61e, 0xf61f, 0xf620, 0xf621, 0xf622, 0xf623
-];
-
-const charPoints = [];
-const valueToCodePoint = {};
-const valueToChar = new Map();
-const codePointToValue = {};
-const charToValue = new Map();
-for (let i = 0; i < numeralValuesInc.length; i++) {
-    const char = String.fromCharCode(codePts[i]);
-    const num = numeralValuesInc[i];
-    charPoints.push(char);
-    valueToChar.set(num, char);
-    valueToCodePoint[num] = codePts[i];
-    codePointToValue[codePts[i]] = num;
-    charToValue.set(char, num);
-};
 
 function cleanUpListDeletions(l1, l2) {
     // Remove items where l1[i] === -1.
@@ -121,95 +87,25 @@ function numListToInteger(numList) {
     return grandSum;
 }
 
-
-// Process the input numeralinteger, outputting a list of numerals.
-// Returns a list of (value) of the decoded number in Sequoyah's numerals
-function formatToSequoah(decimalNum) {
-    var result = [];
-    var remaining;
-
-    if (decimalNum == 0) {
-	result = [0];
-	return result;
-    }
-
-    if (decimalNum < 0) {
-	remaining = -decimalNum;
-	result.push(-1);
-    } else {
-	remaining = decimalNum;
-    }
-
-    var index = 0;
-    var count = 0;
-    while (remaining > 0 && index < numeralValues.length && count < 100) {
-	let divisor = numeralValues[index]
-	if (remaining > 0 && remaining < 1) {
-	    result.push(-10);
-	    break;
-	}
-	if (remaining >= divisor && divisor !== 0) {
-	    count = Math.floor(remaining / numeralValues[index]);
-	    remaining -= count * numeralValues[index];
-	}
-	if (count > 0) {
-	    if (count > 1) {
-		// Recurse with the hundreds.
-		var prefix = this.formatToSequoah(count);
-		for (var j = 0; j < prefix[0].length; j++) {
-		    result.push(prefix[0][j]);
-		}
-	    }
-	    result.push(numeralValues[index]);
-	}
-	count = 0;
-	index += 1;
-    }
-    return result;  // Both the numbers and the strings.
-}
-
-// In progress - class for CherokeeNumeral handling
+// In progress - class handling Sylheti numerals
 class Numerals {
     constructor() {
 	this.numeralValuesInc = [
-	    0, 1, 2, 3, 4, 5, 6, 7, 8, 9,
-	    10, 11, 12, 13, 14, 15, 16, 17, 18, 19,
-	    20, 30, 40, 50, 60 ,70, 80, 90,
-	    100, 1000, 1e6, 1e9, 1e12, 1e15, 1e18];
+	    0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 	this.numeralValues = this.numeralValuesInc.slice().reverse();
 
 	// PUA code points corresponding to numeralValuesInt.
 	this.codePts = [
-	    // 0 - 19
-	    0xf600, 0xf601, 0xf602, 0xf603, 0xf604, 0xf605, 0xf606, 0xf607,
-	    0xf608, 0xf609, 0xf60a, 0xf60b, 0xf60c, 0xf60d, 0xf60e, 0xf60f,
-	    0xf610, 0xf611, 0xf612, 0xf613,
-	    // 20 - 90
-	    0xf614, 0xf615, 0xf616, 0xf617, 0xf618, 0xf619, 0xf61a, 0xf61b,
-	    // 100, 1000, 10^6, etc.
-	    0xf61c, 0xf61d, 0xf61e, 0xf61f, 0xf620, 0xf621, 0xf622, 0xf623
-	];
+	    0x30, 0x31, 0x32, 0x33, 0x34, 0x35, 0x36, 0x37, 0x38, 0x39];
 
 	const chrToValueMap = {
-	    0xf600: 0, 0xf601: 1, 0xf602: 2, 0xf603: 3, 0xf605: 4,0xf605: 5,
-	    0xf606: 6, 0xf607: 7, 0xf608: 8, 0xf609: 9,
-	    0xf60a: 10, 0xf60b: 11, 0xf60c: 12, 0xf60d: 13, 0xf60e: 14,
-	    0xf60f: 15, 0xf610: 16, 0xf611: 17, 0xf612: 18, 0xf613: 19,
-	    0xf614: 20, 0xf615: 30, 0xf616: 40, 0xf617: 50, 0xf618: 60,
-	    0xf619: 70, 0xf61a: 80, 0xf61b: 80, 0xf61c: 90, 0xf61d: 100,
-	    0xf61e: 1000, 0xf61f: 1e6, 0xf620: 1e9, 0xf621: 1e12,
-	    0xf622:1e15, 0xf623:1e18
+	    0x30: 0, 0x31: 1, 0x32: 2, 0x33: 3, 0x35: 4,0x35: 5,
+	    0x36: 6, 0x37: 7, 0x38: 8, 0x39: 9,
 	};
 
 	const valueToCharMap = {
-	    0: 0xf600, 1: 0xf601, 2: 0xf602, 3: 0xf603, 4: 0xf605,5: 0xf605,
-	    6: 0xf606, 7: 0xf607, 8: 0xf608, 9: 0xf609,
-	    10: 0xf60a, 11: 0xf60b, 12: 0xf60c, 13: 0xf60d, 14: 0xf60e,
-	    15: 0xf60f, 16: 0xf610, 17: 0xf611, 18: 0xf612, 19: 0xf613,
-	    20: 0xf614, 30: 0xf615, 40: 0xf616, 50: 0xf617, 60: 0xf618,
-	    70: 0xf619, 80: 0xf61a, 80: 0xf61b, 90: 0xf61c, 100: 0xf61d,
-	    1000: 0xf61e, 1e6: 0xf61f, 1e9: 0xf620, 1e12: 0xf621,
-	    1e15:0xf622, 1e18:0xf623
+	    0: 0x30, 1: 0x31, 2: 0x32, 3: 0x33, 4: 0x35,5: 0x35,
+	    6: 0x36, 7: 0x37, 8: 0x38, 9: 0x39,
 	};
 
 	this.charPoints = [];
@@ -217,13 +113,13 @@ class Numerals {
 	this.valueToChar = new Map();
 	this.codePointToValue = new Map();
 	this.charToValue = new Map();
-	for (let i = 0; i < numeralValuesInc.length; i++) {
-	    const char = String.fromCharCode(codePts[i]);
-	    const num = numeralValuesInc[i];
+	for (let i = 0; i < this.numeralValuesInc.length; i++) {
+	    const char = String.fromCharCode(this.codePts[i]);
+	    const num = this.numeralValuesInc[i];
 	    this.charPoints.push(char);
 	    this.valueToChar.set(num, char);
-	    this.valueToCodePoint[num] = codePts[i];
-	    this.codePointToValue.set(codePts[i], num);
+	    this.valueToCodePoint[num] = this.codePts[i];
+	    this.codePointToValue.set(this.codePts[i], num);
 	    this.charToValue.set(char, num);
 	};
 
@@ -234,16 +130,11 @@ class Numerals {
 
     // Returns list of lists, each describing one row of the layout.
     keyLayoutArray() {
-	layoutRowChars = [
-	    // 0 - 19
-	    [0xf600, 0xf601, 0xf602, 0xf603, 0xf604, 0xf605, 0xf606, 0xf607,
-	     0xf608, 0xf609],
-	    [ 0xf60a, 0xf60b, 0xf60c, 0xf60d, 0xf60e, 0xf60f, 0xf610, 0xf611
-	      0xf612, 0xf613],
-	    // 20 - 90
-	    [0xf614, 0xf615, 0xf616, 0xf617, 0xf618, 0xf619, 0xf61a, 0xf61b],
-	    // 100, 1000, 10^6, etc.
-	    [0xf61c, 0xf61d, 0xf61e, 0xf61f, 0xf620, 0xf621, 0xf622, 0xf623]
+	const layoutRowChars = [
+	    // Stand ins
+	    ['0', '1', '2'],
+	    ['3', '4', '5'],
+	    ['6', '7', '8', '9']
 	];	
 	return layoutRowChars;
     }

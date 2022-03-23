@@ -277,7 +277,7 @@ class NumeralSystem {
 
 
 // For testing conversions in Cherokee numerals.
-class TestNumerals {
+class BaseTestNumerals {
     constructor (numeralsObj) {
 	this.numObj = numeralsObj;
     }

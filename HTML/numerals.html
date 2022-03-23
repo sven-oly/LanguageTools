@@ -8,16 +8,21 @@
     <link rel="stylesheet" type="text/css" href="/css/main.css">
     <link rel="stylesheet" type="text/css" href="/css/fonts.css">
 
-	<script type="text/javascript" src="/js/numerals/numeralBase.js"></script>
+    <script type="text/javascript" src="/js/numerals/numeralBase.js"></script>
 
+    <!-- This loads the numerals info -->
     <script type="text/javascript" src="/js/numerals/{{langNumerals}}.js"></script>
 
+    <!-- Gets definition of the caluculator -->
+    <script type="text/javascript" src="/js/numerals/calculator4.js"></script>
+
     <link rel="stylesheet" type="text/css" href="/css/calculator.css">
+
     <link rel="stylesheet" type="text/css" href="/css/chrCalculator.css">
 
     <style>
       img {
-	  opacity: 0.5;
+          opacity: 0.5;
       }
 
       td {
@@ -25,39 +30,55 @@
           font-family:CherokeeNumerals;
           font-size: 32px;
       }      
+
+      {% for font in font_list %}
       @font-face{
-	  font-family:'CherokeeNumerals';
-	  src:url('/fonts/chr_numerals.otf');
-	  font-weight:normal;
-	  font-style:normal;
-	  font-size: 32px;
+          font-family:"{{font.family}}";
+          src:url('{{font.source}}'){% if '.ttf' in font.source %}format('truetype'){%endif%}{% if '.TTF' in font.source %}format('truetype'){%endif%}{% if '.otf' in font.source %}format('opentype'){%endif%}{%if '.woff' in font.source %}format('woff'){%endif%};
+          font-weight:normal;
+          font-style:normal;
+          font-size: 32px;
       }
+      {% endfor %}
+
       .CherokeeNumeralsClass {
-	  font-family:CherokeeNumerals;
-	  font-size: 32px;
+          font-family:CherokeeNumerals;
+          font-size: 32px;
       }
       .CherokeeNumeralsOutputClass {
-	  font-family:CherokeeNumerals;
-	  font-size: 48px;
-	  font-weight:bold;
+          font-family:CherokeeNumerals;
+          font-size: 48px;
+          font-weight:bold;
       }
       .DecimalDisplay {
-	  background-color: #cccccc;
+          background-color: #cccccc;
       }
       .logArea {
-	  width:600px;
-	  height:200px;
+          width:600px;
+          height:200px;
       }
       table {
-	  width: 400px;
+          width: 400px;
+      }
+
+      .default-font {
+          font-family: "Arial";
+          font-size:18px;
       }
     </style>
     
-
     <script src="/js/langinfo/langdata.js"></script>
 
-    <script type="text/javascript">
-     const langInformation = new langData("{{language}}", "{{langTag}}");
+    <script>
+      // Holds all the info about the numeral system
+      const numeralInfo = new Numerals();
+      
+      // The calculator object.
+      let calculator;
+      
+      const langInformation = new langData("{{language}}", "{{langTag}}");
+
+      const font_families = [{% for font in font_list %}"{{font.family}}", {% endfor %}];
 
       // Toggle the region id.
       function showhide(id) {
@@ -67,140 +88,159 @@
           return false;
       }
 
-      // All the Cherokee-specific functions
-      const chrNumerals = new ChrNumerals();
-	  
       function showDecimal(value) {
-	  let area = document.getElementById('decimalOutput');
-	  let result = value;
-	  if (Intl.NumberFormat) {
-	      let fmt = new Intl.NumberFormat('en');
-	      result = fmt.format(value);
-	  }
-	  if (area) {
-	      area.innerHTML = result;
-	  }
+          let area = document.getElementById('decimalOutput');
+          let result = value;
+          if (Intl.NumberFormat) {
+              let fmt = new Intl.NumberFormat('en');
+              result = fmt.format(value);
+          }
+          if (area) {
+              area.innerHTML = result;
+          }
       }
-	  
+      
       // Append to the output.
       function addToLogging(str) {
-	  let area = document.getElementById('logArea');
-	  area.innerHTML += ' ' + str;
+          let area = document.getElementById('logArea');
+          area.innerHTML += ' ' + str;
           area.scrollTop = area.scrollHeight;
       }
-	  
+      
       function onload() {
+
           // Connect CHR numeral data to calculator.
-	  chrCalculator.setNumeralObject(chrNumerals);
-	  
-	  // Ready to use the calculator.
-	  chrCalculator.init();
-	  chrNumerals.setDisplayDecimal(showDecimal);
-	  chrNumerals.setLoggingFn(addToLogging);
+          calculator = new calculator4(numeralInfo,
+                                       'outputArea');
+
+          calculator.setNumeralObject(numeralInfo);
+          
+          setCalculatorKeyTable('buttonTable', numeralInfo, calculator);
+
+          // Ready to use the calculator.
+          numeralInfo.setDisplayDecimal(showDecimal);
+          numeralInfo.setLoggingFn(addToLogging);
       }
 
       function MainHideShow (name) {
           var showhide = document.getElementById(name);
           if (showhide.style.display == "none") {
-	      showhide.style.display = "block";
+              showhide.style.display = "block";
           } else {
-	      showhide.style.display = "none";
+              showhide.style.display = "none";
           }
           return false;
       }
-	  
+      
       function clearArea(output_area) {
           let textArea = document.getElementById(output_area);
           textArea.innerHTML = '';
       }
       
       function runTests() {
-	  const numTests = new TestChrNumerals(chrNumerals);
-	  numTests.testIntToList();  // OK!
-	  // Needs work!
-	  numTests.testFormat();
-	  numTests.testParse();
+          const numTests = new TestNumerals(numeralInfo);
+          numTests.testIntToList();  // OK!
+          // Needs work!
+          numTests.testFormat();
+          numTests.testParse();
       }
+
+      function setCalculatorKeyTable(tableId, numeralInfo, calculator) {
+          // The table
+          const table = document.getElementById(tableId);
+          const rows = table.rows;
+          const numRows = rows.length;  // May need to add more
+
+          const keyMap = numeralInfo.keyLayoutArray();
+          const charToValueMap = numeralInfo.getCharToValueMap();
+          
+          const onInputFn = calculator.onInput;
+
+          // For rows 0-5, keep the operation at the first part of the row
+          // * - + / =, and clear.
+          // Add on the characters in each row
+          // TODO: Set up title for each one to show the numeric value.
+          for (let row = 0; row < keyMap.length; row ++) {
+              const keyRow = keyMap[row];
+              if (row >= numRows) {
+                  // Add another one
+                  table.insertRow(row);
+              }
+              const rowPtr = table.rows[row];
+              // Append this layout row to the table row
+              let tableCol = rowPtr.cells.length;
+              for (let col = 0; col < keyRow.length; col ++) {
+                  let cell = rowPtr.insertCell(tableCol);
+                  // TODO: Create button, not just
+                  const chr = keyMap[row][col];
+                  const btn = document.createElement("button");
+                  btn.innerHTML = chr;
+                  btn.value = chr;
+                  
+                  const value = charToValueMap.get(chr);
+                  btn.onclick = calcButtonFn;
+                  cell.appendChild(btn);
+                  cell.title = value;
+                  // TODO: Set TD title
+
+                  tableCol ++;
+              }
+          }
+      }
+
+      function calcButtonFn(event) {
+	  let chr;
+	  if (typeof event === 'string') {
+	      chr = event;
+	  } else {
+	  // Gets the value of this button, sending to calculator.
+	      chr = event.target.value;
+	  }
+	  calculator.onInput(chr);
+      }
+
     </script>
   </head>
   
-  <body background="/images/numbers.jpg" class="chrNoto" onload="onload();">
+  <body background="/images/{{numbersImage}}" class="chrNoto" onload="onload();">
     <h2>{{language}} Numerals Calculator</h2>
     {% if isMobile %}
     <!-- TODO something special? -->
     {% endif %}
     
-    <div id="chr_calculator">
+    <div id="calculator">
       
       <div id="keypad">     
-	<!-- X Register -->
-	<span id="outputChr" class="CherokeeNumeralsOutputClass"></span>
-	<div id="decimalOutputDiv" style="display: none" class='DecimalDisplay'>
-	  <p>Decimal output: <span id="decimalOutput"></span></p>
-	</div>
-	<table id="chrButtontableNew" class="CherokeeNumeralsClass">
-	  <tr>
-	    <td>
-	      <input type='button' value='*'  class='CherokeeNumeralsClass'/>
-	    </td>
-	    <td title='0'><input type='button' value='' class='CherokeeNumeralsClass'></td>
-	    <td title='1'><input type='button' value='' class='CherokeeNumeralsClass'></td>
-	    <td title='2'><input type='button' value='' class='CherokeeNumeralsClass'></td>
-	    <td title='3'><input type='button' value='' class='CherokeeNumeralsClass'></td>
-	    <td title='4'><input type='button' value='' class='CherokeeNumeralsClass'></td>
-	    <td title='5'><input type='button' value='' class='CherokeeNumeralsClass'></td>
-	    <td title='6'><input type='button' value='' class='CherokeeNumeralsClass'></td>
-	    <td title='7'><input type='button' value='' class='CherokeeNumeralsClass'></td>
-	    <td title='8'><input type='button' value='' class='CherokeeNumeralsClass'></td>
-	    <td title='9'><input type='button' value='' class='CherokeeNumeralsClass'></td>
-	  </tr>
-	  <tr>
-	    <td>
-	      <input type='button' value='-'  class='CherokeeNumeralsClass'/>
-	    </td>
-	    <td title='10'><input type='button' value='' class='CherokeeNumeralsClass'></td>
-	    <td title='11'><input type='button' value='' class='CherokeeNumeralsClass'></td>
-	    <td title='12'><input type='button' value='' class='CherokeeNumeralsClass'></td>
-	    <td title='13'><input type='button' value='' class='CherokeeNumeralsClass'></td>
-	    <td title='14'><input type='button' value='' class='CherokeeNumeralsClass'></td>
-	    <td title='15'><input type='button' value='' class='CherokeeNumeralsClass'></td>
-	    <td title='16'><input type='button' value='' class='CherokeeNumeralsClass'></td>
-	    <td title='17'><input type='button' value='' class='CherokeeNumeralsClass'></td>
-	    <td title='18'><input type='button' value='' class='CherokeeNumeralsClass'></td>
-	    <td title='19'><input type='button' value='' class='CherokeeNumeralsClass'></td>
-	  </tr>
-	  <tr>
-	    <td><input type='button' value='+' class='CherokeeNumeralsClass'/></td>
-	    <td title='20'><input type='button' value='' class='CherokeeNumeralsClass'></td>
-	    <td title='30'><input type='button' value='' class='CherokeeNumeralsClass'></td>
-	    <td title='40'><input type='button' value='' class='CherokeeNumeralsClass'></td>
-	    <td title='50'><input type='button' value='' class='CherokeeNumeralsClass'></td>
-	    <td title='60'><input type='button' value='' class='CherokeeNumeralsClass'></td>
-	    <td title='70'><input type='button' value='' class='CherokeeNumeralsClass'></td>
-	    <td title='80'><input type='button' value='' class='CherokeeNumeralsClass'></td>
-	    <td title='90'><input type='button' value='' class='CherokeeNumeralsClass'></td>
-	    <td title='100'><input type='button' value='' class='CherokeeNumeralsClass'></td>
-	  </tr>
-	  <tr>
-	    <td><input type='button' value='/' class='CherokeeNumeralsClass'/></td>
-	    <td title='1e3'><input type='button' value='' class='CherokeeNumeralsClass'></td>
-	    <td title='1e6'><input type='button' value='' class='CherokeeNumeralsClass'></td>
-	    <td title='1e9'><input type='button' value='' class='CherokeeNumeralsClass'></td>
-	    <td title='1e12'><input type='button' value='' class='CherokeeNumeralsClass'></td>
-	    <td title='1e15'><input type='button' value='' class='CherokeeNumeralsClass'></td>
-	    <td title='1e18'><input type='button' value='' class='CherokeeNumeralsClass'></td>
-	    <td title='-10'><input type='button' value='' class='CherokeeNumeralsClass'></td>
-	    <td title='-20'><input type='button' value='' class='CherokeeNumeralsClass'></td>
-	  </tr>
-	  <tr>
-	    <td><input type='button' value='=' class='CherokeeNumeralsClass'/></td>
-	    <td><input type='button' value='.' class='CherokeeNumeralsClass'/></td>
-	    <!-- TO BE IMPLEMENTED 
-		 <td><input type="button" value="delete"> </td>
-		 -->
-	    <td><input type="button" value="clear"></td>
-	  </tr>
-	</table>
+        <!-- X Register -->
+        <p>
+        <span id="outputArea" class="CherokeeNumeralsOutputClass"></span>
+        <div id="decimalOutputDiv" style="display: none" class='DecimalDisplay'>
+          <p>Decimal output: <span id="decimalOutput"></span></p>
+        </div>
+        <table id="buttonTable" class="CherokeeNumeralsClass">
+          <tr>
+            <td>
+              <input type='button' value='*'  class='CherokeeNumeralsClass' onclick='calcButtonFn("*");'/>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <input type='button' value='-'  class='CherokeeNumeralsClass'  onclick='calcButtonFn("-");'/></td>
+          </tr>
+          <tr>
+            <td><input type='button' value='+' class='CherokeeNumeralsClass' onclick='calcButtonFn("+");'/></td>
+          </tr>
+          <tr>
+            <td><input type='button' value='/' class='CherokeeNumeralsClass'/  onclick='calcButtonFn("/");'></td>
+          </tr>
+          <tr>
+            <td><input type='button' value='=' class='CherokeeNumeralsClass'  onclick='calcButtonFn("=");'/></td>
+            <!-- TO BE IMPLEMENTED 
+                 <td><input type="button" value="delete"> </td>
+                 -->
+            <td><input type="button" value="clear" onclick='calcButtonFn("clear");'></td>
+          </tr>
+        </table>
       </div>
     </div>
     
@@ -209,7 +249,7 @@
       <button value='test all' onClick='runTests();'>Run Tests</button>
       {% endif %}
       <button onclick="return MainHideShow('calculator');" value="calcShow"
-	      style="display: none">Decimal calculator</button>
+              style="display: none">Decimal calculator</button>
       <button onclick="return MainHideShow('decimalOutputDiv');" value="decimalShow">Decimal output</button>
       <button onclick="return MainHideShow('logDiv');" value="logShow">Logging</button>
     </div>
@@ -223,10 +263,8 @@
     {% else %}
     <div id="reference" style="width: 500px">
 
-</div>
-{% endif %}
-</body>
-
-<script type="text/javascript" src="/js/numerals/chrCalculatorNew.js"> </script>
+    </div>
+    {% endif %}
+  </body>
 
 </html>
