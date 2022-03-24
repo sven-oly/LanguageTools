@@ -1,93 +1,6 @@
 // Sylheti numerals computations.
 
-
-function cleanUpListDeletions(l1, l2) {
-    // Remove items where l1[i] === -1.
-    var i = l1.length - 1;
-    while (i >= 0) {
-	if (l1[i] === -1) {
-	    l1.splice(i, 1);
-	    l2.splice(i, 1);
-	}
-	i -= 1;
-    }
-}
-
-function numListToInteger(numList) {
-    // a. scan for add small
-    // b. scan for multiply by hundreds
-    // c. scan for add to hundreds
-    // d. multiply 10^N from left
-    // e. add all
-    var working = numList.slice();
-    var tags = numList.slice();
-
-    //# a. scan for add small
-    var start = 0;
-    var limit = working.length;
-    var sum = 0;
-    while (start < limit) {
-	end = start;
-	while (end < limit && working[end] < 100) {
-	    sum += working[end];
-	    end += 1;
-	}
-	if (end > start) {
-	    working[start] = sum;
-	    for (i = start + 1; i < end; i ++) {
-		tags[i] = -1;
-	    }
-	    sum = 0;
-	}
-	start += 1;
-    }
-    cleanUpListDeletions(tags, working);
-
-    // b. scan for multiply hundreds
-    start = 1;
-    limit = working.length;
-    while (start < limit) {
-	if (working[start - 1] < 100 && working[start] == 100) {
-	    working[start] = working[start - 1] * working[start];
-	    tags[start-1] = -1;
-	}
-	start += 1;
-    }
-    cleanUpListDeletions(tags, working);
-
-    // c. scan for add to hundreds
-    start = 1;
-    limit = working.length;
-    while (start < limit) {
-	if (tags[start - 1] == 100 && tags[start] < 100) {
-	    working[start] = working[start - 1] + working[start];
-	    tags[start-1] = -1;
-	}
-	start += 1
-    }
-    cleanUpListDeletions(tags, working);
-
-    // d. scan for multiply 10^N
-    start = 0;
-    limit = working.length;
-    while (start < limit) {
-	if (tags[start - 1] <= 100 && tags[start] > 100) {
-	    working[start] = working[start - 1] * working[start];
-	    tags[start-1] = -1;
-	}
-	start += 1;
-    }
-    cleanUpListDeletions(tags, working);
-
-    // Add the results if needed
-    var grandSum = 0;
-    for (i = 0; i < working.length; i ++) {
-	grandSum += working[i];
-    }
-    return grandSum;
-}
-
-// In progress - class handling Sylheti numerals
+// Handling Sylheti numerals - base 10
 class Numerals {
     constructor() {
 	this.numeralValuesInc = [
@@ -99,8 +12,8 @@ class Numerals {
 	    0x30, 0x31, 0x32, 0x33, 0x34, 0x35, 0x36, 0x37, 0x38, 0x39];
 
 	const chrToValueMap = {
-	    0x30: 0, 0x31: 1, 0x32: 2, 0x33: 3, 0x35: 4,0x35: 5,
-	    0x36: 6, 0x37: 7, 0x38: 8, 0x39: 9,
+	    0x30: 0, 0x31: 1, 0x32: 2, 0x33: 3, 0x35: 4,
+	    0x35: 5, 0x36: 6, 0x37: 7, 0x38: 8, 0x39: 9,
 	};
 
 	const valueToCharMap = {
@@ -134,7 +47,8 @@ class Numerals {
 	    // Stand ins
 	    ['0', '1', '2'],
 	    ['3', '4', '5'],
-	    ['6', '7', '8', '9']
+	    ['6', '7', '8'],
+	    ['9']
 	];	
 	return layoutRowChars;
     }
@@ -189,71 +103,22 @@ class Numerals {
     }
 
     numberListToInteger(numList) {
-	return numListToInteger(numList);
-    }
+	// Implements decimal placeholder
+	let working = numList;
+	let tags = numList.slice();
 
-    formatInt(num) {
-	return this.formatIntToNumeralString(num);
-    }
-
-    intToNumeralsList(intVal) {
-	// This is Cherokee-specific
-	// set big numeral to 1000.
-	// Get remainder with 100.
-	// If 1 <= 19, use that numeral
-	// else get decade numeral +
-	// remainder if > 0
-	// Divide by 1000. If a reminder, push next
-	// add big numeral. Increment big numeral to next
-	// power of 10^3.
-	// repeat with 100 line.
-	let numList = [];
-	if (intVal === 0) {
-	    return [0];
+	let start = 0;
+	let limit = working.length;
+	let sum = 0;
+	while (start < limit) {
+	    sum = 10 * sum + numList[start];
+	    start++;
 	}
-
-	// Take the number in groups of 3 decades.
-	let bigPower = 1;
-	while (intVal > 0) {
-	    // Get the lowest 1000.
-	    let rem1000 = intVal % 1000;
-	    if (rem1000 > 0) {
-		if (bigPower > 1) {
-		    // Push the big power
-		    numList.unshift(bigPower);
-		}
-		let times100 = Math.floor(rem1000 /100);
-		let rem100 = rem1000 % 100;
-		if (rem100 > 0) {
-		    if (rem100 <= 19) {
-			numList.unshift(rem100);
-		    } else {
-			const decade = Math.floor(rem100/10) * 10;
-			const unit = rem100 - decade;
-			if (unit > 0) {
-			    numList.unshift(unit);
-			}
-			if (decade > 0) {
-			    numList.unshift(decade);
-			}
-		    }
-		}
-		if (times100 > 0) {
-		    // Handle 100s
-		    numList.unshift(100);
-		    numList.unshift(times100);
-		}
-	    }
-	    // Get the next power of 1000.
-	    intVal = Math.floor(intVal / 1000);
-	    bigPower *= 1000;
-	}
-	return numList;
+	return sum;
     }
 
-    formatIntToNumeralString(decimalNum) {
-	let numList = this.intToNumeralsList(decimalNum);
-	return this.formatNumeralListToString(numList);
+    formatInt(intVal) {
+	return intVal;
     }
 }
 

@@ -30,7 +30,7 @@ import base
 
 
 Language = 'Sylheti Nagari'
-Language_native = 'Sylheti language'
+Language_native = 'ꠍꠤꠟꠐꠤ'
 LanguageCode = 'syl'
 
 encoding_font_list = [
@@ -91,12 +91,25 @@ links = [
     {'linkText': 'SumraL description',
       'ref': 'http://www.sylheti.org.uk/legacy-font'
     },
-]
+    {'linkText': 'Word search',
+     'ref': '/' + LanguageCode + '/wordsearch/'
+     },
+    {'linkText': 'Word list builder',
+     'ref': '/' + LanguageCode + '/dictionaryN/'
+    },
+  ]
 
-
-diacritic_list = [unichr(0xa806), unichr(0xa80b)] + \
+# For word search and other things
+diacritic_list = [unichr(0xa802), unichr(0xa806), unichr(0xa80b)] + \
   [unichr(x) for x in range(0xa823, 0xa828)]
-default_base_consonant = u'\ua800'
+vowels = [unichr(0xa800), unichr(0xa801),unichr(0xa803), unichr(0xa804), unichr(0xa805)]
+consonants = [unichr(x) for x in range(0xa807, 0xa80b)]
+consonants += [unichr(x) for x in range(0xa80c, 0xa823)]
+
+# TODO!!!: Add in combinations.
+fillChars = vowels + consonants
+
+default_base_consonant = u'\ua807'
 
 class langInfo():
   def __init__(self):
@@ -108,10 +121,45 @@ class langInfo():
     self.unicode_font_list = unicode_font_list
     self.diacritic_list = diacritic_list
     self.base_consonant = default_base_consonant
+
     self.lang_list = [Language]
     self.kb_list = kb_list
     self.links = links
 
+    self.unicodeRanges = [('\ua800', '\A82C')]
+    # Characters without combiners
+    self.unicodeChars = vowels + consonants
+    self.baseChars = consonants
+    self.unicodeCombiningChars = diacritic_list
+    # For filling word search and dividing words
+    self.fillChars = fillChars
+
+    self.dictionaryLang1 = "Sylheti"
+    self.dictionaryLang2 = "en"
+    self.kb2 = 'en'
+    self.kb1 = self.kb_list[0]['shortName']
+
+    self.dictionaryNData = [
+      {'langName': self.Language, 'langNative': 'ꠍꠤꠟꠐꠤ',
+       'languageCode': 'syl',
+       'kbShortName': 'syl', 'kbLongName': 'Sylheti Unicode',
+       'font': { 'family': 'NotoSansSylotiNagri',
+                 'longName': 'Noto Sans Syloti Nagri',
+                 'source': '/fonts/NotoSansSylotiNagri-Regular.ttf'},
+       'direction': 'ltr',
+       #'helptext': 'ꠍꠤꠟꠐꠤ'
+       },
+      {'langName': 'English', 'langNative': 'English',
+       'languageCode': 'en',
+       'kbShortName': 'en', 'kbLongName': 'English',
+       'font': {'family': 'Latin',
+                'longName': 'Noto Sans',
+                'source': '/fonts/NotoSans-Regular.ttf'
+                },
+       'direction': 'ltr',
+       'helptext': 'Detailed instructions'
+       },
+    ]
 
 # Presents UI for conversions from font encoding to Unicode.
 class ConvertUIHandler(webapp2.RequestHandler):
@@ -130,8 +178,7 @@ class ConvertUIHandler(webapp2.RequestHandler):
       ]
 
       oldInput = text
-      unicodeChars = ''
-      unicodeCombiningChars = ''
+
       kb_list = [
         {'shortName':  LanguageCode,
          'longName': Language
@@ -167,6 +214,10 @@ app = webapp2.WSGIApplication([
     ('/' + LanguageCode + '/downloads/', base.Downloads),
     ('/' + LanguageCode + '/encodingRules/', base.EncodingRules),
     ('/' + LanguageCode + '/diacritic/', base.DiacriticHandler),
+    ('/' + langInstance.LanguageCode + '/dictionaryN/', base.DictionaryN),
+    ('/' + langInstance.LanguageCode + '/wordsearch/', base.WordSearchHandler),
+
+    ('/' + langInstance.LanguageCode + '/numerals/', base.NumeralsHandler),
   ],
   debug=True,
   config={'langInfo': langInstance}

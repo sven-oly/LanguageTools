@@ -184,9 +184,8 @@ class calculator4 {
 
     display(newVal) {
         const resultString = this.numeralObject.formatInt(newVal);
-        if (resultString) {
-            this.output.innerHTML = resultString;
-        }
+        this.output.innerHTML = resultString;
+
         if (this.numeralObject.displayDecimal) {
             this.numeralObject.displayDecimal(newVal);
         }
