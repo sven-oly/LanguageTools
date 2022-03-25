@@ -248,7 +248,7 @@ class calculator4 {
         this.result = 0;
         this.operand = '';
         this.operation = '';
-        this.numeralList = [0];
+        this.numeralList = [];
         this.accum1 = this.accum2 = 0;
         const newVal =
               this.numeralObject.numberListToInteger(this.numeralList);
@@ -258,10 +258,10 @@ class calculator4 {
         }
 
         this.display(newVal);
-
+        this.state = ArgState1;
     }
 
-        // Clear everything
+    // Clear everything
     deleteChar(state) {
         switch (state){
         case ArgState1:
@@ -278,6 +278,14 @@ class calculator4 {
             break;
         }
         // TODO: other states?
+    }
+
+    // Special function to clear state and set accumulator to given value
+    insertAccumValue(val) {
+        this.clearAll();
+        this.accum1 = val;
+        this.numeralList = this.numeralObject.formatIntToNumeralString;(val);
+        this.display(this.accum1);
     }
 
     // FMS state handlers

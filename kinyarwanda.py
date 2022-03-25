@@ -78,10 +78,16 @@ class langInfo:
         self.test_data = u''
         self.unicode_font_list = [
           {  # This is a font encoding for testing.
-            'family': 'UMWERO_PUA3',
-            'longName': 'UMWERO PUA 3 Feb 2022',
-            'source': '/fonts/Kinyarwanda/UMWEROPUA3.otf',
+            'family': 'UMWERO_PUAnumbers',
+            'longName': 'UMWERO PUA Numbers 7 Mar  2022',
+            'source': '/fonts/Kinyarwanda/UMWEROPUAnumbers.otf',
           },
+          {  # This is a font encoding for testing.
+            'family': 'UMWEROalphaPUA3',
+            'longName': 'UMWERO PUA 2 Mar 2022',
+            'source': '/fonts/Kinyarwanda/UMWEROalphaPUA3.otf',
+          },
+
           {  # This is a font encoding for testing.
             'family': 'UMWERO',
             'longName': 'UMWERO February 2022',
@@ -269,6 +275,10 @@ ZZ	Dza	ZZ
 	Times10^8	Times10^8
 	Times10^9	Times10^9"""
 
+        # For numeral values
+        self.numbersImage = 'rw/umwero/Umwero_img.png'
+
+
 langInstance = langInfo()
 
 app = webapp2.WSGIApplication([
@@ -280,6 +290,7 @@ app = webapp2.WSGIApplication([
   ('/' + LanguageCode + '/diacritic/', base.DiacriticHandler),
   ('/' + LanguageCode + '/charTable/', base.CharacterTableHandler),
   ('/' + LanguageCode + '/about/', AboutPageHandler),
+  ('/' + langInstance.LanguageCode + '/numerals/', base.NumeralsHandler),
 
 ], debug=True,
   config={'langInfo': langInstance}

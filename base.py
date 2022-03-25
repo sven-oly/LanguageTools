@@ -765,7 +765,12 @@ class WordSearchHandler(webapp2.RequestHandler):
   def get(self):
     langInfo = self.app.config.get('langInfo')
 
-    # String containing character name data
+    testing = self.request.get('testing', False)
+    testData = ''
+    if testing:
+      # Some good words in Sylheti
+      testData = 'ꠗꠣꠞꠣ ꠢꠇꠟ ꠝꠣꠘꠥꠡ ꠡꠣꠗꠤꠘꠜꠣꠛꠦ ꠢꠝꠣꠘ ꠁꠎ꠆ꠎꠔ ꠀꠞ ꠢꠇ'
+
     try:
       charNames = langInfo.charNames.split('\n')
       charNames = '!!!'.join(charNames)
@@ -791,6 +796,7 @@ class WordSearchHandler(webapp2.RequestHandler):
       'unicodeCombiningChars': langInfo.unicodeCombiningChars,
       'letterFillList': letterFillList,
       'unicode_font_list': langInfo.unicode_font_list,
+      'testData': testData,
     }
     path = os.path.join(os.path.dirname(__file__), 'HTML/wordsearch.html')
     self.response.out.write(template.render(path, template_values))
@@ -816,14 +822,27 @@ class NumeralsHandler(webapp2.RequestHandler):
     except:
       letterFillList = []
 
+    try:
+        combingChars = langInfo.unicodeCombiningChars
+    except:
+        combingChars = None
+
+    try:
+        numbersImage = langInfo.numbersImage
+    except:
+        numbersImage = None
+        
+    langNumerals = langInfo.LanguageCode + "Numerals"
     template_values = {
-      'language': langInfo.Language,
-      'LanguageTag': langInfo.LanguageCode,
-      'charTable': charNames,
-      'charNameData': charNames,
-      'unicodeCombiningChars': langInfo.unicodeCombiningChars,
-      'letterFillList': letterFillList,
-      'unicode_font_list': langInfo.unicode_font_list,
+        'language': langInfo.Language,
+        'LanguageTag': langInfo.LanguageCode,
+        'langNumerals': langNumerals,
+        'charTable': charNames,
+        'charNameData': charNames,
+        'unicodeCombiningChars': combiningChars,
+        'letterFillList': letterFillList,
+        'unicodeFontList': langInfo.unicode_font_list,
+        'numbersImage': numbersImage,
     }
     path = os.path.join(os.path.dirname(__file__), 'HTML/numerals.html')
     self.response.out.write(template.render(path, template_values))

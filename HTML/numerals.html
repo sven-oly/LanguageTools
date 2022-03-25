@@ -31,7 +31,7 @@
           font-size: 32px;
       }      
 
-      {% for font in font_list %}
+      {% for font in unicodeFontList %}
       @font-face{
           font-family:"{{font.family}}";
           src:url('{{font.source}}'){% if '.ttf' in font.source %}format('truetype'){%endif%}{% if '.TTF' in font.source %}format('truetype'){%endif%}{% if '.otf' in font.source %}format('opentype'){%endif%}{%if '.woff' in font.source %}format('woff'){%endif%};
@@ -41,12 +41,16 @@
       }
       {% endfor %}
 
-      .CherokeeNumeralsClass {
-          font-family:CherokeeNumerals;
+      .OperatorsClass {
+          font-family: Arial;
           font-size: 32px;
       }
-      .CherokeeNumeralsOutputClass {
-          font-family:CherokeeNumerals;
+      .NumeralsClass {
+          font-family:{{unicodeFontList.0.family}};
+          font-size: 32px;
+      }
+      .NumeralsOutputClass {
+          font-family:{{unicodeFontList.0.family}};
           font-size: 48px;
           font-weight:bold;
       }
@@ -96,7 +100,7 @@
               result = fmt.format(value);
           }
           if (area) {
-              area.innerHTML = result;
+              area.value = result;
           }
       }
       
@@ -155,6 +159,7 @@
           const charToValueMap = numeralInfo.getCharToValueMap();
           
           const onInputFn = calculator.onInput;
+          let fmt = new Intl.NumberFormat('en');
 
           // For rows 0-5, keep the operation at the first part of the row
           // * - + / =, and clear.
@@ -180,7 +185,8 @@
                   const value = charToValueMap.get(chr);
                   btn.onclick = calcButtonFn;
                   cell.appendChild(btn);
-                  cell.title = value;
+                  cell.title = fmt.format(value);
+                  btn.className = 'NumeralsClass';
                   // TODO: Set TD title
 
                   tableCol ++;
@@ -189,14 +195,19 @@
       }
 
       function calcButtonFn(event) {
-	  let chr;
-	  if (typeof event === 'string') {
-	      chr = event;
-	  } else {
-	  // Gets the value of this button, sending to calculator.
-	      chr = event.target.value;
-	  }
-	  calculator.onInput(chr);
+          let chr;
+          if (typeof event === 'string') {
+              chr = event;
+          } else {
+          // Gets the value of this button, sending to calculator.
+              chr = event.target.value;
+          }
+          calculator.onInput(chr);
+      }
+      function convertDecimal(inputArea) {
+          let decimalArea = document.getElementById(inputArea);
+          let number = decimalArea.value;
+          calculator.insertAccumValue(number);
       }
 
     </script>
@@ -213,32 +224,35 @@
       <div id="keypad">     
         <!-- X Register -->
         <p>
-        <span id="outputArea" class="CherokeeNumeralsOutputClass"></span>
+          <div align="right">
+            <span id="outputArea" class="NumeralsOutputClass"></span>
+            </div>
         <div id="decimalOutputDiv" style="display: none" class='DecimalDisplay'>
-          <p>Decimal output: <span id="decimalOutput"></span></p>
+          <p>Decimal output: <textarea id="decimalOutput"></textarea>
+          <input type='button' value='-->' onclick='convertDecimal("decimalOutput");'/>
         </div>
-        <table id="buttonTable" class="CherokeeNumeralsClass">
+        <table id="buttonTable" class="NumeralsClass">
           <tr>
             <td>
-              <input type='button' value='*'  class='CherokeeNumeralsClass' onclick='calcButtonFn("*");'/>
+              <input type='button' value='*'  class='OperatorsClass' onclick='calcButtonFn("*");'/>
             </td>
           </tr>
           <tr>
             <td>
-              <input type='button' value='-'  class='CherokeeNumeralsClass'  onclick='calcButtonFn("-");'/></td>
+              <input type='button' value='-'  class='OperatorsClass' onclick='calcButtonFn("-");'/></td>
           </tr>
           <tr>
-            <td><input type='button' value='+' class='CherokeeNumeralsClass' onclick='calcButtonFn("+");'/></td>
+            <td><input type='button' value='+' class='OperatorsClass' onclick='calcButtonFn("+");'/></td>
           </tr>
           <tr>
-            <td><input type='button' value='/' class='CherokeeNumeralsClass'/  onclick='calcButtonFn("/");'></td>
+            <td><input type='button' value='/' class='OperatorsClass'/ onclick='calcButtonFn("/");'></td>
           </tr>
           <tr>
-            <td><input type='button' value='=' class='CherokeeNumeralsClass'  onclick='calcButtonFn("=");'/></td>
+            <td><input type='button' value='=' class='OperatorsClass' onclick='calcButtonFn("=");'/></td>
             <!-- TO BE IMPLEMENTED 
                  <td><input type="button" value="delete"> </td>
                  -->
-            <td><input type="button" value="clear" onclick='calcButtonFn("clear");'></td>
+            <td><input type="button" value="clr" class='OperatorsClass' onclick='calcButtonFn("clear");'></td>
           </tr>
         </table>
       </div>
