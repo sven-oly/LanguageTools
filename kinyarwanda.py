@@ -37,6 +37,9 @@ links = [
   {'linkText': 'KB transforms',
    'ref': '/' + LanguageCode + '/kbtransforms/'
    },
+  {'linkText': 'Unwero calculator',
+   'ref': '/' + LanguageCode + '/numerals/'
+   },
   # {'linkText': 'Font conversion summary',
   #   'ref': '/' + LanguageCode + '/encodingRules/'
   # },

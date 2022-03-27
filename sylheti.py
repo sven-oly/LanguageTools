@@ -35,29 +35,52 @@ LanguageCode = 'syl'
 
 encoding_font_list = [
   {
-    'font_path': '/fonts/SurmaL-Regular.ttf',
+    'font_path': '/fonts/Sylheti/SurmaL-Regular.ttf',
     'font_name': 'SurmaLRegular',
     'display_name': 'SurmaL',
+  },
+  {
+    'font_path': '/fonts/Sylheti/Fonty17.ttf',
+    'font_name': 'Fonty17',
+    'display_name': 'Fonty 17',
+  },
+  {
+    'font_path': '/fonts/Sylheti/amarfont 2.ttf',
+    'font_name': 'AmarFont2',
+    'display_name': 'AmarFont 2',
   },
 ]
 
 unicode_font_list = [
-    {
-        'family': 'NotoSansSylotiNagri',
-        'longName': 'Noto Sans Syloti Nagri',
-        'source': '/fonts/NotoSansSylotiNagri-Regular.ttf',
-    },
+  {
+    'family': 'SylhetiNotoNumeralsPUA',
+    'longName': 'Sylheti Noto Numerals PUA',
+    'source': '/fonts/Sylheti/NotoSansSylotiNagri2.ttf',
+  },
+  {
+    'family': 'SylhetiNotoNumeralsPUAOTF',
+    'longName': 'Sylheti Noto Numerals PUA OTF',
+    'source': '/fonts/Sylheti/NotoSansSylotiNagri2.otf',
+  },
+  {
+    'family': 'NotoSansSylotiNagri',
+    'longName': 'Noto Sans Syloti Nagri',
+    'source': '/fonts/Sylheti/NotoSansSylotiNagri-Regular.ttf',
+  },
   {
     'family': 'SurmaUnicode',
     'longName': 'Surma Unicode',
-    'source': '/fonts/Surma-Regular.ttf',
+    'source': '/fonts/Sylheti/Surma-Regular.ttf',
   },
-
 ]
 
 kb_list = [
-  {'shortName': LanguageCode,
-   'longName': LanguageCode,
+
+  {'shortName': 'syl',
+   'longName': 'Sylheti prototype',
+   },
+  {'shortName': 'syl2',
+   'longName': 'PUA numerals',
    },
 ]
 
@@ -145,7 +168,7 @@ class langInfo():
        'kbShortName': 'syl', 'kbLongName': 'Sylheti Unicode',
        'font': { 'family': 'NotoSansSylotiNagri',
                  'longName': 'Noto Sans Syloti Nagri',
-                 'source': '/fonts/NotoSansSylotiNagri-Regular.ttf'},
+                 'source': '/fonts/Sylheti/NotoSansSylotiNagri-Regular.ttf'},
        'direction': 'ltr',
        #'helptext': 'ꠍꠤꠟꠐꠤ'
        },
@@ -160,6 +183,8 @@ class langInfo():
        'helptext': 'Detailed instructions'
        },
     ]
+    self.numbersImage = 'syl/E2VLuImUYAABXmL.png'
+    
 
 # Presents UI for conversions from font encoding to Unicode.
 class ConvertUIHandler(webapp2.RequestHandler):
@@ -199,8 +224,8 @@ class ConvertUIHandler(webapp2.RequestHandler):
           'text': text,
           'textStrings': testStringList,
           'showTools': self.request.get('tools', None),
-          'unicodeChars': unicodeChars,
-          'combiningChars': unicodeCombiningChars,
+          'unicodeChars': langInstance.unicodeChars,
+          'combiningChars': langInstance.unicodeCombiningChars,
       }
       path = os.path.join(os.path.dirname(__file__), 'HTML/translit_general.html')
       self.response.out.write(template.render(path, template_values))

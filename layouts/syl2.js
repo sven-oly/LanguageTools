@@ -13,12 +13,12 @@
 // Implements Ahom keyboard based on ...
 // TODO: Add reference
 
-var SYL_LAYOUT = {
-  'id': 'syl',
-  'title': "Sylothi prototype",
+var SYL_LAYOUT2 = {
+  'id': 'syl2',
+  'title': "Sylothi PUA Numerals",
   'mappings': {
     '': {
-      '': '`\u09e7\u09e8\u09e9\u09ea\u09eb\u09ec\u09ed\u09ee\u09ef\u09e6-=' +
+      '': '`\uef31\uef32\uef33\uef34\uef35\uef36\uef37\uef38\uef39\uef30-=' +
           '\ua828\ua829\ua826\ua81e\ua814\ua802' +
             '\ua825\ua824\ua827\ua819[]\\' +
           '\ua823\ua821\ua816{{?}}\ua809\ua822\ua80e\ua807\ua81f;\u201C' +
@@ -52,5 +52,5 @@ var SYL_LAYOUT = {
 };
 
 // Load the layout and inform the keyboard to switch layout if necessary.
-google.elements.keyboard.loadme(SYL_LAYOUT);
-syl = SYL_LAYOUT;
+google.elements.keyboard.loadme(SYL_LAYOUT2);
+syl2 = SYL_LAYOUT2;

@@ -9,16 +9,16 @@ class Numerals {
 
 	// PUA code points corresponding to numeralValuesInt.
 	this.codePts = [
-	    0x30, 0x31, 0x32, 0x33, 0x34, 0x35, 0x36, 0x37, 0x38, 0x39];
+	    0xef30, 0xef31, 0xef32, 0xef33, 0xef34, 0xef35, 0xef36, 0xef37, 0xef38, 0xef39];
 
 	const chrToValueMap = {
-	    0x30: 0, 0x31: 1, 0x32: 2, 0x33: 3, 0x35: 4,
-	    0x35: 5, 0x36: 6, 0x37: 7, 0x38: 8, 0x39: 9,
+	    0xef30: 0, 0xef31: 1, 0xef32: 2, 0xef33: 3, 0xef35: 4,
+	    0xef35: 5, 0xef36: 6, 0xef37: 7, 0xef38: 8, 0xef39: 9,
 	};
 
 	const valueToCharMap = {
-	    0: 0x30, 1: 0x31, 2: 0x32, 3: 0x33, 4: 0x35,5: 0x35,
-	    6: 0x36, 7: 0x37, 8: 0x38, 9: 0x39,
+	    0: 0xef30, 1: 0xef31, 2: 0xef32, 3: 0xef33, 4: 0xef35,5: 0xef35,
+	    6: 0xef36, 7: 0xef37, 8: 0xef38, 9: 0xef39,
 	};
 
 	this.charPoints = [];
@@ -45,10 +45,10 @@ class Numerals {
     keyLayoutArray() {
 	const layoutRowChars = [
 	    // Stand ins
-	    ['0', '1', '2'],
-	    ['3', '4', '5'],
-	    ['6', '7', '8'],
-	    ['9']
+	    ['\uef30', '\uef31', '\uef32'],
+	    ['\uef33', '\uef34', '\uef35'],
+	    ['\uef36', '\uef37', '\uef38'],
+	    ['\uef39']
 	];	
 	return layoutRowChars;
     }
@@ -118,7 +118,18 @@ class Numerals {
     }
 
     formatInt(intVal) {
-	return intVal;
+	if (intVal == 0) {
+	    let chr = this.valueToChar.get(0);
+	    return chr;
+	}
+	let result = [];
+	while (intVal) {
+	    let val = intVal % 10;
+	    let chr = this.valueToChar.get(val);
+	    result.unshift(chr);
+	    intVal = Math.floor(intVal / 10);
+	}
+	return result.join('');
     }
 }
 

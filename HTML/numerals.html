@@ -27,7 +27,6 @@
 
       td {
           text-align: center;
-          font-family:CherokeeNumerals;
           font-size: 32px;
       }      
 
@@ -207,7 +206,7 @@
       function convertDecimal(inputArea) {
           let decimalArea = document.getElementById(inputArea);
           let number = decimalArea.value;
-          calculator.insertAccumValue(number);
+          calculator.insertAccumValue(number.replaceAll(',', ''));
       }
 
     </script>
