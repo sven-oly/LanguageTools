@@ -3,50 +3,34 @@
 // Handling Sylheti numerals - base 10
 class Numerals {
     constructor() {
-        this.numeralValuesInc = [
-            0, 1, 2, 3, 4, 5, 6, 7, 8, 9,
-            1e1, 1e2, 1e3, 1e4, 1e5, 1e6, 1e7, 1e8, 1e9, 1e10,
-        ];
-        this.numeralValues = this.numeralValuesInc.slice().reverse();
+        //  Map numeral values to corresponding PUA code points
+        this.valueToChar = new Map([
+            [0, '0'], [1, '1'], [2, '2'], [3, '3'], [4, '4'], [5, '5'],
+            [6, '6'], [7, '7'], [8, '8'], [9, '9'],
+            [1e1, String.fromCharCode(0xf300)],
+            [1e2, String.fromCharCode(0xf301)],
+            [1e3, String.fromCharCode(0xf302)],
+            [1e4, String.fromCharCode(0xf303)],
+            [1e5, String.fromCharCode(0xf304)],
+            [1e6, String.fromCharCode(0xf305)],
+            [1e7, String.fromCharCode(0xf306)],
+            [1e8, String.fromCharCode(0xf307)],
+            [1e9, String.fromCharCode(0xf308)],
+            [1e10, String.fromCharCode(0xf309),
+            ]
+        ]);
 
-        // PUA code points corresponding to numeralValuesInt.
-        this.codePts = [
-            0x30, 0x31, 0x32, 0x33, 0x34, 0x35, 0x36, 0x37, 0x38, 0x39,
-            0xf300, 0xf301, 0xf302, 0xf303, 0xf304, 0xf305,
-            0xf306, 0xf307, 0xf308, 0xf309
-        ];
-
-        const chrToValueMap = {
-            0x30: 0, 0x31: 1, 0x32: 2, 0x33: 3, 0x34: 4,
-            0x35: 5, 0x36: 6, 0x37: 7, 0x38: 8, 0x39: 9,
-            0xf300: 1e1, 0xf301:1e2, 0xf302: 1e3,
-            0xf303: 1e4, 0xf304: 1e5, 0xf305: 1e6,
-            0xf306: 1e7, 0xf307: 1e8, 0xf308: 1e9, 0xf309: 1e10,
-            
-        };
-
-        const valueToCharMap = {
-            0: 0x30, 1: 0x31, 2: 0x32, 3: 0x33, 4: 0x34, 5: 0x35,
-            6: 0x36, 7: 0x37, 8: 0x38, 9: 0x39,
-            1e1: 0xf300, 1e2: 0xf301, 1e3: 0xf302,
-            1e4: 0xf303, 1e5: 0xf304, 1e6: 0xf305,
-            1e7: 0xf306, 1e8: 0xf307, 1e9: 0xf308, 1e10: 0xf309,
-        };
-
-        this.charPoints = [];
-        this.valueToCodePoint = {};
-        this.valueToChar = new Map();
-        this.codePointToValue = new Map();
+        // Map chars to numeral values.
         this.charToValue = new Map();
-        for (let i = 0; i < this.numeralValuesInc.length; i++) {
-            const char = String.fromCharCode(this.codePts[i]);
-            const num = this.numeralValuesInc[i];
-            this.charPoints.push(char);
-            this.valueToChar.set(num, char);
-            this.valueToCodePoint[num] = this.codePts[i];
-            this.codePointToValue.set(this.codePts[i], num);
-            this.charToValue.set(char, num);
-        };
+        const iterator1 = this.valueToChar.keys();
+        let val;
+        do {
+            val = iterator1.next().value;
+            if (val !== undefined) {
+                let char = this.valueToChar.get(val);
+                this.charToValue.set(char, val);
+            }
+        } while (val !== undefined);
 
         // special outputs
         this.decimalOutputFn = null;
@@ -89,6 +73,10 @@ class Numerals {
     getCharToValueMap() {
         return this.charToValue;
     }
+
+    getValueToCharMap() {
+        return this.valueToChar;
+    } 
 
     parseNumeralStringToNumeralList(numString) {
         let result = [];

@@ -120,7 +120,10 @@ links = [
     {'linkText': 'Word list builder',
      'ref': '/' + LanguageCode + '/dictionaryN/'
     },
-  ]
+    {'linkText': 'Sylheti calculator',
+     'ref': '/' + LanguageCode + '/numerals/'
+    },
+]
 
 # For word search and other things
 diacritic_list = [unichr(0xa802), unichr(0xa806), unichr(0xa80b)] + \

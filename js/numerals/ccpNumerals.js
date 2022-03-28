@@ -1,14 +1,14 @@
-// Sylheti numerals computations.
+// Chakma numerals computations.
 
-// Handling Sylheti numerals - base 10
+// Handling Chakma numerals - base 10
 class Numerals {
     constructor() {
         //  Map numeral values to corresponding code points
         this.valueToChar = new Map(
-            [[0, '\uef30'], [1, '\uef31'], [2, '\uef32'],
-             [3, '\uef33'], [4, '\uef35'],[5, '\uef35'],
-             [6, '\uef36'], [7, '\uef37'], [8, '\uef38'],
-             [9, '\uef39'],
+            [[0, '\ud804\udd36'], [1, '\ud804\udd37'], [2, '\ud804\udd38'],
+             [3, '\ud804\udd39'], [4, '\ud804\udd3a'], [5, '\ud804\udd3b'],
+             [6, '\ud804\udd3c'], [7, '\ud804\udd3d'], [8, '\ud804\udd3e'],
+             [9, '\ud804\udd3f']
             ]
         );
 
@@ -33,10 +33,10 @@ class Numerals {
     keyLayoutArray() {
         const layoutRowChars = [
             // Stand ins
-            ['\uef30', '\uef31', '\uef32'],
-            ['\uef33', '\uef34', '\uef35'],
-            ['\uef36', '\uef37', '\uef38'],
-            ['\uef39']
+            ['\ud804\udd36', '\ud804\udd37', '\ud804\udd38'],
+            ['\ud804\udd39', '\ud804\udd3a', '\ud804\udd3b'],
+            ['\ud804\udd3c', '\ud804\udd3d', '\ud804\udd3e'],
+            ['\ud804\udd3f']
         ];      
         return layoutRowChars;
     }
@@ -45,6 +45,7 @@ class Numerals {
         // A callback for decimal results.
         this.decimalOutputFn = newFn;
     }
+
     displayDecimal(value) {
         if (this.decimalOutputFn) {
             this.decimalOutputFn(value);

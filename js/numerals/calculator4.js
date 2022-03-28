@@ -138,7 +138,8 @@ class calculator4 {
         this.numeralObject = obj;
         this.formatInt = obj.formatIntToNumeralString;
         this.charToValueMap = obj.getCharToValueMap();
-        this.valueToCharMap = obj.getCharToValueMap();
+        // Not actually used
+        this.valueToCharMap = obj.getValueToCharMap();
     }
 
     // Checks used in the FSM

@@ -88,6 +88,10 @@ class Numerals {
 	return this.charToValue;
     }
 
+    getValueToCharMap() {
+	return this.valueToChar;
+    }
+
     parseNumeralStringToNumeralList(numString) {
 	let result = [];
 	for (let i = 0; i < numString.length; i ++) {
