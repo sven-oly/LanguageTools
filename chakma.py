@@ -115,7 +115,7 @@ links = [
   {'linkText': 'Video: Chakma technology',
    'ref': 'https://www.youtube.com/watch?v=xNfe8Sgm3Gk'
   },
-  {'linkText': 'Sylheti calculator',
+  {'linkText': 'Chakma calculator',
    'ref': '/' + LanguageCode + '/numerals/'
   },
 ]

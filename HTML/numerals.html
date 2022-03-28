@@ -75,7 +75,8 @@
 
     <script>
       // Holds all the info about the numeral system
-      const numeralInfo = new Numerals();
+      const numeralBase = new NumeralBase();
+      const numeralInfo = new Numerals(numeralBase);
       
       // The calculator object.
       let calculator;
@@ -225,7 +226,7 @@
         <!-- X Register -->
         <p>
           <div align="right">
-            <span id="outputArea" class="NumeralsOutputClass"></span>
+            <textarea id="outputArea" class="NumeralsOutputClass"></textarea>
             </div>
         <div id="decimalOutputDiv" style="display: none" class='DecimalDisplay'>
           <p>Decimal output: <textarea id="decimalOutput"></textarea>
@@ -252,6 +253,8 @@
             <!-- TO BE IMPLEMENTED 
                  <td><input type="button" value="delete"> </td>
                  -->
+	  </tr>
+	  <tr>
             <td><input type="button" value="clr" class='OperatorsClass' onclick='calcButtonFn("clear");'></td>
           </tr>
         </table>

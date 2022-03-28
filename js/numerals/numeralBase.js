@@ -1,74 +1,8 @@
-// Define functions for computions using numeral systems.
-
-function cleanUpListDeletions(l1, l2) {
-    // Remove items where l1[i] === -1.
-    var i = l1.length - 1;
-    while (i >= 0) {
-	if (l1[i] === -1) {
-	    l1.splice(i, 1);
-	    l2.splice(i, 1);
-	}
-	i -= 1;
-    }
-}
+// Define functions for computubg using various numeral systems.
 
 // In progress - class for Numeral System handling
-class NumeralSystem {
+class NumeralBase {
     constructor() {
-	this.numeralValuesInc = [
-	    0, 1, 2, 3, 4, 5, 6, 7, 8, 9,
-	    10, 11, 12, 13, 14, 15, 16, 17, 18, 19,
-	    20, 30, 40, 50, 60 ,70, 80, 90,
-	    100, 1000, 1e6, 1e9, 1e12, 1e15, 1e18];
-	this.numeralValues = this.numeralValuesInc.slice().reverse();
-
-	// PUA code points corresponding to numeralValuesInt.
-	this.codePts = [
-	    // 0 - 19
-	    0xf600, 0xf601, 0xf602, 0xf603, 0xf604, 0xf605, 0xf606, 0xf607,
-	    0xf608, 0xf609, 0xf60a, 0xf60b, 0xf60c, 0xf60d, 0xf60e, 0xf60f,
-	    0xf610, 0xf611, 0xf612, 0xf613,
-	    // 20 - 90
-	    0xf614, 0xf615, 0xf616, 0xf617, 0xf618, 0xf619, 0xf61a, 0xf61b,
-	    // 100, 1000, 10^6, etc.
-	    0xf61c, 0xf61d, 0xf61e, 0xf61f, 0xf620, 0xf621, 0xf622, 0xf623
-	];
-
-	const chrToValueMap = {
-	    0xf600: 0, 0xf601: 1, 0xf602: 2, 0xf603: 3, 0xf605: 4,0xf605: 5,
-	    0xf606: 6, 0xf607: 7, 0xf608: 8, 0xf609: 9,
-	    0xf60a: 10, 0xf60b: 11, 0xf60c: 12, 0xf60d: 13, 0xf60e: 14,
-	    0xf60f: 15, 0xf610: 16, 0xf611: 17, 0xf612: 18, 0xf613: 19,
-	    0xf614: 20, 0xf615: 30, 0xf616: 40, 0xf617: 50, 0xf618: 60,
-	    0xf619: 70, 0xf61a: 80, 0xf61b: 80, 0xf61c: 90, 0xf61d: 100,
-	    0xf61e: 1000, 0xf61f: 1e6, 0xf620: 1e9, 0xf621: 1e12,
-	    0xf622:1e15, 0xf623:1e18
-	};
-
-	this.valueToCharMap = {
-	    0: 0xf600, 1: 0xf601, 2: 0xf602, 3: 0xf603, 4: 0xf605,5: 0xf605,
-	    6: 0xf606, 7: 0xf607, 8: 0xf608, 9: 0xf609,
-	    10: 0xf60a, 11: 0xf60b, 12: 0xf60c, 13: 0xf60d, 14: 0xf60e,
-	    15: 0xf60f, 16: 0xf610, 17: 0xf611, 18: 0xf612, 19: 0xf613,
-	    20: 0xf614, 30: 0xf615, 40: 0xf616, 50: 0xf617, 60: 0xf618,
-	    70: 0xf619, 80: 0xf61a, 80: 0xf61b, 90: 0xf61c, 100: 0xf61d,
-	    1000: 0xf61e, 1e6: 0xf61f, 1e9: 0xf620, 1e12: 0xf621,
-	    1e15:0xf622, 1e18:0xf623
-	};
-
-	this.charPoints = [];
-	this.valueToCodePoint = {};
-	this.codePointToValue = new Map();
-	this.charToValue = new Map();
-	for (let i = 0; i < this.numeralValuesInc.length; i++) {
-	    const char = String.fromCharCode(this.codePts[i]);
-	    const num = this.numeralValuesInc[i];
-	    this.charPoints.push(char);
-	    this.valueToCodePoint[num] = this.codePts[i];
-	    this.codePointToValue.set(this.codePts[i], num);
-	    this.charToValue.set(char, num);
-	};
-
 	// special outputs
 	this.decimalOutputFn = null;
 	this.logOutputFn = null;
@@ -273,6 +207,67 @@ class NumeralSystem {
 	let numList = this.intToNumeralsList(decimalNum);
 	return this.formatNumeralListToString(numList);
     }
+
+    // Creates an inverse map from the input map.
+    makeCharToValueMap(valueToChar) {
+        let charToValue = new Map();
+        const iterator1 = valueToChar.keys();
+        let val;
+        do {
+            val = iterator1.next().value;
+            if (val !== undefined) {
+                let char = valueToChar.get(val);
+                charToValue.set(char, val);
+            }
+        } while (val !== undefined);
+	// 
+	return charToValue;
+    }	
+
+   // Given a list of numeral values, return the string
+    formatNumeralListToString(numList, valueToChar) {
+        let result = [];  // List of characters
+        for (let i = 0; i < numList.length; i ++) {
+            let val = numList[i];
+            if (val !== undefined) {
+                let char = valueToChar.get(val);
+                result.push(char);
+            }
+        }
+        return result.join('');
+    }
+
+    // Base 10 placeholder
+    numberListToInteger(numList) {
+        // Implements decimal placeholder
+        let working = numList;
+        let tags = numList.slice();
+
+        let start = 0;
+        let limit = working.length;
+        let sum = 0;
+        while (start < limit) {
+            sum = 10 * sum + numList[start];
+            start++;
+        }
+        return sum;
+    }
+
+    // Base 10 placeholder
+    formatIntBase10(intVal, valueToCharMap) {
+        if (intVal == 0) {
+            let chr = valueToCharMap.get(0);
+            return chr;
+        }
+        let result = [];
+        while (intVal) {
+            let val = intVal % 10;
+            let chr = valueToCharMap.get(val);
+            result.unshift(chr);
+            intVal = Math.floor(intVal / 10);
+        }
+        return result.join('');
+    }
 }
 
 
@@ -362,5 +357,16 @@ class BaseTestNumerals {
 		this.assertEquals(matched, expected, intResult, pair[1]);
 	    }
 	}
+    }
+
+    parseNumeralStringToNumeralList(numString, charToValue) {
+        let result = [];
+        for (let i = 0; i < numString.length; i ++) {
+            let char = numString.charAt(i);
+            if (charToValue.has(char)) {
+                result.push(charToValue.get(char));
+            }
+        }
+        return result;
     }
 }

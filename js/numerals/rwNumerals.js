@@ -16,22 +16,40 @@ class Numerals {
             [1e7, String.fromCharCode(0xf306)],
             [1e8, String.fromCharCode(0xf307)],
             [1e9, String.fromCharCode(0xf308)],
-            [1e10, String.fromCharCode(0xf309),
-            ]
+            [1e10, String.fromCharCode(0xf309)],
+            [1e11, String.fromCharCode(0xf400)],
+            [1e12, String.fromCharCode(0xf401)],
+            [1e13, String.fromCharCode(0xf402)],
+            [1e14, String.fromCharCode(0xf403)],  // Limit of 
+            [1e15, String.fromCharCode(0xf405)],
+            [1e16, String.fromCharCode(0xf406)],
+            [1e17, String.fromCharCode(0xf407)],
+            [1e18, String.fromCharCode(0xf408)],
+            [1e19, String.fromCharCode(0xf409)],
+            [1e20, String.fromCharCode(0xf500)],
+            [1e21, String.fromCharCode(0xf501)],
+            [1e22, String.fromCharCode(0xf502)],
+            [1e23, String.fromCharCode(0xf503)],
+            [1e24, String.fromCharCode(0xf504)],
+            [1e25, String.fromCharCode(0xf505)],
+            [1e26, String.fromCharCode(0xf506)],
+            [1e27, String.fromCharCode(0xf507)],
+            [1e28, String.fromCharCode(0xf508)],
+            [1e29, String.fromCharCode(0xf509)],
+            [1e30, String.fromCharCode(0xf600)],
+            [1e31, String.fromCharCode(0xf601)],
+            [1e32, String.fromCharCode(0xf602)],
+            [1e33, String.fromCharCode(0xf603)],
+            [1e34, String.fromCharCode(0xf604)],
         ]);
 
-        // Map chars to numeral values.
-        this.charToValue = new Map();
-        const iterator1 = this.valueToChar.keys();
-        let val;
-        do {
-            val = iterator1.next().value;
-            if (val !== undefined) {
-                let char = this.valueToChar.get(val);
-                this.charToValue.set(char, val);
-            }
-        } while (val !== undefined);
-
+	if (numeralBase !== undefined) {
+	    this.charToValue =
+		numeralBase.makeCharToValueMap(this.valueToChar);
+	} else {
+	    alert('NumberBase not found');
+	}
+	
         // special outputs
         this.decimalOutputFn = null;
         this.logOutputFn = null;
@@ -44,7 +62,12 @@ class Numerals {
             ['0', '1', '2', '3', '4'],
             ['5', '6', '7', '8',  '9'],
             ['\uf300', '\uf301', '\uf302', '\uf303', '\uf304'],
-            ['\uf305', '\uf306', '\uf307', '\uf308', '\uf309']
+            ['\uf305', '\uf306', '\uf307', '\uf308', '\uf309'],
+            ['\uf400', '\uf402', '\uf403', '\uf404', '\uf405'],
+	    ['\uf406', '\uf407', '\uf408', '\uf409', '\uf500'],
+	    ['\uf501', '\uf502', '\uf503', '\uf504', '\uf505'],
+	    ['\uf506', '\uf507', '\uf508', '\uf509', '\uf600'],
+	    ['\uf601', '\uf602', '\uf603', '\uf604'],
         ];      
         return layoutRowChars;
     }
@@ -129,7 +152,8 @@ class Numerals {
         return sum;
     }
 
-    formatInt(intVal) {
+    formatInt(intValStart) {
+	let intVal = intValStart;
         let result = [];
         let rem = intVal % 10;
         let char;
@@ -139,7 +163,7 @@ class Numerals {
             result.unshift(char);
         }
 
-        let powerChar = 0xf300;
+        let power = 10;
         intVal = Math.floor(intVal / 10);
 
         while (intVal > 0) {
@@ -147,9 +171,10 @@ class Numerals {
             if (rem > 0) {
                 char = String.fromCharCode(rem + 0x30);
                 result.unshift(char);
-                result.unshift(String.fromCharCode(powerChar));
+                const powerChar = this.valueToChar.get(power)
+                result.unshift(powerChar);
             }
-            powerChar += 1;
+            power *= 10;
             intVal = Math.floor(intVal / 10);
         }           
         return result.join('');
