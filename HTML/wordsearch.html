@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>{{language}} word search generator</title>
 
@@ -30,6 +31,24 @@
       @media screen {
       }
     </style>
+
+    <style>
+      {% for font in unicode_font_list %}
+      @font-face{
+          font-family:"{{font.family}}";
+          src:url('{{font.source}}'){% if '.ttf' in font.source %}format('truetype'){%endif%}{% if '.TTF' in font.source %}format('truetype'){%endif%}{% if '.otf' in font.source %}format('opentype'){%endif%}{%if '.woff' in font.source %}format('woff'){%endif%};
+          font-weight:normal;
+          font-style:normal;
+          font-size: 32px;
+      }
+      {% endfor %}
+
+      .default-font {
+          font-family: "Arial";
+          font-size:18px;
+      }
+    </style>
+    
     <style>
       p, table {
           border: 2px solid #cccccc;
@@ -50,6 +69,7 @@
       }
       li {
           font-size: 24px;
+	  font-family:Arial;
       }
       input {
           font-size: 14px;
@@ -71,11 +91,10 @@
       // Variables of data in setup.
       const wordListInfo = new wordListData("{{language}}",
 					    "{{LanguageTag}}");
+      const gridTestSize = {{testGridSize}};
 
-      wordListInfo.fillList =
-        [{% for c in letterFillList %}'{{c}}',{%endfor%}];
-      wordListInfo.diacritics =
-        [{% for c in unicodeCombiningChars %}'{{c}}',{%endfor%}];    
+      wordListInfo.fillList = '{{letterFillList}}';
+      wordListInfo.diacritics = '{{unicodeCombiningChars}}';
       const language = '{{language}}';
 
       function sendRegionWords(wordSrc, resultArea, answerArea, useDfs) {
@@ -258,8 +277,11 @@
 	  if (controller) {
 	      controller.className += " noprint";
 	  }
+
+	  const fontSelector = document.getElementById('selectFont');
+	  setWordsearchFonts(fontSelector);
       }
-      const font_families = [{% for font in font_list %}"{{font.family}}", {% endfor %}];
+      const font_families = [{% for font in unicode_font_list %}"{{font.family}}", {% endfor %}];
 
     </script>
   </head>
@@ -273,7 +295,7 @@
 	<div class="noprint" id="uiOnly">
 <div>
   <h3>{{language}} Words:</h3>
-  <textarea id="wordlist"></textarea>
+  <textarea id="wordlist">{{testData}}</textarea>
 </div>
 <input type="button" value="Clear words and solution"
        onclick="clearArea('wordlist');clearArea('wordsToFind');clearChildNodes('answerList');clearTableRows('gridTable');">

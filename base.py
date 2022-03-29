@@ -765,11 +765,9 @@ class WordSearchHandler(webapp2.RequestHandler):
   def get(self):
     langInfo = self.app.config.get('langInfo')
 
-    testing = self.request.get('testing', False)
-    testData = ''
-    if testing:
-      # Some good words in Sylheti
-      testData = 'ꠗꠣꠞꠣ ꠢꠇꠟ ꠝꠣꠘꠥꠡ ꠡꠣꠗꠤꠘꠜꠣꠛꠦ ꠢꠝꠣꠘ ꠁꠎ꠆ꠎꠔ ꠀꠞ ꠢꠇ'
+    testGridSize = self.request.get('gfactor', 1.4)
+
+    testData = self.request.get('testing', '')
 
     try:
       charNames = langInfo.charNames.split('\n')
@@ -787,16 +785,22 @@ class WordSearchHandler(webapp2.RequestHandler):
     except:
       letterFillList = []
 
+    # Make it easy to split the characters
+    combiners = '||'.join(langInfo.unicodeCombiningChars)
+    fillers = '||'.join(letterFillList)
+    #logging.info('Diacritics: %s' % (combiners))
+    #logging.info('letter fill: %s' % fillers)
     template_values = {
-      'language': langInfo.Language,
-      'LanguageTag': langInfo.LanguageCode,
-      'kb_list': langInfo.kb_list,
-      'charTable': charNames,
-      'charNameData': charNames,
-      'unicodeCombiningChars': langInfo.unicodeCombiningChars,
-      'letterFillList': letterFillList,
-      'unicode_font_list': langInfo.unicode_font_list,
-      'testData': testData,
+        'language': langInfo.Language,
+        'LanguageTag': langInfo.LanguageCode,
+        'kb_list': langInfo.kb_list,
+        'charTable': charNames,
+        'charNameData': charNames,
+        'unicodeCombiningChars': combiners,
+        'letterFillList': fillers,
+        'unicode_font_list': langInfo.unicode_font_list,
+        'testData': testData,
+        'testGridSize': testGridSize,
     }
     path = os.path.join(os.path.dirname(__file__), 'HTML/wordsearch.html')
     self.response.out.write(template.render(path, template_values))
@@ -842,6 +846,7 @@ class NumeralsHandler(webapp2.RequestHandler):
         'unicodeCombiningChars': combiningChars,
         'letterFillList': letterFillList,
         'unicodeFontList': langInfo.unicode_font_list,
+        'font_list': langInfo.unicode_font_list,
         'numbersImage': numbersImage,
     }
     path = os.path.join(os.path.dirname(__file__), 'HTML/numerals.html')

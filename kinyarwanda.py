@@ -40,6 +40,9 @@ links = [
   {'linkText': 'Unwero calculator',
    'ref': '/' + LanguageCode + '/numerals/'
    },
+  {'linkText': 'Unwero Word search',
+   'ref': '/' + LanguageCode + '/wordsearch/'
+  },
   # {'linkText': 'Font conversion summary',
   #   'ref': '/' + LanguageCode + '/encodingRules/'
   # },
@@ -123,6 +126,7 @@ class langInfo:
 
         # TODO: Fill in with diacritics
         self.diacritic_list = [unichr(x) for x in range(0x300, 0x330)]
+        self.unicodeCombiningChars = self.diacritic_list
         # TODO: Fill in base consonant
         self.default_base_consonant = u'\0x61'
 
@@ -138,6 +142,8 @@ class langInfo:
             'file': '/resources/rw/Umwero_character_names.tsv',
             'info': 'Umwero glpyh names'
         }
+
+        self.fillChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 
         self.charNames = """Umwero	Name	ASCII
 (	(	(
@@ -294,6 +300,7 @@ app = webapp2.WSGIApplication([
   ('/' + LanguageCode + '/charTable/', base.CharacterTableHandler),
   ('/' + LanguageCode + '/about/', AboutPageHandler),
   ('/' + langInstance.LanguageCode + '/numerals/', base.NumeralsHandler),
+  ('/' + langInstance.LanguageCode + '/wordsearch/', base.WordSearchHandler),
 
 ], debug=True,
   config={'langInfo': langInstance}

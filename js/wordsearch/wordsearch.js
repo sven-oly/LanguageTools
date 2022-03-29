@@ -10,6 +10,11 @@ class wordListData {
         this.whole_grid = null;
         this.all_answers = null;
         this.all_words = null;
+	this.gridFactor = -1; // Not set
+    }
+
+    setGridFactor(newFactor) {
+	this.gridFactor = newFactor;
     }
 
     // Code to request {{language}} data at index with optional filter.
@@ -49,8 +54,8 @@ class wordListData {
 
                 words = json_obj.answers;  // get the keys
 
-                const grid_width = json_obj.grid_width;
-
+		// Any messages for me?
+		const message = json_obj.message;
                 // Globals
                 wordSearchObj.whole_grid = json_obj.grid;
                 wordSearchObj.all_words = words;
@@ -71,8 +76,11 @@ class wordListData {
             // Prepare and send data.
             target = "/games/generatewordsearch/";
         }
-        target += "?words=" + wordData;
+        target += "?language=" + this.language;
+        target += "&langTag=" + this.langTag;
+        target += "&words=" + wordData;
         target += "&tokenGroups=" + wordTokenGroups;
+	target += "&gridFactor" + this.gridFactor;
         target += '&diacritics=' + this.diacritics;
         target += '&fillList=' + this.fillList;
         target += "&size=" + document.getElementById("grid_size").value;
@@ -90,6 +98,8 @@ function createGameGrid(grid, words, answers, info) {
     let table = document.getElementById('gridTable');
     clearTableRows('gridTable');
 
+    const fontSelector = document.getElementById('selectFont');
+    const fontFamily = fontSelector.value;
     grid_width = grid.length;
 
     // Insert New Row for table at index '0'.
@@ -99,6 +109,7 @@ function createGameGrid(grid, words, answers, info) {
         // Insert New Columns for Row1 at index '0'.
         for (let col = 0; col < grid_width; col ++) {
             const row1col1 = row1.insertCell(col);
+	    row1col1.style.fontFamily = fontFamily;
             if (Array.isArray(grid[row][col])) {
                 row1col1.innerHTML = "\u00a0" + grid[row][col][0] + "\u00a0";
             } else {

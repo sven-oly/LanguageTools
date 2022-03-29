@@ -64,35 +64,37 @@ class GenerateWordSearchHandler(webapp2.RequestHandler):
     user = users.get_current_user()
 
     langInfo = self.app.config.get('langInfo')
-    #logging.info('*** GAMES langInfo = %s' % langInfo)
 
     rawWordList = self.request.get('words', [])
-    fillList = self.request.get('fillList', [])
+    fillList = self.request.get('fillList', []).split('||')
     gridSize = self.request.get('size', 10)
-    diacritics = self.request.get('diacritics', '').split(',')
+    diacritics = self.request.get('diacritics', '').split('||')
     tokenGroups = self.request.get('tokenGroups', [])
+    gridFactor = self.request.get('gridFactor', 1.4)
 
-    #logging.info('games WordSearchHandler tokenGroups = %s' % tokenGroups)
-    #logging.info('games WordSearchHandler diacritics = %s' % diacritics)
-    #logging.info('games WordSearchHandler fillList = %s' % fillList)
+    logging.info(' rawWordList = %s' % (rawWordList))
+    
+    # Get words separate by spaces, not commas, returns, or tabs
+    # TODO: remove other punctuation, e.g., periods, parens, etc.
+    wordList = rawWordList.replace(",", " ").replace("\r", " ").replace("\t", " ").replace(".", '').split()
 
-    wordList = rawWordList.replace(",", " ").replace("\r", " ").replace("\t", " ").split()
-    # logging.info('games WordSearchHandler wordList = %s' % wordList)
-    grid, answers, words, grid_width = wordsearch.generateWordsGrid(wordList, fillList, diacritics)
-    logging.info('games WordSearchHandler grid_width = %s' % grid_width)
+    # TODO: move to wordsearch object
+    wordSearchObj = wordsearch.WordSearch(gridSize)
+    wordSearchObj.setFillLetters(fillList)
+    wordSearchObj.setDiacritics(diacritics)
+    wordSearchObj.setMode(True)  # It's indeed a word search
+    grid, answers, words, grid_width = wordsearch.generateWordsGrid(
+      wordList, fillList, diacritics)
+
     if not grid:
       message = 'Cannot create grid'
     else:
       message = 'Created a grid of size %s' % grid_width
 
-    #logging.info('games WordSearchHandler grid = %s' % grid)
-    #logging.info('games WordSearchHandler answers = %s' % answers)
-    #logging.info('games WordSearchHandler words = %s' % words)
-
-    # TODO!
     language = 'Sylheti'
     fonts = []
     template_values = {
+      'message': message,
       'user_nickname': user_info[1],
       'user_logout': user_info[2],
       'user_login_url': user_info[3],
@@ -101,7 +103,6 @@ class GenerateWordSearchHandler(webapp2.RequestHandler):
       'grid': grid,
       'answers': answers,
       'words': words,
-      'grid_width': grid_width,
       'maxunicode': sys.maxunicode,
     }
     self.response.out.write(json.dumps(template_values))
@@ -221,8 +222,7 @@ class GenerateCrosswordHandler(webapp2.RequestHandler):
       'maxunicode': sys.maxunicode,
     }
     self.response.out.write(json.dumps(template_values))
-
-
+  
 class TestHandler(webapp2.RequestHandler):
   def get(self):
     logging.info('games TestHandler')
@@ -235,3 +235,5 @@ app = webapp2.WSGIApplication([
     ('/games/generatecrossword/', GenerateCrosswordHandler),
     ('/games/test/', TestHandler),
 ], debug=True)
+
+

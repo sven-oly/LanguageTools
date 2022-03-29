@@ -151,6 +151,7 @@ class langInfo():
     self.Language_native = '𑄌𑄋𑄴𑄟𑄳𑄦'
     self.lang_list = ['ccp']
 
+    logging.info('MAXUNICODE = %s' % sys.maxunicode)
     if sys.maxunicode >= 0x10000:
       self.vowels = [unichr(x) for x in range(0x11103, 0x11107)]
       self.consonants = [unichr(x) for x in range(0x11107, 0x11127)]
@@ -161,15 +162,18 @@ class langInfo():
       self.base_consonant = unichr(0x1110e)
     else:
       self.vowels = [unichr(0xd804) + unichr(0xdd00 + x) for x in range(0x03, 0x07)]
-      self.consonants = [unichr(0xd804) + unichr(0xdd0 + x) for x in range(0x07, 0x027)]
+      self.consonants = [unichr(0xd804) + unichr(0xdd00 + x) for x in range(0x07, 0x027)]
       self.diacritic_list = [unichr(0xd804) + unichr(0xdd00 + x) for x in range(0x00, 0x04)]
       self.diacritic_list.extend(unichr(0xd804) + unichr(0xdd00 + x) for x in range(0x27, 0x33))
       self.diacritic_list.extend(unichr(0xd804) + unichr(0xdd00 + x) for x in range(0x34, 0x35))
       self.diacritic_list.extend(unichr(0xd804) + unichr(0xdd00 + x) for x in range(0x45, 0x47))
+
       self.base_consonant = u'\ud804\udd0e'
 
     self.fillChars = self.vowels + self.consonants
     self.unicodeCombiningChars = self.diacritic_list
+    logging.info('Chakma Diacritics: %s' % self.unicodeCombiningChars);
+    logging.info('Chakma letter fill: %s' % self.fillChars);
 
     self.encoding_font_list = encoding_font_list
 

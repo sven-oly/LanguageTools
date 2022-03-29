@@ -92,6 +92,7 @@ LanguageList = [
   ('Khamti', 'kmt', '(တဲး)ၵမ်းတီ'),
   ('Kalabari', 'ijn'),
   ('Mru', 'mro'),
+  ('Sylheti', 'syl'),
 ]
 
 
