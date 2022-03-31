@@ -45,6 +45,9 @@ class wordListData {
             if(xmlhttp.readyState==4) {
                 // Handle results
                 const returned_json = xmlhttp.responseText;
+		if (xmlhttp.status > 299) {
+		    alert(xmlhttp.status + " " + xmlhttp.responseText);
+		}
                 const json_obj = JSON.parse(returned_json);
                 if (json_obj.grid == null) {
                     alert("Cannot build a grid of size " + json_obj.grid_width);

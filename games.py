@@ -30,7 +30,7 @@ class WordSearchHandler(webapp2.RequestHandler):
   def get(self):
     logging.info('games WordSearchHandler')
 
-    user_info = getUserInfo(self.request.url)
+    #user_info = getUserInfo(self.request.url)
     user = users.get_current_user()
     rawWordList = self.request.get('words', '')
 
@@ -46,9 +46,9 @@ class WordSearchHandler(webapp2.RequestHandler):
     language = 'Sylheti'
     fonts = []
     template_values = {
-      'user_nickname': user_info[1],
-      'user_logout': user_info[2],
-      'user_login_url': user_info[3],
+#      'user_nickname': user_info[1],
+#      'user_logout': user_info[2],
+#      'user_login_url': user_info[3],
       'language': Language,
       'fontFamilies': fonts,
       'wordTestData': wordData,
@@ -60,7 +60,7 @@ class WordSearchHandler(webapp2.RequestHandler):
 
 class GenerateWordSearchHandler(webapp2.RequestHandler):
   def get(self):
-    user_info = getUserInfo(self.request.url)
+    #user_info = getUserInfo(self.request.url)
     user = users.get_current_user()
 
     langInfo = self.app.config.get('langInfo')
@@ -113,7 +113,7 @@ class GenerateWordSearchDFSHandler(webapp2.RequestHandler):
   def get(self):
     logging.info('games GenerateWordSearchDFSHandler')
 
-    user_info = getUserInfo(self.request.url)
+    # user_info = getUserInfo(self.request.url)
     user = users.get_current_user()
 
     rawWordList = self.request.get('words', '')
@@ -153,9 +153,9 @@ class GenerateWordSearchDFSHandler(webapp2.RequestHandler):
     #logging.info('games WordSearchHandler words = %s' % words)
 
     template_values = {
-      'user_nickname': user_info[1],
-      'user_logout': user_info[2],
-      'user_login_url': user_info[3],
+#      'user_nickname': user_info[1],
+#      'user_logout': user_info[2],
+#      'user_login_url': user_info[3],
       'language': main.Language,
       'fontFamilies': main.OsageFonts,
       'grid': grid,
@@ -171,13 +171,13 @@ class CrosswordHandler(webapp2.RequestHandler):
   def get(self):
     logging.info('games CrosswordHandler')
 
-    user_info = getUserInfo(self.request.url)
+    #user_info = getUserInfo(self.request.url)
     user = users.get_current_user()
 
     template_values = {
-      'user_nickname': user_info[1],
-      'user_logout': user_info[2],
-      'user_login_url': user_info[3],
+#      'user_nickname': user_info[1],
+#      'user_logout': user_info[2],
+#      'user_login_url': user_info[3],
       'language': main.Language,
       'fontFamilies': main.OsageFonts,
     }
@@ -188,7 +188,7 @@ class CrosswordHandler(webapp2.RequestHandler):
 class GenerateCrosswordHandler(webapp2.RequestHandler):
   def get(self):
     logging.info('games GenerateCrosswordHandler')
-    user_info = getUserInfo(self.request.url)
+#    user_info = getUserInfo(self.request.url)
     user = users.get_current_user()
 
     rawWordList = self.request.get('words', '')
@@ -210,9 +210,9 @@ class GenerateCrosswordHandler(webapp2.RequestHandler):
     logging.info('games WordSearchHandler words = %s' % words)
 
     template_values = {
-      'user_nickname': user_info[1],
-      'user_logout': user_info[2],
-      'user_login_url': user_info[3],
+#      'user_nickname': user_info[1],
+#      'user_logout': user_info[2],
+#      'user_login_url': user_info[3],
       'language': main.Language,
       'fontFamilies': main.OsageFonts,
       'grid': grid,
