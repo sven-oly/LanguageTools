@@ -51,7 +51,7 @@ class calculator4 {
         this.formatInt = null;
         this.zeroChar = null;
 
-        this.enterOps = new Set(['=', '+', '-', '*', '/']);
+        this.enterOps = new Set(['=', '+', '-', '*', '×', '÷', '/']);
 
         // Connections to characters and their values
         this.charToValueMap = null;
@@ -120,7 +120,7 @@ class calculator4 {
     // Handle keys on keyboard
     on_key_pressed(ev) {
         var ch = String.fromCharCode(ev.charCode).toUpperCase();
-        if ("0.+-*/=C".indexOf(ch) >= 0) {
+        if ("0.+-*×÷/=C".indexOf(ch) >= 0) {
             this.onInput(ch);
             return;
         }
@@ -167,8 +167,10 @@ class calculator4 {
             result = this.accum1 - this.accum2;
             break;
         case '*':
+        case '×':
             result = this.accum1 * this.accum2;
             break;
+	case '÷':
         case '/':
             // TODO: Check for divide by zero.
             result = Math.floor(this.accum1 / this.accum2);
