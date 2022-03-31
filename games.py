@@ -72,8 +72,6 @@ class GenerateWordSearchHandler(webapp2.RequestHandler):
     tokenGroups = self.request.get('tokenGroups', [])
     gridFactor = self.request.get('gridFactor', 1.4)
 
-    logging.info(' rawWordList = %s' % (rawWordList))
-    
     # Get words separate by spaces, not commas, returns, or tabs
     # TODO: remove other punctuation, e.g., periods, parens, etc.
     wordList = rawWordList.replace(",", " ").replace("\r", " ").replace("\t", " ").replace(".", '').split()
@@ -83,7 +81,7 @@ class GenerateWordSearchHandler(webapp2.RequestHandler):
     wordSearchObj.setFillLetters(fillList)
     wordSearchObj.setDiacritics(diacritics)
     wordSearchObj.setMode(True)  # It's indeed a word search
-    grid, answers, words, grid_width = wordsearch.generateWordsGrid(
+    grid, answers, words, grid_width, attempts = wordsearch.generateWordsGrid(
       wordList, fillList, diacritics)
 
     if not grid:
@@ -95,15 +93,17 @@ class GenerateWordSearchHandler(webapp2.RequestHandler):
     fonts = []
     template_values = {
       'message': message,
-      'user_nickname': user_info[1],
-      'user_logout': user_info[2],
-      'user_login_url': user_info[3],
+      #'user_nickname': user_info[1],
+      #'user_logout': user_info[2],
+      # 'user_login_url': user_info[3],
       'language': language,
-      'fontFamilies': fonts,
+      #'fontFamilies': fonts,
       'grid': grid,
+      'grid_width': grid_width,
       'answers': answers,
       'words': words,
       'maxunicode': sys.maxunicode,
+      'attempts' : attempts
     }
     self.response.out.write(json.dumps(template_values))
 

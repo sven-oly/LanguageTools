@@ -3,24 +3,25 @@
 class wordListData {
     constructor (language, langTag) {
         this.language = language;
-	this.langTag = langTag;
+        this.langTag = langTag;
         this.fillList = null;
         this.diacritics = null;
         // The variables of the data.
         this.whole_grid = null;
         this.all_answers = null;
         this.all_words = null;
-	this.gridFactor = -1; // Not set
+        this.gridFactor = -1; // Not set
+	this.lastAttempt = -1
     }
 
     setGridFactor(newFactor) {
-	this.gridFactor = newFactor;
+        this.gridFactor = newFactor;
     }
 
     // Code to request {{language}} data at index with optional filter.
     sendWords(wordData, resultArea, answerArea, useDfs) {
-	// Save the object's pointer
-	const wordSearchObj = this;
+        // Save the object's pointer
+        const wordSearchObj = this;
 
         // Prepare for the call to the backend
         let xmlhttp;
@@ -54,18 +55,19 @@ class wordListData {
 
                 words = json_obj.answers;  // get the keys
 
-		// Any messages for me?
-		const message = json_obj.message;
+                // Any messages for me?
+                const message = json_obj.message;
                 // Globals
                 wordSearchObj.whole_grid = json_obj.grid;
                 wordSearchObj.all_words = words;
                 wordSearchObj.all_answers = json_obj.answers;
+		wordSearchObj.lastAttempt = json_obj.attempts;
 
                 createGameGrid(wordSearchObj.whole_grid,
-			       wordSearchObj.all_words,
-			       wordSearchObj.all_answers,
-			       wordSearchObj
-			      );
+                               wordSearchObj.all_words,
+                               wordSearchObj.all_answers,
+                               wordSearchObj
+                              );
             }
         }
 
@@ -80,14 +82,14 @@ class wordListData {
         target += "&langTag=" + this.langTag;
         target += "&words=" + wordData;
         target += "&tokenGroups=" + wordTokenGroups;
-	target += "&gridFactor" + this.gridFactor;
+        target += "&gridFactor" + this.gridFactor;
         target += '&diacritics=' + this.diacritics;
         target += '&fillList=' + this.fillList;
         target += "&size=" + document.getElementById("grid_size").value;
         target += "&max_tries=" + document.getElementById("max_tries").value;
         target += "&num_solutions=" + document.getElementById("num_solutions").value;
 
-        xmlhttp.open("GET", target, true);
+        xmlhttp.open("GET", target, true);  // GET?
         const size = target.length;
         xmlhttp.send(null);
     }
@@ -109,7 +111,7 @@ function createGameGrid(grid, words, answers, info) {
         // Insert New Columns for Row1 at index '0'.
         for (let col = 0; col < grid_width; col ++) {
             const row1col1 = row1.insertCell(col);
-	    row1col1.style.fontFamily = fontFamily;
+            row1col1.style.fontFamily = fontFamily;
             if (Array.isArray(grid[row][col])) {
                 row1col1.innerHTML = "\u00a0" + grid[row][col][0] + "\u00a0";
             } else {
@@ -233,14 +235,14 @@ function drawLines(grid, answers) {
     for (let answer in answers) {
         let thisAnswer = answers[answer];
         // Get each cell and highlight.
-	const cells = thisAnswer[0];
+        const cells = thisAnswer[0];
         const word = thisAnswer[2];
         const last = cells.length - 1;
         const y = cells[0][0] * yfactor;
         const x = cells[0][1] * xfactor;
-	// The endpoints of the line for this word
+        // The endpoints of the line for this word
         ctx.moveTo(cells[last][1] * xfactor + xlineoff,
-		   cells[last][0] * yfactor + ylineoff);
+                   cells[last][0] * yfactor + ylineoff);
         ctx.lineTo(x + xlineoff, y + ylineoff);
         ctx.stroke();
 

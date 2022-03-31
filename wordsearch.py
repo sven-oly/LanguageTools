@@ -111,9 +111,7 @@ class WordSearch(object):
     # By reversed length of token list.
     self.max_level = 0
 
-    self.size = 0
-    logging.info('INIT self.size = %s' % self.size)
-    self.width = self.height = self.size
+    self.width = self.height = self.size = 0
 
   def computeGridSize(self):
     factor = 1.2
@@ -162,14 +160,14 @@ class WordSearch(object):
       if debug:
         logging.info('makeGrid: try = %s' % (attempt))
         try:
-          return attemptGrid(words, size,
+          return [attemptGrid(words, tokenList, size,
                              self.fillList, self.diacriticsSet,
-                             self.is_wordsearch)
+                             self.is_wordsearch), attempt]
         except RuntimeError as e:
           logging.error('AttemptGrid error %s' % e)
           pass
     logging.info("ERROR - Couldn't create valid board")
-    return None, None
+    return None, None, Nont
 
   def attemptGrid(self):
     # Fill in with inserting words
@@ -376,7 +374,7 @@ class WordSearch(object):
             if len(retval) > 0:
                 retval[-1] += c
             else:
-                retval[-1] = c
+                retval.append(c)
         else:
             # New item
             retval.append(c)
@@ -433,18 +431,13 @@ def makeGrid(words, fillList, diacritics, size=[10, 10], attempts=10, is_wordsea
 #                 (size, is_wordsearch))
 
   #logging.info('words (%d) = %s' % (len(words), words))
-  tokenList = sorted([
-    WordSearch.getTokens(x, diacriticsSet) for x in words],
-                     key=len, reverse=True)
+  tokenList = [
+    WordSearch.getTokens(x, diacriticsSet) for x in words] #.sort(key=len, reverse=True)
   
-  logging.info('tokenList = %s' % tokenList)
-
   for attempt in range(attempts):
-    if debug:
-      logging.info('makeGrid: try = %s' % (attempt))
     try:
-      return attemptGrid(words, size, fillList, diacriticsSet,
-                         is_wordsearch)
+      return [attemptGrid(words, tokenList, size, fillList, diacriticsSet,
+                          is_wordsearch), attempt]
     except RuntimeError as e:
       logging.error('AttemptGrid error %s' % e)
       pass
@@ -452,7 +445,7 @@ def makeGrid(words, fillList, diacritics, size=[10, 10], attempts=10, is_wordsea
   return None, None
 
 
-def attemptGrid(words, size, fillList, diacriticSet, is_wordsearch=True):
+def attemptGrid(words, tokenList, size, fillList, diacriticSet, is_wordsearch=True):
   '''Attempt a grid of letters to be a wordsearch
 
     Size contains the height and width of the board.
@@ -460,14 +453,7 @@ def attemptGrid(words, size, fillList, diacriticSet, is_wordsearch=True):
     Returns the 2D list grid and a dictionary of the words as keys and
     lists of their co-ordinates as values.'''
 
-  #logging.info('fillList = %s' % fillList)
-  #logging.info('diacriticSet = %s' % diacriticSet)
-
   # Make sure that the board is bigger than even the biggest set of tokens
-  tokenList = []
-  for w in words:
-    newTokens = WordSearch.getTokens(w, diacriticSet)
-    tokenList.append(newTokens)
 
   sizeCap = (size[0] if size[0] >= size[1] else size[1])
   sizeCap -= 1
@@ -605,7 +591,6 @@ def insertWord(tokens, grid, invalid, is_wordsearch):
     raise (RuntimeError)
 
   start = [y, x, direction]  # Saved in case of invalid placement
-  # logging.info('Start = %s' % start)
   if is_wordsearch:
     do_reverse = bool(randint(0, 1))
   else:
@@ -686,16 +671,13 @@ def generateWordsGrid(words, fillList=None, diacritics=None):
   # Grid width/height should be at least a factor times the number of tokens
   factor = 1.4
   grid_size = int(math.ceil(max(max_xy, factor * math.sqrt(totalTokens))))
-  grid, answers = makeGrid(words, fillList, diacritics, [grid_size, grid_size], 10, True)
-  # logging.info('FILLLIST = %s' % fillList)
-  return grid, answers, words, grid_size
+  grid_answers, attempts = makeGrid(words, fillList, diacritics, [grid_size, grid_size], 10, True)
+  return grid_answers[0], grid_answers[1], words, grid_size, attempts
 
 
 # Use the new Depth First Search method with size suggestion, etc.
 def generateDFSWordSearch(words, size=0, tries=None, num_solutions=1):
   ws = WordSearch(words)
-  #logging.info('words = %s' % words)
-  #logging.info('size = %s, tries = %s, num_solutions = %s' % (size, tries, num_solutions))
   ws.generate(size, tries, num_solutions)
 
   return ws
@@ -709,8 +691,6 @@ def generateCrosswordsGrid(words):
   total_tokens = 0
 
   for word in words:
-    # logging.info(word)
-    logging.info("*** GET TOKENS ***")
     tokens = WordSearch.getTokens(word, None)
     total_tokens += len(tokens)
     if len(tokens) > max_xy:
@@ -720,8 +700,8 @@ def generateCrosswordsGrid(words):
   #logging.info('generateCrosswordsGrid max size = %s ' % (max_xy))
   #logging.info('fillList  = %s ' % (fillList))
 
-  grid, answers = makeGrid(words, fillList, diacritics, [max_xy + 1, max_xy + 1], 10, False)
-  return grid, answers, words, max_xy + 1
+  grid, answers, attempts = makeGrid(words, fillList, diacritics, [max_xy + 1, max_xy + 1], 10, False)
+  return grid, answers, words, max_xy + 1, attempts
 
 
 # Runs with a set grid

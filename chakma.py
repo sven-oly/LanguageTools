@@ -156,24 +156,20 @@ class langInfo():
       self.vowels = [unichr(x) for x in range(0x11103, 0x11107)]
       self.consonants = [unichr(x) for x in range(0x11107, 0x11127)]
       self.diacritic_list = [unichr(x) for x in range(0x11100, 0x11103)]
-      self.diacritic_list.extend([unichr(x) for x in range(0x11127, 0x11133)])
-      self.diacritic_list.extend([unichr(x) for x in range(0x11134, 0x11135)])
+      self.diacritic_list.extend([unichr(x) for x in range(0x11127, 0x11135)])
       self.diacritic_list.extend([unichr(x) for x in range(0x11145, 0x11147)])
       self.base_consonant = unichr(0x1110e)
     else:
       self.vowels = [unichr(0xd804) + unichr(0xdd00 + x) for x in range(0x03, 0x07)]
       self.consonants = [unichr(0xd804) + unichr(0xdd00 + x) for x in range(0x07, 0x027)]
       self.diacritic_list = [unichr(0xd804) + unichr(0xdd00 + x) for x in range(0x00, 0x04)]
-      self.diacritic_list.extend(unichr(0xd804) + unichr(0xdd00 + x) for x in range(0x27, 0x33))
-      self.diacritic_list.extend(unichr(0xd804) + unichr(0xdd00 + x) for x in range(0x34, 0x35))
+      self.diacritic_list.extend(unichr(0xd804) + unichr(0xdd00 + x) for x in range(0x27, 0x35))
       self.diacritic_list.extend(unichr(0xd804) + unichr(0xdd00 + x) for x in range(0x45, 0x47))
 
       self.base_consonant = u'\ud804\udd0e'
 
     self.fillChars = self.vowels + self.consonants
     self.unicodeCombiningChars = self.diacritic_list
-    logging.info('Chakma Diacritics: %s' % self.unicodeCombiningChars);
-    logging.info('Chakma letter fill: %s' % self.fillChars);
 
     self.encoding_font_list = encoding_font_list
 
