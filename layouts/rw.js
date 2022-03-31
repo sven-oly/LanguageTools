@@ -23,7 +23,7 @@ var RW_LAYOUT = {
     },
     ',c': {  // default upper case ASCII for Kernedumwero
       '': '`1234567890-=' +
-          'QWERTYUIOP{{\uf300}}{{\uf301}}|' +
+          'QWERTYUIOP{}|' +
           'ASDFGHJKL:"' +
           'ZXCVBNM<>?'
     },
