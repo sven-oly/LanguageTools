@@ -123,7 +123,10 @@ links = [
     {'linkText': 'Sylheti calculator',
      'ref': '/' + LanguageCode + '/numerals/'
     },
-]
+    {'linkText': 'Sylheti phrases',
+     'ref': 'https://omniglot.com/language/phrases/sylheti.htm#phrases'
+     },
+  ]
 
 # For word search and other things
 diacritic_list = [unichr(0xa802), unichr(0xa806), unichr(0xa80b)] + \

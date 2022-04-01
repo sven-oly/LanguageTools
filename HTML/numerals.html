@@ -51,8 +51,12 @@
       }
       .NumeralsOutputClass {
           font-family:{{unicodeFontList.0.family}};
-          font-size: 48px;
+          font-size: 40px;
           font-weight:bold;
+	  height: 60px;
+	  resize: none;
+	  align: center;
+	  text-align: end;
       }
       .DecimalDisplay {
           background-color: #cccccc;
@@ -226,7 +230,7 @@
         <!-- X Register -->
         <p>
           <div align="right">
-            <textarea id="outputArea" class="NumeralsOutputClass"></textarea>
+            <textarea id="outputArea" class="NumeralsOutputClass" readonly></textarea>
             </div>
         <div id="decimalOutputDiv" style="display: none" class='DecimalDisplay'>
           <p>Decimal output: <textarea id="decimalOutput"></textarea>

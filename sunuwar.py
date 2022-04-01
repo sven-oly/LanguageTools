@@ -89,12 +89,21 @@ encoding_font_list = [
 
 unicode_font_list = [
   {
-    'source': '/fonts/Sunuwar/Mukdum-Regular-Unicode.otf',
-    'longName': 'Mukdum Unicode',
-    'family': 'MukdumUnicode',
+    'source': '/fonts/Sunuwar/Mukdum-Regular-Unicode.ttf',
+    'longName': 'Mukdum Unicode TTF',
+    'family': 'MukdumUnicodeTOTF',
     'font_path': '/fonts/Sunuwar/Mukdum-Regular-Unicode.ttf',
-    'font_name': 'MukdumUnicode',
-    'display_name': 'Mukdum Unicode',
+    'font_name': 'MukdumUnicodeTTF',
+    'display_name': 'Mukdum Unicode TTF',
+    'info': 'Derived from Mukdum ASCII, cwc 6-Feb-2022'
+  },
+  {
+    'source': '/fonts/Sunuwar/Mukdum-Regular-Unicode.otf',
+    'longName': 'Mukdum Unicode OTF',
+    'family': 'MukdumUnicodeOTF',
+    'font_path': '/fonts/Sunuwar/Mukdum-Regular-Unicode.otf',
+    'font_name': 'MukdumUnicodeOTF',
+    'display_name': 'Mukdum Unicode OTF',
     'info': 'Derived from Mukdum ASCII, cwc 6-Feb-2022'
   },
   {
@@ -182,6 +191,20 @@ class langInfo():
     self.diacritic_list = [unichr(x) for x in range(0x9bc, 0x9e3)]
     self.base_consonant = u'ক'  # KA
     self.baseHexUTF16 = u'\u0995'
+
+    
+    self.letterCodes = [x for x in range(0x11bc0, 0x11be1)]
+    if sys.maxunicode >= 0x10000:
+      self.letters = [unichr(x) for x in self.letterCodes]
+    else:
+      self.letters = [unichr(0xd806) + unichr(0xdf00 + x - 0x11b00)
+                      for x in self.letterCodes]
+      
+    self.digitCodes = [x for x in range(0x11bf0, 0x11bfa)]
+    self.utf16 = [0xd806, 0xdf00]  # Add the lowest 2 hex digits
+
+    self.fillChars = self.letters
+    self.unicodeCombiningChars = []
 
     self.lang_list = [
       { 'shortName': self.LanguageCode,
@@ -278,6 +301,8 @@ app = webapp2.WSGIApplication(
      ('/' + langInstance.LanguageCode + '/dictionaryN/', base.DictionaryN),
      ('/' + langInstance.LanguageCode + '/kbtransforms/', base.KeyboardTransforms),
      ('/' + langInstance.LanguageCode + '/render/', base.EncodingRules),
+     ('/' + langInstance.LanguageCode + '/wordsearch/', base.WordSearchHandler),
+     ('/' + langInstance.LanguageCode + '/numerals/', base.NumeralsHandler),
 
      ], debug=True,
     config= {'langInfo': langInstance,

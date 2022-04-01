@@ -143,7 +143,7 @@ class langInfo:
             'info': 'Umwero glpyh names'
         }
 
-        self.fillChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+        self.fillChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ{}'
 
         self.charNames = """Umwero	Name	ASCII
 (	(	(

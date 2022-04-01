@@ -170,7 +170,7 @@ class calculator4 {
         case '×':
             result = this.accum1 * this.accum2;
             break;
-	case '÷':
+        case '÷':
         case '/':
             // TODO: Check for divide by zero.
             result = Math.floor(this.accum1 / this.accum2);

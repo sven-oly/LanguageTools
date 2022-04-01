@@ -53,6 +53,16 @@ class Numerals {
         // special outputs
         this.decimalOutputFn = null;
         this.logOutputFn = null;
+
+	// For operator symbols used for the controls.
+	// If defined, this can be used to create custom characters
+	// in the system font for the calculator.
+	this.operatorMap = new Map(
+	    [
+		['*', '*'], ['/', '/'], ['+', '+'], ['-', '-'], ['=', '='],
+		['clr', 'clr']
+	    ]
+	);
     }
 
     // Returns list of lists, each describing one row of the layout.
