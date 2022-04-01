@@ -77,6 +77,9 @@ links = [
     {'linkText': 'Unicode Supplement',
      'ref': 'http://unicode.org/charts/PDF/UAB70.pdf'
     },
+    {'linkText': "How to count in Cherokee",
+     'ref': 'https://www.languagesandnumbers.com/how-to-count-in-cherokee/en/chr/#numbers-in-full'
+    },
 ]
 
 

@@ -11,7 +11,7 @@ class wordListData {
         this.all_answers = null;
         this.all_words = null;
         this.gridFactor = -1; // Not set
-	this.lastAttempt = -1
+        this.lastAttempt = -1
     }
 
     setGridFactor(newFactor) {
@@ -45,9 +45,9 @@ class wordListData {
             if(xmlhttp.readyState==4) {
                 // Handle results
                 const returned_json = xmlhttp.responseText;
-		if (xmlhttp.status > 299) {
-		    alert(xmlhttp.status + " " + xmlhttp.responseText);
-		}
+                if (xmlhttp.status > 299) {
+                    alert(xmlhttp.status + " " + xmlhttp.responseText);
+                }
                 const json_obj = JSON.parse(returned_json);
                 if (json_obj.grid == null) {
                     alert("Cannot build a grid of size " + json_obj.grid_width);
@@ -64,7 +64,7 @@ class wordListData {
                 wordSearchObj.whole_grid = json_obj.grid;
                 wordSearchObj.all_words = words;
                 wordSearchObj.all_answers = json_obj.answers;
-		wordSearchObj.lastAttempt = json_obj.attempts;
+                wordSearchObj.lastAttempt = json_obj.attempts;
 
                 createGameGrid(wordSearchObj.whole_grid,
                                wordSearchObj.all_words,

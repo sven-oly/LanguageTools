@@ -94,6 +94,8 @@ class langInfo:
 
         self.links = links
 
+        # Unicode range
+        self.unicodeRanges = [('\u0020', '\u007f')]
         # TODO: Fill in with diacritics
         self.diacritic_list = [unichr(x) for x in range(0x300, 0x330)]
         # TODO: Fill in base consonant
