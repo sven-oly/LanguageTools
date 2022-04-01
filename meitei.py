@@ -97,6 +97,9 @@ class langInfo:
         self.lang_list = [LanguageCode]  # This may be extended
 
         self.kb_list = [
+          {'shortName': 'mniCdac',
+           'longName': 'Meitei Mayek',
+           },
           {'shortName': 'mniMtei',
            'longName': 'Meitei KM',
            },
