@@ -8,10 +8,10 @@ class Numerals {
 
         //  Map numeral values to corresponding code points
         this.valueToChar = new Map(
-            [[0, '\ud806\uddf0'], [1, '\ud806\uddf1'], [2, '\ud806\uddf2'],
-             [3, '\ud806\uddf3'], [4, '\ud806\uddf4'], [5, '\ud806\uddf5'],
-             [6, '\ud806\uddf6'], [7, '\ud806\uddf7'], [8, '\ud806\uddf8'],
-             [9, '\ud806\uddf9']
+            [[0, '\ud806\udff0'], [1, '\ud806\udff1'], [2, '\ud806\udff2'],
+             [3, '\ud806\udff3'], [4, '\ud806\udff4'], [5, '\ud806\udff5'],
+             [6, '\ud806\udff6'], [7, '\ud806\udff7'], [8, '\ud806\udff8'],
+             [9, '\ud806\udff9']
             ]
         );
 
@@ -31,10 +31,10 @@ class Numerals {
     keyLayoutArray() {
         const layoutRowChars = [
             // Stand ins
-            ['\ud806\uddf7', '\ud806\uddf8', '\ud806\uddf9'],
-            ['\ud806\uddf4', '\ud806\uddf5', '\ud806\uddf6'],
-            ['\ud806\uddf1', '\ud806\uddf2', '\ud806\uddf3'],
-            ['\ud806\uddf0']
+            ['\ud806\udff7', '\ud806\udff8', '\ud806\udff9'],
+            ['\ud806\udff4', '\ud806\udff5', '\ud806\udff6'],
+            ['\ud806\udff1', '\ud806\udff2', '\ud806\udff3'],
+            ['\ud806\udff0']
         ];      
         return layoutRowChars;
     }
