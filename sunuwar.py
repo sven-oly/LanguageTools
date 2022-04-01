@@ -216,6 +216,13 @@ class langInfo():
     self.unicode_font_list = unicode_font_list
     self.kb_list = [
       {
+        'shortName': 'suz_unicode',
+        'longName': 'Kõits-Bleshe-Sunuwar Unicode',
+        'jsName': 'suz_unicode',
+        'font': '/fonts/Sunuwar/Mukdum-Regular-Unicode.ttf',
+        'instructions': None,
+      },
+      {
         'shortName': 'suz_jenticha_PUA',
         'longName': 'Kõits-Bleshe-Sunuwar PUA',
         'jsName': 'suz_jenticha_PUA',
