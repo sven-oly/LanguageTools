@@ -14,6 +14,7 @@
 # limitations under the License.
 #
 
+import logging
 import os
 import webapp2
 
@@ -27,32 +28,26 @@ LanguageCode = 'ovd'
 ScriptCode = 'Latn'
 
 links = [
-  {'linkText': 'Keyboard',
-   'ref': '/' + LanguageCode + '/'
-   },
-  # {'linkText': 'Converter',
-  #  'ref': '/' + LanguageCode + '/convertUI/'},
-  # {'linkText': 'Font conversion summary',
-  #   'ref': '/' + LanguageCode + '/encodingRules/'
-  # },
+    {'linkText': 'Keyboard',
+     'ref': '/' + LanguageCode + '/'
+    },
+    # {'linkText': 'Converter',
+    #  'ref': '/' + LanguageCode + '/convertUI/'},
+    # {'linkText': 'Font conversion summary',
+    #   'ref': '/' + LanguageCode + '/encodingRules/'
+    # },
   {'linkText': 'Resources',
-    'ref': '/' + LanguageCode + '/downloads/'
+   'ref': '/' + LanguageCode + '/downloads/'
   },
-  # {'linkText': 'Unicode page',
-  #  'ref': 'https://www.unicode.org/charts/PDF/U1C00.pdf'
-  # },
+    # {'linkText': 'Unicode page',
+    #  'ref': 'https://www.unicode.org/charts/PDF/U1C00.pdf'
+    # },
   {'linkText': 'Elfdalian Wikipedia',
    'ref': 'https://en.wikipedia.org/wiki/https://en.wikipedia.org/wiki/Elfdalian'
   },
-  # {'linkText': 'Wikipedi page',
-  #  'ref': 'https://en.wikipedia.org/wiki/Lepcha_language'
-  # },
-  # {'linkText': 'Ethnolog',
-  #  'ref': 'https://www.ethnologue.com/language/lep'
-  # },
-  # {'linkText': 'Combiners',
-  #  'ref': '/lep/diacritic/'
-  #  },
+  {'linkText': 'Word search',
+   'ref': '/' + LanguageCode + '/wordsearch/'
+  },
 ]
 
 
@@ -125,7 +120,9 @@ class langInfo:
         ]
 
         # TODO: Fill in the rest of the common data.
-
+        self.fillChars = [unichr(x) for x in range(ord('a'), ord('z') + 1)
+          ] + [u'å', u'ð', u'ä', u'ö', u'ą', u'ę', u'į', u'ǫ', u'ų', u'y̨']
+        self.unicodeCombiningChars = ['\u0308', '\u0328', '\u030a'] 
 
 langInstance = langInfo()
 
@@ -136,6 +133,7 @@ app = webapp2.WSGIApplication([
   ('/' + LanguageCode + '/encodingRules/', base.EncodingRules),
   ('/' + LanguageCode + '/diacritic/', base.DiacriticHandler),
   ('/' + LanguageCode + '/keyman/', base.KeyManHandler),
+  ('/' + langInstance.LanguageCode + '/wordsearch/', base.WordSearchHandler),
 ], debug=True,
   config={'langInfo': langInstance}
 )
