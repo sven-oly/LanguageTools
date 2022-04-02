@@ -19,7 +19,7 @@ var SUZ_UNICODE_LAYOUT = {
       '': '{{}}{{\ud806\udfc1}}{{\ud806\udfc2}}{{\ud806\udfc3}}{{\ud806\udfc4}}{{\ud806\udfc5}}{{\ud806\udfc6}}{{\ud806\udfc7}}{{\ud806\udfc8}}{{\ud806\udfc9}}{{\ud806\udfc0}}-=' +
           '{{\ud806\udfc1}}{{\ud806\udfc7}}{{\ud806\udfd5}}{{\ud806\udfc2}}{{\ud806\udfc4}}{{\ud806\udfc9}}{{\ud806\udfc5}}{{\ud806\udfd9}}{{\ud806\udfdF}}{{\ud806\udfc0}}[]\\' +
           '{{\ud806\udfd1}}{{\ud806\udfc3}}{{\ud806\udfcd}}{{\ud806\udfd6}}{{\ud806\udfd7}}{{\ud806\udfd8}}{{\ud806\udfdA}}{{\ud806\udfdB}}{{\ud806\udfdB}}\u003b\u0027' +
-          '{{\ud806\udfcA}}{{\ud806\udfc8}}{{\ud806\udfd3}}{{\ud806\udfc6}}{{\ud806\udf2c}}{{\ud806\udfdE}}{{\ud806\udfdD}},./'
+          '{{\ud806\udfcA}}{{\ud806\udfc8}}{{\ud806\udfd3}}{{\ud806\udfc6}}{{\ud806\udfc2}}{{\ud806\udfdE}}{{\ud806\udfdD}},./'
     },
     's,sc': {
       '': '{{}}!@#$%^&*()_+' +

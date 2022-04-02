@@ -66,15 +66,15 @@ encoding_font_list = [
     'display_name': 'Kirat1',
     'Source location': 'https://omniglot.com/writing/jenticha.htm',
   },
-  {
-    'source': '/fonts/Sunuwar/LONKUCH.ttf',
-    'longName': 'Lonkuch',
-    'family': 'Lonkuch',
-    'font_path': '/fonts/Sunuwar/LONKUCH.ttf',
-    'font_name': 'Lonkuch',
-    'display_name': 'Lonkuch',
-    'Source location': 'https://omniglot.com/writing/tikamuli.htm',
-  },
+  # {
+  #   'source': '/fonts/Sunuwar/LONKUCH.ttf',
+  #   'longName': 'Lonkuch',
+  #   'family': 'Lonkuch',
+  #   'font_path': '/fonts/Sunuwar/LONKUCH.ttf',
+  #   'font_name': 'Lonkuch',
+  #   'display_name': 'Lonkuch',
+  #   'Source location': 'https://omniglot.com/writing/tikamuli.htm',
+  # },
   # {
   #   'source': '/fonts/Sunuwar/PREM.ttf',
   #   'longName': 'Prem',
@@ -96,6 +96,15 @@ unicode_font_list = [
     'font_name': 'MukdumUnicodeTTF',
     'display_name': 'Mukdum Unicode TTF',
     'info': 'Derived from Mukdum ASCII, cwc 6-Feb-2022'
+  },
+  {
+    'source': '/fonts/Sunuwar/Mukdum-Final-Unicode.ttf',
+    'longName': 'Mukdum Final Unicode TTF',
+    'family': 'MukdumFinalUnicodeTTF',
+    'font_path': '/fonts/Sunuwar/Mukdum-Final-Unicode.ttf',
+    'font_name': 'MukdumFinalUnicodeTTF',
+    'display_name': 'Mukdum Final Unicode TTF',
+    'info': 'Derived from Mukdum ASCIIFinal, cwc 1-Apr-2022'
   },
   {
     'source': '/fonts/Sunuwar/Mukdum-Regular-Unicode.otf',
@@ -141,15 +150,15 @@ unicode_font_list = [
     'display_name': 'Kirat1 PUA',
     'Source location': 'https://omniglot.com/writing/jenticha.htm',
   },
-  {
-    'source': '/fonts/Sunuwar/Lonkuch_PUA.ttf',
-    'longName': 'Lonkuch PUA',
-    'family': 'LonkuchPUA',
-    'font_path': '/fonts/Sunuwar/Lonkuch_PUA.ttf',
-    'font_name': 'Lonkuch PUA',
-    'display_name': 'Lonkuch PUA',
-    'Source location': 'https://omniglot.com/writing/tikamuli.htm',
-  },
+  # {
+  #   'source': '/fonts/Sunuwar/Lonkuch_PUA.ttf',
+  #   'longName': 'Lonkuch PUA',
+  #   'family': 'LonkuchPUA',
+  #   'font_path': '/fonts/Sunuwar/Lonkuch_PUA.ttf',
+  #   'font_name': 'Lonkuch PUA',
+  #   'display_name': 'Lonkuch PUA',
+  #   'Source location': 'https://omniglot.com/writing/tikamuli.htm',
+  # },
 ]
 
 links = [
@@ -236,13 +245,13 @@ class langInfo():
         'font': '/fonts/Sunuwar/Mukdum.ttf',
         'instructions': 'ASCII-based font',
       },
-      {
-        'shortName': 'suz_tikamuli_PUA',
-        'longName': 'Sunuwar Tikamuli PUA',
-        'jsName': 'suz_tikamuli_PUA',
-        'instructions': None,
-        'font': '/fonts/Sunuwar/Lonkuch_PUA.ttf',
-      },
+      # {
+      #   'shortName': 'suz_tikamuli_PUA',
+      #   'longName': 'Sunuwar Tikamuli PUA',
+      #   'jsName': 'suz_tikamuli_PUA',
+      #   'instructions': None,
+      #   'font': '/fonts/Sunuwar/Lonkuch_PUA.ttf',
+      # },
 
     ]
 
