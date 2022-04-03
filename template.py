@@ -119,6 +119,8 @@ app = webapp2.WSGIApplication([
   ('/' + LanguageCode + '/downloads/', base.Downloads),
   ('/' + LanguageCode + '/encodingRules/', base.EncodingRules),
   ('/' + LanguageCode + '/diacritic/', base.DiacriticHandler),
+  ('/' + langInstance.LanguageCode + '/wordsearch/', base.WordSearchHandler),
+  ('/' + langInstance.LanguageCode + '/keyman/', base.KeyManHandler),
 ], debug=True,
   config={'langInfo': langInstance}
 )

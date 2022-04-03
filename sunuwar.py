@@ -30,6 +30,14 @@ from google.appengine.ext.webapp import template
 
 encoding_font_list = [
   {
+    'source': '/fonts/Sunuwar/Mukdum_final.ttf',
+    'longName': 'Mukdum Final',
+    'family': 'MukdumFinal',
+    'font_path': '/fonts/Sunuwar/Mukdum_final.ttf',
+    'font_name': 'MukdumFinal',
+    'display_name': 'Mukdum Final',
+  },
+  {
     'source': '/fonts/Sunuwar/Mukdum.ttf',
     'longName': 'Mukdum',
     'family': 'Mukdum',
@@ -168,6 +176,9 @@ links = [
     {'linkText': 'Converter',
      'ref': '/suz/convertUI/'
     },
+    {'linkText': 'Translit',
+     'ref': '/suz/translit/'
+    },
     # {'linkText': 'Font conversion summary',
     #   'ref': '/suz/encodingRules/'
     # },
@@ -272,7 +283,13 @@ class langInfo():
     self.outputFont = "Private Use Area (PUA)"
 
     # Lists of test characters for the various encodings
-    self.test_chars = ' '.join([unichr(x) for x in range(0xe9bc, 0x9e3)])
+    self.test_chars = [' '.join([unichr(x) for x in range(0xe9bc, 0x9e3)])]
+
+    # For transliteration
+    self.translit_encoding_list = [
+      encoding_font_list[0], encoding_font_list[1], encoding_font_list[2],
+      encoding_font_list[3], encoding_font_list[4],
+    ]    
 
     # For dictionary
     self.dictionaryLang1 = "English"
@@ -308,8 +325,10 @@ langInstance = langInfo()
 
 app = webapp2.WSGIApplication(
     [('/' + langInstance.LanguageCode + '/', base.LanguagesHomeHandler),
+     ('/' + langInstance.LanguageCode + '/translit/', base.TranslitHandler),  # Transliterates to Latin
      ('/' + langInstance.LanguageCode + '/convertUI/', base.ConvertUIHandler),
      ('/' + langInstance.LanguageCode + '/downloads/', base.Downloads),
+     ('/' + langInstance.LanguageCode + '/converter/', base.ConvertHandler),
      ('/' + langInstance.LanguageCode + '/converter/', base.ConvertHandler),
      ('/' + langInstance.LanguageCode + '/encodingRules/', base.EncodingRules),
      ('/' + langInstance.LanguageCode + '/diacritic/', base.DiacriticHandler),
@@ -319,6 +338,7 @@ app = webapp2.WSGIApplication(
      ('/' + langInstance.LanguageCode + '/render/', base.EncodingRules),
      ('/' + langInstance.LanguageCode + '/wordsearch/', base.WordSearchHandler),
      ('/' + langInstance.LanguageCode + '/numerals/', base.NumeralsHandler),
+     ('/' + langInstance.LanguageCode + '/keyman/', base.KeyManHandler),
 
      ], debug=True,
     config= {'langInfo': langInstance,

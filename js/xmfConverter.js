@@ -96,10 +96,6 @@ const map_translit_sources = [
 langConvertClass.prototype.decodingInfo = function() {
 }
 
-langConvertClass.prototype.getTransforms = function() {
-    return this.transforms;
-}
-
 langConvertClass.prototype.translitInfo = function() {
   return [translit_source,
           map_translit_output,
