@@ -12,6 +12,8 @@ class wordListData {
         this.all_words = null;
         this.gridFactor = -1; // Not set
         this.lastAttempt = -1
+
+	this.seed = null;
     }
 
     setGridFactor(newFactor) {
@@ -92,6 +94,9 @@ class wordListData {
         target += "&max_tries=" + document.getElementById("max_tries").value;
         target += "&num_solutions=" + document.getElementById("num_solutions").value;
 
+	if (this.seed) {
+	    target += "&seed=" + this.seed;
+	}
         xmlhttp.open("GET", target, true);  // GET?
         const size = target.length;
         xmlhttp.send(null);

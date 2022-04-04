@@ -661,12 +661,16 @@ def printAnswers(answers):
 
 
 # Runs with an array of words
-def generateWordsGrid(words, fillList=None, diacritics=None):
+def generateWordsGrid(words, fillList=None, diacritics=None, randomSeed=None):
+  # Set random number seed
+  if randomSeed:
+    random.seed(randomSeed)
+  
   # Set the size to us bot the maximum word length and total tokens .
   diacriticSet = set(diacritics)
   wordTokens = [WordSearch.getTokens(w, diacriticSet) for w in words]
   tokenSizes = [len(s) for s in wordTokens]
-  max_xy = max(tokenSizes)
+  max_xy = max(tokenSizes) + 1  # TODO: find a way to improve this
   totalTokens = sum(tokenSizes)
   # Grid width/height should be at least a factor times the number of tokens
   factor = 1.4

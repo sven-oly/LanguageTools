@@ -98,6 +98,19 @@
       const language = '{{language}}';
 
       function sendRegionWords(wordSrc, resultArea, answerArea, useDfs) {
+	  // Check if a random seed should be used.
+	  wordListInfo.seed = null;
+	  const useSeed = document.getElementById('toggleSeed').checked;
+	  if (useSeed) {
+	      const seedString = document.getElementById('seedValue').value;
+	      if (seedValue && seedString.length > 0) {
+		  const seedInt = parseInt(seedString);
+		  if (seedInt !== NaN) {
+		      wordListInfo.seed = seedInt;
+		  }
+	      }
+	  }
+
 	  const inputArea = document.getElementById(wordSrc);
 	  const wordData = inputArea.value;
 	  return wordListInfo.sendWords(
@@ -362,7 +375,9 @@
             };
           </select>
 </select>
-Size: <select onchange="setWordSearchSize(this.value);" id="sizeSelector">
+<br/>
+<label for="sizeSelector">Size: </label>
+<select onchange="setWordSearchSize(this.value);" id="sizeSelector">
   <option value="10px">10</option>
   <option value="14px">14</option>
   <option value="18px">18</option>
@@ -376,10 +391,16 @@ Size: <select onchange="setWordSearchSize(this.value);" id="sizeSelector">
   <option value="240px">240</option>
 </select>
 
-  <input type='button' value='Toggle keyboard'
+<input type='button' value='Toggle keyboard'
          onClick="toggleKeyboard(); return false;" />
   <input type='button' value='Print page'
          onClick="printPage(); return false;" />
+  <!-- Random seed input -->
+  <br /><input type="checkbox" id="toggleSeed"
+	 onclick="toggle('answers', 'toggleSeed');"/>Use random seed?</input>
+  <label for="seedForRandom">Seed: </label>
+  <input type="text" id="seedValue" name="seedForRandom"><br/>
+  
 </div>
 </div>
 

@@ -173,11 +173,11 @@ links = [
     {'linkText': 'Keyboard',
      'ref': '/suz/'
     },
-    {'linkText': 'Converter',
-     'ref': '/suz/convertUI/'
-    },
-    {'linkText': 'Translit',
+    {'linkText': 'Convert to Unicode',
      'ref': '/suz/translit/'
+    },
+    {'linkText': 'Old converter',
+     'ref': '/suz/convertUI/'
     },
     # {'linkText': 'Font conversion summary',
     #   'ref': '/suz/encodingRules/'
