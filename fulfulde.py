@@ -84,27 +84,27 @@ kb_list = [
 
 links = [
   {
-    'target': '/',
-    'text': 'Main',
-    'ref': '/',
-    'linkText': 'Main',
+    'linkText': 'Main Adlam page',
+    'text': 'Main Adlam page',
+    'target': 'https://adlamtesting.appspot.com/',
+    'ref': 'https://adlamtesting.appspot.com/',
   },
   {
-    'target': '/keyboard/',
+    'target': '/ff/keyboard/',
     'text': 'Keyboard',
-    'ref': '/keyboard/',
+    'ref': '/ff/keyboard/',
     'linkText': 'Keyboard',
   },
   {
     'target': '/words/convert/',
     'text': 'Convert text',
-    'ref': '/words/convert/',
+    'ref': 'https://adlamtesting.appspot.com/words/convert/',
     'linkText': 'Convert text',
 },
   {
     'ref': '/dictionaryN/',
     'linkText': 'Dictionary builder',
-    'target': '/dictionaryN/',
+    'target': 'https://adlamtesting.appspot.com//dictionaryN/',
     'text': 'Dictionary builder'
   },
   {
@@ -128,8 +128,20 @@ links = [
   {
     'target': '/downloads/',
     'text': 'Download Adlam Unicode fonts',
-    'ref': '/downloads/',
+    'ref': 'https://adlamtesting.appspot.com//downloads/',
     'linkText': 'Download Adlam Unicode fonts'
+  },
+  {
+    'target': '/ff/wordsearch/',
+    'text': 'Word search',
+    'ref': '/ff/wordsearch/',
+    'linkText': 'Word search'
+  },
+  {
+    'target': '/ff/numerals/',
+    'text': 'Adlam calculator',
+    'ref': '/ff/numerals/',
+    'linkText': 'Adlam calculator'
   },
 ]
 
@@ -160,7 +172,10 @@ class langInfo():
       self.letters = [unichr(0xd83a) + unichr(0xdd00 + x - 0x1e900)
                       for x in self.letterCodes]
 
-    logging.info(self.letters)
+      self.encodedRanges = [
+        (0x20, 0xff),
+      ]
+
     self.encoding_font_list = encoding_font_list
 
     self.fillChars = self.letters
@@ -452,7 +467,7 @@ class FontCompareHandler(webapp2.RequestHandler):
 langInstance = langInfo()
 
 app = webapp2.WSGIApplication([
-    ('/ff/', MainHandler),
+  ('/' + LanguageCode + '/', base.LanguagesHomeHandler),
     ('/ff/keyboard/', KeyboardHandler),
     ('/ff/fontCompare/', FontCompareHandler),
     ('/ff/downloads/', DownloadHandler),
