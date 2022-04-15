@@ -31,6 +31,8 @@ langConverter.getTransforms = function() {
     return [
 	{input: 'Mukdum ASCII', output:'Unicode Sunuwar',
 	 'compute': this.mukdum2Unicode},
+	{input: 'Bengali', output:'Unicode Sunuwar',
+	 'compute': this.bengali2SuZUnicode},
     ];
 }
 
@@ -39,6 +41,72 @@ langConverter.mukdum2Unicode = function(text_in) {
     const unicodeOut = convertEncoding(text_in, encodingIndex);
     return unicodeOut;
 }
+
+langConverter.bengali2SuZUnicode = function(intext) {
+    let suzUnicodeOut = [];
+    for (var index = 0; index < intext.length; index ++) {
+	let c = intext[index];
+	let out = c;
+	if (c in bengali2SuzUnicodeMapping) {
+	    out = bengali2SuzUnicodeMapping[c][0];  // only the character
+	}
+	suzUnicodeOut.push(out);
+    }
+    return suzUnicodeOut.join('');
+}
+
+
+// From proposal
+const bengali2SuzUnicodeMapping = {
+'द': ['𑯀', 'DEVI'],
+'ड': ['𑯀', 'DEVI'],
+'त': ['𑯁', 'TASLA'],
+'ट': ['𑯁', 'TASLA'],
+'ए': ['𑯂', 'EKO'],
+'इ': ['𑯃', 'IMAR'],
+'ड़': ['𑯄', 'REU'],
+'उ': ['𑯅', 'UTTHI'],
+'क': ['𑯆', 'KIK'],
+'म': ['𑯇', 'MAMA'],
+'अ': ['𑯈', 'APPHO'],
+'प': ['𑯉', 'PIP'],
+'ग': ['𑯊', 'GIL'],
+'ह': ['𑯋', 'HAMSO'],
+'च': ['𑯌', 'CARMI'],
+'न': ['𑯍', 'NAH'],
+'ण': ['𑯍', 'NAH'],
+'ब': ['𑯎', 'BUR'],
+'ज': ['𑯏', 'JYAH'],
+'ल': ['𑯐', 'LOACHA'],
+'ओ': ['𑯑', 'OTTHI'],
+'स': ['𑯜', 'SHYELE'],
+'व': ['𑯓', 'VARCA'],
+'य': ['𑯔', 'YAT'],
+// 'ब': ['𑯕', 'AVA'], // ???
+'आ': ['𑯖', 'AAL'],
+'ड': ['𑯗', 'DONGA'],
+'थ': ['𑯘', 'THARI'],
+'फ': ['𑯙', 'PHAR'],
+'ङ': ['𑯚', 'NGAR'],
+'ख': ['𑯛', 'KHA'],
+'श': ['𑯒', 'SHYER'],
+'ष': ['𑯒', 'SHYER'],
+'छ': ['𑯝', 'CHELAP'],
+'ट': ['𑯞', 'TENTU'],
+'ठ': ['𑯟', 'THELE'],
+    'अ': ['𑯠', 'KLOKO'],
+    'र': ['\ud806\udfc4', 'REUDI'],  // R
+    'ु' : ['\ud806\udfc5', 'UTTHI'],  // U
+    'े' : ['\ud806\udfc2', 'EKO'],  // E
+    '्' : ['', ''],  // Virama
+    'ो' : ['\ud806\udfd1', 'OTTHI'],
+    'ि': ['\ud806\udfc3', 'IMAR'],
+    'ी': ['\ud806\udfc3', 'IMAR'],
+    'ा': ['\ud806\udfd6', 'AAL'],
+    'भ': ['\ud806\udfce\ud806\udfcb', 'AAL'],
+    'ः': [':', 'colon'],
+    'ँ': ['\u0303', 'Combining tilde'],
+};
 
 langConverter.encoding_data = {
     'Mukdum': {index:0, outputEncoding:'PUA', outputScript:'Sunuwar'},
