@@ -173,7 +173,13 @@ class calculator4 {
         case '÷':
         case '/':
             // TODO: Check for divide by zero.
-            result = Math.floor(this.accum1 / this.accum2);
+	    if (this.accum !== 0) { 
+		const rawResult = this.accum1 / this.accum2;
+		result = rawResult;  // Try this
+		// result = Math.floor(rawResult);
+	    } else {
+		// TODO: Display an error
+	    }
             break;
         }
         this.accum1 = result;
@@ -186,7 +192,15 @@ class calculator4 {
     }
 
     display(newVal) {
-        const resultString = this.numeralObject.formatInt(newVal);
+        let resultString;
+	if ((this.numeralObject.doFloat !== undefined) &&
+	    this.numeralObject.doFloat &&
+	    (this.numeralObject.formatFloat !== undefined)) {
+	    resultString = this.numeralObject.formatFloat(newVal);
+	} else  {
+	    // Integer only
+	    resultString = this.numeralObject.formatInt(newVal);
+	}
         this.output.innerHTML = resultString;
 
         if (this.numeralObject.displayDecimal) {

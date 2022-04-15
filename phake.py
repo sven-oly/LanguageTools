@@ -197,6 +197,9 @@ class langInfo:
         'linkText': 'Resources',
         'ref': '/' + self.LanguageCode + '/downloads/'
       },
+      {'linkText': 'Calculator',
+       'ref': '/mro/numerals/'
+      },
     ]
 
     resource_list = [
@@ -281,6 +284,7 @@ app = webapp2.WSGIApplication(
         ('/phk/diacritic/', base.DiacriticHandler),
         ('/phk/render/', base.EncodingRules),
         ('/phk/dictionaryN/', base.DictionaryN),
+        ('/' + langInstance.LanguageCode + '/numerals/', base.NumeralsHandler),
     ],
     debug=True,
     config={'langInfo': langInstance}

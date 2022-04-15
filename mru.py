@@ -57,9 +57,9 @@ links = [
   # {'linkText': 'Ethnolog',
   #  'ref': 'https://www.ethnologue.com/language/XYZ'
   # },
-  # {'linkText': 'Combiners',
-  #  'ref': '/lep/diacritic/'
-  #  },
+  {'linkText': 'Calculator',
+   'ref': '/mro/numerals/'
+  },
 ]
 
 
@@ -108,7 +108,7 @@ class langInfo:
         self.default_base_consonant = u'\0x61'
 
         self.encodedRanges = [
-            (0x20, 0xff),
+            (0x20, 0x7a),
         ]
 
         # For additional resources for download
@@ -125,6 +125,7 @@ app = webapp2.WSGIApplication([
   ('/' + LanguageCode + '/downloads/', base.Downloads),
   ('/' + LanguageCode + '/encodingRules/', base.EncodingRules),
   ('/' + LanguageCode + '/diacritic/', base.DiacriticHandler),
+  ('/' + langInstance.LanguageCode + '/numerals/', base.NumeralsHandler),
 ], debug=True,
   config={'langInfo': langInstance}
 )

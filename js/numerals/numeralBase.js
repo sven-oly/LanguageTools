@@ -6,6 +6,13 @@ class NumeralBase {
 	// special outputs
 	this.decimalOutputFn = null;
 	this.logOutputFn = null;
+	this.isBase10 = true;
+
+	// Options for output formatting
+	this.doFloat = false;  //
+	this.doGrouping = false;
+	this.groupSeparator = ',';
+	this.radixSeparator = '.';
     }
 
     setDisplayDecimal(newFn) {
@@ -267,6 +274,73 @@ class NumeralBase {
             intVal = Math.floor(intVal / 10);
         }
         return result.join('');
+    }
+
+    replaceAsciiDigits(asciiIn, valueToCharMap) {
+	// For each ASCII digit, replace with the Adlam
+	let chars = [];
+	for (let i = 0; i < asciiIn.length; i ++) {
+	    let charCode = asciiIn.charCodeAt(i) - 0x30;
+	    if (charCode >= 0 && charCode <= 9) {
+		chars.push(valueToCharMap.get(charCode));
+	    } else {
+		chars.push(asciiIn.charAt(i));
+	    }
+	}
+	const result = chars.join('');
+	return result;
+    }
+
+    formatFloat(floatVal, afterDecimal, valueToCharMap) {
+	// Need to figure out how many decimal places
+	// TODO: replace ASCII with Adlam characters
+	
+	// TESTING. Find fraction.
+
+	const fractParts = this.findFractionParts(floatVal);
+	
+	let places = this.numberFractionPlaces(floatVal);
+	places = Math.min(places, 7);
+	const asciiVal = Number(floatVal).toFixed(places);  // Try 3 places
+	return this.replaceAsciiDigits(asciiVal, valueToCharMap);
+    }
+
+    numberFractionPlaces(x) {
+	// Return number of  digits right of decimal
+	
+	let y = Math.floor(Math.abs(x));
+	let fract = x - y;
+	let numPlaces = 0;
+	while (fract !== 0.0) {
+	    fract *= 10.0;
+	    fract = fract - Math.floor(fract);
+	    numPlaces += 1;
+	}
+	return numPlaces;
+    }
+
+    findFractionParts(x) {
+	// Get fraction part
+	// Abs?
+	let wholePart = Math.floor(Math.abs(x));
+	let fract = x - wholePart;
+
+	let maxShift = 20;
+	let shift = 1
+	let power = 10;
+	while (shift < maxShift) {
+	    let diff = fract * power - fract;
+	    if (diff === Math.floor(diff)) {
+		// We have an integer as the difference.
+		// Compute the fraction, indicating exact.
+		return [wholePart, diff, power, true];
+	    }
+	    power *= 10;
+	    shift += 1;
+	}
+	// Did not find the result in max digits
+	// Compute the closest fraction, indicating inexact.
+	return [wholePart, diff, power, false];
     }
 }
 

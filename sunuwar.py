@@ -191,6 +191,9 @@ links = [
     {'linkText': 'Sunuwar Wikipedia',
      'ref': 'https://en.wikipedia.org/wiki/Sunwar_language'
     },
+    {'linkText': 'Preeti to Unicode converter',
+     'ref': 'https://preeti.arthasarokar.com/'
+    },
     {'linkText': 'Resources & Downloads',
      'ref': '/suz/downloads/'
     },
@@ -268,6 +271,12 @@ class langInfo():
 
     resource_list = [
       {
+        'name': 'KeyMan Unicode 1.0 for Kõits-Bleshe Sunuwar',
+        'source': '/resources/suz/sunuwar.kmp',
+        'description': 'Unicode Keyboard for Desktop - 3-Apr-2022',
+        'instructions': '',
+      },
+      {
         'name': 'KeyMan for Kõits-Bleshe Sunuwar',
         'source': '/resources/suz/sunuwar_kirat2.kmp',
         'description': 'Keyboard for Desktop - Private Use area and ASCII-based',
@@ -277,7 +286,7 @@ class langInfo():
     self.text_file_list = resource_list
 
     self.links = links
-    self.text_file_list = []
+
     self.public_unicode_fonts = unicode_font_list
 
     self.outputFont = "Private Use Area (PUA)"
@@ -339,6 +348,8 @@ app = webapp2.WSGIApplication(
      ('/' + langInstance.LanguageCode + '/wordsearch/', base.WordSearchHandler),
      ('/' + langInstance.LanguageCode + '/numerals/', base.NumeralsHandler),
      ('/' + langInstance.LanguageCode + '/keyman/', base.KeyManHandler),
+
+     ('/' + langInstance.LanguageCode + '/calendar/', base.CalendarHandler),
 
      ], debug=True,
     config= {'langInfo': langInstance,

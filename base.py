@@ -776,6 +776,11 @@ class WordSearchHandler(webapp2.RequestHandler):
       charNames = None
 
     try:
+        direction = langInfo.direction
+    except:
+        direction = 'ltr'
+
+    try:
       combiningChars = langInfo.unicodeCombiningChars
     except:
       combiningChars = None
@@ -801,6 +806,7 @@ class WordSearchHandler(webapp2.RequestHandler):
         'unicode_font_list': langInfo.unicode_font_list,
         'testData': testData,
         'testGridSize': testGridSize,
+        'direction': direction,
     }
     path = os.path.join(os.path.dirname(__file__), 'HTML/wordsearch.html')
     self.response.out.write(template.render(path, template_values))
@@ -851,6 +857,24 @@ class NumeralsHandler(webapp2.RequestHandler):
     }
     path = os.path.join(os.path.dirname(__file__), 'HTML/numerals.html')
     self.response.out.write(template.render(path, template_values))
+
+
+class CalendarHandler(webapp2.RequestHandler):
+
+ def get(self):
+    langInfo = self.app.config.get('langInfo')
+
+    template_values = {
+        'language': langInfo.Language,
+        'LanguageTag': langInfo.LanguageCode,
+        'kb_list': langInfo.kb_list,
+        'unicode_font_list': langInfo.unicode_font_list,
+    }
+    
+    path = os.path.join(os.path.dirname(__file__), 'HTML/calendar.html')
+    self.response.out.write(template.render(path, template_values))
+
+    
 
 # Error catching
 def handle_301(request, response, exception):

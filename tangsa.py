@@ -185,6 +185,9 @@ class langInfo():
         {'linkText': 'Resources',
          'ref': '/' + self.LanguageCode + '/downloads/'
         },
+        {'linkText': 'Calculator',
+         'ref': '/mro/numerals/'
+        },
     ]
 
     # Resource files
@@ -344,6 +347,7 @@ app = webapp2.WSGIApplication(
         ('/' + langInstance.LanguageCode + '/kbtransforms/', base.KeyboardTransforms),
         ('/' + langInstance.LanguageCode + '/collation/', CollationHandler),
         ('/' + langInstance.LanguageCode + '/readfile/', ReadFileHandler),
+        ('/' + langInstance.LanguageCode + '/numerals/', base.NumeralsHandler),
     ],
     debug=True,
     config={'langInfo': langInstance}

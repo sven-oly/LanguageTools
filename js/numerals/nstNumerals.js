@@ -1,17 +1,18 @@
-// Sunuwar numerals computations.
+// Chakma numerals computations.
 
-// Handling Sunuwar numerals - base 10
+// Handling Chakma numerals - base 10
 class Numerals {
-    constructor(numeralBase) {
+    constructor(numberalBase) {
 	// Used for basic functions
 	this.numeralBase = numeralBase;
+	this.doFloat = true;  // TESTING
 
         //  Map numeral values to corresponding code points
         this.valueToChar = new Map(
-            [[0, '\ud806\udff0'], [1, '\ud806\udff1'], [2, '\ud806\udff2'],
-             [3, '\ud806\udff3'], [4, '\ud806\udff4'], [5, '\ud806\udff5'],
-             [6, '\ud806\udff6'], [7, '\ud806\udff7'], [8, '\ud806\udff8'],
-             [9, '\ud806\udff9']
+            [[0, '\ud81a\udec0'], [1, '\ud81a\udec1'], [2, '\ud81a\udec2'],
+             [3, '\ud81a\udec3'], [4, '\ud81a\udec4'], [5, '\ud81a\udec5'],
+             [6, '\ud81a\udec6'], [7, '\ud81a\udec7'], [8, '\ud81a\udec8'],
+             [9, '\ud81a\udec9']
             ]
         );
 
@@ -31,10 +32,10 @@ class Numerals {
     keyLayoutArray() {
         const layoutRowChars = [
             // Stand ins
-            ['\ud806\udff7', '\ud806\udff8', '\ud806\udff9'],
-            ['\ud806\udff4', '\ud806\udff5', '\ud806\udff6'],
-            ['\ud806\udff1', '\ud806\udff2', '\ud806\udff3'],
-            ['\ud806\udff0']
+            ['\ud81a\udec0', '\ud81a\udec1', '\ud81a\udec2'],
+            ['\ud81a\udec3', '\ud81a\udec4', '\ud81a\udec5'],
+            ['\ud81a\udec7', '\ud81a\udec8', '\ud81a\udec8'],
+            ['\ud81a\udec9']
         ];      
         return layoutRowChars;
     }
@@ -88,6 +89,11 @@ class Numerals {
     // Base 10 using numeralBase class
     formatInt(intVal) {
 	return this.numeralBase.formatIntBase10(intVal, this.valueToChar);
+    }
+
+    formatFloat(floatVal) {
+	// Need to figure out how many decimal places
+	return this.numeralBase.formatFloat(floatVal, 3, this.valueToChar);
     }
 }
 

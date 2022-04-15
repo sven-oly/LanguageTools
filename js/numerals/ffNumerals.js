@@ -6,6 +6,8 @@ class Numerals {
 	// Used for basic functions
 	this.numeralBase = numeralBase;
 
+	this.doFloat = true;  // TESTING
+
         //  Map numeral values to corresponding code points
         this.valueToChar = new Map(
             [[0, '\ud83a\udd50'], [1, '\ud83a\udd51'], [2, '\ud83a\udd52'],
@@ -89,5 +91,9 @@ class Numerals {
     formatInt(intVal) {
 	return this.numeralBase.formatIntBase10(intVal, this.valueToChar);
     }
-}
 
+    formatFloat(floatVal) {
+	// Need to figure out how many decimal places
+	return this.numeralBase.formatFloat(floatVal, 3, this.valueToChar);
+    }
+}
