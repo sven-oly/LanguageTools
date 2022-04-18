@@ -66,6 +66,14 @@ encoding_font_list = [
     'Source location': 'https://omniglot.com/writing/jenticha.htm',
   },
   {
+    'source': '/fonts/Sunuwar/PREETI.TTF',
+    'longName': 'Preeti',
+    'family': 'Pretti',
+    'font_path': '/fonts/Sunuwar/PREETI.TTF',
+    'font_name': 'Preeti',
+    'display_name': 'Preeti',
+  },
+  {
     'source': '/fonts/Sunuwar/Kirat1.Kõits.Blese.ttf',
     'longName': 'Kirat1',
     'family': 'Kirat1',
@@ -97,15 +105,6 @@ encoding_font_list = [
 
 unicode_font_list = [
   {
-    'source': '/fonts/Sunuwar/Mukdum-Regular-Unicode.ttf',
-    'longName': 'Mukdum Unicode TTF',
-    'family': 'MukdumUnicodeTOTF',
-    'font_path': '/fonts/Sunuwar/Mukdum-Regular-Unicode.ttf',
-    'font_name': 'MukdumUnicodeTTF',
-    'display_name': 'Mukdum Unicode TTF',
-    'info': 'Derived from Mukdum ASCII, cwc 6-Feb-2022'
-  },
-  {
     'source': '/fonts/Sunuwar/Mukdum-Final-Unicode.ttf',
     'longName': 'Mukdum Final Unicode TTF',
     'family': 'MukdumFinalUnicodeTTF',
@@ -115,12 +114,12 @@ unicode_font_list = [
     'info': 'Derived from Mukdum ASCIIFinal, cwc 1-Apr-2022'
   },
   {
-    'source': '/fonts/Sunuwar/Mukdum-Regular-Unicode.otf',
-    'longName': 'Mukdum Unicode OTF',
-    'family': 'MukdumUnicodeOTF',
-    'font_path': '/fonts/Sunuwar/Mukdum-Regular-Unicode.otf',
-    'font_name': 'MukdumUnicodeOTF',
-    'display_name': 'Mukdum Unicode OTF',
+    'source': '/fonts/Sunuwar/Mukdum-Regular-Unicode.ttf',
+    'longName': 'Mukdum Unicode TTF',
+    'family': 'MukdumUnicodeTOTF',
+    'font_path': '/fonts/Sunuwar/Mukdum-Regular-Unicode.ttf',
+    'font_name': 'MukdumUnicodeTTF',
+    'display_name': 'Mukdum Unicode TTF',
     'info': 'Derived from Mukdum ASCII, cwc 6-Feb-2022'
   },
   {
@@ -243,7 +242,7 @@ class langInfo():
         'longName': 'Kõits-Bleshe-Sunuwar Unicode',
         'jsName': 'suz_unicode',
         'font': '/fonts/Sunuwar/Mukdum-Regular-Unicode.ttf',
-        'instructions': None,
+        'instructions': 'Tone marks at upper left, lower right. Use shift for ~ and stress mark.',
       },
       {
         'shortName': 'suz_jenticha_PUA',
@@ -329,6 +328,45 @@ class langInfo():
        'helptext': 'Instructions'
        },
     ]
+
+# TODO: get codes to letter names
+# Letters
+# \ud806\uddC0 11BC0 DEVI
+# 11BC1 𑯁 SUNUWAR LETTER TASLA
+# 11BC2 𑯂 SUNUWAR LETTER EKO
+# 11BC3 𑯃 SUNUWAR LETTER IMAR
+# 11BC4 𑯄 SUNUWAR LETTER REU
+# 11BC5 𑯅 SUNUWAR LETTER UTTHI
+# 11BC6 𑯆 SUNUWAR LETTER KIK
+# 11BC7 𑯇 SUNUWAR LETTER MA
+# 11BC8 𑯈 SUNUWAR LETTER APPHO
+# 11BC9 𑯉 SUNUWAR LETTER PIP
+# 11BCA 𑯊 SUNUWAR LETTER GIL
+# 11BCB 𑯋 SUNUWAR LETTER HAMSO
+# 11BCC 𑯌 SUNUWAR LETTER CARMI
+# 11BCD 𑯍 SUNUWAR LETTER NAH
+# 11BCE 𑯎 SUNUWAR LETTER BUR
+# 11BCF 𑯏 SUNUWAR LETTER JYAH
+# 11BD0 𑯐 SUNUWAR LETTER LOACHA
+# 11BD1 𑯑 SUNUWAR LETTER OTTHI
+# 11BD2 𑯒 SUNUWAR LETTER SHYELE
+# 11BD3 𑯓 SUNUWAR LETTER VARCA
+# 11BD4 𑯔 SUNUWAR LETTER YAT
+# 11BD5 𑯕 SUNUWAR LETTER AVA
+# 11BD6 𑯖 SUNUWAR LETTER AAL
+# 11BD7 𑯗 SUNUWAR LETTER DONGA
+# 11BD8 𑯘 SUNUWAR LETTER THARI
+# 11BD9 𑯙 SUNUWAR LETTER PHAR
+# 11BDA 𑯚 SUNUWAR LETTER NGAR
+# 11BDB 𑯛 SUNUWAR LETTER KHA
+# 11BDC 𑯜 SUNUWAR LETTER SHYER
+# 11BDD 𑯝 SUNUWAR LETTER CHELAP
+# 11BDE 𑯞 SUNUWAR LETTER TENTU
+# 11BDF 𑯟 SUNUWAR LETTER THELE
+# 11BE0 𑯠 SUNUWAR LETTER KLOKO
+# Auspicious sign
+# 11BE1 𑯡 SUNUWAR SIGN PVO
+
 # Global in this file.
 langInstance = langInfo()
 

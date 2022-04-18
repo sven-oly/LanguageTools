@@ -544,10 +544,11 @@ NameList: AGL For New Fonts
 DisplaySize: -96
 AntiAlias: 1
 FitToEm: 0
-WinInfo: 0 8 6
+WinInfo: 16 8 6
 BeginPrivate: 0
 EndPrivate
-BeginChars: 70 70
+AnchorClass2: "Tilde""" 
+BeginChars: 77 70
 
 StartChar: .notdef
 Encoding: 0 -1 0
@@ -720,6 +721,7 @@ MDRP[rp0,grey]
 IUP[y]
 IUP[x]
 EndTTInstrs
+AnchorPoint: "Tilde" 176 546 basechar 0
 LayerCount: 2
 Fore
 SplineSet
@@ -1153,6 +1155,7 @@ MDRP[rp0,grey]
 IUP[y]
 IUP[x]
 EndTTInstrs
+AnchorPoint: "Tilde" 201 570 basechar 0
 LayerCount: 2
 Fore
 SplineSet
@@ -1526,6 +1529,7 @@ MDRP[rp0,grey]
 IUP[y]
 IUP[x]
 EndTTInstrs
+AnchorPoint: "Tilde" 124 574 basechar 0
 LayerCount: 2
 Fore
 SplineSet
@@ -2225,6 +2229,7 @@ CALL
 IUP[y]
 IUP[x]
 EndTTInstrs
+AnchorPoint: "Tilde" 223 548 basechar 0
 LayerCount: 2
 Fore
 SplineSet
@@ -2368,8 +2373,8 @@ EndSplineSet
 Validated: 1
 EndChar
 
-StartChar: s
-Encoding: 20 72668 20
+StartChar: shyele
+Encoding: 20 72658 20
 Width: 545
 GlyphClass: 2
 Flags: W
@@ -2592,6 +2597,7 @@ IP
 IUP[y]
 IUP[x]
 EndTTInstrs
+AnchorPoint: "Tilde" 186 589 basechar 0
 LayerCount: 2
 Fore
 SplineSet
@@ -2932,7 +2938,7 @@ Validated: 33
 EndChar
 
 StartChar: z
-Encoding: 25 122 25
+Encoding: 25 771 25
 Width: 11
 GlyphClass: 2
 Flags: W
@@ -3000,6 +3006,7 @@ DELTAP1
 IUP[y]
 IUP[x]
 EndTTInstrs
+AnchorPoint: "Tilde" -264 466 mark 0
 LayerCount: 2
 Fore
 SplineSet
@@ -3109,6 +3116,8 @@ CALL
 IUP[y]
 IUP[x]
 EndTTInstrs
+AnchorPoint: "Tilde" 208 550 entry 0
+AnchorPoint: "Tilde" 0 0 basechar 0
 LayerCount: 2
 Fore
 SplineSet
@@ -3985,8 +3994,8 @@ EndSplineSet
 Validated: 1
 EndChar
 
-StartChar: S
-Encoding: 35 72658 35
+StartChar: shyer
+Encoding: 35 72668 35
 Width: 451
 GlyphClass: 2
 Flags: W
@@ -4119,8 +4128,8 @@ EndSplineSet
 Validated: 33
 EndChar
 
-StartChar: Z
-Encoding: 36 90 36
+StartChar: StressMark
+Encoding: 36 781 36
 Width: 0
 GlyphClass: 2
 Flags: W
@@ -4260,8 +4269,8 @@ EndSplineSet
 Validated: 1
 EndChar
 
-StartChar: X
-Encoding: 39 88 39
+StartChar: HighToLowTone
+Encoding: 39 768 39
 Width: 0
 GlyphClass: 2
 Flags: W
@@ -4296,8 +4305,8 @@ EndSplineSet
 Validated: 1
 EndChar
 
-StartChar: x
-Encoding: 40 120 40
+StartChar: LowToHighTone
+Encoding: 40 769 40
 Width: 0
 GlyphClass: 2
 Flags: W

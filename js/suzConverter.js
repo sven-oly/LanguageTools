@@ -31,8 +31,12 @@ langConverter.getTransforms = function() {
     return [
 	{input: 'Mukdum ASCII', output:'Unicode Sunuwar',
 	 'compute': this.mukdum2Unicode},
-	{input: 'Bengali', output:'Unicode Sunuwar',
+	{input: 'Devanagari Unicode', output:'Unicode Sunuwar',
 	 'compute': this.bengali2SuZUnicode},
+	{input: 'Preeti', output:'Mukdum Sunuwar',
+	 'compute': this.preeti2Mukdum},
+	{input: 'Preeti', output:'Sunuwar Unicode',
+	 'compute': this.preeti2Unicode},
     ];
 }
 
@@ -53,6 +57,26 @@ langConverter.bengali2SuZUnicode = function(intext) {
 	suzUnicodeOut.push(out);
     }
     return suzUnicodeOut.join('');
+}
+
+langConverter.preeti2Mukdum = function(intext) {
+    const parsedText = intext.match(preetiChars);
+    let mukdumOut = [];
+    for (let index = 0; index < parsedText.length; index ++) {
+	let c = parsedText[index];
+	let out = c;
+	if (c in preetiToMukdum) {
+	    out = preetiToMukdum[c];  // only the character
+	}
+	mukdumOut.push(out);
+    }
+    return mukdumOut.join('');
+}
+
+langConverter.preeti2Unicode = function(intext) {
+    const mukdum = langConverter.preeti2Mukdum(intext);
+    const unicode = langConverter.mukdum2Unicode(mukdum);
+    return unicode;
 }
 
 
@@ -107,6 +131,51 @@ const bengali2SuzUnicodeMapping = {
     'ः': [':', 'colon'],
     'ँ': ['\u0303', 'Combining tilde'],
 };
+
+
+const preetiChars =
+      /cf\]|c\|cf|c|O|p|P|KjÞ|AjÞ|s\|v\|u\|r\|5\|h\|6\|7\|8\|t|y|b|g|k|m|a\|d\|o\|r\|n\|j\|z\|s;|x|./;
+
+const preetiRegEx = new RegExp(preetiChars, "gi");
+
+const preetiToMukdum = {
+    'c': 'a',
+    'cf': 'A',
+    'O': 'i',
+    'p': 'u',
+    'P': 'e',
+    'cf]': 'o',
+    'KjÞ': 'P',
+    'AjÞ': 'B',
+    'c\\':'v',
+    's\\':'k',
+    'v\\':'K',
+    'u\\':'g',
+    'a\\':'N',
+    'r\\':'c',
+    '5\\':'C',
+    'h\\':'j',
+    '6\\':'q',
+    '7\\':'Q',
+    '8\\':'D',
+    't':'t',
+    'y':'T',
+    'b':'d',
+    'g':'n',
+    'k':'p',
+    'm':'f',
+    'a\\':'b',
+    'd\\':'m',
+    'o\\':'y',
+    'r\\':'r',
+    'n\\':'l',
+    'j\\':'w',
+    'z\\':'S',
+    's;':'s',
+    'x': 'h'
+};
+
+
 
 langConverter.encoding_data = {
     'Mukdum': {index:0, outputEncoding:'PUA', outputScript:'Sunuwar'},
@@ -163,9 +232,9 @@ const private_use_map_combined = {
     '\u0055': ['\uec55', '\u0055', ],
     '\u0056': ['\uec56', '\u0056', ],
     '\u0057': ['\uec57', '\ued57', '\ud806\udfd3'],
-    '\u0058': ['\uec58', '\ued58', '\u0300'],
+    '\u0058': ['\uec58', '\ued58', '\u0300'],  // High to low tone
     '\u0059': ['\uec59', '\ued59', ],
-    '\u005a': ['\uec5a', '\ued5a', '\u0301'],
+    '\u005a': ['\uec5a', '\ued5a', '\u030d'],
     '\u005e': ['\uec5a', '\ued5e', ],
 
     '\u0060': ['\u0060', '\ued60', ],
@@ -194,7 +263,7 @@ const private_use_map_combined = {
     '\u0075': ['\uec75', '\ued75', '\ud806\udfc5'],
     '\u0076': ['\uec76', '\ued76', '\ud806\udfe0'],
     '\u0077': ['\uec77', '\ued77', '\ud806\udfd3'],
-    '\u0078': ['\uec78', '\ued78', '\u030B'],       // Combining double quote
+    '\u0078': ['\uec78', '\ued78', '\u0301'],       // Low to high tone
     '\u0079': ['\uec79', '\ued79', '\ud806\udfd4'],
     '\u007a': ['\uec7a', '\ued7a', '\u0303'],       // Combining tilde
     '\u007b': ['\u007b', '\ued7b', ],
