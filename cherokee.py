@@ -134,7 +134,29 @@ class langInfo:
        'helptext': 'Instructions',
        },
     ]
-
+    self.weekDays = [
+      "ᏍᎬ",
+      "ᏅᎯ",
+      "ᏔᎵ",
+      "ᏦᎢ",
+      "ᏅᎩ",
+      "ᏧᎾ",
+      "ᏕᎾ",
+    ]
+    self.months = [
+      "ᎤᏃᎸᏔᏅ",
+      "ᎧᎦᎵ",
+      "ᎠᏅᏱ",
+      "ᎧᏬᏂ",
+      "ᎠᏂᏍᎬᏘ",
+      "ᏕᎭᎷᏱ",
+      "ᎫᏰᏉᏂ",
+      "ᎦᎶᏂ",
+      "ᏚᎵᏍᏗ",
+      "ᏚᏂᏅᏗ",
+      "ᏅᏓᏕᏆ",
+      "ᎥᏍᎩᏱ",
+    ]
 
 # Shows keyboard for Cherokee
 class CherokeeIndigenousHomeHandler(webapp2.RequestHandler):
@@ -319,6 +341,7 @@ app = webapp2.WSGIApplication(
      ('/chr/AllFonts/', AllFontTest ),
      ('/' + langInstance.LanguageCode + '/dictionaryN/', base.DictionaryN),
 
+     ('/' + langInstance.LanguageCode + '/calendar/', base.CalendarHandler),
      ],
     debug=True,
     config={'langInfo': langInstance}

@@ -864,11 +864,24 @@ class CalendarHandler(webapp2.RequestHandler):
  def get(self):
     langInfo = self.app.config.get('langInfo')
 
+    try:
+        weekDays = langInfo.weekDays
+    except:
+        weekDays = None
+
+    try:
+        months = langInfo.months
+    except:
+        months = None
+
     template_values = {
         'language': langInfo.Language,
-        'LanguageTag': langInfo.LanguageCode,
+        'languageTag': langInfo.LanguageCode,
+        'langNumerals': langInfo.LanguageCode + "Numerals",
         'kb_list': langInfo.kb_list,
-        'unicode_font_list': langInfo.unicode_font_list,
+        'months': months,
+        'weekdays': weekDays,
+        'unicodeFontList': langInfo.unicode_font_list,
     }
     
     path = os.path.join(os.path.dirname(__file__), 'HTML/calendar.html')

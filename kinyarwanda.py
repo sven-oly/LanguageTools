@@ -302,6 +302,7 @@ app = webapp2.WSGIApplication([
   ('/' + langInstance.LanguageCode + '/numerals/', base.NumeralsHandler),
   ('/' + langInstance.LanguageCode + '/wordsearch/', base.WordSearchHandler),
 
+  ('/' + langInstance.LanguageCode + '/calendar/', base.CalendarHandler),
 ], debug=True,
   config={'langInfo': langInstance}
 )

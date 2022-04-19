@@ -247,8 +247,9 @@ app = webapp2.WSGIApplication([
     ('/' + LanguageCode + '/diacritic/', base.DiacriticHandler),
     ('/' + langInstance.LanguageCode + '/dictionaryN/', base.DictionaryN),
     ('/' + langInstance.LanguageCode + '/wordsearch/', base.WordSearchHandler),
-
+  
     ('/' + langInstance.LanguageCode + '/numerals/', base.NumeralsHandler),
+    ('/' + langInstance.LanguageCode + '/calendar/', base.CalendarHandler),
   ],
   debug=True,
   config={'langInfo': langInstance}

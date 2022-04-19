@@ -225,7 +225,30 @@ class langInfo():
     ]
     self.numbersImage = 'ccp/ccpBgd.png'
     
-
+    self.weekDays = [
+      "𑄢𑄧𑄝𑄨",
+      "𑄥𑄧𑄟𑄴",
+      "𑄟𑄧𑄁𑄉𑄧𑄣𑄴",
+      "𑄝𑄪𑄖𑄴",
+      "𑄝𑄳𑄢𑄨𑄥𑄪𑄛𑄴",
+      "𑄥𑄪𑄇𑄴𑄇𑄮𑄢𑄴",
+      "𑄥𑄧𑄚𑄨",
+    ]
+    self.months = [
+      " 𑄌𑄮𑄖𑄴",
+      "𑄝𑄮𑄎𑄬𑄇𑄴",
+      "𑄎𑄳𑄠𑄬𑄖𑄴",
+      "𑄃𑄏𑄢𑄴",
+      "𑄥𑄉𑄮𑄚𑄴",
+      "𑄞𑄘𑄧",
+      "𑄎𑄪𑄚𑄴",
+      "𑄎𑄪𑄣𑄭",
+      "𑄃𑄉𑄧𑄌𑄴𑄑𑄴",
+      "𑄥𑄬𑄛𑄴𑄑𑄬𑄟𑄴𑄝𑄧𑄢𑄴",
+      "𑄃𑄧𑄇𑄴𑄑𑄬𑄝𑄧𑄢𑄴",
+      "𑄚𑄧𑄞𑄬𑄟𑄴𑄝𑄧𑄢𑄴",
+      "𑄓𑄨𑄥𑄬𑄟𑄴𑄝𑄧𑄢𑄴"
+      ]
 
 # Presents UI for conversions from font encoding to Unicode.
 class ChakmaConvertUIHandler(webapp2.RequestHandler):
@@ -239,41 +262,41 @@ class ChakmaConvertUIHandler(webapp2.RequestHandler):
       text = self.request.get('text', oldChars)
       font = self.request.get('font')
       testStringList = [
-          {'name': 'Test 1', # Note: must escape the single quote.
-           'string': u'CVMmH picMCinM\\u0027 blobo vlikM velonM Fag 1409 b`l slitM'},
-          {'name': 'Test 2',
-           'string': 'Fag hIoayZ$` trar FitalayZ valde'},
-          {'name': 'Test 3',
-           'string': 'cVMmH alGy bodolnyM : gZnisnMti vnMat \\\\ kqR'},
-          {'name': 'Test ordering',
-           'string': 'Ti\`Z goI toIbc cniZ\` \u005c VyuI'},
-          {'name': '7-June-2017',
-           'string': 'jureH acI lG KcMc`ZVo pde'},
-          {'name': 'long test',
-           'string':
-"""suneanI diZboan tirtVire koI FudelkM : nebo veal nebo, jamI nebo$ as ajar tr deboan apkM rGad vlikM brM trrM asI apkM Dbne  gEtMo agal-Fo asI ni adKZ mnucMo FilirM$ trM kini ri-si anI$\
+        {'name': 'Test 1', # Note: must escape the single quote.
+         'string': u'CVMmH picMCinM\\u0027 blobo vlikM velonM Fag 1409 b`l slitM'},
+        {'name': 'Test 2',
+         'string': 'Fag hIoayZ$` trar FitalayZ valde'},
+        {'name': 'Test 3',
+         'string': 'cVMmH alGy bodolnyM : gZnisnMti vnMat \\\\ kqR'},
+        {'name': 'Test ordering',
+         'string': 'Ti\`Z goI toIbc cniZ\` \u005c VyuI'},
+        {'name': '7-June-2017',
+         'string': 'jureH acI lG KcMc`ZVo pde'},
+        {'name': 'long test',
+         'string':
+         """suneanI diZboan tirtVire koI FudelkM : nebo veal nebo, jamI nebo$ as ajar tr deboan apkM rGad vlikM brM trrM asI apkM Dbne  gEtMo agal-Fo asI ni adKZ mnucMo FilirM$ trM kini ri-si anI$\
 bucZ t JeborM ribo sunelo$ at tirtVire kili"""
-          },
-          {'name': 'Sujoyan test a-d',
-           'string': u'¡ ¢ £ ¥ § © ª ¬ ® ° ± ´ µ ¶ · º ¿ À Ã Ä Å Ç É Ñ Õ Ö Ø Ü ß'},
-          {'name': 'Sujoyan test e-f',
-           'string': u'\u00e0 á â ã ä å æ ç è é ê ë ì í î ï ð ñ ò ó ô õ ö ÷ ø ù ú û ü ý þ ÿ'},
-          {'name': 'Sujoyan test other',
-           'string': u'\u0152 \u0153 \u0178 \u0192 \u2013 \u2014 \u2018 \u2019 \u201a \u201c \u201d' +
-            u'\u201e \u2020 \u2021 \u2022 \u2030 \u2039 \u203a \u2044 \u20ac \u2122 \u2126 \u2202 \u220f' +
-            u'\u2044 \u221a \u221e \u222b \u2248 \u2260 \u2264 \u2265'},
-          {'name': 'Alaam test1',
-           'string':
-           u'g„y Ag Nvivi; †eMv PwMIb; †f…eI| gvZ;Zzb; Agvbvi;'
-           + u'fPmwNwei; AvgvKv`v ac; ‡Ajv| ‡mbvZ;‡Z¨ g„y gv g@'
-           + u'Agvbvi; fP; Mv‡g `‡j„ mwNw j©qIO;| gy„ PO;gk †jN'
-           + u'A¸yi; Mviw Aviv Av‡i„ g‡`„ civO; A@ †jNw'
-           + u'civO;| mvg‡i g„y Aë‡iRx A@ esj K‰© civO;| g„y PO;gk'
-           + u'AmwKw A@ PO;gk AwpybwKIZ; d«vb;U; e‡bqIO;| mvg‡i g„y'
-           + u'PO;gk KweIZ;AI e‡bqIO;| g„y bv ms gv g@ fP; Av‡jnv‡b'
-           + u'‡AK;`wb; Awqb;'
-           + u'nSwRIK;|'
-          },
+        },
+        {'name': 'Sujoyan test a-d',
+         'string': u'¡ ¢ £ ¥ § © ª ¬ ® ° ± ´ µ ¶ · º ¿ À Ã Ä Å Ç É Ñ Õ Ö Ø Ü ß'},
+        {'name': 'Sujoyan test e-f',
+         'string': u'\u00e0 á â ã ä å æ ç è é ê ë ì í î ï ð ñ ò ó ô õ ö ÷ ø ù ú û ü ý þ ÿ'},
+        {'name': 'Sujoyan test other',
+         'string': u'\u0152 \u0153 \u0178 \u0192 \u2013 \u2014 \u2018 \u2019 \u201a \u201c \u201d' +
+         u'\u201e \u2020 \u2021 \u2022 \u2030 \u2039 \u203a \u2044 \u20ac \u2122 \u2126 \u2202 \u220f' +
+         u'\u2044 \u221a \u221e \u222b \u2248 \u2260 \u2264 \u2265'},
+        {'name': 'Alaam test1',
+         'string':
+         u'g„y Ag Nvivi; †eMv PwMIb; †f…eI| gvZ;Zzb; Agvbvi;'
+         + u'fPmwNwei; AvgvKv`v ac; ‡Ajv| ‡mbvZ;‡Z¨ g„y gv g@'
+         + u'Agvbvi; fP; Mv‡g `‡j„ mwNw j©qIO;| gy„ PO;gk †jN'
+         + u'A¸yi; Mviw Aviv Av‡i„ g‡`„ civO; A@ †jNw'
+         + u'civO;| mvg‡i g„y Aë‡iRx A@ esj K‰© civO;| g„y PO;gk'
+         + u'AmwKw A@ PO;gk AwpybwKIZ; d«vb;U; e‡bqIO;| mvg‡i g„y'
+         + u'PO;gk KweIZ;AI e‡bqIO;| g„y bv ms gv g@ fP; Av‡jnv‡b'
+         + u'‡AK;`wb; Awqb;'
+         + u'nSwRIK;|'
+        },
       ]
 
       oldInput = 'CVMmH picMCinM\' blobo vlikM velonM Fag 1409 b`l slitM'
@@ -286,24 +309,24 @@ bucZ t JeborM ribo sunelo$ at tirtVire kili"""
       unicodeCombiningChars = chakmaCombiningCombos(u'\ud804\udd07')
 
       template_values = {
-          'font': font,
-          'language': 'Chakma',
-          'langTag': 'ccp',
-          'encodingList': encoding_font_list,
-          'encoding': {
-              'font_path':'/fonts/ArjCN__.TTF',
-              'font_name':'ChakmaASCII',
-          },
-          'kb_list': kb_list,
-          'unicodeFonts': unicode_font_list,
-          'links': links,
-          'oldChars': oldChars,
-          'oldInput': oldInput,
-          'text': text,
-          'textStrings': testStringList,
-          'showTools': self.request.get('tools', None),
-          'unicodeChars': unicodeChars,
-          'combiningChars': unicodeCombiningChars,
+        'font': font,
+        'language': 'Chakma',
+        'langTag': 'ccp',
+        'encodingList': encoding_font_list,
+        'encoding': {
+          'font_path':'/fonts/ArjCN__.TTF',
+          'font_name':'ChakmaASCII',
+        },
+        'kb_list': kb_list,
+        'unicodeFonts': unicode_font_list,
+        'links': links,
+        'oldChars': oldChars,
+        'oldInput': oldInput,
+        'text': text,
+        'textStrings': testStringList,
+        'showTools': self.request.get('tools', None),
+        'unicodeChars': unicodeChars,
+        'combiningChars': unicodeCombiningChars,
       }
       path = os.path.join(os.path.dirname(__file__), 'HTML/translit_general.html')
       self.response.out.write(template.render(path, template_values))
@@ -323,18 +346,19 @@ class TestURLHandler(webapp2.RequestHandler):
 langInstance = langInfo()
 
 app = webapp2.WSGIApplication(
-    [('/demo_ccp/', base.LanguagesHomeHandler),
-     ('/ccp/', base.LanguagesHomeHandler),
-     ('/ccp/convertUI/', ChakmaConvertUIHandler),
-     ('/ccp/downloads/', base.Downloads),
-     ('/ccp/encodingRules/', base.EncodingRules),
-     ('/ccp/diacritic/', base.DiacriticHandler),
-     ('/' + langInstance.LanguageCode + '/dictionaryInput/', base.DictionaryInput),
-     ('/' + langInstance.LanguageCode + '/dictionaryN/', base.DictionaryN),
-     ('/' + langInstance.LanguageCode + '/wordsearch/', base.WordSearchHandler),
-     ('/' + langInstance.LanguageCode + '/numerals/', base.NumeralsHandler),
+  [('/demo_ccp/', base.LanguagesHomeHandler),
+   ('/ccp/', base.LanguagesHomeHandler),
+   ('/ccp/convertUI/', ChakmaConvertUIHandler),
+   ('/ccp/downloads/', base.Downloads),
+   ('/ccp/encodingRules/', base.EncodingRules),
+   ('/ccp/diacritic/', base.DiacriticHandler),
+   ('/' + langInstance.LanguageCode + '/dictionaryInput/', base.DictionaryInput),
+   ('/' + langInstance.LanguageCode + '/dictionaryN/', base.DictionaryN),
+   ('/' + langInstance.LanguageCode + '/wordsearch/', base.WordSearchHandler),
+   ('/' + langInstance.LanguageCode + '/numerals/', base.NumeralsHandler),
+   ('/' + langInstance.LanguageCode + '/calendar/', base.CalendarHandler),
 
      webapp2.Route('/' + langInstance.LanguageCode + '/testURL/', handler=TestURLHandler, name="testURL"),
-     ], debug=True,
-    config={'langInfo': langInstance}
+  ], debug=True,
+  config={'langInfo': langInstance}
 )

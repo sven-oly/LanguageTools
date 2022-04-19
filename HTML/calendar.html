@@ -2,21 +2,58 @@
   <!-- https://codepen.io/andyydna/details/VwYRVQE -->
   <head>
   <link rel="stylesheet" type="text/css" href="/css/fonts.css">
+  <link rel="stylesheet" type="text/css" href="/css/calendar.css">
   
+  <style>
+      {% for font in unicodeFontList %}
+      @font-face{
+          font-family:"{{font.family}}";
+          src:url('{{font.source}}'){% if '.ttf' in font.source %}format('truetype'){%endif%}{% if '.TTF' in font.source %}format('truetype'){%endif%}{% if '.otf' in font.source %}format('opentype'){%endif%}{%if '.woff' in font.source %}format('woff'){%endif%};
+          font-weight:normal;
+          font-style:normal;
+          font-size: 64px;
+      }
+      {% endfor %}
+  </style>    
+
+  <!-- get the numeral functions -->
+  <script type="text/javascript" src="/js/numerals/numeralBase.js"></script>
+
+  <!-- This loads the numerals info -->
+  <script type="text/javascript" src="/js/numerals/{{langNumerals}}.js"></script>
+  
+  <script>
+    // Holds all the info about the numeral system
+    const numeralBase = new NumeralBase();
+    const numeralInfo = new Numerals(numeralBase);
+
+    const defaultFont = "{{unicodeFontList.0.family}}";
+    const weekdays = [
+	{% for day in weekdays %}
+	"{{day}}",
+	{% endfor %}
+    ];
+    const monthNames = [
+	{% for month in months %}
+	"{{month}}",
+	{% endfor %}
+    ];
+  </script>
+
   </head>
 
   <body>
     <div class="wrapper">
       
       <div class="container-calendar">
-        <h3 id="monthAndYear"></h3>
+        <h3 id="monthAndYear"><span id="yearHeader"></span></h3>
         
         <div class="button-container-calendar">
           <button id="previous" onclick="previous()">&#8249;</button>
           <button id="next" onclick="next()">&#8250;</button>
         </div>
         
-        <table class="table-calendar" id="calendar" data-lang="en">
+        <table class="table-calendar" id="calendar" data-lang="{{languageTag}}">
           <thead id="thead-month"></thead>
           <tbody id="calendar-body"></tbody>
         </table>
@@ -38,7 +75,10 @@
             <option value=11>Dec</option>
           </select>
           <select id="year" onchange="jump()"></select>       
-          <select id="calendarType" onchange="jump()"></select>       
+	  <div>
+	    <!-- Turn on when other calendar types are supported -->
+          <select id="calendarType" onchange="jump()" style="display:none;"></select>       
+	  </div>
         </div>
 
       </div>

@@ -1,6 +1,6 @@
 jhtml {
     font-family: sans-serif;
-    font-size: 15px;
+    font-size: px;
     line-height: 1.4;
     color: #444;
 }
@@ -45,6 +45,7 @@ body {
     border: 1px solid #e2e2e2;
     text-align: center;
     vertical-align: top;
+    width:10%;
 }
 
 .date-picker.selected {
