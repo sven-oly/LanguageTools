@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 #!/usr/bin/env python
 #
 # Copyright 2007 Google Inc.
@@ -226,6 +227,30 @@ class langInfo():
        'helptext': 'Instructions'
        },
     ]
+    self.weekDays = [
+        "𞤈𞤫𞤬",
+        "𞤀𞥄𞤩𞤵",
+        "𞤃𞤢𞤦",
+        "𞤔𞤫𞤧",
+        "𞤐𞤢𞥄𞤧",
+        "𞤃𞤢𞤣",
+        "𞤖𞤮𞤪",
+      ]
+
+    self.months = [
+      "𞤅𞤭𞥅𞤤𞤮",
+      "𞤕𞤮𞤤𞤼𞤮",
+      "𞤐𞤦𞤮𞥅𞤴𞤮",
+      "𞤅𞤫𞥅𞤼𞤮",
+      "𞤁𞤵𞥅𞤶𞤮",
+      "𞤑𞤮𞤪𞤧𞤮",
+      "𞤃𞤮𞤪𞤧𞤮",
+      "𞤔𞤵𞤳𞤮",
+      "𞤅𞤭𞤤𞤼𞤮",
+      "𞤒𞤢𞤪𞤳𞤮",
+      "𞤔𞤮𞤤𞤮",
+      "𞤄𞤮𞤱𞤼𞤮",
+    ]    
 
 class adlamCharData():
   def __init__(self, v):
@@ -275,6 +300,7 @@ class adlamCharData():
       self.isLetter = False
       self.mixedCase = self.unicodeChar
 
+      
 # Unicode characters
 ranges = range(0x1e900, 0x1e94b)
 ranges.extend(range(0x1e950, 0x1e95a))
@@ -476,6 +502,7 @@ app = webapp2.WSGIApplication([
     ('/ff/dictionaryN/', base.DictionaryN),
     ('/' + langInstance.LanguageCode + '/wordsearch/', base.WordSearchHandler),
     ('/' + langInstance.LanguageCode + '/numerals/', base.NumeralsHandler),
+    ('/' + langInstance.LanguageCode + '/calendar/', base.CalendarHandler),
 
     ('/tryPDF/', tryPDFHandler),
 
