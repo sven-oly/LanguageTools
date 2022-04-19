@@ -348,6 +348,7 @@ app = webapp2.WSGIApplication(
         ('/' + langInstance.LanguageCode + '/collation/', CollationHandler),
         ('/' + langInstance.LanguageCode + '/readfile/', ReadFileHandler),
         ('/' + langInstance.LanguageCode + '/numerals/', base.NumeralsHandler),
+        ('/' + langInstance.LanguageCode + '/calendar/', base.CalendarHandler),
     ],
     debug=True,
     config={'langInfo': langInstance}
