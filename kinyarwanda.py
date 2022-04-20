@@ -40,6 +40,9 @@ links = [
   {'linkText': 'Unwero calculator',
    'ref': '/' + LanguageCode + '/numerals/'
    },
+  {'linkText': 'Calendar',
+   'ref': '/' + LanguageCode + '/calendar/'
+   },
   {'linkText': 'Unwero Word search',
    'ref': '/' + LanguageCode + '/wordsearch/'
   },

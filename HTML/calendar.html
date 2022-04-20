@@ -27,18 +27,25 @@
   <script>
     // Holds all the info about the numeral system
     const numeralBase = new NumeralBase();
-    const numeralInfo = new Numerals(numeralBase);
+    let numeralInfo;
+    try {
+        numeralInfo = new Numerals(numeralBase);
+    } catch (e) {
+	// If there is no Numerals constructor, assume ASCII digits.
+        numeralInfo = numeralBase;
+        numeralInfo.numeralBase = numeralBase;
+    }    
 
     const defaultFont = "{{unicodeFontList.0.family}}";
     const weekdays = [
-	{% for day in weekdays %}
-	"{{day}}",
-	{% endfor %}
+        {% for day in weekdays %}
+        "{{day}}",
+        {% endfor %}
     ];
     const monthNames = [
-	{% for month in months %}
-	"{{month}}",
-	{% endfor %}
+        {% for month in months %}
+        "{{month}}",
+        {% endfor %}
     ];
   </script>
 
@@ -77,10 +84,10 @@
             <option value=11>Dec</option>
           </select>
           <select id="year" onchange="jump()"></select>       
-	  <div>
-	    <!-- Turn on when other calendar types are supported -->
+          <div>
+            <!-- Turn on when other calendar types are supported -->
           <select id="calendarType" onchange="jump()" style="display:none;"></select>       
-	  </div>
+          </div>
         </div>
 
       </div>

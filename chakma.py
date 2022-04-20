@@ -118,6 +118,9 @@ links = [
   {'linkText': 'Chakma calculator',
    'ref': '/' + LanguageCode + '/numerals/'
   },
+  {'linkText': 'Calendar',
+   'ref': '/' + LanguageCode + '/calendar/'
+  },
 ]
 
 # Create a string with combinations of the combining characters,

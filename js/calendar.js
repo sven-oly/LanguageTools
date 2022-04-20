@@ -16,7 +16,7 @@ function generate_calendar_types(start, end) {
     let calendars = "";
     for (let cal = 0; cal <= calendarOptions.length; cal++) {
         calendars += "<option value='" + calendarOptions[cal] + "'>" +
-	    calendarOptions[cal]+ "</option>";
+            calendarOptions[cal]+ "</option>";
     }
     return calendars;
 }
@@ -24,7 +24,7 @@ function generate_calendar_types(start, end) {
 function generate_year_range(start, end) {
     let years = "";
     for (let year = start; year <= end; year++) {
-	let yearText = numeralInfo.formatInt(year);
+        let yearText = numeralInfo.formatInt(year);
         years += "<option value='" + year + "'>" + year + "</option>";
     }
     return years;
@@ -66,14 +66,14 @@ if (lang == "en") {
     days = ["dimanche", "lundi", "mardi", "mercredi", "jeudi", "vendredi", "samedi"];
 } else {
     if (monthNames.length == 12) {
-	months = monthNames;
+        months = monthNames;
     } else {
-	months = monthDefault;
+        months = monthDefault;
     }
     if (weekdays.length == 7) {
-	days = weekdays;
+        days = weekdays;
     } else {
-	days = dayDefault;
+        days = dayDefault;
     }
 }
 
@@ -146,24 +146,24 @@ function showCalendar(month, year) {
                 cell = document.createElement( "td" );
                 cellText = document.createTextNode("");
                 cell.appendChild(cellText);
-		cell.style.fontFamily = defaultFont;	
+                cell.style.fontFamily = defaultFont;    
                 row.appendChild(cell);
 
             } else if (date > daysInMonth(month, year)) {
                 break;
             } else {
-		// Formatted for the language
-		const dateString = numeralInfo.formatInt(date);
+                // Formatted for the language
+                const dateString = numeralInfo.formatInt(date);
                 cell = document.createElement("td");
-		// Compute the string for the current date.
+                // Compute the string for the current date.
                 cell.setAttribute("data-date", date);
                 cell.setAttribute("data-month", month + 1);
                 cell.setAttribute("data-year", year);
                 cell.setAttribute("data-month_name", months[month]);
                 cell.className = "date-picker";
 
-		// Set the font for the cell.
-		cell.style.fontFamily = defaultFont;	
+                // Set the font for the cell.
+                cell.style.fontFamily = defaultFont;    
                 cell.innerHTML = "<span>" + dateString + "</span>";
 
                 if ( date === today.getDate() && year === today.getFullYear() && month === today.getMonth() ) {

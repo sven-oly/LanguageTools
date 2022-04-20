@@ -37,7 +37,7 @@ from google.appengine.ext.webapp import template
 fontList = ['Noto Sans Adlam 2019', 'Noto Sans Adlam 2019 Bold', 'Noto Sans Adlam 2017',  'Adlam CWC', 'Aissata Unicode', 'Noto Sans Adlam Unjoined', 'Pulaar Unicode']
 oldFontsList = ['Aissata Arabic', 'Fuuta Arabic', 'Pulaar Arabic']
 
-LanguageCode = 'adlam'
+LanguageCode = 'ff'
 
 unicode_font_list = [
   {'family': 'NotoSansAdlamApril',
@@ -144,6 +144,10 @@ links = [
     'ref': '/ff/numerals/',
     'linkText': 'Adlam calculator'
   },
+  {'linkText': 'Calendar',
+   'ref': '/ff/calendar/'
+  },
+  
 ]
 
 Language = "Fulfulde"

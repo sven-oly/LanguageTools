@@ -93,6 +93,7 @@ LanguageList = [
   ('Kalabari', 'ijn'),
   ('Mru', 'mro'),
   ('Sylheti', 'syl'),
+  ('Fulfulde', 'ff'),
 ]
 
 

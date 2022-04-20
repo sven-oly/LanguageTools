@@ -123,6 +123,9 @@ links = [
     {'linkText': 'Sylheti calculator',
      'ref': '/' + LanguageCode + '/numerals/'
     },
+    {'linkText': 'Calendar',
+     'ref': '/' + LanguageCode + '/calendar/'
+    },
     {'linkText': 'Sylheti phrases',
      'ref': 'https://omniglot.com/language/phrases/sylheti.htm#phrases'
      },

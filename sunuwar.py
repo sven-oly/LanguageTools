@@ -193,6 +193,12 @@ links = [
     {'linkText': 'Preeti to Unicode converter',
      'ref': 'https://preeti.arthasarokar.com/'
     },
+    {'linkText': 'Calculator',
+     'ref': '/suz/numerals/'
+    },
+    {'linkText': 'Calendar',
+     'ref': '/suz/calendar/'
+    },
     {'linkText': 'Resources & Downloads',
      'ref': '/suz/downloads/'
     },

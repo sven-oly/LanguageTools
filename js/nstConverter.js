@@ -2,7 +2,7 @@
 const langConverter = new langConverterClass('nst', 'Tangsa Lakhum');
 
 // Mappings for Tangsa Lakhum
-var map_encoding_names = [
+const map_encoding_names = [
   'Gam Win Unicode',  // Gam Win and PUA to Unicode
   'Gam Win PUA',      // Gam Win to PUA
 ];
@@ -435,7 +435,7 @@ langConverter.one2oneMap =  private_use_map_combined = {
 langConverter.one2oneMap = langConverter.dictionaryToMap(private_use_map_combined);
 
 
-var gamwin_latin_chars =
+const gamwin_latin_chars =
     "mnvungz|mznvungz|mnaungz|mznaungz|mrvkueq|vungz|vungc|vungx|vuk|aungz|aungc|aungx|auk|auz|auc|aux|"+
     "vuq|auq|ovrz|ovrc|ovrx|uiyq|vyq|oq|aq|vq|eq|iq|uq|awq|uiq|ueq|uiuq|ovyz|ovyc|ovyx|oayz|oayc|oayx|" +
     "ayz|ayc|ayx|vyz|vyc|vyx|uyz|uyc|uyx|uiyz|uiyc|uiyx|ueyz|ueyc|ueyx|ongz|ongc|ongx|angz|angc|angx|vngz|vngc|" +
@@ -451,11 +451,12 @@ var gamwin_latin_chars =
     "oc|ot|ox|az|ac|ax|vz|vc|vx|ez|ec|ex|iz|ic|ix|uz|uc|ux|awz|awc|awx|uiz|uic|uix|uez|uec|uex|uiuz|uiuc|uiux|htt|th|" +
     "ht|ch|kh|ng|ny|ph|nh|sh|ts|gh|mz|mc|mq|mx|f|k|g|s|y|w|p|b|m|n|h|l|t|d|r|j|v|x|z|,|\.|\u000a|.";
 
+const regex1 = new RegExp(gamwin_latin_chars, "gi");
+
 function preParseLatin(instring) {
-  //  var regex1 = new RegExp(tangsa_latin_chars, "gi");
-  var regex1 = new RegExp(gamwin_latin_chars, "gi");
-  var outList = instring.match(regex1);
-  return outList;
+    //  var regex1 = new RegExp(tangsa_latin_chars, "gi");
+    const outList = instring.match(regex1);
+    return outList;
 }
 
 // For special GamWin case of vowel v. In context of consonant-v-consonant-vowel,
@@ -479,10 +480,10 @@ function handleCvCV(intext, encoding_index) {
 }
 
 function convertEncodingToUnicode(inbox, outbox, encodingIndex) {
-  var inarea = document.getElementById(inbox);
-  var outarea = document.getElementById(outbox);
+  const inarea = document.getElementById(inbox);
+  const outarea = document.getElementById(outbox);
 
-  var out_text = nst_convertText(inarea.value, encodingIndex);
+  const out_text = nst_convertText(inarea.value, encodingIndex);
   if (outarea) {
     outarea.innerHTML = outarea.value = out_text;
   }
@@ -490,18 +491,18 @@ function convertEncodingToUnicode(inbox, outbox, encodingIndex) {
 
   // First, replace all single characters with their PUA or Unicode equivalents.
 function nst_convertText(intext, encodingIndex) {
-  var outtext_list = [];
-  var out;
+  let outtext_list = [];
+  let out;
 
   // Handle special case of "v" vowel in pattern consonant-v-consonant-vowel.
-  var low_text = intext.toLowerCase();
-  var handled_v_text = handleCvCV(low_text, encodingIndex);
+  const low_text = intext.toLowerCase();
+  const handled_v_text = handleCvCV(low_text, encodingIndex);
   // Break into the blocks tht can be individually transformed.
-  var parsedText = preParseLatin(handled_v_text);
-  var result = "";
-  for (var index = 0; index < parsedText.length; index ++) {
-    var c = parsedText[index];
-    out = c;
+  const parsedText = preParseLatin(handled_v_text);
+  let result = "";
+  for (let index = 0; index < parsedText.length; index ++) {
+    const c = parsedText[index];
+    let out = c;
     if (c in private_use_map_combined) {
       if (private_use_map_combined[c] instanceof Array) {
         result = private_use_map_combined[c][encodingIndex];
@@ -526,7 +527,7 @@ function nst_convertText(intext, encodingIndex) {
 
 
 // Create a object describing conversions in this file converter.
-var nstConverter_obj = {
+const nstConverter_obj = {
   conversions: {
     'GW_to_PUA' : {
         'from': 'GamWin', 'to': "Lakhum PUA",

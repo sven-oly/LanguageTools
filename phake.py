@@ -198,7 +198,10 @@ class langInfo:
         'ref': '/' + self.LanguageCode + '/downloads/'
       },
       {'linkText': 'Calculator',
-       'ref': '/mro/numerals/'
+       'ref': '/phk/numerals/'
+      },
+      {'linkText': 'Calendar',
+       'ref': '/' + self.LanguageCode + '/calendar/'
       },
     ]
 
@@ -285,6 +288,7 @@ app = webapp2.WSGIApplication(
         ('/phk/render/', base.EncodingRules),
         ('/phk/dictionaryN/', base.DictionaryN),
         ('/' + langInstance.LanguageCode + '/numerals/', base.NumeralsHandler),
+        ('/' + langInstance.LanguageCode + '/calendar/', base.CalendarHandler),
     ],
     debug=True,
     config={'langInfo': langInstance}

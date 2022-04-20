@@ -80,6 +80,9 @@ links = [
     {'linkText': "How to count in Cherokee",
      'ref': 'https://www.languagesandnumbers.com/how-to-count-in-cherokee/en/chr/#numbers-in-full'
     },
+    {'linkText': 'Calendar',
+     'ref': '/chr/calendar/'
+    },
 ]
 
 

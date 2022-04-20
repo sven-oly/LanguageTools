@@ -186,7 +186,10 @@ class langInfo():
          'ref': '/' + self.LanguageCode + '/downloads/'
         },
         {'linkText': 'Calculator',
-         'ref': '/mro/numerals/'
+         'ref': '/nst/numerals/'
+        },
+        {'linkText': 'Calendar',
+         'ref': '/' + self.LanguageCode + '/calendar/'
         },
     ]
 
