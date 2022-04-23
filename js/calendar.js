@@ -85,8 +85,9 @@ for (dhead in days) {
 $dataHead += "</tr>";
 
 //alert($dataHead);
-document.getElementById("thead-month").innerHTML = $dataHead;
-
+const theadMonth =  document.getElementById("thead-month");
+theadMonth.innerHTML = $dataHead;
+theadMonth.style.fontFamily = defaultFont;
 
 monthAndYear = document.getElementById("monthAndYear");
 yearHeader = document.getElementById("yearHeader");

@@ -290,6 +290,30 @@ ZZ	Dza	ZZ
         # For numeral values
         self.numbersImage = 'rw/umwero/Umwero_img.png'
 
+        self.weekDays = [
+          'K:W"A|R|',
+          'K:W"K"B}R}',
+          'K:W"G"T"T:',
+          'K:W"K"N|',
+          'K:W"G"T"N:',
+          'K:W"G"T"ND"T:',
+          'K:KK:ME|R:'
+        ]
+        self.months = [
+          'M:T"R"M"',
+          'G"Q"NN"R|',
+          'W|R:RGW|',
+          'M"T"',
+          'G}C:R"S}',
+          'K"M|N"',
+          'YY"K"NG"',
+          'K"N"M"',
+          'NZ|R}',
+          ':KW"K}R"',
+          ':G:Q}NG{',
+          ':K:B{Z"'
+        ]
+
 
 langInstance = langInfo()
 
