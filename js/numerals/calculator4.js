@@ -104,33 +104,25 @@ class calculator4 {
         case 'O': return 'cos';
         case 'T': return 'tan';
         case 'L': return 'ln';
-        case '1': return '\uf601';
-        case '2': return '\uf602';
-        case '3': return '\uf603';
-        case '4': return '\uf604';
-        case '5': return '\uf605';
-        case '6': return '\uf606';
-        case '7': return '\uf607';
-        case '8': return '\uf608';
-        case '9': return '\uf609';
-        case '0': return '\uf600';
         }
     }
     
     // Handle keys on keyboard
-    on_key_pressed(ev) {
+    onKeyPressed(ev) {
         var ch = String.fromCharCode(ev.charCode).toUpperCase();
-        if ("0.+-*×÷/=C".indexOf(ch) >= 0) {
+        if ("0123456789.+-*×÷/=C".indexOf(ch) >= 0) {
             this.onInput(ch);
             return;
         }
-        var translation = this.key_translation(ch);
+	/* TODO: Translate key
+        let translation = this.key_translation(ch);
         if (translation !== undefined) {
             this.onInput(translation);
         }
         if (ch == "!") {
             test0();
         }
+	*/
     }
 
     // Connect with number system.

@@ -27,6 +27,7 @@ class Numerals {
         // special outputs
         this.decimalOutputFn = null;
         this.logOutputFn = null;
+        this.digitKeyInput = true;  // Allow keyboard digits 0-9?
     }
 
     // Returns list of lists, each describing one row of the layout.

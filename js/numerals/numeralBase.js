@@ -7,6 +7,7 @@ class NumeralBase {
         this.decimalOutputFn = null;
         this.logOutputFn = null;
         this.isBase10 = true;
+        this.digitKeyInput = true;  // Allow keyboard digits 0-9?
 
         // Options for output formatting
         this.doFloat = false;  //

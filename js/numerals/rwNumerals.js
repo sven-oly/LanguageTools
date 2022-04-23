@@ -54,6 +54,8 @@ class Numerals {
         this.decimalOutputFn = null;
         this.logOutputFn = null;
 
+        this.digitKeyInput = true;  // Allow keyboard digits 0-9?
+
 	// For operator symbols used for the controls.
 	// If defined, this can be used to create custom characters
 	// in the system font for the calculator.
@@ -63,6 +65,18 @@ class Numerals {
 		['clr', 'clr']
 	    ]
 	);
+
+	// for each defined element in calculator table,
+	// define a character and font replacement.
+	// 
+	this.replaceOperatorsMap = new Map([
+	    ['multiply', ['*', 'UMWERO_PUAnumbers']],
+	    ['add', ['+', 'UMWERO_PUAnumbers']],
+	    ['divide', ['/', 'UMWERO_PUAnumbers']],
+	    ['subtract', ['-', 'UMWERO_PUAnumbers']],
+	    ['negate', ['-', 'UMWERO_PUAnumbers']],
+	    ['equals', ['=', 'UMWERO_PUAnumbers', 'RESULTS IN']],
+	]);
     }
 
     // Returns list of lists, each describing one row of the layout.

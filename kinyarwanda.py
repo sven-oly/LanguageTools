@@ -91,17 +91,17 @@ class langInfo:
             'longName': 'UMWERO PUA Numbers 7 Mar  2022',
             'source': '/fonts/Kinyarwanda/UMWEROPUAnumbers.otf',
           },
-          {  # This is a font encoding for testing.
-            'family': 'UMWEROalphaPUA3',
-            'longName': 'UMWERO PUA 2 Mar 2022',
-            'source': '/fonts/Kinyarwanda/UMWEROalphaPUA3.otf',
-          },
+          # {  # This is a font encoding for testing.
+          #   'family': 'UMWEROalphaPUA3',
+          #   'longName': 'UMWERO PUA 2 Mar 2022',
+          #   'source': '/fonts/Kinyarwanda/UMWEROalphaPUA3.otf',
+          # },
 
-          {  # This is a font encoding for testing.
-            'family': 'UMWERO',
-            'longName': 'UMWERO February 2022',
-            'source': '/fonts/Kinyarwanda/NZELA567.otf',
-          },
+          # {  # This is a font encoding for testing.
+          #   'family': 'UMWERO',
+          #   'longName': 'UMWERO February 2022',
+          #   'source': '/fonts/Kinyarwanda/NZELA567.otf',
+          # },
           {  # This is a font encoding for testing.
             'family': 'Kernedumwero',
             'longName': 'Kernedumwero',

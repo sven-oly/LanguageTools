@@ -118,6 +118,24 @@
           area.scrollTop = area.scrollHeight;
       }
       
+      function handleKeyPressed(ev) {
+	  const c = ev.key;
+	  let ch = c;  // maybe need more mapping
+	  
+          if ("0123456789.+-*×÷/=C".indexOf(ch) >= 0) {
+	      // Transform as needed.
+	      if (c == 'C') {
+		  ch = 'clear';
+	      }
+	      if (numeralInfo.digitKeyInput &&
+		  ('0' <  c && c <= '9')) {
+		      const num = c.charCodeAt(0) - 0x30;
+		      ch = numeralInfo.valueToChar.get(num);
+		  }
+              calcButtonFn(ch);
+          }
+      }
+      
       function onload() {
 
           // Connect CHR numeral data to calculator.
@@ -127,6 +145,12 @@
           calculator.setNumeralObject(numeralInfo);
           
           setCalculatorKeyTable('buttonTable', numeralInfo, calculator);
+
+	  // Set up key input for digits, operators, etc.
+
+	  document.addEventListener('keydown',
+				    handleKeyPressed);
+//				    calculator.onKeyPressed);
 
           // Ready to use the calculator.
           numeralInfo.setDisplayDecimal(showDecimal);
@@ -157,7 +181,8 @@
       }
 
       function setCalculatorKeyTable(tableId, numeralInfo, calculator) {
-          // The table
+          // The table for holding the buttons for numerals, operators, etc.
+	  // 
           const table = document.getElementById(tableId);
           const rows = table.rows;
           const numRows = rows.length;  // May need to add more
@@ -165,13 +190,14 @@
           const keyMap = numeralInfo.keyLayoutArray();
           const charToValueMap = numeralInfo.getCharToValueMap();
           
+	  // Used for computing digits with separators like US English
           const onInputFn = calculator.onInput;
           let fmt = new Intl.NumberFormat('en');
 
           // For rows 0-5, keep the operation at the first part of the row
           // * - + / =, and clear.
           // Add on the characters in each row
-          // TODO: Set up title for each one to show the numeric value.
+          // ASCII title is set for each one to show the numeric value.
           for (let row = 0; row < keyMap.length; row ++) {
               const keyRow = keyMap[row];
               if (row >= numRows) {
@@ -183,7 +209,8 @@
               let tableCol = rowPtr.cells.length;
               for (let col = 0; col < keyRow.length; col ++) {
                   let cell = rowPtr.insertCell(tableCol);
-                  // TODO: Create button, not just
+		  // Adds button to the new cell with the character, value, etc.
+
                   const chr = keyMap[row][col];
                   const btn = document.createElement("button");
                   btn.innerHTML = chr;
@@ -194,11 +221,29 @@
                   cell.appendChild(btn);
                   cell.title = fmt.format(value);
                   btn.className = 'NumeralsClass';
-                  // TODO: Set TD title
 
                   tableCol ++;
               }
           }
+
+	  // Replace selected operators with new values and font.
+	  if (numeralInfo.replaceOperatorsMap !== undefined) {
+	      const replaceIterator = numeralInfo.replaceOperatorsMap.entries();
+	      let item;
+	      while (item = replaceIterator.next().value) {
+		  const replacements = item[1];
+		  const cell = document.getElementById(item[0]);
+		  if (cell) {
+		      // Change the cell's value and font.
+		      cell.value = replacements[0];
+		      cell.style.fontFamily = replacements[1];
+		      // If there's a third item, replace the title / tool tip.
+		      if (replacements.length > 2) {
+			  cell.title = replacements[2];
+		      }
+		  }
+	      }
+	  }
       }
 
       function calcButtonFn(event) {
@@ -241,27 +286,30 @@
         <table id="buttonTable" class="NumeralsClass">
           <tr>
             <td>
-              <input type='button' value='×'  class='OperatorsClass' onclick='calcButtonFn("×");'/>
+              <input id='multiply' title='multiply' type='button' value='×'  class='OperatorsClass' onclick='calcButtonFn("×");'/>
             </td>
           </tr>
           <tr>
             <td>
-              <input type='button' value='-'  class='OperatorsClass' onclick='calcButtonFn("-");'/></td>
+              <input id='subtract' title='subtract' type='button' value='-'  class='OperatorsClass' onclick='calcButtonFn("-");'/></td>
           </tr>
           <tr>
-            <td><input type='button' value='+' class='OperatorsClass' onclick='calcButtonFn("+");'/></td>
+            <td><input id='add' title='add' type='button' value='+' class='OperatorsClass' onclick='calcButtonFn("+");'/></td>
           </tr>
           <tr>
-            <td><input type='button' value='÷' class='OperatorsClass'/ onclick='calcButtonFn("÷");'></td>
+            <td><input id='divide' title='divide' type='button' value='÷' class='OperatorsClass'/ onclick='calcButtonFn("÷");'></td>
           </tr>
           <tr>
-            <td><input type='button' value='=' class='OperatorsClass' onclick='calcButtonFn("=");'/></td>
+            <td><input id='equals' title='equals' type='button' value='=' class='OperatorsClass' onclick='calcButtonFn("=");'/></td>
             <!-- TO BE IMPLEMENTED 
-                 <td><input type="button" value="delete"> </td>
+                 <td><input id='delete' title='deleve' type="button" value="delete" onclick='calcButtonFn("del");'> </td>
+                 -->
+            <!-- TO BE IMPLEMENTED 
+                 <td><input id='decimal' title='decimal' type="button" value="." onclick='calcButtonFn(".");'> </td>
                  -->
 	  </tr>
 	  <tr>
-            <td><input type="button" value="clr" class='OperatorsClass' onclick='calcButtonFn("clear");'></td>
+            <td><input id='clear' title='clear' type="button" value="clear" class='OperatorsClass' onclick='calcButtonFn("clear");'></td>
           </tr>
         </table>
       </div>

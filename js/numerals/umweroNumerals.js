@@ -31,6 +31,16 @@ class Numerals {
 	    1e7: 0xf306, 1e8: 0xf307, 1e9: 0xf308, 1e10: 0xf309,
 	};
 
+	// for each defined element in calculator table,
+	// define a character and font replacement.
+	const this.replaceOperatorsMap = {
+	    'multiply': ['*', 'UMWERO_PUAnumbers'],
+	    'add': ['+', 'UMWERO_PUAnumbers'],
+	    'divide': ['/', 'UMWERO_PUAnumbers'],
+	    'subtract': ['-', 'UMWERO_PUAnumbers'],
+	    'negate': ['-', 'UMWERO_PUAnumbers'],
+	};
+
 	this.charPoints = [];
 	this.valueToCodePoint = {};
 	this.valueToChar = new Map();
