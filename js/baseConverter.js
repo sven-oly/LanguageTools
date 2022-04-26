@@ -117,6 +117,10 @@ langConverterClass.prototype.translitInfo = function() {
           this.private_use_map_combined];
 }
 
+langConverterClass.prototype.getLangCode = function() {
+  return this.langCode;
+}
+
 langConverterClass.prototype.getTransforms = function() {
     return this.transforms;
 }

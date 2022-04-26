@@ -1,23 +1,24 @@
 // Mappings for Georgian script to Latin for Caucasian languages
 // https://translit.cc/ge/
-const langConverter = new langConverterClass('xmf', 'Latn');
 
-let langConvertClass = function() {
-  this.langCode = 'xmf';
-  this.langName = 'Mingrelian';
+const langConverter = new langConverterClass('xmf', 'Mingrelian');
 
-  // Each element includes input, output, and compute options.
-  this.transforms = [
-    {input: 'Unicode Georgian', output:'Unicode Latin',
-      'compute': this.Georgian2Latin},
-    {input: 'ASCII Georgian', output:'Unicode Georgian',
-      'compute': langConvertClass.prototype.ascii2Georgian},
-    {input: 'ASCII Georgian', output:'Unicode Latin',
-      'compute': this.ascii2Latin},
-    {input: 'Unicode Georgian', output:'1930s Unicode Latin',
-      'compute': this.Georgian2Latin1930},
-        ];
-};
+langConverter.getTransforms = function() {
+    return [
+      {input: 'Unicode Georgian', output:'Unicode Latin',
+       inFont: 'NotoSansGeorgianRegular', outFont: 'NotoSerif',
+       'compute': this.Georgian2Latin},
+      {input: 'ASCII Georgian', output:'Unicode Georgian',
+       outFont: 'NotoSansGeorgianRegular', inFont: 'akolkhn',
+       'compute': langConverterClass.prototype.ascii2Georgian},
+      {input: 'ASCII Georgian', output:'Unicode Latin',
+       outFont: 'bpg_glaho', inFont: 'akolkhn',
+       'compute': this.ascii2Latin},
+      {input: 'Unicode Georgian', output:'1930s Unicode Latin',
+       outFont: 'bpg_glaho', inFont: 'akolkhn',
+       'compute': this.Georgian2Latin1930},
+    ];
+}
 
 // Entries for several different transliteration schemes from Georgian
 // to Latin
@@ -63,23 +64,6 @@ const private_use_map_combined = {
     'აა': ['aa', 'ā', "ɑɑ", "aa"],
 };
 
-// The object returned.
-
-langConvertClass.prototype.getTransforms = function() {
-    return this.transforms;
-}
-
-langConvertClass.prototype.getLangCode = function() {
-  return this.langCode;
-}
-
-langConvertClass.prototype.translitInfo = function() {
-  return [translit_source,
-          map_translit_output,
-          map_translit_sources,
-          private_use_map_combined];
-}
-
 // https://www.oxfordhandbooks.com/view/10.1093/oxfordhb/9780190690694.001.0001/oxfordhb-9780190690694-appendix-2
 
 // https://en.wikipedia.org/wiki/Mingrelian_language#Alphabet
@@ -93,15 +77,6 @@ const map_translit_sources = [
     "// https://en.wikipedia.org/wiki/Mingrelian_language#Alphabet",
 ];
 
-langConvertClass.prototype.decodingInfo = function() {
-}
-
-langConvertClass.prototype.translitInfo = function() {
-  return [translit_source,
-          map_translit_output,
-          map_translit_sources,
-          this.private_use_map_combined];
-}
 
 langConverter.encoding_data = {
     'akolkhn': {index:0, outputEncoding:'Unicode', outputScript:'Latin'},
@@ -112,7 +87,7 @@ langConverter.encoding_data = {
 
 langConverter.one2oneMap = langConverter.dictionaryToMap(private_use_map_combined);
 
-langConvertClass.prototype.decodingInfo = function() {
+langConverterClass.prototype.decodingInfo = function() {
   return encoding_data;
 }
 
@@ -233,25 +208,25 @@ function toLower(instring) {
 
 // TODO: Finish connecting these
 
-langConvertClass.prototype.ascii2Georgian = function(text_in) {
+langConverterClass.prototype.ascii2Georgian = function(text_in) {
     const encodingIndex = 0;
     return transformText(text_in, encoding_lookup, encodingIndex);
 }
 
-langConvertClass.prototype.ascii2Latin = function(text_in) {
+langConverterClass.prototype.ascii2Latin = function(text_in) {
     const encodingIndex = 0;
     const georgianOut = transformText(text_in, encoding_lookup, encodingIndex);
     return transformText(georgianOut, private_use_map_combined, encodingIndex);
 }
 
-langConvertClass.prototype.Georgian2Latin = function(text_in) {
+langConverterClass.prototype.Georgian2Latin = function(text_in) {
     const encodingIndex = 0;
     return transformText(text_in, private_use_map_combined, encodingIndex);
 }
 
 // Implementation of 1930s style transliteration from Georgian into
 // Latin script. Includes sentence capitalization.
-langConvertClass.prototype.Georgian2Latin1930 = function(text_in, option, langCode) {
+langConverterClass.prototype.Georgian2Latin1930 = function(text_in, option, langCode) {
     // TODO: Implement this version.
     const encodingIndex = 3;
     const lowerText = transformText(text_in, private_use_map_combined, encodingIndex);
@@ -260,19 +235,19 @@ langConvertClass.prototype.Georgian2Latin1930 = function(text_in, option, langCo
 
 langConverter.transforms = [
     {input: 'ASCII Georgian', output:'Unicode Georgian',
-     compute: langConvertClass.prototype.ascii2Georgian},
+     compute: langConverterClass.prototype.ascii2Georgian},
     {input: 'ASCII Georgian', output:'Unicode Latin',
-      compute: langConvertClass.prototype.ascii2Latin},
+      compute: langConverterClass.prototype.ascii2Latin},
     {input: 'Unicode Georgian', output:'Unicode Latin',
-      compute: langConvertClass.prototype.Georgian2Latin},
+      compute: langConverterClass.prototype.Georgian2Latin},
     {input: 'Unicode Georgian', output:'Unicode Latin 1930s',
-      compute: langConvertClass.prototype.Georgian2Latin1930},
+      compute: langConverterClass.prototype.Georgian2Latin1930},
 ];
 
-langConvertClass.prototype.transliterate = function() {
+langConverterClass.prototype.transliterate = function() {
 }
 
-langConvertClass.prototype.toUnicode = function() {
+langConverterClass.prototype.toUnicode = function() {
 }
 
 function transliterate(inbox, outbox, tranlitIndex) {

@@ -219,11 +219,14 @@ langConvertClass.prototype.Georgian2Latin = function(text_in) {
 
 langConverter.transforms = [
     {input: 'ASCII Georgian', output:'Laz Georgian',
+     inFont: 'akolkhn', outFont: 'NotoSansGeorgianRegular',
      compute: langConvertClass.prototype.ascii2Georgian},
-    {input: 'ASCII Georgian', output:'Laz Latin',
-      compute: langConvertClass.prototype.ascii2Latin},
-    {input: 'Unicode Georgian', output:'Laz Latin',
-      compute: langConvertClass.prototype.Georgian2Latin},
+    {input: 'ASCII Georgian', output: 'Laz Latin',
+     inFont: 'akolkhn', outFont: 'NotoSerif',
+     compute: langConvertClass.prototype.ascii2Latin},
+    {input: 'Unicode Georgian', output: 'Laz Latin',
+     inFont: 'NotoSansGeorgianRegular', outFont: 'NotoSerif',
+     compute: langConvertClass.prototype.Georgian2Latin},
   ];
 
 langConvertClass.prototype.transliterate = function() {
