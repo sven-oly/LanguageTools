@@ -215,6 +215,9 @@ handlers:
 - url: /phk/.*
   script: phake.app
 
+- url: /rad/.*
+  script: rhade.app
+
 - url: /rhg/.*
   script: rohingya.app
 
