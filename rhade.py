@@ -14,6 +14,7 @@
 # limitations under the License.
 #
 
+import logging
 import webapp2
 
 import base
@@ -30,9 +31,15 @@ LanguageCode = 'rad'
 ScriptCode = 'Latn'
 
 links = [
-  {'linkText': 'Keyboard',
-   'ref': '/' + LanguageCode + '/'
-   },
+    {'linkText': 'Keyboard',
+     'ref': '/' + LanguageCode + '/'
+    },
+    {'linkText': 'Word search',
+     'ref': '/' + LanguageCode + '/wordsearch/'
+    },
+    {'linkText': 'Calendar',
+     'ref': '/' + LanguageCode + '/calendar/'
+    },
   # {'linkText': 'Converter',
   #  'ref': '/' + LanguageCode + '/convertUI/'},
   # {'linkText': 'Font conversion summary',
@@ -47,9 +54,9 @@ links = [
   # {'linkText': 'THIS SCRIPT',
   #  'ref': 'https://en.wikipedia.org/wiki/XYZ_alphabet'
   # },
-  # {'linkText': 'Wikipedi page',
-  #  'ref': 'https://en.wikipedia.org/wiki/XYZ_language'
-  # },
+  {'linkText': 'Wikipedi page',
+   'ref': 'https://en.wikipedia.org/wiki/Rade_language'
+  },
   # {'linkText': 'Ethnolog',
   #  'ref': 'https://www.ethnologue.com/language/XYZ'
   # },
@@ -84,6 +91,11 @@ class langInfo:
           },
         ]
 
+        self.fillChars = [unichr(x) for x in range(0x61, 0x7a)]
+        self.fillChars.extend([u'ƀ', u'č', u'đ', u'ñ'])
+
+        self.unicodeCombiningChars = []
+        
         self.lang_list = [LanguageCode]  # This may be extended
 
         self.kb_list = [
@@ -111,6 +123,12 @@ class langInfo:
         self.text_file_list = []
 
         # TODO: Fill in the rest of the common data.
+        self.weekDays = [
+            'Knam Sa', 'Knam Dua', 'Knam Tlâo', 'Knam Pă', 'Knam Êma',
+            'Knam Năm', 'Knam Kjuh']
+        self.months = [
+            'Mlan Sa', 'Mlan Dua', 'Mlan Tlâo', 'Mlan Pă', 'Mlan Êma', 'Mlan Năm', 'Mlan Kjuh', 'Mlan Sapăn', 
+            'Mlan Dua Pă', 'Mlan Pluh', 'Mlan Pluh Sa', 'Mlan Pluh']
 
 
 langInstance = langInfo()
@@ -121,6 +139,7 @@ app = webapp2.WSGIApplication([
   ('/' + LanguageCode + '/downloads/', base.Downloads),
   ('/' + LanguageCode + '/encodingRules/', base.EncodingRules),
   ('/' + LanguageCode + '/diacritic/', base.DiacriticHandler),
+     ('/' + langInstance.LanguageCode + '/calendar/', base.CalendarHandler),
   ('/' + langInstance.LanguageCode + '/wordsearch/', base.WordSearchHandler),
   ('/' + langInstance.LanguageCode + '/keyman/', base.KeyManHandler),
 ], debug=True,

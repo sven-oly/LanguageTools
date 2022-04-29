@@ -726,7 +726,7 @@ class AllFontTest(webapp2.RequestHandler):
         public_unicode_fonts = langInfo.unicode_font_list
     utext = self.request.get("utext", "")
     encoded_text = self.request.get("encodedText", "")
-    logging.info('AllFontTest utext =>%s<' % utext)
+    #logging.info('AllFontTest utext =>%s<' % utext)
     template_values = {
       'scriptName': langInfo.Language,
       'fontFamilies': public_unicode_fonts,
@@ -789,12 +789,12 @@ class WordSearchHandler(webapp2.RequestHandler):
       letterFillList = langInfo.fillChars
     except:
       letterFillList = []
-
+    #logging.info('letterFillList = %s' % letterFillList)
+    
     # Make it easy to split the characters
     combiners = '||'.join(langInfo.unicodeCombiningChars)
     fillers = '||'.join(letterFillList)
     #logging.info('Diacritics: %s' % (combiners))
-    #logging.info('letter fill: %s' % fillers)
     template_values = {
         'language': langInfo.Language,
         'LanguageTag': langInfo.LanguageCode,

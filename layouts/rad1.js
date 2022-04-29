@@ -17,15 +17,15 @@ var RAD1_LAYOUT = {
   'mappings': {
     ',c': {
       '': '{{S||\u00a0\u0302\u0306||\u0302\u0306}}1234567890-=' +
-          '{{S||\u02D8||\u0306}}wertyuiop[]\\' +
-          'asd{{\u0111}}{{\u00f1}}hjkl;\'' +
-          '{{S||\u00a0\u031b||\u031b}}{{\u010d}}c{{\u0180}}bnm,./'
+          '{{S||\u02D8||\u0306}}wertyuiop[]/' +
+          'asd{{\u0111}}ghjkl;\'' +
+          '{{S||\u00a0\u031b||\u031b}}{{\u010d}}c{{\u0180}}bn{{\u00f1}}m,.'
     },
     's,sc': {
       '': '{{S||\u00a0\u0311||\u0311}}!@#$%^&*()_+' +
-          '{{S||^||\u0302}}WERTYUIOP{}|' +
-          'ASD{{\u0110}}{{\u00d1}}HJKL:"' +
-          '{{S||\u00a0\u0306\u031b||\u0306\u031b}}CB{{\u0243}}NM<>?'
+          '{{S||^||\u0302}}WERTYUIOP{}?' +
+          'ASD{{\u0110}}GHJKL:"' +
+          '{{S||\u00a0\u0306\u031b||\u0306\u031b}}{{\u010c}}CB{{\u0243}}NM{{\u00d1}}<>'
     },
     'l,cl': {
       '': '`1234567890-=' +
@@ -42,7 +42,9 @@ var RAD1_LAYOUT = {
   },
   'transform': {
     'u\u0306': '\u016d',  // u with breve
-    'U\u0306': '\u016c',  // u with breve
+    'U\u0306': '\u016c',  // U with breve
+      '//': '\\',  // Double slash gives backslash
+      // '\?\?': '|',
   }
 };
 
