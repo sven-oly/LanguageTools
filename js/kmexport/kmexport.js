@@ -17,10 +17,19 @@ keymanOutput.prototype.createKeymanData = function(
 const en_qwerty = EN_LAYOUT['mappings'];
 let en_qwerty_map = en_qwerty[""];
 if (!en_qwerty_map) {
-// Need to generalize this.
+// Need to generalize this. Find the one with '' in it.
 en_qwerty_map = en_qwerty[',c'];
 }
 const en_qwerty_keys = en_qwerty_map[""];
+enQwertyRowSize = [13, 13, 11, 10];
+    
+let T_items = [];  // Stores identifiers that need to be added.
+let t_number = 0;
+
+function initTValues() {
+    T_items = [];  // Stores identifiers that need to be added.
+    t_number = 0;
+}
 
 function mapnames() {
     // Create a map from the keys to the Keyman names.
@@ -59,13 +68,52 @@ function map_qwerty(layer_values, layer_txt, querty_names) {
     let upper = en_qwerty_keys[index].toUpperCase();
     // Option - output some as characters (code <= 0xffff)
     if (layer_items[index]) {
-      let item = layer_items[index];
+        let item = layer_items[index];
+        if (item[0] === 'S' && item[1] == '|' && item[2] == '|') {
+            // Skip over the 2nd ||.
+            let lastPartLoc = item.indexOf('||');
+            lastPartLoc = item.indexOf('||', lastPartLoc+ 1);
+            item = item.substring(lastPartLoc+ 2);
+        }
       let hex = utf16common(item, "U+", " ", true, []);
       layer_list.push("+ [" + layer_txt + querty_names[upper] + "] > " + hex);
     } else {
       alert('Missing value for index ' + index + ' layer ' + layer_txt + " " + layer_items);
     }
   }
+  return layer_list;
+}
+
+function mapTouch(layer_values, layer_text, names, layerName) {
+    // Given a layer, compute the keys on the layer
+    // for touch output
+    let layer_list = [];
+    let layer_items = parselayerstring(layer_values);
+
+    // Separated out symbols and numerals
+    for (let index = 0; index < en_qwerty_keys.length; index++) {
+        let upper = en_qwerty_keys[index].toUpperCase();
+        // Option - output some as characters (code <= 0xffff)
+        if (layer_items[index]) {
+            let item = layer_items[index];
+            if (item[0] === 'S' && item[1] == '|' && item[2] == '|') {
+                // Skip over the 2nd ||.
+                let lastPartLoc = item.indexOf('||');
+                lastPartLoc = item.indexOf('||', lastPartLoc+ 1);
+                item = item.substring(lastPartLoc+ 2);
+            }
+            // !!! If item has more than one code point, need to create an identifier T_
+            if (item.length > 1) {
+                let t_name = 'T_' + t_number;
+                t_number += 1;  // Global
+                T_items.push({t_name, item});
+            }
+            let hex = utf16common(item, "U+", " ", true, []);
+            layer_list.push('{ "id": "' + names[upper] +  '", "text": "' + hex + '"},');
+        } else {
+            alert('Missing value for index ' + index + ' layer ' + layer_txt + " " + layer_items);
+        }
+    }
   return layer_list;
 }
 
@@ -110,59 +158,105 @@ function propContaining(props, field) {
   return null;
 }
 
-function map_en_to_x(layout, outputCtrlAlt, outputMobile, outputTransforms) {
-  // Compute the full mapping from QWERTY keys to the layout values.
-  const qwerty_names = mapnames();
+function map_en_to_x(layout, outputCtrlAlt, outputMobile, outputTransforms, options) {
+    // Compute the full mapping from QWERTY keys to the layout values.
+    const qwerty_names = mapnames();
 
-  // For each layer, map the values and add the text
-  // for empty, s, c, sc, l, ls, lc, lsc layers
-     // Check if there is any duplicate.
-  let vals = layout['mappings'];
-  let layers = []
-  let keys = Object.getOwnPropertyNames(vals);
+    // For each layer, map the values and add the text
+    // for empty, s, c, sc, l, ls, lc, lsc layers
+    // Check if there is any duplicate.
+    let vals = layout['mappings'];
+    let layers = []
+    let keys = Object.getOwnPropertyNames(vals);
 
-  let comments = getComments(layout);
-  let storeInfo = getStore(layout);
+    let comments = getComments(layout);
+    let storeInfo = getStore(layout);
 
-  // Need to generalize this to get layer with "".
-  let base = propContaining(keys, "");
+    // Need to generalize this to get layer with "".
+    let base = propContaining(keys, "");
 
-  if (outputMobile) {
-    return generateMobile(qwerty_names, vals, layers, keys);
-  } else {
-      // Append
-      Array.prototype.push.apply(layers, map_qwerty(vals[base][""], "", qwerty_names))
-      layers.push("\n");
+    if (outputMobile) {
+	initTValues();
+        let layer = 'default';
+        Array.prototype.push.apply(layers, mapTouch(vals[base][""], "", qwerty_names, layer));
+        layers.push("\n");
 
-      base = propContaining(keys, "s");
-      Array.prototype.push.apply(layers, map_qwerty(vals[base][""], "SHIFT ", qwerty_names));
-      layers.push("\n");
+        base = propContaining(keys, "s");
+        layer = 'shift';
+        Array.prototype.push.apply(layers, mapTouch(vals[base][""], "", qwerty_names, layer));
+        layers.push("\n");
 
-      if (outputCtrlAlt) {
-          base = propContaining(keys, "c");
-          Array.prototype.push.apply(layers, map_qwerty(vals[base][""], "CTRL ", qwerty_names));
-          layers.push("\n");
+        base = propContaining(keys, "");
+        layer = 'numsymbols';
+        Array.prototype.push.apply(layers, mapTouch(vals[base][""], "", qwerty_names, layer));
+        layers.push("\n");
 
-          base = propContaining(keys, "sc");
-          Array.prototype.push.apply(layers, map_qwerty(vals[base][""], "SHIFT CTRL ", qwerty_names));
-      }
-      // Add Lock levels as needed.
+        // Now try for Symbols and Numerals
+        return generateMobile(qwerty_names, vals, layers, keys, options);
+    } else {
+        // Append
+        Array.prototype.push.apply(layers, map_qwerty(vals[base][""], "", qwerty_names))
+        layers.push("\n");
 
-      let transforms = '';
-      if (outputTransforms) {
-        transforms = getTransforms(layout);
-      }
+        base = propContaining(keys, "s");
+        Array.prototype.push.apply(layers, map_qwerty(vals[base][""], "SHIFT ", qwerty_names));
+        layers.push("\n");
 
-      return comments + "\n" + storeInfo + "\n" + layers.join('\n') + "\n" + transforms;
-  }
+        if (outputCtrlAlt) {
+            base = propContaining(keys, "c");
+            Array.prototype.push.apply(layers, map_qwerty(vals[base][""], "CTRL ", qwerty_names));
+            layers.push("\n");
+
+            base = propContaining(keys, "sc");
+            Array.prototype.push.apply(layers, map_qwerty(vals[base][""], "SHIFT CTRL ", qwerty_names));
+
+	    // !!! TODO: Add T_ identifiers.
+        }
+        // Add Lock levels as needed.
+
+        let transforms = '';
+        if (outputTransforms) {
+            transforms = getTransforms(layout);
+        }
+
+        return comments + "\n" + storeInfo + "\n" + layers.join('\n') + "\n" + transforms;
+    }
 }
 
 function generateMobile(qwerty_names, vals, layers, keys) {
-  let result = '// KEYMAN Mobile result';
+    let layerId = 'default';  // Get from data
+    let result = [];
+    result.push('// KEYMAN Mobile result');
+    // Push the devices
+    let devices = ['phone'];
+    // For each device
+    let i = 0;
+    result.push(`{ \"${devices[i]}\": {`);
+    result.push('  "displayUnderlying": false,');
+    let rowId = 1;  // For each row of the output
+    for (let i = 0; i < layers.length; i++) {
+    // !!! Add device
+    // !!! Add layers
+	result.push('   "layer": [');
+	result.push('     {');
+	result.push(`       \"id\": ": \"${layerId}"`);
 
-  //...
+	// Rows
+	result.push('       \"row\": " [');
+	result.push(`         {\"id\": \"${rowId}\". "key": [`);
+	// PUSH KEYS (id, text, long press*)
 
-  return result;
+	// End of row
+	result.push('                          ]');
+	// End of layer
+	result.push('              ]');
+	
+	// End of device
+	result.push('   }');
+	
+    }
+    //...
+    return result.join('\n');
 }
 
 

@@ -45,9 +45,9 @@ links = [
   # {'linkText': 'Font conversion summary',
   #   'ref': '/' + LanguageCode + '/encodingRules/'
   # },
-  # {'linkText': 'Resources',
-  #   'ref': '/' + LanguageCode + '/downloads/'
-  # },
+  {'linkText': 'Resources',
+   'ref': '/' + LanguageCode + '/downloads/'
+  },
   # {'linkText': 'Unicode page',
   #  'ref': 'https://www.unicode.org/charts/PDF/U1C00.pdf'
   # },
@@ -91,7 +91,14 @@ class langInfo:
           },
         ]
 
-        self.fillChars = [unichr(x) for x in range(0x61, 0x7a)]
+        self.fillChars = [unichr(x) for x in range(0x61, 0x7b)]
+        # remove f, q, v, x, z
+        self.fillChars.remove('f')
+        self.fillChars.remove('q')
+        self.fillChars.remove('v')
+        self.fillChars.remove('x')
+        self.fillChars.remove('z')
+
         self.fillChars.extend([u'ƀ', u'č', u'đ', u'ñ'])
 
         self.unicodeCombiningChars = []
@@ -120,15 +127,22 @@ class langInfo:
         ]
 
         # For additional resources for download
-        self.text_file_list = []
+        self.text_file_list = [
+            {
+                'name': 'Keyman Desktop + Mobile 1.01',
+                'source': '/resources/rad/rhade1.01.kmp',
+                'description': 'Version 1.01 5-May-2022',
+            }
+        ]
+
 
         # TODO: Fill in the rest of the common data.
-        self.weekDays = [
+        self.weekDays = ['Knam Kjuh',
             'Knam Sa', 'Knam Dua', 'Knam Tlâo', 'Knam Pă', 'Knam Êma',
-            'Knam Năm', 'Knam Kjuh']
+            'Knam Năm']
         self.months = [
             'Mlan Sa', 'Mlan Dua', 'Mlan Tlâo', 'Mlan Pă', 'Mlan Êma', 'Mlan Năm', 'Mlan Kjuh', 'Mlan Sapăn', 
-            'Mlan Dua Pă', 'Mlan Pluh', 'Mlan Pluh Sa', 'Mlan Pluh']
+            'Mlan Dua Păn', 'Mlan Pluh', 'Mlan Pluh Sa', 'Mlan Pluh Dua']
 
 
 langInstance = langInfo()
