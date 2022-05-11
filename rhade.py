@@ -131,7 +131,7 @@ class langInfo:
             {
                 'name': 'Keyman Desktop + Mobile 1.01',
                 'source': '/resources/rad/rhade1.01.kmp',
-                'description': 'Version 1.01 5-May-2022',
+                'description': 'Version 1.01 6-May-2022',
             }
         ]
 
