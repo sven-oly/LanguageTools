@@ -164,6 +164,9 @@ handlers:
 - url: /hnj/.*
   script: nyiakeng_hmong.app
 
+- url: /en/.*
+  script: english.app
+
 - url: /ksw/.*
   script: karen.app
 

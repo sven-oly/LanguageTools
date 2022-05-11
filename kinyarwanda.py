@@ -76,7 +76,10 @@ class AboutPageHandler(webapp2.RequestHandler):
     template_values = {
       'language': langInfo.Language,
     }
-    path = os.path.join(os.path.dirname(__file__), 'HTML/Umwero/umwero.html')
+    doc = 'HTML/Umwero/' + self.request.get('doc', 'about_writing.html')
+    
+    # A bit hacky.
+    path = os.path.join(os.path.dirname(__file__), doc) 
     self.response.out.write(template.render(path, template_values))
 
 class langInfo:
