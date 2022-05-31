@@ -14,7 +14,6 @@
 # limitations under the License.
 #
 
-
 import base
 
 import transliterate
@@ -58,6 +57,12 @@ unicode_font_list = [
 ]
 
 kb_list = [
+  {
+    'shortName': 'omq7',
+    'longName': 'Chatino Unicode super A-W',
+    'instructions':
+      ' Tones on digits and shift-digits. Q and S not yet standardized. Numerals on CapsLock'
+  },
   {
     'shortName': 'omq6',
     'longName': 'Chatino Unicode 14.0',
@@ -162,6 +167,12 @@ class langInfo():
     self.unicode_font_list = unicode_font_list
 
     resource_list = [
+      {
+        'name': 'KeyMan 1.1 for Chatino',
+        'source': '/resources/omq/chatino1.1.kmp',
+        'description': 'Keyboard for Mobile & Desktop with superscripts A-W',
+        'instructions': '',
+      },
       {
         'name': 'KeyMan for Chatino',
         'source': '/resources/omq/chatino.kmp',
