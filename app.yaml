@@ -47,6 +47,9 @@ handlers:
 - url: /aio/.*
   script: aiton.app
 
+- url: /as/.*
+  script: assamese.app
+
 - url: /bax/.*
   script: bamum.app
 
@@ -76,6 +79,9 @@ handlers:
 
 - url: /cho/.*
   script: choctaw.app
+
+- url: /ckb/.*
+  script: sorani.app
 
 - url: /cr/.*
   script: cree.app

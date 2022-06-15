@@ -59,17 +59,25 @@ var AHO_LAYOUT = {
     }
   },
   'transform' : {
-    // Reorder vowel E and medial Ra after other letters. Use \u200c as marker.
-    '\u200c(\ud805[\udf26\udf1e])(\ud805[\udf00-\udf19])': '$2$1',
-    // Reorder vowel E after other letters. Use \u200c as marker.
-    '\u200c(\ud805[\udf26])(\ud805[\udf00-\udf19])': '$2$1',
+    // Move e-vowel + medial after consonant.
+    '\u200c(\ud805\udf26)(\ud805[\udf1d-\udf1f])\u001d?(\ud805[\udf00-\udf19])': '$3$2$1',
 
-    // Move e-vowel to right ot other medials.
-    '(\ud805\udf26)\u001d?(\ud805[\udf1d-\udf1f])': '$2$1',
+    '(\ud805[\udf1d-\udf1f])(\ud805\udf26)\u001d?(\ud805[\udf00-\udf19])': '$3$1$2',
+
+    // Reorder vowel E and medial Ra after other letters. Use \u200c as marker.
+    '\u200c(\ud805[\udf26\udf1d\udf1e])(\ud805[\udf00-\udf19])': '$2$1',
+    // Reorder vowel E after other letters. Use \u200c as marker.
+    '\u200c(\ud805[\udf26\udf1d])(\ud805[\udf00-\udf19])': '$2$1',
+
+    // Move e-vowel to right of other medials.
+    '\u200c(\ud805[\udf26\udf1d])\u001d?(\ud805[\udf1d-\udf1f])': '$2$1',
 
     // Reorder medials
     '\ud805\udf1d(\ud805[\udf1e\udf1f]+)': '$1\ud805\udf1d',
     '\ud805\udf1f\ud805\udf1e': '\ud805\udf1e\ud805\udf1f',
+
+    //
+    '(\ud805\udf28)(\ud805\udf27)': '$2$1',
 
     // Reorder sign killer before other signs.
     '(\ud805[\udf20-\udf2a])(\ud805\udf2b)': '$2$1',

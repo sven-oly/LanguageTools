@@ -65,7 +65,7 @@ private_use_map_combined = {
   '\u0020': [' ', ' ', ' '],  // Space
   '\u0021': ['!', '!', '\u1039\u1011'],  // !
   '\u0022': ['\"', '\"', '\"'],  // "
-  '\u0023': ['\u1046', '\ud805\udf0a\ud805\udf22', '\ud805\udf2a'],  // #
+  '\u0023': ['\u1046', '\ud805\udf19', '\ud805\udf2a'],  // #
   '\u0024': ['\ud805\udf39', '\ud805\udf39', '\u102e'],  // $
   '\u0025': ['\ud805\udf36', '\ud805\udf36', '\ud805\udf2f'],  // %
   '\u0026': ['&', '&', '\ud805\udf29'],  // &
@@ -99,7 +99,7 @@ private_use_map_combined = {
   '\u0041': ['\ud805\udf12', '\ud805\udf12', '\ud805\udf33\ud805\udf05'],  // @
   '\u0042': ['\ud805\udf18', '\ud805\udf18', '\uaa70'],  // @
   '\u0044': ['\ud805\udf14', '\ud805\udf14', '\uaa70'],  // @
-  '\u0045': ['\ud805\udf22\ud805\udf24', '\ud805\udf30\ud805\udf21', '\ud805\udf33\ud805\udf05'],  // @
+  '\u0045': ['\ud805\udf22\ud805\udf24', '\ud805\udf22\ud805\udf24', '\ud805\udf33\ud805\udf05'],  // E
   '\u0046': ['F', '\ud805\udf30\ud805\udf27', '\ud805\udf33\ud805\udf05'],  // @
   '\u0047': ['\ud805\udf17', '\ud805\udf17', '\u1087'],  // @
   '\u0048': ['H', '\ud805\udf29', '\u1088'],  // @
@@ -128,13 +128,13 @@ private_use_map_combined = {
   '\u0067': ['\ud805\udf15', '\ud805\udf16', '\ud805\udf33\ud805\udf05'],  // @
 
   '\u0077': ['\ud805\udf1f', '\ud805\udf1f', ''],  // w
-  '\u0077': ['\ud805\udf08\ud805\udf2b', '\ud805\udf30\ud805\udf2b'],  // w
+  '\u0077': ['\ud805\udf30\ud805\udf2b', '\ud805\udf30\ud805\udf2b'],  // w
   '\u007b': ['{', '{'],  // @
   '\u007c': ['|', '|'],  // @
   '\u007d': ['}', '}'],  // @
   '\u007e': ['~', '~'],  // @
 
-  '\u00a1': ['\ud805\udf00', '\ud805\udf08\ud805\udf0a',
+  '\u00a1': ['\ud805\udf00', '\ud805\udf05\ud805\udf0a',
 	     '\ud805\udf33\ud805\udf05'],  // @
   '\u00a2': ['\ud805\udf01', '\ud805\udf01', '\ud805\udf33\ud805\udf05'],  // @
   '\u00a4': ['\ud805\udf15', '¤', '\ud805\udf33\ud805\udf05'],  // @
@@ -200,7 +200,8 @@ private_use_map_combined = {
 
 langConverter.one2oneMap = langConverter.dictionaryToMap(private_use_map_combined);
 
-function convertEncodingToUnicode(inbox, outbox, encodingIndex) {
+
+langConverter.convertEncodingToUnicode = function(inbox, outbox, encodingIndex) {
   var inarea = document.getElementById(inbox);
   var outarea = document.getElementById(outbox);
 
@@ -221,13 +222,26 @@ function convertEncodingToUnicode(inbox, outbox, encodingIndex) {
   }
   var newText = outtext;
 
-  // Next, move some code points in context to get proper Unicode ordering.
+    // Consonants 11700-1171A
+    // Medials 1171D-1171F
+    // Vowels 11720-1172B
+
+    // Next, move some code points in context to get proper Unicode ordering.
   // Vowel sign to right of consonants:
+  ePattern = /\ud805([\udf1e\udf26])\ud805([\udf1d-\udf1f])\ud805([\udf00-\udf1a])/gi;
+  eReplace = "\uD805$3\uD805$2\ud805$1";
+    newText = outtext = newText.replace(ePattern, eReplace);
+    
   ePattern = /\ud805([\udf1e\udf26])\ud805([\udf00-\udf1a])/gi;
   eReplace = "\uD805$2\uD805$1";
   newText = outtext = newText.replace(ePattern, eReplace);
 
   ePattern = /\ud805(\udf28)\ud805([\udf27\udf29])/gi;
+  eReplace = "\uD805$2\uD805$1";
+   newText = outtext = newText.replace(ePattern, eReplace);
+
+  // Move e-Vowel to right of medials
+  ePattern = /\ud805(\udf26)\ud805([\udf1d-\udf1f])/gi;
   eReplace = "\uD805$2\uD805$1";
    newText = outtext = newText.replace(ePattern, eReplace);
 
@@ -249,4 +263,3 @@ function convertEncodingToUnicode(inbox, outbox, encodingIndex) {
   }
   return newText;
 }
-
