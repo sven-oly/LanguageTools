@@ -10,25 +10,32 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+// Based on 2015 paper "Design and Evaluation of Unicode compliance
+// Meitei/Meetei Mayek keyboard layout
+// by Amika Achom Choa888@gmail.com, Anupam Basu anupambas@gmail.com
 
-var RAD1_LAYOUT = {
-  'id': 'rad1',
-  'title': 'Rhade 1',
+var MNI2015_LAYOUT = {
+  'id': 'mni2015',
+  'title': 'Meitei 2015',
   'mappings': {
     ',c': {
-      '': '{{S||\u00a0\u0302\u0306||\u0302\u0306}}1234567890-=' +
-          '{{S||\u02D8||\u0306}}wertyuiop[]/' +
-          'asd{{\u0111}}ghjkl;\'' +
-          '{{S||\u00a0\u031b||\u031b}}{{\u010d}}c{{\u0180}}bn{{\u00f1}}m,.'
+      '': '`꯱꯲꯳꯴꯵꯶꯷꯸꯹꯰-=' +
+          'ꯕꯄꯁꯗ{{}}ꯧ{{}}ꯡꯍ{{ꯩ}}ꯑꯢꯌ' +
+          'ꯑꯁꯗꯇ{{ꯤ}}{{}}ꯔꯥꯦ;\'' +
+          'ꯚꯒꯆꯈꯕ{{}}ꯂ,./'
     },
     's,sc': {
-      '': '{{S||\u00a0\u0311||\u0311}}!@#$%^&*()_+' +
-          '{{S||^||\u0302}}WERTYUIOP{}?' +
-          'ASD{{\u0110}}GHJKL:"' +
-          '{{S||\u00a0\u0306\u031b||\u0306\u031b}}{{\u010c}}CB{{\u0243}}N{{\u00d1}}M<>'
+      '': '~꯫@#$%^&*()ꯋ+' +
+          '{{}}ꯐꯟꯙꯏ{{}}{{}}{{ꯪ}}{{ꯣ}}{{}}{}|' +
+          'ꯝꯈ{{꯭}}ꯊꯠ{{}}{{}}ꯁ{{}}:"' +
+          'ꯉꯘꯓ{{}}ꯎꯞꯜ<>?'
     },
     'l,cl': {
       '': '`1234567890-=' +
+
+
+
+
           'qwertyuiop[]\\' +
           'asdfghjkl;\'' +
           'zxcvbnm,./'
@@ -41,13 +48,10 @@ var RAD1_LAYOUT = {
     }
   },
   'transform': {
-    'u\u0306': '\u016d',  // u with breve
-    'U\u0306': '\u016c',  // U with breve
-      '//': '\\',  // Double slash gives backslash
-      // '\?\?': '|',
+    '^': '^',  // Placeholder
   }
 };
 
 // Load the layout and inform the keyboard to switch layout if necessary.
-google.elements.keyboard.loadme(RAD1_LAYOUT);
-rad1 = RAD1_LAYOUT;
+google.elements.keyboard.loadme(MNI2015_LAYOUT);
+mni2015 = MNI2015_LAYOUT;

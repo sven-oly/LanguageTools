@@ -157,6 +157,15 @@ unicode_font_list = [
     'display_name': 'Kirat1 PUA',
     'Source location': 'https://omniglot.com/writing/jenticha.htm',
   },
+  {
+    'source': '/fonts/Sunuwar/NotoSansDevanagari-Regular.ttf',
+    'longName': 'NotoSans Devanagari',
+    'family': 'NotoSansDen',
+    'font_path': '/fonts/Sunuwar/NotoSansDevanagari-Regular.ttf',
+    'font_name': 'NotoSansDev',
+    'display_name': 'Noto Sans Devenagari',
+    'Source location': 'https://fonts.google.com/noto/specimen/Noto+Sans+Devanagari',
+  }  
   # {
   #   'source': '/fonts/Sunuwar/Lonkuch_PUA.ttf',
   #   'longName': 'Lonkuch PUA',

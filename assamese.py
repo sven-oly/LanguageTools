@@ -66,6 +66,10 @@ class langInfo:
         self.Language_native = Language_native
         self.test_data = u''
         self.unicode_font_list = [
+          {'family': 'NotoBengali',
+           'longName': 'Noto Sans Assamese',
+           'source': '/fonts/NotoSansBengali-Regular.ttf',
+           },
           {'family': 'NotoSerif',
            'longName': 'Noto Serif',
            'source': '/fonts/NotoSerif-Regular.ttf',

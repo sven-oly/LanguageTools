@@ -1,11 +1,3 @@
-# -*- coding: utf-8 -*-
-# !/usr/bin/env python
-#
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#
-#     http://www.apache.org/licenses/LICENSE-2.0
 #
 # Unless required by applicable law or agreed to in writing, software
 # distributed under the License is distributed on an "AS IS" BASIS,
@@ -24,14 +16,17 @@ try:
 except NameError:
     unichr = chr
 
-Language = 'Sorani Kurdish'
-Language_native = 'سۆرانی'
-LanguageCode = 'ckb'
-ScriptCode = 'Arab'
+Language = 'English'
+Language_native = 'English'
+LanguageCode = 'en'
+ScriptCode = 'Latn'
 
 links = [
     {'linkText': 'Keyboard',
      'ref': '/' + LanguageCode + '/'
+    },
+    {'linkText': 'Word search',
+     'ref': '/' + LanguageCode + '/wordsearch/'
     },
     # {'linkText': 'Converter',
     #  'ref': '/' + LanguageCode + '/convertUI/'},
@@ -44,9 +39,9 @@ links = [
     # {'linkText': 'Unicode page',
     #  'ref': 'https://www.unicode.org/charts/PDF/U1C00.pdf'
     # },
-    {'linkText': 'Sorani alphabet',
-     'ref': 'https://en.wikipedia.org/wiki/Kurdish_alphabets#Sorani_alphabet'
-    },
+    # {'linkText': 'THIS SCRIPT',
+    #  'ref': 'https://en.wikipedia.org/wiki/XYZ_alphabet'
+    # },
     # {'linkText': 'Wikipedi page',
     #  'ref': 'https://en.wikipedia.org/wiki/XYZ_language'
     # },
@@ -56,9 +51,6 @@ links = [
     # {'linkText': 'Combiners',
     #  'ref': '/lep/diacritic/'
     #  },
-    # {'linkText': 'Word search',
-    #  'ref': '/' + LanguageCode + '/wordsearch/'
-    # },
 ]
 
 
@@ -68,12 +60,7 @@ class langInfo:
         self.Language = Language
         self.Language_native = Language_native
         self.test_data = u''
-        self.direction = 'rtl'
         self.unicode_font_list = [
-          {'family': 'notoArabic',
-           'longName': 'Noto Arabic',
-            'source': '/fonts/Arabic/NotoSansArabic-VariableFont_wdth,wght.ttf',
-          },
           {'family': 'NotoSerif',
            'longName': 'Noto Serif',
            'source': '/fonts/NotoSerif-Regular.ttf',
@@ -92,25 +79,18 @@ class langInfo:
           },
         ]
 
-        # Default is a-z
-        self.fillChars = [unichr(x) for x in range(0x61, 0x7b)]
-        self.unicodeCombiningChars = []
-        
         self.lang_list = [LanguageCode]  # This may be extended
 
         self.kb_list = [
-          {'shortName': 'ckb_ar1',
-           'longName': 'Arab1 کوردی - شێوازی عەرەبی',
-           },
-          {'shortName': 'ckb_en1',
-           'longName': 'En1 کوردی - شێوازی ئینگلیزی',
+          {'shortName': LanguageCode,
+           'longName': LanguageCode,
            },
         ]
 
         self.links = links
 
         # Unicode range
-        self.unicodeRanges = [('\0626', '\u0695')]
+        self.unicodeRanges = [('\u0020', '\u007f')]
         # TODO: Fill in with diacritics
         self.diacritic_list = [unichr(x) for x in range(0x300, 0x330)]
         # TODO: Fill in base consonant
@@ -123,7 +103,8 @@ class langInfo:
         # For additional resources for download
         self.text_file_list = []
 
-        # TODO: Fill in the rest of the common data.
+        self.fillChars = [unichr(x) for x in range(0x61, 0x7b)]
+        self.unicodeCombiningChars = self.diacritic_list
 
 
 langInstance = langInfo()
@@ -134,9 +115,9 @@ app = webapp2.WSGIApplication([
   ('/' + LanguageCode + '/downloads/', base.Downloads),
   ('/' + LanguageCode + '/encodingRules/', base.EncodingRules),
   ('/' + LanguageCode + '/diacritic/', base.DiacriticHandler),
-  ('/' + langInstance.LanguageCode + '/calendar/', base.CalendarHandler),
   ('/' + langInstance.LanguageCode + '/wordsearch/', base.WordSearchHandler),
   ('/' + langInstance.LanguageCode + '/keyman/', base.KeyManHandler),
+  ('/' + langInstance.LanguageCode + '/wordsearch/', base.WordSearchHandler),
 ], debug=True,
   config={'langInfo': langInstance}
 )

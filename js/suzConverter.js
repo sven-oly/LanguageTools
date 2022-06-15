@@ -29,14 +29,18 @@ langConverter.map_encoding_names = map_font_to_encoding = {
 
 langConverter.getTransforms = function() {
     return [
-	{input: 'Mukdum ASCII', output:'Unicode Sunuwar',
-	 'compute': this.mukdum2Unicode},
-	{input: 'Devanagari Unicode', output:'Unicode Sunuwar',
-	 'compute': this.bengali2SuZUnicode},
-	{input: 'Preeti', output:'Mukdum Sunuwar',
-	 'compute': this.preeti2Mukdum},
-	{input: 'Preeti', output:'Sunuwar Unicode',
-	 'compute': this.preeti2Unicode},
+        {input: 'Mukdum ASCII', output:'Sunuwar Unicode',
+	 inFont: 'MukdumFinal', outFont: 'MukdumFinalUnicodeTTF',
+         'compute': this.mukdum2Unicode},
+        {input: 'Devanagari Unicode', output:'Sunuwar Unicode',
+	 inFont: 'NotoSansDevanagari', outFont: 'MukdumFinalUnicodeTTF',
+         'compute': this.bengali2SuZUnicode},
+        {input: 'Preeti', output:'Mukdum Sunuwar',
+	 inFont: 'Preeti', outFont: 'Mukdum',
+         'compute': this.preeti2Mukdum},
+        {input: 'Preeti', output:'Sunuwar Unicode',
+	 inFont: 'Preeti', outFont: 'MukdumFinalUnicodeTTF',
+         'compute': this.preeti2Unicode},
     ];
 }
 
@@ -49,12 +53,12 @@ langConverter.mukdum2Unicode = function(text_in) {
 langConverter.bengali2SuZUnicode = function(intext) {
     let suzUnicodeOut = [];
     for (var index = 0; index < intext.length; index ++) {
-	let c = intext[index];
-	let out = c;
-	if (c in bengali2SuzUnicodeMapping) {
-	    out = bengali2SuzUnicodeMapping[c][0];  // only the character
-	}
-	suzUnicodeOut.push(out);
+        let c = intext[index];
+        let out = c;
+        if (c in bengali2SuzUnicodeMapping) {
+            out = bengali2SuzUnicodeMapping[c][0];  // only the character
+        }
+        suzUnicodeOut.push(out);
     }
     return suzUnicodeOut.join('');
 }
@@ -63,12 +67,12 @@ langConverter.preeti2Mukdum = function(intext) {
     const parsedText = intext.match(preetiChars);
     let mukdumOut = [];
     for (let index = 0; index < parsedText.length; index ++) {
-	let c = parsedText[index];
-	let out = c;
-	if (c in preetiToMukdum) {
-	    out = preetiToMukdum[c];  // only the character
-	}
-	mukdumOut.push(out);
+        let c = parsedText[index];
+        let out = c;
+        if (c in preetiToMukdum) {
+            out = preetiToMukdum[c];  // only the character
+        }
+        mukdumOut.push(out);
     }
     return mukdumOut.join('');
 }
@@ -130,51 +134,65 @@ const bengali2SuzUnicodeMapping = {
     'भ': ['\ud806\udfce\ud806\udfcb', 'AAL'],
     'ः': [':', 'colon'],
     'ँ': ['\u0303', 'Combining tilde'],
+    // Digits 0-9
+    '\u0966': ['\ud806\udff0', '0'],
+    '\u0967': ['\ud806\udff1', '1'],
+    '\u0968': ['\ud806\udff2', '2'],
+    '\u0969': ['\ud806\udff3', '3'],
+    '\u096a': ['\ud806\udff4', '4'],
+    '\u096b': ['\ud806\udff5', '5'],
+    '\u096c': ['\ud806\udff6', '6'],
+    '\u096d': ['\ud806\udff7', '7'],
+    '\u096e': ['\ud806\udff8', '8'],
+    '\u096f': ['\ud806\udff9', '0'],
+  
 };
 
-
+// Use to 
 const preetiChars =
-      /cf\]|c\|cf|c|O|p|P|KjÞ|AjÞ|s\|v\|u\|r\|5\|h\|6\|7\|8\|t|y|b|g|k|m|a\|d\|o\|r\|n\|j\|z\|s;|x|./;
+      /cf\u005d|c\u005c|cf|c|O|p|P|KjÞ|AjÞ|s\u005c|v\u005c|u\u005c|r\u005c|5\u005c|h\u005c|6\u005c|7\u005c|8\u005c|t|y|b|g|k|m|a\u005c|d\u005c|o\u005c|r\u005c|n\u005c|j\u005c|z\u005c|s;\u005c|x\u005c|./gi;
 
 const preetiRegEx = new RegExp(preetiChars, "gi");
 
 const preetiToMukdum = {
     'c': 'a',
     'cf': 'A',
+    'cf]': 'o',
     'O': 'i',
     'p': 'u',
     'P': 'e',
     'cf]': 'o',
     'KjÞ': 'P',
     'AjÞ': 'B',
-    'c\\':'v',
-    's\\':'k',
-    'v\\':'K',
-    'u\\':'g',
-    'a\\':'N',
-    'r\\':'c',
-    '5\\':'C',
-    'h\\':'j',
-    '6\\':'q',
-    '7\\':'Q',
-    '8\\':'D',
+    'c\u005c':'v',
+    's\u005c':'k',
+    'v\u005c':'K',
+    'u\u005c':'g',
+    'a\u005c':'N',
+    'r\u005c':'c',
+    '5\u005c':'C',
+    'h\u005c':'j',
+    '6\u005c':'q',
+    '7\u005c':'Q',
+    '8\u005c':'D',
     't':'t',
     'y':'T',
     'b':'d',
     'g':'n',
     'k':'p',
     'm':'f',
-    'a\\':'b',
-    'd\\':'m',
-    'o\\':'y',
-    'r\\':'r',
-    'n\\':'l',
-    'j\\':'w',
-    'z\\':'S',
-    's;':'s',
-    'x': 'h'
+    'a\u005c':'b',
+    'd\u005c':'m',
+    'o\u005c':'y',
+    'r\u005c':'r',
+    'n\u005c':'l',
+    'j\u005c':'w',
+    'z\u005c':'S',
+    ';\u005c':'s',
+    'x\u005c': 'h',
+    ']': 'o',
+    '\u0027': 'u',
 };
-
 
 
 langConverter.encoding_data = {
@@ -313,10 +331,10 @@ function convertEncoding(intext, encodingIndex) {
     if (c in private_use_map_combined) {
       var result = private_use_map_combined[c][encodingIndex];
       if (result) {
-	if (result == '\u0000') {
+        if (result == '\u0000') {
           out = '';
         } else {
-	out = result;
+        out = result;
         }
       }
     }

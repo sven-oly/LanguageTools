@@ -129,9 +129,9 @@ class langInfo:
         # For additional resources for download
         self.text_file_list = [
             {
-                'name': 'Keyman Desktop + Mobile 1.01',
-                'source': '/resources/rad/rhade1.01.kmp',
-                'description': 'Version 1.01 6-May-2022',
+                'name': 'Keyman Desktop + Mobile 1.02',
+                'source': '/resources/rad/rhade1.02.kmp',
+                'description': 'Version 1.02 17-May-2022',
             }
         ]
 

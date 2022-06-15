@@ -60,6 +60,10 @@ Language = 'Chakma'
 Language_native = '𑄌𑄋𑄴𑄟𑄳𑄦'
 
 unicode_font_list = [
+  {'family': 'RibengUni2022June',
+   'longName': 'RibengUni June 2022',
+   'source': '/fonts/Chakma/RibengUni-Regular_20220606.ttf',
+   },
   {'family': 'RibengUni2020June',
    'longName': 'RibengUni June 2020',
    'source': '/fonts/Chakma/RibengUni-Regular.ttf',

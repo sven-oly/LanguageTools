@@ -39,15 +39,31 @@
     <script src="/layouts/en.js"></script>
     <script src="/layouts/{{kb_js}}.js"></script>
     <script src="/js/kmexport/kmexport.js"></script>
-    <script>
+<script>
 
-function onPageLoaded() {
-  //let LOAD_NAME = {{kb_js}}.google.elements.keyboard.loadme();
-  let layout = {{kb_js}};
-  var results = map_en_to_x(layout);
+  function getMobileOptions() {
+      // TODO: get controls
+      return {};
+  }
 
-  var output = document.getElementById('output');
-  output.innerHTML = results;
+  function onPageLoaded() {
+    //let LOAD_NAME = {{kb_js}}.google.elements.keyboard.loadme();
+    // Compute mobile first because T_ constants are created there.
+    let layout = {{kb_js}};
+    const doMobile = true;
+    const outputTransforms = null;
+    const mobileOptions = getMobileOptions();
+    const mobileResults = map_en_to_x(
+	layout, false, doMobile, outputTransforms, mobileOptions);
+
+    let kbResults = map_en_to_x(layout);
+
+    let output = document.getElementById('output');
+    output.innerHTML = kbResults;
+    
+    output = document.getElementById('touch_output');
+
+    output.innerHTML = mobileResults;
 }
 
 </script>
@@ -56,5 +72,7 @@ function onPageLoaded() {
   <body onload="onPageLoaded()">
   <h1>Load keyboard</h1>
   <textarea id="output"></textarea>
+  <h1>Mobile touch</h1>
+  <textarea id="touch_output"></textarea>
 </body>
 </html>

@@ -38,9 +38,9 @@ links = [
   # {'linkText': 'Font conversion summary',
   #   'ref': '/' + LanguageCode + '/encodingRules/'
   # },
-  # {'linkText': 'Resources',
-  #   'ref': '/' + LanguageCode + '/downloads/'
-  # },
+  {'linkText': 'Resources',
+    'ref': '/' + LanguageCode + '/downloads/'
+  },
   # {'linkText': 'Unicode page',
   #  'ref': 'https://www.unicode.org/charts/PDF/U1C00.pdf'
   # },
@@ -120,6 +120,11 @@ class langInfo:
 
         # For additional resources for download
         self.text_file_list = [
+          {
+            'name': 'KeyMan Kalabari 1.1',
+            'source': '/resources/ijn/kalabari1.1.kmp',
+            'description': 'Preliminary version 1.1, 3-APR-2022'
+          },
           {
             'name': 'KeyMan Kalabari prototype',
             'source': '/resources/ijn/kalabari.kmp',

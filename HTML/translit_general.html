@@ -1,575 +1,595 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Converting {{language}}</title>
+    <title>Converting {{language}}</title>
 
-  <link rel="stylesheet" href="/css/blueprint/screen.css" type="text/css" media="screen">
-  <link rel="stylesheet" href="/css/blueprint/print.css" type="text/css" media="print"> 
-  <!--[if lt IE 8]>
-    <link rel="stylesheet" href="/css/blueprint/ie.css" type="text/css" media="screen, projection">
-  <![endif]-->
+    <link rel="stylesheet" href="/css/blueprint/screen.css" type="text/css" media="screen">
+    <link rel="stylesheet" href="/css/blueprint/print.css" type="text/css" media="print"> 
+    <!--[if lt IE 8]>
+        <link rel="stylesheet" href="/css/blueprint/ie.css" type="text/css" media="screen, projection">
+        <![endif]-->
 
-  <link rel="stylesheet" type="text/css" href="/css/fonts.css">
+         <link rel="stylesheet" type="text/css" href="/css/fonts.css">
 
-  <style>
-  textarea {
-    width: 600px;
-	height: 120px;
-	border: 3px solid #cccccc;
-	padding: 5px;
-	font-size: 24px;
-    font-variant-ligatures: normal;
-    resize: vertical;
-	}
-  {
-    font-family: "Courier New";
-  }
-  </style>
+         <style>
+           textarea {
+               width: 600px;
+               height: 120px;
+               border: 3px solid #cccccc;
+               padding: 5px;
+               font-size: 24px;
+               font-variant-ligatures: normal;
+               resize: vertical;
+           }
+           {
+               font-family: "Courier New";
+           }
+         </style>
 
-  <!-- Font encoding areas -->  
-  <style>
-    {% for encoding in encodingList %}
-    @font-face{
-      font-family:'{{encoding.font_name}}';
-      src:url('{{encoding.font_path}}');
-      font-weight:normal;
-      font-style:normal;
-      font-size: 32px;
-    }
-    .{{encoding.font_name}} {
-      font-family:{{encoding.font_name}};
-      font-size: 32px;
-    }
-    {% endfor %}
+         <!-- Font encoding areas -->  
+         <style>
+           {% for encoding in encodingList %}
+           @font-face{
+               font-family:'{{encoding.font_name}}';
+               src:url('{{encoding.font_path}}');
+               font-weight:normal;
+               font-style:normal;
+               font-size: 32px;
+           }
+           .{{encoding.font_name}} {
+               font-family:{{encoding.font_name}};
+               font-size: 32px;
+           }
+           {% endfor %}
 
-  </style>
+         </style>
 
-  <!-- Unicode fonts -->
-  <style>
-    {% for font in unicodeFonts %}
-    @font-face{
-      font-family:'{{font.family}}';
-      src:url('{{font.source}}');
-      font-weight:normal;
-      font-style:normal;
-      font-size: 32px;
-    }
+         <!-- Unicode fonts -->
+         <style>
+           {% for font in unicodeFonts %}
+           @font-face{
+               font-family:'{{font.family}}';
+               src:url('{{font.source}}');
+               font-weight:normal;
+               font-style:normal;
+               font-size: 32px;
+           }
 
-    .{{font.family}} {
-      font-family:{{font.family}};
-      font-size: 32px;
-    }
-    {% endfor %}
-  </style>
+           .{{font.family}} {
+               font-family:{{font.family}};
+               font-size: 32px;
+           }
+           {% endfor %}
+         </style>
 
-  <script src="/js/utils.js"></script>
-  <script src="/js/baseConverter.js"></script>
-    {% if converterName %}
-  <script src="/js/{{converterName}}.js"></script>
-{%else%}}
-    <script src="/js/{{langTag}}Converter.js"></script>
-    {%endif%}
-  <script src="/js/text_utils.js"></script>
+         <script src="/js/utils.js"></script>
+         <script src="/js/baseConverter.js"></script>
+         {% if converterName %}
+         <script src="/js/{{converterName}}.js"></script>
+         {%else%}}
+         <script src="/js/{{langTag}}Converter.js"></script>
+         {%endif%}
+         <script src="/js/text_utils.js"></script>
 
-  <script src="/js/vk-debug.js"></script>
+         <script src="/js/vk-debug.js"></script>
 
-  <script>
-    // Check for a converter class
-    let converterObj;
-    if (langConverter) {
-      // This works!
-      const encodingInfo = langConverter.decodingInfo();
-      const translitInfo = langConverter.translitInfo();
-    }
+         <script>
+           // Check for a converter class
+           let converterObj;
+           if (langConverter) {
+               // This works!
+               const encodingInfo = langConverter.decodingInfo();
+               const translitInfo = langConverter.translitInfo();
+           }
 
-  diff_list = [];
-  // When an area is changed, set the hex characters, too.
-  function updateHex(inArea, outArea) {
-    const inText = document.getElementById(inArea).value;
-    const hex_output = document.getElementById(outArea);
-    const hexString = uplus(inText); uplus  //charsToHexString
-    if (hex_output != null) {
-      hex_output.value = hexString;
-      hex_output.innerHTML = hexString;
-    }
-  }
+           diff_list = [];
+           // When an area is changed, set the hex characters, too.
+           function updateHex(inArea, outArea) {
+               const inText = document.getElementById(inArea).value;
+               const hex_output = document.getElementById(outArea);
+               const hexString = uplus(inText); uplus  //charsToHexString
+               if (hex_output != null) {
+                   hex_output.value = hexString;
+                   hex_output.innerHTML = hexString;
+               }
+           }
 
-  function clearArea(outId, outArea) {
-    const output_text = document.getElementById(outId);
-    output_text.innerHTML = output_text.value = '';
+           function clearArea(outId, outArea) {
+               const output_text = document.getElementById(outId);
+               output_text.innerHTML = output_text.value = '';
 
-    const hex_output = document.getElementById(outArea);
-    if (hex_output) {
-      hex_output.innerHTML = hex_output.value = "";
-	}
-  }
+               const hex_output = document.getElementById(outArea);
+               if (hex_output) {
+                   hex_output.innerHTML = hex_output.value = "";
+               }
+           }
 
-  function onFontSelected(selected, outarea) {
-  const output_text = document.getElementById(outarea);
-  document.getElementById('Unicode_font_output_text');
-     const fontFam = selected.value;  // + ", Arial";
-    output_text.style.fontFamily = fontFam;
-  }
+           function onFontSelected(selected, outarea) {
+               const output_text = document.getElementById(outarea);
+               document.getElementById('Unicode_font_output_text');
+               const fontFam = selected.value;  // + ", Arial";
+               output_text.style.fontFamily = fontFam;
+           }
 
-  function toAllFonts(area1, area2) {
-    // Open a comparison window with the resulting text.
-    const area1Elem = document.getElementById(area1);
-    const text1 = area1Elem.value;
+           function toAllFonts(area1, area2) {
+               // Open a comparison window with the resulting text.
+               const area1Elem = document.getElementById(area1);
+               const text1 = area1Elem.value;
 
-    const area2Elem = document.getElementById(area2);
-    const text2= area2Elem.value;
+               const area2Elem = document.getElementById(area2);
+               const text2= area2Elem.value;
 
-    compareUrl = "/{{langTag}}/AllFonts/?utext=" + text1 + "&encodedText=" + text2;
+               compareUrl = "/{{langTag}}/AllFonts/?utext=" + text1 + "&encodedText=" + text2;
 
-    window.location=compareUrl;
-  }
+               window.location=compareUrl;
+           }
 
-  function toggle(id, toggle) {
-    const obj = document.getElementById(id);
-    const checkBox = document.getElementById(toggle);
-    const showIt = checkBox.checked;
-    if(showIt)
-      obj.style.display = 'block';
-    else
-      obj.style.display = 'none';
-    }
+           function toggle(id, toggle) {
+               const obj = document.getElementById(id);
+               const checkBox = document.getElementById(toggle);
+               const showIt = checkBox.checked;
+               if(showIt)
+                   obj.style.display = 'block';
+               else
+                   obj.style.display = 'none';
+           }
 
-  const kb_list = [{% for kb in kb_list %}"{{kb.shortName}}", {% endfor %}];
-  const translit_kb_list = [{% for kb in translit_kb_list %}"{{kb.shortName}}", {% endfor %}];
+           const kb_list = [{% for kb in kb_list %}"{{kb.shortName}}", {% endfor %}];
+           const translit_kb_list = [{% for kb in translit_kb_list %}"{{kb.shortName}}", {% endfor %}];
 
-  var controller, visible = true;
-  function initKeyboard(textAreaID, selectorId, kb_list) {
-      const input = document.getElementById(textAreaID);
-      controller = new i18n.input.keyboard.Keyboard();
-      for (let kb in kb_list) {
-        controller.loadLayout(kb_list[kb]);
-      }
-      controller.reposition(input, 2, 0, [1, 0, 0, 0]);
-      controller.register(input);
-      controller.addEventListener('kc', function() { visible = false; });
-      input.focus();
-      const selector = document.getElementById(selectorId);
-      if (selector) {
-        onLayoutSelected(selector, controller, textAreaID);
-      }
-  }
+           var controller, visible = true;
+           function initKeyboard(textAreaID, selectorId, kb_list) {
+               const input = document.getElementById(textAreaID);
+               controller = new i18n.input.keyboard.Keyboard();
+               for (let kb in kb_list) {
+                   controller.loadLayout(kb_list[kb]);
+               }
+               controller.reposition(input, 2, 0, [1, 0, 0, 0]);
+               controller.register(input);
+               controller.addEventListener('kc', function() { visible = false; });
+               input.focus();
+               const selector = document.getElementById(selectorId);
+               if (selector) {
+                   onLayoutSelected(selector, controller, textAreaID);
+               }
+           }
 
-    function onLanguageSelected(newLangTag, textArea) {
-      const t1_element = document.getElementById(textArea);
-      t1_element.lang = newLangTag;
-    }
+           function onLanguageSelected(newLangTag, textArea) {
+               const t1_element = document.getElementById(textArea);
+               t1_element.lang = newLangTag;
+           }
 
-  function onLayoutSelected(selector, this_controller, outputId) {
-    const layoutCode = selector.value;
-    if (this_controller) {
-      this_controller.activateLayout(layoutCode);
-    } else {  // The global.
-      controller.activateLayout(layoutCode);
-    }
-    document.getElementById(outputId).focus();
-  }
+           function onLayoutSelected(selector, this_controller, outputId) {
+               const layoutCode = selector.value;
+               if (this_controller) {
+                   this_controller.activateLayout(layoutCode);
+               } else {  // The global.
+                   controller.activateLayout(layoutCode);
+               }
+               document.getElementById(outputId).focus();
+           }
 
-  // Fills the input with all the characters in the old range.
-  function fillWithOldChars(target, hex_target) {
-    const output_text = document.getElementById(target);
-    const outputString = "{{text}}";
+           // Fills the input with all the characters in the old range.
+           function fillWithOldChars(target, hex_target) {
+               const output_text = document.getElementById(target);
+               const outputString = "{{text}}";
 
-    output_text.innerHTML = outputString;
-    output_text.value = outputString;
+               output_text.innerHTML = outputString;
+               output_text.value = outputString;
 
-    updateHex(target, hex_target);
-  }
+               updateHex(target, hex_target);
+           }
 
-  // Fills the input with all the characters given.
-  function fillAreaWithChars(newString, target, hex_target) {
-    const output_text = document.getElementById(target);
+           // Fills the input with all the characters given.
+           function fillAreaWithChars(newString, target, hex_target) {
+               const output_text = document.getElementById(target);
 
-    output_text.innerHTML = newString;
-    output_text.value = newString;
+               output_text.innerHTML = newString;
+               output_text.value = newString;
 
-    updateHex(target, hex_target);
-  }
+               updateHex(target, hex_target);
+           }
 
-  // Fills the input with all the characters in the old range.
-  function fillWithUnicodeText(target, hex_target) {
-    const output_text = document.getElementById(target);
-    const outputString = "{{unicodeChars}}";
+           // Fills the input with all the characters in the old range.
+           function fillWithUnicodeText(target, hex_target) {
+               const output_text = document.getElementById(target);
+               const outputString = "{{unicodeChars}}";
 
-    output_text.innerHTML = outputString;
-    output_text.value = outputString;
+               output_text.innerHTML = outputString;
+               output_text.value = outputString;
 
-    updateHex(target, hex_target);
-  }
+               updateHex(target, hex_target);
+           }
 
-  function fillWithUnicodeCombiners(target, hex_target) {
-    const output_text = document.getElementById(target);
-    const outputString = "{{combiningChars}}";
+           function fillWithUnicodeCombiners(target, hex_target) {
+               const output_text = document.getElementById(target);
+               const outputString = "{{combiningChars}}";
 
-    output_text.innerHTML = outputString;
-    output_text.value = outputString;
+               output_text.innerHTML = outputString;
+               output_text.value = outputString;
 
-    updateHex(target, hex_target);
-  }
-  
-  function onPageLoaded() {
-    if (isTransliterator) {
-        makeConvertOptionsUi(convertOptions);  // Using convertObject
-    }
-    {% if translit_kb_list %}
-    initKeyboard('old_font_input_text', 'selectKeyboardTop', translit_kb_list);
-    {% else %}
-    initKeyboard('Unicode_font_output_text', 'selectKeyboard2', kb_list);
-    {%endif%}
-  }
+               updateHex(target, hex_target);
+           }
+           
+           function onPageLoaded() {
+               if (isTransliterator) {
+                   makeConvertOptionsUi(convertOptions);  // Using convertObject
+               }
+               {% if translit_kb_list %}
+               initKeyboard('old_font_input_text', 'selectKeyboardTop', translit_kb_list);
+               {% else %}
+               initKeyboard('Unicode_font_output_text', 'selectKeyboard2', kb_list);
+               {%endif%}
+           }
 
-  function init() {
-    // Fill in if needed.
-    updateHex('old_font_input_text', 'old_hex');
-    updateHex('Unicode_font_output_text', 'new_hex');
-  }
+           function init() {
+               // Fill in if needed.
+               updateHex('old_font_input_text', 'old_hex');
+               updateHex('Unicode_font_output_text', 'new_hex');
+           }
 
-  function callConvertEncodingToUnicode(sourceArea, destinationArea, encodeSelectorName) {
-    // Get selected text instead of entire window?
+           function callConvertEncodingToUnicode(sourceArea, destinationArea, encodeSelectorName) {
+               // Get selected text instead of entire window?
 
-    if (isTransliterator) {
-      // Get the information for converting.
-      let chosenOption = getConverterSelection();
+               if (isTransliterator) {
+                   // Get the information for converting.
+                   let chosenOption = getConverterSelection();
 
-      const inarea = document.getElementById(sourceArea);
-      const outarea = document.getElementById(destinationArea);
-      const intext = inarea.value;
-      const converterOption = convertOptions[chosenOption];
-      const convertFn = converterOption['compute'];  // Function takes the text.
-      const newText = convertFn(intext, chosenOption, langInformation.langCode);
-      if (outarea) {
-        outarea.innerHTML = outarea.value = newText;
-      }
-      return;
-    }
+                   const inarea = document.getElementById(sourceArea);
+                   const outarea = document.getElementById(destinationArea);
+                   const intext = inarea.value;
+                   const converterOption = convertOptions[chosenOption];
+                   const convertFn = converterOption['compute'];  // Function takes the text.
+                   const newText = convertFn(intext, chosenOption, langInformation.langCode);
+                   if (outarea) {
+                       outarea.innerHTML = outarea.value = newText;
+                   }
+                   return;
+               }
 
-    // Otherwise use older conversion method.
-    let encodingIndex = 0;
-    // This is defined in some converters, and should eventually be in all.
-    const encodeSelector = document.getElementById(encodeSelectorName);
-    const encodeSelectorValue = encodeSelector.value;
-    if (typeof map_font_to_encoding == 'object') {
-        encodingIndex =  map_font_to_encoding[encodeSelectorValue];
-    }
-    if (langConverter) {
-      if (langConverter.encoding_data) {
-        try {
-          encodingIndex = langConverter.encoding_data[encodeSelectorValue].index;
-        } catch (error) {
-          // Revert to default encoding index.
-          encodingIndex = 0;
-        }
-      }
-      langConverter.convertEncodingToUnicode(sourceArea, destinationArea, encodingIndex);
+               // Otherwise use older conversion method.
+               let encodingIndex = 0;
+               // This is defined in some converters, and should eventually be in all.
+               const encodeSelector = document.getElementById(encodeSelectorName);
+               const encodeSelectorValue = encodeSelector.value;
+               if (typeof map_font_to_encoding == 'object') {
+                   encodingIndex =  map_font_to_encoding[encodeSelectorValue];
+               }
+               if (langConverter) {
+                   if (langConverter.encoding_data) {
+                       try {
+                           encodingIndex = langConverter.encoding_data[encodeSelectorValue].index;
+                       } catch (error) {
+                           // Revert to default encoding index.
+                           encodingIndex = 0;
+                       }
+                   }
+                   langConverter.convertEncodingToUnicode(sourceArea, destinationArea, encodingIndex);
 
-      langConverter.postProcessing();
-    } else {
-      // Old version - not using langConverter object.
-      convertEncodingToUnicode(sourceArea, destinationArea, encodingIndex);
-    }
-  }
+                   langConverter.postProcessing();
+               } else {
+                   // Old version - not using langConverter object.
+                   convertEncodingToUnicode(sourceArea, destinationArea, encodingIndex);
+               }
+           }
 
-{% if variation_sequence %}
-function toggleConvertedVS(text_area_id, toggle) {
-  // TODO: Change variation sequence content of text.
-  var text_area = document.getElementById(text_area_id);
+           {% if variation_sequence %}
+           function toggleConvertedVS(text_area_id, toggle) {
+               // TODO: Change variation sequence content of text.
+               var text_area = document.getElementById(text_area_id);
 
-  var text = text_area.value;
-  var new_text;
-  if (toggle.checked) {
-      new_text = add_variation_modifiers(text);
-  } else {
-      new_text =remove_variation_modifiers(text);
-  }
-  text_area.innerHTML = text_area.value = new_text;
-}
-{% endif %}
+               var text = text_area.value;
+               var new_text;
+               if (toggle.checked) {
+                   new_text = add_variation_modifiers(text);
+               } else {
+                   new_text =remove_variation_modifiers(text);
+               }
+               text_area.innerHTML = text_area.value = new_text;
+           }
+           {% endif %}
 
-{% if converters %}
-function newConverter(type, input_id, output_id, outtype_id) {
-    var input_area = document.getElementById(input_id);
-    var output_area = document.getElementById(output_id);
-    var output_type = document.getElementById(outtype_id);
-    // If a selection has been made, send only that part.
-    const start = input_area.selectionStart;
-    const finish = input_area.selectionEnd;
-    // obtain the selected text region
-    var intext = "";
-    if (start != finish) {
-    intext = input_area.value.substring(start, finish);
-    } else {
-    // Otherwise, the whole text.
-    intext = input_area.value;
-    }
-    var result = {{converters.convert_obj}}['conversions'][type].convert(intext);
-    var result_type = {{converters.convert_obj}}['conversions'][type]['to'];
-    output_type.innerHTML = output_type.value = result_type;
-    output_area.innerHTML = output_area.value = result;
-    // Reset the hex values.
-    updateHex(output_id, 'new_hex');
-    // Rehighlight it.
-    input_area.focus();
-}
-{% endif %}
+           {% if converters %}
+           function newConverter(type, input_id, output_id, outtype_id) {
+               var input_area = document.getElementById(input_id);
+               var output_area = document.getElementById(output_id);
+               var output_type = document.getElementById(outtype_id);
+               // If a selection has been made, send only that part.
+               const start = input_area.selectionStart;
+               const finish = input_area.selectionEnd;
+               // obtain the selected text region
+               var intext = "";
+               if (start != finish) {
+                   intext = input_area.value.substring(start, finish);
+               } else {
+                   // Otherwise, the whole text.
+                   intext = input_area.value;
+               }
+               var result = {{converters.convert_obj}}['conversions'][type].convert(intext);
+               var result_type = {{converters.convert_obj}}['conversions'][type]['to'];
+               output_type.innerHTML = output_type.value = result_type;
+               output_area.innerHTML = output_area.value = result;
+               // Reset the hex values.
+               updateHex(output_id, 'new_hex');
+               // Rehighlight it.
+               input_area.focus();
+           }
+           {% endif %}
 
-  </script>
-  <script src="/js/langinfo/langdata.js"></script>
-  <script>
-     const langInformation = new langData("{{language}}", "{{langTag}}");
+         </script>
+         <script src="/js/langinfo/langdata.js"></script>
+         <script>
+           const langInformation = new langData("{{language}}", "{{langTag}}");
 
-     // Handle new conversion object.
-     {% if isTransLit %}
-     const isTransliterator = true;
-     {% else %}
-     const isTransliterator = false;
-     {% endif %}
+           // Handle new conversion object.
+           {% if isTransLit %}
+           const isTransliterator = true;
+           {% else %}
+           const isTransliterator = false;
+           {% endif %}
 
-     let convertOptions;
-     if (langConverter != undefined) {
-       convertOptions = langConverter.getTransforms();
-     }
+           let convertOptions;
+           if (langConverter != undefined) {
+               convertOptions = langConverter.getTransforms();
+           }
 
-     const converterOptions = [];
+           const converterOptions = [];
 
-    function makeConvertOptionsUi(convertOptionsData) {  // Create a radio button for each option
-        if (!convertOptionsData) return;
-        const convertBase = document.getElementById('convertBase');
-        for (let i in convertOptionsData) {
-            converterOptions.push(convertOptionsData[i]);
-            const optionText = convertOptionsData[i]['input'] + ' --> ' + convertOptionsData[i]['output'];
-            const option = createRadioButton(optionText, convertBase);
-            if (i == 0) {
-              option.checked = true;
-            }
-        }
-    }
-    function createRadioButton(text, parent) {
-        const labelValue = document.createElement('label');
-        labelValue.innerHTML = text;
-        const inputValue = document.createElement('input');
-        inputValue.type = "radio";
-        inputValue.name = 'convertOption';  // Name of the group
-        const newline = document.createElement('br');
+           function makeConvertOptionsUi(convertOptionsData) {  // Create a radio button for each option
+               if (!convertOptionsData) return;
+               const convertBase = document.getElementById('convertBase');
+               for (let i in convertOptionsData) {
+                   converterOptions.push(convertOptionsData[i]);
+                   const optionText = convertOptionsData[i]['input'] + ' --> ' + convertOptionsData[i]['output'];
+                   const option = createRadioButton(
+                       optionText, convertBase, convertOptionsData[i]);
+                   if (i == 0) {
+                       option.checked = true;
+                   }
+               }
+           }
 
-        parent.appendChild(inputValue);
-        parent.appendChild(labelValue);
-        parent.appendChild(newline);
-        return inputValue;
-  }
+           function createRadioButton(text, parent, optionsData) {
+               const labelValue = document.createElement('label');
+               labelValue.innerHTML = text;
+               const inputValue = document.createElement('input');
+               inputValue.type = "radio";
+               inputValue.name = 'convertOption';  // Name of the group
+               const newline = document.createElement('br');
 
-  function getConverterSelection() {
-    const ele = document.getElementsByName('convertOption');
-    for(i = 0; i < ele.length; i++) {
-        if(ele[i].checked) return i;
-    }
-  }
-  </script>
+               inputValue.addEventListener(
+                   'change', () =>
+                       radioChanged(optionsData['inFont'], optionsData['outFont']));
+               parent.appendChild(inputValue);
+               parent.appendChild(labelValue);
+               parent.appendChild(newline);
+               return inputValue;
+           }
+
+           function radioChanged(inFont, outFont) {
+               // Change the fonts for the input and output areas
+               if (inFont) {
+		   const inArea = document.getElementById('old_font_input_text');
+		   const inFontSelector = document.getElementById('selectEncodingFont');
+		   inFontSelector.value = inFont;
+		   inFontSelector.onchange(inFontSelector, 'old_font_input_text');
+	       }
+	       if (outFont) {
+		   const outArea = document.getElementById('Unicode_font_output_text');
+		   const outFontSelector = document.getElementById('selectFont');
+		   outFontSelector.value = outFont; 
+		   outFontSelector.onchange(outFontSelector, 'Unicode_font_output_text');
+	       }
+	   }
+
+           function getConverterSelection() {
+               const ele = document.getElementsByName('convertOption');
+               for(i = 0; i < ele.length; i++) {
+                   if(ele[i].checked) return i;
+               }
+           }
+         </script>
   </head>
 
   <body onload="onPageLoaded();">
-  <div class="container">
+    <div class="container">
 
-  <div class="span-16">
-     <div id="old_encoding_area">
-     <h3>Encoded {{language}} font data</h3>
-        {% if isTransLit %}
-         <div id="transform_options">
-             Convert options:<br />
-             <span id="convertBase"></span>
-             <!--Convert options:<!input type="radio" id="age1" name="convertOption" -->
-         {% endif %}
+      <div class="span-16">
+        <div id="old_encoding_area">
+          <h3>Encoded {{language}} font data</h3>
+          {% if isTransLit %}
+          <div id="transform_options">
+            Convert options:<br />
+            <span id="convertBase"></span>
+            <!--Convert options:<!input type="radio" id="age1" name="convertOption" -->
+            {% endif %}
 
-         {% if translit_kb_list %}
-         Keyboard: <select onchange="onLayoutSelected(this, null, 'Unicode{{language}}Tools');" id="selectKeyboardTop">
-         {% for kb in translit_kb_list %}
-         <option value="{{kb.shortName}}">{{kb.longName}}</option>
-         {% endfor %}
-         </select>
-        {% endif %}
-     <textarea class="{{encodingList.0.font_name}}" id="old_font_input_text"
-               rows="3" style="font-size: 28px;"
-               onchange="updateHex('old_font_input_text', 'old_hex');"
-               dir="{{direction}}" spellcheck="false">{{oldInput}}</textarea>
-     <br />
+            {% if translit_kb_list %}
+            Keyboard: <select onchange="onLayoutSelected(this, null, 'Unicode{{language}}Tools');" id="selectKeyboardTop">
+              {% for kb in translit_kb_list %}
+              <option value="{{kb.shortName}}">{{kb.longName}}</option>
+              {% endfor %}
+            </select>
+            {% endif %}
+            <textarea class="{{encodingList.0.font_name}}" id="old_font_input_text"
+                      rows="3" style="font-size: 28px;"
+                      onchange="updateHex('old_font_input_text', 'old_hex');"
+                      dir="{{direction}}" spellcheck="false">{{oldInput}}</textarea>
+            <br />
 
-     <input type="button" value="Clear"
-            onclick="clearArea('old_font_input_text', 'old_hex');">
-     {% if isTransLit %}
-        Source font: <select onchange="onFontSelected(this, 'old_font_input_text');" id="selectEncodingFont">
-        {% for encoding in translit_encoding_list %}
-        <option value="{{encoding.font_name}}">{{encoding.display_name}}</option>
-        {% endfor %}
-     {% else %}
-        Source font: <select onchange="onFontSelected(this, 'old_font_input_text');" id="selectEncodingFont">
-       {% for encoding in encodingList %}
-       <option value="{{encoding.font_name}}">{{encoding.display_name}}</option>
-       {% endfor %}
-     {%endif%}
-     </select>
-     {% if converters %}
-        <p>Converters:
-        {% for type in converters.conversions %}
-        <input type="button" value="{{type}}"
-          onclick="newConverter('{{type}}', 'old_font_input_text', 'Unicode_font_output_text', 'result_type');">{% endfor %}
-     {% else %}
-         <input type="button" value="Convert to {% if outputFont %}{{outputFont}}{% else %}Unicode{% endif %}"
-             onclick="callConvertEncodingToUnicode('old_font_input_text',
-                     'Unicode_font_output_text', 'selectEncodingFont');">
-     {% endif %}
-     {% if backend_convert %}
-     <input type="button" value="Python: Convert to {% if outputFont %}{{outputFont}}{% else %}Unicode{% endif %}"
-            onclick="callConvertEncodingToUnicodeBackend('old_font_input_text',
-                     'Unicode_font_output_text', 'selectEncodingFont', 'new_hex');">
-     {% endif %}
-      <input type="checkbox" name="showOldTools" id="showOldTools"
-       onchange="toggle('OldEncodingTools', 'showOldTools');">Tools?<br />
-     {% if variation_sequence %}
-        <input type="checkbox" name="showNewTools" id="showNewTools" checked
-       onchange="toggle('Unicode{{language}}Tools', 'showNewTools');">Convert with variation sequence<br />
-     {% endif %}
-     <div id="OldEncodingTools"
-          {% if showTools %}
-          style="display:block;"
-          {% else %}
-          style="display:none;"
+            <input type="button" value="Clear"
+                   onclick="clearArea('old_font_input_text', 'old_hex');">
+            {% if isTransLit %}
+            Source font: <select onchange="onFontSelected(this, 'old_font_input_text');" id="selectEncodingFont">
+              {% for encoding in translit_encoding_list %}
+              <option value="{{encoding.font_name}}">{{encoding.display_name}}</option>
+              {% endfor %}
+              {% else %}
+              Source font: <select onchange="onFontSelected(this, 'old_font_input_text');" id="selectEncodingFont">
+                {% for encoding in encodingList %}
+                <option value="{{encoding.font_name}}">{{encoding.display_name}}</option>
+                {% endfor %}
+                {%endif%}
+              </select>
+              {% if converters %}
+              <p>Converters:
+                {% for type in converters.conversions %}
+                <input type="button" value="{{type}}"
+                       onclick="newConverter('{{type}}', 'old_font_input_text', 'Unicode_font_output_text', 'result_type');">{% endfor %}
+                {% else %}
+                <input type="button" value="Convert to {% if outputFont %}{{outputFont}}{% else %}Unicode{% endif %}"
+                       onclick="callConvertEncodingToUnicode('old_font_input_text',
+                                'Unicode_font_output_text', 'selectEncodingFont');">
+                {% endif %}
+                {% if backend_convert %}
+                <input type="button" value="Python: Convert to {% if outputFont %}{{outputFont}}{% else %}Unicode{% endif %}"
+                       onclick="callConvertEncodingToUnicodeBackend('old_font_input_text',
+                                'Unicode_font_output_text', 'selectEncodingFont', 'new_hex');">
+                {% endif %}
+                <input type="checkbox" name="showOldTools" id="showOldTools"
+                       onchange="toggle('OldEncodingTools', 'showOldTools');">Tools?<br />
+                {% if variation_sequence %}
+                <input type="checkbox" name="showNewTools" id="showNewTools" checked
+                       onchange="toggle('Unicode{{language}}Tools', 'showNewTools');">Convert with variation sequence<br />
+                {% endif %}
+                <div id="OldEncodingTools"
+                     {% if showTools %}
+                     style="display:block;"
+                     {% else %}
+                     style="display:none;"
+                     {% endif %}
+                     >
+                  <input type="button" value="All old chars"
+                         onclick="fillWithOldChars('old_font_input_text', 'old_hex')">
+                  {% for text in textStrings %}
+                  <input type="button" value="{{text.name}}"
+                         onclick="fillAreaWithChars('{{text.string}}', 'old_font_input_text', 'old_hex');">
+                  {% endfor %}
+
+                  {% if offerLowerConversion %}
+                  <input type="checkbox" name="lowerCase" id="DoLower">To lower?<br />
+                  {% endif %}
+                  <input type="button" value="Show hex values"
+                         onclick="updateHex('old_font_input_text', 'old_hex');">
+                  <br />
+                  <br />
+
+                  Hex values:
+                  <textarea id="old_hex" cols="80" rows="2" style="font-family:'Courier New';font-size:14px;"
+                            lang="{%if lang_list.0.shortName %}{{lang_list.0.shortName}}{%endif%}" spellcheck="false"></textarea>
+                  <input type="button"
+                         onclick="convertToText('old_hex', 'old_font_input_text');"
+                         value="Convert hex to text" />
+                </div>
+                <br />
+          </div>
+
+          <div id="unicode_area">
+            {% if converters %}
+            <h3 id='result_type'></h3>
+            {% else %}
+            <h3>{%if outputFont %}{{outputFont}}{%else%}Unicode{%endif%} {{language}} text</h3>
+            {% endif %}
+            <textarea class="{{unicodeFonts.0.family}}" id="Unicode_font_output_text"
+                      onchange="updateHex('Unicode_font_output_text', 'new_hex');"
+                      cols="50" rows="3" style="font-size: 28px;" lang="{{langTag}}"
+                      dir="{{direction}}" spellcheck="false"
+                      >{{unicodeInput}}</textarea>
+            <br />
+            <input type="button" value="Clear"
+                   onclick="clearArea('Unicode_font_output_text', 'new_hex');">
+            {% if unicodeChars %}<input type="button"
+                                        onclick="fillWithUnicodeText('Unicode_font_output_text',
+                                                 'new_hex');"
+                                        value="Unicode chars" />{% endif %}
+            Select font: <select onchange="onFontSelected(this, 'Unicode_font_output_text');" id="selectFont">
+              {% for font in unicodeFonts %}
+              <option value="{{font.family}}">{{font.longName}}</option>
+              {% endfor %}
+            </select>
+            {% if lang_list|length > 1%}
+            Language: <select onchange="onLanguageSelected(this.value, 'Unicode_font_output_text')">
+              {% for lang in lang_list %}
+              <option value="{{lang.shortName}}" select="">{{lang.longName}}</option>
+              {% endfor %}
+            </select>
+            {% endif %}
+            <br />
+            {% if not isTransLit and kb_list|length > 1 %}
+            Keyboard: <select onchange="onLayoutSelected(this, null, 'Unicode{{language}}Tools');" id="selectKeyboard2">
+              {% for kb in kb_list %}
+              <option value="{{kb.shortName}}">{{kb.longName}} Unicode</option>
+              {% endfor %}
+            </select>
+
+            {% endif %}
+
+            <input type="checkbox" name="showNewTools" id="showNewTools"
+                   onchange="toggle('Unicode{{language}}Tools', 'showNewTools');">Tools?
+            {% if variation_sequence %}
+            <input type="checkbox" name="vsToggle" id="toggleVS" checked
+                   onchange="toggleConvertedVS('Unicode_font_output_text', toggleVS);">Toggle variation sequence<br />
+            {% endif %}
+          </div>
+          <div id="Unicode{{language}}Tools"
+               {% if showTools %}
+               style="display:block;"
+               {% else %}
+               style="display:none;"
+               {% endif %}
+               >
+            <input type="button" value="Show hex values"
+                   onclick="updateHex('Unicode_font_output_text', 'new_hex');">
+            {%if regressionTest %}
+            <input type="button" value="Regression test"
+                   onclick="regression(0);">  <!-- TODO: Pass the encoding index -->
+            {% endif %}
+            <input type="button"
+                   onclick="fillWithUnicodeCombiners('Unicode_font_output_text',
+                            'new_hex');"
+                   value="Unicode combining chars" />
+            {% if showNormalize %}
+            <input type="button"
+                   onclick="normalizeUnicodeBoxes('Unicode_font_output_text', 'Unicode_font_output_text');"
+                   value="Normalize" id="normalizeText" />
+            {% endif %}
+
+            <br />
+            Hex values:
+            <textarea id="new_hex" cols="80" rows="3" style="font-family:'Courier New';font-size:14px;" spellcheck="false"></textarea>
+            <br />
+            <input type="button"
+                   onclick="convertToText('new_hex', 'Unicode_font_output_text', 'new_hex')"
+                   value="Convert hex to {% if outputFont %}{{outputFont}}{% else %}Unicode{% endif %} Text" />
+            <br />
+          </div>
+          {% if allFonts %}
+          <input type="button" onclick="toAllFonts('Unicode_font_output_text', 'old_font_input_text');" value="To all fonts">
+          <br />
           {% endif %}
-        >
-     <input type="button" value="All old chars"
-            onclick="fillWithOldChars('old_font_input_text', 'old_hex')">
-       {% for text in textStrings %}
-       <input type="button" value="{{text.name}}"
-            onclick="fillAreaWithChars('{{text.string}}', 'old_font_input_text', 'old_hex');">
-       {% endfor %}
-
-       {% if offerLowerConversion %}
-       <input type="checkbox" name="lowerCase" id="DoLower">To lower?<br />
-       {% endif %}
-       <input type="button" value="Show hex values"
-              onclick="updateHex('old_font_input_text', 'old_hex');">
-       <br />
-     <br />
-
-     Hex values:
-     <textarea id="old_hex" cols="80" rows="2" style="font-family:'Courier New';font-size:14px;"
-       lang="{%if lang_list.0.shortName %}{{lang_list.0.shortName}}{%endif%}" spellcheck="false"></textarea>
-     <input type="button"
-            onclick="convertToText('old_hex', 'old_font_input_text');"
-            value="Convert hex to text" />
-     </div>
-     <br />
-    </div>
-
-    <div id="unicode_area">
-        {% if converters %}
-        <h3 id='result_type'></h3>
+        </div>
+      <div class="span-4 last">
+        {% if user_nickname %}
+        <h4>Welcome {{user_nickname}}</h4>
+        {% if user_logout %}
+        <a href={{user_logout}}>Logout</a>
+        {% endif %}
         {% else %}
-        <h3>{%if outputFont %}{{outputFont}}{%else%}Unicode{%endif%} {{language}} text</h3>
+        <a href='{{user_login_url}}'>Log in</a>
         {% endif %}
-     <textarea class="{{unicodeFonts.0.family}}" id="Unicode_font_output_text"
-      onchange="updateHex('Unicode_font_output_text', 'new_hex');"
-               cols="50" rows="3" style="font-size: 28px;" lang="{{langTag}}"
-               dir="{{direction}}" spellcheck="false"
-               >{{unicodeInput}}</textarea>
-     <br />
-     <input type="button" value="Clear"
-            onclick="clearArea('Unicode_font_output_text', 'new_hex');">
-     {% if unicodeChars %}<input type="button"
-            onclick="fillWithUnicodeText('Unicode_font_output_text',
-                     'new_hex');"
-            value="Unicode chars" />{% endif %}
-        Select font: <select onchange="onFontSelected(this, 'Unicode_font_output_text');" id="selectFont">
-       {% for font in unicodeFonts %}
-       <option value="{{font.family}}">{{font.longName}}</option>
-       {% endfor %}
-    </select>
-   {% if lang_list|length > 1%}
-   Language: <select onchange="onLanguageSelected(this.value, 'Unicode_font_output_text')">
-     {% for lang in lang_list %}
-     <option value="{{lang.shortName}}" select="">{{lang.longName}}</option>
-     {% endfor %}
-   </select>
-   {% endif %}
-  <br />
-     {% if not isTransLit and kb_list|length > 1 %}
-        Keyboard: <select onchange="onLayoutSelected(this, null, 'Unicode{{language}}Tools');" id="selectKeyboard2">
-        {% for kb in kb_list %}
-        <option value="{{kb.shortName}}">{{kb.longName}} Unicode</option>
-        {% endfor %}
-      </select>
 
-     {% endif %}
-
-     <input type="checkbox" name="showNewTools" id="showNewTools"
-       onchange="toggle('Unicode{{language}}Tools', 'showNewTools');">Tools?
-     {% if variation_sequence %}
-        <input type="checkbox" name="vsToggle" id="toggleVS" checked
-       onchange="toggleConvertedVS('Unicode_font_output_text', toggleVS);">Toggle variation sequence<br />
-     {% endif %}
-     </div>
-     <div id="Unicode{{language}}Tools"
-          {% if showTools %}
-          style="display:block;"
-          {% else %}
-          style="display:none;"
-          {% endif %}
-       >
-       <input type="button" value="Show hex values"
-            onclick="updateHex('Unicode_font_output_text', 'new_hex');">
-         {%if regressionTest %}
-       <input type="button" value="Regression test"
-            onclick="regression(0);">  <!-- TODO: Pass the encoding index -->
-        {% endif %}
-         <input type="button"
-           onclick="fillWithUnicodeCombiners('Unicode_font_output_text',
-                    'new_hex');"
-           value="Unicode combining chars" />
-      {% if showNormalize %}
-      <input type="button"
-             onclick="normalizeUnicodeBoxes('Unicode_font_output_text', 'Unicode_font_output_text');"
-             value="Normalize" id="normalizeText" />
-      {% endif %}
-
-    <br />
-    Hex values:
-    <textarea id="new_hex" cols="80" rows="3" style="font-family:'Courier New';font-size:14px;" spellcheck="false"></textarea>
-    <br />
-    <input type="button"
-           onclick="convertToText('new_hex', 'Unicode_font_output_text', 'new_hex')"
-           value="Convert hex to {% if outputFont %}{{outputFont}}{% else %}Unicode{% endif %} Text" />
-    <br />
-    </div>
-    {% if allFonts %}
-    <input type="button" onclick="toAllFonts('Unicode_font_output_text', 'old_font_input_text');" value="To all fonts">
-    <br />
-    {% endif %}
-   </div>
-</div>
-  <div class="span-4 last">
-    {% if user_nickname %}
-    <h4>Welcome {{user_nickname}}</h4>
-    {% if user_logout %}
-    <a href={{user_logout}}>Logout</a>
-    {% endif %}
-    {% else %}
-    <a href='{{user_login_url}}'>Log in</a>
-    {% endif %}
-
-    <h3>Useful links</h3>
-      <ul>
-        {% for link in links %}
+        <h3>Useful links</h3>
+        <ul>
+          {% for link in links %}
           <li>
             <a href="{{link.ref}}">{{link.linkText}}</a>
           </li>
-        {% endfor %}
+          {% endfor %}
         </ul>
-         {% if isAdmin %}
+        {% if isAdmin %}
         <hr>
         <h4>Admin Functions</h4>
         <ul>
@@ -578,16 +598,16 @@ function newConverter(type, input_id, output_id, outtype_id) {
         </ul>
         {% endif %}
         <br />
-    <form id='mon_form' action="/feedback/" method="get">
-      <input type="submit" value="Send feedback" />
-      <input type="hidden" name='language' value='{{language}}'>
-      <input type="hidden" name='font' value=''>
-    </form>
-  </div>
+        <form id='mon_form' action="/feedback/" method="get">
+          <input type="submit" value="Send feedback" />
+          <input type="hidden" name='language' value='{{language}}'>
+          <input type="hidden" name='font' value=''>
+        </form>
       </div>
-  </div>
+    </div>
+</div>
 
-  </div> <!-- container -->
+</div> <!-- container -->
 
 </body>
 </html>
