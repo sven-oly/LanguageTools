@@ -19,7 +19,7 @@ var AS1_LAYOUT = {
       '': '\u09f9১২৩৪৫৬৭৮৯০-=' +
           '\u09a6\u09c2\u09c0\u09f0\u099F\u098f\u09c1\u09bf\u0993\u09AA\u09c7\u09cb\u09F1' +
           '\u09be\u09B8\u09A1\u09A4\u0997\u09B9\u099C\u09B2\u0995;\'' +
-          '{{\u09AF\u09BC}}\u09B6\u099A{{}}\u09AC\u09A8\u09AE,\u09f7\u09cd'
+          '{{\u09AF\u09BC}}\u09B6\u099A\u099D\u09AC\u09A8\u09AE,\u09f7\u09cd'
     },
     's,sc': {
       '': '~!@#$%\u099E&*()_+' +
