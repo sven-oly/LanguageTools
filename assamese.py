@@ -33,6 +33,9 @@ links = [
   {'linkText': 'Keyboard',
    'ref': '/' + LanguageCode + '/'
    },
+  {'linkText': 'Assamese alphabet',
+   'ref': 'https://en.wikipedia.org/wiki/Assamese_alphabet',
+  },
   # {'linkText': 'Converter',
   #  'ref': '/' + LanguageCode + '/convertUI/'},
   # {'linkText': 'Font conversion summary',
@@ -41,9 +44,9 @@ links = [
   # {'linkText': 'Resources',
   #   'ref': '/' + LanguageCode + '/downloads/'
   # },
-  # {'linkText': 'Unicode page',
-  #  'ref': 'https://www.unicode.org/charts/PDF/U1C00.pdf'
-  # },
+  {'linkText': 'Unicode page',
+   'ref': 'https://www.unicode.org/charts/PDF/U0980.pdf'
+  },
   # {'linkText': 'THIS SCRIPT',
   #  'ref': 'https://en.wikipedia.org/wiki/XYZ_alphabet'
   # },
@@ -66,6 +69,14 @@ class langInfo:
         self.Language_native = Language_native
         self.test_data = u''
         self.unicode_font_list = [
+          {'family': 'UxaFinal',
+           'longName': 'Uxa Final',
+           'source': '/fonts/Assamese/Uxa_Final.ttf',
+           },
+          {'family': 'Jonaki_Thin',
+           'longName': 'Jonaki Thin',
+           'source': '/fonts/Assamese/Jonaki_Thin.ttf',
+           },
           {'family': 'NotoBengali',
            'longName': 'Noto Sans Assamese',
            'source': '/fonts/NotoSansBengali-Regular.ttf',
@@ -92,7 +103,10 @@ class langInfo:
 
         self.kb_list = [
           {'shortName': 'as1',
-           'longName': "Assamese 1",
+           'longName': "Assamese fonatic",
+           },
+          {'shortName': 'as2',
+           'longName': "AS Script",
            },
         ]
 
