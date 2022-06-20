@@ -47,6 +47,8 @@ links = [
   {'linkText': 'Unicode page',
    'ref': 'https://www.unicode.org/charts/PDF/U0980.pdf'
   },
+  {'linkText': "Download Unicode Gautau University keyboard layouts and fonts",
+   'ref': 'https://gauhati.ac.in/member/shikhar-kumar-sarma?aid=NA==&did=MzA='}
   # {'linkText': 'THIS SCRIPT',
   #  'ref': 'https://en.wikipedia.org/wiki/XYZ_alphabet'
   # },
@@ -104,18 +106,20 @@ class langInfo:
         self.kb_list = [
           {'shortName': 'as1',
            'longName': "Assamese fonatic",
+           'instructions': 'Keyboard layouts and fonts courtesy of Gauhati University. Download from links.',
            },
           {'shortName': 'as2',
            'longName': "AS Script",
+           'instructions': 'Keyboard layouts and fonts courtesy of Gauhati University. Download from links.',
            },
         ]
 
         self.links = links
 
         # Unicode range
-        self.unicodeRanges = [('\u0020', '\u007f')]
+        self.unicodeRanges = [('\u0980', '\u09FF')]
         # TODO: Fill in with diacritics
-        self.diacritic_list = [unichr(x) for x in range(0x300, 0x330)]
+        self.diacritic_list = [unichr(x) for x in range(0x981, 0x984)]
         # TODO: Fill in base consonant
         self.default_base_consonant = u'\0x61'
 

@@ -11,20 +11,21 @@
 // limitations under the License.
 
 
-var AS1_LAYOUT = {
-  'id': 'as1',
-  'title': 'Assamese fonatic',
+var AS2_LAYOUT = {
+  'id': 'as2',
+  'title': 'AS Script',
   'mappings': {
     ',c': {
-      '': 'ژ١٢٣٤٥٦٧٨٩٠-=' +
-          'چصپقفغعهخট]\\\u09a6\u09c2\u09c9\u09f0' +
-          'ئءۆرلاىه‌وز/'
+      '': '\u09f9১২৩৪৫৬৭৮৯০-=' +
+          '\u09cc\u09c8\u09be\u09c0\u09c2বহগদজড\u09bc\u09b7' +
+          '\u09cb\u09c7\u09cd\u09bf\u09c1প\u09f0কত;\'' +
+          '\u09ce\u0982মনৱলস,\u0964/'
     },
     's,sc': {
-      '': '~!@#$%^&*()_+' +
-          'ধWERঠYUIOP{}|' +
-          'ASঢFGHJKL:"' +
-          'ZXCVBNM<>?'
+      '': '{{\u09CD\u09F0}}!@#ঋ%\u0981{{\u0995\u09cd\u09b7}}{{\u09B6\u09CD\u09F0}}()_+' +
+          'ঔঐ\u0986ঈঊভঙঘধঝঢঞ{{য়}}' +
+          '\u0993\u098f\u0985ইউফটখথ:"' +
+          '\u0983{{\u09FA}}ণচছঠশ<>?'
     },
     'l,cl': {
       '': '`1234567890-=' +
@@ -45,5 +46,5 @@ var AS1_LAYOUT = {
 };
 
 // Load the layout and inform the keyboard to switch layout if necessary.
-google.elements.keyboard.loadme(AS1_LAYOUT);
-as1 = AS1_LAYOUT;
+google.elements.keyboard.loadme(AS2_LAYOUT);
+as2 = AS2_LAYOUT;
