@@ -201,6 +201,10 @@ class langInfo():
         {'linkText': 'Resources',
          'ref': '/' + self.LanguageCode + '/downloads/'
         },
+      {
+        'linkText': "Download Noto Tangsa fonts",
+        'ref': 'https://github.com/notofonts/noto-fonts/tree/main/hinted/ttf/NotoSansTangsa'
+      },
         {'linkText': 'Calculator',
          'ref': '/nst/numerals/'
         },
