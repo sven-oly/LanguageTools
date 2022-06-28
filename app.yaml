@@ -128,6 +128,9 @@ handlers:
 - url: /kgp/.*
   script: kaingang.app
 
+- url: /hke/.*
+  script: kihunde.app
+
 - url: /kht/.*
   script: khamti.app
 
@@ -139,6 +142,9 @@ handlers:
 
 - url: /lut/.*
   script: lushootseed.app
+
+- url: /bfz/.*
+  script: mahasu.app
 
 - url: /mro/.*
   script: mru.app

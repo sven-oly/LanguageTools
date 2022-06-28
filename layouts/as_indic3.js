@@ -11,21 +11,22 @@
 // limitations under the License.
 
 
-var AS2_LAYOUT = {
-  'id': 'as2',
-  'title': 'AS Script',
+var AS_INDIC3_LAYOUT = {
+  'id': 'as_indic3',
+  'title': 'Assamese Indic3',
+  'source': 'https://www.microsoft.com/en-in/images/downloads/Assamese%20Indic%20Input%203-User%20Guide.pdf',
   'mappings': {
     ',c': {
-      '': '\u09f9১২৩৪৫৬৭৮৯০-=' +
-          '\u09cc\u09c8\u09be\u09c0\u09c2বহগদজড\u09bc\u09b7' +
-          '\u09cb\u09c7\u09cd\u09bf\u09c1প\u09f0কত;\'' +
-          '\u09ce\u0982মনৱলস,\u0964/'
+      '': '`1234567890-=' +
+          'qweৰটyuiop[]\\' +
+          'অsdfghjকl;\'' +
+          'zxcvbnm,./'
     },
     's,sc': {
-      '': '{{\u09CD\u09F0}}!@#ঋ%\u0981{{\u0995\u09cd\u09b7}}{{\u09B6\u09CD\u09F0}}()_+' +
-          'ঔঐ\u0986ঈঊভঙঘধঝঢঞ{{য়}}' +
-          '\u0993\u098f\u0985ইউফটখথ:"' +
-          '\u0983{{\u09FA}}ণচছঠশ<>?'
+      '': '~!@#$%^&*()_+' +
+          'QWERTYUIOP{}|' +
+          'ASDFGHJKL:"' +
+          'ZকCVBNM<>?'
     },
     'l,cl': {
       '': '`1234567890-=' +
@@ -41,10 +42,11 @@ var AS2_LAYOUT = {
     }
   },
   'transform': {
-    '^': '^',  // Placeholder
+    'অঅ': 'আ',  // aa
+    'কৰ': 'ক',  // reph typed after
   }
 };
 
 // Load the layout and inform the keyboard to switch layout if necessary.
-google.elements.keyboard.loadme(AS2_LAYOUT);
-as2 = AS2_LAYOUT;
+google.elements.keyboard.loadme(AS_INDIC3_LAYOUT);
+as_indic3 = AS_INDIC3_LAYOUT;

@@ -95,6 +95,7 @@ LanguageList = [
   ('Sylheti', 'syl'),
   ('Fulfulde', 'ff'),
   ('Rhade', 'rad', 'klei Êđê'),
+  ('Mahasu', 'bfz')
 ]
 
 

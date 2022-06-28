@@ -24,18 +24,15 @@ try:
 except NameError:
     unichr = chr
 
-Language = 'Assamese'
+Language = 'Kihunde'
 Language_native = 'TBD'
-LanguageCode = 'as'
-ScriptCode = 'Beng'
+LanguageCode = 'hke'
+ScriptCode = 'Latn'
 
 links = [
   {'linkText': 'Keyboard',
    'ref': '/' + LanguageCode + '/'
    },
-  {'linkText': 'Assamese alphabet',
-   'ref': 'https://en.wikipedia.org/wiki/Assamese_alphabet',
-  },
   # {'linkText': 'Converter',
   #  'ref': '/' + LanguageCode + '/convertUI/'},
   # {'linkText': 'Font conversion summary',
@@ -44,17 +41,18 @@ links = [
   # {'linkText': 'Resources',
   #   'ref': '/' + LanguageCode + '/downloads/'
   # },
-  {'linkText': 'Unicode page',
-   'ref': 'https://www.unicode.org/charts/PDF/U0980.pdf'
-  },
-  {'linkText': "Download Unicode Gautau University keyboard layouts and fonts",
-   'ref': 'https://gauhati.ac.in/member/shikhar-kumar-sarma?aid=NA==&did=MzA='}
+  # {'linkText': 'Unicode page',
+  #  'ref': 'https://www.unicode.org/charts/PDF/U1C00.pdf'
+  # },
   # {'linkText': 'THIS SCRIPT',
   #  'ref': 'https://en.wikipedia.org/wiki/XYZ_alphabet'
   # },
-  # {'linkText': 'Wikipedi page',
-  #  'ref': 'https://en.wikipedia.org/wiki/XYZ_language'
-  # },
+  {'linkText': 'Wikipedi page',
+   'ref': 'https://en.wikipedia.org/wiki/Hunde_language'
+  },
+  {'linkText': 'DEPedia',
+   'ref': 'https://dbpedia.org/page/Hunde_language'
+   },
   # {'linkText': 'Ethnolog',
   #  'ref': 'https://www.ethnologue.com/language/XYZ'
   # },
@@ -71,18 +69,6 @@ class langInfo:
         self.Language_native = Language_native
         self.test_data = u''
         self.unicode_font_list = [
-          {'family': 'UxaFinal',
-           'longName': 'Uxa Final',
-           'source': '/fonts/Assamese/Uxa_Final.ttf',
-           },
-          {'family': 'Jonaki_Thin',
-           'longName': 'Jonaki Thin',
-           'source': '/fonts/Assamese/Jonaki_Thin.ttf',
-           },
-          {'family': 'NotoBengali',
-           'longName': 'Noto Sans Assamese',
-           'source': '/fonts/NotoSansBengali-Regular.ttf',
-           },
           {'family': 'NotoSerif',
            'longName': 'Noto Serif',
            'source': '/fonts/NotoSerif-Regular.ttf',
@@ -91,6 +77,11 @@ class langInfo:
            'longName': 'Noto Sans',
            'source': '/fonts/NotoSans-Regular.ttf',
            },
+          {'family': 'CroisantOne',
+           'longName': "Croissnant One",
+           'source': '/fonts/CroissantOne-Regular.ttf',
+           'attribution': 'http://fontpro.com/croissant-one-font-16469',
+          }
         ]
 
         self.encoding_font_list = [
@@ -104,26 +95,17 @@ class langInfo:
         self.lang_list = [LanguageCode]  # This may be extended
 
         self.kb_list = [
-          {'shortName': 'as1',
-           'longName': "Assamese fonatic",
-           'instructions': 'Keyboard layouts and fonts courtesy of Gauhati University. Download from links.',
-           },
-          {'shortName': 'as2',
-           'longName': "AS Script",
-           'instructions': 'Keyboard layouts and fonts courtesy of Gauhati University. Download from links.',
-           },
-          {'shortName': 'as_indic3',
-           'longName': "Indic3",
-           'instructions': 'Based on MS Indic3 for Assamese',
+          {'shortName': 'hke1',
+           'longName': 'Kihunde 1',
            },
         ]
 
         self.links = links
 
         # Unicode range
-        self.unicodeRanges = [('\u0980', '\u09FF')]
+        self.unicodeRanges = [('\u0020', '\u007f')]
         # TODO: Fill in with diacritics
-        self.diacritic_list = [unichr(x) for x in range(0x981, 0x984)]
+        self.diacritic_list = [unichr(x) for x in range(0x300, 0x330)]
         # TODO: Fill in base consonant
         self.default_base_consonant = u'\0x61'
 
