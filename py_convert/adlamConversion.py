@@ -386,6 +386,9 @@ class converter(ConverterBase):
         self.setLowerCaseRange(0x1e922, 0x1e943)
         self.description = 'Converts Adlam font encoding to Unicode'
 
+        self.defaultOutputFont = "Noto Sans Adlam New"
+
+
         self.forceFont = True  # May be used to set all font fields to the Unicode font
 
         self.isRtl = True

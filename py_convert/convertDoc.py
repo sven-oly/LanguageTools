@@ -129,6 +129,7 @@ class convertDocx():
         # Skipping the new data for now.
         if isinstance(docPartsOut[info.filename], docx.document.Document):
           try:
+            # ??? outzip.write(info, docPartsOut[info.filename])
             outzip.write(info, docPartsOut[info.filename])
           except TypeError as e:
             print("ERROR: Cannot zip %s" % (info.filename))
@@ -348,7 +349,7 @@ class convertDocx():
     # End of the paragraph
     if paragraphText and self.accumulate_text:
       convertedText = self.converter.convertText(paragraphText, fontTextInfo=None,
-                                               fontIndex=0)
+                                                 fontIndex=0)
       if debug_output:
         print('     Starts = %s' % paragraphTextStarts)
         print('  --> Converted paragraph = %s' % convertedText)
@@ -423,7 +424,7 @@ class convertDocx():
       print('** COLLECTED %s to Unicode. ' % collectedText)
 
     convertedText = self.converter.convertText(collectedText, fontTextInfo=formatTextInfo,
-                                          fontIndex=fontIndex)
+                                               fontIndex=fontIndex)
     # TODO: Add case conversion, if desired.
 
     convertedCount = 0
@@ -621,7 +622,7 @@ class convertDocx():
     return ET.tostring(tree, encoding='utf-8')
 
 
- # For standalone and testing.
+# For standalone and testing.
 def main(argv):
   global debug_output
 
