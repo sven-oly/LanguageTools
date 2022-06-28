@@ -1,0 +1,41 @@
+<html><head>
+    <title>{{kbCode}} Keyman Embed test</title>
+
+    <script>
+        function onPageLoaded() {
+        }
+    </script>
+</head>
+
+  <body onload="onPageLoaded()">
+  <h1>KeymanWeb Sample 1</h1>
+  <textarea cols="20" rows="5"></textarea>
+
+  <!--
+    In this example, we are loading KeymanWeb late.  If you focus on a control early (e.g. a search box),
+    you may want to place the KeymanWeb code into the head instead, to ensure it is available by the
+    time the user wants to start typing.
+  -->
+
+  <!-- KeymanWeb script -->
+  <script src='https://s.keyman.com/kmw/engine/15.0.263/keymanweb.js'></script>
+
+  <!--
+    For desktop browsers, a script for the user interface must be inserted here.
+
+    Standard UIs are toggle, button, float and toolbar.
+    The toolbar UI is best for any page designed to support keyboards for
+    a large number of languages.
+  -->
+  <script src='https://s.keyman.com/kmw/engine/15.0.263/kmwuitoggle.js'></script>
+
+  <!-- Initialization: set paths to keyboards, resources and fonts as required -->
+  <script>
+      (function(kmw) {
+        kmw.init({attachType:'auto'});
+        kmw.addKeyboards('@ccp-cakm-bd');  // Easy Chakma
+        kmw.addKeyboards('@fr');
+      })(keyman);
+    </script>
+</body>
+</html>

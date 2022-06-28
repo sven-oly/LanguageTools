@@ -165,6 +165,15 @@ class ReadProcessFile(webapp2.RequestHandler):
     #  self.response.out.write(' --- tag = %s' % p.tag)
 
 
+class TestEmbedKM(webapp2.RequestHandler):
+  def get(self):
+    template_values = {
+      'kbCode': 'ccp-cakm-bd',
+    }
+    path = os.path.join(os.path.dirname(__file__), 'HTML/testKMEmbed.html')
+    self.response.out.write(template.render(path, template_values))
+
+TestEmbedKM
 app = webapp2.WSGIApplication([
     ('/test/', testHandler),
     ('/test/testLocale/', testLocaleHandler),
@@ -174,5 +183,6 @@ app = webapp2.WSGIApplication([
     ('/test/ProcessJsToXml/', ProcessJsToXml),
     ('/test/SelectFile/', SelectFile),
     ('/test/ReadFile/', ReadProcessFile),
+  ('/test/KMweb/', TestEmbedKM)
   ],
   debug=True)
