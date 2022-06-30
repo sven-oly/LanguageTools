@@ -41,7 +41,10 @@ var AS2_LAYOUT = {
     }
   },
   'transform': {
-    '^': '^',  // Placeholder
+    // Reorder leading vowels after consonants
+    '([\u09bf\u09c7\u09c8\u09cb\u09cc])([\u0995-\u09f2])': '$2$1',
+     '([\u09cd])([\u09af\u09be-\u09cd])': '$2$1',  // Reorder virama
+     '([\u0981-\u0983])([\u09af\u09be-\u09cd])': '$2$1',  // Reorder virama
   }
 };
 

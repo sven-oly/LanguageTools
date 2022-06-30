@@ -41,9 +41,9 @@ links = [
   # {'linkText': 'Font conversion summary',
   #   'ref': '/' + LanguageCode + '/encodingRules/'
   # },
-  # {'linkText': 'Resources',
-  #   'ref': '/' + LanguageCode + '/downloads/'
-  # },
+  {'linkText': 'Diacritics',
+   'ref': '/my/diacritic/'
+   },
   {'linkText': 'Unicode page',
    'ref': 'https://www.unicode.org/charts/PDF/U0980.pdf'
   },
@@ -70,6 +70,14 @@ class langInfo:
         self.Language = Language
         self.Language_native = Language_native
         self.test_data = u''
+        self.base_consonant = u'\u0995'
+        list1 = [u'\u0981', u'\u0982', u'\u0983', u'\u09BC', u'\u09be', u'\u09bf', u'\u09c0', u'\u09c1',
+                 u'\u09c2', u'\u09c3', u'\u09c4', u'\u09c7', u'\u09c8', u'\u09cb', u'\u09cc',
+                 u'\u09cd', u'\u09ce']
+        self.diacritic_list = list1
+
+
+
         self.unicode_font_list = [
           {'family': 'UxaFinal',
            'longName': 'Uxa Final',
@@ -123,7 +131,7 @@ class langInfo:
         # Unicode range
         self.unicodeRanges = [('\u0980', '\u09FF')]
         # TODO: Fill in with diacritics
-        self.diacritic_list = [unichr(x) for x in range(0x981, 0x984)]
+        #self.diacritic_list = [unichr(x) for x in range(0x981, 0x984)]
         # TODO: Fill in base consonant
         self.default_base_consonant = u'\0x61'
 
