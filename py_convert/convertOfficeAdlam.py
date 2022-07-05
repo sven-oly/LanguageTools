@@ -45,7 +45,7 @@ def main(argv):
     converter.setSentenceMode(args.sentence)
 
     for input in paths_to_doc:
-      convertOffice.convertOffice(input, args.output_dir, converter)
+      convertOffice.convertOffice(input, args.output_dir, converter, version=2)
 
 
 if __name__ == "__main__":

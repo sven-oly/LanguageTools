@@ -395,7 +395,7 @@ class converter(ConverterBase):
 
         self.description = 'Converts Adlam font encoding to Unicode'
         self.ignore_start_of_sentence = re.compile(
-            r'([\U0001E950-\U0001E959\u0020()\- ]+)')
+            r'([\U0001E950-\U0001E959\u0020\(\)\- ]+)')
 
         self.encoding = None
         self.debug = False  #False
@@ -612,76 +612,42 @@ class converter(ConverterBase):
 
 
     def processParagraphRuns(self, p):
+
+        if not p.text:
+            # Nothing to process
+            return
+
+        for run in p.runs:
+            convertedText = self.convertText(run.text, None, 0)  # !!! TEMPORARY
+            run.text = convertedText
+
         # Get all the positions of sentence endings
         sentence_ends, sentence_starts = \
             self.computeSentenceStartsEnds(p.text)
-        # all_sentence_ends = self.end_of_sentence_pattern.finditer(p.text)
-        # text_len = len(p.text)
-        # if not all_sentence_ends:
-        #     # No sentence endings. Should first be capitalized?
-        #     return None
-        # sentence_starts = [0]
-        # sentence_ends = []
-        # for sentence_end in all_sentence_ends:
-        #     # print(sentence_end)
-        #     # Position and character of this sentence ending
-        #     sentence_ends.append((sentence_end.start(), sentence_end.group(0)[0]))
-        #     end_pos = sentence_end.end()
-        #     while end_pos < text_len and (
-        #         p.text[end_pos] == ' ' or p.text[end_pos] == '\r'
-        #         or p.text[end_pos] == '\t' or p.text[end_pos] == '\n'):
-        #       end_pos += 1
-        #     sentence_starts.append(end_pos)
-        #
-        runs = p.runs
         run_map = self.mapRunsToParagraphTextPosisions(p.runs)
-        # Mapping of run starts & ends to text positions
-        # run_map = []
-        # pos = 0
-        # run_index = 0
-        # for run in runs:
-        #   run_length = len(run.text)
-        #   run_map.append((pos, pos + len(run.text) - 1, run, run_index))
-        #   pos += len(run.text)
-        #   run_index += 1
 
-        # now iterate over the ends of sentences
-        # Capitalize each start of sentence
-        converter.updateSentencesInRuns(self, run_map, runs, sentence_starts, sentence_ends)
-        # for start in sentence_starts:
-        #     # Get the run and relative position
-        #     (run, run_pos) = self.textPositionInRun(run_map, start)
-        #
-        #     if run:
-        #         # Find next non-white space and capitalize it
-        #         run_length = len(run.text)
-        #         runIndex = run_pos
-        #         text = run.text
-        #         while runIndex < run_length and text[runIndex] == ' ':
-        #             runIndex += 1
-        #         if runIndex < run_length:
-        #             fixThisOne = text[runIndex]
-        #             toUpper = fixThisOne.upper()
-        #             run.text = text[0:runIndex] + toUpper + text[runIndex+1:]
-        #         else:
-        #             print('!! Capitalization question %d %s (%d)' % (runIndex, text, len(text)))
-        #
-        # # Insert preceding ! or ?, from the back
-        # index = len(sentence_ends) - 1
-        # while index >= 0:
-        #     insert_pos = sentence_ends[index][0]
-        #     punctuation = sentence_ends[index][1]
-        #     if punctuation != ".":
-        #         # Get the start of this sentence
-        #         (run, run_pos) = self.textPositionInRun(run_map, sentence_starts[index])
-        #         text = run.text
-        #         run_length = len(text)
-        #         while run_pos < run_length and text[run_pos] == ' ':
-        #             run_pos += 1
-        #         run.text = text[0:run_pos] + self.pre_punctuation[punctuation] + text[run_pos:]
-        #
-        #     index -= 1
-
+        # Patch for capitals and punctuation at sentence starts.
+        for index in range(0, len(sentence_starts)):
+            startPos = sentence_starts[index]
+            endData = sentence_ends[index]
+            for r in run_map:
+                if r[0] >= startPos and r[1] >= startPos:
+                    # This is the run.
+                    run = r[2]
+                    text = run.text
+                    offset = r[0] - startPos
+                    capped = text[offset:].capitalize()
+                    firstPart = text[0:offset]
+                    text = firstPart + capped
+                    # Check for end character to prepend
+                    charEnd = endData[1]
+                    newStart = None
+                    if charEnd in self.pre_punctuation:
+                       newStart = self.pre_punctuation[charEnd]
+                       text = newStart + text
+                    # Put text back in run
+                    run.text = text
+                    break
         return
 
   # Given a start position in the paragraph text, return run and place there.

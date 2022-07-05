@@ -10,13 +10,14 @@ import re
 import sys
 
 import convertDoc
+import convertDoc2
 #import convertXLS
 #import convertPPT
 
 import convertUtil
 
 
-def convertOffice(input_path, output_dir, converter):
+def convertOffice(input_path, output_dir, converter, version=2):
 
   # print('***** input_path = %s' % input_path)
 
@@ -25,9 +26,14 @@ def convertOffice(input_path, output_dir, converter):
     return
 
   extension = os.path.splitext(input_path)[-1]
+
   if extension == '.docx':
-    docxProcessor = convertDoc.convertDocx(input_path, output_dir, converter)
-    docxProcessor.processDocx()
+    if version == 1:
+      docxProcessor = convertDoc.convertDocx(input_path, output_dir, converter)
+      docxProcessor.processDocx()
+    else:
+      docxProcessor = convertDoc2.convertDocx(input_path, output_dir, converter)
+      docxProcessor.processDocx()
   # elif extension == '.pptx':
   #   convertPPT.processOnePresentation(input_path, output_dir,
   #                                     converter)
