@@ -395,7 +395,7 @@ class converter(ConverterBase):
 
         self.description = 'Converts Adlam font encoding to Unicode'
         self.ignore_start_of_sentence = re.compile(
-            r'([\U0001E950-\U0001E959\u0020\(\)\- ]+)')
+            r'([\U0001E950-\U0001E959\u0020\(\)\- \.]+)')
 
         self.encoding = None
         self.debug = False  #False

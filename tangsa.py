@@ -75,7 +75,7 @@ class langInfo():
       # {'family': 'NotoTangsSemiBold',
       #  'longName': 'Noto Sans Tangsa Semi-Bold',
       #  'source': '/fonts/Tangsa/NotoSansTangsa-SemiBold.otf',
-      #  },      
+      #  },
       {'family': 'LakhumTsdc',
        'longName': 'Lakhum PUA TSDC Nov-2021',
        'source': '/fonts/Tangsa/lakhum-tsdc-lined.ttf',
