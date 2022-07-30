@@ -200,7 +200,7 @@ links = [
      'ref': 'https://en.wikipedia.org/wiki/Sunwar_language'
     },
     {'linkText': 'Sunuwar.org',
-     'ref': 'https://www.sunuwar.org/'}
+     'ref': 'https://www.sunuwar.org/'},
     {'linkText': 'Preeti to Unicode converter',
      'ref': 'https://preeti.arthasarokar.com/'
     },

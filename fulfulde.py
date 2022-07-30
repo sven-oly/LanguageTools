@@ -48,6 +48,11 @@ unicode_font_list = [
    'longName': 'Noto Sans Adlam 2020 (joined)',
    'source': '/fonts/Fulfulde/Fulfulde-PulaarUnicode.ttf',
    },
+  {
+    'family': 'MSAdlamDisplay',
+    'longName': 'MS Adlam Display',
+    'source': '/fonts/Fulfulde/ADLaMDisplay-Regular.ttf',
+  },
   # { 'family': 'AissataUnicode',
   #   'longName': 'Aissata Unicode',
   #   'source': '/fonts/Fulfulde - Aissata.ttf'
