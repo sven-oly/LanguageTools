@@ -113,7 +113,7 @@ element.style {
 
     @font-face {
       font-family: 'NotoSansMendeKikakui';
-      src:url("/fonts/NotoSansMenduKikakui-Regular.ttf");
+      src:url("/fonts/NotoSansMendeKikakui-Regular.ttf");
       font-weight:normal;
       font-style:normal;
     }

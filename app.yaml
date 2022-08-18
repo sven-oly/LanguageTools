@@ -281,6 +281,9 @@ handlers:
 - url: /unr/.*
   script: mundari.app
 
+- url: /vn/.*
+  script: vietnamese.app
+
 - url: /yo/.*
   script: yoruba.app
 

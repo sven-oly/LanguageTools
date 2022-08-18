@@ -29,12 +29,15 @@ import webapp2
 from google.appengine.ext.webapp import template
 
 encoding_font_list = [
-    # {
-    #   'font_path':'/fonts/*.ttf',
-    #   'font_name':'*',
-    #   'display_name': '*',
-    #   'Source location': 'http://',
-    # },
+    {
+      'font_path':'/fonts/MendeKikakui/jgmende.ttf',
+      'source':'/fonts/MendeKikakui/jgmende.ttf',
+      'font_name':'JGMende',
+      'family': 'JGMende',
+      'longName': 'JGMende PUA',
+      'display_name': 'JG Mende PUA',
+      'Source location': 'http://glavyfonts.com/african.html',
+    },
 ]
 
 unicode_font_list = [
@@ -48,6 +51,7 @@ unicode_font_list = [
       'longName': 'Kikakui Sans Pro',
       'source': '/fonts/MendeKikakui/KikakuiSansPro.ot.ttf',
   },
+  encoding_font_list[0],
 ]
 
 links = [
@@ -77,7 +81,10 @@ links = [
      },
     {'linkText': 'Digital Orientalist',
       'ref': 'https://digitalorientalist.com/2021/01/22/building-tools-with-bete-mende-and-kpelle-users/'
-    }
+    },
+    {'linkText': 'Jason Glavy fonts',
+     'ref': 'http://glavyfonts.com/african.html'
+    },
 ]
 
 class langInfo():
@@ -118,7 +125,13 @@ class langInfo():
         'instructions': None,
         'font': 'NotoSansMendeKikakui',
       },
-    ]
+      {
+        'shortName': self.LanguageCode + "PhonePUA",
+        'longName': 'MendePUA',
+        'jsName': self.LanguageCode  + "PhonePUA",
+        'instructions': 'Private Use Area',
+        'font': 'JGMende',
+      },    ]
     self.links = links
     self.text_file_list = []
     self.unicode_font_list = unicode_font_list
