@@ -44,9 +44,9 @@ unicode_font_list = [
    'longName': 'Noto Sans Adlam 2020 (joined)',
    'source': '/fonts/Fulfulde/NotoSansAdlam-Regular.ttf',
    },
-  {'family': 'NotoSansAdlamApril',
-   'longName': 'Noto Sans Adlam 2020 (joined)',
-   'source': '/fonts/Fulfulde/Fulfulde-PulaarUnicode.ttf',
+  {'family': 'KigeliaRegular',
+   'longName': 'Kigelia Regular',
+   'source': '/fonts/Fulfulde/kigelia-regular.ttf',
    },
   {
     'family': 'MSAdlamDisplay',

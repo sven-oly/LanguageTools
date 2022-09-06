@@ -33,9 +33,9 @@ links = [
     # {'linkText': 'Font conversion summary',
     #   'ref': '/' + LanguageCode + '/encodingRules/'
     # },
-    # {'linkText': 'Resources',
-    #   'ref': '/' + LanguageCode + '/downloads/'
-    # },
+    {'linkText': 'Resources',
+      'ref': '/' + LanguageCode + '/downloads/'
+    },
     # {'linkText': 'Unicode page',
     #  'ref': 'https://www.unicode.org/charts/PDF/U1C00.pdf'
     # },
@@ -101,10 +101,21 @@ class langInfo:
         ]
 
         # For additional resources for download
-        self.text_file_list = []
+        self.text_file_list = [
+
+        ]
 
         self.fillChars = [unichr(x) for x in range(0x61, 0x7b)]
         self.unicodeCombiningChars = self.diacritic_list
+
+        resource_list = [
+          {
+            'name': 'Unicode 72 pre-release ICU4C *.tgz',
+            'source': '/resources/unicode/icu-r37e2956-x86_64-pc-linux-gnu-Ubuntu-22.04.tgz',
+            'description': 'Unicode 72 pre-release ICU4C *.tgz',
+          }
+        ]
+        self.text_file_list = resource_list
 
 
 langInstance = langInfo()

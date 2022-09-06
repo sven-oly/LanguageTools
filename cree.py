@@ -32,13 +32,19 @@ class langInfo():
     self.encoding_font_list = [
     ]
 
+    self.allFonts = True
+
     self.unicode_font_list = [
+
       { 'source': '/fonts/cree/NotoSansCanadianAboriginal-Regular.ttf',
         'family': 'NotoSansCanadianAboriginal',
         'longName': 'Noto Sans Canadian Aboriginal',
-      },
-
-      { 'family': 'bjcrus',
+        },
+      { 'source': '/fonts/cree/NotoSansCansPlainsCree.ttf',
+        'family': 'NotoSansPlainsCree',
+        'longName': 'Noto Sans Plains Cree',
+        'information': 'Noto Sans Cans with modified ya, ye, yi, yo shapes'
+        },      { 'family': 'bjcrus',
         'longName': 'BJ Cree',
         'source': '/fonts/cree/bjcrus.ttf'
       },
@@ -76,6 +82,16 @@ class langInfo():
       {'family': 'Masinahikan_h',
        'longName': 'Masinahikan',
        'source': '/fonts/cree/Masinahikan_h.ttf',
+       'origin': 'languagegeek.com'
+       },
+      {'family': 'Oskiw',
+       'longName': 'Oskiw',
+       'source': '/fonts/cree/Oskiw.ttf',
+       'origin': 'languagegeek.com'
+       },
+      {'family': 'Pitabek',
+       'longName': 'Pitabek',
+       'source': '/fonts/cree/pitabek.ttf',
        'origin': 'languagegeek.com'
        },
     ]
@@ -174,6 +190,7 @@ app = webapp2.WSGIApplication(
     [
         ('/cr/', base.LanguagesHomeHandler),
         ('/cr/keyboard/', base.LanguagesHomeHandler),
+        ('/cr/AllFonts/', base.AllFontTest),
         ('/cr/convertUI/', base.ConvertUIHandler),
         ('/cr/downloads/', base.Downloads),
         ('/cr/converter/', base.ConvertUIHandler),
