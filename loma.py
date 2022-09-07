@@ -36,6 +36,13 @@ encoding_font_list = [
   #   'note': "Not Unicode"
   # },
   {
+    'family': 'JGLomaPUA',
+    'font_name': 'JGLomaPUA',
+    'longName': 'JG Loma PUA',
+    'source': '/fonts/African_font_encodings/JGLOMAPUA-Regular.ttf',
+    'font_path': '/fonts/African_font_encodings/JGLOMAPUA-Regular.ttf',
+  },
+  {
     'family': 'JGLoma',
     'font_name': 'JGLoma',
     'longName': 'JG Loma',
