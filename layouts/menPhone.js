@@ -42,28 +42,28 @@ var MEN_PHONE_LAYOUT = {
     'u' : '\ud83a\udc24',
     'e' : '\ud83a\udc26',
     'E' : '\ud83a\udc25',  // E -> ee
-    '\ud83a\udc26\u001De' : '\ud83a\udc25',  // ee
+    'ee' : '\ud83a\udc25',  // ee
     'o' : '\ud83a\udc28',
     'O' : '\ud83a\udc27',  // oo
-    '\ud83a\udc28\u001Do' : '\ud83a\udc27',  // oo
-    '\ud83a\udc26\u001Di' : '\ud83a\udc29',  // ei
-    '\ud83a\udc22\u001Dn' : '\ud83a\udc2a',  // in
-    '\ud83a\udc2a\u001Dn' : '\ud83a\udc2b',  // inn
-    '\ud83a\udc23\u001Dn' : '\ud83a\udc2c',  // an
-    '\ud83a\udc26\u001Dn' : '\ud83a\udc2d',  // en
+    'oo' : '\ud83a\udc27',  // oo
+    'ei' : '\ud83a\udc29',  // ei
+    'in' : '\ud83a\udc2a',  // in
+    'inn' : '\ud83a\udc2b',  // inn
+    'an' : '\ud83a\udc2c',  // an
+    'en' : '\ud83a\udc2d',  // en
 
     // Many more for the consonants and syllables.
     'k':  '\ud83a\udc00',
-    '\ud83a\udc00\u001Di':  '\ud83a\udc00',  // ki
-    '\ud83a\udc00\u001Da':  '\ud83a\udc01',  // ka
-    '\ud83a\udc00\u001Du':  '\ud83a\udc02',  // ku
-    '\ud83a\udc00\u001De':  '\ud83a\udc04',  // ke
-    '\ud83a\udc00\u001Do':  '\ud83a\udc06',  // ko
-    '\ud83a\udc04\u001De':  '\ud83a\udc03',  // ke + e -> kee
-    '\ud83a\udc00\u001DE':  '\ud83a\udc03',  // kE -> kee
-    '\ud83a\udc00\u001DO':  '\ud83a\udc05',  // kO -> koo
-    '\ud83a\udc06\u001Do':  '\ud83a\udc05',  // ko + o -> koo
-    '\ud83a\udc02\u001Da':  '\ud83a\udc07',  // kua
+    'ki':  '\ud83a\udc00',  // ki
+    'ka':  '\ud83a\udc01',  // ka
+    'ku':  '\ud83a\udc02',  // ku
+    'ke':  '\ud83a\udc04',  // ke
+    'ko':  '\ud83a\udc06',  // ko
+    'kee':  '\ud83a\udc03',  // ke + e -> kee
+    'kE':  '\ud83a\udc03',  // kE -> kee
+    'kO':  '\ud83a\udc05',  // kO -> koo
+    'koo':  '\ud83a\udc05',  // ko + o -> koo
+    'kua':  '\ud83a\udc07',  // kua
 
     'w':  '\ud83a\udc08',  // w
     'wi':  '\ud83a\udc08',  // w
@@ -362,7 +362,9 @@ var MEN_PHONE_LAYOUT = {
     // Remove ZWNB Space
     '\ufeff([a-zA-Z0-9])': '$1',
   },
-  'historyPruneRegex': 'k|w|we|wo|wu|wv|m|mu|b|be|bo|s|se|so|si|l|le|lo|ll|L|d|de|do|t|te|to|j|je|jj|jo|J|y|ye|yo|f|fa|fe|fo|fu|n|h|he|hE|hi|ho|hoo|hO|hee|ha|hu|ngg|ngga|ngge|nggE|nggo|nggO|Ngg|NGg|nggu|g|ge|gu|ng|p|pe|po|mb|mbe|mbo|mbE|mbO|mbu|kp|kpe|kpo|gb|gbe|gbo|nd|nde|ndo|nj|nje|njo|v|ve|vo|ny'
+  'historyPruneRegex': 'i|a|e|o|' +
+    'k|ku|w|we|wo|wu|wv|m|mu|b|be|bo|s|se|so|si|l|le|lo|ll|L|' +
+    'd|de|do|t|te|to|j|je|jj|jo|J|y|ye|yo|f|fa|fe|fo|fu|n|h|he|hE|hi|ho|hoo|hO|hee|ha|hu|ngg|ngga|ngge|nggE|nggo|nggO|Ngg|NGg|nggu|g|ge|gu|ng|p|pe|po|mb|mbe|mbo|mbE|mbO|mbu|kp|kpe|kpo|gb|gbe|gbo|nd|nde|ndo|nj|nje|njo|v|ve|vo|ny'
 }
 
 // Load the layout and inform the keyboard to switch layout if necessary.

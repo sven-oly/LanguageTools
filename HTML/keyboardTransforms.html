@@ -35,6 +35,12 @@
       font-size: 32px;
     }
     {% endfor %}
+
+  {% for kb in kb_list %}{% if kb.fontFamilyToApply %}
+  .{{kb.fontFamily}} {
+      font-family:{% for font in kb.fontFamilyToApply %}' {{font}}'{% if not forloop.last %},{%endif%}{% endfor %}
+  }{%endif%}{% endfor %}
+
   </style>
   <style>
     table {
@@ -51,13 +57,22 @@
     }
   </style>
   <script src="/js/baseConverter.js"></script>
+
   {% if converter_list %}
   <script src="{{converterJS}}"></script>
   {% endif %}
+
+  {% if text_functions %}
+  <script src="/{{text_functions}}"></script>  
+  {% endif %}
+
   <!-- Path to convert with code tables and other  this for the converter. -->
   <script src="/js/utils.js"></script>
 
   <script>
+  // Global for processing text 
+  const textFuncs = new textFunctions();
+
   var k = { loadme: Object};
 
   k.loadme.prototype = function(a) {
@@ -73,23 +88,20 @@
   {% endfor %}
 
   <script>
-  var kb_list = [];
+  var kb_list = []; //
   var kb_fonts = [];
   {% for kb in kb_list %}
-  kb_list.push({{kb.shortName}});
-  kb_fonts.push("{{kb.fontFamily}}");
+  kb_list.push({{kb.shortName}}); kb_fonts.push("{{kb.fontFamily}}");
   {% endfor %}
 
   const unicode_font_list = [
-  {% for font in unicode_list %}"{{font.family}}",{% endfor %}
+    {% for font in unicode_list %}"{{font.family}}",{% endfor %}
   ];
 
-  {% if converter_list %}
-  {% for conversion in converter_list.conversions %}
+  {% if converter_list %}{% for conversion in converter_list.conversions %}
     var {{conversion}} = {{converter_list.convert_obj}}['conversions']['{{conversion}}'].convert;
     {% endfor %}
   {% endif %}
-
   {% if converter_list %}
   // TODO: update to work with more than Tangsa conversions.
   var converter_PUA_to_Unicode = nstConverter_obj['conversions']['GW_to_Unicode'].convert;
@@ -168,6 +180,7 @@ function buildingTransformTable() {
   const numberKeyboards = kb_list.length;
 
   // Get all the patterns in all the lists.
+  
   const patternMap = new Map();
   for (let kb_index in kb_list) {
     const kb = kb_list[kb_index];
@@ -211,10 +224,14 @@ function buildingTransformTable() {
   };
 
   // Now build table based on the patternMap.
-  const patternIterator = patternMap.keys();
+  let keyList = [...patternMap.keys()];
+  if (textFuncs) {
+      // Sort these 
+      keyList = textFuncs.sortAsciiList(keyList);
+  }    
 
   cellIndex = 1;
-  for (let patternKey of patternMap.keys()) {
+  for (let patternKey of keyList) {
     if (patternKey) {
       const patternRow = patternMap.get(patternKey);
       // One row for each row of patternMap.

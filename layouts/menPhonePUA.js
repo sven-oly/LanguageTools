@@ -39,28 +39,29 @@ var MEN_PHONE_PUA_LAYOUT = {
     'u' : '\ud83a\udc24',
     'e' : '\ud83a\udc26',
     'E' : '\ud83a\udc25',  // E -> ee
-    '\ud83a\udc26\u001De' : '\ud83a\udc25',  // ee
+    //'\ud83a\udc26\u001De' : '\ud83a\udc25',  // ee
+    'ee' : '\ud83a\udc25',  // ee
     'o' : '\ud83a\udc28',
     'O' : '\ud83a\udc27',  // oo
-    '\ud83a\udc28\u001Do' : '\ud83a\udc27',  // oo
-    '\ud83a\udc26\u001Di' : '\ud83a\udc29',  // ei
-    '\ud83a\udc22\u001Dn' : '\ud83a\udc2a',  // in
-    '\ud83a\udc2a\u001Dn' : '\ud83a\udc2b',  // inn
-    '\ud83a\udc23\u001Dn' : '\ud83a\udc2c',  // an
-    '\ud83a\udc26\u001Dn' : '\ud83a\udc2d',  // en
+    'oo' : '\ud83a\udc27',  // oo
+    'ei' : '\ud83a\udc29',  // ei
+    'in' : '\ud83a\udc2a',  // in
+    'inn' : '\ud83a\udc2b',  // inn
+    'an' : '\ud83a\udc2c',  // an
+    'en' : '\ud83a\udc2d',  // en
 
     // Many more for the consonants and syllables.
     'k':  '\ud83a\udc00',
-    '\ud83a\udc00\u001Di':  '\ud83a\udc00',  // ki
-    '\ud83a\udc00\u001Da':  '\ud83a\udc01',  // ka
-    '\ud83a\udc00\u001Du':  '\ud83a\udc02',  // ku
-    '\ud83a\udc00\u001De':  '\ud83a\udc04',  // ke
-    '\ud83a\udc00\u001Do':  '\ud83a\udc06',  // ko
-    '\ud83a\udc04\u001De':  '\ud83a\udc03',  // ke + e -> kee
-    '\ud83a\udc00\u001DE':  '\ud83a\udc03',  // kE -> kee
-    '\ud83a\udc00\u001DO':  '\ud83a\udc05',  // kO -> koo
-    '\ud83a\udc06\u001Do':  '\ud83a\udc05',  // ko + o -> koo
-    '\ud83a\udc02\u001Da':  '\ud83a\udc07',  // kua
+    'ki':  '\ud83a\udc00',  // ki
+    'ka':  '\ud83a\udc01',  // ka
+    'ku':  '\ud83a\udc02',  // ku
+    'ke':  '\ud83a\udc04',  // ke
+    'ko':  '\ud83a\udc06',  // ko
+    'ke':  '\ud83a\udc03',  // ke + e -> kee
+    'kE':  '\ud83a\udc03',  // kE -> kee
+    'kO':  '\ud83a\udc05',  // kO -> koo
+    'ko':  '\ud83a\udc05',  // ko + o -> koo
+    'kua':  '\ud83a\udc07',  // kua
 
     'w':  '\ud83a\udc08',  // w
     'wi':  '\ud83a\udc08',  // w
@@ -253,12 +254,9 @@ var MEN_PHONE_PUA_LAYOUT = {
     'ngo':  '\ud83a\udc8a',
     'ngu':  '\ud83a\udc8b',
 
-    //'p':  '\ud83a\udc8c',
-    'pi':  '\ue000',
-    'pii':  '\ue001',
-    'pa':  '\ue002',
-    'paa':  '\ue003',
-    'paaa':  '\ue004',
+    'p':  '\ud83a\udc8c',
+    'pi':  '\ud83a\udc8c',
+    'pa':  '\ud83a\udc8d',
     'pu':  '\ud83a\udc8e',
     'pE':  '\ud83a\udc8f',
     'pee':  '\ud83a\udc8f',
@@ -363,14 +361,214 @@ var MEN_PHONE_PUA_LAYOUT = {
     '0C':  '\ud83a\udcd5',  // Combining hundred thousands
     '0M':  '\ud83a\udcd6',  // Combining millions
 
+      // PUA values not in Unicode
+      'pI':  '\ue001',
+      'pii':  '\ue001',
+      'paa':  '\ue003',
+      'pA':  '\ue003',
+      'pAa':  '\ue004',
+      'pAA':  '\ue004', 
+      'X':  '\ue006',
+      'X':  '\ue007',
+      'X':  '\ue008',
+      'X':  '\ue009',
+      'X':  '\ue00a',
+      'X':  '\ue00b',
+      'Po':  '\ue00e',
+      'wI':  '\ue010',
+      'wii':  '\ue010',
+      'wA':  '\ue012',
+      'waa':  '\ue012',
+      'wU':  '\ue014',
+      'wuu':  '\ue014',
+      'wE':  '\ue016',
+      'wee':  '\ue016',
+      'wɛɛ':  '\ue018',
+      'wɔɔ':  '\ue01a',
+      'woo':  '\ue01c',
+      'wO':  '\ue01c',
+      'X':  '\ue01e',
+      'X':  '\ue021',
+      'X':  '\ue023',
+      'X':  '\ue024',
+      'X':  '\ue026',
+      'X':  '\ue028',
+      'X':  '\ue02a',
+      'X':  '\ue02b',
+      'X':  '\ue02c',
+      'X':  '\ue02d',
+      'X':  '\ue02e',
+      'X':  '\ue030',
+      'X':  '\ue031',
+      'X':  '\ue032',
+      'X':  '\ue033',
+      'X':  '\ue034',
+      'X':  '\ue036',
+      'X':  '\ue037',
+      'X':  '\ue039',
+      'X':  '\ue03c',
+      'X':  '\ue03e',
+      'X':  '\ue040',
+      'X':  '\ue042',
+      'X':  '\ue045',
+      'X':  '\ue047',
+      'X':  '\ue048',
+      'X':  '\ue04b',
+      'X':  '\ue04c',
+      'X':  '\ue04e',
+      'X':  '\ue051',
+      'X':  '\ue052',
+      'X':  '\ue054',
+      'X':  '\ue057',
+      'X':  '\ue059',
+      'X':  '\ue05c',
+      'X':  '\ue05d',
+      'X':  '\ue060',
+      'X':  '\ue064',
+      'X':  '\ue067',
+      'X':  '\ue06a',
+      'X':  '\ue06b',
+      'X':  '\ue06e',
+      'X':  '\ue070',
+      'X':  '\ue072',
+      'X':  '\ue074',
+      'X':  '\ue076',
+      'X':  '\ue078',
+      'X':  '\ue07a',
+      'X':  '\ue07c',
+      'X':  '\ue07e',
+      'X':  '\ue080',
+      'X':  '\ue082',
+      'X':  '\ue083',
+      'X':  '\ue085',
+      'X':  '\ue087',
+      'X':  '\ue088',
+      'X':  '\ue08a',
+      'X':  '\ue08b',
+      'X':  '\ue08c',
+      'X':  '\ue08e',
+      'X':  '\ue090',
+      'X':  '\ue092',
+      'X':  '\ue093',
+      'X':  '\ue094',
+      'X':  '\ue095',
+      'X':  '\ue096',
+      'X':  '\ue097',
+      'X':  '\ue099',
+      'X':  '\ue09b',
+      'X':  '\ue09c',
+      'X':  '\ue09d',
+      'X':  '\ue09f',
+      'X':  '\ue0a1',
+      'X':  '\ue0a3',
+      'X':  '\ue0a4',
+      'X':  '\ue0a6',
+      'X':  '\ue0a8',
+      'X':  '\ue0a9',
+      'X':  '\ue0ab',
+      'X':  '\ue0ad',
+      'X':  '\ue0b0',
+      'X':  '\ue0b2',
+      'X':  '\ue0b5',
+      'X':  '\ue0b7',
+      'X':  '\ue0b9',
+      'X':  '\ue0bb',
+      'X':  '\ue0bd',
+      'X':  '\ue0be',
+      'X':  '\ue0c1',
+      'X':  '\ue0c3',
+      'X':  '\ue0c5',
+      'X':  '\ue0c7',
+      'X':  '\ue0c9',
+      'X':  '\ue0cb',
+      'X':  '\ue0cc',
+      'X':  '\ue0cd',
+      'X':  '\ue0d0',
+      'X':  '\ue0d2',
+      'X':  '\ue0d4',
+      'X':  '\ue0d5',
+      'X':  '\ue0d7',
+      'X':  '\ue0d9',
+      'X':  '\ue0de',
+      'X':  '\ue0df',
+      'X':  '\ue0e0',
+      'X':  '\ue0e3',
+      'X':  '\ue0e5',
+      'X':  '\ue0e7',
+      'X':  '\ue0e9',
+      'X':  '\ue0eb',
+      'X':  '\ue0ed',
+      'X':  '\ue0ee',
+      'X':  '\ue0f0',
+      'X':  '\ue0f1',
+      'X':  '\ue0f3',
+      'X':  '\ue0f5',
+      'X':  '\ue0f7',
+      'X':  '\ue0f9',
+      'X':  '\ue0fa',
+      'X':  '\ue0fc',
+      'X':  '\ue0fe',
+      'X':  '\ue100',
+      'X':  '\ue102',
+      'X':  '\ue104',
+      'X':  '\ue106',
+      'X':  '\ue108',
+      'X':  '\ue10a',
+      'X':  '\ue10c',
+      'X':  '\ue10e',
+      'X':  '\ue110',
+      'X':  '\ue113',
+      'X':  '\ue115',
+      'X':  '\ue11a',
+      'X':  '\ue11b',
+      'X':  '\ue11e',
+      'X':  '\ue120',
+      'X':  '\ue121',
+      'X':  '\ue124',
+      'X':  '\ue126',
+      'X':  '\ue129',
+      'X':  '\ue12b',
+      'X':  '\ue12d',
+      'X':  '\ue12e',
+      'X':  '\ue131',
+      'X':  '\ue135',
+      'X':  '\ue137',
+      'X':  '\ue139',
+      'X':  '\ue13b',
+      'X':  '\ue13d',
+      'X':  '\ue13f',
+      'X':  '\ue146',
+      'X':  '\ue148',
+      'X':  '\ue149',
+      'X':  '\ue14a',
+      'X':  '\ue14b',
+      'X':  '\ue14c',
+      'X':  '\ue14d',
+      'X':  '\ue14f',
+      'X':  '\ue153',
+      'X':  '\ue155',
+      'X':  '\ue157',
+      'X':  '\ue159',
+      'X':  '\ue15b',
+      'X':  '\ue15e',
+      'X':  '\ue15f',
+      'X':  '\ue162',
+      
     // Remove ZWNB Space
     '\ufeff([a-zA-Z0-9])': '$1',
   },
-  'historyPruneRegex': 'k|w|we|wo|wu|wv|m|mu|b|be|bo|s|se|so|si|l|le|lo|ll|L|' +
-    'd|de|do|t|te|to|j|je|jj|jo|J|y|ye|yo|f|fa|fe|fo|fu|n|h|he|hE|hi|ho|hoo|hO|' +
-    'hee|ha|hu|ngg|ngga|ngge|nggE|nggo|nggO|Ngg|NGg|nggu|g|ge|gu|ng|p|pe|po|mb|' +
-    'mbe|mbo|mbE|mbO|mbu|kp|kpe|kpo|gb|gbe|gbo|nd|nde|ndo|nj|nje|njo|v|ve|vo|ny|' +
-    'p|pi|paa|pa|pu|pe|pɛ|pɔ'
+  'historyPruneRegex':  'paa|pi|pa|pu|pe|pɛ|pɔ|po|pA|' +
+	'k|ke|ko|ku|' +
+	'wi|wa|we|wɛ|wo|wɔ|wu|wv|' +
+	'mu|b|be|bo|s|se|so|si|le|lo|ll|L|' +
+	'de|do|t|te|to|j|je|jj|jo|J|y|ye|yo|' +
+	'f|fa|fe|fo|fu|n|h|he|hE|hi|ho|hoo|hO|' +
+	'hee|ha|hu|ngg|ngga|ngge|nggE|nggo|nggO|Ngg|NGg|nggu|' +
+	'g|ge|gu|ng|p|pe|po|mb|' +
+	'p|w||m|l|d' +
+	'mbe|mbo|mbE|mbO|mbu|kp|kpe|kpo|gb|gbe|gbo|' +
+	'nd|nde|ndo|nj|nje|njo|v|ve|vo|ny|' +
+	'i|in|a|e|o|'
 }
 
 // Load the layout and inform the keyboard to switch layout if necessary.

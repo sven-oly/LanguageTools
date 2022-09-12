@@ -42,14 +42,15 @@ encoding_font_list = [
 
 unicode_font_list = [
   {
-      'family': 'NotoSansMendeKikakui',
-      'longName': 'Noto Sans Mende Kikakui',
-      'source': '/fonts/MendeKikakui/NotoSansMendeKikakui-Regular.ttf',
+    # Contains both Unicode and JG
+    'family': 'KikakuiSansPro',
+    'longName': 'Kikakui Sans Pro',
+    'source': '/fonts/MendeKikakui/KikakuiSansPro.ot.ttf',
   },
   {
-      'family': 'KikakuiSansPro',
-      'longName': 'Kikakui Sans Pro',
-      'source': '/fonts/MendeKikakui/KikakuiSansPro.ot.ttf',
+    'family': 'NotoSansMendeKikakui',
+    'longName': 'Noto Sans Mende Kikakui',
+    'source': '/fonts/MendeKikakui/NotoSansMendeKikakui-Regular.ttf',
   },
   encoding_font_list[0],
 ]
@@ -112,26 +113,35 @@ class langInfo():
     self.encoding_font_list = encoding_font_list
     self.kb_list = [
       {
-        'shortName': self.LanguageCode + "Phone",
-        'longName': 'Mende Phonetic',
-        'jsName': self.LanguageCode + "Phone",
-        'instructions': None,
-        'font': 'NotoSansMendeKikakui',
+        'shortName': self.LanguageCode + "PhonePUA",
+        'longName': 'Mende:Phoneitic + PUA',
+        'jsName': self.LanguageCode  + "PhonePUA",
+        'instructions': 'Private Use Area',
+        'font': 'MendeKikakuiFonts',
+        'fontFamilyToApply': ['NotoSansMendeKikakui', 'JGMende'],
+        'fontFamily': 'KikakuiSansPro',
+        #'fontFamily': 'MendeKikakuiFonts',
       },
+      # {
+      #   'shortName': self.LanguageCode + "Phone",
+      #   'longName': 'Mende Phonetic',
+      #   'jsName': self.LanguageCode + "Phone",
+      #   'instructions': None,
+      #   'font': 'JGMende',
+      # },
       {
         'shortName': self.LanguageCode,
         'longName': 'Mende',
         'jsName': self.LanguageCode,
         'instructions': None,
         'font': 'NotoSansMendeKikakui',
+        'fontFamily': 'MendeKikakuiFonts',
       },
-      {
-        'shortName': self.LanguageCode + "PhonePUA",
-        'longName': 'MendePUA',
-        'jsName': self.LanguageCode  + "PhonePUA",
-        'instructions': 'Private Use Area',
-        'font': 'JGMende',
-      },    ]
+
+    ]
+    # For attaching sorting, etc.
+    self.text_functions = 'js/men.js'
+
     self.links = links
     self.text_file_list = []
     self.unicode_font_list = unicode_font_list
