@@ -404,6 +404,11 @@ class KeyboardTransforms(webapp2.RequestHandler):
     except:
         converter_list = None
 
+    try:
+        text_functions = langInfo.text_functions
+    except:
+        text_functions = None
+
     template_values = {
       'converterJS': '/js/' + langInfo.LanguageCode + 'Converter.js',
       'converter_list': converter_list,
@@ -414,6 +419,7 @@ class KeyboardTransforms(webapp2.RequestHandler):
       'kb_list': langInfo.kb_list,
       'links': langInfo.links,
       'showTools': self.request.get('tools', None),
+        'text_functions': text_functions
     }
     path = os.path.join(os.path.dirname(__file__), 'HTML/keyboardTransforms.html')
     self.response.out.write(template.render(path, template_values))

@@ -35,13 +35,7 @@ encoding_font_list = [
   #   'font_path': '/fonts/African_font_encodings/JG Loma41.ttf',
   #   'note': "Not Unicode"
   # },
-  {
-    'family': 'JGLomaPUA',
-    'font_name': 'JGLomaPUA',
-    'longName': 'JG Loma PUA',
-    'source': '/fonts/African_font_encodings/JGLOMAPUA-Regular.ttf',
-    'font_path': '/fonts/African_font_encodings/JGLOMAPUA-Regular.ttf',
-  },
+
   {
     'family': 'JGLoma',
     'font_name': 'JGLoma',
@@ -49,7 +43,13 @@ encoding_font_list = [
     'source': '/fonts/African_font_encodings/JGLoma.ttf',
     'font_path': '/fonts/African_font_encodings/JGLoma.ttf',
   },
-]
+  {
+    'family': 'JGLomaPUA',
+    'font_name': 'JGLomaPUA',
+    'longName': 'JG Loma PUA',
+    'source': '/fonts/African_font_encodings/JGLOMAPUA-Regular.ttf',
+    'font_path': '/fonts/African_font_encodings/JGLOMAPUA-Regular.ttf',
+  },]
 
 # Until we have a Unicode font.
 unicode_font_list = encoding_font_list
@@ -59,7 +59,12 @@ kb_list = [
    'longName': Language + ' ' + ScriptCode,
    'fontFamily': 'JGLoma',
    'inputFontFamily': "Arial",
-   }
+   },
+  {'shortName': 'lom_Loma_PUA',
+   'longName': 'Loma PUA',
+   'fontFamily': 'JGLomaPUA',
+   'inputFontFamily': "Arial",
+   },
 ]
 
 links = [
