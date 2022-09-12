@@ -65,10 +65,13 @@
   <script>
   // Global for processing text 
     let textFuncs;
-    let textFunctions;
     </script>
   {% if text_functions %}
-  <script src="/{{text_functions}}"></script>  
+  <script src="/{{text_functions}}"></script>
+  {% else %}
+  <script>
+    let textFunctions;
+    </script>
   {% endif %}
 
   <!-- Path to convert with code tables and other  this for the converter. -->
@@ -76,7 +79,7 @@
 
   <script>
   // Global for processing text 
-    if (textFunctions) {
+    if (textFunctions != undefined) {
 	textFuncs = new textFunctions();
     }
 	
