@@ -62,6 +62,11 @@
   <script src="{{converterJS}}"></script>
   {% endif %}
 
+  <script>
+  // Global for processing text 
+    let textFuncs;
+    let textFunctions;
+    </script>
   {% if text_functions %}
   <script src="/{{text_functions}}"></script>  
   {% endif %}
@@ -71,8 +76,10 @@
 
   <script>
   // Global for processing text 
-  const textFuncs = new textFunctions();
-
+    if (textFunctions) {
+	textFuncs = new textFunctions();
+    }
+	
   var k = { loadme: Object};
 
   k.loadme.prototype = function(a) {
