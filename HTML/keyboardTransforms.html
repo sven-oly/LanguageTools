@@ -80,9 +80,9 @@
   <script>
   // Global for processing text 
     if (textFunctions != undefined) {
-	textFuncs = new textFunctions();
+        textFuncs = new textFunctions();
     }
-	
+        
   var k = { loadme: Object};
 
   k.loadme.prototype = function(a) {
@@ -242,37 +242,73 @@ function buildingTransformTable() {
 
   // TODO: combine rows with the same outputs.
   cellIndex = 1;
-  for (let patternKey of keyList) {
-    if (patternKey) {
-      const patternRow = patternMap.get(patternKey);
-      // One row for each row of patternMap.
-      rowNum ++;
-      let row = table.insertRow(rowNum);
-      let cell0 = row.insertCell(0);
-      cell0.innerHTML = patternKey;
-      cell0.title = utf16common(patternKey, "", " ", null, []);
-      cell0.style.fontSize = fontsize;
+    for (let patternKey of keyList) {
+        if (patternKey) {
+            const patternRow = patternMap.get(patternKey);
+            // One row for each row of patternMap.
+            let cellContents = [];
+            for (let kb_index = 0; kb_index < numberKeyboards; kb_index ++) {
+                if (!kb_list[kb_index].transform) continue;
+                if (Object.keys(kb_list[kb_index].transform).length <= 1) continue;
+                let result = patternRow[kb_index];
+                cellContents.push(result);
+            }
+            // Check previous rows for these values.
+            let foundMatchInRow = false;
+            let prevRow = rowNum; // Not incremented yet
+            let matchRow;
+            let columnZeroCell;
+            while (prevRow >= 1 && !foundMatchInRow) {
+                const row = table.rows[prevRow];
+                let sameValues = true;
+                for (let kb_index = 0; kb_index < numberKeyboards; kb_index ++) {
+                    if (!kb_list[kb_index].transform) continue;
+                    let cellVal = row.cells[kb_index+1].innerHTML;
+                    if (cellVal != cellContents[kb_index]) {
+                        sameValues = false;
+                        break;
+                    }
+                }
+                if (sameValues) {
+                    matchRow = prevRow;
+                    foundMatchInRow = true;
+                    columnZeroCell = row.cells[0];
+                }
+                prevRow --;
+            }
+            // If the row matches, then update the value in the left column,
+            // without making a new row.
+            if (foundMatchInRow) {
+                let col0Content = columnZeroCell.innerHTML;
+                columnZeroCell.innerHTML += ", " + patternKey;
+            } else {
+                rowNum ++;
+                let row = table.insertRow(rowNum);
+                let cell0 = row.insertCell(0);
+                cell0.innerHTML = patternKey;
+                cell0.title = utf16common(patternKey, "", " ", null, []);
+                cell0.style.fontSize = fontsize;
 
-      cellIndex = 1;
-      // !!!
+                cellIndex = 1;
 
-      for (let kb_index = 0; kb_index < numberKeyboards; kb_index ++) {
-        if (!kb_list[kb_index].transform) continue;
-        if (Object.keys(kb_list[kb_index].transform).length <= 1) continue;
-        let result = patternRow[kb_index];
-        let cell = row.insertCell(cellIndex);
+                for (let kb_index = 0; kb_index < numberKeyboards; kb_index ++) {
+                    if (!kb_list[kb_index].transform) continue;
+                    if (Object.keys(kb_list[kb_index].transform).length <= 1) continue;
+                    let result = patternRow[kb_index];
+                    let cell = row.insertCell(cellIndex);
 
-        if (result == undefined) result = "";
+                    if (result == undefined) result = "";
 
-        cell.innerHTML = result;
-        cell.title = utf16common(result, "", " ", null, []);
-        cell.style.fontSize = fontsize;
-        cell.style.width = cellWidth;
-        cell.style.fontFamily = kb_fonts[kb_index];
-        cellIndex += 1;
-      }
-    }
-  }  // of while loop
+                    cell.innerHTML = result;
+                    cell.title = utf16common(result, "", " ", null, []);
+                    cell.style.fontSize = fontsize;
+                    cell.style.width = cellWidth;
+                    cell.style.fontFamily = kb_fonts[kb_index];
+                    cellIndex += 1;
+                }
+            }
+        }
+    }  // of adding rows loop
 }
 
 // Changes the Unicode font applied to each converted column in table.
