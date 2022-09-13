@@ -215,7 +215,7 @@ function buildingTransformTable() {
   };
 
   // Just one table.
-  let table = document.getElementById('transform_table');
+  let table = document.getElementById('column_table');
   const header = table.createTHead();
   let rowNum = 0;
   let headerRow = table.insertRow(rowNum);
@@ -240,6 +240,7 @@ function buildingTransformTable() {
       keyList = textFuncs.sortAsciiList(keyList);
   }    
 
+  // TODO: combine rows with the same outputs.
   cellIndex = 1;
   for (let patternKey of keyList) {
     if (patternKey) {
@@ -273,6 +274,23 @@ function buildingTransformTable() {
     }
   }  // of while loop
 }
+
+// Changes the Unicode font applied to each converted column in table.
+function setUnicodeFontColumns(unicodeFont, tableId) {
+  const table = document.getElementById(tableId);
+  const numberColumns = table.rows[0].cells.length;
+  const numberRows = table.rows.length;
+
+  // Unicode columns are 1, 2, , ...
+  for (let col = 1; col < numberColumns; col += 1) {
+    for (let row = 1; row < numberRows; row += 1) {
+      const cell = table.rows[row].cells[col];
+      if (cell) {
+        cell.style.fontFamily = unicodeFont;
+      }
+    }
+  }
+}
   </script>
 </head>
 
@@ -283,9 +301,10 @@ function buildingTransformTable() {
   <h1>{{language}} keyboard transforms</h1>
   <p>The following are transforms in the keyboards for {{language}}.
   <p>Hint: hover over the Unicode conversions for the hex code points.
+{% include "fontSelector.html" %}
 
   <div class="span-20">
-    <table id='transform_table' border='3'></table>
+    <table id='column_table' border='3'></table>
   </div>
 
 </div>

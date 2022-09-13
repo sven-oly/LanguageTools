@@ -58,7 +58,7 @@ unicode_font_list = [
 links = [
     {'linkText': 'Keyboard',
      'ref': '/men/'
-    },
+    },\
     {'linkText': 'Keyboard conversions',
      'ref': '/' + 'men' + '/kbtransforms/'
      },
@@ -139,7 +139,7 @@ class langInfo():
       },
 
     ]
-    # For attaching sorting, etc.
+    # For attaching sorting, etc
     self.text_functions = 'js/men.js'
 
     self.links = links

@@ -109,6 +109,8 @@ class langInfo():
                       'longName': Language,
                       #'reference': 'https://tau.olunga.to/keyboard.html'
                       },
+    # For attaching sorting, etc.
+    self.text_functions = 'js/lom.js'
     self.kb_list = kb_list
     self.links = links
 

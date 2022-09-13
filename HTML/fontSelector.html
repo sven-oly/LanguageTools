@@ -1,0 +1,7 @@
+<!-- Include this to provide a font selector for something -->
+Unicode Font: <select onchange="setUnicodeFontColumns(this.value, 'column_table')" id="fontSelector">
+      {% for font in unicode_list %}
+      <option value="{{font.family}}"{% if forloop.first %} selected{%endif%}>{{font.longName}}</option>
+      {% endfor %}
+      <option value="Arial">Arial</option>
+    </select>

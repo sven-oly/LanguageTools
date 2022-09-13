@@ -123,7 +123,7 @@ var MEN_PHONE_PUA_LAYOUT = {
     'lO':  '\ud83a\udc3b',
     'loo':  '\ud83a\udc3b',
     'lo':  '\ud83a\udc3c',
-    'lle':  '\ud83a\udc3d',  // Long Le
+    'lee':  '\ud83a\udc3d',  // Long Le
     'Le':  '\ud83a\udc3d',  // Long Le
     'LE':  '\ud83a\udc3d',  // Long Le
 
@@ -560,12 +560,12 @@ var MEN_PHONE_PUA_LAYOUT = {
   'historyPruneRegex':  'paa|pi|pa|pu|pe|pɛ|pɔ|po|pA|' +
 	'k|ke|ko|ku|' +
 	'wi|wa|we|wɛ|wo|wɔ|wu|wv|' +
-	'mu|b|be|bo|s|se|so|si|le|lo|ll|L|' +
+	'mu|b|be|bo|s|se|so|si|le|lo|l|L|' +
 	'de|do|t|te|to|j|je|jj|jo|J|y|ye|yo|' +
 	'f|fa|fe|fo|fu|n|h|he|hE|hi|ho|hoo|hO|' +
 	'hee|ha|hu|ngg|ngga|ngge|nggE|nggo|nggO|Ngg|NGg|nggu|' +
 	'g|ge|gu|ng|p|pe|po|mb|' +
-	'p|w||m|l|d' +
+	'p|w||m|d|' +
 	'mbe|mbo|mbE|mbO|mbu|kp|kpe|kpo|gb|gbe|gbo|' +
 	'nd|nde|ndo|nj|nje|njo|v|ve|vo|ny|' +
 	'i|in|a|e|o|'

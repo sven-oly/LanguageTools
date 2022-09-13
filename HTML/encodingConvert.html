@@ -81,7 +81,7 @@
 
   <script>
   function onPageLoaded() {
-    const codetable = document.getElementById('codetable');
+    const codetable = document.getElementById('column_table');
     // Old code to be replaced.
     buildEncodingTable(codetable);
   {% if encoding_tables %}
@@ -251,7 +251,7 @@ function setupConverterSelector(selector_id) {
 function changeConverter(selector) {
 }
 
-// Changes the Uniocode font applied to each converted column in table.
+// Changes the Unicode font applied to each converted column in table.
 function setUnicodeFontColumns(unicodeFont, tableId) {
   const table = document.getElementById(tableId);
   const numberColumns = table.rows[0].cells.length;
@@ -279,12 +279,7 @@ function setUnicodeFontColumns(unicodeFont, tableId) {
   <p>Hint: hover over the Unicode conversions for the hex code points (UTF-16).
 
     <p>
-    Unicode Font: <select onchange="setUnicodeFontColumns(this.value, 'codetable')" id="fontSelector">
-      {% for font in unicode_list %}
-      <option value="{{font.family}}"{% if forloop.first %} selected{%endif%}>{{font.longName}}</option>
-      {% endfor %}
-      <option value="Arial">Arial</option>
-    </select>
+{% include "fontSelector.html" %}
 
   {% if encoding_tables %}
     DisplayTable: <select id='selectTable' onchange="onEncodingSelected(this, 'encoding_table_area')">
@@ -306,7 +301,7 @@ function setUnicodeFontColumns(unicodeFont, tableId) {
   <br/><br/>
   {% endif %}
   <h2>Old code table</h2>
-  <table id='codetable' border="1">
+  <table id='column_table' border="1">
 
   </table>
 
