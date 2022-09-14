@@ -394,6 +394,38 @@ class EncodingRules(webapp2.RequestHandler):
     self.response.out.write(template.render(path, template_values))
 
 
+# Cloned from KeyboardTansformsHandler.
+class PhoneticKbHandler(webapp2.RequestHandler):
+  def get(self, match=None):
+
+    langInfo = self.app.config.get('langInfo')
+
+    try:
+        converter_list = langInfo.converters
+    except:
+        converter_list = None
+
+    try:
+        text_functions = langInfo.text_functions
+    except:
+        text_functions = None
+
+    template_values = {
+      'converterJS': '/js/' + langInfo.LanguageCode + 'Converter.js',
+      'converter_list': converter_list,
+      'language': langInfo.Language,
+      'lang_list': langInfo.lang_list,
+      'encoding_list': langInfo.encoding_font_list,
+      'unicode_list': langInfo.unicode_font_list,
+      'kb_list': langInfo.kb_list,
+      'links': langInfo.links,
+      'showTools': self.request.get('tools', None),
+        'text_functions': text_functions
+    }
+    path = os.path.join(os.path.dirname(__file__), 'HTML/phoneticTable.html')
+    self.response.out.write(template.render(path, template_values))
+
+
 class KeyboardTransforms(webapp2.RequestHandler):
   def get(self, match=None):
 
@@ -941,6 +973,8 @@ app.router.add((basePath + '/numerals/', NumeralsHandler)),
 
 app.router.add((basePath + '/games/generatewordsearch/',
                 games.GenerateWordSearchHandler)),
+
+app.router.add((basePath + '/phonetickb/', PhoneticKbHandler)),
 
 # Future
 #app.router.add((basePath + '/games/generatewordsearchDFS/',
