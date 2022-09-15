@@ -79,6 +79,9 @@ links = [
     {'linkText': 'Keyboard transforms',
      'ref': '/' + LanguageCode + '/kbtransforms/'
     },
+    {'linkText': 'Phonetic table',
+     'ref': '/' + LanguageCode + '/phonetickb/'
+     },
     {'linkText': 'Unicode proposal',
      'ref': 'http://www.unicode.org/L2/L2017/17233-n4837-loma.pdf'
     },
@@ -226,6 +229,7 @@ app = webapp2.WSGIApplication([
   ('/' + LanguageCode + '/downloads/', base.Downloads),
   ('/' + LanguageCode + '/encodingRules/', base.EncodingRules),
   ('/' + LanguageCode + '/diacritic/', DiacriticHandler),
+  ('/lom/phonetickb/', base.PhoneticKbHandler),
   ('/' + langInstance.LanguageCode + '/kbtransforms/', base.KeyboardTransforms),
 ], debug=True,
                               config={'langInfo': langInstance}

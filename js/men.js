@@ -13,6 +13,7 @@ class textFunctions {
 	    'nd', 'd', 's', 'j', 'nj', 'y', 'ng', 'g', 'k', 'h', '-',
 	    'h', 'm' ,'n', 'ny', '\u014b', 'i', 'I',
 	    'a', 'A', 'u', 'U', 'e', 'E', 'ɛ', 'Ɛ', 'ɔ', 'Ɔ', 'o', 'O', 'r',
+	    'X',
 	    '0'];
 	// Mende ASCII ordering, based on table.
 

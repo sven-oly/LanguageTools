@@ -11,7 +11,7 @@
   <!-- Font encoding areas -->
   <style>
   <!-- Unicode fonts -->
-  <style>
+
     @font-face{
       font-family:'Arial';
       font-weight:normal;
@@ -55,6 +55,8 @@
     width: 120px;
     font-size:20px;
     }
+  <!-- preformat text in cells -->
+  td { white-space:pre };
   </style>
   <script src="/js/baseConverter.js"></script>
 
@@ -223,15 +225,6 @@ function buildingTransformTable() {
   let cellIndex = 1;
 
   headerRow.insertCell(0).innerHTML = "LETTER";
-  // for (let kb_index = 0; kb_index < numberKeyboards; kb_index ++) {
-  //   if (!kb_list[kb_index].transform) continue;
-  //   if (Object.keys(kb_list[kb_index].transform).length <= 1) continue;
-  //   // Create headers.
-  //   const kb = kb_list[kb_index];
-  //   const headerCell = headerRow.insertCell(cellIndex);
-  //   headerCell.innerHTML = kb.title +" output";
-  //   cellIndex += 1;
-  // };
 
   // Now build table based on the patternMap.
   let keyList = [...patternMap.keys()];
@@ -277,7 +270,9 @@ function buildingTransformTable() {
             current = colMap.get(newColMarker);
         }
         let newEntry = patternMap.get(key);
-        current.push(newEntry[0]);
+        if (! current.includes(newEntry[0])) {
+	    current.push(newEntry[0]);
+	}
         colMap.set(newColMarker, current);
     }
 
@@ -296,7 +291,6 @@ function buildingTransformTable() {
         let iterator2 = cols.entries();
         let coldata;
         while (coldata = iterator2.next().value) {
-            // Temporary - should create cells for each entry in vowel headers
             let vowel = coldata[0];
             if (vowelMap.has(vowel)) {
                 cellIndex = vowelMap.get(vowel);
@@ -307,33 +301,6 @@ function buildingTransformTable() {
              rowNum ++;
     }
 }
-    //         rowNum ++;
-    //         let row = table.insertRow(rowNum);
-    //         let cell0 = row.insertCell(0);
-    //         cell0.innerHTML = patternKey;
-    //         cell0.title = utf16common(patternKey, "", " ", null, []);
-    //         cell0.style.fontSize = fontsize;
-
-    //         cellIndex = 1;
-
-    //         for (let kb_index = 0; kb_index < numberKeyboards; kb_index ++) {
-    //             if (!kb_list[kb_index].transform) continue;
-    //             if (Object.keys(kb_list[kb_index].transform).length <= 1) continue;
-    //             let result = patternRow[kb_index];
-    //             let cell = row.insertCell(cellIndex);
-
-    //             if (result == undefined) result = "";
-
-    //             cell.innerHTML = result;
-    //             cell.title = utf16common(result, "", " ", null, []);
-    //             cell.style.fontSize = fontsize;
-    //             cell.style.width = cellWidth;
-    //             cell.style.fontFamily = kb_fonts[kb_index];
-    //             cellIndex += 1;
-    //         }
-    //     }
-    // }
-
 
 // Changes the Unicode font applied to each converted column in table.
 function setUnicodeFontColumns(unicodeFont, tableId) {

@@ -286,10 +286,14 @@ var MEN_PHONE_PUA_LAYOUT = {
     'mbOO':  '\ud83a\udc9d',  // Long MBOO
     'mbOl':  '\ud83a\udc9d',  // Long MBOO
     'mbol':  '\ud83a\udc9e',  // Long MBO
-    'M[bB]e':  '\ud83a\udc9c',  // Long MBE
-    'M[bB]O':  '\ud83a\udc9d',  // Long MBOO
-    'M[bB]oo':  '\ud83a\udc9d',  // Long MBOO
-    'M[bB]o':  '\ud83a\udc9e',  // Long MBO
+    'Mbe':  '\ud83a\udc9c',  // Long MBE
+    'MBe':  '\ud83a\udc9c',  // Long MBE
+    'MbO':  '\ud83a\udc9d',  // Long MBOO
+    'MBO':  '\ud83a\udc9d',  // Long MBOO
+    'Mboo':  '\ud83a\udc9d',  // Long MBOO
+    'MBoo':  '\ud83a\udc9d',  // Long MBOO
+    'Mbo':  '\ud83a\udc9e',  // Long MBO
+    'MBo':  '\ud83a\udc9e',  // Long MBO
 
     'kp':  '\ud83a\udc9f',
     'kpi':  '\ud83a\udc9f',

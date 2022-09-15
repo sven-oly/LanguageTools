@@ -28,6 +28,9 @@ import webapp2
 
 from google.appengine.ext.webapp import template
 
+LanguageCode = 'men'
+Language = 'Mende'
+
 encoding_font_list = [
     {
       'font_path':'/fonts/MendeKikakui/jgmende.ttf',
@@ -61,6 +64,9 @@ links = [
     },\
     {'linkText': 'Keyboard conversions',
      'ref': '/' + 'men' + '/kbtransforms/'
+     },
+    {'linkText': 'Phonetic table',
+     'ref': '/' + LanguageCode + '/phonetickb/'
      },
     {'linkText': 'Converter',
      'ref': '/men/convertUI/'
