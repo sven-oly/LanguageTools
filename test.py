@@ -25,6 +25,8 @@ from StringIO import StringIO
 
 import lib.lxml
 
+import glob
+
 import json
 import logging
 import os
@@ -37,6 +39,16 @@ from google.appengine.ext.webapp import template
 import jsToCldrKb
 
 class testHandler(webapp2.RequestHandler):
+    def get(self):
+      keyboards = glob.glob('./layouts/*.js')
+      
+      template_values = {
+          'keyboards': keyboards,
+      }
+      path = os.path.join(os.path.dirname(__file__), 'HTML/test_functions.html')
+      self.response.out.write(template.render(path, template_values))
+
+class testBurmese(webapp2.RequestHandler):
     def get(self):
       template_values = {
           'utext': 'ဂျာမန် ဓာတ်ပုံ သတင်းဌာန GEO အတွက် အလုပ် လုပ် ပေးနေတဲ့ မြန်မာ ဓာတ်ပုံ ',

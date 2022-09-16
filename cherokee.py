@@ -32,6 +32,7 @@ from google.appengine.ext.webapp import template
 Language = 'Cherokee'
 Language_native = 'ᏣᎳᎩ'
 LanguageTag = 'chr'
+LanguageCode = 'chr'
 
 # Handling Cherokee and other language codes for testing font and conversions.
 
@@ -60,6 +61,9 @@ links = [
     {'linkText': 'Keyboard',
      'ref': '/chr/'
     },
+    {'linkText': 'Phonetic table',
+     'ref': '/' + LanguageCode + '/phonetickb/'
+     },
     {'linkText': 'Converter',
      'ref': '/chr/convertUI/'},
     {'linkText': 'Font conversion summary',
@@ -110,6 +114,8 @@ class langInfo:
     ]
     self.lang_list = ['chr']
     self.links = links
+
+    self.text_functions = 'js/chr.js'
 
     self.dictionaryLang1 = self.LanguageCode
     self.dictionaryLang2 = 'en'
@@ -342,6 +348,7 @@ app = webapp2.WSGIApplication(
      ('/chr/converter/', CherokeeConvertHandler),
      ('/chr/encodingRules/', base.EncodingRules),
      ('/chr/AllFonts/', AllFontTest ),
+     ('/chr/phonetickb/', base.PhoneticKbHandler),
      ('/' + langInstance.LanguageCode + '/dictionaryN/', base.DictionaryN),
 
      ('/' + langInstance.LanguageCode + '/calendar/', base.CalendarHandler),

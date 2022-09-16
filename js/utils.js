@@ -378,3 +378,45 @@ Utils.prototype.toggleConvertedVS = function(text_area_id, toggle) {
   }
   text_area.innerHTML = text_area.value = new_text;
 }
+
+/* takes a string for matching and expands to a set of strings with
+   no match parts. E.g., a[bc]d --> [abd, abc]
+*/
+Utils.prototype.expandMatchRegEx = function(rString) {
+    let result = [''];
+    let size = rString.length;
+    
+    let expand = false;
+    let i = 0;
+    while (i < rString.length) {
+	let next = rString[i];
+	if (next == '[') {
+	    expand = true;
+	    // Find length
+	    let loopCount = rString.substring(i+1).indexOf(']');
+	    let appendages = rString.substring(i+1, i+1+loopCount);
+	    let newList = [];
+	    for (let iter = 0; iter < loopCount; iter++) {
+		let addChar = appendages[iter];
+		for (let oldIndex in result) {
+		    let newString = result[oldIndex] + addChar;
+		    newList.push(newString);
+		}
+	    }
+	    // Copy the expanded list of strings.
+	    result = newList;
+	    i += loopCount + 2;
+	} else if (next == ']') {
+	    expand = false;
+	    i += 1;
+	} else {
+	    // Add the character to all strings in result;
+	    for (k in result) {
+		newItem = result[k] + next;
+		result[k] = newItem;
+	    }
+	    i += 1;
+	}
+    }
+    return result;
+}
