@@ -45,11 +45,11 @@ encoding_font_list = [
 ]
 
 unicode_font_list = [
-    { 'family': 'NotoSansCheroneePlus',
+    { 'family': 'NotoSansCherokeePlus',
       'longName': 'Noto Sans Cherokee Plus Numeral PUA',
       'source': '/fonts/Cherokee/NotoSansCherokeePlus.ttf'
     },
-  { 'family': 'NotoSansCheronee',
+  { 'family': 'NotoSansCherokee',
     'longName': 'Noto Sans Cherokee',
     'source': '/fonts/Cherokee/NotoSansCherokee-Regular.ttf'
     },]
@@ -104,12 +104,14 @@ class langInfo:
 
     self.kb_list = [
       {'shortName':  'chr_phone',
+       'fontFamily': 'NotoSansCherokeePlus',
        'longName': 'Cherokee Phonetic',
        'instructions':
        'New: How to type PUA numerals: 0-9, ]0-]9 /0-/9 p0-p6'
        },
       {'shortName':  'chr',
-       'longName': 'Cherokee'
+       'longName': 'Cherokee',
+       'fontFamily': 'NotoSansCherokeePlus',
        },
     ]
     self.lang_list = ['chr']
@@ -174,6 +176,7 @@ class CherokeeIndigenousHomeHandler(webapp2.RequestHandler):
       kb_list = [
         {'shortName':  'chr',
          'longName': 'Cherokee Unicode'
+
         },
         {'shortName':  'chr_phone',
          'longName': 'Cherokee Phonetic'

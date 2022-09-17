@@ -13,7 +13,7 @@ class textFunctions {
 	    'nd', 'd', 's', 'j', 'nj', 'y', 'ng', 'g', 'k', 'h', '-',
 	    'h', 'm' ,'n', 'ny', '\u014b', 'i', 'I',
 	    'a', 'A', 'u', 'U', 'e', 'E', 'ɛ', 'Ɛ', 'ɔ', 'Ɔ', 'o', 'O', 'r',
-	    'X',
+	    'X', 'x',
 	    '0'];
 	// Mende ASCII ordering, based on table.
 
@@ -57,6 +57,9 @@ class textFunctions {
 	let ignorables = new Set();
 	// TODO: fill in.
 	ignorables.add('$1');  // Output of regex
+
+	ignorables.add('x');  // Unassigned
+	ignorables.add('X');  // Unassigned
 
 	ignorables.add('\ud83a\udcd0');  // Numbers
 	ignorables.add('\ud83a\udcd1');

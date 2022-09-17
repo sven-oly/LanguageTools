@@ -1,0 +1,19 @@
+<!-- onSizeSelected function applies this size to an HTML item
+  function onSizeSelected(newSize) {
+    var t1_element = document.getElementById({{textArea}});
+    t1_element.style.fontSize = newSize;
+  }
+-->
+  Size: <select onchange="onSizeSelected(this.value);" id="sizeSelector">
+    <option value="10px">10</option>
+    <option value="14px">14</option>
+    <option value="18px">18</option>
+    <option value="24px" selected>24</option>
+    <option value="32px">32</option>
+    <option value="48px">48</option>
+    <option value="48px">60</option>
+    <option value="72px">72</option>
+    <option value="96px">96</option>
+    <option value="120px">120</option>
+    <option value="240px">240</option>
+  </select>
