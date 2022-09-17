@@ -558,7 +558,7 @@ var MEN_PHONE_PUA_LAYOUT = {
       'X':  '\ue15f',
       'X':  '\ue162',
       
-    // Remove ZWNB Space
+    // Remove ZWNB Space for caps lock.
     '\ufeff([a-zA-Z0-9])': '$1',
   },
   'historyPruneRegex':  'paa|pi|pa|pu|pe|pɛ|pɔ|po|pA|' +

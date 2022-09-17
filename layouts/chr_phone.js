@@ -279,7 +279,7 @@ var CHR_PHONE_LAYOUT = {
     'L[aA]' : '\u13B3',  // Ꮃ
     'gi' : '\uab79',  // Ꭹ
 
-    '[a-z]\u200B': '$1' // Avoid transform of capslock letters.
+    '[a-zA-Z]\u200B': '$1' // Avoid transform of capslock letters.
   },
   'historyPruneRegex': 's|n|u|a|S|N|U|A'
 };

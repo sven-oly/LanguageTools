@@ -60,6 +60,13 @@ class textFunctions {
 	}
     }
 
+    ignoreInPhonetics() {
+	let ignorables = new Set();
+	// TODO: fill in.
+
+	return ignorables;
+    }
+
     testSort() {
 	// Test
 	this.sortAsciiList(['ku', 'ko', 'ka', 'ki', 'mba', 'mbi', 'mbO','mbo', 'pa', 'pi']) == ['pi', 'pa', 'mbi', 'mba', 'mbo', 'mbO', 'ki', 'ka', 'ku', 'ko'];

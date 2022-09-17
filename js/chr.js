@@ -3,6 +3,7 @@
 
 let langAsciiOrder;
 let langRegSplit;
+let langSplit;
 
 // Things needed for handling language-specific text tasks.
 class textFunctions {
@@ -11,15 +12,20 @@ class textFunctions {
 	this.langCode = 'lom';
 	this.sortAbc= false;  //true;
 
-	// This is unused now.
+	// The characters that split 
 	langAsciiOrder = [
-	    'e', 'i', 'o', 'u', 'v',
-	    'g', 'k', 'h', 'l', 'm', 'n',
-	    'hn', 'qu', 's', 'd', 't', 'dl', 'tl', 'ts', 'w', 'y'
+	    'a', 'e', 'i', 'o', 'u', 'v',
+	    'g', 'k', 'h', 'l', 'm', 'n', 'nh',
+	    'hn', 'qu', 's', 'd', 't', 'tl', 'dl', 'ts', 'w', 'y'
+	];
+	langSplit = [
+	    'g', 'k', 'hn', 'h', 'tl', 'dl', 'l', 'm', 'nh', 'n',
+	    'qu', 'ts', 's', 'd', 't', 'w', 'y',
+	    'a', 'e', 'i', 'o', 'u', 'v'
 	];
 	// Loma ASCII ordering, based on table.
 
-	let r = langAsciiOrder.join('|');
+	let r = langSplit.join('|');
 	langRegSplit = new RegExp('(' + r + ')');
     }
     
@@ -58,6 +64,17 @@ class textFunctions {
 	} else {
 	    return words.sort(this.compareLangAscii);
 	}
+    }
+
+    ignoreInPhonetics() {
+	let ignorables = new Set();
+	// TODO: fill in.
+	for (let i = 0xf600; i < 0xf625; i++) {
+	    ignorables.add(String.fromCharCode(i));  // Numerals
+	}
+	ignorables.add('$1');  // Output of regex
+
+	return ignorables;
     }
 
     testSort() {

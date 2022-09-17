@@ -185,17 +185,13 @@
         }
     }
 
-    function buildingTransformTable() {
-        if (kb_list === undefined) {
-            return;
-        }
+    
+    // Get all the patterns in all the lists.
+    function createPatternMap(kb_list) {
 
-        const fontsize="24px";
-        const cellWidth = "200px";
-        const numberKeyboards = kb_list.length;
+	// things that should not make a new row in table
+	const ignorableSet = textFuncs.ignoreInPhonetics();
 
-        // Get all the patterns in all the lists.
-        
         const patternMap = new Map();
         for (let kb_index in kb_list) {
             const kb = kb_list[kb_index];
@@ -206,24 +202,39 @@
             for (let pattern in this_transform) {
                 // Try expanding pattern
                 let expandedPatterns = utils.expandMatchRegEx(pattern);
-                // !! TODO: add each of the values of the expanded pattern
-                // for a simple result.
+
+		// The output of the pattern
 		let result = this_transform[pattern];
+		if (ignorableSet.has(result)) continue;  // Ignore
 		for (let item of expandedPatterns) {
+		    let lowerItem = item.toLowerCase();
                     if (result === item) continue;  // No point in identity!
-                    let currentArray;
-                    if (patternMap.has(item)) {
+                    let currentOutputs;
+                    if (patternMap.has(lowerItem)) {
                         // Get the array.
-                        currentArray = patternMap.get(item);
+                        currentOutputs = patternMap.get(lowerItem);
                     } else {
                         // A new one!
-                        currentArray = new Array(numberKeyboards);
+                        currentOutputs = new Set();
                     }
-                    currentArray[kb_index] = result;
-                    patternMap.set(item, currentArray);
+                    currentOutputs.add(result);
+                    patternMap.set(lowerItem, currentOutputs);
                 }
             }
-        };
+        }
+	return patternMap;
+    }
+
+    function buildingTransformTable() {
+        if (kb_list === undefined) {
+            return;
+        }
+	// Only do one keyboard !!! Only keyboards with transforms.
+	let patternMap = createPatternMap(kb_list);
+
+        const fontsize="24px";
+        const cellWidth = "200px";
+
 
         // Just one table.
         let table = document.getElementById('column_table');
@@ -242,6 +253,7 @@
             keyList = textFuncs.sortAsciiList(keyList);
         }    
 
+	// Fill in vowels in the header
         let vowels = textFuncs.getVowels();
 
         cellIndex = 1;
@@ -252,7 +264,14 @@
             if (!vowelMap.has(lower)) {
                 vowelMap.set(lower, cellIndex);
                 const headerCell = headerRow.insertCell(cellIndex);
-                headerCell.innerHTML = lower;
+                let mappedChars = patternMap.get(lower);
+		if (mappedChars) {
+                    headerCell.innerHTML = [...mappedChars] +
+			'  (' + lower + ')';
+		} else {
+                    headerCell.innerHTML = '(' + lower + ')';
+		}
+		
                 cellIndex ++;
                 numVowels ++;
             }
@@ -262,6 +281,9 @@
         // the text split of the pattern key.
         let rowMap = new Map();
         for (let key of keyList) {
+	    // Skip the vowels
+	    if (vowelMap.has(key)) continue;
+	    
             let split = textFuncs.splitText(key);
             let rowText = split[0];
             let colMap;
@@ -274,14 +296,15 @@
             let newColMarker = split.length > 1 ?
                 split[1].toLowerCase() :
                 vowels[0];
-            let current = [];
+            let current = new Set();
             if (colMap.has(newColMarker)) {
                 current = colMap.get(newColMarker);
             }
             let newEntry = patternMap.get(key);
-            if (! current.includes(newEntry[0])) {
-                current.push(newEntry[0]);
-            }
+	    // Add all of the newEntry to current.
+	    for (const elem of newEntry) {
+		current.add(elem);
+	    }
             colMap.set(newColMarker, current);
         }
 
@@ -304,7 +327,8 @@
                 if (vowelMap.has(vowel)) {
                     cellIndex = vowelMap.get(vowel);
                     let cell = row.cells[cellIndex];
-                    cell.innerHTML = coldata[1].join('<br>');
+		    let values = [...coldata[1]];  // Spread the set
+                    cell.innerHTML = values.join(' ');
                 }
             }
             rowNum ++;
@@ -319,7 +343,7 @@
 
         // Unicode columns are 1, 2, , ...
         for (let col = 1; col < numberColumns; col += 1) {
-            for (let row = 1; row < numberRows; row += 1) {
+            for (let row = 0; row < numberRows; row += 1) {
                 const cell = table.rows[row].cells[col];
                 if (cell) {
                     cell.style.fontFamily = unicodeFont;
@@ -337,7 +361,8 @@
   <p>The following are transforms in a phonetic keyboard for {{language}}.
   <p>Hint: hover over the Unicode conversions for the hex code points.
 
-{% include "fontSelector.html" %}
+    {% include "fontSelector.html" %}
+    {% include "kbSelector.html" %}
   <div class="span-20">
     <table id='column_table' border='3'></table>
   </div>

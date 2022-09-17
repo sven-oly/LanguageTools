@@ -53,6 +53,24 @@ class textFunctions {
 	return words.sort(this.compareMendeAscii);
     }
 
+    ignoreInPhonetics() {
+	let ignorables = new Set();
+	// TODO: fill in.
+	ignorables.add('$1');  // Output of regex
+
+	ignorables.add('\ud83a\udcd0');  // Numbers
+	ignorables.add('\ud83a\udcd1');
+	ignorables.add('\ud83a\udcd2');
+	ignorables.add('\ud83a\udcd3');
+	ignorables.add('\ud83a\udcd4');
+	ignorables.add('\ud83a\udcd5');
+	ignorables.add('\ud83a\udcd6');
+	ignorables.add('\ud83a\udcd7');
+	ignorables.add('\ud83a\udcd8');
+	ignorables.add('\ud83a\udcd9');
+	return ignorables;
+    }
+    
     testSort() {
 	// Test
 	this.sortAsciiList(['ku', 'ko', 'ka', 'ki', 'mba', 'mbi', 'mbO','mbo', 'pa', 'pi']) == ['pi', 'pa', 'mbi', 'mba', 'mbo', 'mbO', 'ki', 'ka', 'ku', 'ko'];
