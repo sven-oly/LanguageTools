@@ -36,10 +36,9 @@
     }
     {% endfor %}
 
-  {% for kb in kb_list %}{% if kb.fontFamilyToApply %}
-  .{{kb.fontFamily}} {
-      font-family:{% for font in kb.fontFamilyToApply %}' {{font}}'{% if not forloop.last %},{%endif%}{% endfor %}
-  }{%endif%}{% endfor %}
+    <!-- For table data -->
+    td { font-family: {% for kb in kb_list %}{% if kb.fontFamily %}"{{kb.fontFamily}}"{% if not forloop.last %},{% endif %} {% endif %}{%endfor%};
+    }
 
   </style>
   <style>
@@ -102,91 +101,34 @@
   {% endfor %}
 
   <script>
-  var kb_list = []; //
-    var kb_fonts = [];
+  const kb_list = []; //
+  const kb_fonts = [];
     let kbShortNameMap = new Map();
   {% for kb in kb_list %}
   kb_list.push({{kb.shortName}}); kb_fonts.push("{{kb.fontFamily}}");
-    kbShortNameMap.set("{{kb.shortName}}", {{forloop.counter0}});
-  {% endfor %}
+  kbShortNameMap.set("{{kb.shortName}}", {{forloop.counter0}});{% endfor %}
 
   const unicode_font_list = [
-    {% for font in unicode_list %}"{{font.family}}",{% endfor %}
+      {% for font in unicode_list %}"{{font.family}}"{%if not forloop.last%},{%endif%}{% endfor %}
   ];
 
-  {% if converter_list %}{% for conversion in converter_list.conversions %}
-    var {{conversion}} = {{converter_list.convert_obj}}['conversions']['{{conversion}}'].convert;
-    {% endfor %}
-  {% endif %}
-  {% if converter_list %}
-  // TODO: update to work with more than Tangsa conversions.
-  var converter_PUA_to_Unicode = nstConverter_obj['conversions']['GW_to_Unicode'].convert;
-  {% endif %}
-
-  var reverse_sort = false;
-  // Convert to Tangsa Unicode to compare PUA values
-  function compareRowsByColumnUnicode(a, b) {
-  {% if converter_list %}
-    a = converter_PUA_to_Unicode(a);
-    b = converter_PUA_to_Unicode(b);
-  {% endif %}
-    if (reverse_sort) {
-      if (a > b) {
-       return -1;
-      } else if (a < b) {
-       return 1;
-      }
-      return 0;
-    } else {
-      if (a < b) {
-       return -1;
-      } else if (a > b) {
-        return 1;
-      }
-      return 0;
+    const unicode_string = "{{unicode_data}}";
+    let unicode_num = new Map();
+    let unicode_char = new Map();
+    if (unicode_string.length) {
+        let charInfo = unicode_string.split(';');
+        for (let items of charInfo) {
+            let parts = items.split(':');
+            let num = parseInt(parts[0], 16);
+            unicode_num.set(num, parts[1]);
+            unicode_char.set(String.fromCharCode(num), parts[1]);
+        }
     }
-  }
 
   function onPageLoaded() {
     buildingTransformTable(0);  // Keyboard index 0, default.
   }
 
-  {% if converter_list %}
-  {% for conversion in converter_list.conversions %}
-    var {{conversion}} = {{converter_list.convert_obj}}['conversions']['{{conversion}}'].convert;
-    {% endfor %}
-  {% endif %}
-
-  {% if converter_list %}
-  // TODO: update to work with more than Tangsa conversions.
-  var converter_PUA_to_Unicode = nstConverter_obj['conversions']['GW_to_Unicode'].convert;
-  {% endif %}
-
-  var reverse_sort = false;
-  // Convert to Tangsa Unicode to compare PUA values
-    function compareRowsByColumnUnicode(a, b) {
-        {% if converter_list %}
-        a = converter_PUA_to_Unicode(a);
-        b = converter_PUA_to_Unicode(b);
-        {% endif %}
-        if (reverse_sort) {
-            if (a > b) {
-                return -1;
-            } else if (a < b) {
-                return 1;
-            }
-            return 0;
-        } else {
-            if (a < b) {
-                return -1;
-            } else if (a > b) {
-                return 1;
-            }
-            return 0;
-        }
-    }
-
-    
     // Get all the patterns in all the lists.
     function createPatternMap(kb_entry) {
 
@@ -255,7 +197,7 @@
 
         let cellIndex = 1;
 
-        headerRow.insertCell(0).innerHTML = "LETTER";
+        headerRow.insertCell(0).innerHTML = "";
 
         // Now build table based on the patternMap.
         let keyList = [...patternMap.keys()];
@@ -363,6 +305,9 @@
             }
             rowNum ++;
         }
+
+	// Set the font based on the keyboard.
+	setUnicodeFontColumns(kb_fonts[kb_index], 'column_table');
 	return true;  // table created
     }
 
@@ -410,6 +355,19 @@
 	  }
       }
   }
+
+    function getCharInfo() {
+	const text = utils.getSelectedText('column_table');
+	alert(unicode_char.keys());
+	if (text) {
+	    for (let chr of text) {
+		let charName = unicode_char.get(chr);
+		let intval = chr.charCodeAt(0);
+		let name = unicode_num.get(intval);
+		alert(charName);
+	    }
+	}
+    }
     
   </script>
 </head>
@@ -426,6 +384,8 @@
   <div class="span-20">
     <table id='column_table' border='3'></table>
   </div>
+  <input type="button" value="Code points" onclick="getCharInfo('column_table')">
+   <p>
 
 </div>
 </body>

@@ -57,6 +57,9 @@ links = [
     {'linkText': 'Keyboard conversions',
      'ref': '/' + LanguageCode + '/kbtransforms/'
     },
+    {'linkText': 'Phonetic table',
+     'ref': '/' + LanguageCode + '/phonetickb/'
+     },
     {'linkText': 'Wikipedia Kpelle syllabary',
      'ref': 'https://en.wikipedia.org/wiki/Kpelle_syllabary'
     },
@@ -64,6 +67,9 @@ links = [
      'ref': 'https://en.wikipedia.org/wiki/Kpelle_language'},
     {'linkText': 'ScriptSource',
      'ref': 'https://scriptsource.org/cms/scripts/page.php?item_id=script_detail&key=Kpel'
+    },
+    {'linkText': 'Unicode Proposal 2010',
+     'ref': 'http://std.dkuug.dk/jtc1/sc2/wg2/docs/n3762.pdf'
     },
     {'linkText': 'Digital Orientalist',
      'ref': 'https://digitalorientalist.com/2021/01/22/building-tools-with-bete-mende-and-kpelle-users/'
@@ -90,6 +96,8 @@ class langInfo():
     self.lang_list = [LanguageCode]  # This may be extended
     self.kb_list = kb_list
     self.links = links
+
+    self.text_functions = 'js/kpe.js'
 
     self.encoded_ranges = encodedRanges
 
@@ -161,6 +169,7 @@ app = webapp2.WSGIApplication([
   ('/' + LanguageCode + '/downloads/', base.Downloads),
   ('/' + LanguageCode + '/encodingRules/', base.EncodingRules),
   ('/' + LanguageCode + '/diacritic/', base.DiacriticHandler),
+  ('/' + LanguageCode + '/phonetickb/', base.PhoneticKbHandler),
   ('/' + langInstance.LanguageCode + '/kbtransforms/', base.KeyboardTransforms),
 ], debug=True,
                               config={'langInfo': langInstance}

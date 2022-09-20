@@ -366,6 +366,20 @@ Utils.prototype.showCodePoints = function(source_id, dest_id) {
   parent.style.display = 'block';
 }
 
+/* Finds selected code point values and outputs to designated area */
+Utils.prototype.getSelectedText = function(source_id) {
+  const src_field = document.getElementById(source_id);
+  let input_text = "";
+  const selObj = window.getSelection();
+  const selected = selObj.toString();
+  if (!selected) {
+    input_text = src_field.value;  // All
+  } else {
+    input_text = selected;  // Only highlighted
+  }
+    return input_text;
+}
+
 Utils.prototype.toggleConvertedVS = function(text_area_id, toggle) {
   // TODO: Change variation sequence content of text.
   var text_area = document.getElementById(text_area_id);

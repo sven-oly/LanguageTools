@@ -19,6 +19,8 @@ import games
 import languageTemplate
 
 import transliterate
+import unicodeinfo  # Some character data
+
 import wordsearch
 
 import json
@@ -410,6 +412,14 @@ class PhoneticKbHandler(webapp2.RequestHandler):
     except:
         text_functions = None
 
+    try:
+        print('unicodeinfo = %s' % langInfo.unicode_database)
+        unicode_info = unicodeinfo.UnicodeData(langInfo.unicode_database)
+        unicode_data = unicode_info.numTextString()
+    except BaseException as err:
+        print('unicodeinfo not read: %s' % err)
+        unicode_data = ''
+
     template_values = {
       'converterJS': '/js/' + langInfo.LanguageCode + 'Converter.js',
       'converter_list': converter_list,
@@ -420,7 +430,8 @@ class PhoneticKbHandler(webapp2.RequestHandler):
       'kb_list': langInfo.kb_list,
       'links': langInfo.links,
       'showTools': self.request.get('tools', None),
-        'text_functions': text_functions
+      'text_functions': text_functions,
+      'unicode_data': unicode_data,
     }
     path = os.path.join(os.path.dirname(__file__), 'HTML/phoneticTable.html')
     self.response.out.write(template.render(path, template_values))

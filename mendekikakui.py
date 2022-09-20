@@ -120,7 +120,7 @@ class langInfo():
     self.kb_list = [
       {
         'shortName': self.LanguageCode + "PhonePUA",
-        'longName': 'Mende:Phoneitic + PUA',
+        'longName': 'Mende:Phonetic + PUA',
         'jsName': self.LanguageCode  + "PhonePUA",
         'instructions': 'Private Use Area',
         'font': 'MendeKikakuiFonts',
@@ -151,6 +151,10 @@ class langInfo():
     self.links = links
     self.text_file_list = []
     self.unicode_font_list = unicode_font_list
+    
+    # Pointer to Unicode data for this script, e.g.,
+    # 1E800;MENDE KIKAKUI SYLLABLE M001 KI;Lo;0;R;;;;;N;;;;;
+    self.unicode_database = 'unicode_data/UnicodeData14.0.MendeKikakui.txt'
 
     # Lists of test characters for the various encodings
     self.test_chars = ' '.join([unichr(x) for x in range(0x16ad0, 0x161e6)])
