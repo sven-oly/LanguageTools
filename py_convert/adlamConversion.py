@@ -84,8 +84,9 @@ class converter(ConverterBase):
 
             # Punctuation & space
             u'\u0601': u'!',  # \U0001e95e' Initial Question mark
-            u'\u060c': u'\u060c',
-            u'\u060b': u'⁏',
+            u'\u060c': u'\u2e41',
+            u'\u060b': u'\u204f',
+            u'؟': '\u2E2E !!!!',
             u',': u'⹁',
             u';': u'⁏',
             u' ': u' ',

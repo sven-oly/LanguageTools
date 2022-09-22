@@ -127,12 +127,14 @@ class langInfo():
     self.kb_messages = [
       'The phonetic input codes used for each Loma syllable can be changed easily. Use feedback to suggest changes.'
     ]
+    self.unicode_database = 'unicode_data/kpelle_char_data.txt'
+
     # TODO: Fill in the rest of the common data.
 
-# TODO: Fill in with diacritics
-diacritic_list = []
-#TODO: Fill in base consonant
-default_base_consonant = u'\u1c00'
+    # TODO: Fill in with diacritics
+    diacritic_list = []
+    #TODO: Fill in base consonant
+    default_base_consonant = u'\u1c00'
 
 
 # Presents UI for conversions from font encoding to Unicode.

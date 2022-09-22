@@ -1,6 +1,7 @@
 # Functions to read and manipulate data from Unicode public data
 # https://www.unicode.org/Public/15.0.0/
 
+import re
 import sys
 
 # Python3 vs python2
@@ -27,12 +28,14 @@ class UnicodeData():
             
         self.fileSource = fileName
         for line in self.dataLines:
-            vals = line.split(';')
-            num = int(vals[0], 16)
-            # char = chr(num)
-            name = vals[1]
-            #self.chrToName[char] = name
-            self.numToName[num] = name
+            if line[0] != '#':
+                vals = line.split(';')
+                num = int(vals[0], 16)
+                # char = chr(num)
+                name = vals[1]
+                #self.chrToName[char] = name
+                self.numToName[num] = re.sub('\n', '', name)
+                print('****** %s %s %s' % (num, name, line))
 
     # List of hex:name;hex:name
     # 0x1e800:MENDE KIKAKUI SYLLABLE M001 KI;0x1e801:MENDE KIKAKUI SYLLABLE M002 KA;

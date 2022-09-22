@@ -106,71 +106,26 @@ class langInfo():
 
     # TODO: Fill in the rest of the common data.
 
+    # Pointer to Unicode data for this script, e.g.,
+    # 16c00;16C00 𖰀 KPELLE SYLLABLE PI-BHI
+    self.unicode_database = 'unicode_data/kpelle_char_data.txt'
+    
 # TODO: Fill in with diacritics
-diacritic_list = [unichr(x) for x in range(0x1c24, 0x1c37)]
-#TODO: Fill in base consonant
-default_base_consonant = u'\u1c00'
+diacritic_list = []
 
-
-diacritic_list = [unichr(x) for x in range(0xa926, 0xa92d)]
-
-default_base_consonant = u'\u1c00'
-
-
-# Presents UI for conversions from font encoding to Unicode.
-class ConvertUIHandler(webapp2.RequestHandler):
-    def get(self):
-
-      # All old characters
-      oldCharList = []
-      for run in encodedRanges:
-        oldCharList.extend([unichr(x) + ' ' for x in xrange(run[0], run[1])])
-
-      oldChars = ''.join(oldCharList)
-      text = self.request.get('text', oldChars)
-      font = self.request.get('font')
-      testStringList = [
-          {'name': 'Test 1', # Note: must escape the single quote.
-           'string': u'\u0004\u0005\u0006\u0007\u0008\u0009' +
-           '\u000a\u000b'},
-      ]
-
-      oldInput = text
-
-      unicodeChars = ''
-      unicodeCombiningChars = ''
-
-      template_values = {
-          'font': font,
-          'language': Language,
-          'langTag': LanguageCode,
-          'encodingList': encoding_font_list,
-          'encoding': encoding_font_list[0],
-          'kb_list': kb_list,
-          'unicodeFonts': unicode_font_list,
-          'links': links,
-          'oldChars': oldChars,
-          'oldInput': oldInput,
-          'text': text,
-          'textStrings': testStringList,
-          'showTools': self.request.get('tools', None),
-          'unicodeChars': unicodeChars,
-          'combiningChars': unicodeCombiningChars,
-      }
-      path = os.path.join(os.path.dirname(__file__), 'HTML/translit_general.html')
-      self.response.out.write(template.render(path, template_values))
-
+default_base_consonant = u'\u16c00'
 
 langInstance = langInfo()
 
 app = webapp2.WSGIApplication([
   ('/' + LanguageCode + '/', base.LanguagesHomeHandler),
-  ('/' + LanguageCode + '/convertUI/', ConvertUIHandler),
+  ('/' + LanguageCode + '/convertUI/', base.ConvertUIHandler),
   ('/' + LanguageCode + '/downloads/', base.Downloads),
   ('/' + LanguageCode + '/encodingRules/', base.EncodingRules),
   ('/' + LanguageCode + '/diacritic/', base.DiacriticHandler),
   ('/' + LanguageCode + '/phonetickb/', base.PhoneticKbHandler),
   ('/' + langInstance.LanguageCode + '/kbtransforms/', base.KeyboardTransforms),
-], debug=True,
-                              config={'langInfo': langInstance}
-)
+  ],
+  debug=True,
+  config={'langInfo': langInstance}
+  )

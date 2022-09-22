@@ -415,7 +415,9 @@ class PhoneticKbHandler(webapp2.RequestHandler):
     try:
         print('unicodeinfo = %s' % langInfo.unicode_database)
         unicode_info = unicodeinfo.UnicodeData(langInfo.unicode_database)
+        print('UNICODE_INFO = %s' % unicode_info)
         unicode_data = unicode_info.numTextString()
+        print('UNICODE_DATA = %s' % unicode_data)
     except BaseException as err:
         print('unicodeinfo not read: %s' % err)
         unicode_data = ''

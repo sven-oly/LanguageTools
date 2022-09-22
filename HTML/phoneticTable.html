@@ -114,6 +114,7 @@
 
     const unicode_string = "{{unicode_data}}";
     let unicode_num = new Map();
+    let unicode_hex = new Map();
     let unicode_char = new Map();
     if (unicode_string.length) {
         let charInfo = unicode_string.split(';');
@@ -121,7 +122,10 @@
             let parts = items.split(':');
             let num = parseInt(parts[0], 16);
             unicode_num.set(num, parts[1]);
-            unicode_char.set(String.fromCharCode(num), parts[1]);
+	    let char = String.fromCharCode(num);
+            unicode_char.set(char, parts[1]);
+	    
+            unicode_hex.set(num.toString(16), parts[1]);
         }
     }
 
@@ -358,14 +362,31 @@
 
     function getCharInfo() {
 	const text = utils.getSelectedText('column_table');
-	alert(unicode_char.keys());
+	let hex = utf16common(text, '', ';', true, false).split(';');
+	//alert(unicode_char.keys());
 	if (text) {
+	    let index = 0;
+	    let outText = [];
 	    for (let chr of text) {
-		let charName = unicode_char.get(chr);
-		let intval = chr.charCodeAt(0);
-		let name = unicode_num.get(intval);
-		alert(charName);
+		//let charName = unicode_char.get(chr);
+		//let intval = chr.charCodeAt(0);
+		// let name = unicode_num.get(intval);
+		// Remove leading zeros.
+		let hexVal = hex[index].replace(/^0+/, '').toLowerCase();
+		let num = parseInt(hexVal, 16);
+		if (unicode_hex.has(hexVal)) {
+		    name = unicode_hex.get(hexVal);
+		    outText.push(name);
+		    // alert(name);
+		} else {
+		    if (num != 0x20 && num != 0x0a && num != 0x09) {
+			//alert(hex[index]);
+			outText.push(hex[index]);
+		    }
+		}
+		index += 1;
 	    }
+	    alert(outText.join('\n'));
 	}
     }
     
