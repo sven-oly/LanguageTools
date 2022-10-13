@@ -251,7 +251,7 @@ class NumeralBase {
     }
 
     // Base 10 placeholder
-    numberListToInteger(numList) {
+    numberListToIntegerBaseN(numList, baseN) {
         // Implements decimal placeholder
         let working = numList;
         let tags = numList.slice();
@@ -260,7 +260,7 @@ class NumeralBase {
         let limit = working.length;
         let sum = 0;
         while (start < limit) {
-            sum = 10 * sum + numList[start];
+            sum = baseN * sum + numList[start];
             start++;
         }
         return sum;
@@ -284,6 +284,25 @@ class NumeralBase {
         }
         return result.join('');
     }
+
+    // Base N placeholder
+    formatIntBaseN(intVal, valueToCharMap, baseN) {
+	if (valueToCharMap === undefined) {
+	    valueToCharMap = this.defaultValueToCharMap;
+	}
+        if (intVal == 0) {
+            let chr = valueToCharMap.get(0);
+            return chr;
+        }
+        let result = [];
+        while (intVal) {
+            let val = intVal % baseN;
+            let chr = valueToCharMap.get(val);
+            result.unshift(chr);
+            intVal = Math.floor(intVal / baseN);
+        }
+        return result.join('');
+    }    
 
     // Base 10 using numberalBase class
     formatInt(intVal) {

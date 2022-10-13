@@ -38,9 +38,9 @@ handlers:
 - url: /help
   static_dir: help
 
-- url: /base/.*
-  script: base.app
-
+#- url: /base/.*
+#  script: base.app
+#
 - url: /demo_ccp/*
   script: chakma.app
 
@@ -56,8 +56,8 @@ handlers:
 - url: /bete/.*
   script: bete.app
 
-- url: /bla/.*
-  script: blackfoot.app
+# - url: /bla/.*
+#   script: blackfoot.app
 
 - url: /bn/.*
   script: bangali.app
@@ -125,6 +125,9 @@ handlers:
 - url: /ig/.*
   script: nsibidi.app
 
+- url: /ik/.*
+  script: inupiaq.app
+
 - url: /kgp/.*
   script: kaingang.app
 
@@ -136,6 +139,9 @@ handlers:
 
 - url: /kpe/.*
   script: kpelle.app
+
+- url: /lkt/.*
+  script: lakota.app
 
 - url: /lom/.*
   script: loma.app
