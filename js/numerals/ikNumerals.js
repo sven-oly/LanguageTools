@@ -5,7 +5,7 @@ class Numerals {
     constructor(numberalBase) {
 	// Used for basic functions
 	this.numeralBase = numeralBase;
-	this.doFloat = true;  // TESTING
+	this.doFloat = false;  // TESTING
 	this.base = 20;       // For
         this.isBase10 = false;
         //  Map numeral values to corresponding code points
@@ -101,7 +101,7 @@ class Numerals {
 
     formatFloat(floatVal) {
 	// Need to figure out how many decimal places
-	return this.numeralBase.formatFloat(floatVal, 3, this.valueToChar);
+	return this.numeralBase.formatFloat(floatVal, 3, this.valueToChar, this.base);
     }
 }
 

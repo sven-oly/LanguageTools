@@ -363,8 +363,8 @@ var MEN_PHONE_LAYOUT = {
     '\ufeff([a-zA-Z0-9])': '$1',
   },
   'historyPruneRegex': 'i|a|e|o|' +
-    'k|ku|w|we|wo|wu|wv|m|mu|b|be|bo|s|se|so|si|l|le|lo|ll|L|' +
-    'd|de|do|t|te|to|j|je|jj|jo|J|y|ye|yo|f|fa|fe|fo|fu|n|h|he|hE|hi|ho|hoo|hO|hee|ha|hu|ngg|ngga|ngge|nggE|nggo|nggO|Ngg|NGg|nggu|g|ge|gu|ng|p|pe|po|mb|mbe|mbo|mbE|mbO|mbu|kp|kpe|kpo|gb|gbe|gbo|nd|nde|ndo|nj|nje|njo|v|ve|vo|ny'
+    'k|ki|ku|w|we|wo|wu|wv|m|mu|b|be|bi|bo|s|se|so|si|l|le|lii|li|lo|ll|L|' +
+    'd|de|di|do|t|te|to|j|je|ji|jj|jo|J|y|ye|yo|f|fa|fe|fo|fu|n|h|he|hE|hii|hi|ho|hoo|hO|hee|ha|hu|ngg|ngga|ngge|nggE|nggo|nggO|Ngg|NGg|nggu|g|ge|gi|gu|ng|ngi|p|pe|po|mb|mbe|mbo|mbE|mbi|mbO|mbu|kp|kpe|kpo|gb|gbe|gbo|ndi|nd|nde|ndo|nj|nje|njo|v|ve|vo|ny|i|ii|iii|a|aa|e|ee|u|uu|I|r|rr|c|cc|o'
 }
 
 // Load the layout and inform the keyboard to switch layout if necessary.

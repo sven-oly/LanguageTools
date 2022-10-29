@@ -324,13 +324,15 @@ class NumeralBase {
         return result;
     }
 
-    formatFloat(floatVal, afterDecimal, valueToCharMap) {
+    formatFloat(floatVal, afterDecimal, valueToCharMap, numberBase) {
+	// numberBase may be undefined --> base 10
         // Need to figure out how many decimal places
         // TODO: replace ASCII with Adlam characters
         
         // TESTING. Find fraction.
+	const base = (undefined === numberBase) ? 10 : numberBase;
 
-        const fractParts = this.findFractionParts(floatVal);
+        const fractParts = this.findFractionParts(floatVal, base);
         
         let places = this.numberFractionPlaces(floatVal);
         places = Math.min(places, 7);
@@ -352,7 +354,7 @@ class NumeralBase {
         return numPlaces;
     }
 
-    findFractionParts(x) {
+    findFractionParts(x, base) {
         // Get fraction part
         // Abs?
         let wholePart = Math.floor(Math.abs(x));
@@ -360,15 +362,16 @@ class NumeralBase {
 
         let maxShift = 20;
         let shift = 1
-        let power = 10;
+        let power = base;
+	let diff = 0.0;
         while (shift < maxShift) {
-            let diff = fract * power - fract;
+            diff = fract * power - fract;
             if (diff === Math.floor(diff)) {
                 // We have an integer as the difference.
                 // Compute the fraction, indicating exact.
                 return [wholePart, diff, power, true];
             }
-            power *= 10;
+            power *= base;
             shift += 1;
         }
         // Did not find the result in max digits

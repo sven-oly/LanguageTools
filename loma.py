@@ -55,14 +55,14 @@ encoding_font_list = [
 unicode_font_list = encoding_font_list
 
 kb_list = [
-  {'shortName': LanguageCode + '_' + ScriptCode,
-   'longName': Language + ' ' + ScriptCode,
-   'fontFamily': 'JGLoma',
-   'inputFontFamily': "Arial",
-   },
   {'shortName': 'lom_Loma_PUA',
    'longName': 'Loma PUA',
    'fontFamily': 'JGLomaPUA',
+   'inputFontFamily': "Arial",
+   },
+  {'shortName': LanguageCode + '_' + ScriptCode,
+   'longName': Language + ' ' + ScriptCode,
+   'fontFamily': 'JGLoma',
    'inputFontFamily': "Arial",
    },
 ]

@@ -186,15 +186,16 @@ class TestEmbedKM(webapp2.RequestHandler):
     self.response.out.write(template.render(path, template_values))
 
 TestEmbedKM
-app = webapp2.WSGIApplication([
-    ('/test/', testHandler),
-    ('/test/testLocale/', testLocaleHandler),
-    ('/test/kbkm/', LayoutToKeyMan),
-    ('/test/kbtoKeyMan/', LayoutToKeyMan),
-    ('/test/kbtocldr/', LayoutToCldr),
-    ('/test/ProcessJsToXml/', ProcessJsToXml),
-    ('/test/SelectFile/', SelectFile),
-    ('/test/ReadFile/', ReadProcessFile),
-  ('/test/KMweb/', TestEmbedKM)
-  ],
-  debug=True)
+app = webapp2.WSGIApplication(
+    [
+        ('/test/', testHandler),
+        ('/test/testLocale/', testLocaleHandler),
+        ('/test/kbkm/', LayoutToKeyMan),
+        ('/test/kbtoKeyMan/', LayoutToKeyMan),
+        ('/test/kbtocldr/', LayoutToCldr),
+        ('/test/ProcessJsToXml/', ProcessJsToXml),
+        ('/test/SelectFile/', SelectFile),
+        ('/test/ReadFile/', ReadProcessFile),
+        ('/test/KMweb/', TestEmbedKM)
+    ],
+    debug=True)

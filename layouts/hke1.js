@@ -51,4 +51,4 @@ var HKE1_LAYOUT = {
 
 // Load the layout and inform the keyboard to switch layout if necessary.
 google.elements.keyboard.loadme(HKE1_LAYOUT);
-khe1 = HKE1_LAYOUT;
+hke1 = HKE1_LAYOUT;
