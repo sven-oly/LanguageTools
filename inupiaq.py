@@ -24,7 +24,7 @@ try:
 except NameError:
     unichr = chr
 
-Language = 'Inupiaq'
+Language = 'Iñupiaq'
 Language_native = 'Iñupiaq'
 LanguageCode = 'ik'
 ScriptCode = 'Latn'
@@ -33,27 +33,35 @@ links = [
   {'linkText': 'Keyboard',
    'ref': '/' + LanguageCode + '/'
    },
-  # {'linkText': 'Converter',
-  #  'ref': '/' + LanguageCode + '/convertUI/'},
-  # {'linkText': 'Font conversion summary',
-  #   'ref': '/' + LanguageCode + '/encodingRules/'
-  # },
-  # {'linkText': 'Resources',
-  #   'ref': '/' + LanguageCode + '/downloads/'
-  # },
-  {'linkText': 'Unicode page',
-   'ref': 'https://www.unicode.org/charts/PDF/U1D2C0.pdf'
-  },
-  # {'linkText': 'THIS SCRIPT',
-  #  'ref': 'https://en.wikipedia.org/wiki/XYZ_alphabet'
-  # },
+    # {'linkText': 'Converter',
+    #  'ref': '/' + LanguageCode + '/convertUI/'},
+    # {'linkText': 'Font conversion summary',
+    #   'ref': '/' + LanguageCode + '/encodingRules/'
+    # },
+    {'linkText': 'Resources',
+     'ref': '/' + LanguageCode + '/downloads/'
+    },
+    {'linkText': 'Unicode page',
+     'ref': 'https://www.unicode.org/charts/PDF/U1D2C0.pdf'
+    },
+    {'linkText': 'Unicode proposal 2021',
+     'ref': 'https://www.unicode.org/L2/L2021/21058r-kaktovik-numerals.pdf'
+    },
     {'ref': 'https://en.wikipedia.org/wiki/Kaktovik_numerals',
      'linkText': 'Kaktovik numerals'},
+    {'linkText': 'Converter (non-unicode)',
+     'ref':'https://www.dcode.fr/kaktovik-numerals'
+    },
     {'ref': 'https://en.wikipedia.org/wiki/I%C3%B1upiaq_language',
      'linkText': 'Iñupiaq language'},
     {'linkText': 'Kaktovik calculator',
      'ref': '/' + LanguageCode + '/numerals/'
     },
+    {'linkText': 'Resources & Downloads',
+     'ref': '/ik/downloads/'
+    },
+
+    
 
 ]
 
@@ -81,6 +89,7 @@ class langInfo:
         self.kb_list = [
           {'shortName': LanguageCode + '_numerals',
            'longName': 'Kaktovik numerals',
+           'instructions': 'Numerals on top row and shifted top row. Alternative: Use backslash + digit for numerals ten-nineteen.'
            },
         ]
 
@@ -98,8 +107,8 @@ class langInfo:
         ]
 
         # For additional resources for download
-        self.text_file_list = []
-
+        self.text_file_list = [
+        ]
         # TODO: Fill in the rest of the common data.
 
 

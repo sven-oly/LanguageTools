@@ -5,9 +5,10 @@ class Numerals {
     constructor(numberalBase) {
 	// Used for basic functions
 	this.numeralBase = numeralBase;
-	this.doFloat = false;  // TESTING
+	this.doFloat = true;  // TESTING
 	this.base = 20;       // For
         this.isBase10 = false;
+	this.decimalSeparator = '.';
         //  Map numeral values to corresponding code points
         this.valueToChar = new Map(
             [[0, '\ud834\udec0'], [1, '\ud834\udec1'], [2, '\ud834\udec2'],
@@ -104,4 +105,3 @@ class Numerals {
 	return this.numeralBase.formatFloat(floatVal, 3, this.valueToChar, this.base);
     }
 }
-

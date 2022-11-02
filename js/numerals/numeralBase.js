@@ -250,9 +250,9 @@ class NumeralBase {
         return result.join('');
     }
 
-    // Base 10 placeholder
+    // Base N placeholder
     numberListToIntegerBaseN(numList, baseN) {
-        // Implements decimal placeholder
+        // Implements base N placeholder
         let working = numList;
         let tags = numList.slice();
 
@@ -291,7 +291,7 @@ class NumeralBase {
 	    valueToCharMap = this.defaultValueToCharMap;
 	}
         if (intVal == 0) {
-            let chr = valueToCharMap.get(0);
+            let chr = '0';  // TEMP. this.valueToCharMap.get(0);
             return chr;
         }
         let result = [];
@@ -310,7 +310,7 @@ class NumeralBase {
     }
 
     replaceAsciiDigits(asciiIn, valueToCharMap) {
-        // For each ASCII digit, replace with the Adlam
+        // For each ASCII digit, replace with the Adlam or other digit
         let chars = [];
         for (let i = 0; i < asciiIn.length; i ++) {
             let charCode = asciiIn.charCodeAt(i) - 0x30;
@@ -334,10 +334,33 @@ class NumeralBase {
 
         const fractParts = this.findFractionParts(floatVal, base);
         
-        let places = this.numberFractionPlaces(floatVal);
+        let places = this.numberFractionPlaces(floatVal, base);
+
+	let whole = Math.floor(Math.abs(floatVal));
+	let fraction = Math.abs(floatVal) - whole;  // Negative values?
+
+	let wholePart = this.formatIntBaseN(whole, base);
+	let fractionPart = this.formatFractionBaseN(fraction, places, base);
+	// Puth these pieces together.
+	return wholePart + '.' + fractionPart;
+
         places = Math.min(places, 7);
+	// The following works only for base 10.
         const asciiVal = Number(floatVal).toFixed(places);  // Try 3 places
         return this.replaceAsciiDigits(asciiVal, valueToCharMap);
+    }
+
+    formatFractionBaseN(fraction, places, base) {
+	const num = fraction * Math.pow(base, places);
+	let result = this.formatIntBaseN(num, base);
+	// Pad on left with zeros to get enough
+	let morePlaces = places - result.length;
+	let prefix = [];
+	let zero = '0';  // TODO!!! this.valueToChar[0];
+	for (let i = 0; i < morePlaces; i++) {
+	    prefix.append(zero);
+	}
+	return prefix.join('') + result;
     }
 
     numberFractionPlaces(x) {
@@ -347,7 +370,7 @@ class NumeralBase {
         let fract = x - y;
         let numPlaces = 0;
         while (fract !== 0.0) {
-            fract *= 10.0;
+            fract *= base;
             fract = fract - Math.floor(fract);
             numPlaces += 1;
         }
