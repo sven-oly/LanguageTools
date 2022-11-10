@@ -29,7 +29,7 @@ from google.appengine.ext.webapp import template
 import base
 
 Language = 'Oneida'
-Language_native = 'Need native name'
+Language_native = 'onʌjotaʔaːka'
 LanguageCode = 'one'
 
 encoding_font_list = [
