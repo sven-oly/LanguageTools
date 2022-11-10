@@ -54,14 +54,16 @@ links = [
     },
     {'ref': 'https://en.wikipedia.org/wiki/I%C3%B1upiaq_language',
      'linkText': 'Iñupiaq language'},
+    { 'ref': 'https://www.adn.com/alaska-life/2022/11/06/numerals-invented-by-kaktovik-students-can-now-be-used-digitally/',
+      'linkText': 'Anchorage Daily News article'
+      },
     {'linkText': 'Kaktovik calculator',
      'ref': '/' + LanguageCode + '/numerals/'
     },
     {'linkText': 'Resources & Downloads',
      'ref': '/ik/downloads/'
     },
-
-    
+   
 
 ]
 
@@ -89,7 +91,7 @@ class langInfo:
         self.kb_list = [
           {'shortName': LanguageCode + '_numerals',
            'longName': 'Kaktovik numerals',
-           'instructions': 'Numerals on top row and shifted top row. Alternative: Use backslash + digit for numerals ten-nineteen.'
+           'instructions': 'Numerals on top row and shifted top row. Alternative: Use backslash + digit for numerals ten-nineteen. Derived from https://www.languagegeek.com/inu/keyboard/keymaps/Inupiaq.pd'
            },
         ]
 

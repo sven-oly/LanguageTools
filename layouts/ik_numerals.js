@@ -13,19 +13,20 @@
 
 var IK_NUM_LAYOUT = {
   'id': 'ik_numerals',
-  'title': 'Kaktovik numerals',
+    'title': 'Iñupiaq with Kaktovik numerals',
+    'source': 'https://www.languagegeek.com/inu/keyboard/keymaps/Inupiaq.pdf',
   'mappings': {
     ',c': {
-      '': '`{{\ud834\udec1}}{{\ud834\udec2}}{{\ud834\udec3}}{{\ud834\udec4}}{{\ud834\udec5}}{{\ud834\udec6}}{{\ud834\udec7}}{{\ud834\udec8}}{{\ud834\udec9}}{{\ud834\udec0}}-=' +
-          'qwertyuiop[]\\' +
-          'asdfghjkl;\'' +
-          'zxcvbnm,./'
+      '': '{{̣ }}{{\ud834\udec1}}{{\ud834\udec2}}{{\ud834\udec3}}{{\ud834\udec4}}{{\ud834\udec5}}{{\ud834\udec6}}{{\ud834\udec7}}{{\ud834\udec8}}{{\ud834\udec9}}{{\ud834\udec0}}-=' +
+          'qwertyuiopñł/' +
+          'asdfghjkl{{ġ}}’' +
+          'zxcvbnm,.ŋ'
     },
     's': {
-      '': '~{{\ud834\udecb}}{{\ud834\udecc}}{{\ud834\udecd}}{{\ud834\udece}}{{\ud834\udecf}}{{\ud834\uded0}}{{\ud834\uded1}}{{\ud834\uded2}}{{\ud834\uded3}}{{\ud834\udeca}}_+' +
-          'QWERTYUIOP{}|' +
-          'ASDFGHJKL:"' +
-          'ZXCVBNM<>?'
+      '': '‘{{\ud834\udecb}}{{\ud834\udecc}}{{\ud834\udecd}}{{\ud834\udece}}{{\ud834\udecf}}{{\ud834\uded0}}{{\ud834\uded1}}{{\ud834\uded2}}{{\ud834\uded3}}{{\ud834\udeca}}_+' +
+          'QWERTYUIOPÑŁ?' +
+          'ASDFGHJKL{{Ġ}}"' +
+          'ZXCVBNM;:Ŋ'
     },
     'sc': {
       '': '~!@#$%^&*()_+' +

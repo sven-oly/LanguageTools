@@ -53,12 +53,12 @@
           font-family:{{unicodeFontList.0.family}};
           font-size: 40px;
           font-weight:bold;
-	  height: 60px;
-	  width: 400px;
-	  height: 60px;
-	  resize: none;
-	  align: center;
-	  text-align: end;
+          height: 60px;
+          width: 400px;
+          height: 60px;
+          resize: none;
+          align: center;
+          text-align: end;
       }
       .DecimalDisplay {
           background-color: #cccccc;
@@ -119,19 +119,28 @@
       }
       
       function handleKeyPressed(ev) {
-	  const c = ev.key;
-	  let ch = c;  // maybe need more mapping
-	  
+          const c = ev.key;
+          let ch = c;  // maybe need more mapping
+          
+          if (ev.srcElement == document.getElementById('decimalOutput')) {
+              // Typed into decimal output area - only accept '0' - '9'
+              // and don't send to calculator.
+              if (!(ch >= '0' && ch <= '9')) {
+		  let len = ev.srcElement.value.length;
+                  ev.srcElement.value = ev.srcElement.value.substring(0,len);
+              }
+              return;
+          }
           if ("0123456789.+-*×÷/=C".indexOf(ch) >= 0) {
-	      // Transform as needed.
-	      if (c == 'C') {
-		  ch = 'clear';
-	      }
-	      if (numeralInfo.digitKeyInput &&
-		  ('0' <  c && c <= '9')) {
-		      const num = c.charCodeAt(0) - 0x30;
-		      ch = numeralInfo.valueToChar.get(num);
-		  }
+              // Transform as needed.
+              if (c == 'C') {
+                  ch = 'clear';
+              }
+              if (numeralInfo.digitKeyInput &&
+                  ('0' <=  c && c <= '9')) {
+                      const num = c.charCodeAt(0) - 0x30;
+                      ch = numeralInfo.valueToChar.get(num);
+                  }
               calcButtonFn(ch);
           }
       }
@@ -146,11 +155,11 @@
           
           setCalculatorKeyTable('buttonTable', numeralInfo, calculator);
 
-	  // Set up key input for digits, operators, etc.
+          // Set up key input for digits, operators, etc.
 
-	  document.addEventListener('keydown',
-				    handleKeyPressed);
-//				    calculator.onKeyPressed);
+          document.addEventListener('keyup',
+                                    handleKeyPressed);
+//                                  calculator.onKeyPressed);
 
           // Ready to use the calculator.
           numeralInfo.setDisplayDecimal(showDecimal);
@@ -182,7 +191,7 @@
 
       function setCalculatorKeyTable(tableId, numeralInfo, calculator) {
           // The table for holding the buttons for numerals, operators, etc.
-	  // 
+          // 
           const table = document.getElementById(tableId);
           const rows = table.rows;
           const numRows = rows.length;  // May need to add more
@@ -190,7 +199,7 @@
           const keyMap = numeralInfo.keyLayoutArray();
           const charToValueMap = numeralInfo.getCharToValueMap();
           
-	  // Used for computing digits with separators like US English
+          // Used for computing digits with separators like US English
           const onInputFn = calculator.onInput;
           let fmt = new Intl.NumberFormat('en');
 
@@ -209,7 +218,7 @@
               let tableCol = rowPtr.cells.length;
               for (let col = 0; col < keyRow.length; col ++) {
                   let cell = rowPtr.insertCell(tableCol);
-		  // Adds button to the new cell with the character, value, etc.
+                  // Adds button to the new cell with the character, value, etc.
 
                   const chr = keyMap[row][col];
                   const btn = document.createElement("button");
@@ -226,24 +235,24 @@
               }
           }
 
-	  // Replace selected operators with new values and font.
-	  if (numeralInfo.replaceOperatorsMap !== undefined) {
-	      const replaceIterator = numeralInfo.replaceOperatorsMap.entries();
-	      let item;
-	      while (item = replaceIterator.next().value) {
-		  const replacements = item[1];
-		  const cell = document.getElementById(item[0]);
-		  if (cell) {
-		      // Change the cell's value and font.
-		      cell.value = replacements[0];
-		      cell.style.fontFamily = replacements[1];
-		      // If there's a third item, replace the title / tool tip.
-		      if (replacements.length > 2) {
-			  cell.title = replacements[2];
-		      }
-		  }
-	      }
-	  }
+          // Replace selected operators with new values and font.
+          if (numeralInfo.replaceOperatorsMap !== undefined) {
+              const replaceIterator = numeralInfo.replaceOperatorsMap.entries();
+              let item;
+              while (item = replaceIterator.next().value) {
+                  const replacements = item[1];
+                  const cell = document.getElementById(item[0]);
+                  if (cell) {
+                      // Change the cell's value and font.
+                      cell.value = replacements[0];
+                      cell.style.fontFamily = replacements[1];
+                      // If there's a third item, replace the title / tool tip.
+                      if (replacements.length > 2) {
+                          cell.title = replacements[2];
+                      }
+                  }
+              }
+          }
       }
 
       function calcButtonFn(event) {
@@ -307,8 +316,8 @@
             <!-- TO BE IMPLEMENTED 
                  <td><input id='decimal' title='decimal' type="button" value="." onclick='calcButtonFn(".");'> </td>
                  -->
-	  </tr>
-	  <tr>
+          </tr>
+          <tr>
             <td><input id='clear' title='clear' type="button" value="clear" class='OperatorsClass' onclick='calcButtonFn("clear");'></td>
           </tr>
         </table>

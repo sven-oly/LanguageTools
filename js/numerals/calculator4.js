@@ -263,7 +263,7 @@ class calculator4 {
               this.numeralObject.numberListToInteger(this.numeralList);
 
         if (this.numeralObject.displayLog) {
-            this.numeralObject.displayLog('#clear');
+            this.numeralObject.displayLog('\n#clear\n');
         }
 
         this.display(newVal);

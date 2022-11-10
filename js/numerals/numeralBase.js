@@ -291,7 +291,7 @@ class NumeralBase {
 	    valueToCharMap = this.defaultValueToCharMap;
 	}
         if (intVal == 0) {
-            let chr = '0';  // TEMP. this.valueToCharMap.get(0);
+            let chr = valueToCharMap.get(0);  // '0'
             return chr;
         }
         let result = [];

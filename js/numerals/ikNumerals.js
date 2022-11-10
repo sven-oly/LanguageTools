@@ -5,7 +5,7 @@ class Numerals {
     constructor(numberalBase) {
 	// Used for basic functions
 	this.numeralBase = numeralBase;
-	this.doFloat = true;  // TESTING
+	this.doFloat = false;  // TESTING
 	this.base = 20;       // For
         this.isBase10 = false;
 	this.decimalSeparator = '.';
