@@ -42,8 +42,8 @@
 <script>
 
   function getMobileOptions() {
-      // TODO: get controls
-      return {};
+      const elem = document.getElementById('doMobile');
+      return elem.checked;
   }
 
   function onPageLoaded() {
@@ -54,7 +54,7 @@
     const outputTransforms = null;
     const mobileOptions = getMobileOptions();
     const mobileResults = map_en_to_x(
-	layout, false, doMobile, outputTransforms, mobileOptions);
+        layout, false, doMobile, outputTransforms, mobileOptions);
 
     let kbResults = map_en_to_x(layout);
 
@@ -70,7 +70,9 @@
 </head>
 
   <body onload="onPageLoaded()">
-  <h1>Load keyboard</h1>
+    <input type="checkbox" id="doMobile" name="doMobile" value="Yes" checked>
+    <label for="doMobile">Include mobile</label><br>
+    <h1>Load keyboard</h1>
   <textarea id="output"></textarea>
   <h1>Mobile touch</h1>
   <textarea id="touch_output"></textarea>

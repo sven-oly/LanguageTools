@@ -71,12 +71,13 @@ function map_qwerty(layer_values, layer_txt, querty_names) {
         let item = layer_items[index];
         if (item[0] === 'S' && item[1] == '|' && item[2] == '|') {
             // Skip over the 2nd ||.
+            // TODO: Put in the keycap string
             let lastPartLoc = item.indexOf('||');
             lastPartLoc = item.indexOf('||', lastPartLoc+ 1);
             item = item.substring(lastPartLoc+ 2);
         }
-      let hex = utf16common(item, "U+", " ", true, []);
-      layer_list.push("+ [" + layer_txt + querty_names[upper] + "] > " + hex);
+        let hex = utf16common(item, "U+", " ", true, []);
+        layer_list.push("+ [" + layer_txt + querty_names[upper] + "] > " + hex);
     } else {
       alert('Missing value for index ' + index + ' layer ' + layer_txt + " " + layer_items);
     }
@@ -94,7 +95,7 @@ function mapTouch(layer_values, layer_text, names, layerName) {
     for (let index = 0; index < en_qwerty_keys.length; index++) {
         let upper = en_qwerty_keys[index].toUpperCase();
         // Option - output some as characters (code <= 0xffff)
-        if (layer_items[index]) {
+        if (index < layer_items.length && layer_items[index]) {
             let item = layer_items[index];
             if (item[0] === 'S' && item[1] == '|' && item[2] == '|') {
                 // Skip over the 2nd ||.
@@ -107,11 +108,21 @@ function mapTouch(layer_values, layer_text, names, layerName) {
                 let t_name = 'T_' + t_number;
                 t_number += 1;  // Global
                 T_items.push({t_name, item});
+            } else {
+                if (item.length <= 0) {
+                    alert("item["+index+"].length= " + item.length);
+                }
             }
-            let hex = utf16common(item, "U+", " ", true, []);
-            layer_list.push('{ "id": "' + names[upper] +  '", "text": "' + hex + '"},');
+            if (item != "\u0000") {
+                // Skip empty keys
+                let hex = utf16common(item, "U+", " ", true, []);
+                layer_list.push('{ "id": "' + names[upper] +  '", "text": "' + hex + '"},');
+            }
         } else {
-            alert('Missing value for index ' + index + ' layer ' + layer_txt + " " + layer_items);
+            alert('Missing value for index ' + index + ' layer ' + layer_text +
+                  " " + layer_items);
+            // TODO Something
+            layer_list.push('{ "id": "' + names[upper] +  '", "text": "' + hex + '"},');
         }
     }
   return layer_list;
@@ -136,6 +147,8 @@ function parselayerstring(layerstring) {
     }
     if (saved) {
       ret.push(saved);
+    } else {
+        ret.push(String.fromCharCode(0x00));  // An empty position
     }
   }
   return ret;
@@ -176,19 +189,23 @@ function map_en_to_x(layout, outputCtrlAlt, outputMobile, outputTransforms, opti
     let base = propContaining(keys, "");
 
     if (outputMobile) {
-	initTValues();
+        initTValues();
         let layer = 'default';
-        Array.prototype.push.apply(layers, mapTouch(vals[base][""], "", qwerty_names, layer));
+        let mappedTouch;
+         mappedTouch = mapTouch(vals[base][""], "", qwerty_names, layer);
+        Array.prototype.push.apply(layers, mappedTouch);
         layers.push("\n");
 
         base = propContaining(keys, "s");
         layer = 'shift';
-        Array.prototype.push.apply(layers, mapTouch(vals[base][""], "", qwerty_names, layer));
+        mappedTouch = mapTouch(vals[base][""], "", qwerty_names, layer);
+        Array.prototype.push.apply(layers, mappedTouch);
         layers.push("\n");
 
         base = propContaining(keys, "");
         layer = 'numsymbols';
-        Array.prototype.push.apply(layers, mapTouch(vals[base][""], "", qwerty_names, layer));
+        mappedTouch = mapTouch(vals[base][""], "", qwerty_names, layer);
+        Array.prototype.push.apply(layers, mappedTouch);
         layers.push("\n");
 
         // Now try for Symbols and Numerals
@@ -210,7 +227,7 @@ function map_en_to_x(layout, outputCtrlAlt, outputMobile, outputTransforms, opti
             base = propContaining(keys, "sc");
             Array.prototype.push.apply(layers, map_qwerty(vals[base][""], "SHIFT CTRL ", qwerty_names));
 
-	    // !!! TODO: Add T_ identifiers.
+            // !!! TODO: Add T_ identifiers.
         }
         // Add Lock levels as needed.
 
@@ -237,23 +254,23 @@ function generateMobile(qwerty_names, vals, layers, keys) {
     for (let i = 0; i < layers.length; i++) {
     // !!! Add device
     // !!! Add layers
-	result.push('   "layer": [');
-	result.push('     {');
-	result.push(`       \"id\": ": \"${layerId}"`);
+        result.push('   "layer": [');
+        result.push('     {');
+        result.push(`       \"id\": ": \"${layerId}"`);
 
-	// Rows
-	result.push('       \"row\": " [');
-	result.push(`         {\"id\": \"${rowId}\". "key": [`);
-	// PUSH KEYS (id, text, long press*)
+        // Rows
+        result.push('       \"row\": " [');
+        result.push(`         {\"id\": \"${rowId}\". "key": [`);
+        // PUSH KEYS (id, text, long press*)
 
-	// End of row
-	result.push('                          ]');
-	// End of layer
-	result.push('              ]');
-	
-	// End of device
-	result.push('   }');
-	
+        // End of row
+        result.push('                          ]');
+        // End of layer
+        result.push('              ]');
+        
+        // End of device
+        result.push('   }');
+        
     }
     //...
     return result.join('\n');
