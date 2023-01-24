@@ -100,6 +100,7 @@ class langInfo():
     self.Language = 'Mende'
     self.Language_native = u''
     self.direction = 'rtl'
+    self.insert_text = u'\u202e'  # Force RTL
 
     if sys.maxunicode >= 0x10000:
       logging.info('WIDE SYSTEM BUILD!!!')
@@ -122,7 +123,16 @@ class langInfo():
         'shortName': 'menphone2',
         'longName': 'Mende Phonetic2',
         'jsName': 'menphone2',
-        'instructions': 'Private Use Area',
+        'instructions': 'Updated 17-Nov-2022',
+        'font': 'MendeKikakuiFonts',
+        'fontFamilyToApply': ['NotoSansMendeKikakui', 'JGMende'],
+        'fontFamily': 'KikakuiSansPro',
+      },
+      {
+        'shortName': 'menphone2_old',
+        'longName': 'Mende Phonetic2 Old',
+        'jsName': 'menphone2',
+        'instructions': 'Updated 17-Nov-2022',
         'font': 'MendeKikakuiFonts',
         'fontFamilyToApply': ['NotoSansMendeKikakui', 'JGMende'],
         'fontFamily': 'KikakuiSansPro',
