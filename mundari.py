@@ -27,20 +27,38 @@ class langInfo():
   def __init__(self):
     self.LanguageCode = 'unr'
     self.Language = 'Mundari'
-    self.Language_native = 'Language in Mundari'
+    self.Language_native = '𞓗𞓕𞓨𞓚'
+
+    self.allFonts = True  # Show text with all available fonts
 
     self.encoding_font_list = [
+      { 'font_path': '/fonts/MundariBani/Mundari Lipi Arial.ttf',
+        'font_name': 'MundariLipiArial',
+        'display_name': 'Mundari Lipi Arial',
+      },
+      { 'font_path': '/fonts/MundariBani/Mundari Lipi-Regular.ttf',
+        'font_name': 'MundariLipiRegular',
+        'display_name': 'Mundari Lipi Regular',
+      },
+      {'font_path': '/fonts/MundariBani/Mundari Lipi Standard.ttf',
+       'font_name': 'MundariLipiStandard',
+       'display_name': 'Mundari Lipi Standard',
+       },
+      {'font_path': '/fonts/MundariBani/Mundari Lipi-JagaMohan.ttf',
+       'font_name': 'MundariLipiJagaMohan',
+       'display_name': 'Mundari Lipi Jaga Mohan',
+       },
+      {'font_path': '/fonts/MundariBani/Mundari Lipi-Stoneage.ttf',
+       'font_name': 'MundariLipiStoneage',
+       'display_name': 'Mundari Lipi Stoneage',
+       },
     ]
 
     self.unicode_font_list = [
-      { 'source': '/fonts/MundariBani/Mundari Lipi-Regular.ttf',
-        'family': 'MundariLipiRegular',
-        'longName': 'Mundari Lipi Regular',
+      { 'source': '/fonts/MundariBani/MundariLipiArialSutuUni.ttf',
+        'family': 'MundariLipiRegulaSutuUni',
+        'longName': 'Mundari Lipi Sutu Uni',
       },
-      {'source': '/fonts/MundariBani/Mundari Lipi Standard.ttf',
-       'family': 'MundariLipiStandard',
-       'longName': 'Mundari Lipi Standard',
-       },
     ]
 
     self.lang_list = [
@@ -56,9 +74,9 @@ class langInfo():
         {'linkText': 'Keyboard',
          'ref': '/unr/'
         },
-        # {'linkText': 'Converter',
-        #  'ref': '/' + self.LanguageCode + '/convertUI/'
-        # },
+        {'linkText': 'Converter',
+         'ref': '/' + self.LanguageCode + '/convertUI/'
+        },
         # {'linkText': 'Keyboard reference',
         #   'ref': 'https://wikis.swarthmore.edu/ling073/Kaingang/Keyboard'
         # },
@@ -80,9 +98,8 @@ class langInfo():
     ]
 
     self.kb_list = [
-      {'shortName': 'unrEncoded',
-       'longName': 'Mundari 1',
-       #'reference': 'https://wikis.swarthmore.edu/ling073/Kaingang/Keyboard'
+      {'shortName': 'unrUnicode',
+       'longName': 'Mundari Bani Unicode 1',
        },
     ]
 
@@ -114,6 +131,7 @@ app = webapp2.WSGIApplication(
     [
         ('/unr/', base.LanguagesHomeHandler),
         ('/unr/keyboard/', base.LanguagesHomeHandler),
+        ('/unr/AllFonts/', base.AllFontTest),
         ('/unr/convertUI/', base.ConvertUIHandler),
         ('/unr/downloads/', base.Downloads),
         ('/unr/converter/', base.ConvertUIHandler),
