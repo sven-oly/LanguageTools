@@ -39,13 +39,13 @@ unicode_font_list = [
       'family': 'TuluSri20',
       'longName': 'Tulu Sri 20.20',
       'source': '/fonts/tulu/TULUSRI20.20.ttf',
-      'ref': 'https://thetulufont.com/the-tulu-font'
+      'ref': 'https://thetulufont.in'
   },
   {
     'family': 'TuluSri20',
     'longName': 'Tulu Sri 10.00',
     'source': '/fonts/tulu/TULUSRI10.00.ttf',
-    'ref': 'https://thetulufont.com/the-tulu-font'
+    'ref': 'http://www.thetulufont.in/'
   },
   {
     'family': 'SriType2',
@@ -64,6 +64,7 @@ unicode_font_list = [
 kb_list = [
   {'shortName': LanguageCode,
    'longName': LanguageCode,
+   'instructions': ('This is a non-Unicode font encoding'),
    },
 ]
 
@@ -80,8 +81,8 @@ links = [
   {'linkText': 'Unicode proposal 21086',
    'ref': 'http://www.unicode.org/L2/L2021/21086-tulu-tigalari.pdf'
   },
-  {'linkText': 'The Tulu Font',
-    'ref': 'https://thetulufont.com/the-tulu-font'
+  {'linkText': 'The Tulu Font (ASCII encoded)',
+    'ref': 'http://thetulufont.in'
   },
     # {'linkText': 'Converter',
     #  'ref': '/' + LanguageCode + '/convertUI/'},

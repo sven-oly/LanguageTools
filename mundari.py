@@ -77,6 +77,9 @@ class langInfo():
         {'linkText': 'Converter',
          'ref': '/' + self.LanguageCode + '/convertUI/'
         },
+      {'linkText': 'Font conversion summary',
+       'ref': '/unr/encodingRules/'
+       },
         # {'linkText': 'Keyboard reference',
         #   'ref': 'https://wikis.swarthmore.edu/ling073/Kaingang/Keyboard'
         # },
@@ -85,9 +88,6 @@ class langInfo():
        },
       {'linkText': 'Unicode proposal',
        'ref': 'http://www.unicode.org/L2/L2021/21031-mundari-bani.pdf'
-       },
-      {'linkText': 'Font conversion summary',
-       'ref': '/unr/encodingRules/'
        },
       {'linkText': 'Mundari Bani Wikipedia',
          'ref': 'https://en.wikipedia.org/wiki/Mundari_Bani'
