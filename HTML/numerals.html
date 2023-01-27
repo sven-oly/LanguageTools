@@ -131,7 +131,7 @@
               }
               return;
           }
-          if ("0123456789.+-*×÷/=C".indexOf(ch) >= 0) {
+          if ("0123456789.+-\u2212*×÷/=C".indexOf(ch) >= 0) {
               // Transform as needed.
               if (c == 'C') {
                   ch = 'clear';
@@ -300,7 +300,7 @@
           </tr>
           <tr>
             <td>
-              <input id='subtract' title='subtract' type='button' value='-'  class='OperatorsClass' onclick='calcButtonFn("-");'/></td>
+              <input id='subtract' title='subtract' type='button' value='−'  class='OperatorsClass' onclick='calcButtonFn("\u2212");'/></td>
           </tr>
           <tr>
             <td><input id='add' title='add' type='button' value='+' class='OperatorsClass' onclick='calcButtonFn("+");'/></td>

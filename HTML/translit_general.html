@@ -274,6 +274,14 @@
                    // Old version - not using langConverter object.
                    convertEncodingToUnicode(sourceArea, destinationArea, encodingIndex);
                }
+               {% if variation_sequence %}
+               const vsSelector = document.getElementById('useVariationSequence');
+	       // Set state of VS based on the value.
+	       const vsToggle = document.getElementById('toggleVS');
+	       vsToggle.checked = vsSelector.checked;
+
+	       toggleConvertedVS(destinationArea, vsSelector);
+               {% endif %}
            }
 
            {% if variation_sequence %}
@@ -286,7 +294,7 @@
                if (toggle.checked) {
                    new_text = add_variation_modifiers(text);
                } else {
-                   new_text =remove_variation_modifiers(text);
+                   new_text = remove_variation_modifiers(text);
                }
                text_area.innerHTML = text_area.value = new_text;
            }
@@ -452,7 +460,7 @@
                 <input type="checkbox" name="showOldTools" id="showOldTools"
                        onchange="toggle('OldEncodingTools', 'showOldTools');">Tools?<br />
                 {% if variation_sequence %}
-                <input type="checkbox" name="showNewTools" id="showNewTools" checked
+                <input type="checkbox" checked id="useVariationSequence"
                        onchange="toggle('Unicode{{language}}Tools', 'showNewTools');">Convert with variation sequence<br />
                 {% endif %}
                 <div id="OldEncodingTools"

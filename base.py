@@ -100,13 +100,19 @@ class LanguagesHomeHandler(webapp2.RequestHandler):
           unicodeCharData[chr] = [
             unicodedata.name(chr), unicodedata.category(chr),
           ]
-
     except:
       print('!!! Unicode range not set')
 
+    # Before all text in the output area, e.g., U+202E to force RTL
+    try:
+        insert_text = langInfo.insert_text
+    except:
+        insert_text = ''
+        
     template_values = {
         'allFonts': allFonts,
         'direction': text_direction,
+        'insert_text': insert_text,
         'encoded_ranges': encoded_ranges,
         'language': langInfo.Language,
         'langTag': langInfo.LanguageCode,

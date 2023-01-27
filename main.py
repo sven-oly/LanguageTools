@@ -99,6 +99,8 @@ LanguageList = [
     ('Vietnamese', 'vn', 'tiếng Việt'),
     ('Inupiaq', 'ik', 'Iñupiaq'),
     ('Lakota', 'lkt', 'Lakȟótiyapi'),
+    ('Kihunde', 'hke'),
+    ('Comanche', 'com', 'Nʉmʉ Tekwapʉ'),
 ]
 
 

@@ -62,8 +62,8 @@ handlers:
 - url: /bn/.*
   script: bangali.app
 
-- url: /bod/.*
-  script: tibetan.app
+#- url: /bod/.*
+#  script: tibetan.app
 
 - url: /bsq/.*
   script: bassa.app
@@ -76,6 +76,9 @@ handlers:
 
 - url: /ccp/.*
   script: chakma.app
+
+- url: /com/.*
+  script: comanche.app
 
 - url: /cho/.*
   script: choctaw.app

@@ -98,7 +98,6 @@
     var input = document.getElementById('t1');
     controller = new i18n.input.keyboard.Keyboard();
 
-    // TEST!
     var x = i18n.input.keyboard.Controller;
 
     utils.onSizeSelected(document.getElementById("sizeSelector").value, 't1');
@@ -131,6 +130,7 @@
           }
     );
 
+    input.select();
     input.focus();
 
     var selector = document.getElementById("setLayout");
@@ -213,6 +213,13 @@
       }
       textArea.innerHTML = textArea.value = output;
     }
+
+    function insertText(area_id, text_to_insert) {
+	// Add specified text to the given area after existing content.
+	var textArea = document.getElementById(area_id);
+	textArea.innerHTML = textArea.value =
+	    text_to_insert;
+    }
   </script>
   <link rel="stylesheet" type="text/css" href="/css/keyboard.css" />
 
@@ -265,7 +272,7 @@
     <option value="240px">240</option>
   </select>
 
-  <input type="button" value="Clear text" onclick="utils.clearText('codepoints');utils.clearText('t1', true);">
+  <input type="button" value="Clear text" onclick="utils.clearText('codepoints');utils.clearText('t1', true);insertText('t1', '{{insert_text}}');">
   <br />
 
   <!-- If an original encoding area is needed. -->
@@ -282,7 +289,7 @@
     <textarea id="t1" style="width:600px;font-family:{{font_list.0.family}};resize:vertical;font-size:24px;"
       rows="5" spellcheck="false"
       lang="{%if lang_list.0.shortName %}{%endif%}{%if langTag %}{{langTag}}{%endif%}"
-      dir="{{direction}}">{{test_data}}</textarea>
+      dir="{{direction}}">{{insert_text}}{{test_data}}</textarea>
     {% if allFonts %}
       <br />
       <input type="button" onclick="toAllFonts('t1', null);" value="To all fonts">
