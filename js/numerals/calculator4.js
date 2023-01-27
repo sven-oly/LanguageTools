@@ -51,7 +51,8 @@ class calculator4 {
         this.formatInt = null;
         this.zeroChar = null;
 
-        this.enterOps = new Set(['=', '+', '-', '*', '×', '÷', '/']);
+        // Unicode minus sign
+        this.enterOps = new Set(['=', '+', '\u2212', '*', '×', '÷', '/']);
 
         // Connections to characters and their values
         this.charToValueMap = null;
@@ -114,7 +115,7 @@ class calculator4 {
             this.onInput(ch);
             return;
         }
-	/* TODO: Translate key
+        /* TODO: Translate key
         let translation = this.key_translation(ch);
         if (translation !== undefined) {
             this.onInput(translation);
@@ -122,7 +123,7 @@ class calculator4 {
         if (ch == "!") {
             test0();
         }
-	*/
+        */
     }
 
     // Connect with number system.
@@ -155,7 +156,8 @@ class calculator4 {
         case '+':
             result = this.accum1 + this.accum2;
             break;
-        case '-':
+        case '\u002d':  // Dash and unicode minus sign
+        case '\u2212':
             result = this.accum1 - this.accum2;
             break;
         case '*':
@@ -165,13 +167,13 @@ class calculator4 {
         case '÷':
         case '/':
             // TODO: Check for divide by zero.
-	    if (this.accum !== 0) { 
-		const rawResult = this.accum1 / this.accum2;
-		result = rawResult;  // Try this
-		// result = Math.floor(rawResult);
-	    } else {
-		// TODO: Display an error
-	    }
+            if (this.accum2 !== 0) { 
+                const rawResult = this.accum1 / this.accum2;
+                result = rawResult;  // Try this
+                // result = Math.floor(rawResult);
+            } else {
+                // TODO: Display an error
+            }
             break;
         }
         this.accum1 = result;
@@ -185,14 +187,14 @@ class calculator4 {
 
     display(newVal) {
         let resultString;
-	if ((this.numeralObject.doFloat !== undefined) &&
-	    this.numeralObject.doFloat &&
-	    (this.numeralObject.formatFloat !== undefined)) {
-	    resultString = this.numeralObject.formatFloat(newVal);
-	} else  {
-	    // Integer only
-	    resultString = this.numeralObject.formatInt(newVal);
-	}
+        if ((this.numeralObject.doFloat !== undefined) &&
+            this.numeralObject.doFloat &&
+            (this.numeralObject.formatFloat !== undefined)) {
+            resultString = this.numeralObject.formatFloat(newVal);
+        } else  {
+            // Integer only
+            resultString = this.numeralObject.formatInt(newVal);
+        }
         this.output.innerHTML = resultString;
 
         if (this.numeralObject.displayDecimal) {
@@ -395,6 +397,7 @@ class calculator4 {
         }
          if (this.isEnterEqual(ch)) {
             this.enterEqualFn();
+            this.display(this.accum1);
             return;
         }
         if (this.isEnterOp(ch)) {

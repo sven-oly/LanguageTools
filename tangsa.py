@@ -234,11 +234,24 @@ class langInfo():
     # Resource files
     resource_list = [
       {
-        'name': 'KeyMan for Lakhum Tangsa Unicode v1.2',
-        'source': '/resources/nst/tangsa_lakhum_unicode_1.2.kmp',
-        'description': 'Layout for Tangsa Lakum Unicode',
+        'name': 'KeyMan for Lakhum Tangsa Unicode v1.34 22-Jan-2023',
+        'source': '/resources/nst/tangsa_lakhum_1.34.kmp',
+        'description': 'Tangsa Lakum Unicode 1.34, 22-Jan-2023',
+        'update': 'Fix ctrl-shift-E to produce the expected result',
         'instructions': 'Install KeyMan first. Next, Desk/laptop: download file and open.\nMobile: open link.',
       },
+      # {
+      #   'name': 'KeyMan for Lakhum Tangsa Unicode v1.33 17-Jan-2023',
+      #   'source': '/resources/nst/tangsa_lakhum_1.33.kmp',
+      #   'description': 'Tangsa Lakum Unicode 1.333, 17-Jan-2023',
+      #   'instructions': 'Install KeyMan first. Next, Desk/laptop: download file and open.\nMobile: open link.',
+      # },
+      # {
+      #   'name': 'KeyMan for Lakhum Tangsa Unicode v1.32 16-Jan-2023',
+      #   'source': '/resources/nst/tangsa_lakhum_1.32.kmp',
+      #   'description': 'Tangsa Lakum Unicode 1.32, 16-Jan-2023',
+      #   'instructions': 'Install KeyMan first. Next, Desk/laptop: download file and open.\nMobile: open link.',
+      # },
       {
         'name': 'Lakhum Tangsa deadkeys #1',
         'source': '/resources/nst/Tangsa_deadkey_1.png',

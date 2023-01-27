@@ -103,20 +103,31 @@ class langInfo:
 
         self.text_file_list = [
             {
-                'name': 'KeyMan Elfdalian Mobile + desktop 1.04',
-                'source': '/resources/ovd/elfdalian1.04.kmp',
-                'description': 'Version 1.03 updated 6-apr-2022'
-            },
+                'name': 'Elfdahlian Keyman word model 29-Dec-2022',
+                'source': '/resources/ovd/ovd-latn.eldalian_words.model.kmp',
+                'description': '29-Dec-2022 Word list for mobile',
+                },
+            
             {
-                'name': 'KeyMan Elfdalian predictive text',
-                'source': '/resources/ovd/eldalian_words.model.kmp',
-                'description': 'Version 1.0 updated 29-Jan-2022'
+                'name': 'KeyMan Elfdalian Mobile + desktop 1.05',
+                'source': '/resources/ovd/elfdalian1.05.kmp',
+                'description': 'Version 1.05 updated 2-Jan-2023'
             },
-            {
-                'name': 'Elfdalian predictive text image',
-                'source': '/resources/ovd/Elfdalian_predictive.jpg',
-                'description': 'Screenshot of Android with Keyman predictive text'
-            },
+            # {
+            #     'name': 'KeyMan Elfdalian Mobile + desktop 1.04',
+            #     'source': '/resources/ovd/elfdalian1.04.kmp',
+            #     'description': 'Version 1.04 6-apr-202'
+            # },
+            # {
+            #     'name': 'KeyMan Elfdalian predictive text',
+            #     'source': '/resources/ovd/eldalian_words.model.kmp',
+            #     'description': 'Version 1.0 updated 29-Jan-2022'
+            # },
+            # {
+            #     'name': 'Elfdalian predictive text image',
+            #     'source': '/resources/ovd/Elfdalian_predictive.jpg',
+            #     'description': 'Screenshot of Android with Keyman predictive text'
+            # },
         ]
 
         # TODO: Fill in the rest of the common data.

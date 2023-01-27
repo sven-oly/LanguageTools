@@ -1,3 +1,18 @@
+e000;Mende pi
+e001;Mende pii
+e002;Mende pa
+e003;Mende paa
+e004;Mende pA
+e005;Mende pu
+e006;Mende puu
+e007:Mende pe
+e008:Mende pee
+e009:Mende pɛ
+e00a;Mende pɛɛ
+e00b:Mende pɔ
+e00c:Mende pɔɔ
+e00d:Mende po
+e00e:Mende poo
 1E800;MENDE KIKAKUI SYLLABLE M001 KI;Lo;0;R;;;;;N;;;;;
 1E801;MENDE KIKAKUI SYLLABLE M002 KA;Lo;0;R;;;;;N;;;;;
 1E802;MENDE KIKAKUI SYLLABLE M003 KU;Lo;0;R;;;;;N;;;;;

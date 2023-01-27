@@ -38,9 +38,9 @@ links = [
   # {'linkText': 'Font conversion summary',
   #   'ref': '/' + LanguageCode + '/encodingRules/'
   # },
-  # {'linkText': 'Resources',
-  #   'ref': '/' + LanguageCode + '/downloads/'
-  # },
+  {'linkText': 'Resources',
+    'ref': '/' + LanguageCode + '/downloads/'
+  },
   # {'linkText': 'Unicode page',
   #  'ref': 'https://www.unicode.org/charts/PDF/U1C00.pdf'
   # },
@@ -114,8 +114,22 @@ class langInfo:
         ]
 
         # For additional resources for download
-        self.text_file_list = []
-
+        self.text_file_list = [
+          {
+            'name': 'KeyMan Kihunde Mobile + desktop 1.2',
+            'source': '/resources/hke/kihunde_1.2.kmp',
+            'description': 'Version 1.2 Mobile update 16-Jan-2023'
+          },
+          {
+                'name': 'KeyMan Kihunde Mobile + desktop 1.1',
+                'source': '/resources/hke/kihunde_20230101.kmp',
+                'description': 'Version 1.1 updated 1-Jan-2023'
+            },
+            {
+                'name': 'KeyMan Kihunde Wordlist 1.0',
+                'source': '/resources/hke/kihunde1_0.model.kmp',
+                'description': 'Wordlist V1.0 updated 20-Nov-2022'
+            },            ]
         # TODO: Fill in the rest of the common data.
 
 

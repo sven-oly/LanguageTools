@@ -38,24 +38,25 @@ LanguageCode = 'chr'
 
 encoding_font_list = [
     {
-      'font_path':'/fonts/Cherokee/CherokeeOLD.ttf',
-      'font_name':'Cherokee_Old',
+      'font_path': '/fonts/Cherokee/CherokeeOLD.ttf',
+      'font_name': 'Cherokee_Old',
       'display_name': 'Cherokee Old',
     },
 ]
 
 unicode_font_list = [
-    { 'family': 'NotoSansCherokeePlus',
-      'longName': 'Noto Sans Cherokee Plus Numeral PUA',
-      'source': '/fonts/Cherokee/NotoSansCherokeePlus.ttf'
+    {'family': 'NotoSansCherokeePlus',
+     'longName': 'Noto Sans Cherokee Plus Numeral PUA',
+     'source': '/fonts/Cherokee/NotoSansCherokeePlus.ttf'
     },
-  { 'family': 'NotoSansCherokee',
-    'longName': 'Noto Sans Cherokee',
-    'source': '/fonts/Cherokee/NotoSansCherokee-Regular.ttf'
-    },]
+    {'family': 'NotoSansCherokee',
+     'longName': 'Noto Sans Cherokee',
+     'source': '/fonts/Cherokee/NotoSansCherokee-Regular.ttf'
+    },
+]
 
 for f in all_cherokee_unicode_fonts:
-  unicode_font_list.append(f)
+    unicode_font_list.append(f)
 
 links = [
     {'linkText': 'Keyboard',
@@ -168,6 +169,7 @@ class langInfo:
       "ᏅᏓᏕᏆ",
       "ᎥᏍᎩᏱ",
     ]
+
 
 # Shows keyboard for Cherokee
 class CherokeeIndigenousHomeHandler(webapp2.RequestHandler):
