@@ -89,8 +89,8 @@ class langInfo():
       {'linkText': 'Font conversion summary',
        'ref': '/unr/encodingRules/'
        },
-      {'linkText': 'Mundari in Wikipedia',
-         'ref': 'https://en.wikipedia.org/wiki/Mundari_language'
+      {'linkText': 'Mundari Bani Wikipedia',
+         'ref': 'https://en.wikipedia.org/wiki/Mundari_Bani'
         },
         {'linkText': 'Resources',
          'ref': '/' + self.LanguageCode + '/downloads/'
