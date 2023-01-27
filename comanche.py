@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 #
 # Unless required by applicable law or agreed to in writing, software
 # distributed under the License is distributed on an "AS IS" BASIS,
@@ -10,48 +12,42 @@ import webapp2
 
 import base
 
-# For Python 2.x. and Python
+# For Python 2.x. and Python 3
 try:
     unichr
 except NameError:
     unichr = chr
 
-Language = 'English'
-Language_native = 'English'
-LanguageCode = 'en'
+Language = 'Comanche'
+Language_native = 'Nʉmʉ Tekwapʉ̲'
+LanguageCode = 'com'
 ScriptCode = 'Latn'
 
 links = [
     {'linkText': 'Keyboard',
      'ref': '/' + LanguageCode + '/'
-    },
-    {'linkText': 'Word search',
-     'ref': '/' + LanguageCode + '/wordsearch/'
-    },
+     },
+    # {'linkText': 'Word search',
+    #  'ref': '/' + LanguageCode + '/wordsearch/'
+    # },
     # {'linkText': 'Converter',
     #  'ref': '/' + LanguageCode + '/convertUI/'},
     # {'linkText': 'Font conversion summary',
     #   'ref': '/' + LanguageCode + '/encodingRules/'
     # },
-    {'linkText': 'Resources',
-      'ref': '/' + LanguageCode + '/downloads/'
-    },
-    # {'linkText': 'Unicode page',
-    #  'ref': 'https://www.unicode.org/charts/PDF/U1C00.pdf'
+    #{'linkText': 'Resources',
+    # 'ref': '/' + LanguageCode + '/downloads/'
     # },
-    # {'linkText': 'THIS SCRIPT',
-    #  'ref': 'https://en.wikipedia.org/wiki/XYZ_alphabet'
-    # },
-    # {'linkText': 'Wikipedi page',
-    #  'ref': 'https://en.wikipedia.org/wiki/XYZ_language'
-    # },
-    # {'linkText': 'Ethnolog',
-    #  'ref': 'https://www.ethnologue.com/language/XYZ'
-    # },
-    # {'linkText': 'Combiners',
-    #  'ref': '/lep/diacritic/'
-    #  },
-]
+    {'linkText': 'Wikipedi page',
+     'ref': 'https://en.wikipedia.org/wiki/Comanche_language'
+     },
+    {'linkText': 'LanguageGeek keyboard',
+     'ref': 'https://www.languagegeek.com/usw/keyboards/keymap_comanche.html'
+     },
+    {'linkText': 'Omniglot',
+     'ref': 'https://omniglot.com/writing/comanche.htm'
+     },
+    ]
 
 
 class langInfo:
@@ -72,17 +68,12 @@ class langInfo:
         ]
 
         self.encoding_font_list = [
-          {
-            'font_path': '/fonts/xyz.ttf',
-            'font_name': 'xyz',
-            'display_name': 'xyz',
-          },
         ]
 
         self.lang_list = [LanguageCode]  # This may be extended
 
         self.kb_list = [
-          {'shortName': LanguageCode,
+          {'shortName': 'com',
            'longName': LanguageCode,
            },
         ]
@@ -109,11 +100,6 @@ class langInfo:
         self.unicodeCombiningChars = self.diacritic_list
 
         resource_list = [
-          {
-            'name': 'Unicode 72 pre-release ICU4C *.tgz',
-            'source': '/resources/unicode/icu-r37e2956-x86_64-pc-linux-gnu-Ubuntu-22.04.tgz',
-            'description': 'Unicode 72 pre-release ICU4C *.tgz',
-          }
         ]
         self.text_file_list = resource_list
 
@@ -126,9 +112,8 @@ app = webapp2.WSGIApplication([
   ('/' + LanguageCode + '/downloads/', base.Downloads),
   ('/' + LanguageCode + '/encodingRules/', base.EncodingRules),
   ('/' + LanguageCode + '/diacritic/', base.DiacriticHandler),
-  ('/' + langInstance.LanguageCode + '/wordsearch/', base.WordSearchHandler),
+  # ('/' + langInstance.LanguageCode + '/wordsearch/', base.WordSearchHandler),
   ('/' + langInstance.LanguageCode + '/keyman/', base.KeyManHandler),
-  ('/' + langInstance.LanguageCode + '/wordsearch/', base.WordSearchHandler),
 ], debug=True,
   config={'langInfo': langInstance}
 )

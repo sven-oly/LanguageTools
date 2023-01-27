@@ -11,40 +11,53 @@
 // limitations under the License.
 
 
-var EN_LAYOUT = {
-  'id': 'en',
-  'title': 'English QWERTY',
-  'mappings': {
-    ',c': {
-      '': '`1234567890-=' +
-          'qwertyuiop[]\\' +
-          'asdfghjkl;\'' +
-          'zxcvbnm,./'
-    },
-    's,sc': {
-      '': '~!@#$%^&*()_+' +
-          'QWERTYUIOP{}|' +
-          'ASDFGHJKL:"' +
-          'ZXCVBNM<>?'
-    },
-    'l,cl': {
-      '': '`1234567890-=' +
-          'qwertyuiop[]\\' +
-          'asdfghjkl;\'' +
-          'zxcvbnm,./'
-    },
-    'sl,scl': {
-      '': '~!@#$%^&*()_+' +
-          'QWERTYUIOP{}|' +
-          'ASDFGHJKL:"' +
-          'ZXCVBNM<>?'
-    }
-  },
+var COM_LAYOUT = {
+  'id': 'com',
+  'title': 'Nʉmʉ Tekwapʉ̲ QWERTY',
+  'reference': 'https://www.languagegeek.com/usw/keyboards/keymap_comanche.html',
+    'mappings': {
+	'': {
+	    '': '‘1234567890-=' +
+		'qwertyuiop{{S||_||\u0331}}{{S||\u00B4||\u0301}}{{\u0301\u0331}}' +
+		'asdfghjklʉ\’' +
+		'zxcvbnm,.ʔ'
+	},
+	'c': {
+	    '': '‘12345678«»-=' +
+		'qwertyuiop[]\\' +
+		'asdfghjklʉ\’' +
+		'zxcvbnm,./'
+	},
+	's': {
+	    '': '~!@#$%^&*()_+' +
+		'QWERTYUIOP{{\u201C}}{{\u201D}}|' +
+		'ASDFGHJKLɄ"' +
+		'ZXCVBNM;:?'
+	},
+	'sc': {
+	    '': '~!@#$%^&*‹›_+' +
+		'QWERTYUIOP{{\u201C}}{{\u201D}}|' +
+		'ASDFGHJKLɄ"' +
+		'ZXCVBNM;:?'
+	},
+	'l,cl': {
+	    '': '`1234567890-=' +
+		'qwertyuiop[]\\' +
+		'asdfghjkl;\'' +
+		'zxcvbnm,./'
+	},
+	'sl,scl': {
+	    '': '~!@#$%^&*()_+' +
+		'QWERTYUIOP{}|' +
+		'ASDFGHJKL:"' +
+		'ZXCVBNM<>?'
+	}
+    },    
   'transform': {
     '^': '^',  // Placeholder
   }
 };
 
 // Load the layout and inform the keyboard to switch layout if necessary.
-google.elements.keyboard.loadme(EN_LAYOUT);
-en = EN_LAYOUT;
+google.elements.keyboard.loadme(COM_LAYOUT);
+com = COM_LAYOUT;
