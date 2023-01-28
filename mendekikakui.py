@@ -120,6 +120,15 @@ class langInfo():
     self.encoding_font_list = encoding_font_list
     self.kb_list = [
       {
+        'shortName': 'menphone3',
+        'longName': 'Mende Phonetic 3',
+        'jsName': 'menphone3',
+        'instructions': 'Updated 2-Jan-2023',
+        'font': 'MendeKikakuiFonts',
+        'fontFamilyToApply': ['NotoSansMendeKikakui', 'JGMende'],
+        'fontFamily': 'KikakuiSansPro',
+      },
+      {
         'shortName': 'menphone2',
         'longName': 'Mende Phonetic2',
         'jsName': 'menphone2',
