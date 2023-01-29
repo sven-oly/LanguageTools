@@ -8,18 +8,18 @@ var MEN_PHONE3_LAYOUT = {
     'title': 'Mende Kikakui Phonetic 3',
     'mappings': {
 	',c': {
-	    '':  '!{{\uD83A\uDCC7}}{{\uD83A\uDCC8}}{{\uD83A\uDCC9}}{{\uD83A\uDCCa}}' +
+	    '':  '{{S||~||\u0303}}{{\uD83A\uDCC7}}{{\uD83A\uDCC8}}{{\uD83A\uDCC9}}{{\uD83A\uDCCa}}' +
 		'{{\uD83A\uDCCb}}{{\uD83A\uDCcc}}{{\uD83A\uDCCd}}{{\uD83A\uDCCe}}' +
 		'{{\uD83A\uDCCf}}0-=' +
 		'{{ɛ}}wertyuiop[]\\' +
 		'asdfghjkl;\'' +
-		'{{ɔ}}{{}}cvbnm,./'
+		'{{ɔ}}{{ŋ}}cvbnm,./'
 	},
 	's,sc': {
-	    '': '~!@#$%^&*()_+' +
+	    '': '`!@#$%^&*()_+' +
 		'{{Ɛ}}WERTYUIOP{}|' +
 		'ASDFGHJKL:"' +
-		'{{Ɔ}}XCVBNM<>?'
+		'{{Ɔ}}{{Ŋ}}CVBNM<>?'
 	},
 	'l': { // ZWNB space U+feff before signals to not transform
 	    '': '`1234567890-=' +
@@ -190,7 +190,7 @@ var MEN_PHONE3_LAYOUT = {
 	'lee': '\ue090',
 	'lɛ': '\ue091',
 	'lɛɛ': '\ue092',
-	'lɛɛɛ': '\ue083',
+	'lɛɛɛ': '\ue093',
 	'lɔ': '\ue094',
 	'lɔɔ': '\ue095',
 	'lo': '\ue096',
@@ -212,8 +212,8 @@ var MEN_PHONE3_LAYOUT = {
 	'ndo': '\ue0a7',
 	'ndoo': '\ue0a8',
 
-	'di': '\ue0a9',
-	'dii': '\ue0aa',
+	'di': '\ue0aa',
+	'dii': '\ue0a9',
 	'da': '\ue0ab',
 	'daa': '\ue0ac',
 	'du': '\ue0ad',
@@ -262,7 +262,7 @@ var MEN_PHONE3_LAYOUT = {
 	'njeee': '\ue0d5',
 	'njɔ': '\ue0d6',
 	'njɔɔ': '\ue0d7',
-	'njo': '\ue0d8f',
+	'njo': '\ue0d8',
 	'njoo': '\ue0d9',
 
 	'yi': '\ue0da',
@@ -276,7 +276,7 @@ var MEN_PHONE3_LAYOUT = {
 	'yɔ': '\ue0e2',
 	'yɔɔ': '\ue0e3',
 	'yo': '\ue0e4',
-	'yoo': '\ue035',
+	'yoo': '\ue0e5',
 
 	'ngi': '\ue0e6',
 	'ngii': '\ue0e7',
@@ -349,54 +349,56 @@ var MEN_PHONE3_LAYOUT = {
 	'ɔɔ': '\ue131',
 	'o': '\ue132',
 
-	'h̃ĩ': '\ue134',
-	'h̃ĩĩ': '\ue135',
-	'h̃ã': '\ue136',
-	'h̃ãã': '\ue137',
-	'h̃ũ': '\ue138',
-	'h̃ũũ': '\ue139',
-	'h̃ɛ̃': '\ue13a',
-	'h̃ɛ̃ɛ̃': '\ue13b',
-	'h̃ɔ̃': '\ue13c',
-	'h̃ɔ̃ɔ̃': '\ue13e',
+	'Hi': '\ue134',
+	'Hii': '\ue135',
+	'Ha': '\ue136',
+	'Haa': '\ue137',
+	'Hu': '\ue138',
+	'Huu': '\ue139',
+	'Hɛ': '\ue13a',
+	'Hɛɛ': '\ue13b',
+	'Hɔ': '\ue13c',
+	'Hɔɔ': '\ue13d',
+	'HƆ': '\ue13e',
+	'HƆƆ': '\ue13f',
 	
-	'mĩ': '\ue140',
-	'mã': '\ue141',
-	'mũ': '\ue142',
-	'mɛ̃': '\ue143',
-	'mɔ̃': '\ue144',
+	'Mi': '\ue140',
+	'Ma': '\ue141',
+	'Mu': '\ue142',
+	'Mɛ': '\ue143',
+	'Mɔ': '\ue144',
 
-	'nĩ': '\ue149',
-	'nã': '\ue14a',
-	'nũ': '\ue14b',
-	'nɛ̃': '\ue14d',
-	'nɛ̃ɛ̃': '\ue14e',
-	'nɔ̃': '\ue14f',
+	'Ni': '\ue149',
+	'Na': '\ue14a',
+	'Nu': '\ue14b',
+	'Nɛ': '\ue14d',
+	'Nɛɛ': '\ue14e',
+	'Nɔ': '\ue14f',
 
-	'nyĩ': '\ue150',
-	'nyã': '\ue151',
-	'nyũ': '\ue152',
-	'nyũũ': '\ue153',
-	'nyɛ̃': '\ue154',
-	'nyɛ̃ɛ̃': '\ue155',
-	'nyɔ̃': '\ue156',
-	'nyɔ̃ɔ̃': '\ue157',
+	'Nyi': '\ue150',
+	'Nya': '\ue151',
+	'Nyu': '\ue152',
+	'Nyuu': '\ue153',
+	'Nyɛ': '\ue154',
+	'Nyɛɛ': '\ue155',
+	'Nyɔ': '\ue156',
+	'Nyɔɔ': '\ue157',
 
-	'ŋã': '\ue158',
-	'ŋãã': '\ue159',
-	'ŋɛ̃': '\ue15a',
-	'ŋɛ̃ɛ̃': '\ue15b',
+	'Ŋa': '\ue158',
+	'Ŋaa': '\ue159',
+	'Ŋɛ': '\ue15a',
+	'Ŋɛɛ': '\ue15b',
 
-	'ĩ': '\ue15d',
-	'ĩĩ': '\ue15e',
-	'ẽ': '\ue160',
-	'ɛ̃': '\ue161',
-	'ɛ̃ɛ̃': '\ue162',
+	'I': '\ue15d',
+	'II': '\ue15e',
+	'III': '\ue15f',
+	'E': '\ue160',
+	'Ɛ': '\ue161',
+	'ƐƐ': '\ue162',
 
 	'nhɔ': '\ue13d',
 	'nnɛ': '\ue14c',
 	
-	// other combinations
 	'wɛi': '\ue01d',
 	'wɛii': '\ue01e',
 	'gɛi': '\ue107',
@@ -411,27 +413,26 @@ var MEN_PHONE3_LAYOUT = {
 	'kua': '\ue116',
 	'hua': '\ue13e',
 	'huaa': '\ue13f',
- 	'mnua': '\ue158',
-	'mnuaa': '\ue158',
-	'mnua': '\ue145',
-	'mnuaa': '\ue146',
+	'Mua': '\ue145',
+	'Muaa': '\ue146',
 	'ŋua': '\ue15c',
+	'Ŋua': '\ue15c',
 
 
-	'fã': '\ue06a',
-	'fãã': '\ue06b',
-	'lɛɛ': '\ue098',
-	'lɛɛɛ': '\ue099',
+	'fA': '\ue06a',
+	'fAA': '\ue06b',
+	'lƐ': '\ue098',
+	'lƐƐ': '\ue099',
 	'hei': '\ue123',
 	'heii': '\ue124',
 	'hou': '\ue125',
 	'houu': '\ue126',
-	'mũc': '\ue147',
-	'mũ c': '\ue148'
+	'Mc': '\ue147',
+	'Mcc': '\ue148'
     },
 
     'historyPruneRegex':
-    'nngua|nyɔ̃ɔ|nyɛ̃ɛ|h̃ɔ̃ɔ|h̃ɛ̃ɛ|ŋgua|ŋɛ̃ɛ|ndɛɛ|ngee|njee|nngu|nɛ̃ɛ|mnua|kpaa|kpɛɛ|ɛ̃ɛ|ŋgu|yee|wɛi|paa|nda|nde|ndi|ndo|ndu|ndɔ|ndɛ|nga|nge|ngi|ngo|ngu|ngɔ|nja|nje|njo|nju|njɔ|nyũ|nyɔ|nyɛ|mbU|mba|mbe|mbi|mbo|mbu|mbƆ|mbƐ|mbɔ|mbɛ|mnu|mũ |laa|lii|lɛɛ|kpa|kpu|kpɔ|kpɛ|hei|hou|hua|huu|hɔɔ|h̃ã|h̃ĩ|h̃ũ|h̃ɔ|h̃ɛ|gaa|gba|gbo|gbɔ|gbɛ|gua|gɛi|boo|Mbu|ŋu|ŋã|ŋɛ|ye|yo|yɔ|yɛ|wA|wa|we|wi|wo|wu|wƐ|wɔ|wɛ|va|ve|vo|vu|vɔ|vɛ|ta|te|ti|to|tu|tɛ|sa|se|si|so|su|sɔ|sɛ|pa|pe|pi|po|pu|pɔ|pɛ|nd|ng|nh|nj|nn|ny|nɔ|nɛ|mb|mũ|mɔ|mɛ|la|le|li|lo|lu|lɔ|lɛ|ka|ke|ki|ko|kp|ku|kɔ|ja|je|ji|ju|jɔ|jɛ|he|ho|hu|hɔ|hɛ|h̃|ga|gb|ge|gi|go|gu|gɔ|gɛ|fe|fã|fɛ|da|de|di|du|dɔ|ba|be|bi|bo|bu|bɔ|Mb|ɛ|ɔ|ŋ|ĩ|y|w|v|u|t|s|p|n|m|l|k|j|h|g|f|e|d|b|a'
+    'nngua|ŋgua|ndɛɛ|ngee|njee|nngu|mnua|kpaa|kpɛɛ|ŋgu|yee|wɛi|paa|nda|nde|ndi|ndo|ndu|ndɔ|ndɛ|nga|nge|ngi|ngo|ngu|ngɔ|nja|nje|njo|nju|njɔ|Mua|mbU|mba|mbe|mbi|mbo|mbu|mbƆ|mbƐ|mbɔ|mbɛ|mnu|mũ |laa|lii|lɛɛ|kpa|kpu|kpɔ|kpɛ|hei|hou|hua|huu|hɔɔ|gaa|gba|gbo|gbɔ|gbɛ|gua|gɛi|boo|Nyu|Nyɔ|Nyɛ|Mbu|ŋu|Ŋa|Ŋɛ|ye|yo|yɔ|yɛ|wA|wa|we|wi|wo|wu|wƐ|wɔ|wɛ|va|ve|vo|vu|vɔ|vɛ|ta|te|ti|to|tu|tɛ|sa|se|si|so|su|sɔ|sɛ|pa|pe|pi|po|pu|pɔ|pɛ|nd|ng|nh|nj|nn|Ny|mb|mu|Mu|Mc|II|la|le|li|lo|lu|lƐ|lɔ|lɛ|ka|ke|ki|ko|kp|ku|kɔ|ja|je|ji|ju|jɔ|jɛ|he|ho|hu|hɔ|hɛ|ga|gb|ge|gi|go|gu|gɔ|gɛ|fA|fe|fɛ|da|de|di|du|dɔ|ba|be|bi|bo|bu|bɔ|Ny|Nɛ|Mb|Ha|Hi|Hu|Hɔ|Hɛ|HƆ|ɛ|ɔ|Ɛ|Ŋ|y|w|v|u|t|s|p|l|k|j|h|g|f|e|d|b|a|N|M|I|H'
 }
 // Load the layout and inform the keyboard to switch layout if necessary.
 google.elements.keyboard.loadme(MEN_PHONE3_LAYOUT);
