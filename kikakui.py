@@ -11,7 +11,7 @@ nasal_consonants = [
     'h\u0303', 'm', 'n', 'ny', 'ŋ', '']
 
 vowels = [
-    'i', 'ii', 'iii', 'I', 'II'
+    'i', 'ii', 'iii', 'I', 'II',
     'a', 'aa', 'aaa', 'A', 'AA',
     'u', 'uu', 'uuu', 'U', 'UU',
     'e', 'ee', 'eee', 'E', 'EE',

@@ -35,6 +35,7 @@ var MEN_PHONE3_LAYOUT = {
 	},
     },
     'transform': {
+	'\u00a0.': '\u00a0\u202e$1',
 	'pi': '\ue000',
 	'pii': '\ue001',
 	'pa': '\ue002',
@@ -260,6 +261,7 @@ var MEN_PHONE3_LAYOUT = {
 	'nje': '\ue0d3',
 	'njee': '\ue0d4',
 	'njeee': '\ue0d5',
+	'Nje': '\ue0d5',
 	'njɔ': '\ue0d6',
 	'njɔɔ': '\ue0d7',
 	'njo': '\ue0d8',
@@ -358,6 +360,7 @@ var MEN_PHONE3_LAYOUT = {
 	'Hɛ': '\ue13a',
 	'Hɛɛ': '\ue13b',
 	'Hɔ': '\ue13c',
+	'nHɔ': '\ue13d',
 	'Hɔɔ': '\ue13d',
 	'HƆ': '\ue13e',
 	'HƆƆ': '\ue13f',
@@ -432,7 +435,7 @@ var MEN_PHONE3_LAYOUT = {
     },
 
     'historyPruneRegex':
-    'nngua|ŋgua|ndɛɛ|ngee|njee|nngu|mnua|kpaa|kpɛɛ|ŋgu|yee|wɛi|paa|nda|nde|ndi|ndo|ndu|ndɔ|ndɛ|nga|nge|ngi|ngo|ngu|ngɔ|nja|nje|njo|nju|njɔ|Mua|mbU|mba|mbe|mbi|mbo|mbu|mbƆ|mbƐ|mbɔ|mbɛ|mnu|mũ |laa|lii|lɛɛ|kpa|kpu|kpɔ|kpɛ|hei|hou|hua|huu|hɔɔ|gaa|gba|gbo|gbɔ|gbɛ|gua|gɛi|boo|Nyu|Nyɔ|Nyɛ|Mbu|ŋu|Ŋa|Ŋɛ|ye|yo|yɔ|yɛ|wA|wa|we|wi|wo|wu|wƐ|wɔ|wɛ|va|ve|vo|vu|vɔ|vɛ|ta|te|ti|to|tu|tɛ|sa|se|si|so|su|sɔ|sɛ|pa|pe|pi|po|pu|pɔ|pɛ|nd|ng|nh|nj|nn|Ny|mb|mu|Mu|Mc|II|la|le|li|lo|lu|lƐ|lɔ|lɛ|ka|ke|ki|ko|kp|ku|kɔ|ja|je|ji|ju|jɔ|jɛ|he|ho|hu|hɔ|hɛ|ga|gb|ge|gi|go|gu|gɔ|gɛ|fA|fe|fɛ|da|de|di|du|dɔ|ba|be|bi|bo|bu|bɔ|Ny|Nɛ|Mb|Ha|Hi|Hu|Hɔ|Hɛ|HƆ|ɛ|ɔ|Ɛ|Ŋ|y|w|v|u|t|s|p|l|k|j|h|g|f|e|d|b|a|N|M|I|H'
+    'nngua|ŋgua|ndɛɛ|ngee|njee|nngu|mnua|kpaa|kpɛɛ|ŋgu|yee|wɛi|paa|nda|nde|ndi|ndo|ndu|ndɔ|ndɛ|nga|nge|ngi|ngo|ngu|ngɔ|nja|nje|njo|nju|njɔ|Mua|mbU|mba|mbe|mbi|mbo|mbu|mbƆ|mbƐ|mbɔ|mbɛ|mnu|mũ |laa|lii|lɛɛ|kpa|kpu|kpɔ|kpɛ|hei|hou|hua|huu|hɔɔ|gaa|gba|gbo|gbɔ|gbɛ|gua|gɛi|boo|Nyu|Nyɔ|Nyɛ|Mbu|ŋu|Ŋa|Ŋɛ|ye|yo|yɔ|yɛ|wA|wa|we|wi|wo|wu|wƐ|wɔ|wɛ|va|ve|vo|vu|vɔ|vɛ|ta|te|ti|to|tu|tɛ|sa|se|si|so|su|sɔ|sɛ|pa|pe|pi|po|pu|pɔ|pɛ|nd|ng|nh|nj|nn|nH|Nj|Ny|mb|mu|Mu|Mc|la|le|li|lo|lu|lƐ|lɔ|lɛ|ka|ke|ki|ko|kp|ku|kɔ|ja|je|ji|ju|jɔ|jɛ|he|ho|hu|hɔ|hɛ|ga|gb|ge|gi|go|gu|gɔ|gɛ|fA|fe|fɛ|da|de|di|du|dɔ|ba|be|bi|bo|bu|bɔ|Ny|Nɛ|Mb|Ha|Hi|Hu|Hɔ|Hɛ|HƆ|ɛ|ɔ|Ɛ|Ŋ|y|w|v|u|t|s|p|l|k|j|h|g|f|e|d|b|a|N|M|I|H'
 }
 // Load the layout and inform the keyboard to switch layout if necessary.
 google.elements.keyboard.loadme(MEN_PHONE3_LAYOUT);
