@@ -113,6 +113,9 @@
 
     let kb_obj = document.getElementById('kbd');
 
+    // Testing
+    controller.setRefreshStateCallback(onRefresh);
+      
     // Set font based on keyboard?
     // Get the font associated with the keyboard, if available.
     //
@@ -137,6 +140,18 @@
     utils.onLayoutSelected(selector.value, 't1', 'kb_instructions');
 
     utils.setFontFamily(document.getElementById("fontSelector").value, 't1');
+  }
+
+  // Can I use this to refresh the font?
+  function onRefresh(thing) {
+      const selector = document.getElementById("setLayout");
+      // TODO: Get the current selection?
+      const kb_data = kb_info[selector.value];
+      let font_family = font_families[0];  // Default
+      if (kb_data[2]) {
+          font_family = kb_data[2];
+      }
+      utils.setFontFamily(font_family, 't1');
   }
 
   function onPageShow() {
