@@ -1555,7 +1555,12 @@ i18n.input.keyboard.KeyCode.MOZ_CODES = {59:186, 61:187, 107:187, 109:189, 173:1
 i18n.input.keyboard.KeyCode.MOZ_SHIFT_CHAR_CODES = {126:192, 95:189, 124:220, 58:186, 60:188, 62:190, 63:191};
 i18n.input.keyboard.ParsedLayout = function $i18n$input$keyboard$ParsedLayout$(layout) {
   this.id = layout.id;
-  this.view = {id:layout.id, title:layout.title, isRTL:"rtl" == layout.direction, is102:!!layout.is102Keyboard, mappings:goog.object.create(["", null, "s", null, "c", null, "l", null, "sc", null, "cl", null, "sl", null, "scl", null])};
+    this.view = {id:layout.id,
+		 title:layout.title,
+		 isRTL:"rtl" == layout.direction,
+		 forceRTL: "rtl" == layout.force_direction,
+		 is102:!!layout.is102Keyboard, mappings:goog.object.create(["", null, "s", null, "c", null, "l", null, "sc", null, "cl", null, "sl", null, "scl", null])
+		};
   this.ambiRegex_ = this.transforms = null;
   this.parseKeyMappings_(layout);
   this.parseTransforms_(layout);
@@ -7164,6 +7169,13 @@ i18n.input.keyboard.View.prototype.onTitleButtonClick_ = function $i18n$input$ke
 };
 i18n.input.keyboard.View.prototype.getCommitChars = function $i18n$input$keyboard$View$$getCommitChars$(keyCode) {
   var keyChar = String.fromCharCode(keyCode), item = this.view_.mappings[this.state_][keyChar];
+
+  // Special case for adding a character to force direction
+  if (keyCode == goog.events.KeyCodes.ENTER && this.view_.forceRTL) {
+    // !!! VERY SPECIAL
+    return "\r\u202e";
+  }
+
   if (item) {
     var chars = item[2];
     if (chars) {

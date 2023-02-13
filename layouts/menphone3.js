@@ -4,9 +4,11 @@
 // Redone to include all in the table.
 var MEN_PHONE3_LAYOUT = {
     'id': 'menphone3',
-    'dir': 'rtl',
+    'direction': 'rtl',
+    'force_direction': 'rtl',
     'title': 'Mende Kikakui Phonetic 3',
     'mappings': {
+	'r' : '{{S||ENTER||\r\u2023}}',
 	',c': {
 	    '':  '{{S||~||\u0303}}{{\uD83A\uDCC7}}{{\uD83A\uDCC8}}{{\uD83A\uDCC9}}{{\uD83A\uDCCa}}' +
 		'{{\uD83A\uDCCb}}{{\uD83A\uDCcc}}{{\uD83A\uDCCd}}{{\uD83A\uDCCe}}' +
