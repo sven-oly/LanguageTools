@@ -123,7 +123,7 @@ class langInfo():
         'shortName': 'menphone3',
         'longName': 'Mende Phonetic 3',
         'jsName': 'menphone3',
-        'instructions': 'Updated 2-Jan-2023',
+        'instructions': 'Updated 14-Feb-2023. Use / to end a syllable.',
         'font': 'MendeKikakuiFonts',
         'fontFamilyToApply': ['NotoSansMendeKikakui', 'JGMende'],
         'fontFamily': 'KikakuiSansPro',
