@@ -213,6 +213,15 @@
       textArea.innerHTML = textArea.value = key_layouts;
     }
 
+    function toKeyMan(textarea_id, select_layout_id) { 
+	// Opens a windows with the keyman keyboard data
+	var textArea = document.getElementById(textarea_id);
+	var selector = document.getElementById(select_layout_id);
+	newUrl = "/test/kbkm/?kbname=" + selector.value;
+
+	window.open(newUrl, '_blank');
+   }
+
     function fillEncodedRange(textarea_id) {
       var textArea = document.getElementById(textarea_id);
       var output = "";
@@ -287,6 +296,7 @@
   </select>
 
   <input type="button" value="Clear text" onclick="utils.clearText('codepoints');utils.clearText('t1', true);insertText('t1', '{{insert_text}}');">
+  <input type="button" value="Select all text" onclick="document.getElementById('t1').select()";
   <br />
 
   <!-- If an original encoding area is needed. -->
@@ -317,6 +327,10 @@
     <input type="button" value="Code points" onclick="utils.showCodePoints('t1', 'codepoints')">
     <input type="button" value="All keys" onclick="fillAllKeys('t1', 'setLayout');"
     />
+    {% if to_keyman %}
+    <input type="button" value="To KeyMan" onclick="toKeyMan('t1', 'setLayout');"
+    />
+    {% endif %}
     {% if encoded_ranges %}
       <input type="button" value="Encoded range" onclick="fillEncodedRange('t1');"
 
