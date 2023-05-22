@@ -81,7 +81,15 @@ class langInfo:
              'font_path': '/fonts/Inupiaq/GentiumKaktovik.ttf',
              'font_name': 'GentiumKaktovik',
              'display_name': 'Gentium Kaktovik',
+            },
+            {'family': 'NotoSansSymbols2',
+             'longName': 'NotoSans Symbols2 Prerelease',
+             'source': '/fonts/Inupiaq/NotoSansSymbols2-Regular.ttf',
+             'font_path': '/fonts/Inupiaq/GentiumKaktoviGentiumKaktovik.ttf',
+             'font_name': 'NotoSansSymbols',
+             'display_name': 'NotoSans Symbols2 Prerelease',
             }
+            
         ]
         self.encoding_font_list = [
         ]

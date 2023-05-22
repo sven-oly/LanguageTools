@@ -42,8 +42,8 @@ links = [
   # {'linkText': 'Resources',
   #   'ref': '/' + LanguageCode + '/downloads/'
   # },
-  {'linkText': 'Unicode proposal 21-086',
-   'ref': 'http://www.unicode.org/L2/L2021/21086-tulu-tigalari.pdf'
+  {'linkText': 'Unicode proposal 22218',
+   'ref': 'https://www.unicode.org/L2/L2022/22218-chisoi.pdf'
   },
   # {'linkText': 'THIS SCRIPT',
   #  'ref': 'https://en.wikipedia.org/wiki/XYZ_alphabet'
@@ -67,14 +67,19 @@ class langInfo:
         self.Language_native = Language_native
         self.test_data = u''
         self.unicode_font_list = [
-          {'family': 'BiswaKurmailChisoi_Unicode',
+          {'family': 'BiswaKurmaliChisoi_Unicode',
            'longName': 'Biswa Kurmali Unicode',
-           'source': '/fonts/Kurmali/BiswaKurmaliChisoiUnicode.ttf',
+           'source': '/fonts/Kurmali/BiswaKurmaliChisoiUnicode.otf',
            },
            {
-            'source': '/fonts/Kurmali/BiswaKurmaliChisoi_ASCII1.ttf',
+            'source': '/fonts/Kurmali/BiswaKurmaliChisoi_ASCII.woff',
             'family': 'Biswa_Chisoi_ASCII',
             'longName': 'Biswa Chisoi ASCII',
+           },
+           {
+            'source': '/fonts/Kurmali/BiswaKurmaliChisoi_1.ttf',
+            'family': 'Biswa_Chisoi_1',
+            'longName': 'Biswa Chisoi 1',
            },
             {'family': 'NotoSans',
            'longName': 'Noto Sans',
@@ -94,12 +99,12 @@ class langInfo:
 
         self.kb_list = [
           {'shortName': 'kyw2',
-           'longName': 'Kurmail Chisoi Unicode',
-           'fontFamily': 'BiswaKurmailChisoi_Unicode',
+           'longName': 'Kurmali Chisoi Unicode',
+           'fontFamily': 'BiswaKurmaliChisoi_Unicode',
            },
           {'shortName': 'kyw1',
-           'longName': 'Kurmail Chisoi 1',
-           'fontFamily': 'BiswaKurmailChisoi_ASCII',
+           'longName': 'Kurmali Chisoi 1',
+           'fontFamily': 'BiswaKurmaliChisoi_ASCII',
            },
         ]
 

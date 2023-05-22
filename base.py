@@ -73,6 +73,11 @@ class LanguagesHomeHandler(webapp2.RequestHandler):
         variation_sequence = None
 
     try:
+        to_keyman = langInfo.to_keyman
+    except:
+        to_keyman = None
+
+    try:
         encoded_ranges = langInfo.encoded_ranges
     except:
         encoded_ranges = None
@@ -124,6 +129,7 @@ class LanguagesHomeHandler(webapp2.RequestHandler):
         'showTools': self.request.get('tools', None),
         'test_data': test_data,
         'variation_sequence': variation_sequence,
+        'to_keyman': to_keyman,
     }
     path = os.path.join(os.path.dirname(__file__), home_html)
     self.response.out.write(template.render(path, template_values))

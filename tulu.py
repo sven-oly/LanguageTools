@@ -75,6 +75,9 @@ links = [
   {'linkText': 'KB transforms',
    'ref': '/' + LanguageCode + '/kbtransforms/'
    },
+  {'linkText': 'Unicode proposal 22031',
+    'ref': 'https://www.unicode.org/L2/L2022/22031-tulu-tigalari-prop.pdf'
+  },
   {'linkText': 'Unicode proposal 21019',
     'ref': 'https://www.unicode.org/L2/L2021/21019-tulu.pdf'
   },
@@ -125,6 +128,9 @@ class langInfo():
 
     # For additional resources for download
     self.text_file_list = []
+
+    self.unicode_base = '\ud804\udf80'  # u+11380 to u+113e2
+
 
     # TODO: Fill in the rest of the common data.
 
