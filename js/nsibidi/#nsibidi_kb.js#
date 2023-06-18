@@ -24,6 +24,10 @@ let nsibidi = function() {
     this.use_dictionary = false;  //false;
 }
 
+nsibidi.prototype.getVersion = function() {
+    return this.version;
+}
+
 nsibidi.prototype.sortFirst = function(a,b) {
     if (a[0] < b[0]) {
         return -1;

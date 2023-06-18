@@ -3,412 +3,531 @@
     <title>{{language}} virtual keyboard test</title>
     
 
-  <link rel="stylesheet" href="/css/blueprint/screen.css" type="text/css" media="screen">
-  <link rel="stylesheet" href="/css/blueprint/print.css" type="text/css" media="print"> 
+    <link rel="stylesheet" href="/css/blueprint/screen.css" type="text/css" media="screen">
+    <link rel="stylesheet" href="/css/blueprint/print.css" type="text/css" media="print"> 
 
-  <!--[if lt IE 8]>
-    <link rel="stylesheet" href="/css/blueprint/ie.css" type="text/css" media="screen, projection">
-  <![endif]-->
-    
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!--[if lt IE 8]>
+        <link rel="stylesheet" href="/css/blueprint/ie.css" type="text/css" media="screen, projection">
+        <![endif]-->
+         
+         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+         <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <style>
-   {% for font in font_list %}
-    @font-face{
-      font-family:"{{font.family}}";
-      src:url("{{font.source}}");
-      font-weight:normal;
-      font-style:normal;
-    }
-    {% endfor %}
-    </style>
+         <style>
+           {% for font in font_list %}
+           @font-face{
+               font-family:"{{font.family}}";
+               src:url("{{font.source}}");
+               font-weight:normal;
+               font-style:normal;
+           }
+           {% endfor %}
+         </style>
 
-  <link rel="stylesheet" type="text/css" href="/css/fonts.css">
+         <link rel="stylesheet" type="text/css" href="/css/fonts.css">
 
-    <style>
-     {% for font in font_list %}
-      .{{font.family}} {
-      font-family: "{{font.family}}";
-      font-size:18px;
-      }
-      {% endfor %}
+         <style>
+           {% for font in font_list %}
+           .{{font.family}} {
+               font-family: "{{font.family}}";
+               font-size:18px;
+           }
+           {% endfor %}
 
-      .default-font {
-      font-family: "Arial,Helvetica";
-      font-size:18px;
-      }
-      .input-font {
-      font-family: "Arial,Helvetica";
-      font-size:24px;
-      }
-      .choice-font {
-      font-family: "Arial,Helvetica";
-      font-size:18px;
-      }
-      input {font-size:18px;}
+           .default-font {
+               font-family: "Arial,Helvetica";
+               font-size:18px;
+           }
+           .input-font {
+               font-family: "Arial,Helvetica";
+               font-size:24px;
+           }
+           .choice-font {
+               font-family: "Arial,Helvetica";
+               font-size:18px;
+           }
+           input {font-size:18px;}
 
-      .instructions {
-        font-size:18px;
-      }
+           .instructions {
+               font-size:14px;
+           }
 
-      textarea {font-size:18px; height:150px; width:600px; resize: vertical;}
+           textarea {font-size:18px; height:150px; width:600px; resize: vertical;}
 
-      #choose_one {font-size:18px; height:320px; width:150px; resize: vertical;}
-      #choose_table {font-size:18px; height:320px; width:250px; resize: vertical;}
+           #choose_table {font-size:16px;}
+           /*      th {width:100px;}
+      td {width:100px;}
+          */
+           .nsi_button { font-family: "Akagu2020"; }
+           button { font-size:16px; }
+         </style>
 
-      .nsi_button { font-family: "Akagu2020"; }
-      button { font-size:16px; }
-    </style>
+         <!-- special files for Nsibidi -->
+         <script src="/js/nsibidi/English2utf.js"></script>
+         <script src="/js/nsibidi/LatinInput.js"></script>
+         <!-- This processes the data loaded above -->
+         <script src="/js/nsibidi/nsibidi_kb.js"></script>
 
-  <!-- special files for Nsibidi -->
-  <script src="/js/nsibidi/English2utf.js"></script>
-  <script src="/js/nsibidi/LatinInput.js"></script>
-  <!-- This processes the data loaded above -->
-  <script src="/js/nsibidi/nsibidi_kb.js"></script>
+         <script src="/js/utils.js"></script>
+         <script src="/js/vk-debug.js"></script>
+         {% if variation_sequence %}
+         <script src="/js/{{langTag}}Converter.js"></script>
+         {% endif %}
 
-  <script src="/js/utils.js"></script>
-  <script src="/js/vk-debug.js"></script>
-{% if variation_sequence %}
-  <script src="/js/{{langTag}}Converter.js"></script>
-{% endif %}
+         <script>
+           // For loading keyboard.
+           var k = { loadme: Object};
+           k.loadme.prototype = function(a) {
+               return a;
+           }
+           var e = {keyboard: k};
+           var google = {elements: e};
 
-  <script>
-  // For loading keyboard.
-  var k = { loadme: Object};
-  k.loadme.prototype = function(a) {
-  return a;
-  }
-  var e = {keyboard: k};
-  var google = {elements: e};
+           var diff_list = [];  // needed for utils.js
 
-  var diff_list = [];  // needed for utils.js
+           // For the keyboard.
+           // Keyboard info.
+           var kb_info = {
+               {% for kb in kb_list %}{{kb.shortName}}: ["{{kb.longName}}",
+                                                         "{{kb.instructions}}",
+                                                         "{{kb.fontFamily}}", "XYZ"],
+               {%endfor%}
+           };
+           const font_families = [{% for font in font_list %}"{{font.family}}", {% endfor %}];
 
-  // For the keyboard.
-  // Keyboard info.
-  var kb_info = {
-    {% for kb in kb_list %}{{kb.shortName}}: ["{{kb.longName}}",
-      "{{kb.instructions}}",
-      "{{kb.fontFamily}}", "XYZ"],
-      {%endfor%}
-  };
-  const font_families = [{% for font in font_list %}"{{font.family}}", {% endfor %}];
+           function toAllFonts(area1, area2) {
+               var area1Elem = document.getElementById(area1);
+               var selObj = window.getSelection();
+               var text1 = "";
+               if (selObj && selObj.rangeCount > 0) {
+                   text1 = selObj.toString(0);
+               } else {
+                   text1 = area1Elem.value;
+               }
+               var text2= '';
 
-  function toAllFonts(area1, area2) {
-    var area1Elem = document.getElementById(area1);
-    var selObj = window.getSelection();
-    var text1 = "";
-    if (selObj && selObj.rangeCount > 0) {
-      text1 = selObj.toString(0);
-    } else {
-      text1 = area1Elem.value;
-    }
-    var text2= '';
+               compareUrl = "/{{langTag}}/AllFonts/?utext=" + text1 + "&encodedText=" + text2;
 
-    compareUrl = "/{{langTag}}/AllFonts/?utext=" + text1 + "&encodedText=" + text2;
+               window.open(compareUrl, '_blank');
+           }
 
-    window.open(compareUrl, '_blank');
-  }
+           const utils = new Utils();  // Object for utility functions
 
-  const utils = new Utils();  // Object for utility functions
+           let controller, visible = true;
 
-  var controller, visible = true;
-  function onPageLoaded() {
-    const input_area_id = 'input_area';
-    var input = document.getElementById(input_area_id);
-    controller = new i18n.input.keyboard.Keyboard();
+           function onPageLoaded() {
+               setupKeyboards();
+               // Initialize stuff for the dictionary.
+               setupDictionary();
 
-    var x = i18n.input.keyboard.Controller;
+	       const version_elem = document.getElementById('version_h4');
+	       version_elem.innerHTML = 'Version: ' + nsi.version;
+           }
 
-    utils.onSizeSelected(document.getElementById("sizeSelector").value, 't1');
-    {% for kb in kb_list %}
-    controller.loadLayout('{{kb.shortName}}');
-    {% endfor %}
-    controller.reposition(input, 3, 4, [0, 5, 0, 0]);
-    controller.activateLayout('{{kb_list.0.shortName}}');
-    controller.register(input);
-    controller.addEventListener(
-        'kc',
-        function() { visible = false; });
+           function setupKeyboards() {
+               const input_area_id = 'input_area';
+               var input = document.getElementById(input_area_id);
+               controller = new i18n.input.keyboard.Keyboard();
+               
+               var x = i18n.input.keyboard.Controller;
+               
+               utils.onSizeSelected(document.getElementById("sizeSelector").value, 't1');
+               {% for kb in kb_list %}
+               controller.loadLayout('{{kb.shortName}}');
+               {% endfor %}
+               controller.reposition(input, 3, 4, [0, 5, 0, 0]);
+               controller.activateLayout('{{kb_list.0.shortName}}');
+               controller.register(input);
+               controller.addEventListener(
+                   'kc',
+                   function() { visible = false; });
 
-    let kb_obj = document.getElementById('kbd');
+               let kb_obj = document.getElementById('kbd');
+               
+               // If there are keyboard instructions, add them.
+               
+               // Set font based on keyboard?
+               // Get the font associated with the keyboard, if available.
+               //
+               controller.addEventListener(
+                   'lat',
+                   function () {
+                       var selector = document.getElementById("setLayout");
+                       // TODO: Get the current selection?
+                       var kb_data = kb_info[selector.value];
+                       var font_family = font_families[0];
+                       if (kb_data[2]) {
+                           font_family = kb_data[2];
+                       }
+                       //utils.setFontFamily(font_family, 'input_area', false);
+                   }
+               );
+               
+               var selector = document.getElementById("setLayout");
+               utils.onLayoutSelected(selector.value, 'input_area', 'kb_instructions');
+               
+               utils.setFontFamily(document.getElementById("fontSelector").value, 't1');
+               
+               var input_area = document.getElementById('input_area');
+               input_area.focus();
+           }
 
-    // If there are keyboard instructions, add them.
+           function toggle() {
+               if (controller) {
+                   controller.setVisible(visible = !visible);
+               }
+           }
 
-    // Set font based on keyboard?
-    // Get the font associated with the keyboard, if available.
-    //
-    controller.addEventListener(
-        'lat',
-        function () {
-            var selector = document.getElementById("setLayout");
-            // TODO: Get the current selection?
-            var kb_data = kb_info[selector.value];
-            var font_family = font_families[0];
-            if (kb_data[2]) {
-              font_family = kb_data[2];
-            }
-            //utils.setFontFamily(font_family, 'input_area', false);
-          }
-    );
+           function lineifyMapping(input) {
+               // Given a kb mapping, create lines of text corresponding to 4 keyboard rows
+               // of 13, 13, 11, and 10
+               input = input.replace(/{{/g, "\u0000");
+               input = input.replace(/}}/g, "\u00a0");
+               var index = 0;
+               var output_list = [];
+               var in_size = input.length;
+               while (index < input.length) {
+                   if (input[index] == "\u0000") {
+                       // Advance until \u00a0 is found
+                       var group = []
+                       index += 1;
+                       while (index < in_size && input[index] != "\u00a0") {
+                           group.push(input[index]);
+                           index += 1;
+                       }
+                       index += 1;  // Move over the 00a0
+                       output_list.push(group.join(""));
+                   } else {
+                       output_list.push(input[index]);
+                       index += 1;
+                   }
+                   if (output_list.length == 13 || output_list.length == 27 ||
+                       output_list.length == 39) {
+                       output_list.push("\n");
+                   }
+               }
 
-    var selector = document.getElementById("setLayout");
-    utils.onLayoutSelected(selector.value, 'input_area', 'kb_instructions');
+               return output_list.join("");
+           }
 
-    utils.setFontFamily(document.getElementById("fontSelector").value, 't1');
+           function fillAllKeys(textarea_id, select_layout_id) {
+               var textArea = document.getElementById(textarea_id);
+               var selector = document.getElementById(select_layout_id);
 
-    var input_area = document.getElementById('input_area');
-    input_area.focus();
-  }
+               var kb_data = eval(selector.value);
+               var new_text = "FILL ALL KEYS " + selector.value;
+               var key_layouts = "";
+               for (var item in kb_data.mappings) {
+                   key_layouts = key_layouts + "Layer = '" + item + "'\n";
+                   var output = "";
+                   for (var start in kb_data.mappings[item]) {
+                       output += kb_data.mappings[item][start];
+                   }
+                   key_layouts += lineifyMapping(output) + "\n\n";
+               }
+               textArea.innerHTML = textArea.value = key_layouts;
+           }
 
-    function toggle() {
-      if (controller) {
-        controller.setVisible(visible = !visible);
-      }
-    }
+           function fillEncodedRange(textarea_id) {
+               var textArea = document.getElementById(textarea_id);
+               var output = "";
+               var encoded_ranges = {{ encoded_ranges }};
+               for (var item = 0; item <  encoded_ranges.length; item += 1) {
+                   var start = encoded_ranges[item][0];
+                   var end = encoded_ranges[item][1];
+                   for (var code = start; code <= end; code += 1) {
+                       output += String.fromCharCode(code) + ' ';
+                   }
+                   // TODO?: output += "\n";
+               }
+               textArea.innerHTML = textArea.value = output;
+           }
+           {% if variation_sequence %}
+           function toggleConvertedVS(text_area_id, toggle) {
+               // TODO: Change variation sequence content of text.
+               var text_area = document.getElementById(text_area_id);
+               var text = text_area.value;
+               var new_text;
+               if (toggle.checked) {
+                   new_text = add_variation_modifiers(text);
+               } else {
+                   new_text =remove_variation_modifiers(text);
+               }
+               text_area.innerHTML = text_area.value = new_text;
+           }
+           {% endif %}
 
-    function lineifyMapping(input) {
-      // Given a kb mapping, create lines of text corresponding to 4 keyboard rows
-      // of 13, 13, 11, and 10
-      input = input.replace(/{{/g, "\u0000");
-      input = input.replace(/}}/g, "\u00a0");
-      var index = 0;
-      var output_list = [];
-      var in_size = input.length;
-      while (index < input.length) {
-        if (input[index] == "\u0000") {
-          // Advance until \u00a0 is found
-          var group = []
-          index += 1;
-          while (index < in_size && input[index] != "\u00a0") {
-            group.push(input[index]);
-            index += 1;
-          }
-          index += 1;  // Move over the 00a0
-          output_list.push(group.join(""));
-        } else {
-          output_list.push(input[index]);
-          index += 1;
-        }
-        if (output_list.length == 13 || output_list.length == 27 ||
-            output_list.length == 39) {
-          output_list.push("\n");
-        }
-      }
+           // Intercept copying to remove ZWSP between words.
+           function removeZwspCopy(region_id) {
+               const region = document.getElementById(region_id);
+               let text = region.value.replaceAll('\u200b', '');
+               navigator.clipboard.writeText(text).then(function() {
+                   /* clipboard successfully set */
+               }, function() {
+                   alert('Copy failed');
+               });
+               return text;
+           }
+         </script>
+         <script>
+           /*------------------------------------------------------------------------*/
+           /* For new dictionary and lookup functions */
+           // Load data for dictionary
+           let output_json;  // Raw form of an array with multiple entries per symbol.
+           let converted_dictionary;  // With multiple definitions per symbol key.
+           let pro_dictionary = {};  // With multiple definitions per pronouciation key.
+           let pro_first_char_dict = {};
+           let dictionary_keys;
+           
+           const myRequest = new Request('/js/nsibidi/output.json');
+           fetch(myRequest)
+    .then((response) => response.json())
+    .then((data) => { output_json = data} );
 
-      return output_list.join("");
-    }
+           function setupDictionary() {
+               // Now do things for the newer data
+               let alarmmsg = document.getElementById("alarmmsg");
+               if (! alarmmsg) {
+                   return;
+               }
 
-    function fillAllKeys(textarea_id, select_layout_id) {
-      var textArea = document.getElementById(textarea_id);
-      var selector = document.getElementById(select_layout_id);
+               if (output_json) {
+                   let msg = "Loaded with " + output_json.length +
+                       " items";
+                   alarmmsg.innerHTML = msg;
+               }
+               convertJson(output_json);
+               dictionary_keys = Object.keys(converted_dictionary);
+               let size = dictionary_keys.length;
+               alarmmsg.innerHTML = alarmmsg.innerHTML + " and " + size + " symbols.";
 
-      var kb_data = eval(selector.value);
-      var new_text = "FILL ALL KEYS " + selector.value;
-      var key_layouts = "";
-      for (var item in kb_data.mappings) {
-        key_layouts = key_layouts + "Layer = '" + item + "'\n";
-        var output = "";
-        for (var start in kb_data.mappings[item]) {
-          output += kb_data.mappings[item][start];
-        }
-        key_layouts += lineifyMapping(output) + "\n\n";
-      }
-      textArea.innerHTML = textArea.value = key_layouts;
-    }
+               // Tell the nsi object about it.
+               nsi.setDictionary(pro_dictionary, pro_first_char_dict);
+           }
 
-    function fillEncodedRange(textarea_id) {
-      var textArea = document.getElementById(textarea_id);
-      var output = "";
-      var encoded_ranges = {{ encoded_ranges }};
-      for (var item = 0; item <  encoded_ranges.length; item += 1) {
-        var start = encoded_ranges[item][0];
-        var end = encoded_ranges[item][1];
-        for (var code = start; code <= end; code += 1) {
-          output += String.fromCharCode(code) + ' ';
-        }
-        // TODO?: output += "\n";
-      }
-      textArea.innerHTML = textArea.value = output;
-    }
-{% if variation_sequence %}
-function toggleConvertedVS(text_area_id, toggle) {
-  // TODO: Change variation sequence content of text.
-  var text_area = document.getElementById(text_area_id);
-  var text = text_area.value;
-  var new_text;
-  if (toggle.checked) {
-      new_text = add_variation_modifiers(text);
-  } else {
-      new_text =remove_variation_modifiers(text);
-  }
-  text_area.innerHTML = text_area.value = new_text;
-}
-{% endif %}
+           function convertJson(raw_form) {
+               // Set the global new dictionary with keys from the 'sym' field.
+               converted_dictionary = {};
+               if (raw_form) {
+                   for (let item of raw_form) {
+                       let sym = item['sym'];
+                       if (item['pro'] == null) {
+                           // Fix null pronounciation values
+                           item['pro'] = sym;
+                       }
+                       // Composed forms
+                       let pro = item['pro'].normalize("NFD").toLowerCase();;
+                       let first_in_pro = pro[0];
+                       if (first_in_pro in pro_first_char_dict) {
+                           pro_first_char_dict[first_in_pro].push(item);
+                       } else {
+                           pro_first_char_dict[first_in_pro] = [item];
+                       }
+                       if (sym in converted_dictionary) {
+                           // ?? delete item.sym;
+                           converted_dictionary[sym].push(item);
+                       } else {
+                           converted_dictionary[sym] = [item];
+                       }
+                       if (pro in pro_dictionary) {
+                           pro_dictionary[pro].push(item);
+                       } else {
+                           pro_dictionary[pro] = [item];
+                       }
+                   }
+               }
+           }
 
-// Intercept copying to remove ZWSP between words.
-function removeZwspCopy(region_id) {
-  const region = document.getElementById(region_id);
-  let text = region.value.replaceAll('\u200b', '');
-  navigator.clipboard.writeText(text).then(function() {
-    /* clipboard successfully set */
-  }, function() {
-    alert('Copy failed');
-  });
-  return text;
- }
-  </script>
-  <link rel="stylesheet" type="text/css" href="/css/keyboard.css" />
+           function lookupSym() {
+               let input = document.getElementById('input_area');
+               let sym = input.value;
+               let dictionary = pro_dictionary;  // Based on the pronounciation
+               if (sym in dictionary) {
+                   // Put it in the output region.
+                   let result = dictionary[sym];
+                   const num_results = Object.keys(result).length;
+                   if (num_results == 1) {
+                       addToOutput(result[0]['form']);
+                   } else {
+                       // TODO: present options for selection
+                       createOptions(result, num_results);
+                       return null;
+                   }
+               } else {
+                   alert('This symbol is not in the dictionary');
+                   return null;
+               }
+           }
 
-  <style>{% for font in font_list %}{% if forloop.first %}
-    .vk-box, .vk-btn, .vk-cap, .vi-cap-i, .vk-sf-h, .vk-t, .vk-t-btn {
-        font-family: "{{font.family}}";
-    }{% endif %}{% endfor %}
-    </style>
+           function selectDictionary(value) {
+               if (value == 'false') {
+                   nsi.useDictionary(false);
+               } else {
+                   nsi.useDictionary(true);
+               }
+           }
+         </script>
+         
+         <link rel="stylesheet" type="text/css" href="/css/keyboard.css" />
 
-  
+         <style>{% for font in font_list %}{% if forloop.first %}
+.vk-box, .vk-btn, .vk-cap, .vi-cap-i, .vk-sf-h, .vk-t, .vk-t-btn {
+    font-family: "{{font.family}}";
+}{% endif %}{% endfor %}
+         </style>
+
+         
   </head>
-<body onload="onPageLoaded()">
-  <div class="container">
-    <div class="span-1">  
-    </div>
-  <div class="span-18">
-    <h2>{{language}} Keyboard</h2>
+  <body onload="onPageLoaded()">
+    <div class="container">
+      <div class="span-16">
+        <h2>{{language}} Keyboard</h2>
 
-  <span {% if lang_list|length <= 1 %}hidden{% endif %}>
-    Language: <select onchange="utils.onLanguageSelected(this.value, 't1')">
-    {% for lang in lang_list %}
-    <option value="{{lang}}" select="">{{lang.longName}}</option>
-    {% endfor %}
-     </select>
-  </span>
-  <span {% if kb_list|length <= 1 %}hidden{%endif%}>
-    Keyboard: <select onchange="utils.onLayoutSelected(this.value, 't1', 'kb_instructions')" id="setLayout">
+        <span {% if lang_list|length <= 1 %}hidden{% endif %}>
+              Language: <select onchange="utils.onLanguageSelected(this.value, 't1')">
+              {% for lang in lang_list %}
+              <option value="{{lang}}" select="">{{lang.longName}}</option>
+              {% endfor %}
+              </select>
+</span>
+<!--
+    Dictionary: <select onchange="selectDictionary(this.value, 't1')">
+    <option value="false" select="">Original</option>
+    <option value="true" select="">New (with defintions)</option>
+</select>
+-->
+<span {% if kb_list|length <= 1 %}hidden{%endif%}>
+      Keyboard: <select onchange="utils.onLayoutSelected(this.value, 't1', 'kb_instructions')" id="setLayout">
       {% for kb in kb_list %}
       <option value="{{kb.shortName}}" select="">{{kb.longName}}</option>
       {% endfor %}
-    </select>
-  </span>
+      </select>
+</span>
 
-  Language: <select id='inputLangSelector'>
-    <option value='ig'>Igbo</option>
-    <option value='en'>English</option>
-  </select>
-  <input type="checkbox" name="partMatchToggle" id="partMatchToggle">Partial match
-  <input type="button" value="Clear input" onclick="utils.clearText('input_area', true);">
-  <br />
-    <div id="nsibidi_input">
-    <p class="input-font">Type here:
+Language: <select id='inputLangSelector'>
+  <option value='ig'>Igbo</option>
+  <option value='en'>English</option>
+</select>
+
+<input type="checkbox" name="partMatchToggle" id="partMatchToggle">Partial match
+
+<input type="button" value="Clear input" onclick="utils.clearText('input_area', true);">
+<br />
+<div id="nsibidi_input">
+  <p class="input-font">Type here:
     <input id="input_area"
            onkeyup='nsi.handleMatching("input_area", "inputLangSelector", "t1", "results_count",
-           "choose_table", "partMatchToggle");'
+                    "choose_table", "partMatchToggle");'
            class='input-font' style="width:200px;height:35px;" dir="{{direction}}" spellcheck="false"></input>
-      <span id='results_count'></span>
-      <br />
-      <h3>How to type Nsibidi:</h3>
-      <div id="instruction_area">
-        <p id="kb_instructions" class="instructions"></p>
-      </div>
-  </div>
-  <!-- If an original encoding area is needed. -->
-  {% if encoded_div %} 
-  <textarea id="encodeArea" class='default-font'
-            rows="10" dir="{{direction}}" spellcheck="false"></textarea>
-  <br />
-  <input type="button" value="Codes to Unicode text"
-    onclick="convertToUnicode('encodeArea', 't1');">
-  <hr>
-  {% endif %}
+    <span id='results_count'></span>
+  </p>
+</div>
+<!-- If an original encoding area is needed. -->
+{% if encoded_div %} 
+<textarea id="encodeArea" class='default-font'
+          rows="10" dir="{{direction}}" spellcheck="false"></textarea>
+<br />
+<input type="button" value="Codes to Unicode text"
+       onclick="convertToUnicode('encodeArea', 't1');">
+<hr>
+{% endif %}
 
-  <div id="t1_div">
-    <p class="choice-font">Nsibidi output</p>
+<div id="t1_div">
+  <p class="choice-font">Nsibidi output.
     Font: <select onchange="utils.setFontFamily(this.value, 't1', false)" id="fontSelector">
       {% for font in font_list %}
       <option value="{{font.family}}"{% if forloop.first %} selected{%endif%}>{{font.longName}}</option>
       {% endfor %}
       <option value="Arial">Arial</option>
     </select>
-      Size: <select onchange="utils.onSizeSelected(this.value, 't1');" id="sizeSelector">
-        <option value="10px">10</option>
-        <option value="14px">14</option>
-        <option value="18px">18</option>
-        <option value="24px" selected>24</option>
-        <option value="32px">32</option>
-        <option value="48px">48</option>
-        <option value="48px">60</option>
-        <option value="72px">72</option>
-        <option value="96px">96</option>
-        <option value="120px">120</option>
-        <option value="240px">240</option>
-      </select>
-      <input type="button" value="Clear text" onclick="utils.clearText('codepoints');utils.clearText('t1', true);">
+    Size: <select onchange="utils.onSizeSelected(this.value, 't1');" id="sizeSelector">
+      <option value="10px">10</option>
+      <option value="14px">14</option>
+      <option value="18px">18</option>
+      <option value="24px" selected>24</option>
+      <option value="32px">32</option>
+      <option value="48px">48</option>
+      <option value="48px">60</option>
+      <option value="72px">72</option>
+      <option value="96px">96</option>
+      <option value="120px">120</option>
+      <option value="240px">240</option>
+    </select>
+    <input type="button" value="Clear text" onclick="utils.clearText('codepoints');utils.clearText('t1', true);">
+  </p>
+  <textarea id="t1" style="width:600px;font-family:{{font_list.0.family}};resize:vertical;font-size:24px;"
+            rows="3" spellcheck="false"
+            lang="{%if lang_list.0.shortName %}{{lang_list.0.shortName}}{%endif%}{%if langTag %}{{langTag}}{%endif%}"
+            dir="{{direction}}" oncopy="removeZwspCopy('t1');">{{test_data}}</textarea>
+</div>
 
-      <textarea id="t1" style="width:600px;font-family:{{font_list.0.family}};resize:vertical;font-size:24px;"
-      rows="10" spellcheck="false"
-      lang="{%if lang_list.0.shortName %}{{lang_list.0.shortName}}{%endif%}{%if langTag %}{{langTag}}{%endif%}"
-      dir="{{direction}}" oncopy="removeZwspCopy('t1');">{{test_data}}</textarea>
-      {% if allFonts %}
-      <input type="button" onclick="toAllFonts('t1', null);" value="To all fonts">
-      {% endif %}
-  </div>
-    <input type="button" id='toggle_latin' value="To Latin"
-           onclick="nsi.nsibidi2Words('t1', 'latin_id', 'inputLangSelector');">
-    <input type="button" id="code_points"
-           value="Code points"
-           onclick="utils.showCodePoints('t1', 'codepoints');">
+<div id='choices_div'>
+  <table id="choose_table">
+    <colgroup>
+      <col span="1" style="width:10%">
+      <col span="1" style="width:30%">
+      <col span="1" style="width:20%">
+      <col span="1" style="width:20%">
+      <col span="1" style="width:20%">
+    </colgroup>
+  </table>
+</div>
+<input type="button" id='toggle_latin' value="To Latin"
+       onclick="nsi.nsibidi2Words('t1', 'latin_id', 'inputLangSelector');">
+<input type="button" id="code_points"
+       value="Code points"
+       onclick="utils.showCodePoints('t1', 'codepoints');">
 
-
-    <div id="latin_div" style="display:none">
-      <textarea id="latin_id" rows="1" spellcheck="false"></textarea>
-      <input type="button" id="close_latin" value="Close Latin" onclick="toggleDiv('latin_div', 'toggle_latin');">
-    </div>
-  <div id="codepoint_div" style="display:none">
-    <!--
-    <input type="button" value="All keys" onclick="fillAllKeys('t1', 'setLayout');"
+<div id="latin_div" style="display:none">
+  <textarea id="latin_id" rows="1" spellcheck="false"></textarea>
+  <input type="button" id="close_latin" value="Close Latin" onclick="toggleDiv('latin_div', 'toggle_latin');">
+</div>
+<div id="codepoint_div" style="display:none">
+  <!--
+      <input type="button" value="All keys" onclick="fillAllKeys('t1', 'setLayout');"
     -->
 
-    {% if encoded_ranges %}
-      <input type="button" value="Encoded range" onclick="fillEncodedRange('t1');"
-    {% endif %}
-    <br />
-    <p class="choice-font">Code points</p>
-    <textarea id="codepoints" class='default-font'
-     style="width:600px;height:100px;resize:vertical;" spellcheck="false"
-     rows="5"></textarea>
-    <input type="button" value="-> Unicode text" onclick="hexToOutput('codepoints', 't1');">
-    <input type="button" id="toggle_codepoints" value="Close Code points"
-           onclick="toggleDiv('codepoint_div', 'code_points');">
-  </div>
-  <br>
-  </div>
+  {% if encoded_ranges %}
+  <input type="button" value="Encoded range" onclick="fillEncodedRange('t1');"
+         {% endif %}
+         <br />
+  <p class="choice-font">Code points</p>
+  <textarea id="codepoints" class='default-font'
+            style="width:600px;height:100px;resize:vertical;" spellcheck="false"
+            rows="5"></textarea>
+  <input type="button" value="-> Unicode text" onclick="hexToOutput('codepoints', 't1');">
+  <input type="button" id="toggle_codepoints" value="Close Code points"
+         onclick="toggleDiv('codepoint_div', 'code_points');">
+</div>
+<br>
+</div>
 
-  <div class="span-4 last">
-   {% if links %}
-   <h4>Useful links</h4>
-     <ul>
-   {% for link in links %}
-      <li>
-        <a href="{{link.ref}}" target="_blank">{{link.linkText}}</a>
-     </li>
-   {% endfor %}
-     </ul>
-   {% endif %}
-
-   {% if langInfo.info_text %}
-    <h4>{{langInfo.info_text.title}}</h4>
-    <p>{{langInfo.info_text.text}}</p>
-   {% endif %}
-    <p class="choice-font">Choices:</p>
-    <table id="choose_table" "></table>
+<div class="span-6 last">
+  <!--
+      <h3>Dictionary status</h3><p id='alarmmsg'>Not loaded</p>
+      -->
+      <h4 id='version_h4'>Version: N/A</h4>
+      {% if links %}
+      <h4>Useful links</h4>
+      <ul>
+        {% for link in links %}
+        <li>
+          <a href="{{link.ref}}" target="_blank">{{link.linkText}}</a>
+        </li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+      
+      {% if langInfo.info_text %}
+      <h4>{{langInfo.info_text.title}}</h4>
+  <p>{{langInfo.info_text.text}}</p>
+  {% endif %}
+  <h3>How to type Nsibidi:</h3>
+  <div id="instruction_area">
+    <p id="kb_instructions" class="instructions"></p>
   </div>
+</div>
 
-  <div>
-    <form id='mon_form' action="/feedback/" method="get">
-      <input type="submit" value="Send feedback" />
-      <input type="hidden" name='language' value='{{language}}'>
-      <input type="hidden" name='font' value=''>
-    </form>
-  </div>
- </div>
+</div>
 
 </body></html>
