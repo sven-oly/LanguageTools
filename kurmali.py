@@ -25,26 +25,27 @@ except NameError:
     unichr = chr
 
 Language = 'Kuṛmāli / Kudmali'
-Language_native = 'कु ड़मालि, কুড়ম ািল, କୁଡ଼ମାଲ, kuRmali'
+Language_native = 'कु ड़मालि, কুড়ম ািল, କୁଡ଼ମାଲ, Kurmali'
 LanguageCode = 'kyw'
 ScriptCode = 'Latn'
 ScriptName = 'Chisoi'
 
 links = [
-  {'linkText': 'Keyboard',
-   'ref': '/' + LanguageCode + '/'
-   },
-  # {'linkText': 'Converter',
-  #  'ref': '/' + LanguageCode + '/convertUI/'},
+    {'linkText': 'Keyboard',
+     'ref': '/' + LanguageCode + '/'
+    },
+    {'linkText': 'Converter',
+     'ref': '/' + LanguageCode + '/convertUI/'
+    },
   # {'linkText': 'Font conversion summary',
   #   'ref': '/' + LanguageCode + '/encodingRules/'
   # },
-  # {'linkText': 'Resources',
-  #   'ref': '/' + LanguageCode + '/downloads/'
-  # },
-  {'linkText': 'Unicode proposal 22218',
-   'ref': 'https://www.unicode.org/L2/L2022/22218-chisoi.pdf'
-  },
+    {'linkText': 'Resources',
+     'ref': '/' + LanguageCode + '/downloads/'
+    },
+    {'linkText': 'Unicode proposal 22218r3',
+     'ref': 'https://www.unicode.org/L2/L2022/22218r3-chisoi.pdf'
+    },
   # {'linkText': 'THIS SCRIPT',
   #  'ref': 'https://en.wikipedia.org/wiki/XYZ_alphabet'
   # },
@@ -67,19 +68,13 @@ class langInfo:
         self.Language_native = Language_native
         self.test_data = u''
         self.unicode_font_list = [
-          {'family': 'BiswaKurmaliChisoi_Unicode',
-           'longName': 'Biswa Kurmali Unicode',
-           'source': '/fonts/Kurmali/BiswaKurmaliChisoiUnicode.otf',
+            {'family': 'BiswaUnicode_cwc',
+           'longName': 'Biswa Kurmali Unicode cwc',
+           'source': '/fonts/Kurmali/BiswaUnicode_cwc.ttf',
            },
-           {
-            'source': '/fonts/Kurmali/BiswaKurmaliChisoi_ASCII.woff',
-            'family': 'Biswa_Chisoi_ASCII',
-            'longName': 'Biswa Chisoi ASCII',
-           },
-           {
-            'source': '/fonts/Kurmali/BiswaKurmaliChisoi_1.ttf',
-            'family': 'Biswa_Chisoi_1',
-            'longName': 'Biswa Chisoi 1',
+            {'family': 'BiswaASCII_cwc',
+           'longName': 'Biswa Kurmali ASCII cwc',
+           'source': '/fonts/Kurmali/BiswasASCII_cwc.ttf',
            },
             {'family': 'NotoSans',
            'longName': 'Noto Sans',
@@ -102,6 +97,10 @@ class langInfo:
            'longName': 'Kurmali Chisoi Unicode',
            'fontFamily': 'BiswaKurmaliChisoi_Unicode',
            },
+          {'shortName': 'kyw3',
+           'longName': 'Kurmali Chisoi Unicode one layer',
+           'fontFamily': 'BiswaKurmaliChisoi_Unicode',
+           },
           {'shortName': 'kyw1',
            'longName': 'Kurmali Chisoi 1',
            'fontFamily': 'BiswaKurmaliChisoi_ASCII',
@@ -122,7 +121,14 @@ class langInfo:
         ]
 
         # For additional resources for download
-        self.text_file_list = []
+        self.text_file_list = [
+            {
+                'name': 'KeyMan 1.0 for Kurmali Chisoi',
+                'source': '/resources/kyw/kurmali.kmp',
+                'description': 'Keyboard for Mobile & Desktop',
+                'instructions': '',
+            }
+        ]
 
         self.to_keyman = True
 

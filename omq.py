@@ -58,6 +58,12 @@ unicode_font_list = [
 
 kb_list = [
   {
+    'shortName': 'omq_accents',
+    'longName': 'Acentos fonéticos otomangues, teclado español',
+    'instructions':
+      ' Tone marks on digits. Numerals on CapsLock'
+  },
+  {
     'shortName': 'omq7',
     'longName': 'Chatino Unicode super A-W',
     'instructions':
