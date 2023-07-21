@@ -38,9 +38,9 @@ links = [
   # {'linkText': 'Font conversion summary',
   #   'ref': '/' + LanguageCode + '/encodingRules/'
   # },
-  # {'linkText': 'Resources',
-  #   'ref': '/' + LanguageCode + '/downloads/'
-  # },
+  {'linkText': 'Resources',
+    'ref': '/' + LanguageCode + '/downloads/'
+  },
   {'linkText': 'Unicode proposal 22-289R',
    'ref': 'https://www.unicode.org/L2/L2022/22289r-tai-yo-script.pdf'
   },
@@ -107,7 +107,14 @@ class langInfo:
         ]
 
         # For additional resources for download
-        self.text_file_list = []
+        self.text_file_list = [
+            {
+                'name': 'KeyMan 1.0 for Tai Yo Unicode',
+                'source': '/resources/tyj/tai_yo.kmp',
+                'description': 'Keyboard for Desktop',
+                'instructions': '',
+            }
+        ]
 
         self.to_keyman = True
 
