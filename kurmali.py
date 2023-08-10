@@ -95,11 +95,11 @@ class langInfo:
         self.kb_list = [
           {'shortName': 'kyw2',
            'longName': 'Kurmali Chisoi Unicode',
-           'fontFamily': 'BiswaKurmaliChisoi_Unicode',
+           'fontFamily': 'BiswaUnicode_cwc',
            },
           {'shortName': 'kyw3',
            'longName': 'Kurmali Chisoi Unicode one layer',
-           'fontFamily': 'BiswaKurmaliChisoi_Unicode',
+           'fontFamily': 'BiswaUnicode_cwc',
            },
           {'shortName': 'kyw1',
            'longName': 'Kurmali Chisoi 1',
@@ -123,9 +123,9 @@ class langInfo:
         # For additional resources for download
         self.text_file_list = [
             {
-                'name': 'KeyMan 1.0 for Kurmali Chisoi',
+                'name': 'KeyMan 1.0 for Kurmali Chisoi 8-Aug-2023',
                 'source': '/resources/kyw/kurmali.kmp',
-                'description': 'Keyboard for Mobile & Desktop',
+                'description': 'Keyboard for Mobile & Desktop 8-Aug-2023',
                 'instructions': '',
             }
         ]
