@@ -108,6 +108,9 @@ class langInfo:
             {'linkText': 'Combiners',
              'ref': '/' + self.LanguageCode + '/diacritic/'
              },
+            {'linkText': 'Keyman Ahom Star keyboard',
+             'ref': 'https://keymanweb.com/#aho-ahom,Keyboard_ahom_star'
+             },
             {'linkText': 'Resources',
              'ref': '/' + self.LanguageCode + '/downloads/'
              },

@@ -234,12 +234,18 @@ class langInfo():
     # Resource files
     resource_list = [
       {
-        'name': 'KeyMan for Lakhum Tangsa Unicode v1.34 22-Jan-2023',
-        'source': '/resources/nst/tangsa_lakhum_1.34.kmp',
-        'description': 'Tangsa Lakum Unicode 1.34, 22-Jan-2023',
-        'update': 'Fix ctrl-shift-E to produce the expected result',
-        'instructions': 'Install KeyMan first. Next, Desk/laptop: download file and open.\nMobile: open link.',
+        'name': 'Download Tangsa Keyboard files, 22-Aug-2023',
+        'source': '/resources/nst/tangsa_lakhum_mobile2_20230822.kmp',
+        'description': 'Tangsa Lakhum Unicode 2.0, 22-Aug-2023',
+        'update': '',
       },
+      # {
+      #   'name': 'KeyMan for Lakhum Tangsa Unicode v1.40 22-Aug-2023',
+      #   'source': '/resources/nst/tangsa_lakhum_1.40.kmp',
+      #   'description': 'Tangsa Lakum Unicode 1., 22-Aug-2023',
+      #   'update': '',
+      #   'instructions': 'Install KeyMan first. Next, Desk/laptop: download file and open.\nMobile: open link.',
+      # },
       # {
       #   'name': 'KeyMan for Lakhum Tangsa Unicode v1.33 17-Jan-2023',
       #   'source': '/resources/nst/tangsa_lakhum_1.33.kmp',
