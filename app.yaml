@@ -47,8 +47,8 @@ handlers:
 - url: /aio/.*
   script: aiton.app
 
-- url: /as/.*
-  script: assamese.app
+# - url: /as/.*
+#   script: assamese.app
 
 - url: /bax/.*
   script: bamum.app
@@ -155,8 +155,8 @@ handlers:
 - url: /bfz/.*
   script: mahasu.app
 
-- url: /mro/.*
-  script: mru.app
+# - url: /mro/.*
+#   script: mru.app
 
 - url: /mni/.*
   script: meitei.app
@@ -169,6 +169,9 @@ handlers:
 
 - url: /ovd/.*
   script: elfdalian.app
+
+- url: /qiang/.*
+  script: qiang.app
 
 - url: /tavt/.*
   script: taivietscript.app
@@ -190,6 +193,9 @@ handlers:
 
 #- url: /ksw/.*
 #  script: karen.app
+
+- url: /ku/.*
+  script: kurmanji.app
 
 - url: /kyw/.*
   script: kurmali.app
@@ -218,8 +224,8 @@ handlers:
 - url: /mor/.*
   script: moro.app
 
-- url: /pcm/.*
-  script: nigerianpidgin.app
+#- url: /pcm/.*
+#  script: nigerianpidgin.app
 
 - url: /my/.*
   script: burmese.app
@@ -253,6 +259,9 @@ handlers:
 
 - url: /shn/.*
   script: shan.app
+
+- url: /so/.*
+  script: somali.app
 
 - url: /srb/.*
   script: sora.app
