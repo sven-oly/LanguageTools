@@ -50,19 +50,27 @@ var PHK_LAYOUT = {
           'zxcvbnm<>?'
     }
   },
-  'transform' : {
-    // Not working yet!
+    'transform' : {
+        // Remove duplicates
+        '\u103c\u001d?\u103c' : '\u103c',
+        '\u103b\u001d?\u103b' : '\u103b',
+        '\u105e\u001d?\u105e' : '\u105e',
 
-    // Reorder vowel E after consonant
-    '\u200c(\u1031)\u001d?([\u1000-\u102a\u103f\u104e\u1075\u1078\u107a\u109d\uaa61-\uaa7f\ua9f2])': '$2$1',
+        // Reorder vowel E after consonant
+        '\u200c(\u1031)\u001d?([\u1000-\u102a\u103f\u104e\u1075\u1078\u107a\u109d\uaa61-\uaa7f\ua9f2])': '$2$1',
 
-    // Reorder e-vowel + medial ra/ya after consonant.
-    // Reorder e-vowel + medial ra/ya after consonant.
-    '(\u1031)\u001d?([\u103a-\u103e\u105e])': '$2$1',
+        // Reorder e-vowel + medial ra/ya after consonant.
+        // Reorder e-vowel + medial ra/ya after consonant.
+        '(\u1031)\u001d?([\u103a-\u103e\u105e])': '$2$1',
 
-    // 1036 follows 103a
-    '\u1036\u001d?\u103a': '\u103a\u1036',
-  },
+        // 1036 follows 103a
+        '\u1036\u001d?\u103a': '\u103a\u1036',
+        // Move diacritics
+
+        '([\u102d\u102e])\u001d?([\u103a\u103b\u103c\u103d\u105e])' : '$2$1',
+        '([\u102f\u1030\u1036])\u001d?([\u103a\u103b\u103c\u103d\u105e\u109d\ua935])' : '$2$1',
+        '([\u103b\u103c\u103d])\u001d?(\u105e)' : '$2$1'
+    },
 };
 
 // Load the layout and inform the keyboard to switch layout if necessary.

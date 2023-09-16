@@ -14,25 +14,36 @@ langConverter.encoding_data = {
 };
 
 langConverter.transformRules = [
-  [/([\u1031\u103c]\ufe00?)([\u1000-\u1029\u1075-\u1081\uaa60-\uaa7a]\ufe00?)/gi,
-  "$2$1"],
+    [/([\u1031\u103c]\ufe00?)([\u1000-\u1029\u1075-\u1081\uaa60-\uaa7a]\ufe00?)/gi,
+     "$2$1"],
 
-  [/ ([\u102f\u103d])/gi,
-   "$1 "],
+    [/ ([\u102f\u103d])/gi, "$1 "],
 
-  [/([\u103b\u103d]) \u102f/gi, "$1\u102f "],
+    [/([\u103b\u103d]) \u102f/gi, "$1\u102f "],
 
-  [/([\u1031]\ufe00?)([\u103a\u103d]+)/gi, "$2$1 "],
+    [/([\u1031]\ufe00?)([\u103a\u103d]+)/gi, "$2$1 "],
 
-  // Doubled combiners
-  [/\u103a\u103a/gi, "\u103a\u00a0\u103a"],
+    // Doubled combiners
+    [/\u103a\u103a/gi, "\u103a\u00a0\u103a"],
 
-  [/\u102e\u102e/gi, "\u102e\u00a0\u102e"],
+    [/\u102e\u102e/gi, "\u102e\u00a0\u102e"],
 
-  [/\u1036\u1036/gi, "\u1036\u00a0\u1036"],
+    [/\u1036\u1036/gi, "\u1036\u00a0\u1036"],
 
-  [/\u109d\u109d/gi, "\u109d\u00a0\u109d"],
+    [/\u109d\u109d/gi, "\u109d\u00a0\u109d"],
+    
+    // Remove duplicates
+    [/\u103c\u103c/gi , "\u103c"],
+    [/\u103b\u103b/gi , "\u103b"],
+    [/\u105e\u105e/gi , "\u105e"],
 
+    // Reorder signs
+    [/([\u102d\u102e])([\u103a\u103b\u103c\u103d\u105e])/gi,
+     "$2$1"],
+    [/([\u102f\u1030\u1036])([\u103a\u103b\u103c\u103d\u105e\u109d\ua935])/gi,
+     "$2$1"],
+    [/([\u103b\u103c\u103d])(\u105e)/gi , "$2$1"],
+    
   // Ellipsis
   [/\.\.\./gi, "\u2026"],
 ]
@@ -192,7 +203,7 @@ let outtext = [];
     if (c in banchobMap) {
       const result = banchobMap[c];
       if (result) {
-	    out = result;
+            out = result;
       }
     }
     outtext.apend(out);
