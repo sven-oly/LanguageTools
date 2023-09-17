@@ -27,17 +27,17 @@ except NameError:
 Language = 'Qiang'
 Language_native = 'Rme'
 LanguageCode = 'qiang'
-ScriptCode = 'Latn'
+ScriptCode = 'Rmea'
 
 links = [
     {'linkText': 'Keyboard',
      'ref': '/' + LanguageCode + '/'
     },
-    # {'linkText': 'Converter',
-    #  'ref': '/' + LanguageCode + '/convertUI/'},
-    # {'linkText': 'Font conversion summary',
-    #   'ref': '/' + LanguageCode + '/encodingRules/'
-    # },
+     {'linkText': 'Converter',
+      'ref': '/' + LanguageCode + '/convertUI/'},
+     {'linkText': 'Font conversion summary',
+       'ref': '/' + LanguageCode + '/encodingRules/'
+     },
     # {'linkText': 'Resources',
     #   'ref': '/' + LanguageCode + '/downloads/'
     # },
@@ -70,14 +70,9 @@ class langInfo:
         self.test_data = u''
         self.unicode_font_list = [
           {
-            'source': '/fonts/qiang/v-Rma-serif-Regular.otf',
-            'longName': 'Rma-serif ASCII',
-            'family': 'Rma-serif ASCII',
-           },
-          {
-            'source': '/fonts/qiang/v-Rma-serif-Regular_bar.otf',
-            'longName': 'Rma-serif ASCII bar',
-            'family': 'Rma-serif ASCII bar',
+            'source': '/fonts/Qiang/v-Rma-serif-Unicode-Regular.tff',
+            'longName': 'Rma-serif Unicode',
+            'family': 'Rma-serif Unicode',
            },
           {'family': 'NotoSans',
            'longName': 'Noto Sans',
@@ -87,28 +82,39 @@ class langInfo:
 
         self.encoding_font_list = [
           {
-            'font_path': '/fonts/qiang/v-Rma-serif-Regular.otf',
+            'font_path': '/fonts/Qiang/v-Rma-serif-Regular.ttf',
+            'display_name': 'Rma-serif TTF ASCII',
+            'font_name': 'Rma-serif TTF ASCII',
+           },
+          {
+            'font_path': '/fonts/Qiang/v-Rma-serif-Regular.otf',
             'font_name': 'Rma-serif ASCII',
             'display_name': 'Rma-serif ASCII',
           },
+          {
+            'source': '/fonts/Qiang/v-Rma-serif-Regular_bar.otf',
+            'longName': 'Rma-serif ASCII bar',
+            'family': 'Rma-serif ASCII bar',
+           },
         ]
 
         self.lang_list = [LanguageCode]  # This may be extended
 
+        # Unicode layouts
         self.kb_list = [
-          {'shortName': LanguageCode,
-           'longName': LanguageCode,
-           },
+          {'shortName': 'qiang_unicode',
+           'longName': 'Qiang unicode'
+           }
         ]
 
         self.links = links
 
         # Unicode range
-        self.unicodeRanges = [('\u0020', '\u007f')]
+        self.unicodeRanges = [('\ud818\udd40', '\ud818\udd7f')]
         # TODO: Fill in with diacritics
         self.diacritic_list = [unichr(x) for x in range(0x300, 0x330)]
         # TODO: Fill in base consonant
-        self.default_base_consonant = u'\0x61'
+        self.default_base_consonant = u'\d181\udd401'
 
         self.encodedRanges = [
             (0x20, 0xff),
