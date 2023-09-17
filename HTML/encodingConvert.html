@@ -220,12 +220,17 @@ function buildEncodingTable(table) {
       const cellUni = row.insertCell(outIndex);
       cellUni.style.borderRight = "thick solid";
       if (encodingIndex < items.length && items[encodingIndex]) {
-        cellUni.innerHTML = items[encodingIndex];
+        let output = items[encodingIndex];
+{% if variation_sequence %}
+          output = add_variation_modifiers(output);
+{% endif %}
+
+        cellUni.innerHTML = output;
         cellUni.style.fontFamily = unicode_font_list[0];
         cellUni.style.fontSize = "30px";
         // Add the Unicode hex for hover info.
         // TODO: show as full Unicode numeric values
-        cellUni.title = utf16common(items[encodingIndex], "U+", " ", null, []);
+        cellUni.title = utf16common(output, "U+", " ", null, []);
       }
       outIndex += 1;
 
@@ -280,6 +285,11 @@ function setUnicodeFontColumns(unicodeFont, tableId) {
 
     <p>
 {% include "fontSelector.html" %}
+
+{% if variation_sequence %}
+<input type="checkbox" name="vsToggle" id="toggleVS" checked
+       onchange="toggleConvertedVS('Unicode_font_output_text', toggleVS);">Variation sequences activated<br />
+{% endif %}
 
   {% if encoding_tables %}
     DisplayTable: <select id='selectTable' onchange="onEncodingSelected(this, 'encoding_table_area')">
