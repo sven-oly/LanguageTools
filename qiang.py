@@ -83,18 +83,13 @@ class langInfo:
         self.encoding_font_list = [
           {
             'font_path': '/fonts/Qiang/v-Rma-serif-Regular.ttf',
-            'display_name': 'Rma-serif TTF ASCII',
-            'font_name': 'Rma-serif TTF ASCII',
+            'display_name': 'Rma-serif ASCII',
+            'font_name': 'Rma-serif ASCII',
            },
           {
-            'font_path': '/fonts/Qiang/v-Rma-serif-Regular.otf',
-            'font_name': 'Rma-serif ASCII',
-            'display_name': 'Rma-serif ASCII',
-          },
-          {
-            'source': '/fonts/Qiang/v-Rma-serif-Regular_bar.otf',
-            'longName': 'Rma-serif ASCII bar',
-            'family': 'Rma-serif ASCII bar',
+            'font_path': '/fonts/Qiang/v-Rma-serif-Regular_bar.otf',
+            'display_name': 'Rma-serif ASCII bar',
+            'font_name': 'Rma-serif ASCII bar',
            },
         ]
 

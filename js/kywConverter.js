@@ -3,10 +3,10 @@
 const langConverter = new langConverterClass('kyw', 'Kurmali');
 
 langConverter.encodingNames = map_encoding_names = [
-  'Chisoi ASCII'];
+  'Biswa Chisoi ASCII'];
 
 langConverter.encoding_data = {
-    'Chisoi ASCII': {index:0, outputEncoding:'Unicode', outputScript:'Chis'}
+    'Biswa Chisoi ASCII': {index:0, outputEncoding:'Unicode', outputScript:'Chis'}
 };
 
 langConverter.transformRules = [

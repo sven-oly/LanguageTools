@@ -24,6 +24,10 @@ let nsibidi = function() {
     this.use_dictionary = false;  //false;
 }
 
+nsibidi.prototype.getVersion = function() {
+    return this.version;
+}
+
 nsibidi.prototype.sortFirst = function(a,b) {
     if (a[0] < b[0]) {
         return -1;
@@ -61,7 +65,6 @@ nsibidi.prototype.lookupSym = function(sym) {
 nsibidi.prototype.ig2nsi = function(data_in) {
     // Create an index based on the first letter of each key in this input.
     this.igTree = new Map();
-    // TODO: unpack multiple items
     for (const property in data_in) {
         let x = data_in[property];
         if (property.substring(0,1) == 'ò') {

@@ -9,10 +9,13 @@ class textFunctions {
 
     constructor() {
 	mendeAsciiOrder = [
-	    'p', 'w', 'mb', 'b', 'kp', 'gb', 'f', 'v', 't', 'l', 'k',
+	    'p', 'w', 'W', 'mb', 'Mb', 'b', 'kp', 'gb', 'f', 'v', 't', 'l', 'k',
 	    'nd', 'd', 's', 'j', 'nj', 'y', 'ng', 'g', 'k', 'h', '-',
-	    'h', 'm' ,'n', 'ny', '\u014b', 'i', 'I',
-	    'a', 'A', 'u', 'U', 'e', 'E', 'ɛ', 'Ɛ', 'ɔ', 'Ɔ', 'o', 'O', 'r',
+	    'h', 'm' ,'n', 'ny', '\u014b', 'i', 'I', 'ĩ',
+	    'a', 'A', 'u', 'U', 'e', 'E', 'ẽ', 'ɛ', 'Ɛ', 'ɔ', 'Ɔ',
+	    'o', 'O',
+	    'wɛ', 'gɛ', 'ngu', 'gua', 'ku', 'hua', 'mua', 'nu', 'lɛ', 'he', 'ho', 'mũ', 'mc', 'Mc',
+	    'r',
 	    'X', 'x',
 	    '0'];
 	// Mende ASCII ordering, based on table.

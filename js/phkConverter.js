@@ -1,6 +1,6 @@
 const langConverter = new langConverterClass('phk', 'Tai Phake');
 
-// Mappings for Navajo font encodings
+// Mappings for Phake font encodings
 langConverter.map_encoding_names = map_encoding_names = [
   'Phake Script',
   'Phake Ramayana',

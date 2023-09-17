@@ -2,6 +2,8 @@
 let Utils = function() {
 }
 
+Utils.backup = null;
+
 function toggleDiv(id, toggle) {
     var obj = document.getElementById(id);
     var checkBox = document.getElementById(toggle);
@@ -306,17 +308,30 @@ Utils.prototype.onLayoutSelected = function(layoutCode, area_id, instruction_id)
         if (area) {
             area.innerHTML = area.value = instruction_parts;
         }
+	if (info[2]) {
+	    // Set the font, too.
+	    //this.setFontFamily(info[2], area_id, true);
+	    
+	}
     }
   document.getElementById(area_id).focus();
 }
 
 /* Clears area and optionally sets focus */
 Utils.prototype.clearText = function(area_id, setfocus) {
-  var field = document.getElementById(area_id);
-  field.value = '';
-  if (setfocus) {
-    field.focus();
-  }
+    const field = document.getElementById(area_id);
+    // Save last for restoring if deleted by accident.
+    Utils.backup = field.value;
+    field.value = '';
+    if (setfocus) {
+	field.focus();
+    }
+}
+
+Utils.prototype.restoreText = function(area_id) {
+    const field = document.getElementById(area_id);
+    // Get last value and restore.
+    field.value = Utils.backup;    
 }
 
 Utils.prototype.setKeyCapsFont = function(newFontFamily) {

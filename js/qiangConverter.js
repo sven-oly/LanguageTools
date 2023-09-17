@@ -2,11 +2,13 @@ const langConverter = new langConverterClass('qiang', 'Qiang');
 
 // Mappings for Phake font encodings
 langConverter.map_encoding_names = map_encoding_names = [
-  'Rma ASCII',
+    'Rma-serif ASCII',
+    'Rma-serif ASCII bar'
 ];
 
 langConverter.encoding_data = {
-    'Rma ASCII': {index:0, outputEncoding:'Unicode', outputScript:'Rma'},
+    'Rma-serif ASCII': {index:0, outputEncoding:'Unicode', outputScript:'Rma'},
+    'Rma-serif ASCII bar': {index:0, outputEncoding:'Unicode', outputScript:'Rma'},
 };
 
 langConverter.transformRules = [

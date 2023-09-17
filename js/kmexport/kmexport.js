@@ -240,6 +240,7 @@ function map_en_to_x(layout, outputCtrlAlt, outputMobile, outputTransforms, opti
     }
 }
 
+
 function generateMobile(qwerty_names, vals, layers, keys) {
     let layerId = 'default';  // Get from data
     let result = [];
@@ -379,7 +380,7 @@ function getTransforms(layout) {
     // 1. map each part of the key to the qwerty keys lower, upper, control, etc.
     // 2. create KM rule
     // TODO: Fill in
-    for (key in transforms) {
+    for (const key in transforms) {
       let left_match = findKeyPartsInMaps(key);
       let right_side = transforms[key];
       let left_format = leftMatchToContext(left_match, reverse_map);

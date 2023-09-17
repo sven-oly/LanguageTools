@@ -3804,7 +3804,7 @@ i18n.input.keyboard.Model.prototype.hasTransforms = function $i18n$input$keyboar
 };
 
 // Returns the number of codes to be removed.
-i18n.input.keyboard.Model.prototype.processBackspace = function $i18n$input$keyboard$Model$$processBackspace$(charsBeforeCaret) {
+i18n.input.keyboard.Model.prototype.processBackspace = function $i18n$input$keyboard$Model$$processBackspace$(charsBeforeCaret, thisView) {
   let back = 1;
   this.matchHistory_(charsBeforeCaret);
   var history = this.historyState_, text = history.current.text;
@@ -3821,7 +3821,14 @@ i18n.input.keyboard.Model.prototype.processBackspace = function $i18n$input$keyb
     }
     history.ambi || (history.previous = {text:"", transat:-1});
   } else {
-    history.previous = {text:"", transat:-1}, history.ambi = "", history.current = goog.object.clone(history.previous);
+      // Here's where we could check for an empty buffer and do
+      // something special if needed!!!
+      let newText = '';
+      if (thisView && thisView.forceRTL) {
+	  newText = '\u202e';  // To force RTL as the contents.
+      }
+      history.current.text = newText;
+    history.previous = {text:newText, transat:-1}, history.ambi = "", history.current = goog.object.clone(history.previous);
   }
   return back;
 };
@@ -7587,7 +7594,7 @@ i18n.input.keyboard.Controller.prototype.commitChars_ = function $i18n$input$key
   var trans = {back:1, chars:""};
   if (this.model_.hasTransforms()) {
     var text = this.inputable_.getTextBeforeCursor(20) || "";
-    keyCode == codes.BACKSPACE ? trans.back = this.model_.processBackspace(text)
+      keyCode == codes.BACKSPACE ? trans.back = this.model_.processBackspace(text, this.activeView_.view_)
                                : trans = this.model_.translate(chars, text);
   } else {
     chars && (trans = {back:0, chars:chars});
