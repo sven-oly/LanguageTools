@@ -83,11 +83,15 @@ class langInfo:
         ]
 
         self.encoding_font_list = [
-          {
-            'font_path': '/fonts/Kurmali/BiswaKurmaliChisoi_1.ttf',
-            'font_name': 'xyz',
-            'display_name': 'xyz',
-          },
+          # {
+          #   'font_path': '/fonts/Kurmali/BiswaKurmaliChisoi_1.ttf',
+          #   'font_name': 'Biswa Kurmali Chisoi',
+          #   'display_name': 'Biswa Kurmali Chisoi',
+          # },
+            {'font_name': 'BiswaASCII_cwc',
+           'display_name': 'Biswa Kurmali cwc',
+           'font_path': '/fonts/Kurmali/BiswasASCII_cwc.ttf',
+           },
         ]
 
         self.lang_list = [LanguageCode]  # This may be extended

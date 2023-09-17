@@ -70,7 +70,7 @@ class langInfo:
         self.test_data = u''
         self.unicode_font_list = [
           {
-            'source': '/fonts/Qiang/v-Rma-serif-Unicode-Regular.tff',
+            'source': '/fonts/Qiang/v-Rma-serif-Unicode-Regular.ttf',
             'longName': 'Rma-serif Unicode',
             'family': 'Rma-serif Unicode',
            },
