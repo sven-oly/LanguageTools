@@ -108,7 +108,7 @@ class LanguagesHomeHandler(webapp2.RequestHandler):
     except:
       print('!!! Unicode range not set')
 
-    # Before all text in the output area, e.g., U+202E to force RTL
+    # E.g., before all text in the output area, e.g., U+202E to force RTL
     try:
         insert_text = langInfo.insert_text
     except:
@@ -135,7 +135,7 @@ class LanguagesHomeHandler(webapp2.RequestHandler):
     self.response.out.write(template.render(path, template_values))
 
 
-# AJAX handler for  converter
+# AJAX handler for converter
 class ConvertHandler(webapp2.RequestHandler):
   def get(self, match=None):
     # TODO: Get the text values
@@ -391,6 +391,11 @@ class EncodingRules(webapp2.RequestHandler):
     except:
         conversion_data = None
 
+    try:
+        variation_sequence = langInfo.variation_sequence
+    except:
+        variation_sequence = None
+
     template_values = {
         'converterJS': '/js/' + langInfo.LanguageCode + 'Converter.js',
         'converter_list': converter_list,
@@ -403,6 +408,7 @@ class EncodingRules(webapp2.RequestHandler):
         'kb_list': langInfo.kb_list,
         'links': langInfo.links,
         'showTools': self.request.get('tools', None),
+        'variation_sequence': variation_sequence,
     }
     path = os.path.join(os.path.dirname(__file__), 'HTML/encodingConvert.html')
     self.response.out.write(template.render(path, template_values))

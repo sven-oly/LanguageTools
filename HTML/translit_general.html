@@ -276,11 +276,11 @@
                }
                {% if variation_sequence %}
                const vsSelector = document.getElementById('useVariationSequence');
-	       // Set state of VS based on the value.
-	       const vsToggle = document.getElementById('toggleVS');
-	       vsToggle.checked = vsSelector.checked;
+               // Set state of VS based on the value.
+               const vsToggle = document.getElementById('toggleVS');
+               vsToggle.checked = vsSelector.checked;
 
-	       toggleConvertedVS(destinationArea, vsSelector);
+               toggleConvertedVS(destinationArea, vsSelector);
                {% endif %}
            }
 
@@ -318,6 +318,10 @@
                }
                var result = {{converters.convert_obj}}['conversions'][type].convert(intext);
                var result_type = {{converters.convert_obj}}['conversions'][type]['to'];
+               {% if variation_sequence %}
+               // Only if variations are allowed.
+               result = add_variation_modifiers(result);
+               {% endif %}
                output_type.innerHTML = output_type.value = result_type;
                output_area.innerHTML = output_area.value = result;
                // Reset the hex values.
@@ -380,18 +384,18 @@
            function radioChanged(inFont, outFont) {
                // Change the fonts for the input and output areas
                if (inFont) {
-		   const inArea = document.getElementById('old_font_input_text');
-		   const inFontSelector = document.getElementById('selectEncodingFont');
-		   inFontSelector.value = inFont;
-		   inFontSelector.onchange(inFontSelector, 'old_font_input_text');
-	       }
-	       if (outFont) {
-		   const outArea = document.getElementById('Unicode_font_output_text');
-		   const outFontSelector = document.getElementById('selectFont');
-		   outFontSelector.value = outFont; 
-		   outFontSelector.onchange(outFontSelector, 'Unicode_font_output_text');
-	       }
-	   }
+                   const inArea = document.getElementById('old_font_input_text');
+                   const inFontSelector = document.getElementById('selectEncodingFont');
+                   inFontSelector.value = inFont;
+                   inFontSelector.onchange(inFontSelector, 'old_font_input_text');
+               }
+               if (outFont) {
+                   const outArea = document.getElementById('Unicode_font_output_text');
+                   const outFontSelector = document.getElementById('selectFont');
+                   outFontSelector.value = outFont; 
+                   outFontSelector.onchange(outFontSelector, 'Unicode_font_output_text');
+               }
+           }
 
            function getConverterSelection() {
                const ele = document.getElementsByName('convertOption');

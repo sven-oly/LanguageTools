@@ -1,7 +1,5 @@
 <!DOCTYPE html>
 <html><head>
-    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{language}} virtual keyboard test</title>
     
 
@@ -19,7 +17,7 @@
    {% for font in font_list %}
     @font-face{
       font-family:"{{font.family}}";
-      src:url('{{font.source}}'){% if '.ttf' in font.source %}format('truetype'){%endif%}{% if '.TTF' in font.source %}format('truetype'){%endif%}{% if '.otf' in font.source %}format('opentype'){%endif%}{%if '.woff' in font.source %}format('woff'){%endif%};
+      src:url("{{font.source}}");
       font-weight:normal;
       font-style:normal;
     }
@@ -37,19 +35,40 @@
       {% endfor %}
 
       .default-font {
-      font-family: "Arial";
+      font-family: "Arial,Helvetica";
       font-size:18px;
       }
+      .input-font {
+      font-family: "Arial,Helvetica";
+      font-size:24px;
+      }
+      .choice-font {
+      font-family: "Arial,Helvetica";
+      font-size:18px;
+      }
+      input {font-size:18px;}
 
-    input {font-size:18px;}
-    textarea {font-size:18px; height:200px; resize: vertical;}
+      .instructions {
+        font-size:18px;
+      }
 
-    #instruction_area {font-size:18px;}
+      textarea {font-size:18px; height:150px; width:600px; resize: vertical;}
+
+      #choose_one {font-size:18px; height:320px; width:150px; resize: vertical;}
+      #choose_table {font-size:18px; height:320px; width:250px; resize: vertical;}
+
+      .nsi_button { font-family: "Akagu2020"; }
+      button { font-size:16px; }
     </style>
+
+  <!-- special files for Nsibidi -->
+  <script src="/js/nsibidi/English2utf.js"></script>
+  <script src="/js/nsibidi/LatinInput.js"></script>
+  <!-- This processes the data loaded above -->
+  <script src="/js/nsibidi/nsibidi_kb.js"></script>
 
   <script src="/js/utils.js"></script>
   <script src="/js/vk-debug.js"></script>
-  <script src="/js/baseConverter.js"></script>
 {% if variation_sequence %}
   <script src="/js/{{langTag}}Converter.js"></script>
 {% endif %}
@@ -67,10 +86,10 @@
 
   // For the keyboard.
   // Keyboard info.
-  const kb_info = {
+  var kb_info = {
     {% for kb in kb_list %}{{kb.shortName}}: ["{{kb.longName}}",
       "{{kb.instructions}}",
-      "{{kb.fontFamily}}"],
+      "{{kb.fontFamily}}", "XYZ"],
       {%endfor%}
   };
   const font_families = [{% for font in font_list %}"{{font.family}}", {% endfor %}];
@@ -79,23 +98,24 @@
     var area1Elem = document.getElementById(area1);
     var selObj = window.getSelection();
     var text1 = "";
-    if (selObj && selObj.rangeCount > 0 && selObj.toString(0)) {
+    if (selObj && selObj.rangeCount > 0) {
       text1 = selObj.toString(0);
     } else {
       text1 = area1Elem.value;
     }
     var text2= '';
 
-    newUrl = "/{{langTag}}/AllFonts/?utext=" + text1;
+    compareUrl = "/{{langTag}}/AllFonts/?utext=" + text1 + "&encodedText=" + text2;
 
-    window.open(newUrl, '_blank');
+    window.open(compareUrl, '_blank');
   }
 
   const utils = new Utils();  // Object for utility functions
 
   var controller, visible = true;
   function onPageLoaded() {
-    var input = document.getElementById('t1');
+    const input_area_id = 'input_area';
+    var input = document.getElementById(input_area_id);
     controller = new i18n.input.keyboard.Keyboard();
 
     var x = i18n.input.keyboard.Controller;
@@ -104,7 +124,7 @@
     {% for kb in kb_list %}
     controller.loadLayout('{{kb.shortName}}');
     {% endfor %}
-    controller.reposition(input, 3, 4, [5, 0, 0, 0]);
+    controller.reposition(input, 3, 4, [0, 5, 0, 0]);
     controller.activateLayout('{{kb_list.0.shortName}}');
     controller.register(input);
     controller.addEventListener(
@@ -113,48 +133,32 @@
 
     let kb_obj = document.getElementById('kbd');
 
-    // For resetting the keyboard's keycaps to the current font.
-    controller.setRefreshStateCallback(onRefresh);
-      
+    // If there are keyboard instructions, add them.
+
+    // Set font based on keyboard?
+    // Get the font associated with the keyboard, if available.
+    //
     controller.addEventListener(
         'lat',
         function () {
-            const selector = document.getElementById("setLayout");
-            const kb_data = kb_info[selector.value];
-            let font_family = font_families[0];  // Default
-	    // Get font if specified in the kb_data
+            var selector = document.getElementById("setLayout");
+            // TODO: Get the current selection?
+            var kb_data = kb_info[selector.value];
+            var font_family = font_families[0];
             if (kb_data[2]) {
               font_family = kb_data[2];
             }
-	    // Get the font associated with the keyboard, if available.
-            utils.setFontFamily(font_family, 't1');
+            //utils.setFontFamily(font_family, 'input_area', false);
           }
     );
 
-    input.select();
-    input.focus();
-
     var selector = document.getElementById("setLayout");
-    utils.onLayoutSelected(selector.value, 't1', 'kb_instructions');
+    utils.onLayoutSelected(selector.value, 'input_area', 'kb_instructions');
 
     utils.setFontFamily(document.getElementById("fontSelector").value, 't1');
-  }
 
-  // On Refresh of the keyboard, e.g., shift, ctrl, caps, etc.
-  function onRefresh(thing) {
-      const selector = document.getElementById("setLayout");
-      // TODO: Get the current selection?
-      const kb_data = kb_info[selector.value];
-      let font_family = font_families[0];  // Default
-      if (kb_data[2]) {
-          font_family = kb_data[2];
-      }
-      utils.setFontFamily(font_family, 't1');
-  }
-
-
-  function onPageShow() {
-    utils.setFontFamily(document.getElementById("fontSelector").value, 't1');
+    var input_area = document.getElementById('input_area');
+    input_area.focus();
   }
 
     function toggle() {
@@ -213,15 +217,6 @@
       textArea.innerHTML = textArea.value = key_layouts;
     }
 
-    function toKeyMan(textarea_id, select_layout_id) { 
-	// Opens a windows with the keyman keyboard data
-	var textArea = document.getElementById(textarea_id);
-	var selector = document.getElementById(select_layout_id);
-	newUrl = "/test/kbkm/?kbname=" + selector.value;
-
-	window.open(newUrl, '_blank');
-   }
-
     function fillEncodedRange(textarea_id) {
       var textArea = document.getElementById(textarea_id);
       var output = "";
@@ -236,17 +231,32 @@
       }
       textArea.innerHTML = textArea.value = output;
     }
+{% if variation_sequence %}
+function toggleConvertedVS(text_area_id, toggle) {
+  // TODO: Change variation sequence content of text.
+  var text_area = document.getElementById(text_area_id);
+  var text = text_area.value;
+  var new_text;
+  if (toggle.checked) {
+      new_text = add_variation_modifiers(text);
+  } else {
+      new_text =remove_variation_modifiers(text);
+  }
+  text_area.innerHTML = text_area.value = new_text;
+}
+{% endif %}
 
-    function insertText(area_id, text_to_insert) {
-	// Add specified text to the given area after existing content.
-	var textArea = document.getElementById(area_id);
-	textArea.innerHTML = textArea.value =
-	    text_to_insert;
-    }
-
-    function textarea_onchange(area) {
-	let x = area;
-    }
+// Intercept copying to remove ZWSP between words.
+function removeZwspCopy(region_id) {
+  const region = document.getElementById(region_id);
+  let text = region.value.replaceAll('\u200b', '');
+  navigator.clipboard.writeText(text).then(function() {
+    /* clipboard successfully set */
+  }, function() {
+    alert('Copy failed');
+  });
+  return text;
+ }
   </script>
   <link rel="stylesheet" type="text/css" href="/css/keyboard.css" />
 
@@ -258,98 +268,117 @@
 
   
   </head>
-<body onload="onPageLoaded()" onpageshow="onPageShow()">
+<body onload="onPageLoaded()">
   <div class="container">
     <div class="span-1">  
     </div>
-  <div class="span-16">
+  <div class="span-18">
     <h2>{{language}} Keyboard</h2>
 
   <span {% if lang_list|length <= 1 %}hidden{% endif %}>
     Language: <select onchange="utils.onLanguageSelected(this.value, 't1')">
     {% for lang in lang_list %}
-    <option value="{{lang.shortName}}" select="">{{lang.longName}}</option>
+    <option value="{{lang}}" select="">{{lang.longName}}</option>
     {% endfor %}
-  </select>
+     </select>
   </span>
-    <span {% if kb_list|length <= 1 %}hidden{%endif%}>
+  <span {% if kb_list|length <= 1 %}hidden{%endif%}>
     Keyboard: <select onchange="utils.onLayoutSelected(this.value, 't1', 'kb_instructions')" id="setLayout">
-    {% for kb in kb_list %}
-    <option value="{{kb.shortName}}">{{kb.longName}}</option>
-    {% endfor %}
+      {% for kb in kb_list %}
+      <option value="{{kb.shortName}}" select="">{{kb.longName}}</option>
+      {% endfor %}
     </select>
   </span>
-  Font: <select onchange="utils.setFontFamily(this.value, 't1')" id="fontSelector">
-    {% for font in font_list %}
-    <option value="{{font.family}}"{% if forloop.first %} selected{%endif%}>{{font.longName}}</option>
-    {% endfor %}
-    <option value="Arial">Arial</option>
-  </select>
-  Size: <select onchange="utils.onSizeSelected(this.value, 't1');" id="sizeSelector">
-    <option value="10px">10</option>
-    <option value="14px">14</option>
-    <option value="18px">18</option>
-    <option value="24px" selected>24</option>
-    <option value="32px">32</option>
-    <option value="48px">48</option>
-    <option value="48px">60</option>
-    <option value="72px">72</option>
-    <option value="96px">96</option>
-    <option value="120px">120</option>
-    <option value="240px">240</option>
-  </select>
 
-  <input type="button" value="Select all text" onclick="document.getElementById('t1').select()";
+  Language: <select id='inputLangSelector'>
+    <option value='ig'>Igbo</option>
+    <option value='en'>English</option>
+  </select>
+  <input type="checkbox" name="partMatchToggle" id="partMatchToggle">Partial match
+  <input type="button" value="Clear input" onclick="utils.clearText('input_area', true);">
   <br />
-
+    <div id="nsibidi_input">
+    <p class="input-font">Type here:
+    <input id="input_area"
+           onkeyup='nsi.handleMatching("input_area", "inputLangSelector", "t1", "results_count",
+           "choose_table", "partMatchToggle");'
+           class='input-font' style="width:200px;height:35px;" dir="{{direction}}" spellcheck="false"></input>
+      <span id='results_count'></span>
+      <br />
+      <h3>How to type Nsibidi:</h3>
+      <div id="instruction_area">
+        <p id="kb_instructions" class="instructions"></p>
+      </div>
+  </div>
   <!-- If an original encoding area is needed. -->
   {% if encoded_div %} 
-  <textarea id="encodeArea" class='default-font' style="width:600px;height:300px;"
+  <textarea id="encodeArea" class='default-font'
             rows="10" dir="{{direction}}" spellcheck="false"></textarea>
   <br />
-  <input type="button" value="Convert to Unicode text"
+  <input type="button" value="Codes to Unicode text"
     onclick="convertToUnicode('encodeArea', 't1');">
   <hr>
   {% endif %}
 
   <div id="t1_div">
-    <textarea id="t1" style="width:600px;font-family:{{font_list.0.family}};resize:vertical;font-size:24px;"
-	      rows="5" spellcheck="false"
-	      lang="{%if lang_list.0.shortName %}{%endif%}{%if langTag %}{{langTag}}{%endif%}"
-	      dir="{{direction}}" onchange="textarea_onchange(this);">{{insert_text}}{{test_data}}</textarea>
-    <input type="button" value="Clear text" onclick="utils.clearText('codepoints');utils.clearText('t1', true);insertText('t1', '{{insert_text}}');">
-    <input type="button" value="Undo delete" onclick="utils.restoreText('t1');">
-  <br />
-  {% if allFonts %}
-  <input type="button" onclick="toAllFonts('t1', null);" value="To all fonts">
-  {% endif %}
+    <p class="choice-font">Nsibidi output</p>
+    Font: <select onchange="utils.setFontFamily(this.value, 't1', false)" id="fontSelector">
+      {% for font in font_list %}
+      <option value="{{font.family}}"{% if forloop.first %} selected{%endif%}>{{font.longName}}</option>
+      {% endfor %}
+      <option value="Arial">Arial</option>
+    </select>
+      Size: <select onchange="utils.onSizeSelected(this.value, 't1');" id="sizeSelector">
+        <option value="10px">10</option>
+        <option value="14px">14</option>
+        <option value="18px">18</option>
+        <option value="24px" selected>24</option>
+        <option value="32px">32</option>
+        <option value="48px">48</option>
+        <option value="48px">60</option>
+        <option value="72px">72</option>
+        <option value="96px">96</option>
+        <option value="120px">120</option>
+        <option value="240px">240</option>
+      </select>
+      <input type="button" value="Clear text" onclick="utils.clearText('codepoints');utils.clearText('t1', true);">
+
+      <textarea id="t1" style="width:600px;font-family:{{font_list.0.family}};resize:vertical;font-size:24px;"
+      rows="10" spellcheck="false"
+      lang="{%if lang_list.0.shortName %}{{lang_list.0.shortName}}{%endif%}{%if langTag %}{{langTag}}{%endif%}"
+      dir="{{direction}}" oncopy="removeZwspCopy('t1');">{{test_data}}</textarea>
+      {% if allFonts %}
+      <input type="button" onclick="toAllFonts('t1', null);" value="To all fonts">
+      {% endif %}
   </div>
-  <div id="instruction_area">
-    <p id="kb_instructions"></p>
-  </div>
-  <div id="codepoint_div">
-    <hr>
-    <input type="button" value="Code points" onclick="utils.showCodePoints('t1', 'codepoints')">
+    <input type="button" id='toggle_latin' value="To Latin"
+           onclick="nsi.nsibidi2Words('t1', 'latin_id', 'inputLangSelector');">
+    <input type="button" id="code_points"
+           value="Code points"
+           onclick="utils.showCodePoints('t1', 'codepoints');">
+
+
+    <div id="latin_div" style="display:none">
+      <textarea id="latin_id" rows="1" spellcheck="false"></textarea>
+      <input type="button" id="close_latin" value="Close Latin" onclick="toggleDiv('latin_div', 'toggle_latin');">
+    </div>
+  <div id="codepoint_div" style="display:none">
+    <!--
     <input type="button" value="All keys" onclick="fillAllKeys('t1', 'setLayout');"
-    />
-    {% if to_keyman %}
-    <input type="button" value="To KeyMan" onclick="toKeyMan('t1', 'setLayout');"
-    />
-    {% endif %}
+    -->
+
     {% if encoded_ranges %}
       <input type="button" value="Encoded range" onclick="fillEncodedRange('t1');"
-
-    {% endif %}
-    {% if variation_sequence %}
-       <input type="checkbox" name="vsToggle" id="toggleVS" checked
-      onchange="utils.toggleConvertedVS('t1', toggleVS);">Toggle variation sequence<br />
     {% endif %}
     <br />
+    <p class="choice-font">Code points</p>
     <textarea id="codepoints" class='default-font'
      style="width:600px;height:100px;resize:vertical;" spellcheck="false"
      rows="5"></textarea>
-  </div>
     <input type="button" value="-> Unicode text" onclick="hexToOutput('codepoints', 't1');">
+    <input type="button" id="toggle_codepoints" value="Close Code points"
+           onclick="toggleDiv('codepoint_div', 'code_points');">
+  </div>
   <br>
   </div>
 
@@ -369,7 +398,8 @@
     <h4>{{langInfo.info_text.title}}</h4>
     <p>{{langInfo.info_text.text}}</p>
    {% endif %}
-
+    <p class="choice-font">Choices:</p>
+    <table id="choose_table" "></table>
   </div>
 
   <div>
