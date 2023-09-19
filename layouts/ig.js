@@ -22,7 +22,7 @@ var IG_LAYOUT = {
           'zxcvbnm,./'
     },
     's,sc': {
-      '': '~!@#$%^&*()_+' +
+      '': '{{S||~||\u0303}}!@#$%^&*()_+' +
           'QWERTYUIOP{}|' +
           'ASDFGHJKL:"' +
           'ZXCVBNM<>?'

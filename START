@@ -1,0 +1,5 @@
+export PROJECT_ID=languagetools-153419
+export QUEUE_ID=font-convert-queue
+gcloud config set project $PROJECT_ID
+
+/Users/craig/Desktop/Projects/google-cloud-sdk/bin/dev_appserver.py .
