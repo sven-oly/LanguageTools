@@ -55,6 +55,10 @@ class langInfo():
     ]
 
     self.unicode_font_list = [
+      { 'source': '/fonts/Mundari/NotoSansNagMundari-VariableFont_wght.ttf',
+        'family': 'Noto Sans Nag Mudari',
+        'longName': 'Noto Sans Nag Mudari'
+      },
       { 'source': '/fonts/MundariBani/MundariLipiArialSutuUni.ttf',
         'family': 'MundariLipiRegulaSutuUni',
         'longName': 'Mundari Lipi Sutu Uni',
@@ -86,14 +90,17 @@ class langInfo():
       {'linkText': 'Mundari Bani script',
        'ref': 'https://omniglot.com/writing/mundaribani.htm'
        },
-      {'linkText': 'Unicode proposal',
-       'ref': 'http://www.unicode.org/L2/L2021/21031-mundari-bani.pdf'
+      {'linkText': 'Unicode proposal 21031r',
+       'ref': 'https://www.unicode.org/L2/L2021/21031r-mundari.pdf'
        },
       {'linkText': 'Mundari Bani Wikipedia',
          'ref': 'https://en.wikipedia.org/wiki/Mundari_Bani'
         },
         {'linkText': 'Resources',
          'ref': '/' + self.LanguageCode + '/downloads/'
+        },
+      {'linkText': 'Source of ASCII-encoded fonts',
+       'ref': 'https://mundarisamaj.blogspot.com/p/download-mundari-software.html'
         },
     ]
 

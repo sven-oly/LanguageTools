@@ -49,11 +49,13 @@ unicode_font_list = [
     'family': 'KikakuiSansPro',
     'longName': 'Kikakui Sans Pro',
     'source': '/fonts/MendeKikakui/KikakuiSansPro.ot.ttf',
+    'encoding': 'PUA',
   },
   {
     'family': 'NotoSansMendeKikakui',
     'longName': 'Noto Sans Mende Kikakui',
     'source': '/fonts/MendeKikakui/NotoSansMendeKikakui-Regular.ttf',
+    'encoding': 'unicode',
   },
   encoding_font_list[0],
 ]
@@ -80,6 +82,9 @@ links = [
     {'linkText': 'Unicode Page',
      'ref': 'https://www.unicode.org/charts/PDF/U1E800.pdf'
     },
+  {'linkText': 'Unicode proposal 2012',
+   'ref': 'https://www.unicode.org/L2/L2012/12023-n4167-mende.pdf'
+   },
     {'linkText': 'Language Wikipedia',
      'ref': 'https://en.wikipedia.org/wiki/Mende_language'
     },
@@ -185,7 +190,7 @@ class langInfo():
     self.unicode_database = 'unicode_data/UnicodeData14.0.MendeKikakui.txt'
 
     # Lists of test characters for the various encodings
-    self.test_chars = ' '.join([unichr(x) for x in range(0x16ad0, 0x161e6)])
+    self.test_chars = ' '.join([unichr(x) for x in range(0xe000, 0xe103)])
 
 # Global in this file.
 langInstance = langInfo()

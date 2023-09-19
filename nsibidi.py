@@ -97,7 +97,7 @@ class langInfo():
        'fontFamily':'arial',
        'instructions':
          'Type Igbo words and note options below. ' +
-         'To add accents or dots, type the base letter, then use keys for [, ], \\\\ and |.\u000a' +
+         'To add accents or dots, first type the base letter, then use keys for [, ], \\\\ and |.\u000a' +
          '• [ adds acute accent \u00b4 on a, e, i, o, u, m, n\u000a' +
          '• ] adds grave accent \u0060 on a, e, i, o, u, m, n\u000a' +
          '• \\\\ adds dot below \u0020\u0323 on a, e, i, o, u, m, n\u000a' +

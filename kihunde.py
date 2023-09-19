@@ -117,8 +117,8 @@ class langInfo:
         self.text_file_list = [
           {
             'name': 'KeyMan Kihunde Mobile + desktop 1.21',
-            'source': '/resources/hke/kihunde_1.2.kmp',
-            'description': 'Version 1.21 Mobile update 14-Feb-2023'
+            'source': '/resources/hke/kihunde_1.21.kmp',
+            'description': 'Nouvelle! Version 1.21 Mobile update 14-Feb-2023'
           },
           # {
           #   'name': 'KeyMan Kihunde Mobile + desktop 1.2',

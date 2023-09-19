@@ -43,12 +43,15 @@ LanguageList = [
     ('Laz', 'lzz'),
     ('Makah', 'myh'),
     ('Menoninee', 'mez', 'Oma͞eqnomenew'),
-    ('Mende', 'men'),
+    ('Mende', 'men', 'Mɛnde yia'),
     ('Mingrelian', 'xmf'),
-    ('Myanmar', 'my', 'မြန်မာဘာသာ'),
-    ('Navajo', 'nv', 'Diné bizaad'),
+    ('Kuṛmāli / Kudmali', 'kyw'),
+    ('Tai Yo', 'tyj'),
+    # ('Myanmar', 'my', 'မြန်မာဘာသာ'),
+    # ('Navajo', 'nv', 'Diné bizaad'),
     ('Oneida', 'one', 'Onʌyoteʔa·ká·'),
     ('Otomanguean phonetic', 'omq'),
+    ('Qiang', 'qiang'),
     ('Rohingya', 'rhg', ),
     ('Tamashek', 'tmh', 'ⵜⴰⵎⴰⵌⴰⵆ'),
     ('Tai Phake', 'phk'),
@@ -101,6 +104,7 @@ LanguageList = [
     ('Lakota', 'lkt', 'Lakȟótiyapi'),
     ('Kihunde', 'hke'),
     ('Comanche', 'com', 'Nʉmʉ Tekwapʉ'),
+    ('Kurmanji Yezidi', 'ku'),
 ]
 
 
