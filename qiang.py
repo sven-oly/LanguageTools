@@ -118,6 +118,7 @@ class langInfo:
         # For additional resources for download
         self.text_file_list = []
 
+        self.to_keyman = True
         # TODO: Fill in the rest of the common data.
 
 
