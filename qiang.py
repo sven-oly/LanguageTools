@@ -38,9 +38,9 @@ links = [
      {'linkText': 'Font conversion summary',
        'ref': '/' + LanguageCode + '/encodingRules/'
      },
-    # {'linkText': 'Resources',
-    #   'ref': '/' + LanguageCode + '/downloads/'
-    # },
+    {'linkText': 'Resources',
+      'ref': '/' + LanguageCode + '/downloads/'
+    },
     # {'linkText': 'Unicode page',
     #  'ref': 'https://www.unicode.org/charts/PDF/U1C00.pdf'
     # },
@@ -70,6 +70,11 @@ class langInfo:
         self.test_data = u''
         self.unicode_font_list = [
           {
+            'source': '/fonts/Qiang/Rma-serif-PUA-Regular.ttf',
+            'longName': 'Rma-serif PUA',
+            'family': 'Rma-serif PUA',
+           },
+          {
             'source': '/fonts/Qiang/v-Rma-serif-Unicode-Regular.ttf',
             'longName': 'Rma-serif Unicode',
             'family': 'Rma-serif Unicode',
@@ -97,19 +102,26 @@ class langInfo:
 
         # Unicode layouts
         self.kb_list = [
+          {'shortName': 'qiang_pua',
+           'longName': 'Qiang PUA',
+           'fontFamily': 'Rma-serif PUA',
+          },
           {'shortName': 'qiang_unicode',
-           'longName': 'Qiang unicode'
-           }
+           'longName': 'Qiang unicode',
+           'fontFamily': 'Rma-serif Unicode'
+          }
         ]
 
         self.links = links
 
         # Unicode range
         self.unicodeRanges = [('\ud818\udd40', '\ud818\udd7f')]
-        # TODO: Fill in with diacritics
-        self.diacritic_list = [unichr(x) for x in range(0x300, 0x330)]
+        # TODO: Fill in with diacritics.
+        # TODO: Replace PUA with Unicode
+        self.diacritic_list = []  #[unichr(x) for x in [0xe174, 0xe175, 0xe16a, 0xe16b]]
+
         # TODO: Fill in base consonant
-        self.default_base_consonant = u'\d181\udd401'
+        self.default_base_consonant = u'\ue1401'
 
         self.encodedRanges = [
             (0x20, 0xff),

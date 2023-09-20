@@ -7,8 +7,10 @@ langConverter.map_encoding_names = map_encoding_names = [
 ];
 
 langConverter.encoding_data = {
-    'Rma-serif ASCII': {index:0, outputEncoding:'Unicode', outputScript:'Rma'},
-    'Rma-serif ASCII bar': {index:0, outputEncoding:'Unicode', outputScript:'Rma'},
+    'Rma-serif ASCII': {index:1, outputEncoding:'PUA', outputScript:'Rma'},
+    'Rma-serif ASCII bar': {index:1, outputEncoding:'PUA', outputScript:'Rma'},
+//    'Rma-serif ASCII': {index:0, outputEncoding:'Unicode', outputScript:'Rma'},
+//    'Rma-serif ASCII bar': {index:0, outputEncoding:'Unicode', outputScript:'Rma'}
 };
 
 langConverter.transformRules = [
@@ -18,14 +20,14 @@ langConverter.transformRules = [
 // This should be a map. But the output should not include U+FE00.
 // They can be added by calling add_variation_modifiers.
 private_use_map_combined = {
-    "!": ["\ud818\udd7a"],
+    "!": ["\ue17a", "\ud818\udd7a"],
     "&": ["\ud818\udd77"],
-    ",": ["\ud818\udd79"],
+    ",": ["\uE179", "\ud818\udd79"],
     // Unknown ones set to 3f
     "-": ["\ud818\udd3f"],
-    ".": ["\ud818\udd78"],
-    "?": ["\ud818\udd7b"],
-    "A": ["\ud818\udd6b"],
+    ".": ["\uE178", "\ud818\udd78"],
+    "?": ["\uE17B", "\ud818\udd7b"],
+    "A": ["\uE16b", "\ud818\udd6b"],
     "B": ["\ud818\udd42"],
     "C": ["\ud818\udd65"],
     "D": ["\ud818\udd49"],
