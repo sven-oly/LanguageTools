@@ -318,10 +318,6 @@
                }
                var result = {{converters.convert_obj}}['conversions'][type].convert(intext);
                var result_type = {{converters.convert_obj}}['conversions'][type]['to'];
-               {% if variation_sequence %}
-               // Only if variations are allowed.
-               result = add_variation_modifiers(result);
-               {% endif %}
                output_type.innerHTML = output_type.value = result_type;
                output_area.innerHTML = output_area.value = result;
                // Reset the hex values.

@@ -273,6 +273,8 @@ class langInfo:
        },
     ]
 
+    self.to_keyman = True
+    
 
 langInstance = langInfo()
 app = webapp2.WSGIApplication(
