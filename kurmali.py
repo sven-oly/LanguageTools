@@ -127,9 +127,9 @@ class langInfo:
         # For additional resources for download
         self.text_file_list = [
             {
-                'name': 'KeyMan 1.0 for Kurmali Chisoi 8-Aug-2023',
-                'source': '/resources/kyw/kurmali.kmp',
-                'description': 'Keyboard for Mobile & Desktop 8-Aug-2023',
+                'name': 'KeyMan 1.01 for Kurmali Chisoi 23-Sep-2023',
+                'source': '/resources/kyw/kurmali_1.01.kmp',
+                'description': 'Keyboard for Mobile & Desktop 23-Sep-2023',
                 'instructions': '',
             }
         ]

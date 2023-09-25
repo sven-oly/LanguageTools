@@ -128,7 +128,14 @@ class langInfo:
         ]
 
         # For additional resources for download
-        self.text_file_list = []
+        self.text_file_list = [
+            {
+                'name': 'KeyMan 1.0 for Qiang Rma 23-Sep-2023',
+                'source': '/resources/qiang/quiang_rma.kmp',
+                'description': 'Keyboard for Mobile & Desktop 23-Sep-2023',
+                'instructions': '',
+            }
+        ]
 
         self.to_keyman = True
         # TODO: Fill in the rest of the common data.
