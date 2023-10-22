@@ -182,7 +182,14 @@ class langInfo():
     self.text_functions = 'js/men.js'
 
     self.links = links
-    self.text_file_list = []
+    self.text_file_list = [
+      {
+        'name': 'KeyMan 1.20 Mende Kikakui - RTL ',
+        'source': '/resources/men/mende_kikakui.1.2.kmp',
+        'description': 'Keyboard for Mobile & Desktop 21-oct-2023',
+        'instructions': 'Phonetic: https://languagetools-153419.appspot.com/men/kbtransforms/',
+      }
+    ]
     self.unicode_font_list = unicode_font_list
     
     # Pointer to Unicode data for this script, e.g.,

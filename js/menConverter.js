@@ -1,4 +1,4 @@
-e// Convert from old font-encoding of Oneida text to Unicode forms:
+// Convert from old font-encoding of Oneida text to Unicode forms:
 const langConverter = new langConverterClass('men', 'Mru');
 
 langConverter.one2oneMap = private_use_map_combined = {
