@@ -26,15 +26,12 @@ Language_native = '𑢹𑣉𑣉 𑣎𑣋𑣜'
 LanguageCode = 'hoc'
 ScriptCode = 'Wara'
 
-encoding_font_list = [
-  # {
-  #   'font_path': '/fonts/xyz.ttf',
-  #   'font_name': 'xyz',
-  #   'display_name': 'xyz',
-  # },
-]
-
 unicode_font_list = [
+    {
+        'family': 'BoyoGagrai',
+        'longName': 'Boyo Gagrai',
+        'source': '/fonts/hoc/BoyoGagraittf',
+    },
     {
         'family': 'NotoSansWarangCiti',
         'longName': 'Noto Sans Warang Citi',
@@ -52,8 +49,12 @@ links = [
     {'linkText': 'Keyboard',
      'ref': '/' + LanguageCode + '/'
     },
-    # {'linkText': 'Converter',
-    #  'ref': '/' + LanguageCode + '/convertUI/'},
+    {
+      'linkText': 'Ho tribal language',
+      'ref': 'http://ho.triballanguage.in/'
+      },
+    {'linkText': 'Converter',
+     'ref': '/' + LanguageCode + '/convertUI/'},
     {'linkText': 'Font conversion summary',
       'ref': '/' + LanguageCode + '/encodingRules/'
     },
@@ -87,6 +88,24 @@ class langInfo():
     self.kb_list = kb_list
     self.links = links
 
+
+    self.encoding_font_list = [
+      {
+        'font_path': '/fonts/hoc/BoYo Warong Chiti - 04.ttf',
+        'font_name': 'BoYoWarongCiti',
+        'display_name': 'BoYo',
+      },
+      {
+        'font_path': '/fonts/hoc/GhansyhamBodra_2.ttf',
+        'font_name': 'GhansyhamBodra',
+        'display_name': 'Ghansyham Bodra',
+      },
+      {
+        'font_path': '/fonts/hoc/Gurbaba.ttf.TTF',
+        'font_name': 'Gurbaba',
+        'display_name': 'Gurbaba',
+      }
+    ]
 
 kb_list = [
   {'shortName': LanguageCode,
