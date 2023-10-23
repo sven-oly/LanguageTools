@@ -1,17 +1,22 @@
 // Convert from old font-encoding of Oneida text to Unicode forms:
 
 let langConverterClass = function(langCode, langName) {
-  this.langCode = langCode;
-  this.langName = langName;
-  this.one2oneMap = new Map();  // For 1-to-1 replacements
-  this.transformRules = [];  // For more complex regex matching.
-  this.translit_source = '';
-  this.map_translit_output = null;
-  this.map_translit_sources = null;
-  this.encodingData = null;
-  this.encodingNames = null;
-  this.locale = null;  // Used for capitalization.
-};
+    this.langCode = langCode;
+    this.langName = langName;
+    this.one2oneMap = new Map();  // For 1-to-1 replacements
+    this.transformRules = [];  // For more complex regex matching.
+    this.translit_source = '';
+    this.map_translit_output = null;
+    this.map_translit_sources = null;
+    this.encodingData = null;
+    this.encodingNames = null;
+    this.locale = null;  // Used for capitalization.
+
+    // To create custom maps based on the private map.
+    this.private_use_encodings = null;
+    this.customConverter = null
+    this.build_custom_map = null;
+}
 
 // Two arrays of characters for conversion
 langConverterClass.prototype.addOne2OneTransforms = function (inChars, outChars, index) {
