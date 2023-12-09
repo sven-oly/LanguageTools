@@ -97,6 +97,9 @@ links = [
     {'linkText': 'Jason Glavy fonts',
      'ref': 'http://glavyfonts.com/african.html'
     },
+    {'linkText': 'YouTube video about Ki-ka-kui',
+     'ref': 'https://youtu.be/THQYjoVjZlQ?si=0Astt8p3kFvx4BmC'
+    }
 ]
 
 class langInfo():
@@ -183,6 +186,12 @@ class langInfo():
 
     self.links = links
     self.text_file_list = [
+      {
+        'name': 'KeyMan 1.3 Mende Kikakui - RTL ',
+        'source': '/resources/men/mende_kikakui_1.3.kmp',
+        'description': 'Keyboard 1.3 with digigs for Mobile & Desktop, 6-Dec-2023',
+        'instructions': 'Phonetic: https://languagetools-153419.appspot.com/men/kbtransforms/',
+      },
       {
         'name': 'KeyMan 1.20 Mende Kikakui - RTL ',
         'source': '/resources/men/mende_kikakui.1.2.kmp',

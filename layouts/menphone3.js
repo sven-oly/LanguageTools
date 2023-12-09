@@ -331,9 +331,9 @@ var MEN_PHONE3_LAYOUT = {
 
         'hi': '\ue117',
         'ha': '\ue118',
-        'hu/?': '\ue119',
-        'huu/?': '\ue11a',
-        'huuu': '\ue11b',
+        'hu/?': '\ue11b',
+        'huu/?': '\ue119',
+        'huuu': '\ue11a',
         'he': '\ue11c',
         'hɛ/?': '\ue11d',
         'hɛɛ': '\ue11e',

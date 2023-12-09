@@ -34,7 +34,8 @@ handlers:
 
 - url: /resources
   static_dir: resources
-
+  application_readable: true
+ 
 - url: /help
   static_dir: help
 

@@ -87,6 +87,10 @@ class langInfo:
         self.lang_list = [LanguageCode]  # This may be extended
 
         self.kb_list = [
+          {'shortName': 'tyj2',
+           'longName': 'Tai Yo with tone marks',
+           'fontFamily': 'NotoTaiYoSerif',
+           },
           {'shortName': 'tyj1',
            'longName': 'Tai Yo 1',
            'fontFamily': 'NotoTaiYoSerif',
@@ -109,8 +113,8 @@ class langInfo:
         # For additional resources for download
         self.text_file_list = [
             {
-                'name': 'KeyMan 1.0 for Tai Yo Unicode',
-                'source': '/resources/tyj/tai_yo.kmp',
+                'name': 'KeyMan 1.1 for Tai Yo Unicode - 13-Nov-2023',
+                'source': '/resources/tyj/tai_yo_1.1.kmp',
                 'description': 'Keyboard for Desktop',
                 'instructions': '',
             }

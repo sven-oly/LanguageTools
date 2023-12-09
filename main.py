@@ -76,6 +76,8 @@ LanguageList = [
     ('Mende Kikakui', 'men'),
     ('Wancho', 'nnp'),
     ('Ojibwe', 'oj'),
+    ('Nyiakeng Puachue Hmong', 'hnj'),
+    ('Nigerian Pidgin', 'pcm'),
     ('Kinyarwanda', 'rw'),
     ('Shan', 'shn', 'လိၵ်ႈတႆ'),
     ('Sora', 'srb'),

@@ -79,10 +79,14 @@
          <script>
            // Check for a converter class
            let converterObj;
+           let encodingInfo;
+           let translitInfo;
+           let private_use_encodings;
            if (langConverter) {
                // This works!
-               const encodingInfo = langConverter.decodingInfo();
-               const translitInfo = langConverter.translitInfo();
+               encodingInfo = langConverter.decodingInfo();
+               translitInfo = langConverter.translitInfo();
+               private_use_encodings = langConverter.private_use_encodings;
            }
 
            diff_list = [];

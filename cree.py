@@ -155,11 +155,27 @@ class langInfo():
     ]
 
     self.kb_list = [
+      {'shortName':  'fort_severn_cree',
+       'longName': 'Fort Severn Cree',
+       'nativeName': 'FS ᓀᐦᐃᔭᐍᐏᐣ',
+       'fontFamily': 'NotoSansCanadianAboriginal',
+       },
+      {'shortName':  'james_bay_cree',
+       'longName': 'James Bay Cree',
+       'nativeName': 'JB ᓀᐦᐃᔭᐍᐏᐣ',
+       'fontFamily': 'NotoSansCanadianAboriginal',
+       },
+      {'shortName':  'oji_cree',
+       'longName': 'Oji Cree',
+       'nativeName': 'OJ ᓀᐦᐃᔭᐍᐏᐣ',
+       'fontFamily': 'NotoSansCanadianAboriginal',
+       },
       {'shortName':  'crk_phonetic',
        'longName': 'Plains Cree Phonetic',
        'nativeName': 'ᓀᐦᐃᔭᐍᐏᐣ',
        'fontFamily': 'NotoSansCanadianAboriginal',
-       },]
+       },
+    ]
 
     # Resource files
     self.text_file_list = [

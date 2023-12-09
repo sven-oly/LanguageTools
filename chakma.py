@@ -183,7 +183,18 @@ class langInfo():
     self.kb_list = kb_list
     self.links = links
 
-    self.text_file_list = []
+    self.text_file_list = [
+      {
+        'name': 'Keyman 1.1 Chakma .kmp',
+        'source': '/resources/ccp/chakma1.1.kmp',
+        'description': 'Keyboard for desktop and mobile, 29-Nov-2023'
+        },
+      {
+        'name': 'Keyman 1.0 Chakma .kmp',
+        'source': '/resources/ccp/chakma.kmp',
+        'description': 'Keyboard for desktop and mobile, 18-Nov-2023'
+        }
+    ]
     self.unicode_font_list = unicode_font_list
 
     # For dictionary

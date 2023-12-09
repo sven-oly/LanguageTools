@@ -16,14 +16,18 @@
 # limitations under the License.
 #
 
+from main import LanguageList
 import translit
 
+import glob
 import json
 import logging
-import re
 import os
-import urllib
+import re
+import time
+
 import webapp2
+import urllib
 
 from google.appengine.ext.webapp import template
 
@@ -229,7 +233,72 @@ class ShowDBHandler(webapp2.RequestHandler):
       self.response.write('      %s.' % entry.kbdata)
 
 
+# Get all the currently defined keyman layouts in resources directory
+# Show them to the user.
+class  GetAvailableKeymanLayouts(webapp2.RequestHandler):
+  def get(self):
+    self.lang_dict = self.langDict() 
+   
+    code = self.request.get('code', None)
+
+    kmp_files = glob.glob('resources/*/*.kmp')  #/*/*.kmp')
+
+    self.response.write('<h2>%d Keyman files available</h2>' % len(kmp_files))
+
+    message = """The following Keyman keyboard files are publicly available
+       and downloadable. See <a href='https://keyman.com/'>keyman.com</a> to learn how to install
+       and use these on your computer or mobile device.
+       """
+    self.response.write('<p>%s' % (message))
+    # Now organize by language
+    lang_kbs = {}
+
+    self.response.write('<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">')
+    for kmp in kmp_files:
+      lang_code = os.path.basename(os.path.dirname(kmp))
+      if lang_code in lang_kbs:
+        lang_kbs[lang_code].append(kmp)
+      else:
+        lang_kbs[lang_code] = [kmp]
+    
+    for lang_code in sorted(lang_kbs.keys()):
+      if lang_code not in self.lang_dict:
+        # self.response.write('<h3>%s not found</h3>' % (lang_code))
+        lang_name = [lang_code]
+      else:
+        lang_name = self.lang_dict[lang_code]
+      lang_ref = '/' + lang_code + '/'
+      self.response.write('<h3><a href="%s" target="_blank">%s</a> (%s)</h3>' %
+                          (lang_ref, lang_name[0], lang_code))
+      self.response.write('<ul>')
+      for kmp in lang_kbs[lang_code]:
+        kmp_file = os.path.basename(kmp)
+        last_modified = os.path.getctime(kmp)
+        last_mod = time.ctime(last_modified)
+        
+        ref = '/resources/' + lang_code + '/' + kmp_file
+        self.response.write(
+          '<li><a href="%s">%s</a>: %s</li>' %
+          (ref, kmp_file, last_mod))
+      self.response.write('</ul>')
+
+  def langDict(self):
+    # Gets the languages as a dictionary from main.LanguageList
+    lang_dict = {}
+    for item in LanguageList:
+      #self.response.write('<br>Lang: %s' % item[0])
+      
+      code = item[1]
+      lang_dict[code] = [item[0]]
+      if len(item) > 2:
+        lang_dict[code].append(item[2])
+
+    return lang_dict
+
+
 # Error catching
+import urllib
+
 def handle_404(request, response, exception):
     logging.exception(exception)
     response.write('Sorry, but we do not have that keyboard page. Please try again.')
@@ -243,6 +312,7 @@ def handle_500(request, response, exception):
 
 app = webapp2.WSGIApplication(
     [
+        ('/kb/keyman/', GetAvailableKeymanLayouts),
         ('/kb/setup/', SetUpKeyboardHandler),
         ('/kb/', CreateKeyboardHandler),
         ('/kb/update/', UpdateKeyboardHandler),

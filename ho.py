@@ -28,14 +28,14 @@ ScriptCode = 'Wara'
 
 unicode_font_list = [
     {
-        'family': 'BoyoGagrai',
-        'longName': 'Boyo Gagrai',
-        'source': '/fonts/hoc/BoyoGagraittf',
-    },
-    {
         'family': 'NotoSansWarangCiti',
         'longName': 'Noto Sans Warang Citi',
         'source': '/fonts/hoc/NotoSansWarangCiti-Regular.ttf',
+    },
+    {
+        'family': 'BoyoGagrai',
+        'longName': 'Boyo Gagrai',
+        'source': '/fonts/hoc/BoyoGagraittf',
     },
 ]
 

@@ -322,9 +322,9 @@ function leftMatchToContext(left_parts, reverse_map) {
   for (index in left_parts) {
     let part = left_parts[index];
     let context = reverse_map[part];
-    let v = context.codePointAt();
     if (context) {
-      if (v > 0x20 && v < 0xff) {
+        let v = context.codePointAt();
+        if (v > 0x20 && v < 0xff) {
         out_list.push('"' + context + '"');
       } else {
         hex_form = utf16common(context, "U+", " ", true, []);

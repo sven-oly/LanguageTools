@@ -84,6 +84,9 @@ class langInfo:
         ]
 
         self.lang_list = [
+            {'shortName':  'aho_star',
+             'longName': 'Tai Ahom Star'
+             },
             {'shortName':  'aho',
              'longName': 'Tai Ahom'
              },
@@ -120,8 +123,13 @@ class langInfo:
 
         # Resource files
         self.text_file_list = [
-            '/download/aho/3-5-1-1.txt',
-            '/download/aho/nemi_mang_text.txt'
+            {
+                'name': 'Ahom-star with reordering',
+                'source': '/resources/aho/ahom_star.kmp',
+                'description': 'Ahom-start keyboard with reordering 26-Nov-2023'
+                },
+        #    '/download/aho/3-5-1-1.txt',
+        #    '/download/aho/nemi_mang_text.txt'
         ]
 
         self.baseHexUTF16 = u'\ud805\udf00'
