@@ -84,9 +84,6 @@ class langInfo:
         ]
 
         self.lang_list = [
-            {'shortName':  'aho_star',
-             'longName': 'Tai Ahom Star'
-             },
             {'shortName':  'aho',
              'longName': 'Tai Ahom'
              },
@@ -119,7 +116,17 @@ class langInfo:
              },
         ]
 
-        self.kb_list = self.lang_list
+        self.kb_list = [
+            {'shortName':  'aho_star',
+             'longName': 'Tai Ahom Star e/L first'
+             },
+            {'shortName':  'aho_star2',
+             'longName': 'Tai Ahom Star2 e/R/L first'
+             },
+            {'shortName':  'aho',
+             'longName': 'Tai Ahom'
+             }
+        ]
 
         # Resource files
         self.text_file_list = [

@@ -13,9 +13,9 @@
 // Implements Ahom keyboard based on ...
 // TODO: Add reference
 
-var AHO_STAR_LAYOUT = {
-  'id': 'aho_star',
-  'title': "Ahom Star: e/L before consonants",
+var AHO_STAR2_LAYOUT = {
+  'id': 'aho_star2',
+  'title': "Ahom Star2: e/R/L before consonants",
   'mappings': {
       '': {
           '':
@@ -23,7 +23,7 @@ var AHO_STAR_LAYOUT = {
       },
       's,sc': {
           '':
-          '\u007E\u0021\u0040\u0023\u0024\u0025\u005E\u0026\u002A\u0028\u0029\u005F\u002B{{\ud805\udf29}}{{\ud805\udf3B}}{{\ud805\udf1F}}{{\ud805\udf1E}}{{\ud805\udf0C}}{{}}{{\ud805\udf25}}{{\ud805\udf23}}{{\ud805\udf27}}{{\ud805\udf07}}\u007B\u007D\u007C{{\ud805\udf12}}{{}}{{\ud805\udf14}}{{}}{{\ud805\udf17}}{{\ud805\udf20}}{{\ud805\udf19}}{{\ud805\udf01}}{{\u200c\ud805\udf1D}}\u003A\u0022{{\ud805\udf3D}}{{\ud805\udf3A}}{{}}{{\ud805\udf3F}}{{\ud805\udf18}}{{\ud805\udf10}}{{\ud803\udf3a}}\u003C\u003E\u003F'
+          '\u007E\u0021\u0040\u0023\u0024\u0025\u005E\u0026\u002A\u0028\u0029\u005F\u002B{{\ud805\udf29}}{{\ud805\udf3B}}{{\ud805\udf1F}}{{\u200c\ud805\udf1E}}{{\ud805\udf0C}}{{}}{{\ud805\udf25}}{{\ud805\udf23}}{{\ud805\udf27}}{{\ud805\udf07}}\u007B\u007D\u007C{{\ud805\udf12}}{{}}{{\ud805\udf14}}{{}}{{\ud805\udf17}}{{\ud805\udf20}}{{\ud805\udf19}}{{\ud805\udf01}}{{\u200c\ud805\udf1D}}\u003A\u0022{{\ud805\udf3D}}{{\ud805\udf3A}}{{}}{{\ud805\udf3F}}{{\ud805\udf18}}{{\ud805\udf10}}{{\ud803\udf3a}}\u003C\u003E\u003F'
       },
     'c': {
       '': '`1234567890-=' +
@@ -73,5 +73,5 @@ var AHO_STAR_LAYOUT = {
 };
 
 // Load the layout and inform the keyboard to switch layout if necessary.
-google.elements.keyboard.loadme(AHO_STAR_LAYOUT);
-aho_star = AHO_STAR_LAYOUT;
+google.elements.keyboard.loadme(AHO_STAR2_LAYOUT);
+aho_star2 = AHO_STAR2_LAYOUT;
