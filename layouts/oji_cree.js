@@ -108,7 +108,7 @@ var OJI_CREE_LAYOUT = {
         "kii": "\u146E",
         "koo": "\u1470",
         "kaa": "\u1473",
-        "k": "\u157D",
+        "k": "\u1420",
         "gwe": "\u1475",
         "gwi": "\u1477",
         "gwo": "\u147B",
@@ -151,6 +151,8 @@ var OJI_CREE_LAYOUT = {
         "cwii": "\u1497",
         "cwoo": "\u149B",
         "cwaa": "\u149F",
+        "c": "\u1428",
+        "j": "\u1428",
         "ne": "\u14C0",
         "ni": "\u14C2",
         "no": "\u14C4",
@@ -228,6 +230,7 @@ var OJI_CREE_LAYOUT = {
         "zhwii": "\u151C",
         "zhwoo": "\u1520",
         "zhwaa": "\u1524",
+        "z": "\u1422",
         "ye": "\u1526",
         "yi": "\u1528",
         "yo": "\u152A",
@@ -249,12 +252,21 @@ var OJI_CREE_LAYOUT = {
         "rii": "\u1552\u1404",
         "roo": "\u1552\u1406",
         "raa": "\u1552\u140B",
+        "v": "ᕝ",
+        "vi": "ᕓ",
+        "ve": "ᕕ",
+        "vee": "ᕓ", 
+        "vo": "ᕗ",
+        "va": "ᕙ", 
+        "vii": "ᐧᕕ",
+        "voo": "ᐧᕗ",
+        "vaa": "ᐧᕙ",
         "h": "\u1426",
         "X": "\u166D",
-        " ":" "
+        "x": "\u166E",
     },
     "historyPruneRegex":
-    "shwa|shwi|shwo|zhwa|zhwi|zhwo|bwa|bwi|bwo|cwa|cwi|cwo|dwa|dwi|dwo|gwa|gwi|gwo|jwa|jwi|jwo|kwa|kwi|kwo|mwa|mwi|mwo|nwa|nwi|nwo|pwa|pwi|pwo|sha|shi|sho|shw|twa|twi|two|zha|zhi|zho|zhw|ba|bi|bo|bw|ca|ci|co|cw|da|di|do|dw|ga|gi|go|gw|ja|ji|jo|jw|ka|ki|ko|kw|la|li|lo|ma|mi|mo|mw|na|ni|no|nw|pa|pi|po|pw|ra|ri|ro|sh|sw|ta|ti|to|tw|wa|wi|wo|zh|zw|a|b|c|d|g|i|j|k|l|m|n|o|p|r|s|t|w|y|z"
+"shwa|shwi|shwo|zhwa|zhwi|zhwo|bwa|bwi|bwo|cwa|cwi|cwo|dwa|dwi|dwo|gwa|gwi|gwo|jwa|jwi|jwo|kwa|kwi|kwo|mwa|mwi|mwo|nwa|nwi|nwo|pwa|pwi|pwo|sha|shi|sho|shw|twa|twi|two|zha|zhi|zho|zhw|ba|bi|bo|bw|ca|ci|co|cw|da|di|do|dw|ga|gi|go|gw|ja|ji|jo|jw|ka|ki|ko|kw|la|li|lo|ma|mi|mo|mw|na|ni|no|nw|pa|pi|po|pw|ra|ri|ro|sh|sw|ta|ti|to|tw|va|ve|vi|vo|wa|wi|wo|zh|zw|a|b|c|d|g|i|j|k|l|m|n|o|p|r|s|t|v|w|y|z"
 };
 
 google.elements.keyboard.loadme(OJI_CREE_LAYOUT);

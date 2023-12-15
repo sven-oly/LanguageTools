@@ -42,7 +42,7 @@ const FORT_SEVERN_CREE_LAYOUT = {
         "b": '\u144A',
         "pe": '\u142F',
         "pi": '\u1431',
-        "po": '\u1443',
+        "po": '\u1433',
         "pa": '\u1438',
         "pii": '\u1432',
         "poo": '\u1434',

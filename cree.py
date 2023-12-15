@@ -149,10 +149,16 @@ class langInfo():
       {'linkText': 'Language Geek fonts',
        'ref': 'http://www.languagegeek.com/font/fontdownload.html'
        },
+      {'linkText': 'Phonetic table',
+       'ref': '/' + self.LanguageCode + '/phonetickb/'
+       },
       {'linkText': 'Try Plains Cree on Google Input Tools',
        'ref': 'https://www.google.com/intl/sa/inputtools/try/'
        },
     ]
+
+    # For attaching sorting, etc.
+    self.text_functions = 'js/cr.js'
 
     self.kb_list = [
       {'shortName':  'fort_severn_cree',
@@ -213,6 +219,7 @@ app = webapp2.WSGIApplication(
         ('/cr/encodingRules/', base.EncodingRules),
         ('/cr/diacritic/', base.DiacriticHandler),
         ('/cr/render/', base.EncodingRules),
+        ('/cr/phonetickb/', base.PhoneticKbHandler),
         ('/' + langInstance.LanguageCode + '/kbtransforms/', base.KeyboardTransforms),
     ],
     debug=True,

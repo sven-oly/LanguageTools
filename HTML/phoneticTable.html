@@ -6,7 +6,7 @@
 
   <meta charset="utf-8"/>
 
-  <title>Phonetic Keyboard map {{language}}</title>
+  <title>Phonetic map {{language}}</title>
 
   <!-- Font encoding areas -->
   <style>
@@ -122,9 +122,9 @@
             let parts = items.split(':');
             let num = parseInt(parts[0], 16);
             unicode_num.set(num, parts[1]);
-	    let char = String.fromCharCode(num);
+            let char = String.fromCharCode(num);
             unicode_char.set(char, parts[1]);
-	    
+            
             unicode_hex.set(num.toString(16), parts[1]);
         }
     }
@@ -153,8 +153,8 @@
             let result = this_transform[pattern];
             if (ignorableSet.has(result)) continue;  // Ignore
 
-	    // Each patternMap entry will have a list
-	    //  [0] is a set of the outputs, [1] is all the inputs
+            // Each patternMap entry will have a list
+            //  [0] is a set of the outputs, [1] is all the inputs
             for (let item of expandedPatterns) {
                 let lowerItem = item.toLowerCase();
                 if (result === item) continue;  // No point in identity!
@@ -162,16 +162,16 @@
                 if (patternMap.has(lowerItem)) {
                     // Get the array.
                     currentOutputs = patternMap.get(lowerItem)[0];
-		    currentPatterns = patternMap.get(lowerItem)[1];
+                    currentPatterns = patternMap.get(lowerItem)[1];
                 } else {
                     // A new one!
                     currentOutputs = new Set();
-		    currentPatterns = new Set
+                    currentPatterns = new Set();
                 }
                 currentOutputs.add(result);
-		for (let pat of expandedPatterns) {
-		    currentPatterns.add(pat);
-		}
+                for (let pat of expandedPatterns) {
+                    currentPatterns.add(pat);
+                }
                 patternMap.set(lowerItem, [currentOutputs, currentPatterns]);
             }
         }
@@ -184,11 +184,11 @@
         }
         // Only do one keyboard !!! Only keyboards with transforms.
         let patternMap = createPatternMap(kb_list[kb_index]);
-	if (patternMap == null) {
-	    alert('This keyboard has no phonetic transforms');
-	    return null;
-	}
-	
+        if (patternMap == null) {
+            alert('This keyboard has no phonetic transforms');
+            return null;
+        }
+        
         const fontsize="24px";
         const cellWidth = "200px";
 
@@ -216,7 +216,13 @@
         cellIndex = 1;
         let numVowels = 0
         let vowelMap = new Map();
+        // Handle values without final vowel
+        let emptyVowel = null; // The default
+       
         for (vowel of vowels) {
+            if (vowel == '') {
+                emptyVowel = '';
+            }
             let lower = vowel.toLowerCase();
             if (!vowelMap.has(lower)) {
                 vowelMap.set(lower, cellIndex);
@@ -226,19 +232,25 @@
 
                 if (patternData) {
                     let mappedChars = patternData[0];
-		    let inputPatterns = patternData[1];
+                    let inputPatterns = patternData[1];
                     headerCell.innerHTML = [...mappedChars] +
                         '  (' + lower + ')';
-		    headerCell.title = [...inputPatterns];
+                    headerCell.title = [...inputPatterns];
                 } else {
-                    headerCell.innerHTML = '(' + lower + ')';
+                    let colValue;
+                    if (lower == '') {
+                        colValue = 'Final';
+                    } else {
+                        colValue = '(' + lower + ')';
+                    }
+                    headerCell.innerHTML = colValue;
                 }
-                
+
                 cellIndex ++;
                 numVowels ++;
             }
         }
-        
+
         // Generate the rows values by first item and columns by 2nd item in
         // the text split of the pattern key.
         let rowMap = new Map();
@@ -257,14 +269,14 @@
             }
             let newColMarker = split.length > 1 ?
                 split[1].toLowerCase() :
-                vowels[0];
+                emptyVowel;
             let current = new Set();
-	    let inputs = new Set();
-	    let setData;
+            let inputs = new Set();
+            let setData;
             if (colMap.has(newColMarker)) {
                 let setData = colMap.get(newColMarker);
-		current = setData[0];
-		inputs = setData[1];
+                current = setData[0];
+                inputs = setData[1];
             }
             let patternData = patternMap.get(key);
             let newEntry = patternData[0];
@@ -276,11 +288,12 @@
             for (const elem of patternData[1]) {
                 inputs.add(elem);
             }
-	    // Store the set of outputs and the possible inputs
+            // Store the set of outputs and the possible inputs
             colMap.set(newColMarker, [current, inputs]);
         }
 
         // Make new table from phonetic info.
+        // TODO: First combine rows that have the same values
         rowNum = 1;
         let iterator1 = rowMap.entries();
         let entry;
@@ -299,20 +312,20 @@
                 if (vowelMap.has(vowel)) {
                     cellIndex = vowelMap.get(vowel);
                     let cell = row.cells[cellIndex];
-		    let charSet = coldata[1][0];  // The characters to be shown
-		    let inputs = coldata[1][1];   // The inputs for this cell
+                    let charSet = coldata[1][0];  // The characters to be shown
+                    let inputs = coldata[1][1];   // The inputs for this cell
                     let values = [...charSet];  // Spread the set
                     cell.innerHTML = values.join(' ');
-		    // Add the hover info.
-		    cell.title = [...inputs];
+                    // Add the hover info.
+                    cell.title = [...inputs];
                 }
             }
             rowNum ++;
         }
 
-	// Set the font based on the keyboard.
-	setUnicodeFontColumns(kb_fonts[kb_index], 'column_table');
-	return true;  // table created
+        // Set the font based on the keyboard.
+        setUnicodeFontColumns(kb_fonts[kb_index], 'column_table');
+        return true;  // table created
     }
 
     // Changes the Unicode font applied to each converted column in table.
@@ -346,48 +359,48 @@
         clearTable('column_table');
         const kb_index = kbShortNameMap.get(item);
         if (buildingTransformTable(kb_index) == null) {
-	    // Reset the selector.
-	}
+            // Reset the selector.
+        }
     }
 
   function onSizeSelected(newSize) {
     const t1_element = document.getElementById('column_table');
       const rows = t1_element.rows;
       for (let row of rows) {
-	  for (let cell of row.cells) {
-	      cell.style.fontSize = newSize;
-	  }
+          for (let cell of row.cells) {
+              cell.style.fontSize = newSize;
+          }
       }
   }
 
     function getCharInfo() {
-	const text = utils.getSelectedText('column_table');
-	let hex = utf16common(text, '', ';', true, false).split(';');
-	//alert(unicode_char.keys());
-	if (text) {
-	    let index = 0;
-	    let outText = [];
-	    for (let chr of text) {
-		//let charName = unicode_char.get(chr);
-		//let intval = chr.charCodeAt(0);
-		// let name = unicode_num.get(intval);
-		// Remove leading zeros.
-		let hexVal = hex[index].replace(/^0+/, '').toLowerCase();
-		let num = parseInt(hexVal, 16);
-		if (unicode_hex.has(hexVal)) {
-		    name = unicode_hex.get(hexVal);
-		    outText.push(name);
-		    // alert(name);
-		} else {
-		    if (num != 0x20 && num != 0x0a && num != 0x09) {
-			//alert(hex[index]);
-			outText.push(hex[index]);
-		    }
-		}
-		index += 1;
-	    }
-	    alert(outText.join('\n'));
-	}
+        const text = utils.getSelectedText('column_table');
+        let hex = utf16common(text, '', ';', true, false).split(';');
+        //alert(unicode_char.keys());
+        if (text) {
+            let index = 0;
+            let outText = [];
+            for (let chr of text) {
+                //let charName = unicode_char.get(chr);
+                //let intval = chr.charCodeAt(0);
+                // let name = unicode_num.get(intval);
+                // Remove leading zeros.
+                let hexVal = hex[index].replace(/^0+/, '').toLowerCase();
+                let num = parseInt(hexVal, 16);
+                if (unicode_hex.has(hexVal)) {
+                    name = unicode_hex.get(hexVal);
+                    outText.push(name);
+                    // alert(name);
+                } else {
+                    if (num != 0x20 && num != 0x0a && num != 0x09) {
+                        //alert(hex[index]);
+                        outText.push(hex[index]);
+                    }
+                }
+                index += 1;
+            }
+            alert(outText.join('\n'));
+        }
     }
     
   </script>
