@@ -1556,11 +1556,11 @@ i18n.input.keyboard.KeyCode.MOZ_SHIFT_CHAR_CODES = {126:192, 95:189, 124:220, 58
 i18n.input.keyboard.ParsedLayout = function $i18n$input$keyboard$ParsedLayout$(layout) {
   this.id = layout.id;
     this.view = {id:layout.id,
-		 title:layout.title,
-		 isRTL:"rtl" == layout.direction,
-		 forceRTL: "rtl" == layout.force_direction,
-		 is102:!!layout.is102Keyboard, mappings:goog.object.create(["", null, "s", null, "c", null, "l", null, "sc", null, "cl", null, "sl", null, "scl", null])
-		};
+                 title:layout.title,
+                 isRTL:"rtl" == layout.direction,
+                 forceRTL: "rtl" == layout.force_direction,
+                 is102:!!layout.is102Keyboard, mappings:goog.object.create(["", null, "s", null, "c", null, "l", null, "sc", null, "cl", null, "sl", null, "scl", null])
+                };
   this.ambiRegex_ = this.transforms = null;
   this.parseKeyMappings_(layout);
   this.parseTransforms_(layout);
@@ -3758,7 +3758,7 @@ i18n.input.keyboard.Model = function $i18n$input$keyboard$Model$() {
   goog.exportSymbol("google.elements.keyboard.loadme", goog.bind(this.onLayoutLoaded_, this));
 };
 goog.inherits(i18n.input.keyboard.Model, goog.events.EventTarget);
-i18n.input.keyboard.Model.STATIC_DIR = "/layouts/";
+i18n.input.keyboard.Model.STATIC_DIR = "/static/layouts/";
 i18n.input.keyboard.Model.prototype.loadLayout = function $i18n$input$keyboard$Model$$loadLayout$(layoutCode) {
   if (layoutCode) {
     var parsedLayout = this.layouts_[layoutCode];
@@ -3825,7 +3825,7 @@ i18n.input.keyboard.Model.prototype.processBackspace = function $i18n$input$keyb
       // something special if needed!!!
       let newText = '';
       if (thisView && thisView.forceRTL) {
-	  newText = '\u202e';  // To force RTL as the contents.
+          newText = '\u202e';  // To force RTL as the contents.
       }
       history.current.text = newText;
     history.previous = {text:newText, transat:-1}, history.ambi = "", history.current = goog.object.clone(history.previous);
@@ -7457,7 +7457,7 @@ i18n.input.keyboard.Controller.prototype.handleEvent = function $i18n$input$keyb
 // !!! Set up for handling refreshState
 i18n.input.keyboard.Controller.prototype.refreshStateCallback = function (info) {
     if (i18n.input.keyboard.Standalone.refreshStateCallbackFn) {
-	i18n.input.keyboard.Standalone.refreshStateCallbackFn(info);
+        i18n.input.keyboard.Standalone.refreshStateCallbackFn(info);
     }
 }
 
@@ -7476,7 +7476,7 @@ i18n.input.keyboard.Controller.prototype.onKeyButtonClicked_ = function $i18n$in
           this.state_ & states.SHIFT && (this.state_ |= states.SHIFT_CLICK, this.state_ &= ~states.SHIFT);
           this.state_ ^= states.SHIFT_CLICK;
           this.activeView_.refreshState(this.getUiState_());
-	  // !!!
+          // !!!
           i18n.input.keyboard.Controller.prototype.refreshStateCallback();
           break;
         case 273:
@@ -7748,8 +7748,8 @@ i18n.input.keyboard.Standalone.refreshStateCallbackFn = null;
   });
 // !!!
   goog.exportProperty(prototype, "setRefresetStateCallback",
-		      function() {
-			  controller.getInstance().setRefreshStateCallback(fn);
-		      });
+                      function() {
+                          controller.getInstance().setRefreshStateCallback(fn);
+                      });
 })();
 i18n.input.keyboard.Controller.Css = ".vk-box,.vk-btn,.vk-btn-n,.vk-cap,.vk-cap-i,.vk-t,.vk-t-btn{display:inline-block;-webkit-user-select:none;-khtml-user-select:none;-moz-user-select:none}.vk-box{height:auto;padding:10px;background-color:white;border:1px solid #b8b8b8;border:1px solid rgba(0,0,0,0.3);z-index:2147483644;font-family:arial,sans-serif;font-size:14px;position:fixed;box-shadow:0 4px 16px rgba(0,0,0,0.2)}.vk-box.vk-min{padding:2px}.vk-box.vk-sf-ie{border:1px solid #ccc}.vk-btn{border:1px solid #dcdcdc;border:1px solid rgba(0,0,0,0.1);width:29px;height:29px;margin:2px;text-align:center;vertical-align:middle;position:relative;padding:1px;min-width:0px;max-width:500px;min-height:0px;max-height:50px;color:#444;background-color:#f5f5f5;background-image:linear-gradient(top,#f5f5f5,#f1f1f1);background-image:-webkit-gradient(linear,left top,left bottom,from(#f5f5f5),to(#f1f1f1));background-image:-webkit-linear-gradient(top,#f5f5f5,#f1f1f1);background-image:-moz-linear-gradient(top,#f5f5f5,#f1f1f1);background-image:-ms-linear-gradient(top,#f5f5f5,#f1f1f1);background-image:-o-linear-gradient(top,#f5f5f5,#f1f1f1);background-image:linear-gradient(top,#f5f5f5,#f1f1f1);filter:progid:DXImageTransform.Microsoft.gradient(startColorStr='#f5f5f5',EndColorStr='#f1f1f1');border-radius:2px;-webkit-border-radius:2px;-moz-border-radius:2px}.vk-btn.vk-sf-h{border-color:#c6c6c6;color:#222;background-color:#f8f8f8;background-image:-webkit-gradient(linear,left top,left bottom,from(#f8f8f8),to(#f1f1f1));background-image:-webkit-linear-gradient(top,#f8f8f8,#f1f1f1);background-image:-moz-linear-gradient(top,#f8f8f8,#f1f1f1);background-image:-ms-linear-gradient(top,#f8f8f8,#f1f1f1);background-image:-o-linear-gradient(top,#f8f8f8,#f1f1f1);background-image:linear-gradient(top,#f8f8f8,#f1f1f1);filter:progid:DXImageTransform.Microsoft.gradient(startColorStr='#f8f8f8',EndColorStr='#f1f1f1');box-shadow:0px 1px 1px rgba(0,0,0,0.1)}.vk-btn.vk-sf-a{border-color:#c6c6c6;color:#333;background-color:#f6f6f6;background-image:-webkit-gradient(linear,left top,left bottom,from(#f6f6f6),to(#f1f1f1));background-image:-webkit-linear-gradient(top,#f6f6f6,#f1f1f1);background-image:-moz-linear-gradient(top,#f6f6f6,#f1f1f1);background-image:-ms-linear-gradient(top,#f6f6f6,#f1f1f1);background-image:-o-linear-gradient(top,#f6f6f6,#f1f1f1);background-image:linear-gradient(top,#f6f6f6,#f1f1f1);filter:progid:DXImageTransform.Microsoft.gradient(startColorStr='#f6f6f6',EndColorStr='#f1f1f1');box-shadow:inset 0px 1px 2px rgba(0,0,0,0.1)}.vk-btn.vk-sf-s{border-color:#ccc;color:#333;background-color:#eeeeee;background-image:-webkit-gradient(linear,left top,left bottom,from(#eeeeee),to(#e0e0e0));background-image:-webkit-linear-gradient(top,#eeeeee,#e0e0e0);background-image:-moz-linear-gradient(top,#eeeeee,#e0e0e0);background-image:-ms-linear-gradient(top,#eeeeee,#e0e0e0);background-image:-o-linear-gradient(top,#eeeeee,#e0e0e0);background-image:linear-gradient(top,#eeeeee,#e0e0e0);filter:progid:DXImageTransform.Microsoft.gradient(startColorStr='#EEEEEE',EndColorStr='#E0E0E0');box-shadow:inset 0px 1px 2px rgba(0,0,0,0.1)}.vk-cap,.vk-t{font-size:14px;font-family:arial,sans-serif;font-weight:normal;line-height:25px}.vk-cap{cursor:default}.vk-cap.vk-sf-b,.vk-t-btn{background-repeat:no-repeat}.vk-cap.vk-sf-b{background-image:url('//ssl.gstatic.com/inputtools/images/ita_sprite6.png');width:22px;height:17px;opacity:.667}.vk-sf-ff2 .vk-cap.vk-sf-b{display:block;position:relative;left:6px;top:0}.vk-cap.vk-sf-b.vk-sf-h{opacity:.9}.vk-cap.vk-sf-b.vk-sf-c8{background-position:-714px -16px}.vk-cap.vk-sf-b.vk-sf-c20{background-position:-614px -66px}.vk-cap.vk-sf-b.vk-sf-c16{background-position:-814px -16px}.vk-cap.vk-sf-c273{font-size:14px}.vk-cap-i{border:none;width:20px;height:20px}.vk-t{height:24px;cursor:move;padding:0px 3px;color:black;display:inline-block;overflow:hidden;width:100%}.vk-t.vk-min{width:auto}.vk-t-btns{margin:0px;padding:0px;position:absolute;display:inline-block;white-space:nowrap;top:0}.vk-t-btns.vk-min{position:relative}.vk-t-btn{margin:0px;background-image:url('//ssl.gstatic.com/inputtools/images/ita_sprite6.png');height:14px!important;width:14px!important;opacity:.4;filter:alpha(opacity=40)}.vk-t-btn.vk-sf-hp{background-position:-670px -70px}.vk-t-btn.vk-sf-min{background-position:-720px -70px}.vk-t-btn.vk-sf-max{background-position:-770px -70px}.vk-t-btn.vk-sf-cl{background-position:-670px -20px}.vk-t-btn.vk-sf-th{opacity:1;filter:alpha(opacity=100)}.vk-t-btn-o{padding:13px 4px 8px 4px;cursor:default;display:inline-block;position:relative}.vk-t-btn-o.vk-min{padding:2px}.vk-t-btn-o.vk-sf-hp{cursor:pointer}";
