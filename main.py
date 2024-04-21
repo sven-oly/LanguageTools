@@ -201,6 +201,95 @@ def downloadsHandler(langcode):
         showTools = True   # Make an optional parameter
     )
 
+@app.route('/convert/<langcode>')
+def convertHandler(langcode):
+    # Show downloads for this language code.
+    if langcode not in language_info_dict:
+        return render_template(
+            'language_not_defined.html',
+            langcode = langcode
+        )
+
+    langInfo = language_info_dict[langcode]
+
+    try:
+      converters = langInfo.converters
+    except:
+      converters = None
+
+    font = None
+    
+    try:
+      text_direction = langInfo.direction
+    except AttributeError:
+      text_direction = 'ltr'
+    
+    # Needed?
+    oldChars = ''
+    oldInput = ''
+    # Handle non-Unicode output.
+    try:
+      output_font = langInfo.outputFont
+    except:
+      output_font = 'Unicode'
+    text = ''
+
+    try:
+      encodingList = langInfo.encoding_font_list
+    except:
+      encodingList = None
+    
+    try:
+      unicodeChars = langInfo.unicodeChars
+    except:
+      unicodeChars = 'a'
+
+    try:
+      variation_sequence = langInfo.variation_sequence
+    except:
+      variation_sequence = None
+
+    try:
+      testStringList = langInfo.testStringList
+    except:
+      testStringList = [
+        {'name': 'Test 1', # Note: must escape the single quote.
+         'string': u'\u0004\u0005\u0006\u0007\u0008\u0009' +
+         '\u000a\u000b'},
+      ]
+      
+    showTools = True
+    
+    try:
+      unicodeCombiningChars = getCombiningCombos(
+        langInfo.baseHexUTF16, langInfo.diacritic_list)
+    except:
+      unicodeCombiningChars = None
+    
+    return render_template(
+        'translit_general.html',
+        converters = converters,
+        isTransLit = False,
+        font = font,
+        language = langInfo.Language,
+        langTag = langInfo.LanguageCode,
+        encodingList = encodingList,
+        lang_list = langInfo.lang_list,
+        kb_list = langInfo.kb_list,
+        direction = text_direction,
+        unicodeFonts = langInfo.unicode_font_list,
+        links = langInfo.links,
+        oldChars = oldChars,
+        oldInput = oldInput,
+        outputFont = output_font,
+        text = text,
+        textStrings = testStringList,
+        showTools = showTools,
+        unicodeChars = unicodeChars,
+        combiningChars = unicodeCombiningChars,
+        variation_sequence = variation_sequence
+    )
+    
 # class DownloadKBText(webapp2.RequestHandler):
 #     def get(self):
 #         infile = self.request.get("infile", "")

@@ -93,7 +93,7 @@ class langInfo:
              'ref': '/aho/'
              },
             {'linkText': 'Converter',
-             'ref': '/' + self.LanguageCode + '/convertUI/'
+             'ref': '/convert/' + self.LanguageCode
              },
             {'linkText': 'Font conversion summary',
              'ref': '/' + self.LanguageCode + '/encodingRules/'
