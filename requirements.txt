@@ -1,0 +1,5 @@
+Flask>=3.0.2
+gunicorn==20.1.0
+google-cloud-tasks==2.7.1
+langid==1.1.6
+Werkzeug>=3.0.0

@@ -24,9 +24,6 @@ import logging
 import os
 import sys
 import urllib
-import webapp2
-
-from google.appengine.ext.webapp import template
 
 encoding_font_list = [
     {
@@ -60,6 +57,10 @@ Language = 'Chakma'
 Language_native = '𑄌𑄋𑄴𑄟𑄳𑄦'
 
 unicode_font_list = [
+  {'family': 'ChakmaHandwriting.ttf',
+   'longName': 'Chakma Handwriting 2024',
+   'source': '/fonts/Chakma/ChakmaHandwriting.ttf',
+   },
   {'family': 'RibengUni2022June',
    'longName': 'RibengUni June 2022',
    'source': '/fonts/Chakma/RibengUni-Regular_20220606.ttf',
@@ -88,18 +89,19 @@ unicode_font_list = [
 
 links = [
   {'linkText': 'Keyboard',
-   'ref': '/ccp/'
+   'ref': '/langbase/' + LanguageCode
   },
   {'linkText': 'Converter',
-   'ref': '/ccp/convertUI/'},
+   'ref': '/convertUI/' + LanguageCode
+  },
   {'linkText': 'Font conversion summary',
-    'ref': '/ccp/encodingRules/'
+    'ref': '/encodingRules/' + LanguageCode
   },
   {'linkText': 'Chakma-Bangali-English dictionary builder',
    'ref': '/' + LanguageCode + '/dictionaryN/'
   },
   {'linkText': 'Resources',
-      'ref': '/ccp/downloads/'
+      'ref': '/downloads/' + LanguageCode
   },
   {'linkText': 'Unicode',
     'ref': 'http://unicode.org/charts/PDF/U11100.pdf'
@@ -111,7 +113,7 @@ links = [
    'ref': 'http://hilledu.com/'
   },
   {'linkText': 'Combiners',
-   'ref': '/ccp/diacritic/'
+   'ref': '/diacritic/' + LanguageCode
   },
   {'linkText': 'Word search',
    'ref': '/' + LanguageCode + '/wordsearch/'
@@ -120,10 +122,10 @@ links = [
    'ref': 'https://www.youtube.com/watch?v=xNfe8Sgm3Gk'
   },
   {'linkText': 'Chakma calculator',
-   'ref': '/' + LanguageCode + '/numerals/'
+   'ref': '/numerals/' + LanguageCode
   },
   {'linkText': 'Calendar',
-   'ref': '/' + LanguageCode + '/calendar/'
+   'ref': '/calendar/' + LanguageCode
   },
 ]
 
@@ -147,8 +149,6 @@ def chakmaCombiningCombos(baseHexChar):
     testString += '\u000a'
   return testString
 
-diacritic_list = [unichr(0xa802), unichr(0xa806), unichr(0xa80b)] + \
-                 [unichr(x) for x in range(0xa823, 0xa828)]
 # TODO!!!: Add in combinations.
 
 class langInfo():
@@ -160,18 +160,18 @@ class langInfo():
 
     logging.info('MAXUNICODE = %s' % sys.maxunicode)
     if sys.maxunicode >= 0x10000:
-      self.vowels = [unichr(x) for x in range(0x11103, 0x11107)]
-      self.consonants = [unichr(x) for x in range(0x11107, 0x11127)]
-      self.diacritic_list = [unichr(x) for x in range(0x11100, 0x11103)]
-      self.diacritic_list.extend([unichr(x) for x in range(0x11127, 0x11135)])
-      self.diacritic_list.extend([unichr(x) for x in range(0x11145, 0x11147)])
-      self.base_consonant = unichr(0x1110e)
+      self.vowels = [chr(x) for x in range(0x11103, 0x11107)]
+      self.consonants = [chr(x) for x in range(0x11107, 0x11127)]
+      self.diacritic_list = [chr(x) for x in range(0x11100, 0x11103)]
+      self.diacritic_list.extend([chr(x) for x in range(0x11127, 0x11135)])
+      self.diacritic_list.extend([chr(x) for x in range(0x11145, 0x11147)])
+      self.base_consonant = chr(0x1110e)
     else:
-      self.vowels = [unichr(0xd804) + unichr(0xdd00 + x) for x in range(0x03, 0x07)]
-      self.consonants = [unichr(0xd804) + unichr(0xdd00 + x) for x in range(0x07, 0x027)]
-      self.diacritic_list = [unichr(0xd804) + unichr(0xdd00 + x) for x in range(0x00, 0x04)]
-      self.diacritic_list.extend(unichr(0xd804) + unichr(0xdd00 + x) for x in range(0x27, 0x35))
-      self.diacritic_list.extend(unichr(0xd804) + unichr(0xdd00 + x) for x in range(0x45, 0x47))
+      self.vowels = [chr(0xd804) + chr(0xdd00 + x) for x in range(0x03, 0x07)]
+      self.consonants = [chr(0xd804) + chr(0xdd00 + x) for x in range(0x07, 0x027)]
+      self.diacritic_list = [chr(0xd804) + chr(0xdd00 + x) for x in range(0x00, 0x04)]
+      self.diacritic_list.extend(chr(0xd804) + chr(0xdd00 + x) for x in range(0x27, 0x35))
+      self.diacritic_list.extend(chr(0xd804) + chr(0xdd00 + x) for x in range(0x45, 0x47))
 
       self.base_consonant = u'\ud804\udd0e'
 
@@ -269,7 +269,7 @@ class langInfo():
       ]
 
 # Presents UI for conversions from font encoding to Unicode.
-class ChakmaConvertUIHandler(webapp2.RequestHandler):
+class ChakmaConvertUIHandler():
     def get(self):
 
       # All old characters
@@ -347,36 +347,10 @@ bucZ t JeborM ribo sunelo$ at tirtVire kili"""
         'combiningChars': unicodeCombiningChars,
       }
       path = os.path.join(os.path.dirname(__file__), 'HTML/translit_general.html')
-      self.response.out.write(template.render(path, template_values))
+#      self.response.out.write(template.render(path, template_values))
 
-
-class TestURLHandler(webapp2.RequestHandler):
-    def get(self):
-      langs = self.request.get('lang')
-      name = self.request.get('name')
-      route_args = self.request.route_args
-      logging.info("TestURL langs = %s" % langs)
-      logging.info("TestURL name = %s" % name)
-      logging.info("TestURL route_args: %s" % str(route_args))
 
 
 # Global in this file.
 langInstance = langInfo()
 
-app = webapp2.WSGIApplication(
-  [('/demo_ccp/', base.LanguagesHomeHandler),
-   ('/ccp/', base.LanguagesHomeHandler),
-   ('/ccp/convertUI/', ChakmaConvertUIHandler),
-   ('/ccp/downloads/', base.Downloads),
-   ('/ccp/encodingRules/', base.EncodingRules),
-   ('/ccp/diacritic/', base.DiacriticHandler),
-   ('/' + langInstance.LanguageCode + '/dictionaryInput/', base.DictionaryInput),
-   ('/' + langInstance.LanguageCode + '/dictionaryN/', base.DictionaryN),
-   ('/' + langInstance.LanguageCode + '/wordsearch/', base.WordSearchHandler),
-   ('/' + langInstance.LanguageCode + '/numerals/', base.NumeralsHandler),
-   ('/' + langInstance.LanguageCode + '/calendar/', base.CalendarHandler),
-
-     webapp2.Route('/' + langInstance.LanguageCode + '/testURL/', handler=TestURLHandler, name="testURL"),
-  ], debug=True,
-  config={'langInfo': langInstance}
-)

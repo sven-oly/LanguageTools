@@ -1,0 +1,13 @@
+{% for encoding in encoding_list %}
+    @font-face {
+      font-family:'{{encoding.font_name}}';
+      src:url('{{encoding.font_path}}'){% if '.ttf' in encoding.font_path %}format('truetype'){%endif%}{% if '.TTF' in encoding.font_path %}format('truetype'){%endif%}{% if '.otf' in encoding.font_path %}format('opentype'){%endif%}{%if '.woff' in encoding.font_path %}format('woff'){%endif%};
+      font-weight:normal;
+      font-style:normal;
+      font-size: 32px;
+    }
+    .{{encoding.font_name}} {
+      font-family:'{{encoding.font_name}}';
+      font-size: 32px;
+    }
+{% endfor %}

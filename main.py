@@ -16,143 +16,197 @@
 # limitations under the License.
 #
 
-
-import translit
+from flask import Flask, render_template, stream_with_context, request, Response, send_file
 
 import logging
 import os
-import webapp2
 
-from google.appengine.ext.webapp import template
+# Start importing language stuff. This will be replaced by database eventually.
+import chakma
+
+# If `entrypoint` is not defined in app.yaml, App Engine will look for an app
+# called `app` in `main.py`.
+app = Flask(__name__)
+
+# Dictionary of language data
+language_info_dict = {
+    }
+
+# Add in languages as we get them ready
+language_info_dict['ccp'] = chakma.langInfo()
+
 
 # English name, language code, name in the language.
 LanguageList = [
-    (u'A\u1e49angu Yol\u014bu', 'en_anangu', 'Aṉangu-Yolngu'),
+#    (u'A\u1e49angu Yol\u014bu', 'en_anangu', 'Aṉangu-Yolngu'),
     ('Ahom', 'aho'),
     ('Bamum', 'bax'),
     (u'Bété', 'bete'),
-    ('Batak Sinalungun', 'bts'),
-    ('Chakma', 'ccp', u'\ud804\udd0c\ud804\udd0b\ud804\udd34\ud804\udd1f\ud804\udd33\ud804\udd26'),
-    ('Gondi', 'gon', 'Gōndi family'),
-    ('Gondi Northern (Gunjala)', 'gno', 'Northern Gōndi (Gunjala)'),
-    ('Gondi Aheri (Masaram)', 'esg', 'Aheri Gōndi Masaram'),
-    ('Igbo Nsibidi', 'ig'),
-    ('Nyaikeng Puachue Hmong', 'Igbo Nsibidi'),
+#    ('Batak Sinalungun', 'bts'),
+    ('Chakma', 'ccp', '𑄌𑄋𑄴𑄟𑄳𑄦'),
+    # ('Gondi', 'gon', 'Gōndi family'),
+    # ('Gondi Northern (Gunjala)', 'gno', 'Northern Gōndi (Gunjala)'),
+    # ('Gondi Aheri (Masaram)', 'esg', 'Aheri Gōndi Masaram'),
+    # ('Igbo Nsibidi', 'ig'),
+    # ('Nyaikeng Puachue Hmong', 'Igbo Nsibidi'),
     ('Cherokee', 'chr', 'ᏣᎳᎩ ᎦᏬᏂᎯᏍᏗ'),
-    ('Hoocąk (Ho-chunk)', 'win', 'Hoocąk'),
-    ('Laz', 'lzz'),
-    ('Makah', 'myh'),
-    ('Menoninee', 'mez', 'Oma͞eqnomenew'),
-    ('Mende', 'men', 'Mɛnde yia'),
-    ('Mingrelian', 'xmf'),
-    ('Kuṛmāli / Kudmali', 'kyw'),
-    ('Tai Yo', 'tyj'),
-    # ('Myanmar', 'my', 'မြန်မာဘာသာ'),
-    # ('Navajo', 'nv', 'Diné bizaad'),
-    ('Oneida', 'one', 'Onʌyoteʔa·ká·'),
-    ('Otomanguean phonetic', 'omq'),
-    ('Qiang', 'qiang'),
-    ('Rohingya', 'rhg', ),
-    ('Tamashek', 'tmh', 'ⵜⴰⵎⴰⵌⴰⵆ'),
+    # ('Hoocąk (Ho-chunk)', 'win', 'Hoocąk'),
+    # ('Laz', 'lzz'),
+    # ('Makah', 'myh'),
+    # ('Menoninee', 'mez', 'Oma͞eqnomenew'),
+    # ('Mende', 'men', 'Mɛnde yia'),
+    # ('Mingrelian', 'xmf'),
+    # ('Kuṛmāli / Kudmali', 'kyw'),
+    # ('Tai Yo', 'tyj'),
+    # # ('Myanmar', 'my', 'မြန်မာဘာသာ'),
+    # # ('Navajo', 'nv', 'Diné bizaad'),
+    # ('Oneida', 'one', 'Onʌyoteʔa·ká·'),
+    # ('Otomanguean phonetic', 'omq'),
+    # ('Qiang', 'qiang'),
+    # ('Rohingya', 'rhg', ),
+    # ('Tamashek', 'tmh', 'ⵜⴰⵎⴰⵌⴰⵆ'),
     ('Tai Phake', 'phk'),
-    ('Tangsa', 'nst', 'Tangsa'),
-    ('Tibetan', 'bod'),
-    ('Wolof', 'wo'),
-    ('Bangali', 'bn'),
-    ('Bassa', 'bsq'),
-    ('Choctaw', 'cho'),
-    ('Cree', 'cr'),
-    ('Lenape', 'del'),
-    ('Ho', 'hoc'),
-    ('Igbo', 'ig'),
-    ('Kaingang', 'kgp'),
-    ('Kpelle', 'kpe'),
-    ('Loma', 'lom'),
-    ('Tai Viet script', 'tavt'),
-    ('Karen', 'ksw'),
-    ('Lampung', 'lampung'),
-    ('Lepcha', 'lep'),
-    ('Mongolian', 'mn'),
+    # ('Tangsa', 'nst', 'Tangsa'),
+    # ('Tibetan', 'bod'),
+    # ('Wolof', 'wo'),
+    # ('Bangali', 'bn'),
+    # ('Bassa', 'bsq'),
+    # ('Choctaw', 'cho'),
+    # ('Cree', 'cr'),
+    # ('Lenape', 'del'),
+    # ('Ho', 'hoc'),
+    # ('Igbo', 'ig'),
+    # ('Kaingang', 'kgp'),
+    # ('Kpelle', 'kpe'),
+    # ('Loma', 'lom'),
+    # ('Tai Viet script', 'tavt'),
+    # ('Karen', 'ksw'),
+    # ('Lampung', 'lampung'),
+    # ('Lepcha', 'lep'),
+    # ('Mongolian', 'mn'),
     ('Mende Kikakui', 'men'),
-    ('Wancho', 'nnp'),
-    ('Ojibwe', 'oj'),
-    ('Nyiakeng Puachue Hmong', 'hnj'),
-    ('Nigerian Pidgin', 'pcm'),
-    ('Kinyarwanda', 'rw'),
-    ('Shan', 'shn', 'လိၵ်ႈတႆ'),
-    ('Sora', 'srb'),
-    ('Tulu', 'tcy'),
-    ('Tongan', 'to'),
-    ('Sunuwar', 'suz'),
-    ('Mundari', 'unr'),
-    ('Yoruba', 'yo'),
-    ('Zaghawa', 'zag'),
-    ('Burmese', 'my'),
-    ('Elfdalian', 'ovd', 'övdalsk'),  # Added 9-Nov-2021
-    ('Blackfoot', 'bla', 'ᓱᖽᐧᖿ'),  # Added 10-Nov-2021
-    ('Tamil', 'ta', 'தமிழ்'),
-    ('Santali', 'sat', 'ᱥᱟᱱᱛᱟᱲᱤ'),
-    ('Meitei (Manipuri)', 'mni', 'ꯃꯤꯇꯩ ꯃꯌꯦꯛ'),
+    # ('Wancho', 'nnp'),
+    # ('Ojibwe', 'oj'),
+    # ('Nyiakeng Puachue Hmong', 'hnj'),
+    # ('Nigerian Pidgin', 'pcm'),
+    # ('Kinyarwanda', 'rw'),
+    # ('Shan', 'shn', 'လိၵ်ႈတႆ'),
+    # ('Sora', 'srb'),
+    # ('Tulu', 'tcy'),
+    # ('Tongan', 'to'),
+    # ('Sunuwar', 'suz'),
+    # ('Mundari', 'unr'),
+    # ('Yoruba', 'yo'),
+    # ('Zaghawa', 'zag'),
+    # ('Burmese', 'my'),
+    # ('Elfdalian', 'ovd', 'övdalsk'),  # Added 9-Nov-2021
+    # ('Blackfoot', 'bla', 'ᓱᖽᐧᖿ'),  # Added 10-Nov-2021
+    # ('Tamil', 'ta', 'தமிழ்'),
+    # ('Santali', 'sat', 'ᱥᱟᱱᱛᱟᱲᱤ'),
+    # ('Meitei (Manipuri)', 'mni', 'ꯃꯤꯇꯩ ꯃꯌꯦꯛ'),
     ('Aiton', 'aio', '(တႝ)ဢႝတွꩫ်'),
-    ('Khamti', 'kmt', '(တဲး)ၵမ်းတီ'),
-    ('Kalabari', 'ijn'),
-    ('Mru', 'mro'),
-    ('Sylheti', 'syl'),
-    ('Fulfulde', 'ff'),
-    ('Rhade', 'rad', 'klei Êđê'),
-    ('Mahasu', 'bfz'),
-    ('Vietnamese', 'vn', 'tiếng Việt'),
-    ('Inupiaq', 'ik', 'Iñupiaq'),
-    ('Lakota', 'lkt', 'Lakȟótiyapi'),
-    ('Kihunde', 'hke'),
-    ('Comanche', 'com', 'Nʉmʉ Tekwapʉ'),
-    ('Kurmanji Yezidi', 'ku'),
+    # ('Khamti', 'kmt', '(တဲး)ၵမ်းတီ'),
+    # ('Kalabari', 'ijn'),
+    # ('Mru', 'mro'),
+    # ('Sylheti', 'syl'),
+    # ('Fulfulde', 'ff'),
+    # ('Rhade', 'rad', 'klei Êđê'),
+    # ('Mahasu', 'bfz'),
+    # ('Vietnamese', 'vn', 'tiếng Việt'),
+    # ('Inupiaq', 'ik', 'Iñupiaq'),
+    # ('Lakota', 'lkt', 'Lakȟótiyapi'),
+    # ('Kihunde', 'hke'),
+    # ('Comanche', 'com', 'Nʉmʉ Tekwapʉ'),
+    # ('Kurmanji Yezidi', 'ku'),
 ]
 
 
-class MainHandler(webapp2.RequestHandler):
-    def get(self):
-        template_values = {
-          'langlist': sorted(LanguageList, key=lambda lang: lang[0])
-        }
-        path = os.path.join(os.path.dirname(__file__), 'HTML/languagetools.html')
-        self.response.out.write(template.render(path, template_values))
+@app.route('/')
+def MainHandler():
+    return  render_template(
+        'languagetools.html',
+        langlist = sorted(LanguageList, key=lambda lang: lang[0])
+        )
 
 
-class DownloadKBText(webapp2.RequestHandler):
-    def get(self):
-        infile = self.request.get("infile", "")
-        outfile = self.request.get("outfile", "")
-        template_values = {
-          'infile': infile,
-          'outfile': outfile,
-        }
-        path = os.path.join(os.path.dirname(__file__), 'HTML/keyboardTemplate.html')
-        self.response.out.write(template.render(path, template_values))
+@app.route('/langbase/<langcode>/')
+def topLangHandler(langcode):
+    # Put up starting page for this language
+    print('Found langcode %s' % langcode)
 
+    # Get the language info
+    if langcode not in language_info_dict:
+        return render_template(
+            'language_not_defined.html',
+            langcode = langcode
+        )
 
-# Error catching
-def handle_404(request, response, exception):
-    logging.exception(exception)
-    response.write('Sorry, but we cannot find that page in MAIN. Please try again.\n\n')
-    response.write('Request = %s\n' % request.url)
-    response.set_status(404)
+    lang_info = language_info_dict[langcode]
 
+    try:
+        encoded_ranges = lang_info.encoded_ranges
+    except:
+        encoded_ranges = None
+        
+    return render_template('demo_general.html',
+                           langTag = langcode,
+                           language = lang_info.Language,
+                           font_list = lang_info.unicode_font_list,
+                           kb_list = lang_info.kb_list,
+                           # Fill in other things here
+                           encoded_ranges = encoded_ranges,
+                           lang_list = lang_info.lang_list,
+                           langInfo = lang_info,
+                           links = lang_info.links,
+                           test_data = None,
+    )
+    
+@app.route('/downloads/<langcode>')
+def downloadsHandler(langcode):
+    # Show downloads for this language code.
+    if langcode not in language_info_dict:
+        return render_template(
+            'language_not_defined.html',
+            langcode = langcode
+        )
 
-def handle_500(request, response, exception):
-    logging.exception(exception)
-    response.write('A server error occurred in MAIN!')
-    response.write('Request = %s\n' % request.url)
-    response.set_status(500)
+    langInfo = language_info_dict[langcode]
+    
+    public_unicode_fonts = []
+    try:
+        public_unicode_fonts = langInfo.public_font_resources
+    except:
+        public_unicode_fonts = langInfo.unicode_font_list
 
+    try:
+        text_file_list = langInfo.text_file_list
+    except:
+        text_file_list = None
 
-app = webapp2.WSGIApplication(
-    [
-        ('/', MainHandler),
-        ('/transliterate/', translit.TranslitUIHandler),
-        ('/dotransliterate/', translit.DoTranslitHandler),
-    ],
-    debug=True)
+    print(f'TEST FILE _LIST: {text_file_list}')
 
-app.error_handlers[404] = handle_404
-app.error_handlers[500] = handle_500
+    return render_template(
+        'downloads.html',
+        language = langInfo.Language,
+        language_native = langInfo.Language_native,
+        unicode_font_list = public_unicode_fonts,
+        file_list = text_file_list,
+        showTools = True   # Make an optional parameter
+    )
+
+# class DownloadKBText(webapp2.RequestHandler):
+#     def get(self):
+#         infile = self.request.get("infile", "")
+#         outfile = self.request.get("outfile", "")
+#         template_values = {
+#           'infile': infile,
+#           'outfile': outfile,
+#         }
+#         path = os.path.join(os.path.dirname(__file__), 'HTML/keyboardTemplate.html')
+
+if __name__ == '__main__':
+    # This is used when running locally only. When deploying to Google App
+    # Engine, a webserver process such as Gunicorn will serve the app. This
+    # can be configured by adding an `entrypoint` to app.yaml.
+    app.run(host='127.0.0.1', port=8080, debug=True, threaded=True)
+# [END gae_python37_app]

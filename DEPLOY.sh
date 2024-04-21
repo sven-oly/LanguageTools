@@ -1,1 +1,1 @@
-gcloud app deploy --project languagetools-153419
+gcloud app deploy --project langtools2024

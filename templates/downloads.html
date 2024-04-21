@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+
+  <title>Download {{language}} resources</title>
+
+  <link rel="stylesheet" href="/static/css/blueprint/screen.css" type="text/css" media="screen">
+  <link rel="stylesheet" href="/static/css/blueprint/print.css" type="text/css" media="print"> 
+  <!--[if lt IE 8]>
+    <link rel="stylesheet" href="/static/css/blueprint/ie.css" type="text/css" media="screen, projection">
+  <![endif]-->
+
+  <link rel="stylesheet" type="text/css" href="/static/css/fonts.css">
+
+    <style>
+      {% for font in unicode_font_list %}
+      @font-face{
+          font-family:"{{ font.family }}";
+          src:url("{{font.source}}");
+          font-weight:normal;
+          font-style:normal;
+      }
+      {% endfor %}
+
+      {% for font in unicode_font_list %}
+      .{{font.family}} {
+          font-family: "{{font.family}},Arial";
+          font-size:20px;
+      }
+      {% endfor %}
+      
+      .default-font {
+          font-family: "Arial,Helvetica";
+          font-size:12px;
+      }
+      
+      input {font-size:18px;}
+      textarea {font-size:20px; height:400px; resize: vertical;}
+    </style>
+
+  <style>
+  textarea {
+    width: 600px;
+        height: 120px;
+        border: 3px solid #cccccc;
+        padding: 5px;
+        font-size: 24px;
+        }
+  {
+    font-family: "Courier New";
+  }
+  </style>
+  <script src="/static//js/utils.js"></script>
+  <script>
+
+  function init() {
+    // Fill in if needed.
+  }
+
+  </script>
+  </head>
+
+  <body onload="init()">
+  <div class="container">
+    <div class="span-1">  
+    </div>
+  <div class="span-24 last">
+    <h1>Download {{language}} fonts</h1>
+
+    <ul>
+      {% for font in unicode_font_list %}
+      <li style="font-size:24px;"> {{font.longName}} 
+           <span style="font-family:{{font.family}};font-size:30px;">{{language_native}}</span>:
+        <a href="/static/{{font.source}}" download
+           style="font-family:{{font.family}};font-size:24px;">{{font.longName}}</a>
+      </li>
+      {% endfor %}
+    </ul>
+
+    {% if file_list %}
+    <h1>Download {{language}} files</h1>
+
+    <ul>
+      {% for item in file_list %}
+      <li style="font-size:24px;">
+        {% if item.source %}
+        <a href="/static/{{item.source}}" download
+           style="font-size:24px;">{{item.name}}</a>
+           {{item.description}}
+        {% else %}
+        <a href="/static/{{item.link}}" target="_blank"
+           style="font-size:24px;">{{item.name}}</a>
+           {{item.description}}        {% endif %}
+      </li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+
+    <br />
+      <div>
+    <form id='mon_form' action="/feedback/" method="get">
+      <input type="submit" value="Send feedback" />
+      <input type="hidden" name='language' value='{{language}}'>
+      <input type="hidden" name='font' value=''>
+    </form>
+  </div>  </div> <!-- span-16 -->
+  </div> <!-- container -->
+
+</body>
+</html>

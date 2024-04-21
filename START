@@ -1,5 +1,6 @@
-export PROJECT_ID=languagetools-153419
-export QUEUE_ID=font-convert-queue
+export PROJECT_ID=langtools2024
+export QUEUE_ID=langtools2024
 gcloud config set project $PROJECT_ID
+export LOCATION_ID=us-central1
 
-/Users/craig/Desktop/Projects/google-cloud-sdk/bin/dev_appserver.py .
+python3 main.py runserver
