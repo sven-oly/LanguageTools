@@ -23,9 +23,7 @@ import logging
 import os
 import sys
 import urllib
-import webapp2
 
-from google.appengine.ext.webapp import template
 
 Language = 'Chatino'
 Language_native = 'Chatino'
@@ -126,9 +124,9 @@ links = [
   {'linkText': 'Chatino-English dictionary builder',
    'ref': '/' + LanguageCode + '/dictionaryN/'
    },
-  {'linkText': 'Resources & Downloads',
-   'ref': '/' + LanguageCode + '/downloads/'
-   },
+  {'linkText': 'Resources',
+      'ref': '/downloads/' + LanguageCode
+  },
 ]
 
 
@@ -151,17 +149,17 @@ class langInfo():
     # Update this!
     if sys.maxunicode >= 0x10000:
       logging.info('WIDE SYSTEM BUILD!!!')
-      self.diacritic_list = [unichr(x) for x in range(0x11100, 0x11103)]
-      self.diacritic_list.extend([unichr(x) for x in range(0x11127, 0x11133)])
-      self.diacritic_list.extend([unichr(x) for x in range(0x11134, 0x11135)])
-      self.diacritic_list.extend([unichr(x) for x in range(0x11145, 0x11147)])
-      self.base_consonant = unichr(0x1110e)
+      self.diacritic_list = [chr(x) for x in range(0x11100, 0x11103)]
+      self.diacritic_list.extend([chr(x) for x in range(0x11127, 0x11133)])
+      self.diacritic_list.extend([chr(x) for x in range(0x11134, 0x11135)])
+      self.diacritic_list.extend([chr(x) for x in range(0x11145, 0x11147)])
+      self.base_consonant = chr(0x1110e)
     else:
       logging.info('NARROW SYSTEM BUILD!!!')
-      self.diacritic_list = [unichr(0xd804) + unichr(0xdd00 + x) for x in range(0x00, 0x04)]
-      self.diacritic_list.extend(unichr(0xd804) + unichr(0xdd00 + x) for x in range(0x27, 0x33))
-      self.diacritic_list.extend(unichr(0xd804) + unichr(0xdd00 + x) for x in range(0x34, 0x35))
-      self.diacritic_list.extend(unichr(0xd804) + unichr(0xdd00 + x) for x in range(0x45, 0x47))
+      self.diacritic_list = [chr(0xd804) + chr(0xdd00 + x) for x in range(0x00, 0x04)]
+      self.diacritic_list.extend(chr(0xd804) + chr(0xdd00 + x) for x in range(0x27, 0x33))
+      self.diacritic_list.extend(chr(0xd804) + chr(0xdd00 + x) for x in range(0x34, 0x35))
+      self.diacritic_list.extend(chr(0xd804) + chr(0xdd00 + x) for x in range(0x45, 0x47))
       self.base_consonant = u'\ud804\udd0e'
 
     self.encoding_font_list = encoding_font_list
@@ -217,99 +215,20 @@ class langInfo():
     ]
 
 
-# Presents UI for conversions from font encoding to Unicode.
-class ConvertUIHandler(webapp2.RequestHandler):
-    def get(self):
-
-      # All old characters
-      oldChars = (u'' +
-                  '0123456789:;<=>?@' +
-                  '!@#$%^&*()_+' +
-                  'ABCDEFGHIJKLMNOPQRSTUVWXYZ[ \\ ]^_`' +
-                  'abcdefghijklmnopqrstuvwxyz{|}~')
-      text = self.request.get('text', oldChars)
-      font = self.request.get('font')
-      testStringList = [
-          {'name': 'Test 1', # Note: must escape the single quote.
-           'string': u'\u0004\u0005\u0006\u0007\u0008\u0009' +
-           '\u000a\u000b'},
-      ]
-
-      oldInput = u''
-      for i in xrange(0x20, 0x7e):
-        oldInput += unichr(i)
-      for i in xrange(0x2018, 0x201e):
-        oldInput += unichr(i)
-      unicodeChars = ''
-      unicodeCombiningChars = ''
-      kb_list = [
-        {'shortName':  LanguageCode,
-         'longName': Language
-        }
-      ]
-
-      template_values = {
-          'font': font,
-          'language': Language,
-          'langTag': LanguageCode,
-          'encodingList': encoding_font_list,
-          'encoding': encoding_font_list[0],
-          'kb_list': kb_list,
-          'unicodeFonts': unicode_font_list,
-          'links': links,
-          'oldChars': oldChars,
-          'oldInput': oldInput,
-          'text': text,
-          'textStrings': testStringList,
-          'showTools': self.request.get('tools', None),
-          'unicodeChars': unicodeChars,
-          'combiningChars': unicodeCombiningChars,
-      }
-      path = os.path.join(os.path.dirname(__file__), 'HTML/translit_general.html')
-      self.response.out.write(template.render(path, template_values))
-
-# AJAX handler for converter
-class ConvertHandler(webapp2.RequestHandler):
-    def get(self):
-      # TODO: Get the text values
-      # Call transliterator
-      # Return JSON structure with values.
-
-      transCcp = transliterate.Transliterate(
-        transrule_ccp.TRANS_LIT_RULES,
-        transrule_ccp.DESCRIPTION
-      )
-
-      outText = '\u11103\u11101\u11103'
-      message = 'TBD'
-      error = ''
-
-      result = {
-        'outText' : outText,
-        'message' : message,
-        'error': error,
-        'language': Language,
-        'langTag': LanguageCode,
-        'showTools': self.request.get('tools', None),
-        'summary' : transCcp.getSummary(),
-      }
-      self.response.out.write(json.dumps(result))
-
-
 # Global in this file.
 langInstance = langInfo()
 
-app = webapp2.WSGIApplication(
-  [
-    ('/demo_' + LanguageCode + '/', base.LanguagesHomeHandler),
-    ('/' + LanguageCode + '/', base.LanguagesHomeHandler),
-    ('/' + LanguageCode + '/convertUI/', ConvertUIHandler),
-    ('/' + LanguageCode + '/downloads/', base.Downloads),
-    ('/' + LanguageCode + '/converter/', ConvertHandler),
-    ('/' + LanguageCode + '/encodingRules/', base.EncodingRules),
-    ('/' + LanguageCode + '/dictionaryInput/', base.DictionaryInput),
-    ('/' + langInstance.LanguageCode + '/dictionaryN/', base.DictionaryN),
-  ],
-  debug=True,
-  config={'langInfo': langInstance}
-)
+# app = webapp2.WSGIApplication(
+#   [
+#     ('/demo_' + LanguageCode + '/', base.LanguagesHomeHandler),
+#     ('/' + LanguageCode + '/', base.LanguagesHomeHandler),
+#     ('/' + LanguageCode + '/convertUI/', ConvertUIHandler),
+#     ('/' + LanguageCode + '/downloads/', base.Downloads),
+#     ('/' + LanguageCode + '/converter/', ConvertHandler),
+#     ('/' + LanguageCode + '/encodingRules/', base.EncodingRules),
+#     ('/' + LanguageCode + '/dictionaryInput/', base.DictionaryInput),
+#     ('/' + langInstance.LanguageCode + '/dictionaryN/', base.DictionaryN),
+#   ],
+#   debug=True,
+#   config={'langInfo': langInstance}
+# )

@@ -14,8 +14,6 @@
 # limitations under the License.
 #
 
-import webapp2
-
 # Use routines from this base class
 import base
 
@@ -195,7 +193,7 @@ class langInfo:
       },
       {
         'linkText': 'Resources',
-        'ref': '/' + self.LanguageCode + '/downloads/'
+        'ref': '/downloads/' + self.LanguageCode
       },
       {'linkText': 'Calculator',
        'ref': '/phk/numerals/'
@@ -219,13 +217,13 @@ class langInfo:
     self.baseHexUTF16 = u'\u1000\ufe00'
     self.base_consonant = u'\u1000\ufe00'
 
-    self.unicodeChars = [unichr(x) for x in range(0x1000, 0x105f)]
-    self.diacritic_list = [unichr(x) for x in range(0x102d, 0x1031)]
-    self.diacritic_list.append(unichr(0x1036))
-    self.diacritic_list.extend([unichr(x) for x in range(0x103a, 0x103e)])
-    self.diacritic_list.append(unichr(0x105e))
-    self.diacritic_list.append(unichr(0x109d))
-    self.diacritic_list.append(unichr(0xa9e5))
+    self.unicodeChars = [chr(x) for x in range(0x1000, 0x105f)]
+    self.diacritic_list = [chr(x) for x in range(0x102d, 0x1031)]
+    self.diacritic_list.append(chr(0x1036))
+    self.diacritic_list.extend([chr(x) for x in range(0x103a, 0x103e)])
+    self.diacritic_list.append(chr(0x105e))
+    self.diacritic_list.append(chr(0x109d))
+    self.diacritic_list.append(chr(0xa9e5))
 
     # These are pairs that need to be reversed to appear correctly
     self.diacritic_reverse_pairs = [
@@ -277,21 +275,21 @@ class langInfo:
     
 
 langInstance = langInfo()
-app = webapp2.WSGIApplication(
-    [
-        ('/phk/', base.LanguagesHomeHandler),
-        ('/phk/keyboard/', base.LanguagesHomeHandler),
-        ('/phk/convertUI/', base.ConvertUIHandler),
-        ('/phk/downloads/', base.Downloads),
-        ('/phk/converter/', base.ConvertUIHandler),
-        ('/' + langInstance.LanguageCode + '/kbtransforms/', base.KeyboardTransforms),
-        ('/phk/encodingRules/', base.EncodingRules),
-        ('/phk/diacritic/', base.DiacriticHandler),
-        ('/phk/render/', base.EncodingRules),
-        ('/phk/dictionaryN/', base.DictionaryN),
-        ('/' + langInstance.LanguageCode + '/numerals/', base.NumeralsHandler),
-        ('/' + langInstance.LanguageCode + '/calendar/', base.CalendarHandler),
-    ],
-    debug=True,
-    config={'langInfo': langInstance}
-)
+# app = webapp2.WSGIApplication(
+#     [
+#         ('/phk/', base.LanguagesHomeHandler),
+#         ('/phk/keyboard/', base.LanguagesHomeHandler),
+#         ('/phk/convertUI/', base.ConvertUIHandler),
+#         ('/phk/downloads/', base.Downloads),
+#         ('/phk/converter/', base.ConvertUIHandler),
+#         ('/' + langInstance.LanguageCode + '/kbtransforms/', base.KeyboardTransforms),
+#         ('/phk/encodingRules/', base.EncodingRules),
+#         ('/phk/diacritic/', base.DiacriticHandler),
+#         ('/phk/render/', base.EncodingRules),
+#         ('/phk/dictionaryN/', base.DictionaryN),
+#         ('/' + langInstance.LanguageCode + '/numerals/', base.NumeralsHandler),
+#         ('/' + langInstance.LanguageCode + '/calendar/', base.CalendarHandler),
+#     ],
+#     debug=True,
+#     config={'langInfo': langInstance}
+# )

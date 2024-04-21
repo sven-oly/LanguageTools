@@ -22,7 +22,12 @@ import logging
 import os
 
 # Start importing language stuff. This will be replaced by database eventually.
+import ahom
 import chakma
+import cherokee
+import mendekikakui
+import omq
+import phake
 
 # If `entrypoint` is not defined in app.yaml, App Engine will look for an app
 # called `app` in `main.py`.
@@ -33,15 +38,20 @@ language_info_dict = {
     }
 
 # Add in languages as we get them ready
+language_info_dict['aho'] = ahom.langInfo()
 language_info_dict['ccp'] = chakma.langInfo()
+language_info_dict['chr'] = cherokee.langInfo()
+language_info_dict['men'] =  mendekikakui.langInfo()
+language_info_dict['omq'] = omq.langInfo()
+language_info_dict['phk'] = phake.langInfo()
 
 
 # English name, language code, name in the language.
 LanguageList = [
 #    (u'A\u1e49angu Yol\u014bu', 'en_anangu', 'Aṉangu-Yolngu'),
     ('Ahom', 'aho'),
-    ('Bamum', 'bax'),
-    (u'Bété', 'bete'),
+#    ('Bamum', 'bax'),
+#    (u'Bété', 'bete'),
 #    ('Batak Sinalungun', 'bts'),
     ('Chakma', 'ccp', '𑄌𑄋𑄴𑄟𑄳𑄦'),
     # ('Gondi', 'gon', 'Gōndi family'),
@@ -61,7 +71,7 @@ LanguageList = [
     # # ('Myanmar', 'my', 'မြန်မာဘာသာ'),
     # # ('Navajo', 'nv', 'Diné bizaad'),
     # ('Oneida', 'one', 'Onʌyoteʔa·ká·'),
-    # ('Otomanguean phonetic', 'omq'),
+    ('Otomanguean phonetic', 'omq'),
     # ('Qiang', 'qiang'),
     # ('Rohingya', 'rhg', ),
     # ('Tamashek', 'tmh', 'ⵜⴰⵎⴰⵌⴰⵆ'),
@@ -104,7 +114,7 @@ LanguageList = [
     # ('Tamil', 'ta', 'தமிழ்'),
     # ('Santali', 'sat', 'ᱥᱟᱱᱛᱟᱲᱤ'),
     # ('Meitei (Manipuri)', 'mni', 'ꯃꯤꯇꯩ ꯃꯌꯦꯛ'),
-    ('Aiton', 'aio', '(တႝ)ဢႝတွꩫ်'),
+#    ('Aiton', 'aio', '(တႝ)ဢႝတွꩫ်'),
     # ('Khamti', 'kmt', '(တဲး)ၵမ်းတီ'),
     # ('Kalabari', 'ijn'),
     # ('Mru', 'mro'),
@@ -132,7 +142,6 @@ def MainHandler():
 @app.route('/langbase/<langcode>/')
 def topLangHandler(langcode):
     # Put up starting page for this language
-    print('Found langcode %s' % langcode)
 
     # Get the language info
     if langcode not in language_info_dict:
@@ -182,8 +191,6 @@ def downloadsHandler(langcode):
         text_file_list = langInfo.text_file_list
     except:
         text_file_list = None
-
-    print(f'TEST FILE _LIST: {text_file_list}')
 
     return render_template(
         'downloads.html',

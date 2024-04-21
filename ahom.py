@@ -15,7 +15,6 @@
 #
 
 import sys
-import webapp2
 
 # Use routines from this base class
 import base
@@ -112,11 +111,14 @@ class langInfo:
              'ref': 'https://keymanweb.com/#aho-ahom,Keyboard_ahom_star'
              },
             {'linkText': 'Resources',
-             'ref': '/' + self.LanguageCode + '/downloads/'
+             'ref': '/downloads/' + self.LanguageCode
              },
         ]
 
         self.kb_list = [
+            {'shortName':  'ahom_star_flex',
+             'longName': 'Tai Ahom Star flex'
+             },
             {'shortName':  'aho_star',
              'longName': 'Tai Ahom Star e/L first'
              },
@@ -131,10 +133,15 @@ class langInfo:
         # Resource files
         self.text_file_list = [
             {
-                'name': 'Ahom-star with reordering',
-                'source': '/resources/aho/ahom_star.kmp',
-                'description': 'Ahom-start keyboard with reordering 26-Nov-2023'
+                'name': 'Ahom-star 1.1 with reordering and new characters',
+                'source': '/resources/aho/ahom_star_1.1.kmp',
+                'description': 'Ahom-start keyboard with reordering 21-Dec-2023'
                 },
+            # {
+            #     'name': 'Ahom-star with reordering',
+            #     'source': '/resources/aho/ahom_star.kmp',
+            #     'description': 'Ahom-start keyboard with reordering 26-Nov-2023'
+            #     },
         #    '/download/aho/3-5-1-1.txt',
         #    '/download/aho/nemi_mang_text.txt'
         ]
@@ -143,11 +150,11 @@ class langInfo:
         self.base_consonant = u'\ud805\udf00'
 
         if sys.maxunicode >= 0x10000:
-            self.unicodeChars = [unichr(x) for x in range(0x11700, 0x1173f)]
-            self.diacritic_list = [unichr(x) for x in range(0x1171d, 0x1172c)]
+            self.unicodeChars = [chr(x) for x in range(0x11700, 0x1173f)]
+            self.diacritic_list = [chr(x) for x in range(0x1171d, 0x1172c)]
         else:
-            self.unicodeChars = [unichr(0xd805) + unichr(0xdf00 + x) for x in range(0x00, 0x3f)]
-            self.diacritic_list = [unichr(0xd805) + unichr(0xdf00 + x) for x in range(0x1d, 0x2c)]
+            self.unicodeChars = [chr(0xd805) + chr(0xdf00 + x) for x in range(0x00, 0x3f)]
+            self.diacritic_list = [chr(0xd805) + chr(0xdf00 + x) for x in range(0x1d, 0x2c)]
 
         # Python-based transliteration tool.
         self.transliterator = None
@@ -185,19 +192,19 @@ class langInfo:
 
 
 langInstance = langInfo()
-app = webapp2.WSGIApplication(
-    [
-        ('/aho/', base.LanguagesHomeHandler),
-        ('/aho/keyboard/', base.LanguagesHomeHandler),
-        ('/aho/convertUI/', base.ConvertUIHandler),
-        ('/aho/downloads/', base.Downloads),
-        ('/aho/converter/', base.ConvertUIHandler),
-        ('/aho/encodingRules/', base.EncodingRules),
-        ('/aho/diacritic/', base.DiacriticHandler),
-        ('/aho/render/', base.EncodingRules),
-        ('/aho/dictionaryN/', base.DictionaryN),
-        ('/' + langInstance.LanguageCode + '/kbtransforms/', base.KeyboardTransforms),
-    ],
-    debug=True,
-    config={'langInfo': langInstance}
-)
+# app = webapp2.WSGIApplication(
+#     [
+#         ('/aho/', base.LanguagesHomeHandler),
+#         ('/aho/keyboard/', base.LanguagesHomeHandler),
+#         ('/aho/convertUI/', base.ConvertUIHandler),
+#         ('/aho/downloads/', base.Downloads),
+#         ('/aho/converter/', base.ConvertUIHandler),
+#         ('/aho/encodingRules/', base.EncodingRules),
+#         ('/aho/diacritic/', base.DiacriticHandler),
+#         ('/aho/render/', base.EncodingRules),
+#         ('/aho/dictionaryN/', base.DictionaryN),
+#         ('/' + langInstance.LanguageCode + '/kbtransforms/', base.KeyboardTransforms),
+#     ],
+#     debug=True,
+#     config={'langInfo': langInstance}
+# )

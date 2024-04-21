@@ -93,7 +93,7 @@ private_use_map_combined = {
   '\u003c': ['\u003c', '\ud805\udf01\ud805\udf1f', '<'],  // <
   '\u003d': ['\u003d', '\u003d', '='],  // =
   '\u003e': ['\u003e', '\ud805\udf28\ud805\udf21', '>'],  // >
-  '\u003f': ['?', '\ud805\udf10\ud805\udf1f', '?'],  // ?
+  '\u003f': ['?', '\ud805\udf07\ud805\udf1f', '?'],  // ?
 
   '\u0040': ['\ud805\udf3e', '\ud805\udf3e', '\uaa79'],  // @
   '\u0041': ['\ud805\udf12', '\ud805\udf12', '\ud805\udf33\ud805\udf05'],  // @
@@ -135,7 +135,7 @@ private_use_map_combined = {
   '\u007e': ['~', '~'],  // @
 
   '\u00a1': ['\ud805\udf00', '\ud805\udf05\ud805\udf0a',
-	     '\ud805\udf33\ud805\udf05'],  // @
+             '\ud805\udf33\ud805\udf05'],  // @
   '\u00a2': ['\ud805\udf01', '\ud805\udf01', '\ud805\udf33\ud805\udf05'],  // @
   '\u00a4': ['\ud805\udf15', '¤', '\ud805\udf33\ud805\udf05'],  // @
   '\u00a5': ['\ud805\udf29', '\ud805\udf29', '\ud805\udf33\ud805\udf05'],  // @
@@ -215,7 +215,7 @@ langConverter.convertEncodingToUnicode = function(inbox, outbox, encodingIndex) 
     if (c in private_use_map_combined) {
       var result = private_use_map_combined[c][encodingIndex];
       if (result) {
-	out = result;
+        out = result;
       }
     }
     outtext += out;

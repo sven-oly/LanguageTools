@@ -24,9 +24,6 @@ import logging
 import os
 import sys
 import urllib
-import webapp2
-
-from google.appengine.ext.webapp import template
 
 LanguageCode = 'men'
 Language = 'Mende'
@@ -77,7 +74,7 @@ links = [
       'ref': '/men/encodingRules/'
     },
     {'linkText': 'Resources',
-      'ref': '/men/downloads/'
+     'ref': '/downloads/' + LanguageCode
     },
     {'linkText': 'Unicode Page',
      'ref': 'https://www.unicode.org/charts/PDF/U1E800.pdf'
@@ -112,10 +109,10 @@ class langInfo():
 
     if sys.maxunicode >= 0x10000:
       logging.info('WIDE SYSTEM BUILD!!!')
-      self.diacritic_list = [unichr(x) for x in range(0x16af0, 0x16af5)]
+      self.diacritic_list = [chr(x) for x in range(0x16af0, 0x16af5)]
     else:
       logging.info('NARROW SYSTEM BUILD!!!')
-      self.diacritic_list = [unichr(0xd81a) + unichr(0xde00 + x) for x in range(0xf0, 0xf5)]
+      self.diacritic_list = [chr(0xd81a) + chr(0xde00 + x) for x in range(0xf0, 0xf5)]
 
     self.base_consonant = u'𞠀'
     self.baseHexUTF16 = u'\ud81a\udee7'
@@ -187,8 +184,8 @@ class langInfo():
     self.links = links
     self.text_file_list = [
       {
-        'name': 'KeyMan 1.3 Mende Kikakui - RTL ',
-        'source': '/resources/men/mende_kikakui_1.3.kmp',
+        'name': 'KeyMan 1.31 Mende Kikakui - RTL ',
+        'source': '/resources/men/mende_kikakui_1.31.kmp',
         'description': 'Keyboard 1.3 with digigs for Mobile & Desktop, 6-Dec-2023',
         'instructions': 'Phonetic: https://languagetools-153419.appspot.com/men/kbtransforms/',
       },
@@ -206,21 +203,21 @@ class langInfo():
     self.unicode_database = 'unicode_data/UnicodeData14.0.MendeKikakui.txt'
 
     # Lists of test characters for the various encodings
-    self.test_chars = ' '.join([unichr(x) for x in range(0xe000, 0xe103)])
+    self.test_chars = ' '.join([chr(x) for x in range(0xe000, 0xe103)])
 
 # Global in this file.
 langInstance = langInfo()
 
-app = webapp2.WSGIApplication(
-    [('/men/', base.LanguagesHomeHandler),
-     ('/men/convertUI/', base.ConvertUIHandler),
-     ('/men/downloads/', base.Downloads),
-     ('/men/converter/', base.ConvertHandler),
-     ('/men/encodingRules/', base.EncodingRules),
-     ('/men/diacritic/', base.DiacriticHandler),
-     ('/men/phonetickb/', base.PhoneticKbHandler),
-     # ('/' + langInstance.LanguageCode + '/kbtransforms/', base.KeyboardTransforms),
-     ('/' + langInstance.LanguageCode + '/kbtransforms/', base.KeyboardTransforms2),
-     ], debug=True,
-    config={'langInfo': langInstance}
-)
+# app = webapp2.WSGIApplication(
+#     [('/men/', base.LanguagesHomeHandler),
+#      ('/men/convertUI/', base.ConvertUIHandler),
+#      ('/men/downloads/', base.Downloads),
+#      ('/men/converter/', base.ConvertHandler),
+#      ('/men/encodingRules/', base.EncodingRules),
+#      ('/men/diacritic/', base.DiacriticHandler),
+#      ('/men/phonetickb/', base.PhoneticKbHandler),
+#      # ('/' + langInstance.LanguageCode + '/kbtransforms/', base.KeyboardTransforms),
+#      ('/' + langInstance.LanguageCode + '/kbtransforms/', base.KeyboardTransforms2),
+#      ], debug=True,
+#     config={'langInfo': langInstance}
+# )

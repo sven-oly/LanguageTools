@@ -51,7 +51,7 @@
     font-family: "Courier New";
   }
   </style>
-  <script src="/static//js/utils.js"></script>
+  <script src="/static/js/utils.js"></script>
   <script>
 
   function init() {
@@ -72,7 +72,7 @@
       {% for font in unicode_font_list %}
       <li style="font-size:24px;"> {{font.longName}} 
            <span style="font-family:{{font.family}};font-size:30px;">{{language_native}}</span>:
-        <a href="/static/{{font.source}}" download
+        <a href="/static{{font.source}}" download
            style="font-family:{{font.family}};font-size:24px;">{{font.longName}}</a>
       </li>
       {% endfor %}
@@ -85,11 +85,11 @@
       {% for item in file_list %}
       <li style="font-size:24px;">
         {% if item.source %}
-        <a href="/static/{{item.source}}" download
+        <a href="/static{{item.source}}" download
            style="font-size:24px;">{{item.name}}</a>
            {{item.description}}
         {% else %}
-        <a href="/static/{{item.link}}" target="_blank"
+        <a href="/static{{item.link}}" target="_blank"
            style="font-size:24px;">{{item.name}}</a>
            {{item.description}}        {% endif %}
       </li>
