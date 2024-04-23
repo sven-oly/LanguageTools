@@ -96,8 +96,8 @@ class langInfo:
              'ref': '/convert/' + self.LanguageCode
              },
             {'linkText': 'Font conversion summary',
-             'ref': '/' + self.LanguageCode + '/encodingRules/'
-             },
+             'ref': '/encodingRules/' + self.LanguageCode
+            },
             {'linkText': 'Tai Ahom-English dictionary builder',
              'ref': '/' + self.LanguageCode + '/dictionaryN/'
              },
@@ -105,7 +105,7 @@ class langInfo:
              'ref': 'https://www.unicode.org/charts/PDF/U11700.pdf'
              },
             {'linkText': 'Combiners',
-             'ref': '/' + self.LanguageCode + '/diacritic/'
+             'ref': '/diacritic/' + self.LanguageCode + '/diacritic/'
              },
             {'linkText': 'Keyman Ahom Star keyboard',
              'ref': 'https://keymanweb.com/#aho-ahom,Keyboard_ahom_star'
@@ -147,7 +147,7 @@ class langInfo:
         ]
 
         self.baseHexUTF16 = u'\ud805\udf00'
-        self.base_consonant = u'\ud805\udf00'
+        self.base_consonant = u'\U00011700'
 
         if sys.maxunicode >= 0x10000:
             self.unicodeChars = [chr(x) for x in range(0x11700, 0x1173f)]

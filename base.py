@@ -15,7 +15,7 @@
 #
 # !!! from django.template import Template
 
-import games
+#import games
 import languageTemplate
 
 import transliterate
@@ -27,9 +27,9 @@ import json
 import logging
 import os
 import unicodedata
-import webapp2
+#import webapp2
 
-from google.appengine.ext.webapp import template
+#from google.appengine.ext.webapp import template
 
 try:
     unichr
@@ -51,7 +51,7 @@ except NameError:
 
 
 # Shows keyboards for Language
-class LanguagesHomeHandler(webapp2.RequestHandler):
+class LanguagesHomeHandler():
   def get(self, match=None):
     # Match is the actual url route matched.
     req = webapp2.get_request()
@@ -98,12 +98,12 @@ class LanguagesHomeHandler(webapp2.RequestHandler):
     try:
       for interval in langInfo.unicodeRanges:
         start = interval[0]
-        end = interval[1] + 1
+        end = interval[-1] + 1
 
         for x in range(start, end):
           chr = unichr(x)
           unicodeCharData[chr] = [
-            unicodedata.name(chr), unicodedata.category(chr),
+            unicodedata.name(chr), unicodedata.category(chr)
           ]
     except:
       print('!!! Unicode range not set')
@@ -136,7 +136,7 @@ class LanguagesHomeHandler(webapp2.RequestHandler):
 
 
 # AJAX handler for converter
-class ConvertHandler(webapp2.RequestHandler):
+class ConvertHandler():
   def get(self, match=None):
     # TODO: Get the text values
     # Call transliterator
@@ -173,7 +173,7 @@ def surrogate_to_utf32(high, low):
     return (high << 10) + low - 0x35fdc00
 
 
-class DiacriticHandler(webapp2.RequestHandler):
+class DiacriticHandler():
   def get(self, match=None):
     langInfo = self.app.config.get('langInfo')
 
@@ -224,7 +224,7 @@ class DiacriticHandler(webapp2.RequestHandler):
 
 
 # Presents UI for conversions from font encoding to Unicode.
-class ConvertUIHandler(webapp2.RequestHandler):
+class ConvertUIHandler():
   def get(self, match=None):
 
     langInfo = self.app.config.get('langInfo')
@@ -373,7 +373,7 @@ def unicodeFontListToEncodingList(unicodeList):
     )
   return encodinglist
 
-class EncodingRules(webapp2.RequestHandler):
+class EncodingRules():
   def get(self, match=None):
 
     langInfo = self.app.config.get('langInfo')
@@ -415,7 +415,7 @@ class EncodingRules(webapp2.RequestHandler):
 
 
 # Cloned from KeyboardTansformsHandler.
-class PhoneticKbHandler(webapp2.RequestHandler):
+class PhoneticKbHandler():
   def get(self, match=None):
 
     langInfo = self.app.config.get('langInfo')
@@ -457,7 +457,7 @@ class PhoneticKbHandler(webapp2.RequestHandler):
     self.response.out.write(template.render(path, template_values))
 
 
-class KeyboardTransforms(webapp2.RequestHandler):
+class KeyboardTransforms():
   def get(self, match=None):
 
     langInfo = self.app.config.get('langInfo')
@@ -487,7 +487,7 @@ class KeyboardTransforms(webapp2.RequestHandler):
     path = os.path.join(os.path.dirname(__file__), 'HTML/keyboardTransforms.html')
     self.response.out.write(template.render(path, template_values))
 
-class KeyboardTransforms2(webapp2.RequestHandler):
+class KeyboardTransforms2():
   # A test version of KB transforms that support selection by keyboard
   def get(self, match=None):
 
@@ -519,7 +519,7 @@ class KeyboardTransforms2(webapp2.RequestHandler):
     self.response.out.write(template.render(path, template_values))
 
 
-class Downloads(webapp2.RequestHandler):
+class Downloads():
   def get(self, match=None):
 
     langInfo = self.app.config.get('langInfo')
@@ -544,7 +544,7 @@ class Downloads(webapp2.RequestHandler):
     path = os.path.join(os.path.dirname(__file__), 'HTML/downloads.html')
     self.response.out.write(template.render(path, template_values))
 
-class RenderPage(webapp2.RequestHandler):
+class RenderPage():
   def get(self, match=None):
 
     langInfo = self.app.config.get('langInfo')
@@ -573,7 +573,7 @@ class RenderPage(webapp2.RequestHandler):
     path = os.path.join(os.path.dirname(__file__), 'HTML/renderCombos.html')
     self.response.out.write(template.render(path, template_values))
 
-class DictionaryInput(webapp2.RequestHandler):
+class DictionaryInput():
     def get(self, match=None):
       req = webapp2.get_request()
       top_path = req.path.split('/')
@@ -599,7 +599,7 @@ class DictionaryInput(webapp2.RequestHandler):
 
 
 # For N languages in the dictionary
-class CollationHandler(webapp2.RequestHandler):
+class CollationHandler():
   def get(self, match=None):
     req = webapp2.get_request()
     top_path = req.path.split('/')
@@ -630,7 +630,7 @@ class CollationHandler(webapp2.RequestHandler):
 
 
 # For N languages in the dictionary
-class DictionaryN(webapp2.RequestHandler):
+class DictionaryN():
   def get(self, match=None):
     req = webapp2.get_request()
     top_path = req.path.split('/')
@@ -662,7 +662,7 @@ instance = languageTemplate.languageTemplate()
 basePath = '/' + instance.LanguageCode
 
 
-class AllFontTest(webapp2.RequestHandler):
+class AllFontTest():
   def get(self):
     utext = self.request.get("utext", "")
     encodedText = self.request.get("encodedText", "")
@@ -690,11 +690,11 @@ class AllFontTest(webapp2.RequestHandler):
     }
 
     path = os.path.join(os.path.dirname(__file__), 'HTML/allFonts.html')
-    self.response.out.write(template.render(path, template_values))
+#    self.response.out.write(template.render(path, template_values))
 
 # Presents UI for conversions from one Unicode script to another.
 # TODO: use common elements with ConvertUIHandler
-class TranslitHandler(webapp2.RequestHandler):
+class TranslitHandler():
   def get(self, match=None):
 
     langInfo = self.app.config.get('langInfo')
@@ -789,11 +789,11 @@ class TranslitHandler(webapp2.RequestHandler):
       'variation_sequence': variation_sequence,
     }
     path = os.path.join(os.path.dirname(__file__), 'HTML/translit_general.html')
-    self.response.out.write(template.render(path, template_values))
+#    self.response.out.write(template.render(path, template_values))
 
 
 # Exports keyboards to Keyman format
-class KeyManHandler(webapp2.RequestHandler):
+class KeyManHandler():
   def get(self, match=None):
 
     langInfo = self.app.config.get('langInfo')
@@ -814,10 +814,10 @@ class KeyManHandler(webapp2.RequestHandler):
     }
     home_html = 'HTML/km_kb.html'
     path = os.path.join(os.path.dirname(__file__), home_html)
-    self.response.out.write(template.render(path, template_values))
+#    self.response.out.write(template.render(path, template_values))
 
 
-class AllFontTest(webapp2.RequestHandler):
+class AllFontTest():
   def get(self):
     langInfo = self.app.config.get('langInfo')
     try:
@@ -837,9 +837,9 @@ class AllFontTest(webapp2.RequestHandler):
     }
 
     path = os.path.join(os.path.dirname(__file__), 'HTML/allFonts.html')
-    self.response.out.write(template.render(path, template_values))
+#    self.response.out.write(template.render(path, template_values))
 
-class CharacterTableHandler(webapp2.RequestHandler):
+class CharacterTableHandler():
   def get(self):
     langInfo = self.app.config.get('langInfo')
 
@@ -859,9 +859,9 @@ class CharacterTableHandler(webapp2.RequestHandler):
       'unicode_font_list': langInfo.unicode_font_list,
     }
     path = os.path.join(os.path.dirname(__file__), 'HTML/characterNames.html')
-    self.response.out.write(template.render(path, template_values))
+#    self.response.out.write(template.render(path, template_values))
 
-class WordSearchHandler(webapp2.RequestHandler):
+class WordSearchHandler():
   def get(self):
     langInfo = self.app.config.get('langInfo')
 
@@ -909,9 +909,9 @@ class WordSearchHandler(webapp2.RequestHandler):
         'direction': direction,
     }
     path = os.path.join(os.path.dirname(__file__), 'HTML/wordsearch.html')
-    self.response.out.write(template.render(path, template_values))
+#    self.response.out.write(template.render(path, template_values))
 
-class NumeralsHandler(webapp2.RequestHandler):
+class NumeralsHandler():
   def get(self):
     langInfo = self.app.config.get('langInfo')
 
@@ -956,10 +956,10 @@ class NumeralsHandler(webapp2.RequestHandler):
         'numbersImage': numbersImage,
     }
     path = os.path.join(os.path.dirname(__file__), 'HTML/numerals.html')
-    self.response.out.write(template.render(path, template_values))
+    # self.response.out.write(template.render(path, template_values))
 
 
-class CalendarHandler(webapp2.RequestHandler):
+class CalendarHandler():
 
  def get(self):
     langInfo = self.app.config.get('langInfo')
@@ -985,7 +985,7 @@ class CalendarHandler(webapp2.RequestHandler):
     }
     
     path = os.path.join(os.path.dirname(__file__), 'HTML/calendar.html')
-    self.response.out.write(template.render(path, template_values))
+    ## self.response.out.write(template.render(path, template_values))
 
     
 
@@ -1011,37 +1011,37 @@ def handle_500(request, response, exception):
     response.set_status(500)
 
 
-app = webapp2.WSGIApplication(
-    [
-    ],
-    debug=True,
-    config={'langInfo': instance}
-)
+# app = webapp2.WSGIApplication(
+#     [
+#     ],
+#     debug=True,
+#     config={'langInfo': instance}
+# )
 
-app.router.add((basePath + '/downloads/', Downloads))
-app.router.add((basePath + '/encodingRules/', EncodingRules))
-app.router.add((basePath + '/', LanguagesHomeHandler))
-app.router.add((basePath + '/dictionaryInput/', DictionaryInput))
-app.router.add((basePath + '/kbtransforms/', KeyboardTransforms))
-app.router.add((basePath + '/collation/', CollationHandler))
-app.router.add((basePath + '/combos/', RenderPage))
-app.router.add((basePath + '/keyman/', KeyManHandler))
-app.router.add((basePath + '/AllFonts/', AllFontTest))
-app.router.add((basePath + '/charTable/', CharacterTableHandler)),
-app.router.add((basePath + '/wordsearch/', WordSearchHandler)),
+# app.router.add((basePath + '/downloads/', Downloads))
+# app.router.add((basePath + '/encodingRules/', EncodingRules))
+# app.router.add((basePath + '/', LanguagesHomeHandler))
+# app.router.add((basePath + '/dictionaryInput/', DictionaryInput))
+# app.router.add((basePath + '/kbtransforms/', KeyboardTransforms))
+# app.router.add((basePath + '/collation/', CollationHandler))
+# app.router.add((basePath + '/combos/', RenderPage))
+# app.router.add((basePath + '/keyman/', KeyManHandler))
+# app.router.add((basePath + '/AllFonts/', AllFontTest))
+# app.router.add((basePath + '/charTable/', CharacterTableHandler)),
+# app.router.add((basePath + '/wordsearch/', WordSearchHandler)),
 
-app.router.add((basePath + '/numerals/', NumeralsHandler)),
+# app.router.add((basePath + '/numerals/', NumeralsHandler)),
 
 
-app.router.add((basePath + '/games/generatewordsearch/',
-                games.GenerateWordSearchHandler)),
+# app.router.add((basePath + '/games/generatewordsearch/',
+#                 games.GenerateWordSearchHandler)),
 
-app.router.add((basePath + '/phonetickb/', PhoneticKbHandler)),
+# app.router.add((basePath + '/phonetickb/', PhoneticKbHandler)),
 
-# Future
-#app.router.add((basePath + '/games/generatewordsearchDFS/',
-#                games.GenerateWordSearchDFSHandler)),
+# # Future
+# #app.router.add((basePath + '/games/generatewordsearchDFS/',
+# #                games.GenerateWordSearchDFSHandler)),
 
-app.error_handlers[301] = handle_301
-app.error_handlers[404] = handle_404
-app.error_handlers[500] = handle_500
+# app.error_handlers[301] = handle_301
+# app.error_handlers[404] = handle_404
+# app.error_handlers[500] = handle_500

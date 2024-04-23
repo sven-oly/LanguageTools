@@ -92,7 +92,7 @@ links = [
    'ref': '/langbase/' + LanguageCode
   },
   {'linkText': 'Converter',
-   'ref': '/convertUI/' + LanguageCode
+   'ref': '/convert/' + LanguageCode
   },
   {'linkText': 'Font conversion summary',
     'ref': '/encodingRules/' + LanguageCode

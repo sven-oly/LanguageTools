@@ -126,9 +126,10 @@
                const area2Elem = document.getElementById(area2);
                const text2= area2Elem.value;
 
-               compareUrl = "/{{langTag}}/AllFonts/?utext=" + text1 + "&encodedText=" + text2;
+               compareUrl = "/allFonts/{{langTag}}?utext=" + text1 + "&encodedText=" + text2;
 
-               window.location=compareUrl;
+               // window.location=compareUrl;
+               window.open(compareUrl);
            }
 
            function toggle(id, toggle) {
@@ -176,7 +177,7 @@
                document.getElementById(outputId).focus();
            }
 
-           // Fills the input with all the characters in the old range.
+           // Fills the input with all the characters in the oldope range.
            function fillWithOldChars(target, hex_target) {
                const output_text = document.getElementById(target);
                const outputString = "{{text}}";
@@ -559,10 +560,12 @@
             <input type="button" value="Regression test"
                    onclick="regression(0);">  <!-- TODO: Pass the encoding index -->
             {% endif %}
+            {% if combingChars %}
             <input type="button"
                    onclick="fillWithUnicodeCombiners('Unicode_font_output_text',
                             'new_hex');"
                    value="Unicode combining chars" />
+            {% endif %}
             {% if showNormalize %}
             <input type="button"
                    onclick="normalizeUnicodeBoxes('Unicode_font_output_text', 'Unicode_font_output_text');"

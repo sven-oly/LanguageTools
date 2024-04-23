@@ -164,13 +164,13 @@ class langInfo:
        'ref': '/convert/' + self.LanguageCode
        },
       {'linkText': 'Font conversion summary',
-       'ref': '/' + self.LanguageCode + '/encodingRules/'
+       'ref': '/encodingRules/' + self.LanguageCode
        },
       {'linkText': 'KB transforms',
        'ref': '/' + self.LanguageCode + '/kbtransforms/'
        },
       {'linkText': 'Combiners',
-       'ref': '/' + self.LanguageCode + '/diacritic/'
+       'ref': '/diacritic/' + self.LanguageCode
        },
       {'linkText': 'Phake-English dictionary builder',
        'ref': '/' + self.LanguageCode + '/dictionaryN/'

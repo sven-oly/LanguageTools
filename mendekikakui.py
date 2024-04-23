@@ -71,7 +71,7 @@ links = [
      'ref': '/men/convertUI/'
     },
     {'linkText': 'Font conversion summary',
-      'ref': '/men/encodingRules/'
+      'ref': '/encodingRules/' + LanguageCode
     },
     {'linkText': 'Resources',
      'ref': '/downloads/' + LanguageCode

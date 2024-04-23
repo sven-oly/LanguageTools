@@ -63,10 +63,11 @@ links = [
     {'linkText': 'Phonetic table',
      'ref': '/' + LanguageCode + '/phonetickb/'
      },
-    {'linkText': 'Converter',
-     'ref': '/chr/convertUI/'},
+    {'linkText': 'Converter', 
+     'ref': '/convert/' + LanguageCode
+     },
     {'linkText': 'Font conversion summary',
-     'ref': '/chr/encodingRules/'
+     'ref': '/encodingRules/' + LanguageCode
     },
     {'linkText': 'Convert to Latin',
      'ref': '/chr/convertToLatin/'
