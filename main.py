@@ -28,6 +28,7 @@ import cherokee
 import mendekikakui
 import omq
 import phake
+import qiang
 
 # If `entrypoint` is not defined in app.yaml, App Engine will look for an app
 # called `app` in `main.py`.
@@ -44,6 +45,7 @@ language_info_dict['chr'] = cherokee.langInfo()
 language_info_dict['men'] =  mendekikakui.langInfo()
 language_info_dict['omq'] = omq.langInfo()
 language_info_dict['phk'] = phake.langInfo()
+language_info_dict['qiang'] = qiang.langInfo()
 
 
 # English name, language code, name in the language.
@@ -72,7 +74,7 @@ LanguageList = [
     # # ('Navajo', 'nv', 'Diné bizaad'),
     # ('Oneida', 'one', 'Onʌyoteʔa·ká·'),
     ('Otomanguean phonetic', 'omq'),
-    # ('Qiang', 'qiang'),
+    ('Qiang', 'qiang'),
     # ('Rohingya', 'rhg', ),
     # ('Tamashek', 'tmh', 'ⵜⴰⵎⴰⵌⴰⵆ'),
     ('Tai Phake', 'phk'),

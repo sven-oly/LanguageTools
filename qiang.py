@@ -14,8 +14,6 @@
 # limitations under the License.
 #
 
-import webapp2
-
 import base
 
 # For Python 2.x. and Python
@@ -34,12 +32,13 @@ links = [
      'ref': '/' + LanguageCode + '/'
     },
      {'linkText': 'Converter',
-      'ref': '/' + LanguageCode + '/convertUI/'},
+      'ref': '/convert/' + LanguageCode
+      },
      {'linkText': 'Font conversion summary',
-       'ref': '/' + LanguageCode + '/encodingRules/'
+       'ref': '/encodingRules/' + LanguageCode
      },
     {'linkText': 'Resources',
-      'ref': '/' + LanguageCode + '/downloads/'
+      'ref': '/downloads/' + LanguageCode
     },
     # {'linkText': 'Unicode page',
     #  'ref': 'https://www.unicode.org/charts/PDF/U1C00.pdf'
@@ -143,14 +142,14 @@ class langInfo:
 
 langInstance = langInfo()
 
-app = webapp2.WSGIApplication([
-  ('/' + LanguageCode + '/', base.LanguagesHomeHandler),
-  ('/' + LanguageCode + '/convertUI/', base.ConvertUIHandler),
-  ('/' + LanguageCode + '/downloads/', base.Downloads),
-  ('/' + LanguageCode + '/encodingRules/', base.EncodingRules),
-  ('/' + LanguageCode + '/diacritic/', base.DiacriticHandler),
-  ('/' + langInstance.LanguageCode + '/wordsearch/', base.WordSearchHandler),
-  ('/' + langInstance.LanguageCode + '/keyman/', base.KeyManHandler),
-], debug=True,
-  config={'langInfo': langInstance}
-)
+# app = webapp2.WSGIApplication([
+#   ('/' + LanguageCode + '/', base.LanguagesHomeHandler),
+#   ('/' + LanguageCode + '/convertUI/', base.ConvertUIHandler),
+#   ('/' + LanguageCode + '/downloads/', base.Downloads),
+#   ('/' + LanguageCode + '/encodingRules/', base.EncodingRules),
+#   ('/' + LanguageCode + '/diacritic/', base.DiacriticHandler),
+#   ('/' + langInstance.LanguageCode + '/wordsearch/', base.WordSearchHandler),
+#   ('/' + langInstance.LanguageCode + '/keyman/', base.KeyManHandler),
+# ], debug=True,
+#   config={'langInfo': langInstance}
+# )

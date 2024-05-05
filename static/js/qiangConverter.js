@@ -18,7 +18,7 @@ langConverter.transformRules = [
 ];
 
 // For use in the HTML to ceate the UI options
-langConvert.transformOptions = [
+langConverter.transformOptions = [
     {convertIndex: [0], inputEncoding: "ASCII", outputEncoding: "PUA"},
     {convertIndex: [1], inputEncoding: "ASCII", outputEncoding: "Unicode"},
     // How to indicate a reversed encoding? Or a composite?
@@ -27,17 +27,18 @@ langConvert.transformOptions = [
 
 // Describe the encodings in the private use map
 langConverter.private_use_encodings = {
-   -1: "ASCII",  // The mapping key
-    0: "PUA",
-    1: "Unicode"
-    "ASCII": -1,
-    "PUA": 0,
-    "Unicode": 1
+   0: "ASCII",  // The mapping key
+    1: "PUA",
+    2: "Unicode",
+    "ASCII": 0,
+    "PUA": 1,
+    "Unicode": 2
 };
 
-let langConverter.customConverter = none;
+// Already defined?
+langConverter.customConverter = null;
 
-def langConverter.build_custom_map(input_index, output_index) {
+langConverter.build_custom_map = function (input_index, output_index) {
     // Given two indices, build a converter from the
     // input_index to output_index from the private_use_map_combined.
     // index -1 is the key.
@@ -57,7 +58,7 @@ def langConverter.build_custom_map(input_index, output_index) {
             new_val;
     }
     // Remember the latest one.
-    langConverter.customConverter = none;
+    langConverter.customConverter = null;
     return new_map;
 }
 
