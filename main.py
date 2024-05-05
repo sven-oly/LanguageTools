@@ -185,7 +185,7 @@ def topLangHandler(langcode):
                            langInfo = langInfo,
                            links = langInfo.links,
                            allFonts = allFonts,
-                           test_data = None,
+                           test_data = '',
     )
     
 @app.route('/downloads/<langcode>')
@@ -243,8 +243,8 @@ def convertHandler(langcode):
       text_direction = 'ltr'
     
     # Needed?
-    oldChars = None
-    oldInput = None
+    oldChars = ''
+    oldInput = ''
     # Handle non-Unicode output.
     try:
       output_font = langInfo.outputFont
@@ -315,16 +315,25 @@ def allFonts(langcode):
 
     # Text from the args
     utext = request.args['utext']
-    encodeText = request.args['encodedText']
-    
+    try:
+        encoded_text = request.args['encodedText']
+    except:
+        encoded_text = None
+
+    try:
+        unicode_fonts = langInfo.unicode_font_list
+    except:
+        unicode_fonts = []
+
     return render_template(
         'allFonts.html',
         scriptName = langInfo.Language,
-        fontFamilies = public_unicode_fonts,
+        fontFamilies = unicode_fonts,
         encodedText = encoded_text,
         utext = utext,
         language = langInfo.Language,
-        LanguageTag = langInfo.LanguageCode
+        LanguageTag = langInfo.LanguageCode,
+        kb_list = langInfo.kb_list
     )
                   
 @app.route('/encodingRules/<langcode>')

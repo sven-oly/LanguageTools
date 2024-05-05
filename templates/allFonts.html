@@ -14,15 +14,15 @@
   <![endif]-->
 
 
-   <script type="text/javascript" src="/js/utils.js"></script>
+   <script type="text/javascript" src="/static/js/utils.js"></script>
 
-   <script src="/js/vk-debug.js"></script>
+   <script src="/static/js/vk-debug.js"></script>
 
    <style>
    {% for fontFam in fontFamilies %}
     @font-face{
       font-family:'{{fontFam.family}}';
-      src:url('{{fontFam.source}}'){% if '.ttf' in fontFam.source %}format('truetype'){%endif%}{% if '.TTF' in fontFam.source %}format('truetype'){%endif%}{% if '.otf' in fontFam.source %}format('opentype'){%endif%}{%if '.woff' in fontFam.source %}format('woff'){%endif%};
+      src:url('/static/{{fontFam.source}}'){% if '.ttf' in fontFam.source %}format('truetype'){%endif%}{% if '.TTF' in fontFam.source %}format('truetype'){%endif%}{% if '.otf' in fontFam.source %}format('opentype'){%endif%}{%if '.woff' in fontFam.source %}format('woff'){%endif%};
       font-weight:normal;
       font-style:normal;
       font-size: 32px;
