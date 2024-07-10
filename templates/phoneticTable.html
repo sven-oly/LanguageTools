@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html>
+<link rel="stylesheet" href="/css/blueprint/screen.css" type="text/css" media="screen">
+<link rel="stylesheet" href="/css/blueprint/print.css" type="text/css" media="print">
+
+
+  <meta charset="utf-8"/>
+
+  <title>Phonetic map {{language}}</title>
+
+  <!-- Font encoding areas -->
+  <style>
+  <!-- Unicode fonts -->
+
+    @font-face{
+      font-family:'Arial';
+      font-weight:normal;
+      font-style:normal;
+    }
+    .Arial {
+      font-family:Arial;
+      font-size: 30px;
+    }
+  {% for font in unicode_list %}
+    @font-face {
+      font-family:'{{font.family}}';
+      src:url('{{font.source}}'){% if '.ttf' in font.source %}format('truetype'){%endif%}{% if '.TTF' in font.source %}format('truetype'){%endif%}{% if '.otf' in font.source %}format('opentype'){%endif%}{%if '.woff' in font.source %}format('woff'){%endif%};
+      font-weight:normal;
+      font-style:normal;
+      font-size: 32px;
+    }
+
+    .{{font.family}} {
+      font-family:'{{font.family}}';
+      font-size: 32px;
+    }
+    {% endfor %}
+
+    <!-- For table data -->
+    td { font-family: {% for kb in kb_list %}{% if kb.fontFamily %}"{{kb.fontFamily}}" {% endif %}{%endfor%};
+    }
+
+  </style>
+  <style>
+    table {
+      border-collapse: collapse;
+    }
+
+    table, th, td {
+      border: 1px solid black;
+    }
+    td {
+    text-align: center;
+    width: 120px;
+    font-size:20px;
+    <!-- preformat text in cells -->
+    white-space:pre;
+    }
+
+  </style>
+  <script src="/js/baseConverter.js"></script>
+
+  {% if converter_list %}
+  <script src="{{converterJS}}"></script>
+  {% endif %}
+
+  <script>
+  // Global for processing text 
+    let textFuncs;
+    </script>
+  {% if text_functions %}
+  <script src="/{{text_functions}}"></script>
+  {% else %}
+  <script>
+    let textFunctions;
+    </script>
+  {% endif %}
+
+  <!-- Path to convert with code tables and other  this for the converter. -->
+  <script src="/js/utils.js"></script>
+
+  <script>
+    let utils = new Utils();
+
+    // Global for processing text 
+    if (textFunctions != undefined) {
+        textFuncs = new textFunctions();
+    }
+        
+  var k = { loadme: Object};
+
+  k.loadme.prototype = function(a) {
+  return a;
+  }
+  var e = {keyboard: k};
+  var google = {elements: e};
+  </script>
+
+  {% for kb in kb_list %}<!-- {{kb.shortName}} -->
+  <script src="/layouts/{{kb.shortName}}.js"></script>
+  {% endfor %}
+
+  <script>
+  const kb_list = []; //
+  const kb_fonts = [];
+    let kbShortNameMap = new Map();
+  {% for kb in kb_list %}
+  kb_list.push({{kb.shortName}}); kb_fonts.push("{{kb.fontFamily}}");
+  kbShortNameMap.set("{{kb.shortName}}","";{% endfor %}
+
+  const unicode_font_list = [
+      {% for font in unicode_list %}"{{font.family}}",{% endfor %}
+  ];
+
+    const unicode_string = "{{unicode_data}}";
+    let unicode_num = new Map();
+    let unicode_hex = new Map();
+    let unicode_char = new Map();
+    if (unicode_string.length) {
+        let charInfo = unicode_string.split(';');
+        for (let items of charInfo) {
+            let parts = items.split(':');
+            let num = parseInt(parts[0], 16);
+            unicode_num.set(num, parts[1]);
+            let char = String.fromCharCode(num);
+            unicode_char.set(char, parts[1]);
+            
+            unicode_hex.set(num.toString(16), parts[1]);
+        }
+    }
+
+  function onPageLoaded() {
+    buildingTransformTable(0);  // Keyboard index 0, default.
+  }
+
+    // Get all the patterns in all the lists.
+    function createPatternMap(kb_entry) {
+
+        // things that should not make a new row in table
+        const ignorableSet = textFuncs.ignoreInPhonetics();
+
+        const patternMap = new Map();
+        const this_transform = kb_entry.transform;
+        // Ignore if no transforms or just a placeholder
+        if (!this_transform ||
+            Object.keys(this_transform).length <= 1) return null;
+        
+        for (let pattern in this_transform) {
+            // Try expanding pattern
+            let expandedPatterns = utils.expandMatchRegEx(pattern);
+
+            // The output of the pattern
+            let result = this_transform[pattern];
+            if (ignorableSet.has(result)) continue;  // Ignore
+
+            // Each patternMap entry will have a list
+            //  [0] is a set of the outputs, [1] is all the inputs
+            for (let item of expandedPatterns) {
+                let lowerItem = item.toLowerCase();
+                if (result === item) continue;  // No point in identity!
+                let currentOutputs;
+                if (patternMap.has(lowerItem)) {
+                    // Get the array.
+                    currentOutputs = patternMap.get(lowerItem)[0];
+                    currentPatterns = patternMap.get(lowerItem)[1];
+                } else {
+                    // A new one!
+                    currentOutputs = new Set();
+                    currentPatterns = new Set();
+                }
+                currentOutputs.add(result);
+                for (let pat of expandedPatterns) {
+                    currentPatterns.add(pat);
+                }
+                patternMap.set(lowerItem, [currentOutputs, currentPatterns]);
+            }
+        }
+        return patternMap;
+    }
+
+    function buildingTransformTable(kb_index) {
+        if (kb_list === undefined) {
+            return;
+        }
+        // Only do one keyboard !!! Only keyboards with transforms.
+        let patternMap = createPatternMap(kb_list[kb_index]);
+        if (patternMap == null) {
+            alert('This keyboard has no phonetic transforms');
+            return null;
+        }
+        
+        const fontsize="24px";
+        const cellWidth = "200px";
+
+
+        // Just one table.
+        let table = document.getElementById('column_table');
+        const header = table.createTHead();
+        let rowNum = 0;
+        let headerRow = table.insertRow(rowNum);
+
+        let cellIndex = 1;
+
+        headerRow.insertCell(0).innerHTML = "";
+
+        // Now build table based on the patternMap.
+        let keyList = [...patternMap.keys()];
+        if (textFuncs) {
+            // Sort these 
+            keyList = textFuncs.sortAsciiList(keyList);
+        }    
+
+        // Fill in vowels in the header
+        let vowels = textFuncs.getVowels();
+
+        cellIndex = 1;
+        let numVowels = 0
+        let vowelMap = new Map();
+        // Handle values without final vowel
+        let emptyVowel = null; // The default
+       
+        for (vowel of vowels) {
+            if (vowel == '') {
+                emptyVowel = '';
+            }
+            let lower = vowel.toLowerCase();
+            if (!vowelMap.has(lower)) {
+                vowelMap.set(lower, cellIndex);
+                const headerCell = headerRow.insertCell(cellIndex);
+
+                let patternData = patternMap.get(lower);
+
+                if (patternData) {
+                    let mappedChars = patternData[0];
+                    let inputPatterns = patternData[1];
+                    headerCell.innerHTML = [...mappedChars] +
+                        '  (' + lower + ')';
+                    headerCell.title = [...inputPatterns];
+                } else {
+                    let colValue;
+                    if (lower == '') {
+                        colValue = 'Final';
+                    } else {
+                        colValue = '(' + lower + ')';
+                    }
+                    headerCell.innerHTML = colValue;
+                }
+
+                cellIndex ++;
+                numVowels ++;
+            }
+        }
+
+        // Generate the rows values by first item and columns by 2nd item in
+        // the text split of the pattern key.
+        let rowMap = new Map();
+        for (let key of keyList) {
+            // Skip the vowels
+            if (vowelMap.has(key)) continue;
+            
+            let split = textFuncs.splitText(key);
+            let rowText = split[0];
+            let colMap;
+            if (rowMap.has(rowText)) {
+                colMap = rowMap.get(split[0]);
+            } else {
+                colMap = new Map();
+                rowMap.set(rowText, colMap);
+            }
+            let newColMarker = split.length > 1 ?
+                split[1].toLowerCase() :
+                emptyVowel;
+            let current = new Set();
+            let inputs = new Set();
+            let setData;
+            if (colMap.has(newColMarker)) {
+                let setData = colMap.get(newColMarker);
+                current = setData[0];
+                inputs = setData[1];
+            }
+            let patternData = patternMap.get(key);
+            let newEntry = patternData[0];
+
+            // Add all of the newEntry to current.
+            for (const elem of newEntry) {
+                current.add(elem);
+            }
+            for (const elem of patternData[1]) {
+                inputs.add(elem);
+            }
+            // Store the set of outputs and the possible inputs
+            colMap.set(newColMarker, [current, inputs]);
+        }
+
+        // Make new table from phonetic info.
+        // TODO: First combine rows that have the same values
+        rowNum = 1;
+        let iterator1 = rowMap.entries();
+        let entry;
+        while (entry = iterator1.next().value) {
+            let row = table.insertRow(rowNum);
+            let cell0 = row.insertCell(0);
+            cell0.innerHTML = entry[0];
+            for (cellIndex = 1; cellIndex < numVowels +1; cellIndex ++) {
+                cell = row.insertCell(cellIndex);
+            }
+            let cols = entry[1];  // The column map
+            let iterator2 = cols.entries();
+            let coldata;
+            while (coldata = iterator2.next().value) {
+                let vowel = coldata[0];
+                if (vowelMap.has(vowel)) {
+                    cellIndex = vowelMap.get(vowel);
+                    let cell = row.cells[cellIndex];
+                    let charSet = coldata[1][0];  // The characters to be shown
+                    let inputs = coldata[1][1];   // The inputs for this cell
+                    let values = [...charSet];  // Spread the set
+                    cell.innerHTML = values.join(' ');
+                    // Add the hover info.
+                    cell.title = [...inputs];
+                }
+            }
+            rowNum ++;
+        }
+
+        // Set the font based on the keyboard.
+        setUnicodeFontColumns(kb_fonts[kb_index], 'column_table');
+        return true;  // table created
+    }
+
+    // Changes the Unicode font applied to each converted column in table.
+    function setUnicodeFontColumns(unicodeFont, tableId) {
+        const table = document.getElementById(tableId);
+        const numberColumns = table.rows[0].cells.length;
+        const numberRows = table.rows.length;
+
+        // Unicode columns are 1, 2, , ...
+        for (let col = 1; col < numberColumns; col += 1) {
+            for (let row = 0; row < numberRows; row += 1) {
+                const cell = table.rows[row].cells[col];
+                if (cell) {
+                    cell.style.fontFamily = unicodeFont;
+                }
+            }
+        }
+    }
+
+    function clearTable(table_id) {
+        let table = document.getElementById(table_id);
+        while (table.rows.length > 0) {
+            table.deleteRow(-1);
+        }
+    }
+
+    function changeKeyboardSelected(item) {
+        // Check if the keyboard has transform rules.
+        // clear the table
+        // Rebuild with the new table.
+        clearTable('column_table');
+        const kb_index = kbShortNameMap.get(item);
+        if (buildingTransformTable(kb_index) == null) {
+            // Reset the selector.
+        }
+    }
+
+  function onSizeSelected(newSize) {
+    const t1_element = document.getElementById('column_table');
+      const rows = t1_element.rows;
+      for (let row of rows) {
+          for (let cell of row.cells) {
+              cell.style.fontSize = newSize;
+          }
+      }
+  }
+
+    function getCharInfo() {
+        const text = utils.getSelectedText('column_table');
+        let hex = utf16common(text, '', ';', true, false).split(';');
+        //alert(unicode_char.keys());
+        if (text) {
+            let index = 0;
+            let outText = [];
+            for (let chr of text) {
+                //let charName = unicode_char.get(chr);
+                //let intval = chr.charCodeAt(0);
+                // let name = unicode_num.get(intval);
+                // Remove leading zeros.
+                let hexVal = hex[index].replace(/^0+/, '').toLowerCase();
+                let num = parseInt(hexVal, 16);
+                if (unicode_hex.has(hexVal)) {
+                    name = unicode_hex.get(hexVal);
+                    outText.push(name);
+                    // alert(name);
+                } else {
+                    if (num != 0x20 && num != 0x0a && num != 0x09) {
+                        //alert(hex[index]);
+                        outText.push(hex[index]);
+                    }
+                }
+                index += 1;
+            }
+            alert(outText.join('\n'));
+        }
+    }
+    
+  </script>
+</head>
+
+<body onload="onPageLoaded();">
+
+<div class="container">
+  <h1>{{language}} phonetic table</h1>
+  <p>The following are transforms in this phonetic keyboard for {{language}}.
+    {% include "kbSelector.html" %}
+  <p>Hint: hover over the Unicode conversions for the hex code points.
+    {% include "fontSelector.html" %}
+    {% include "sizeSelector.html" %}
+  <div class="span-20">
+    <table id='column_table' border='3'></table>
+  </div>
+  <input type="button" value="Code points" onclick="getCharInfo('column_table')">
+   <p>
+
+</div>
+</body>
+</html>

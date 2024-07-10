@@ -13,20 +13,22 @@ import wordsearch
 
 from userDB import getUserInfo
 
-import userDB
+#import userDB
 
 import json
 import logging
 import os
+
 import sys
 #import urllib.request, urllib.parse, urllib.error
-import webapp2
+
+#import webapp2
 
 from google.appengine.api import users
-from google.appengine.ext.webapp import template
+#from google.appengine.ext.webapp import template
 
 
-class WordSearchHandler(webapp2.RequestHandler):
+class WordSearchHandler():
   def get(self):
     logging.info('games WordSearchHandler')
 
@@ -58,7 +60,7 @@ class WordSearchHandler(webapp2.RequestHandler):
     self.response.out.write(template.render(path, template_values))
 
 
-class GenerateWordSearchHandler(webapp2.RequestHandler):
+class GenerateWordSearchHandler():
   def get(self):
     #user_info = getUserInfo(self.request.url)
     user = users.get_current_user()
@@ -111,7 +113,7 @@ class GenerateWordSearchHandler(webapp2.RequestHandler):
 
 
 # Calls the depth first search method, along with parameters to support it.
-class GenerateWordSearchDFSHandler(webapp2.RequestHandler):
+class GenerateWordSearchDFSHandler():
   def get(self):
     logging.info('games GenerateWordSearchDFSHandler')
 
@@ -169,7 +171,7 @@ class GenerateWordSearchDFSHandler(webapp2.RequestHandler):
     self.response.out.write(json.dumps(template_values))
 
 
-class CrosswordHandler(webapp2.RequestHandler):
+class CrosswordHandler():
   def get(self):
     logging.info('games CrosswordHandler')
 
@@ -187,7 +189,7 @@ class CrosswordHandler(webapp2.RequestHandler):
     self.response.out.write(template.render(path, template_values))
 
 
-class GenerateCrosswordHandler(webapp2.RequestHandler):
+class GenerateCrosswordHandler():
   def get(self):
     logging.info('games GenerateCrosswordHandler')
 #    user_info = getUserInfo(self.request.url)
@@ -225,17 +227,17 @@ class GenerateCrosswordHandler(webapp2.RequestHandler):
     }
     self.response.out.write(json.dumps(template_values))
   
-class TestHandler(webapp2.RequestHandler):
-  def get(self):
-    logging.info('games TestHandler')
+# class TestHandler(webapp2.RequestHandler):
+#   def get(self):
+#     logging.info('games TestHandler')
 
-app = webapp2.WSGIApplication([
-    ('/games/wordsearch/', WordSearchHandler),
-    ('/games/crossword/', CrosswordHandler),
-    ('/games/generatewordsearch/', GenerateWordSearchHandler),
-    ('/games/generatewordsearchDFS/', GenerateWordSearchDFSHandler),
-    ('/games/generatecrossword/', GenerateCrosswordHandler),
-    ('/games/test/', TestHandler),
-], debug=True)
+# app = webapp2.WSGIApplication([
+#     ('/games/wordsearch/', WordSearchHandler),
+#     ('/games/crossword/', CrosswordHandler),
+#     ('/games/generatewordsearch/', GenerateWordSearchHandler),
+#     ('/games/generatewordsearchDFS/', GenerateWordSearchDFSHandler),
+#     ('/games/generatecrossword/', GenerateCrosswordHandler),
+#     ('/games/test/', TestHandler),
+# ], debug=True)
 
 

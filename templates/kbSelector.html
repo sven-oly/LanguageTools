@@ -1,0 +1,7 @@
+ <span {% if kb_list|length <= 1 %}hidden{%endif%}>
+    Keyboard: <select onchange="changeKeyboardSelected(this.value)" id="setLayout">
+    {% for kb in kb_list %}
+    <option value="{{kb.shortName}}">{{kb.longName}}</option>
+    {% endfor %}
+    </select>
+  </span>

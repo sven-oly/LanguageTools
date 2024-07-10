@@ -1,19 +1,19 @@
-var OJI_CREE_LAYOUT = {
+const OJI_CREE_LAYOUT = {
     "id":"oji_cree",
     "title": "Oji-Cree",
     "source": "",
     "mappings":  {
         ",c": {
-            "":"`1234567890-=qwertyuiop[]\\asdfghjkl;\'zxcvbnm,./"
+            "":"`1234567890-=qwertyuiop[]\\asdfghjkl;'zxcvbnm,./"
         },
         "s,sc": {
-            "":'~!@#$%^&*()_+QWERTYUIOP{}|ASDFGHJKL:\"ZXCVBNM<>?'
+            "":"~!@#$%^&*()_+QWERTYUIOP{}|ASDFGHJKL:\"ZXCVBNM<>?"
         },
         "l,cl": {
-            "":"`1234567890-=QWERTYUIOP[]|ASDFGHJKL;\'ZXCVBNM,./"
+            "":"`1234567890-=QWERTYUIOP[]|ASDFGHJKL;'ZXCVBNM,./"
         },
         "sl,scl": {
-            "":'~!@#$%^&*()_+qwertyuiop{}|asdfghjkl:\"zxcvbnm<>?'
+            "":"~!@#$%^&*()_+qwertyuiop{}|asdfghjkl:\"zxcvbnm<>?"
         }
     },
 
@@ -263,7 +263,7 @@ var OJI_CREE_LAYOUT = {
         "vaa": "ᐧᕙ",
         "h": "\u1426",
         "X": "\u166D",
-        "x": "\u166E",
+        "x": "\u166E"
     },
     "historyPruneRegex":
 "shwa|shwi|shwo|zhwa|zhwi|zhwo|bwa|bwi|bwo|cwa|cwi|cwo|dwa|dwi|dwo|gwa|gwi|gwo|jwa|jwi|jwo|kwa|kwi|kwo|mwa|mwi|mwo|nwa|nwi|nwo|pwa|pwi|pwo|sha|shi|sho|shw|twa|twi|two|zha|zhi|zho|zhw|ba|bi|bo|bw|ca|ci|co|cw|da|di|do|dw|ga|gi|go|gw|ja|ji|jo|jw|ka|ki|ko|kw|la|li|lo|ma|mi|mo|mw|na|ni|no|nw|pa|pi|po|pw|ra|ri|ro|sh|sw|ta|ti|to|tw|va|ve|vi|vo|wa|wi|wo|zh|zw|a|b|c|d|g|i|j|k|l|m|n|o|p|r|s|t|v|w|y|z"

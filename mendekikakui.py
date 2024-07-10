@@ -62,13 +62,13 @@ links = [
      'ref': '/men/'
     },\
     {'linkText': 'Keyboard conversions',
-     'ref': '/' + 'men' + '/kbtransforms/'
+     'ref': '/' + '/kbtransforms/' + LanguageCode
      },
     {'linkText': 'Phonetic table',
      'ref': '/' + LanguageCode + '/phonetickb/'
      },
     {'linkText': 'Converter',
-     'ref': '/men/convertUI/'
+     'ref': '/convert/men'
     },
     {'linkText': 'Font conversion summary',
       'ref': '/encodingRules/' + LanguageCode

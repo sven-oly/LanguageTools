@@ -308,6 +308,46 @@ def convertHandler(langcode):
         variation_sequence = variation_sequence
     )
 
+@app.route('/kbtransforms/<langcode>')
+def kbtransformstHandler(langcode):
+
+    langInfo = getLangInfo(langcode)
+    
+    if not langInfo:
+        return render_template(
+            'language_not_defined.html',
+            langcode = langcode
+        )
+
+    try:
+        converter_list = langInfo.converters
+    except:
+        converter_list = None
+
+    try:
+        text_functions = langInfo.text_functions
+    except:
+        text_functions = None
+
+    try:
+        showTools = request.args('tools', None)
+    except:
+        showTools = False
+
+    return render_template(
+        'kbTransforms2.html',
+        converterJS = '/js/' + langInfo.LanguageCode + 'Converter.js',
+        converter_list = converter_list,
+        language = langInfo.Language,
+        lang_list = langInfo.lang_list,
+        encoding_list = langInfo.encoding_font_list,
+        unicode_list = langInfo.unicode_font_list,
+        kb_list = langInfo.kb_list,
+        links = langInfo.links,
+        showTools = showTools,
+        text_functions = text_functions
+    )
+
 @app.route('/allFonts/<langcode>')
 def allFonts(langcode):
 
@@ -382,7 +422,6 @@ def encodingRules(langcode):
 def diacritics(langcode):
 
     langInfo = getLangInfo(langcode)
-
     
     try:
         base_num = request.args['base']
@@ -432,6 +471,46 @@ def diacritics(langcode):
         unicode_font_list = langInfo.unicode_font_list,
     )
 
+@app.route('/phonetickb/<langcode>')
+def phonetic_kb(langcode):
+    langInfo = getLangInfo(langcode)
+
+    try:
+        converter_list = langInfo.converters
+    except:
+        converter_list = None
+
+    try:
+        text_functions = langInfo.text_functions
+    except:
+        text_functions = None
+
+    try:
+        showTools = request.args['tools']
+    except:
+        showTools = False
+
+    try:
+        unicode_info = unicodeinfo.UnicodeData(langInfo.unicode_database)
+        unicode_data = unicode_info.numTextString()
+    except BaseException as err:
+        print('unicodeinfo not read: %s' % err)
+        unicode_data = ''
+        
+    return render_template(
+        'phoneticTable.html',
+        converterJS = '/js/' + langInfo.LanguageCode + 'Converter.js',
+        converter_list = converter_list,
+        language = langInfo.Language,
+        lang_list = langInfo.lang_list,
+        encoding_list = langInfo.encoding_font_list,
+        unicode_list = langInfo.unicode_font_list,
+        kb_list = langInfo.kb_list,
+        links = langInfo.links,
+        showTools = showTools,
+        text_functions = text_functions,
+        unicode_data = unicode_data,        
+        )
     
 # class DownloadKBText(webapp2.RequestHandler):
 #     def get(self):

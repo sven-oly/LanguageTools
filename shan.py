@@ -208,12 +208,16 @@ class langInfo():
     self.allFonts = True
 
     self.langCharacters = [0x1004, 0x1010, 0x1011, 0x1015, 0x1019, 0x101a]
-    self.langCharacters.extend([0x101b, 0x101c, 0x101d, 0x1022, 0x102d, 0x102f, 0x102f])
+    self.langCharacters.extend([0x101b, 0x101c, 0x101d, 0x1022, 0x102d, 0x102f])
     self.langCharacters.extend([0x103a, 0x103b, 0x103c, 0x103d, 0x103e, 0x103f])
     self.langCharacters.extend([c for c in range(0x1075, 0x109a)])
     self.langCharacters.extend([0x109e, 0x109f])
     self.all_chars = ' '.join([unichr(x) for x in self.langCharacters])
 
+    self.unicodeRanges = [('\u1004'), ('\u1010', '\u1011'), ('\u1015'),
+                          ('\u101b', '\u101d'),
+                          ('\u1022'), ('\u102d'), ('\u102f'),
+                          ('\u1019', '\u101a'), ('\u103a', '\u103f')]
     self.text_file_list = []
 
     self.translit_test_data = testData().basic_data
