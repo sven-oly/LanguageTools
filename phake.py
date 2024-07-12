@@ -167,7 +167,7 @@ class langInfo:
        'ref': '/encodingRules/' + self.LanguageCode
        },
       {'linkText': 'KB transforms',
-       'ref': '/' + self.LanguageCode + '/kbtransforms/'
+       'ref': '/kbtransforms/' + self.LanguageCode
        },
       {'linkText': 'Combiners',
        'ref': '/diacritic/' + self.LanguageCode

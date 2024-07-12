@@ -31,7 +31,7 @@ Language = 'Mende'
 encoding_font_list = [
     {
       'font_path':'/fonts/MendeKikakui/jgmende.ttf',
-      'source':'/fonts/MendeKikakui/jgmende.ttf',
+      'source':'/static/fonts/MendeKikakui/jgmende.ttf',
       'font_name':'JGMende',
       'family': 'JGMende',
       'longName': 'JGMende PUA',
@@ -45,13 +45,20 @@ unicode_font_list = [
     # Contains both Unicode and JG
     'family': 'KikakuiSansPro',
     'longName': 'Kikakui Sans Pro',
-    'source': '/fonts/MendeKikakui/KikakuiSansPro.ot.ttf',
+    'source': '/static/fonts/MendeKikakui/KikakuiSansPro.ot.ttf',
+    'encoding': 'PUA',
+  },
+  {
+    # Contains both Unicode and JG and Presentation characters
+    'family': 'KikakuiSansPro_PresentationA',
+    'longName': 'Kikakui Sans Pro Presentation A',
+    'source': '/static/fonts/MendeKikakui/KikakuiSansPro_Presentation.ttf',
     'encoding': 'PUA',
   },
   {
     'family': 'NotoSansMendeKikakui',
     'longName': 'Noto Sans Mende Kikakui',
-    'source': '/fonts/MendeKikakui/NotoSansMendeKikakui-Regular.ttf',
+    'source': '/static/fonts/MendeKikakui/NotoSansMendeKikakui-Regular.ttf',
     'encoding': 'unicode',
   },
   encoding_font_list[0],
@@ -62,13 +69,13 @@ links = [
      'ref': '/men/'
     },\
     {'linkText': 'Keyboard conversions',
-     'ref': '/' + '/kbtransforms/' + LanguageCode
+     'ref': '/kbtransforms/' + LanguageCode
      },
     {'linkText': 'Phonetic table',
-     'ref': '/' + LanguageCode + '/phonetickb/'
+     'ref': '/phonetickb/' + LanguageCode
      },
     {'linkText': 'Converter',
-     'ref': '/convert/men'
+     'ref': '/convert/' + LanguageCode
     },
     {'linkText': 'Font conversion summary',
       'ref': '/encodingRules/' + LanguageCode
