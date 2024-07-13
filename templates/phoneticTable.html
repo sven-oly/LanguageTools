@@ -24,7 +24,7 @@
   {% for font in unicode_list %}
     @font-face {
       font-family:'{{font.family}}';
-      src:url('{{font.source}}'){% if '.ttf' in font.source %}format('truetype'){%endif%}{% if '.TTF' in font.source %}format('truetype'){%endif%}{% if '.otf' in font.source %}format('opentype'){%endif%}{%if '.woff' in font.source %}format('woff'){%endif%};
+      src:url('/static/{{font.source}}'){% if '.ttf' in font.source %}format('truetype'){%endif%}{% if '.TTF' in font.source %}format('truetype'){%endif%}{% if '.otf' in font.source %}format('opentype'){%endif%}{%if '.woff' in font.source %}format('woff'){%endif%};
       font-weight:normal;
       font-style:normal;
       font-size: 32px;
@@ -106,7 +106,7 @@
     let kbShortNameMap = new Map();
   {% for kb in kb_list %}
   kb_list.push({{kb.shortName}}); kb_fonts.push("{{kb.fontFamily}}");
-    kbShortNameMap.set("{{kb.shortName}}");{% endfor %}
+    kbShortNameMap.set("{{kb.shortName}}", {{loop.index0}});{% endfor %}
 
   const unicode_font_list = [
       {% for font in unicode_list %}"{{font.family}}",{% endfor %}

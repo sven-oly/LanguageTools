@@ -25,6 +25,7 @@ import os
 import ahom
 import chakma
 import cherokee
+import cree
 import mendekikakui
 import omq
 import phake
@@ -41,6 +42,7 @@ language_info_dict = {
 # Add in languages as we get them ready
 language_info_dict['aho'] = ahom.langInfo()
 language_info_dict['ccp'] = chakma.langInfo()
+language_info_dict['cr'] = cree.langInfo()
 language_info_dict['chr'] = cherokee.langInfo()
 language_info_dict['men'] =  mendekikakui.langInfo()
 language_info_dict['omq'] = omq.langInfo()
@@ -84,7 +86,7 @@ LanguageList = [
     # ('Bangali', 'bn'),
     # ('Bassa', 'bsq'),
     # ('Choctaw', 'cho'),
-    # ('Cree', 'cr'),
+    ('Cree', 'cr'),
     # ('Lenape', 'del'),
     # ('Ho', 'hoc'),
     # ('Igbo', 'ig'),

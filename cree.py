@@ -15,7 +15,7 @@
 #
 
 import sys
-import webapp2
+# import webapp2
 
 # Use routines from this base class
 import base
@@ -129,13 +129,13 @@ class langInfo():
 
     self.links = [
       {'linkText': 'Keyboard',
-       'ref': '/aho/'
+       'ref': '/cr/'
        },
       {'linkText': 'Converter',
-       'ref': '/' + self.LanguageCode + '/convertUI/'
+       'ref': '/convert/' + self.LanguageCode
        },
       {'linkText': 'Keyboard transforms',
-       'ref': '/' + self.LanguageCode + '/kbtransforms/'
+       'ref': '/kbtransforms/' + self.LanguageCode
        },
       {'linkText': 'Plains Cree Keyboard',
        'ref': 'https://www.altlab.dev/plains-cree-syllabics-key-sequences/'
@@ -144,13 +144,13 @@ class langInfo():
        'ref': 'https://www.unicode.org/charts/PDF/U1400.pdf'
        },
       {'linkText': 'Resources',
-       'ref': '/' + self.LanguageCode + '/downloads/'
+       'ref': '/downloads/' + self.LanguageCode
        },
       {'linkText': 'Language Geek fonts',
        'ref': 'http://www.languagegeek.com/font/fontdownload.html'
        },
       {'linkText': 'Phonetic table',
-       'ref': '/' + self.LanguageCode + '/phonetickb/'
+       'ref': '/phonetickb/' + self.LanguageCode
        },
       {'linkText': 'Try Plains Cree on Google Input Tools',
        'ref': 'https://www.google.com/intl/sa/inputtools/try/'
@@ -191,10 +191,10 @@ class langInfo():
     self.base_consonant = u'\u1400'
 
     if sys.maxunicode >= 0x10000:
-      self.unicodeChars = [unichr(x) for x in range(0x1400, 0x167F)]
+      self.unicodeChars = [chr(x) for x in range(0x1400, 0x167F)]
       self.diacritic_list = []
     else:
-      self.unicodeChars = [unichr(x) for x in range(0x1400, 0x167F)]
+      self.unicodeChars = [chr(x) for x in range(0x1400, 0x167F)]
       self.diacritic_list = []
 
     self.converters = None
@@ -208,20 +208,20 @@ class langInfo():
 
 
 langInstance = langInfo()
-app = webapp2.WSGIApplication(
-    [
-        ('/cr/', base.LanguagesHomeHandler),
-        ('/cr/keyboard/', base.LanguagesHomeHandler),
-        ('/cr/AllFonts/', base.AllFontTest),
-        ('/cr/convertUI/', base.ConvertUIHandler),
-        ('/cr/downloads/', base.Downloads),
-        ('/cr/converter/', base.ConvertUIHandler),
-        ('/cr/encodingRules/', base.EncodingRules),
-        ('/cr/diacritic/', base.DiacriticHandler),
-        ('/cr/render/', base.EncodingRules),
-        ('/cr/phonetickb/', base.PhoneticKbHandler),
-        ('/' + langInstance.LanguageCode + '/kbtransforms/', base.KeyboardTransforms),
-    ],
-    debug=True,
-    config={'langInfo': langInstance}
-)
+# app = webapp2.WSGIApplication(
+#     [
+#         ('/cr/', base.LanguagesHomeHandler),
+#         ('/cr/keyboard/', base.LanguagesHomeHandler),
+#         ('/cr/AllFonts/', base.AllFontTest),
+#         ('/cr/convertUI/', base.ConvertUIHandler),
+#         ('/cr/downloads/', base.Downloads),
+#         ('/cr/converter/', base.ConvertUIHandler),
+#         ('/cr/encodingRules/', base.EncodingRules),
+#         ('/cr/diacritic/', base.DiacriticHandler),
+#         ('/cr/render/', base.EncodingRules),
+#         ('/cr/phonetickb/', base.PhoneticKbHandler),
+#         ('/' + langInstance.LanguageCode + '/kbtransforms/', base.KeyboardTransforms),
+#     ],
+#     debug=True,
+#     config={'langInfo': langInstance}
+# )
