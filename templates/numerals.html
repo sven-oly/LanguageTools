@@ -1,0 +1,350 @@
+<!DOCTYPE HTML>
+<html>    
+  <head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{language}} Numerals
+    </title>
+
+    <link rel="stylesheet" type="text/css" href="/css/main.css">
+    <link rel="stylesheet" type="text/css" href="/css/fonts.css">
+
+    <script type="text/javascript" src="/js/numerals/numeralBase.js"></script>
+
+    <!-- This loads the numerals info -->
+    <script type="text/javascript" src="/js/numerals/{{langNumerals}}.js"></script>
+
+    <!-- Gets definition of the calculator -->
+    <script type="text/javascript" src="/js/numerals/calculator4.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="/css/calculator.css">
+
+    <link rel="stylesheet" type="text/css" href="/css/chrCalculator.css">
+
+    <style>
+      img {
+          opacity: 0.5;
+      }
+
+      td {
+          text-align: center;
+          font-size: 32px;
+      }      
+
+      {% for font in unicodeFontList %}
+      @font-face{
+          font-family:"{{font.family}}";
+          src:url('{{font.source}}'){% if '.ttf' in font.source %}format('truetype'){%endif%}{% if '.TTF' in font.source %}format('truetype'){%endif%}{% if '.otf' in font.source %}format('opentype'){%endif%}{%if '.woff' in font.source %}format('woff'){%endif%};
+          font-weight:normal;
+          font-style:normal;
+          font-size: 32px;
+      }
+      {% endfor %}
+
+      .OperatorsClass {
+          font-family: Arial;
+          font-size: 32px;
+      }
+      .NumeralsClass {
+          font-family:{{unicodeFontList.0.family}};
+          font-size: 32px;
+      }
+      .NumeralsOutputClass {
+          font-family:{{unicodeFontList.0.family}};
+          font-size: 40px;
+          font-weight:bold;
+          height: 60px;
+          width: 400px;
+          height: 60px;
+          resize: none;
+          align: center;
+          text-align: end;
+      }
+      .DecimalDisplay {
+          background-color: #cccccc;
+      }
+      .logArea {
+          width:600px;
+          height:200px;
+      }
+      table {
+          width: 400px;
+      }
+
+      .default-font {
+          font-family: "Arial";
+          font-size:18px;
+      }
+    </style>
+    
+    <script src="/js/langinfo/langdata.js"></script>
+
+    <script>
+      // Holds all the info about the numeral system
+      const numeralBase = new NumeralBase();
+      const numeralInfo = new Numerals(numeralBase);
+      
+      // The calculator object.
+      let calculator;
+      
+      const langInformation = new langData("{{language}}", "{{langTag}}");
+
+      const font_families = [{% for font in font_list %}"{{font.family}}", {% endfor %}];
+
+      // Toggle the region id.
+      function showhide(id) {
+          var e = document.getElementById(id);
+          var vis = e.style.display;
+          e.style.display = (vis === 'block') ? 'none' : 'block';
+          return false;
+      }
+
+      function showDecimal(value) {
+          let area = document.getElementById('decimalOutput');
+          let result = value;
+          if (Intl.NumberFormat) {
+              let fmt = new Intl.NumberFormat('en');
+              result = fmt.format(value);
+          }
+          if (area) {
+              area.value = result;
+          }
+      }
+      
+      // Append to the output.
+      function addToLogging(str) {
+          let area = document.getElementById('logArea');
+          area.innerHTML += ' ' + str;
+          area.scrollTop = area.scrollHeight;
+      }
+      
+      function handleKeyPressed(ev) {
+          const c = ev.key;
+          let ch = c;  // maybe need more mapping
+          
+          if (ev.srcElement == document.getElementById('decimalOutput')) {
+              // Typed into decimal output area - only accept '0' - '9'
+              // and don't send to calculator.
+              if (!(ch >= '0' && ch <= '9')) {
+		  let len = ev.srcElement.value.length;
+                  ev.srcElement.value = ev.srcElement.value.substring(0,len);
+              }
+              return;
+          }
+          if ("0123456789.+-\u2212*×÷/=C".indexOf(ch) >= 0) {
+              // Transform as needed.
+              if (c == 'C') {
+                  ch = 'clear';
+              }
+              if (numeralInfo.digitKeyInput &&
+                  ('0' <=  c && c <= '9')) {
+                      const num = c.charCodeAt(0) - 0x30;
+                      ch = numeralInfo.valueToChar.get(num);
+                  }
+              calcButtonFn(ch);
+          }
+      }
+      
+      function onload() {
+
+          // Connect CHR numeral data to calculator.
+          calculator = new calculator4(numeralInfo,
+                                       'outputArea');
+
+          calculator.setNumeralObject(numeralInfo);
+          
+          setCalculatorKeyTable('buttonTable', numeralInfo, calculator);
+
+          // Set up key input for digits, operators, etc.
+
+          document.addEventListener('keyup',
+                                    handleKeyPressed);
+//                                  calculator.onKeyPressed);
+
+          // Ready to use the calculator.
+          numeralInfo.setDisplayDecimal(showDecimal);
+          numeralInfo.setLoggingFn(addToLogging);
+      }
+
+      function MainHideShow (name) {
+          var showhide = document.getElementById(name);
+          if (showhide.style.display == "none") {
+              showhide.style.display = "block";
+          } else {
+              showhide.style.display = "none";
+          }
+          return false;
+      }
+      
+      function clearArea(output_area) {
+          let textArea = document.getElementById(output_area);
+          textArea.innerHTML = '';
+      }
+      
+      function runTests() {
+          const numTests = new TestNumerals(numeralInfo);
+          numTests.testIntToList();  // OK!
+          // Needs work!
+          numTests.testFormat();
+          numTests.testParse();
+      }
+
+      function setCalculatorKeyTable(tableId, numeralInfo, calculator) {
+          // The table for holding the buttons for numerals, operators, etc.
+          // 
+          const table = document.getElementById(tableId);
+          const rows = table.rows;
+          const numRows = rows.length;  // May need to add more
+
+          const keyMap = numeralInfo.keyLayoutArray();
+          const charToValueMap = numeralInfo.getCharToValueMap();
+          
+          // Used for computing digits with separators like US English
+          const onInputFn = calculator.onInput;
+          let fmt = new Intl.NumberFormat('en');
+
+          // For rows 0-5, keep the operation at the first part of the row
+          // * - + / =, and clear.
+          // Add on the characters in each row
+          // ASCII title is set for each one to show the numeric value.
+          for (let row = 0; row < keyMap.length; row ++) {
+              const keyRow = keyMap[row];
+              if (row >= numRows) {
+                  // Add another one
+                  table.insertRow(row);
+              }
+              const rowPtr = table.rows[row];
+              // Append this layout row to the table row
+              let tableCol = rowPtr.cells.length;
+              for (let col = 0; col < keyRow.length; col ++) {
+                  let cell = rowPtr.insertCell(tableCol);
+                  // Adds button to the new cell with the character, value, etc.
+
+                  const chr = keyMap[row][col];
+                  const btn = document.createElement("button");
+                  btn.innerHTML = chr;
+                  btn.value = chr;
+                  
+                  const value = charToValueMap.get(chr);
+                  btn.onclick = calcButtonFn;
+                  cell.appendChild(btn);
+                  cell.title = fmt.format(value);
+                  btn.className = 'NumeralsClass';
+
+                  tableCol ++;
+              }
+          }
+
+          // Replace selected operators with new values and font.
+          if (numeralInfo.replaceOperatorsMap !== undefined) {
+              const replaceIterator = numeralInfo.replaceOperatorsMap.entries();
+              let item;
+              while (item = replaceIterator.next().value) {
+                  const replacements = item[1];
+                  const cell = document.getElementById(item[0]);
+                  if (cell) {
+                      // Change the cell's value and font.
+                      cell.value = replacements[0];
+                      cell.style.fontFamily = replacements[1];
+                      // If there's a third item, replace the title / tool tip.
+                      if (replacements.length > 2) {
+                          cell.title = replacements[2];
+                      }
+                  }
+              }
+          }
+      }
+
+      function calcButtonFn(event) {
+          let chr;
+          if (typeof event === 'string') {
+              chr = event;
+          } else {
+          // Gets the value of this button, sending to calculator.
+              chr = event.target.value;
+          }
+          calculator.onInput(chr);
+      }
+      function convertDecimal(inputArea) {
+          let decimalArea = document.getElementById(inputArea);
+          let number = decimalArea.value;
+          calculator.insertAccumValue(number.replaceAll(',', ''));
+      }
+
+    </script>
+  </head>
+  
+  <body background="/images/{{numbersImage}}" class="chrNoto" onload="onload();">
+    <h2>{{language}} Numerals Calculator</h2>
+    {% if isMobile %}
+    <!-- TODO something special? -->
+    {% endif %}
+    
+    <div id="calculator">
+      
+      <div id="keypad">     
+        <!-- X Register -->
+        <p>
+          <div align="right">
+            <textarea id="outputArea" class="NumeralsOutputClass" readonly></textarea>
+            </div>
+        <div id="decimalOutputDiv" style="display: none" class='DecimalDisplay'>
+          <p>Decimal output: <textarea id="decimalOutput"></textarea>
+          <input type='button' value='-->' onclick='convertDecimal("decimalOutput");'/>
+        </div>
+        <table id="buttonTable" class="NumeralsClass">
+          <tr>
+            <td>
+              <input id='multiply' title='multiply' type='button' value='×'  class='OperatorsClass' onclick='calcButtonFn("×");'/>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <input id='subtract' title='subtract' type='button' value='−'  class='OperatorsClass' onclick='calcButtonFn("\u2212");'/></td>
+          </tr>
+          <tr>
+            <td><input id='add' title='add' type='button' value='+' class='OperatorsClass' onclick='calcButtonFn("+");'/></td>
+          </tr>
+          <tr>
+            <td><input id='divide' title='divide' type='button' value='÷' class='OperatorsClass'/ onclick='calcButtonFn("÷");'></td>
+          </tr>
+          <tr>
+            <td><input id='equals' title='equals' type='button' value='=' class='OperatorsClass' onclick='calcButtonFn("=");'/></td>
+            <!-- TO BE IMPLEMENTED 
+                 <td><input id='delete' title='deleve' type="button" value="delete" onclick='calcButtonFn("del");'> </td>
+                 -->
+            <!-- TO BE IMPLEMENTED 
+                 <td><input id='decimal' title='decimal' type="button" value="." onclick='calcButtonFn(".");'> </td>
+                 -->
+          </tr>
+          <tr>
+            <td><input id='clear' title='clear' type="button" value="clear" class='OperatorsClass' onclick='calcButtonFn("clear");'></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    
+    <div id='controls'>
+      {% if test %}
+      <button value='test all' onClick='runTests();'>Run Tests</button>
+      {% endif %}
+      <button onclick="return MainHideShow('calculator');" value="calcShow"
+              style="display: none">Decimal calculator</button>
+      <button onclick="return MainHideShow('decimalOutputDiv');" value="decimalShow">Decimal output</button>
+      <button onclick="return MainHideShow('logDiv');" value="logShow">Logging</button>
+    </div>
+    <div id="logDiv" style="display: none">
+      <textarea id="logArea" class='logArea'></textarea>
+      <input type='button' value='clear log' onclick="clearArea('logArea');">
+    </div>
+
+    
+    {% if isMobile %}
+    {% else %}
+    <div id="reference" style="width: 500px">
+
+    </div>
+    {% endif %}
+  </body>
+
+</html>

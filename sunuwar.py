@@ -24,9 +24,7 @@ import logging
 import os
 import sys
 import urllib
-import webapp2
-
-from google.appengine.ext.webapp import template
+# import webapp2
 
 encoding_font_list = [
   {
@@ -182,13 +180,13 @@ links = [
      'ref': '/suz/'
     },
     {'linkText': 'Convert to Unicode',
-     'ref': '/suz/translit/'
+     'ref': '/translit/suz'
     },
     {'linkText': 'Old converter',
-     'ref': '/suz/convertUI/'
+     'ref': '/convertUI/suz'
     },
     # {'linkText': 'Font conversion summary',
-    #   'ref': '/suz/encodingRules/'
+    #   'ref': '/encodingRules/suz/'
     # },
     {'linkText': 'Tikamuli Unicode Proposal',
       'ref': 'http://www.unicode.org/L2/L2010/10465-tikamuli.pdf'
@@ -205,13 +203,13 @@ links = [
      'ref': 'https://preeti.arthasarokar.com/'
     },
     {'linkText': 'Calculator',
-     'ref': '/suz/numerals/'
+     'ref': '/numerals/suz/'
     },
     {'linkText': 'Calendar',
-     'ref': '/suz/calendar/'
+     'ref': '/calendar/suz/'
     },
     {'linkText': 'Resources & Downloads',
-     'ref': '/suz/downloads/'
+     'ref': '/downloads/suz'
     },
   # {
     #   'linkText': 'Combiners',
@@ -227,16 +225,16 @@ class langInfo():
     self.direction = 'ltr'
 
     # This is undefined
-    self.diacritic_list = [unichr(x) for x in range(0x9bc, 0x9e3)]
+    self.diacritic_list = [chr(x) for x in range(0x9bc, 0x9e3)]
     self.base_consonant = u'ক'  # KA
     self.baseHexUTF16 = u'\u0995'
 
     
     self.letterCodes = [x for x in range(0x11bc0, 0x11be1)]
     if sys.maxunicode >= 0x10000:
-      self.letters = [unichr(x) for x in self.letterCodes]
+      self.letters = [chr(x) for x in self.letterCodes]
     else:
-      self.letters = [unichr(0xd806) + unichr(0xdf00 + x - 0x11b00)
+      self.letters = [chr(0xd806) + chr(0xdf00 + x - 0x11b00)
                       for x in self.letterCodes]
       
     self.digitCodes = [x for x in range(0x11bf0, 0x11bfa)]
@@ -308,7 +306,7 @@ class langInfo():
     self.outputFont = "Private Use Area (PUA)"
 
     # Lists of test characters for the various encodings
-    self.test_chars = [' '.join([unichr(x) for x in range(0xe9bc, 0x9e3)])]
+    self.test_chars = [' '.join([chr(x) for x in range(0xe9bc, 0x9e3)])]
 
     # For transliteration
     self.translit_encoding_list = [
@@ -387,26 +385,26 @@ class langInfo():
 # Global in this file.
 langInstance = langInfo()
 
-app = webapp2.WSGIApplication(
-    [('/' + langInstance.LanguageCode + '/', base.LanguagesHomeHandler),
-     ('/' + langInstance.LanguageCode + '/translit/', base.TranslitHandler),  # Transliterates to Latin
-     ('/' + langInstance.LanguageCode + '/convertUI/', base.ConvertUIHandler),
-     ('/' + langInstance.LanguageCode + '/downloads/', base.Downloads),
-     ('/' + langInstance.LanguageCode + '/converter/', base.ConvertHandler),
-     ('/' + langInstance.LanguageCode + '/converter/', base.ConvertHandler),
-     ('/' + langInstance.LanguageCode + '/encodingRules/', base.EncodingRules),
-     ('/' + langInstance.LanguageCode + '/diacritic/', base.DiacriticHandler),
-     ('/' + langInstance.LanguageCode + '/dictionaryInput/', base.DictionaryInput),
-     ('/' + langInstance.LanguageCode + '/dictionaryN/', base.DictionaryN),
-     ('/' + langInstance.LanguageCode + '/kbtransforms/', base.KeyboardTransforms),
-     ('/' + langInstance.LanguageCode + '/render/', base.EncodingRules),
-     ('/' + langInstance.LanguageCode + '/wordsearch/', base.WordSearchHandler),
-     ('/' + langInstance.LanguageCode + '/numerals/', base.NumeralsHandler),
-     ('/' + langInstance.LanguageCode + '/keyman/', base.KeyManHandler),
+# app = webapp2.WSGIApplication(
+#     [('/' + langInstance.LanguageCode + '/', base.LanguagesHomeHandler),
+#      ('/' + langInstance.LanguageCode + '/translit/', base.TranslitHandler),  # Transliterates to Latin
+#      ('/' + langInstance.LanguageCode + '/convertUI/', base.ConvertUIHandler),
+#      ('/' + langInstance.LanguageCode + '/downloads/', base.Downloads),
+#      ('/' + langInstance.LanguageCode + '/converter/', base.ConvertHandler),
+#      ('/' + langInstance.LanguageCode + '/converter/', base.ConvertHandler),
+#      ('/' + langInstance.LanguageCode + '/encodingRules/', base.EncodingRules),
+#      ('/' + langInstance.LanguageCode + '/diacritic/', base.DiacriticHandler),
+#      ('/' + langInstance.LanguageCode + '/dictionaryInput/', base.DictionaryInput),
+#      ('/' + langInstance.LanguageCode + '/dictionaryN/', base.DictionaryN),
+#      ('/' + langInstance.LanguageCode + '/kbtransforms/', base.KeyboardTransforms),
+#      ('/' + langInstance.LanguageCode + '/render/', base.EncodingRules),
+#      ('/' + langInstance.LanguageCode + '/wordsearch/', base.WordSearchHandler),
+#      ('/' + langInstance.LanguageCode + '/numerals/', base.NumeralsHandler),
+#      ('/' + langInstance.LanguageCode + '/keyman/', base.KeyManHandler),
 
-     ('/' + langInstance.LanguageCode + '/calendar/', base.CalendarHandler),
+#      ('/' + langInstance.LanguageCode + '/calendar/', base.CalendarHandler),
 
-     ], debug=True,
-    config= {'langInfo': langInstance,
-    }
-)
+#      ], debug=True,
+#     config= {'langInfo': langInstance,
+#     }
+# )

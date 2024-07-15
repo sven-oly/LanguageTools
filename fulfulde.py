@@ -24,7 +24,7 @@ import logging
 import os
 import sys
 import urllib
-import webapp2
+# import webapp2
 
 import adlam
 
@@ -501,22 +501,22 @@ class FontCompareHandler(webapp2.RequestHandler):
 
 langInstance = langInfo()
 
-app = webapp2.WSGIApplication([
-  ('/' + LanguageCode + '/', base.LanguagesHomeHandler),
-    ('/ff/keyboard/', KeyboardHandler),
-    ('/ff/fontCompare/', FontCompareHandler),
-    ('/ff/downloads/', DownloadHandler),
-    ('/ff/encodingrules/', EncodingRules),
-    ('/ff/convertTest/', ConvertTestHandler),
-    ('/ff/dictionaryN/', base.DictionaryN),
-    ('/' + langInstance.LanguageCode + '/wordsearch/', base.WordSearchHandler),
-    ('/' + langInstance.LanguageCode + '/numerals/', base.NumeralsHandler),
-    ('/' + langInstance.LanguageCode + '/calendar/', base.CalendarHandler),
+# app = webapp2.WSGIApplication([
+#   ('/' + LanguageCode + '/', base.LanguagesHomeHandler),
+#     ('/ff/keyboard/', KeyboardHandler),
+#     ('/ff/fontCompare/', FontCompareHandler),
+#     ('/ff/downloads/', DownloadHandler),
+#     ('/ff/encodingrules/', EncodingRules),
+#     ('/ff/convertTest/', ConvertTestHandler),
+#     ('/ff/dictionaryN/', base.DictionaryN),
+#     ('/' + langInstance.LanguageCode + '/wordsearch/', base.WordSearchHandler),
+#     ('/' + langInstance.LanguageCode + '/numerals/', base.NumeralsHandler),
+#     ('/' + langInstance.LanguageCode + '/calendar/', base.CalendarHandler),
 
-    ('/tryPDF/', tryPDFHandler),
+#     ('/tryPDF/', tryPDFHandler),
 
-  ],
-  debug=True,
-  config={'langInfo': langInstance}
-)
+#   ],
+#   debug=True,
+#   config={'langInfo': langInstance}
+# )
 

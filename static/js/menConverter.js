@@ -1,7 +1,7 @@
 // Convert from old font-encoding of Oneida text to Unicode forms:
 const langConverter = new langConverterClass('men', 'Mru');
 
-langConverter.one2oneMap = private_use_map_combined = {
+let private_use_map_combined = {
     // From Private Use Area to Unicode
     '\ue000': ['\uD83A\uDC8C'],
     '\ue002': ['\uD83A\uDC8D'],
@@ -192,7 +192,7 @@ langConverter.one2oneMap = private_use_map_combined = {
     '\ue160': ['\uD83A\uDC2D'],
     '\ue161': ['\uD83A\uDC2A'],
     '\ue08d': ['\uD83A\uDC38'],
-    '\ue0bc': ['\uD83A\uDC32'],
+    '\ue0bc': ['\Ud83a\uDC32'],
     // No conversion to these Unicode values
     // 'X': ['\uD83A\uDC13'],
     // 'X': ['\uD83A\uDC2C'],
@@ -220,17 +220,29 @@ langConverter.one2oneMap = private_use_map_combined = {
     // Possible convert other JGMende PUA points to Arabic range?
 };
 
+// For each in the range 0xe000, 0xe162:
+// If not in the private use map, convert to Arabic Presentation A by
+//    adding 0x1b50 to the code. This gives a non-PUA character that has
+//    RTL propertie.
+const pua_to_presentation_a = 0x1b50;
+
+const low_pua = 0xe000;
+const high_pua = 0xe162;
+
+for (let code = low_pua; code <= high_pua; code+=1) {
+    const code_char = String.fromCharCode(code);
+    const x = code.toString(16)
+    if (!(code_char in private_use_map_combined)) {
+        // Add this in the presentation A block
+        private_use_map_combined[code_char] = String.fromCharCode(code + pua_to_presentation_a);
+    }
+}
+
 langConverter.one2oneMap = langConverter.dictionaryToMap(private_use_map_combined);
 
 langConverter.addOne2OneTransforms(
   "123456789",
     "𞣇𞣈𞣉𞣊𞣋𞣌𞣍𞣎𞣏",  // The digits transform
-  0
-);
-// Many more to do!
-langConverter.addOne2OneTransforms(
-  "\ue109\ue10b\ue10d",
-    "\ud83a\udc00\ud83a\udc01\ud83a\udc02",  // The first few
   0
 );
 

@@ -31,7 +31,7 @@ Language = 'Mende'
 encoding_font_list = [
     {
       'font_path':'/fonts/MendeKikakui/jgmende.ttf',
-      'source':'/static/fonts/MendeKikakui/jgmende.ttf',
+      'source':'/fonts/MendeKikakui/jgmende.ttf',
       'font_name':'JGMende',
       'family': 'JGMende',
       'longName': 'JGMende PUA',
@@ -42,23 +42,24 @@ encoding_font_list = [
 
 unicode_font_list = [
   {
+    # Contains both Unicode and JG and Presentation characters
+    'family': 'KikakuiSansPro_Presentation',
+    'longName': 'Kikakui Sans Pro Presentation A',
+    'source': '/fonts/MendeKikakui/KikakuiSansPro_Presentation.ttf',
+    'encoding': 'PUA',
+  },
+  {
     # Contains both Unicode and JG
     'family': 'KikakuiSansPro',
     'longName': 'Kikakui Sans Pro',
-    'source': '/static/fonts/MendeKikakui/KikakuiSansPro.ot.ttf',
+    'source': '/fonts/MendeKikakui/KikakuiSansPro.ot.ttf',
     'encoding': 'PUA',
   },
   {
-    # Contains both Unicode and JG and Presentation characters
-    'family': 'KikakuiSansPro_PresentationA',
-    'longName': 'Kikakui Sans Pro Presentation A',
-    'source': '/static/fonts/MendeKikakui/KikakuiSansPro_Presentation.ttf',
-    'encoding': 'PUA',
-  },
-  {
+    # Has only Unicode characteracters
     'family': 'NotoSansMendeKikakui',
     'longName': 'Noto Sans Mende Kikakui',
-    'source': '/static/fonts/MendeKikakui/NotoSansMendeKikakui-Regular.ttf',
+    'source': 'fonts/MendeKikakui/NotoSansMendeKikakui-Regular.ttf',
     'encoding': 'unicode',
   },
   encoding_font_list[0],
@@ -132,17 +133,27 @@ class langInfo():
     self.encoding_font_list = encoding_font_list
     self.kb_list = [
       {
-        'shortName': 'menphone3',
-        'longName': 'Mende Phonetic 3',
-        'jsName': 'menphone3',
-        'instructions': 'Updated 14-Feb-2023. Use / to end a syllable.',
-        'font': 'MendeKikakuiFonts',
-        'fontFamilyToApply': ['NotoSansMendeKikakui', 'JGMende'],
-        'fontFamily': 'KikakuiSansPro',
+        'shortName': 'menphone3_unicode',
+        'longName': 'Mende Unicode 3',
+        'jsName': 'menphone3_unicode',
+        'instructions': 'Updated July 2024. Use / to end a syllable.',
+        'font': 'KikakuiSansPro_Presentation',
+        'fontFamilyToApply': ['MendeKikakuiFonts', 'NotoSansMendeKikakui', 'JGMende'],
+        'fontFamily': 'KikakuiSansPro_Presentation',
       },
       # {
+      #   'shortName': 'menphone3',
+      #   'longName': 'Mende Phonetic 3',
+      #   'jsName': 'menphone3',
+      #   'instructions': 'Updated 14-Feb-2023. Use / to end a syllable.',
+      #   'font': 'MendeKikakuiFonts',
+      #   'fontFamilyToApply': ['NotoSansMendeKikakui', 'JGMende'],
+      #   'fontFamily': 'KikakuiSansPro',
+      # }
+      # ,
+      # {
       #   'shortName': 'menphone2',
-      #   'longName': 'Mende Phonetic2',
+      #   'longName': 'Mende Ph``````````onetic2',
       #   'jsName': 'menphone2',
       #   'instructions': 'Updated 17-Nov-2022',
       #   'font': 'MendeKikakuiFonts',

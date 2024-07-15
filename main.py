@@ -30,6 +30,7 @@ import mendekikakui
 import omq
 import phake
 import qiang
+import sunuwar
 
 # If `entrypoint` is not defined in app.yaml, App Engine will look for an app
 # called `app` in `main.py`.
@@ -48,6 +49,7 @@ language_info_dict['men'] =  mendekikakui.langInfo()
 language_info_dict['omq'] = omq.langInfo()
 language_info_dict['phk'] = phake.langInfo()
 language_info_dict['qiang'] = qiang.langInfo()
+language_info_dict['suz'] = sunuwar.langInfo()
 
 
 # English name, language code, name in the language.
@@ -108,7 +110,7 @@ LanguageList = [
     # ('Sora', 'srb'),
     # ('Tulu', 'tcy'),
     # ('Tongan', 'to'),
-    # ('Sunuwar', 'suz'),
+    ('Sunuwar', 'suz'),
     # ('Mundari', 'unr'),
     # ('Yoruba', 'yo'),
     # ('Zaghawa', 'zag'),
@@ -176,8 +178,15 @@ def topLangHandler(langcode):
     except:
         allFonts = True
 
+    try:
+      text_direction = langInfo.direction
+    except AttributeError:
+      text_direction = 'ltr'
+    logging.warning('####### Direction = %s', text_direction)
+
     return render_template('demo_general.html',
                            langTag = langcode,
+                           direction = text_direction,
                            language = langInfo.Language,
                            font_list = langInfo.unicode_font_list,
                            kb_list = langInfo.kb_list,
@@ -240,9 +249,10 @@ def convertHandler(langcode):
     font = None
     
     try:
-      text_direction = langInfo.direction
+        text_direction = langInfo.direction
     except AttributeError:
-      text_direction = 'ltr'
+        # Default
+        text_direction = 'ltr'
     
     # Needed?
     oldChars = ''
