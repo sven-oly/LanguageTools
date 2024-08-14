@@ -127,6 +127,14 @@ const JAMES_BAY_CREE_LAYOUT = {
         "joo": "\u148E",
         "jaa": "\u1491",
         "j": "\u1428",
+        "che": "\u1489",
+        "chi": "\u148B",
+        "cho": "\u148D",
+        "cha": "\u1490",
+        "chii": "\u148C",
+        "choo": "\u148E",
+        "chaa": "\u1491",
+        "ch": "\u14a1",
         "ce": "\u1489",
         "ci": "\u148B",
         "co": "\u148D",
@@ -273,11 +281,11 @@ const JAMES_BAY_CREE_LAYOUT = {
         "X": "\u166D"
     },
     "historyPruneRegex":
-    "shwa|shwi|shwo|zhwa|zhwi|zhwo|bwa|bwi|bwo|cwa|cwi|cwo|dwa|dwi|dwo|gwa|gwi|gwo|jwa|jwi|jwo|kwa|kwi|kwo|lwa|lwi|lwo|mwa|mwi|mwo|nwa|nwi|nwo|pwa|pwi|pwo|sha|shi|sho|shw|swa|swi|swo|twa|twi|two|zha|zhi|zho|zhw|zwa|zwi|zwo|ba|bi|bo|bw|ca|ci|co|cw|da|di|do|dw|ga|gi|go|gw|ja|ji|jo|jw|ka|ki|ko|kw|la|li|lo|lw|ma|mi|mo|mw|na|ni|no|nw|pa|pi|po|pw|ra|ri|ro|sa|sh|si|so|sw|ta|ti|to|tw|wa|wi|wo|za|zh|zi|zo|zw|a|b|c|d|g|i|j|k|l|m|n|o|p|r|s|t|w|y|z"
+    "shwa|shwi|shwo|zhwa|zhwi|zhwo|bwa|bwi|bwo|chi|cho|cha|cwa|cwi|cwo|dwa|dwi|dwo|gwa|gwi|gwo|jwa|jwi|jwo|kwa|kwi|kwo|lwa|lwi|lwo|mwa|mwi|mwo|nwa|nwi|nwo|pwa|pwi|pwo|sha|shi|sho|shw|swa|swi|swo|twa|twi|two|zha|zhi|zho|zhw|zwa|zwi|zwo|ba|bi|bo|bw|ca|ch|ci|co|cw|da|di|do|dw|ga|gi|go|gw|ja|ji|jo|jw|ka|ki|ko|kw|la|li|lo|lw|ma|mi|mo|mw|na|ni|no|nw|pa|pi|po|pw|ra|ri|ro|sa|sh|si|so|sw|ta|ti|to|tw|wa|wi|wo|za|zh|zi|zo|zw|a|b|c|d|g|i|j|k|l|m|n|o|p|r|s|t|w|y|z"
 
 };
 
 google.elements.keyboard.loadme(JAMES_BAY_CREE_LAYOUT);
-james_bay_cree = JAMES_BAY_CREE_LAYOUT;
+const james_bay_cree = JAMES_BAY_CREE_LAYOUT;
 
 

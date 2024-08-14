@@ -14,7 +14,7 @@ class textFunctions {
         // Cree ASCII ordering, based on table.
         langAsciiOrder = [
             'b', 'p', 'bw', 'pw', 'd', 't', 'dw', 'tw',
-            'g', 'k', 'gw', 'kw', 'j', 'c', 'jw', 'cw', 'n', 'nw',
+            'g', 'k', 'gw', 'kw', 'j', 'c', 'ch', 'jw', 'cw', 'n', 'nw',
             'm', 'mw', 's', 'z', 'sw', 'zw', 'sh', 'zh', 'shw', 'zhw',
             'y', 'k' ,'l', 'lw', 'w', 'v', 'r', 'h', 'x'];
 

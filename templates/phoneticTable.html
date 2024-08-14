@@ -65,6 +65,19 @@
   {% endif %}
 
   <script>
+    function simpleHash(obj) {
+  const keys = Object.keys(obj).sort();
+  const values = keys.map(key => obj[key]);
+  const str = JSON.stringify(values);
+  
+  let hash = 0;
+  for (let i = 0; i < str.length; i++) {
+    hash = (hash << 5) - hash + str.charCodeAt(i);
+    hash |= 0; // Convert to 32bit integer
+  }
+  return hash;
+    }
+    
   // Global for processing text 
     let textFuncs;
     </script>
@@ -80,6 +93,9 @@
   <script src="/static/js/utils.js"></script>
 
   <script>
+    // Test hash function
+    let hash = objectHash.sha1({foo:'bar'});
+
     let utils = new Utils();
 
     // Global for processing text 
@@ -87,10 +103,10 @@
         textFuncs = new textFunctions();
     }
         
-  var k = { loadme: Object};
+  let k = { loadme: Object};
 
   k.loadme.prototype = function(a) {
-  return a;
+    return a;
   }
   var e = {keyboard: k};
   var google = {elements: e};
@@ -254,6 +270,7 @@
         // Generate the rows values by first item and columns by 2nd item in
         // the text split of the pattern key.
         let rowMap = new Map();
+        let hashMap = new Map();
         for (let key of keyList) {
             // Skip the vowels
             if (vowelMap.has(key)) continue;

@@ -4,7 +4,7 @@ const OJI_CREE_LAYOUT = {
     "source": "",
     "mappings":  {
         ",c": {
-            "":"`1234567890-=qwertyuiop[]\\asdfghjkl;'zxcvbnm,./"
+            "":"`1234567890-=qwertyuiop[]\\asdfghjkl;'zxcvbnm,{{\u166E}}/"
         },
         "s,sc": {
             "":"~!@#$%^&*()_+QWERTYUIOP{}|ASDFGHJKL:\"ZXCVBNM<>?"
@@ -130,6 +130,14 @@ const OJI_CREE_LAYOUT = {
         "jii": "\u148C",
         "joo": "\u148E",
         "jaa": "\u1491",
+        "che": "\u1489",
+        "chi": "\u148B",
+        "cho": "\u148D",
+        "cha": "\u1490",
+        "chii": "\u148C",
+        "choo": "\u148E",
+        "chaa": "\u1491",
+        "ch": "\u14a1",
         "ce": "\u1489",
         "ci": "\u148B",
         "co": "\u148D",
@@ -266,8 +274,8 @@ const OJI_CREE_LAYOUT = {
         "x": "\u166E"
     },
     "historyPruneRegex":
-"shwa|shwi|shwo|zhwa|zhwi|zhwo|bwa|bwi|bwo|cwa|cwi|cwo|dwa|dwi|dwo|gwa|gwi|gwo|jwa|jwi|jwo|kwa|kwi|kwo|mwa|mwi|mwo|nwa|nwi|nwo|pwa|pwi|pwo|sha|shi|sho|shw|twa|twi|two|zha|zhi|zho|zhw|ba|bi|bo|bw|ca|ci|co|cw|da|di|do|dw|ga|gi|go|gw|ja|ji|jo|jw|ka|ki|ko|kw|la|li|lo|ma|mi|mo|mw|na|ni|no|nw|pa|pi|po|pw|ra|ri|ro|sh|sw|ta|ti|to|tw|va|ve|vi|vo|wa|wi|wo|zh|zw|a|b|c|d|g|i|j|k|l|m|n|o|p|r|s|t|v|w|y|z"
+"shwa|shwi|shwo|zhwa|zhwi|zhwo|bwa|bwi|bwo|cho|cha|chi|cwa|cwi|cwo|dwa|dwi|dwo|gwa|gwi|gwo|jwa|jwi|jwo|kwa|kwi|kwo|mwa|mwi|mwo|nwa|nwi|nwo|pwa|pwi|pwo|sha|shi|sho|shw|twa|twi|two|zha|zhi|zho|zhw|ba|bi|bo|bw|ca|ch|ci|co|cw|da|di|do|dw|ga|gi|go|gw|ja|ji|jo|jw|ka|ki|ko|kw|la|li|lo|ma|mi|mo|mw|na|ni|no|nw|pa|pi|po|pw|ra|ri|ro|sh|sw|ta|ti|to|tw|va|ve|vi|vo|wa|wi|wo|zh|zw|a|b|c|d|g|i|j|k|l|m|n|o|p|r|s|t|v|w|y|z"
 };
 
 google.elements.keyboard.loadme(OJI_CREE_LAYOUT);
-oji_cree = OJI_CREE_LAYOUT;
+const oji_cree = OJI_CREE_LAYOUT;
