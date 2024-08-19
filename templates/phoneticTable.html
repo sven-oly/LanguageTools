@@ -77,7 +77,13 @@
   }
   return hash;
     }
-    
+
+    function mapToObj(map){
+        const obj = {}
+        for (let [k,v] of map)
+            obj[k] = v
+        return obj
+    }    
   // Global for processing text 
     let textFuncs;
     </script>
@@ -94,7 +100,7 @@
 
   <script>
     // Test hash function
-    let hash = objectHash.sha1({foo:'bar'});
+    let hash = simpleHash({foo:'bar'});
 
     let utils = new Utils();
 
@@ -269,14 +275,18 @@
 
         // Generate the rows values by first item and columns by 2nd item in
         // the text split of the pattern key.
+        let rowHashes = new Map();  // 
         let rowMap = new Map();
         let hashMap = new Map();
         for (let key of keyList) {
+            let rowValues = [];
             // Skip the vowels
             if (vowelMap.has(key)) continue;
             
             let split = textFuncs.splitText(key);
             let rowText = split[0];
+            let restOfRow = split.slice(1);
+            rowHashes[rowText] = simpleHash(restOfRow);
             let colMap;
             if (rowMap.has(rowText)) {
                 colMap = rowMap.get(split[0]);
@@ -309,32 +319,72 @@
             colMap.set(newColMarker, [current, inputs]);
         }
 
-        // Make new table from phonetic info.
-        // TODO: First combine rows that have the same values
-        rowNum = 1;
-        let iterator1 = rowMap.entries();
+        // Test hashes of the rows
+        let hashes = [];
+        let hashes_set = new Set();
+        let hash_to_index = {};
+        let hash_to_labels = {};
+        // Get a string of the contents of each row.
+        let iterator_row = rowMap.entries();
         let entry;
-        while (entry = iterator1.next().value) {
-            let row = table.insertRow(rowNum);
-            let cell0 = row.insertCell(0);
-            cell0.innerHTML = entry[0];
-            for (cellIndex = 1; cellIndex < numVowels +1; cellIndex ++) {
-                cell = row.insertCell(cellIndex);
-            }
+        let index = 0;
+        while (entry = iterator_row.next().value) {
+            let line_list = [];
             let cols = entry[1];  // The column map
             let iterator2 = cols.entries();
             let coldata;
             while (coldata = iterator2.next().value) {
                 let vowel = coldata[0];
-                if (vowelMap.has(vowel)) {
-                    cellIndex = vowelMap.get(vowel);
-                    let cell = row.cells[cellIndex];
-                    let charSet = coldata[1][0];  // The characters to be shown
-                    let inputs = coldata[1][1];   // The inputs for this cell
-                    let values = [...charSet];  // Spread the set
-                    cell.innerHTML = values.join(' ');
-                    // Add the hover info.
-                    cell.title = [...inputs];
+                let values = [...coldata[1][0]];
+                line_list.push(values);
+                }
+            //let line_str = ' '.join(line_list);
+            let hash = simpleHash(line_list);
+            hashes_set.add(hash);
+            hashes.push(hash);
+            if (hash in hash_to_index) {
+                hash_to_index[hash].push(index);
+                hash_to_labels[hash].push(entry[0]);
+            } else {
+                hash_to_index[hash] = [index];
+                hash_to_labels[hash] = [entry[0]];
+            }
+            index += 1;
+        }
+
+        // Make new table from phonetic info.
+        // TODO: First combine rows that have the same values
+        rowNum = 1;
+        let hash_shown = new Set();
+        let iterator1 = rowMap.entries();
+        while (entry = iterator1.next().value) {
+            let row = table.insertRow(rowNum);
+            let hash_val = hashes[rowNum - 1];
+            if (!hash_shown.has(hash_val)) {
+                // Skip because the combine row is already in the table
+                hash_shown.add(hash_val);
+
+                let cell0 = row.insertCell(0);
+                let labels = hash_to_labels[hash_val].join(', ');
+                cell0.innerHTML = labels;  // entry[0];
+                for (cellIndex = 1; cellIndex < numVowels +1; cellIndex ++) {
+                    cell = row.insertCell(cellIndex);
+                }
+                let cols = entry[1];  // The column map
+                let iterator2 = cols.entries();
+                let coldata;
+                while (coldata = iterator2.next().value) {
+                    let vowel = coldata[0];
+                    if (vowelMap.has(vowel)) {
+                        cellIndex = vowelMap.get(vowel);
+                        let cell = row.cells[cellIndex];
+                        let charSet = coldata[1][0];  // The characters to be shown
+                        let inputs = coldata[1][1];   // The inputs for this cell
+                        let values = [...charSet];  // Spread the set
+                        cell.innerHTML = values.join(' ');
+                        // Add the hover info.
+                        cell.title = [...inputs];
+                    }
                 }
             }
             rowNum ++;
