@@ -23,6 +23,7 @@ import os
 
 # Start importing language stuff. This will be replaced by database eventually.
 import ahom
+import bete
 import chakma
 import cherokee
 import cree
@@ -42,6 +43,7 @@ language_info_dict = {
 
 # Add in languages as we get them ready
 language_info_dict['aho'] = ahom.langInfo()
+language_info_dict['bete'] = bete.langInfo()
 language_info_dict['ccp'] = chakma.langInfo()
 language_info_dict['cr'] = cree.langInfo()
 language_info_dict['chr'] = cherokee.langInfo()
@@ -57,7 +59,7 @@ LanguageList = [
 #    (u'A\u1e49angu Yol\u014bu', 'en_anangu', 'Aṉangu-Yolngu'),
     ('Ahom', 'aho'),
 #    ('Bamum', 'bax'),
-#    (u'Bété', 'bete'),
+    (u'Bété', 'kro'),
 #    ('Batak Sinalungun', 'bts'),
     ('Chakma', 'ccp', '𑄌𑄋𑄴𑄟𑄳𑄦'),
     # ('Gondi', 'gon', 'Gōndi family'),

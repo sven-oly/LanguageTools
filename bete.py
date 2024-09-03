@@ -24,9 +24,6 @@ import logging
 import os
 import sys
 import urllib
-import webapp2
-
-from google.appengine.ext.webapp import template
 
 encoding_font_list = [
     {
@@ -56,7 +53,7 @@ links = [
      'ref': '/bete/'
     },
     {'linkText': 'Keyboard conversions',
-     'ref': '/' + 'bete' + '/kbtransforms/'    # {'linkText': 'Converter',
+     'ref': '/kbtransforms/' + 'bete'    # {'linkText': 'Converter',
      },
     #  'ref': '/bete/convertUI/'
     # },
@@ -69,6 +66,9 @@ links = [
     # {'linkText': 'Unicode Page',
     #  'ref': 'https://www.unicode.org/charts/PDF/U1E800.pdf'
     # },
+    {'linkText': 'Kru languages, Ivory Coast',
+     'ref': 'https://en.wikipedia.org/wiki/Kru_languages'
+    },
     {'linkText': 'Language Wikipedia',
      'ref': 'https://en.wikipedia.org/wiki/B%C3%A9t%C3%A9_languages'
     },
@@ -88,17 +88,17 @@ links = [
 
 class langInfo():
   def __init__(self):
-    self.LanguageCode = 'bete'
+    self.LanguageCode = 'bete'  # Kru languages
     self.Language = u'Bété'
     self.Language_native = u'Bété'
     self.direction = 'ltr'
 
     if sys.maxunicode >= 0x10000:
       logging.info('WIDE SYSTEM BUILD!!!')
-      self.diacritic_list = [unichr(x) for x in range(0xe753, 0xe75)]
+      self.diacritic_list = [chr(x) for x in range(0xe753, 0xe75)]
     else:
       logging.info('NARROW SYSTEM BUILD!!!')
-      self.diacritic_list = [unichr(x) for x in range(0xe753, 0xe75)]
+      self.diacritic_list = [chr(x) for x in range(0xe753, 0xe75)]
 
     self.base_consonant = u'𞠀'
     self.baseHexUTF16 = u'\ud81a\udee7'
@@ -113,7 +113,7 @@ class langInfo():
       {
         'shortName': self.LanguageCode + "Phone",
         'longName': 'Bété Phonetic',
-        'jsName': self.LanguageCode + "Phone",
+        'jsName': "betePhone",
         'instructions': None,
         'fontFamily': 'JGBete4',
       },
@@ -123,7 +123,7 @@ class langInfo():
     self.unicode_font_list = unicode_font_list
 
     # Lists of test characters for the various encodings
-    self.test_chars = ' '.join([unichr(x) for x in range(0xe600, 0xe780)])
+    self.test_chars = ' '.join([chr(x) for x in range(0xe600, 0xe780)])
 
     # For dictionary
     self.dictionaryLang1 = "English"
@@ -131,18 +131,19 @@ class langInfo():
     self.kb1 = 'en'
     self.kb2 = self.kb_list[0]['shortName']
 
+  
 # Global in this file.
 langInstance = langInfo()
 
-app = webapp2.WSGIApplication(
-    [('/' + langInstance.LanguageCode+ '/', base.LanguagesHomeHandler),
-     ('/' + langInstance.LanguageCode + '/convertUI/', base.ConvertUIHandler),
-     ('/' + langInstance.LanguageCode+ '/downloads/', base.Downloads),
-     ('/' + langInstance.LanguageCode+ '/converter/', base.ConvertHandler),
-     ('/' + langInstance.LanguageCode+ '/encodingRules/', base.EncodingRules),
-     ('/' + langInstance.LanguageCode+ '/diacritic/', base.DiacriticHandler),
-     ('/' + langInstance.LanguageCode + '/dictionaryInput/', base.DictionaryInput),
-     ('/' + langInstance.LanguageCode + '/kbtransforms/', base.KeyboardTransforms),
-     ], debug=True,
-    config={'langInfo': langInstance}
-)
+# app = webapp2.WSGIApplication(
+#     [('/' + langInstance.LanguageCode+ '/', base.LanguagesHomeHandler),
+#      ('/' + langInstance.LanguageCode + '/convertUI/', base.ConvertUIHandler),
+#      ('/' + langInstance.LanguageCode+ '/downloads/', base.Downloads),
+#      ('/' + langInstance.LanguageCode+ '/converter/', base.ConvertHandler),
+#      ('/' + langInstance.LanguageCode+ '/encodingRules/', base.EncodingRules),
+#      ('/' + langInstance.LanguageCode+ '/diacritic/', base.DiacriticHandler),
+#      ('/' + langInstance.LanguageCode + '/dictionaryInput/', base.DictionaryInput),
+#      ('/' + langInstance.LanguageCode + '/kbtransforms/', base.KeyboardTransforms),
+#      ], debug=True,
+#     config={'langInfo': langInstance}
+# )
