@@ -77,6 +77,8 @@
          <script src="/static/js/vk-debug.js"></script>
 
          <script>
+           const utils = new Utils();  // Object for utility functions
+
            // Check for a converter class
            let converterObj;
            let encodingInfo;
@@ -428,7 +430,7 @@
             </select>
             {% endif %}
             <textarea class="{{encodingList.0.font_name}}" id="old_font_input_text"
-                      rows="3" style="font-size: 28px;"
+                      rows="3" style="font-size: 36px;"
                       onchange="updateHex('old_font_input_text', 'old_hex');"
                       dir="{{direction}}" spellcheck="false">{{oldInput}}</textarea>
             <br />
@@ -446,6 +448,19 @@
                 <option value="{{encoding.font_name}}">{{encoding.display_name}}</option>
                 {% endfor %}
                 {%endif%}
+              </select>
+              Font Size: <select onchange="utils.onSizeSelected(this.value, 'old_font_input_text');" id="sizeSelector">
+                <option value="10px">10</option>
+                <option value="14px">14</option>
+                <option value="18px">18</option>
+                <option value="24px" selected>24</option>
+                <option value="32px">32</option>
+                <option value="48px">48</option>
+                <option value="48px">60</option>
+                <option value="72px">72</option>
+                <option value="96px">96</option>
+                <option value="120px">120</option>
+                <option value="240px">240</option>
               </select>
               {% if converters %}
               <p>Converters:
@@ -522,6 +537,19 @@
               {% for font in unicodeFonts %}
               <option value="{{font.family}}">{{font.longName}}</option>
               {% endfor %}
+            </select>
+            Font Size: <select onchange="utils.onSizeSelected(this.value, 'Unicode_font_output_text');" id="sizeSelector">
+              <option value="10px">10</option>
+              <option value="14px">14</option>
+              <option value="18px">18</option>
+              <option value="24px" selected>24</option>
+              <option value="32px">32</option>
+              <option value="48px">48</option>
+              <option value="48px">60</option>
+              <option value="72px">72</option>
+              <option value="96px">96</option>
+              <option value="120px">120</option>
+              <option value="240px">240</option>
             </select>
             {% if lang_list|length > 1%}
             Language: <select onchange="onLanguageSelected(this.value, 'Unicode_font_output_text')">

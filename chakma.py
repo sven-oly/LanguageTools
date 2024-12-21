@@ -57,34 +57,18 @@ Language = 'Chakma'
 Language_native = '𑄌𑄋𑄴𑄟𑄳𑄦'
 
 unicode_font_list = [
-  {'family': 'ChakmaHandwriting.ttf',
+  {'family': 'RibengUni2020June',
+   'longName': 'RibengUni October 2024',
+   'source': '/fonts/Chakma/RibengUni-Regular.ttf',
+   },
+  {'family': 'ChakmaHandwriting',
    'longName': 'Chakma Handwriting 2024',
    'source': '/fonts/Chakma/ChakmaHandwriting.ttf',
    },
-  {'family': 'RibengUni2022June',
-   'longName': 'RibengUni June 2022',
-   'source': '/fonts/Chakma/RibengUni-Regular_20220606.ttf',
-   },
-  {'family': 'RibengUni2020June',
-   'longName': 'RibengUni June 2020',
-   'source': '/fonts/Chakma/RibengUni-Regular.ttf',
-   },
-  { 'family': 'RibengUni2020',
-    'longName': 'RibengUni 2020',
-    'source': '/fonts/RibengUni-Regular.ttf',
-  },
   { 'family': 'NotoSansChakma',
-    'longName': 'NotoSans Chakma',
-    'source': '/fonts/NotoSansChakma-Regular.ttf',
-  },
-  {'family': 'RibengUni2018018',
-   'longName': 'RibengUni 2018-06-18',
-   'source': '/fonts/RibengUni-Regular_20180618.ttf',
-   },
-  { 'family': 'extendedNotoSansChakma',
-    'longName': 'extended NotoSans Chakma',
-    'source': '/fonts/extendedNotoSansChakma-Regular.ttf',
-  },
+    'longName': 'NotoSans Chakma 2024',
+    'source': '/fonts/Chakma/NotoSansChakma-Regular.ttf',
+  }
 ]
 
 links = [

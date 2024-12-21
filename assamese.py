@@ -14,7 +14,6 @@
 # limitations under the License.
 #
 
-import webapp2
 
 import base
 
@@ -25,43 +24,10 @@ except NameError:
     unichr = chr
 
 Language = 'Assamese'
-Language_native = 'TBD'
+Language_native = 'Assamese'
 LanguageCode = 'as'
 ScriptCode = 'Beng'
 
-links = [
-  {'linkText': 'Keyboard',
-   'ref': '/' + LanguageCode + '/'
-   },
-  {'linkText': 'Assamese alphabet',
-   'ref': 'https://en.wikipedia.org/wiki/Assamese_alphabet',
-  },
-  # {'linkText': 'Converter',
-  #  'ref': '/' + LanguageCode + '/convertUI/'},
-  # {'linkText': 'Font conversion summary',
-  #   'ref': '/' + LanguageCode + '/encodingRules/'
-  # },
-  {'linkText': 'Diacritics',
-   'ref': '/my/diacritic/'
-   },
-  {'linkText': 'Unicode page',
-   'ref': 'https://www.unicode.org/charts/PDF/U0980.pdf'
-  },
-  {'linkText': "Download Unicode Gautau University keyboard layouts and fonts",
-   'ref': 'https://gauhati.ac.in/member/shikhar-kumar-sarma?aid=NA==&did=MzA='}
-  # {'linkText': 'THIS SCRIPT',
-  #  'ref': 'https://en.wikipedia.org/wiki/XYZ_alphabet'
-  # },
-  # {'linkText': 'Wikipedi page',
-  #  'ref': 'https://en.wikipedia.org/wiki/XYZ_language'
-  # },
-  # {'linkText': 'Ethnolog',
-  #  'ref': 'https://www.ethnologue.com/language/XYZ'
-  # },
-  # {'linkText': 'Combiners',
-  #  'ref': '/lep/diacritic/'
-  #  },
-]
 
 
 class langInfo:
@@ -78,6 +44,40 @@ class langInfo:
 
 
 
+        links = [
+            {'linkText': 'Keyboard',
+             'ref': '/' + LanguageCode + '/'
+            },
+            {'linkText': 'Assamese alphabet',
+             'ref': 'https://en.wikipedia.org/wiki/Assamese_alphabet',
+            },
+            {'linkText': 'Converter',
+             'ref': '/convert/' + self.LanguageCode
+            },
+            {'linkText': 'Font conversion summary',
+             'ref': '/encodingRules/' + self.LanguageCode
+            },
+            {'linkText': 'Diacritics',
+             'ref': '/my/diacritic/'
+            },
+            {'linkText': 'Unicode page',
+             'ref': 'https://www.unicode.org/charts/PDF/U0980.pdf'
+            },
+            # {'linkText': "Download Unicode Gautau University keyboard layouts and fonts",
+            #  'ref': 'https://gauhati.ac.in/member/shikhar-kumar-sarma?aid=NA==&did=MzA='}
+            # {'linkText': 'THIS SCRIPT',
+            #  'ref': 'https://en.wikipedia.org/wiki/XYZ_alphabet'
+            # },
+            # {'linkText': 'Wikipedi page',
+            #  'ref': 'https://en.wikipedia.org/wiki/XYZ_language'
+            # },
+            # {'linkText': 'Ethnolog',
+            #  'ref': 'https://www.ethnologue.com/language/XYZ'
+            # },
+            # {'linkText': 'Combiners',
+            #  'ref': '/lep/diacritic/'
+            #  },
+        ]
         self.unicode_font_list = [
           {'family': 'UxaFinal',
            'longName': 'Uxa Final',
@@ -87,9 +87,13 @@ class langInfo:
            'longName': 'Jonaki Thin',
            'source': '/fonts/Assamese/Jonaki_Thin.ttf',
            },
-          {'family': 'NotoBengali',
-           'longName': 'Noto Sans Assamese',
-           'source': '/fonts/NotoSansBengali-Regular.ttf',
+          {'family': 'NotoSerifBengali',
+           'longName': 'Noto Serif Bengali',
+           'source': '/fonts/Assames/NotoSerifBengali-Regular.ttf'
+           },
+          {'family': 'NotoSansBengali',
+           'longName': 'Noto Sans Bengali',
+            'source': '/fonts/Assamese/NotoSansBengali-VariableFont_wdth,wght.ttf'
            },
           {'family': 'NotoSerif',
            'longName': 'Noto Serif',
@@ -103,9 +107,9 @@ class langInfo:
 
         self.encoding_font_list = [
           {
-            'font_path': '/fonts/xyz.ttf',
-            'font_name': 'xyz',
-            'display_name': 'xyz',
+            'font_path': '/fonts/Assamese/ASSAMNEW.TTF',
+            'font_name': 'AssamNew',
+            'display_name': 'Assam New',
           },
         ]
 
@@ -147,14 +151,3 @@ class langInfo:
 
 langInstance = langInfo()
 
-app = webapp2.WSGIApplication([
-  ('/' + LanguageCode + '/', base.LanguagesHomeHandler),
-  ('/' + LanguageCode + '/convertUI/', base.ConvertUIHandler),
-  ('/' + LanguageCode + '/downloads/', base.Downloads),
-  ('/' + LanguageCode + '/encodingRules/', base.EncodingRules),
-  ('/' + LanguageCode + '/diacritic/', base.DiacriticHandler),
-  ('/' + langInstance.LanguageCode + '/wordsearch/', base.WordSearchHandler),
-  ('/' + langInstance.LanguageCode + '/keyman/', base.KeyManHandler),
-], debug=True,
-  config={'langInfo': langInstance}
-)

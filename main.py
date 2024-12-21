@@ -23,6 +23,7 @@ import os
 
 # Start importing language stuff. This will be replaced by database eventually.
 import ahom
+import assamese
 import bete
 import chakma
 import cherokee
@@ -43,6 +44,7 @@ language_info_dict = {
 
 # Add in languages as we get them ready
 language_info_dict['aho'] = ahom.langInfo()
+language_info_dict['as'] = assamese.langInfo()
 language_info_dict['bete'] = bete.langInfo()
 language_info_dict['ccp'] = chakma.langInfo()
 language_info_dict['cr'] = cree.langInfo()
@@ -58,8 +60,9 @@ language_info_dict['suz'] = sunuwar.langInfo()
 LanguageList = [
 #    (u'A\u1e49angu Yol\u014bu', 'en_anangu', 'Aṉangu-Yolngu'),
     ('Ahom', 'aho'),
+    ('Assamese', 'as'),
 #    ('Bamum', 'bax'),
-    (u'Bété', 'kro'),
+    (u'Bété', 'bete'),
 #    ('Batak Sinalungun', 'bts'),
     ('Chakma', 'ccp', '𑄌𑄋𑄴𑄟𑄳𑄦'),
     # ('Gondi', 'gon', 'Gōndi family'),
@@ -525,7 +528,8 @@ def phonetic_kb(langcode):
         text_functions = text_functions,
         unicode_data = unicode_data,        
         )
-    
+
+
 # class DownloadKBText(webapp2.RequestHandler):
 #     def get(self):
 #         infile = self.request.get("infile", "")
@@ -542,3 +546,4 @@ if __name__ == '__main__':
     # can be configured by adding an `entrypoint` to app.yaml.
     app.run(host='127.0.0.1', port=8080, debug=True, threaded=True)
 # [END gae_python37_app]
+
