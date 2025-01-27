@@ -15,7 +15,6 @@
 #
 
 import os
-import webapp2
 
 import base
 
@@ -25,12 +24,15 @@ LanguageCode = 'kht'
 ScriptCode = 'Mymr'
 
 links = [
-  {'linkText': 'Keyboard',
-   'ref': '/' + LanguageCode + '/'
-   },
-  # {'linkText': 'Converter',
-  #  'ref': '/' + LanguageCode + '/convertUI/'},
-  # {'linkText': 'Font conversion summary',
+    {'linkText': 'Keyboard',
+     'ref': '/' + LanguageCode + '/'
+    },
+    {'linkText': 'Converter',
+     'ref': '/convert/' + LanguageCode
+    },
+    {'linkText': 'Font conversion summary',
+     'ref': '/encodingRules/' + LanguageCode
+    },
   #   'ref': '/' + LanguageCode + '/encodingRules/'
   # },
   # {'linkText': 'Resources',
@@ -93,26 +95,100 @@ class langInfo:
 
         self.encoding_font_list = [
           {
-            'font_path': '/fonts/xyz.ttf',
-            'font_name': 'xyz',
-            'display_name': 'xyz',
+            'font_path': '/fonts/khamti/Tokmaaitai.ttf',
+            'font_name': 'Tokmaaitai',
+            'display_name': 'TokmaaiTaixyz',
           },
         ]
 
         self.lang_list = [LanguageCode]  # This may be extended
 
         self.kb_list = [
-          {'shortName': LanguageCode,
-           'longName': LanguageCode,
-           },
+            {'shortName': 'kht',
+             'longName': 'Khamti',
+             'fontFamily': 'NotoSansMyanmarRegular',
+            },            
         ]
 
         self.links = links
 
-        # TODO: Fill in with diacritics
-        self.diacritic_list = [unichr(x) for x in range(0x300, 0x330)]
-        # TODO: Fill in base consonant
-        self.default_base_consonant = u'\0x61'
+        # TODO!
+        consonants = [
+            0x1000,
+            0x1002,
+            0x1004,
+            0x1010,
+            0x1011,
+            0x1015,
+            0x1019,
+            0x101A,
+            0x101B,
+            0x101C,
+            0x101D,
+            0x1022,
+            0x1075,
+            0x1078,
+            0x1079,
+            0x107B,
+            0x107C,
+            0x107F,
+            0x1080,
+            0xAA61,
+            0xAA62,
+            0xAA63,
+            0xAA64,
+            0xAA65,
+            0xAA66,
+            0xAA67,
+            0xAA68,
+            0xAA69,
+            0xAA6A,
+            0xAA6B,
+            0xAA6C,
+            0xAA6D,
+            0xAA6E,
+            0xAA6F,
+            0xAA71,
+        ]
+        
+        diacritics = [
+            0x102D,
+            0x102E,
+            0x102F,
+            0x1030,
+            0x1031,
+            0x1036,
+            0x1038,
+            0x103A,
+            0x103B,
+            0x103C,
+            0x103D,
+            0x1062,
+            0x1082,
+            0x1083,
+            0x1084,
+            0x1085,
+            0x1086,
+            0x1087,
+            0x1088,
+            0x1089,
+            0x108A,
+            0x109A,
+            0x109B,
+            ]
+        logograms = [
+            0xAA74,
+            0xAA75,
+            0xAA76,
+        ]
+        self.unicodeChars = [chr(x) for x in consonants]
+        self.diacritic_list = [chr(x) for x in diacritics]
+        for x in diacritics:
+            self.unicodeChars.append(chr(x))
+        for x in logograms:
+            self.unicodeChars.append(chr(x))
+
+        self.default_base_consonant = 'u\1000'
 
         self.encodedRanges = [
         ]
@@ -125,12 +201,13 @@ class langInfo:
 
 langInstance = langInfo()
 
-app = webapp2.WSGIApplication([
-  ('/' + LanguageCode + '/', base.LanguagesHomeHandler),
-  ('/' + LanguageCode + '/convertUI/', base.ConvertUIHandler),
-  ('/' + LanguageCode + '/downloads/', base.Downloads),
-  ('/' + LanguageCode + '/encodingRules/', base.EncodingRules),
-  ('/' + LanguageCode + '/diacritic/', base.DiacriticHandler),
-], debug=True,
-  config={'langInfo': langInstance}
-)
+# app = webapp2.WSGIApplication([
+#   ('/' + LanguageCode + '/', base.LanguagesHomeHandler),
+#   ('/' + LanguageCode + '/convertUI/', base.ConvertUIHandler),
+#   ('/' + LanguageCode + '/downloads/', base.Downloads),
+#   ('/' + LanguageCode + '/encodingRules/', base.EncodingRules),
+#   ('/' + LanguageCode + '/diacritic/', base.DiacriticHandler),
+# ], debug=True,
+#   config={'langInfo': langInstance}
+# )
+

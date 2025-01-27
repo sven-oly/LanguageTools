@@ -28,11 +28,16 @@ import bete
 import chakma
 import cherokee
 import cree
+import khamti
 import mendekikakui
 import omq
 import phake
 import qiang
 import sunuwar
+
+
+# Special for Assames checking.
+import English_Assamese
 
 # If `entrypoint` is not defined in app.yaml, App Engine will look for an app
 # called `app` in `main.py`.
@@ -49,6 +54,7 @@ language_info_dict['bete'] = bete.langInfo()
 language_info_dict['ccp'] = chakma.langInfo()
 language_info_dict['cr'] = cree.langInfo()
 language_info_dict['chr'] = cherokee.langInfo()
+language_info_dict['kht'] =  khamti.langInfo()
 language_info_dict['men'] =  mendekikakui.langInfo()
 language_info_dict['omq'] = omq.langInfo()
 language_info_dict['phk'] = phake.langInfo()
@@ -126,7 +132,7 @@ LanguageList = [
     # ('Santali', 'sat', 'ᱥᱟᱱᱛᱟᱲᱤ'),
     # ('Meitei (Manipuri)', 'mni', 'ꯃꯤꯇꯩ ꯃꯌꯦꯛ'),
 #    ('Aiton', 'aio', '(တႝ)ဢႝတွꩫ်'),
-    # ('Khamti', 'kmt', '(တဲး)ၵမ်းတီ'),
+    ('Khamti', 'kht', '(တဲး)ၵမ်းတီ'),
     # ('Kalabari', 'ijn'),
     # ('Mru', 'mro'),
     # ('Sylheti', 'syl'),
@@ -528,6 +534,103 @@ def phonetic_kb(langcode):
         text_functions = text_functions,
         unicode_data = unicode_data,        
         )
+
+
+@app.route('/checkconversion/<langcode>')
+def check_conversion(langcode):
+    langInfo = getLangInfo(langcode)
+
+    if not langInfo:
+        return render_template(
+            'language_not_defined.html',
+            langcode = langcode
+        )
+
+    try:
+      converters = langInfo.converters
+    except:
+      converters = None
+
+    font = None
+    
+    try:
+        text_direction = langInfo.direction
+    except AttributeError:
+        # Default
+        text_direction = 'ltr'
+    
+    # Special for Assamese
+    raw_data = English_Assamese.en_as_raw_data
+
+    
+    # Needed?
+    oldChars = ''
+    oldInput = ''
+    # Handle non-Unicode output.
+    try:
+      output_font = langInfo.outputFont
+    except:
+      output_font = 'Unicode'
+    text = ''
+
+    try:
+      encodingList = langInfo.encoding_font_list
+    except:
+      encodingList = None
+    
+    try:
+      unicodeChars = langInfo.unicodeChars
+    except:
+      unicodeChars = None
+
+    try:
+      variation_sequence = langInfo.variation_sequence
+    except:
+      variation_sequence = None
+
+    try:
+      testStringList = langInfo.testStringList
+    except:
+      testStringList = [
+        {'name': 'Test 1', # Note: must escape the single quote.
+         'string': u'\u0004\u0005\u0006\u0007\u0008\u0009' +
+         '\u000a\u000b'},
+      ]
+      
+    showTools = False
+    
+    try:
+      unicodeCombiningChars = getCombiningCombos(
+        langInfo.baseHexUTF16, langInfo.diacritic_list)
+    except:
+      unicodeCombiningChars = None
+
+      # Get the Assamese conversion data
+
+      return render_template(
+        'translit_assamese.html',
+        converters = converters,
+        isTransLit = False,
+        font = font,
+        language = langInfo.Language,
+        langTag = langInfo.LanguageCode,
+        encodingList = encodingList,
+        lang_list = langInfo.lang_list,
+        kb_list = langInfo.kb_list,
+        direction = text_direction,
+        unicodeFonts = langInfo.unicode_font_list,
+        links = langInfo.links,
+        oldChars = oldChars,
+        oldInput = oldInput,
+        outputFont = output_font,
+        text = text,
+        textStrings = testStringList,
+        showTools = showTools,
+        unicodeChars = unicodeChars,
+        combiningChars = unicodeCombiningChars,
+          variation_sequence = variation_sequence,
+          en_as_raw = raw_data
+    )
 
 
 # class DownloadKBText(webapp2.RequestHandler):
