@@ -17,8 +17,6 @@
 import tangsa_data
 import tangsa_GamWin_convert_test_new
 
-import webapp2
-
 # Use routines from this base class
 import base
 
@@ -26,16 +24,13 @@ import logging
 import os
 import sys
 
-from google.appengine.ext.webapp import template
-
 LanguageCode = 'nst'
-
 
 # Handling Tangsa keyboard.
 # Should this be inherited from base.languageTemplate?
 class langInfo():
   def __init__(self):
-    self.LanguageCode = 'nst'
+    self.LanguageCode = LanguageCode
     self.Language = 'Tangsa'
     self.Language_native = 'Tangsa'
 
@@ -195,14 +190,14 @@ class langInfo():
         #  'ref': '/' + LanguageCode + '/kbtransforms/'
         # },
         {'linkText': 'Converter',
-          'ref': '/' + self.LanguageCode + '/convertUI/'
+          'ref': '/convert/' + self.LanguageCode
         },
         {'linkText': 'Collation test',
          'ref': '/' + self.LanguageCode + '/collation/'
         },
-        {'linkText': 'Font conversion summary',
-          'ref': '/' + self.LanguageCode + '/encodingRules/'
-        },
+        # {'linkText': 'Font conversion summary',
+        #   'ref': '/' + self.LanguageCode + '/encodingRules/'
+        # },
         {'linkText': 'KB transforms',
           'ref': '/' + self.LanguageCode + '/kbtransforms/'
         },
@@ -226,9 +221,9 @@ class langInfo():
         {'linkText': 'Calculator',
          'ref': '/nst/numerals/'
         },
-        {'linkText': 'Calendar',
-         'ref': '/' + self.LanguageCode + '/calendar/'
-        },
+        # {'linkText': 'Calendar',
+        #  'ref': '/' + self.LanguageCode + '/calendar/'
+        # },
     ]
 
     # Resource files
@@ -276,10 +271,10 @@ class langInfo():
 
     if sys.maxunicode >= 0x10000:
       logging.info('WIDE SYSTEM BUILD!!!')
-      self.unicodeChars = [unichr(x) for x in range(0x16a70, 0x16ac9)]
+      self.unicodeChars = [chr(x) for x in range(0x16a70, 0x16ac9)]
     else:
       logging.info('NARROW SYSTEM BUILD!!!')
-      self.unicodeChars = [unichr(0xd81a) + unichr(x+0xde00) for x in range(0x70, 0xca)]
+      self.unicodeChars = [chr(0xd81a) + chr(x+0xde00) for x in range(0x70, 0xca)]
     self.diacritic_list = []
 
     # Python-based transliteration tool.
@@ -301,115 +296,97 @@ class langInfo():
     ]
     return
 
-class ReadFileHandler(webapp2.RequestHandler):
-  def get(self, match=None):
-    # Match is the actual url route matched.
-    req = webapp2.get_request()
-    # Can use this for additional information
-    langInfo = self.app.config.get('langInfo')
+# class ReadFileHandler(webapp2.RequestHandler):
+#   def get(self, match=None):
+#     # Match is the actual url route matched.
+#     req = webapp2.get_request()
+#     # Can use this for additional information
+#     langInfo = self.app.config.get('langInfo')
 
-    filename = 'testdata/GamWin_convert_test.tsv'
-    path = os.path.join(os.path.split(__file__)[0], filename)
-    with open(path, 'rb') as f:
-      page_content = f.read().decode('utf-8').split('\n')
-    self.response.write(page_content)
-
-
-# Special version for Tangsa
-class EncodingRules(webapp2.RequestHandler):
-  def get(self, match=None):
-
-    langInfo = self.app.config.get('langInfo')
-    try:
-      encoding_tables = langInfo.encoding_tables
-    except:
-      encoding_tables = None
-
-    try:
-      converter_list = langInfo.converters
-    except:
-      converter_list = None
-    try:
-      conversion_data = langInfo.conversion_data
-    except:
-      conversion_data = None
-    pua_range = [0xe400, 0xe458]
-
-    # Extract expected values in PUA.
-    gamwin_lines = tangsa_data.gamwin_test_data.split('\n')
-    gamwin_test_pua = {}
-    for line in gamwin_lines:
-      items = line.split('\t')
-      if (len(items) > 3):
-        gamwin_test_pua[items[1]] = items[5]
-
-    template_values = {
-      'converterJS': '/js/' + langInfo.LanguageCode + 'Converter.js',
-      'converter_list': converter_list,
-      'conversion_data': conversion_data,
-      'gamwin_test_data': gamwin_test_pua,
-      'language': langInfo.Language,
-      'lang_list': langInfo.lang_list,
-      'encoding_list': langInfo.encoding_font_list,
-      'encoding_tables': encoding_tables,
-      'pua_range': pua_range,
-      'unicode_list': langInfo.unicode_font_list,
-      'kb_list': langInfo.kb_list,
-      'links': langInfo.links,
-      'showTools': self.request.get('tools', None),
-    }
-    path = os.path.join(os.path.dirname(__file__), 'HTML/tangsa_encodingConvert.html')
-    self.response.out.write(template.render(path, template_values))
+#     filename = 'testdata/GamWin_convert_test.tsv'
+#     path = os.path.join(os.path.split(__file__)[0], filename)
+#     with open(path, 'rb') as f:
+#       page_content = f.read().decode('utf-8').split('\n')
+#     self.response.write(page_content)
 
 
-# For N languages in the dictionary
-class CollationHandler(webapp2.RequestHandler):
-  def get(self, match=None):
-    req = webapp2.get_request()
-    top_path = req.path.split('/')
-    lang_code = top_path[1]
+# # Special version for Tangsa
+# class EncodingRules(webapp2.RequestHandler):
+#   def get(self, match=None):
 
-    langInfo = self.app.config.get('langInfo')
-    try:
-      collation_string = langInfo.collation_string
-    except:
-      collation_string = None
+#     langInfo = self.app.config.get('langInfo')
+#     try:
+#       encoding_tables = langInfo.encoding_tables
+#     except:
+#       encoding_tables = None
 
-    # user_info = getUserInfo(self.request.url)
+#     try:
+#       converter_list = langInfo.converters
+#     except:
+#       converter_list = None
+#     try:
+#       conversion_data = langInfo.conversion_data
+#     except:
+#       conversion_data = None
+#     pua_range = [0xe400, 0xe458]
 
-    # t = Template("My name is {{ person.first_name }}.")
+#     # Extract expected values in PUA.
+#     gamwin_lines = tangsa_data.gamwin_test_data.split('\n')
+#     gamwin_test_pua = {}
+#     for line in gamwin_lines:
+#       items = line.split('\t')
+#       if (len(items) > 3):
+#         gamwin_test_pua[items[1]] = items[5]
 
-    template_values = {
-      'language': langInfo.Language,
-      'langInfo': langInfo,
-      'collation_data' : langInfo.collation_data,
-      'collation_string': langInfo.collation_string,
-      'converters': langInfo.converters,
-      'unicodeFontList': langInfo.unicode_font_list,
-      'showTools': self.request.get('tools', None),
-      'links': langInfo.links,
-    }
-    path = os.path.join(os.path.dirname(__file__), 'HTML/tangsa_collationView.html')
-    self.response.out.write(template.render(path, template_values))
+#     template_values = {
+#       'converterJS': '/js/' + langInfo.LanguageCode + 'Converter.js',
+#       'converter_list': converter_list,
+#       'conversion_data': conversion_data,
+#       'gamwin_test_data': gamwin_test_pua,
+#       'language': langInfo.Language,
+#       'lang_list': langInfo.lang_list,
+#       'encoding_list': langInfo.encoding_font_list,
+#       'encoding_tables': encoding_tables,
+#       'pua_range': pua_range,
+#       'unicode_list': langInfo.unicode_font_list,
+#       'kb_list': langInfo.kb_list,
+#       'links': langInfo.links,
+#       'showTools': self.request.get('tools', None),
+#     }
+#     path = os.path.join(os.path.dirname(__file__), 'HTML/tangsa_encodingConvert.html')
+#     self.response.out.write(template.render(path, template_values))
+
+
+# # For N languages in the dictionary
+# class CollationHandler(webapp2.RequestHandler):
+#   def get(self, match=None):
+#     req = webapp2.get_request()
+#     top_path = req.path.split('/')
+#     lang_code = top_path[1]
+
+#     langInfo = self.app.config.get('langInfo')
+#     try:
+#       collation_string = langInfo.collation_string
+#     except:
+#       collation_string = None
+
+#     # user_info = getUserInfo(self.request.url)
+
+#     # t = Template("My name is {{ person.first_name }}.")
+
+#     template_values = {
+#       'language': langInfo.Language,
+#       'langInfo': langInfo,
+#       'collation_data' : langInfo.collation_data,
+#       'collation_string': langInfo.collation_string,
+#       'converters': langInfo.converters,
+#       'unicodeFontList': langInfo.unicode_font_list,
+#       'showTools': self.request.get('tools', None),
+#       'links': langInfo.links,
+#     }
+#     path = os.path.join(os.path.dirname(__file__), 'HTML/tangsa_collationView.html')
+#     s
+    elf.response.out.write(template.render(path, template_values))
 
 
 langInstance = langInfo()
-app = webapp2.WSGIApplication(
-    [
-        ('/' + LanguageCode + '/', base.LanguagesHomeHandler),
-        ('/' + LanguageCode + '/keyboard/', base.LanguagesHomeHandler),
-        ('/' + LanguageCode + '/convertUI/', base.ConvertUIHandler),
-        ('/' + LanguageCode + '/converter/', base.ConvertUIHandler),
-        ('/' + LanguageCode + '/downloads/', base.Downloads),
-        ('/' + LanguageCode + '/encodingRules/', EncodingRules),  # Local special version
-        ('/' + LanguageCode + '/diacritic/', base.DiacriticHandler),
-        ('/' + LanguageCode + '/render/', base.EncodingRules),
-        ('/' + langInstance.LanguageCode + '/kbtransforms/', base.KeyboardTransforms),
-        ('/' + langInstance.LanguageCode + '/collation/', CollationHandler),
-        ('/' + langInstance.LanguageCode + '/readfile/', ReadFileHandler),
-        ('/' + langInstance.LanguageCode + '/numerals/', base.NumeralsHandler),
-        ('/' + langInstance.LanguageCode + '/calendar/', base.CalendarHandler),
-    ],
-    debug=True,
-    config={'langInfo': langInstance}
-)

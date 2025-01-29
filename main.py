@@ -34,7 +34,7 @@ import omq
 import phake
 import qiang
 import sunuwar
-
+import tangsa
 
 # Special for Assames checking.
 import English_Assamese
@@ -57,6 +57,7 @@ language_info_dict['chr'] = cherokee.langInfo()
 language_info_dict['kht'] =  khamti.langInfo()
 language_info_dict['men'] =  mendekikakui.langInfo()
 language_info_dict['omq'] = omq.langInfo()
+language_info_dict['nst'] = tangsa.langInfo()
 language_info_dict['phk'] = phake.langInfo()
 language_info_dict['qiang'] = qiang.langInfo()
 language_info_dict['suz'] = sunuwar.langInfo()
@@ -93,7 +94,7 @@ LanguageList = [
     # ('Rohingya', 'rhg', ),
     # ('Tamashek', 'tmh', 'ⵜⴰⵎⴰⵌⴰⵆ'),
     ('Tai Phake', 'phk'),
-    # ('Tangsa', 'nst', 'Tangsa'),
+    ('Tangsa', 'nst', 'Tangsa'),
     # ('Tibetan', 'bod'),
     # ('Wolof', 'wo'),
     # ('Bangali', 'bn'),
