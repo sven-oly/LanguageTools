@@ -77,7 +77,8 @@ private_use_map_combined = {
     'á': 'ৈ',
     'ä': 'ৗ',
     'ì': '\u09cd',
-    'p': '\u09cd\u09af'
+    'p': '\u09cd\u09af',
+    'x': '\u09aa',
 };
 
 langConverter.one2oneMap = langConverter.dictionaryToMap(private_use_map_combined);

@@ -301,7 +301,9 @@ def convertHandler(langcode):
       ]
       
     showTools = False
-    
+
+    convert_word_tool = True
+
     try:
       unicodeCombiningChars = getCombiningCombos(
         langInfo.baseHexUTF16, langInfo.diacritic_list)
@@ -329,7 +331,8 @@ def convertHandler(langcode):
         showTools = showTools,
         unicodeChars = unicodeChars,
         combiningChars = unicodeCombiningChars,
-        variation_sequence = variation_sequence
+        variation_sequence = variation_sequence,
+        convert_word_tool=convert_word_tool,
     )
 
 @app.route('/kbtransforms/<langcode>')

@@ -21,7 +21,7 @@ langConverter.transformRules = [
 
     [/([\u103b\u103d]) \u102f/gi, "$1\u102f "],
 
-    [/([\u1031]\ufe00?)([\u103a\u103d]+)/gi, "$2$1 "],
+    [/([\u1031]\ufe00?)([\u103a-\u103d]+)/gi, "$2$1"],
 
     // Doubled combiners
     [/\u103a\u103a/gi, "\u103a\u00a0\u103a"],

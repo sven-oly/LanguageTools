@@ -341,96 +341,97 @@ langConverter.one2oneMap =  private_use_map_combined = {
     'x': ['𖪺', '\ue448'],
     'z': ['𖪾', '\ue458'],
     'dh': ['𖪼','\ue42c'],
+    ' ': [' ', ' '],
     // PUA to Unicode here.
-    '\uE400':	'\ud81a\ude70',
-    '\uE401':	'\ud81a\ude71',
-    '\uE402':	'\ud81a\ude72',
-    '\uE403':	'\ud81a\ude73',
-    '\uE404':	'\ud81a\ude74',
-    '\uE405':	'\ud81a\ude75',
-    '\uE406':	'\ud81a\ude76',
-    '\uE407':	'\ud81a\ude77',
-    '\uE408':	'\ud81a\ude7C',
-    '\uE409':	'\ud81a\ude7D',
-    '\uE40A':	'\ud81a\ude7E',
-    '\uE40B':	'\ud81a\ude7F',
-    '\uE40C':	'\ud81a\ude80',
-    '\uE40D':	'\ud81a\ude81',
-    '\uE40E':	'\ud81a\ude82',
-    '\uE40F':	'\ud81a\ude83',
-    '\uE410':	'\ud81a\ude84',
-    '\uE411':	'\ud81a\ude85',
-    '\uE412':	'\ud81a\ude86',
-    '\uE413':	'\ud81a\ude87',
-    '\uE414':	'\ud81a\ude88',
-    '\uE415':	'\ud81a\ude89',
-    '\uE416':	'\ud81a\ude8B',
-    '\uE417':	'\ud81a\ude8C',
-    '\uE418':	'\ud81a\ude8D',
-    '\uE419':	'\ud81a\ude8E',
-    '\uE41A':	'\ud81a\ude8F',
-    '\uE41B':	'\ud81a\ude90',
-    '\uE41C':	'\ud81a\ude91',
-    '\uE41D':	'\ud81a\ude92',
-    '\uE41E':	'\ud81a\ude93',
-    '\uE41F':	'\ud81a\ude94',
-    '\uE420':	'\ud81a\ude95',
-    '\uE421':	'\ud81a\ude96',
-    '\uE422':	'\ud81a\ude97',
-    '\uE423':	'\ud81a\ude98',
-    '\uE424':	'\ud81a\ude99',
-    '\uE425':	'\ud81a\ude9A',
-    '\uE426':	'\ud81a\ude9B',
-    '\uE427':	'\ud81a\ude9C',
-    '\uE428':	'\ud81a\ude9D',
-    '\uE429':	'\ud81a\ude9e',
-    '\uE42A':	'\ud81a\ude9f',
-    '\uE42B':	'\ud81a\udeBe',
-    '\uE42C':	'\ud81a\udeBc',
-    '\uE42D':	'\ud81a\udeBd',
-    '\uE42E':	'\ud81a\udeA0',
-    '\uE42F':	'\ud81a\udeA1',
-    '\uE430':	'\ud81a\udeA2',
-    '\uE431':	'\ud81a\udeA3',
-    '\uE432':	'\ud81a\udeA4',
-    '\uE433':	'\ud81a\udeA5',
-    '\uE434':	'\ud81a\udeA6',
-    '\uE435':	'\ud81a\udeA7',
-    '\uE436':	'\ud81a\udeA8',
-    '\uE437':	'\ud81a\udeA9',
-    '\uE438':	'\ud81a\udeAA',
-    '\uE439':	'\ud81a\udeAB',
-    '\uE43A':	'\ud81a\udeAC',
-    '\uE43B':	'\ud81a\udeAD',
-    '\uE43C':	'\ud81a\udeAE',
-    '\uE43D':	'\ud81a\udeAF',
-    '\uE43E':	'\ud81a\udeB0',
-    '\uE43F':	'\ud81a\udeB1',
-    '\uE440':	'\ud81a\udeB2',
-    '\uE441':	'\ud81a\udeB3',
-    '\uE442':	'\ud81a\udeB4',
-    '\uE443':	'\ud81a\udeB5',
-    '\uE444':	'\ud81a\udeB6',
-    '\uE445':	'\ud81a\udeB7',
-    '\uE446':	'\ud81a\udeB8',
-    '\uE447':	'\ud81a\udeB9',
-    '\uE448':	'\ud81a\udeBA',
-    '\uE449':	'\ud81a\udeC1',
-    '\uE44A':	'\ud81a\udeC2',
-    '\uE44B':	'\ud81a\udeC3',
-    '\uE44C':	'\ud81a\udeC4',
-    '\uE44D':	'\ud81a\udeC5',
-    '\uE44E':	'\ud81a\udeC6',
-    '\uE44F':	'\ud81a\udeC7',
-    '\uE450':	'\ud81a\udeC8',
-    '\uE451':	'\ud81a\udeC9',
-    '\uE452':	'\ud81a\udeC0',
-    '\uE453':	'\ud81a\ude8A',
-    '\uE454':	'\ud81a\ude78',
-    '\uE455':	'\ud81a\ude79',
-    '\uE456':	'\ud81a\ude7A',
-    '\uE457':	'\ud81a\ude7B',
-    '\uE458':	'\ud81a\udebE',  };
+    '\uE400':   '\ud81a\ude70',
+    '\uE401':   '\ud81a\ude71',
+    '\uE402':   '\ud81a\ude72',
+    '\uE403':   '\ud81a\ude73',
+    '\uE404':   '\ud81a\ude74',
+    '\uE405':   '\ud81a\ude75',
+    '\uE406':   '\ud81a\ude76',
+    '\uE407':   '\ud81a\ude77',
+    '\uE408':   '\ud81a\ude7C',
+    '\uE409':   '\ud81a\ude7D',
+    '\uE40A':   '\ud81a\ude7E',
+    '\uE40B':   '\ud81a\ude7F',
+    '\uE40C':   '\ud81a\ude80',
+    '\uE40D':   '\ud81a\ude81',
+    '\uE40E':   '\ud81a\ude82',
+    '\uE40F':   '\ud81a\ude83',
+    '\uE410':   '\ud81a\ude84',
+    '\uE411':   '\ud81a\ude85',
+    '\uE412':   '\ud81a\ude86',
+    '\uE413':   '\ud81a\ude87',
+    '\uE414':   '\ud81a\ude88',
+    '\uE415':   '\ud81a\ude89',
+    '\uE416':   '\ud81a\ude8B',
+    '\uE417':   '\ud81a\ude8C',
+    '\uE418':   '\ud81a\ude8D',
+    '\uE419':   '\ud81a\ude8E',
+    '\uE41A':   '\ud81a\ude8F',
+    '\uE41B':   '\ud81a\ude90',
+    '\uE41C':   '\ud81a\ude91',
+    '\uE41D':   '\ud81a\ude92',
+    '\uE41E':   '\ud81a\ude93',
+    '\uE41F':   '\ud81a\ude94',
+    '\uE420':   '\ud81a\ude95',
+    '\uE421':   '\ud81a\ude96',
+    '\uE422':   '\ud81a\ude97',
+    '\uE423':   '\ud81a\ude98',
+    '\uE424':   '\ud81a\ude99',
+    '\uE425':   '\ud81a\ude9A',
+    '\uE426':   '\ud81a\ude9B',
+    '\uE427':   '\ud81a\ude9C',
+    '\uE428':   '\ud81a\ude9D',
+    '\uE429':   '\ud81a\ude9e',
+    '\uE42A':   '\ud81a\ude9f',
+    '\uE42B':   '\ud81a\udeBe',
+    '\uE42C':   '\ud81a\udeBc',
+    '\uE42D':   '\ud81a\udeBd',
+    '\uE42E':   '\ud81a\udeA0',
+    '\uE42F':   '\ud81a\udeA1',
+    '\uE430':   '\ud81a\udeA2',
+    '\uE431':   '\ud81a\udeA3',
+    '\uE432':   '\ud81a\udeA4',
+    '\uE433':   '\ud81a\udeA5',
+    '\uE434':   '\ud81a\udeA6',
+    '\uE435':   '\ud81a\udeA7',
+    '\uE436':   '\ud81a\udeA8',
+    '\uE437':   '\ud81a\udeA9',
+    '\uE438':   '\ud81a\udeAA',
+    '\uE439':   '\ud81a\udeAB',
+    '\uE43A':   '\ud81a\udeAC',
+    '\uE43B':   '\ud81a\udeAD',
+    '\uE43C':   '\ud81a\udeAE',
+    '\uE43D':   '\ud81a\udeAF',
+    '\uE43E':   '\ud81a\udeB0',
+    '\uE43F':   '\ud81a\udeB1',
+    '\uE440':   '\ud81a\udeB2',
+    '\uE441':   '\ud81a\udeB3',
+    '\uE442':   '\ud81a\udeB4',
+    '\uE443':   '\ud81a\udeB5',
+    '\uE444':   '\ud81a\udeB6',
+    '\uE445':   '\ud81a\udeB7',
+    '\uE446':   '\ud81a\udeB8',
+    '\uE447':   '\ud81a\udeB9',
+    '\uE448':   '\ud81a\udeBA',
+    '\uE449':   '\ud81a\udeC1',
+    '\uE44A':   '\ud81a\udeC2',
+    '\uE44B':   '\ud81a\udeC3',
+    '\uE44C':   '\ud81a\udeC4',
+    '\uE44D':   '\ud81a\udeC5',
+    '\uE44E':   '\ud81a\udeC6',
+    '\uE44F':   '\ud81a\udeC7',
+    '\uE450':   '\ud81a\udeC8',
+    '\uE451':   '\ud81a\udeC9',
+    '\uE452':   '\ud81a\udeC0',
+    '\uE453':   '\ud81a\ude8A',
+    '\uE454':   '\ud81a\ude78',
+    '\uE455':   '\ud81a\ude79',
+    '\uE456':   '\ud81a\ude7A',
+    '\uE457':   '\ud81a\ude7B',
+    '\uE458':   '\ud81a\udebE',  };
 
 langConverter.one2oneMap = langConverter.dictionaryToMap(private_use_map_combined);
 
@@ -491,38 +492,70 @@ function convertEncodingToUnicode(inbox, outbox, encodingIndex) {
 
   // First, replace all single characters with their PUA or Unicode equivalents.
 function nst_convertText(intext, encodingIndex) {
-  let outtext_list = [];
   let out;
+  let word_mode = langConverter.word_mode;
 
   // Handle special case of "v" vowel in pattern consonant-v-consonant-vowel.
-  const low_text = intext.toLowerCase();
+  //const low_text = intext.toLowerCase();
+  const low_text = intext;
   const handled_v_text = handleCvCV(low_text, encodingIndex);
-  // Break into the blocks tht can be individually transformed.
-  const parsedText = preParseLatin(handled_v_text);
-  let result = "";
-  for (let index = 0; index < parsedText.length; index ++) {
-    const c = parsedText[index];
-    let out = c;
-    if (c in private_use_map_combined) {
-      if (private_use_map_combined[c] instanceof Array) {
-        result = private_use_map_combined[c][encodingIndex];
-      } else {
-        // It's a single value. Convert only for PUA to Unicode
-        if (encodingIndex == 0) {
-            result = private_use_map_combined[c];
-        } else {
-            result = null;
-        }
-      }
-      if (result) {
-        out = result;
-      }
-    }
-    outtext_list.push(out);
-  }
 
-  // If needed, add more post-processing conversions here
-  return outtext_list.join('');
+    let words;  // May be a list of words
+    if (word_mode) {
+        const split_regex = /\w+\s+/g;
+        words = handled_v_text.match(/\S+\s*/g);
+    } else {
+        // Just one big block of all the input.
+        words = [handled_v_text];
+    }
+    /* WORDS: for each word:
+      a. preParseLatin on the word
+      b. Try converting. Keep track if any character doesn't convert
+      c. At end of word, if all have converted, save the converted string
+      d. If there was something not converted, keep the original word.
+         Flag these and return to the caller.
+     */
+  // Break into the blocks tht can be individually transformed.
+    let outtext_list = [];
+    for (segment of words) {
+        let segment_out = [];
+        const original_word = segment;
+        let num_unconverted = 0;
+        const parsedText = preParseLatin(segment);
+        let result = "";
+        for (let index = 0; index < parsedText.length; index ++) {
+            const c = parsedText[index];
+            let out = c;
+            if (c in private_use_map_combined) {
+                if (private_use_map_combined[c] instanceof Array) {
+                    result = private_use_map_combined[c][encodingIndex];
+                } else {
+                    // It's a single value. Convert only for PUA to Unicode
+                    if (encodingIndex == 0) {
+                        result = private_use_map_combined[c];
+                    } else {
+                        num_unconverted += 1;
+                        result = null;
+                    }
+                }
+                if (result) {
+                    out = result;
+                }
+            } else {
+                num_unconverted += 1;
+            }
+            segment_out.push(out);
+        }
+        if (word_mode && num_unconverted > 0) {
+            outtext_list.push(original_word);
+        } else {
+            // Take what the converter produced
+            outtext_list.push(segment_out.join(''));
+        }
+    }
+    // If needed, add more post-processing conversions here
+    // Put it all together with spaces for now.
+    return outtext_list.join('');
 }
 
 

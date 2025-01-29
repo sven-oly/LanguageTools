@@ -12,6 +12,9 @@ let langConverterClass = function(langCode, langName) {
     this.encodingNames = null;
     this.locale = null;  // Used for capitalization.
 
+    // True means that each word may be examined and converted separately.
+    this.word_mode = false;
+
     // To create custom maps based on the private map.
     this.private_use_encodings = null;
     this.customConverter = null

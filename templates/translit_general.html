@@ -406,6 +406,11 @@
                    if(ele[i].checked) return i;
                }
            }
+           function changeWordMode(checkbox_id) {
+
+               const element = document.getElementById(checkbox_id);
+               langConverter.word_mode = element.checked;
+           }
          </script>
   </head>
 
@@ -478,7 +483,11 @@
                                 'Unicode_font_output_text', 'selectEncodingFont', 'new_hex');">
                 {% endif %}
                 <input type="checkbox" name="showOldTools" id="showOldTools"
-                       onchange="toggle('OldEncodingTools', 'showOldTools');">Tools?<br />
+                       onchange="toggle('OldEncodingTools', 'showOldTools');">Tools?
+                {% if convert_word_tool %}
+                <input type="checkbox" name="converterWordMode" id="converterWordMode"
+                       onchange="changeWordMode('converterWordMode');">Word mode?<br />
+                {% endif %}
                 {% if variation_sequence %}
                 <input type="checkbox" checked id="useVariationSequence"
                        onchange="toggle('Unicode{{language}}Tools', 'showNewTools');">Convert with variation sequence<br />
