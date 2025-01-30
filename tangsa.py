@@ -294,6 +294,10 @@ class langInfo():
        'data': tangsa_data.collation_data,
       }
     ]
+
+    # Turn on the word conversion mode
+    self.convert_word = True
+    
     return
 
 # class ReadFileHandler(webapp2.RequestHandler):

@@ -302,7 +302,12 @@ def convertHandler(langcode):
       
     showTools = False
 
-    convert_word_tool = True
+    convert_word_tool = False
+    try:
+        convert_word_tool = langInfo.convert_word
+    except:
+        print("Cannot get convert_word_tool")
+        pass
 
     try:
       unicodeCombiningChars = getCombiningCombos(
