@@ -7,6 +7,9 @@ const map_encoding_names = [
   'Gam Win PUA',      // Gam Win to PUA
 ];
 
+// Used to stand as a 1-byte replacement for special processing.
+const temp_replace_char = '¡';
+
 langConverter.encoding_data = {
     'LakhumP': {index:0, outputEncoding:'Unicode', outputScript:'Tangsa'},
     'GamWinPUA': {index:0, outputEncoding:'Unicode', outputScript:'Tangsa'},
@@ -342,6 +345,9 @@ langConverter.one2oneMap =  private_use_map_combined = {
     'z': ['𖪾', '\ue458'],
     'dh': ['𖪼','\ue42c'],
     ' ': [' ', ' '],
+    '.': ['.', '.'],
+    ',': [',', ','],
+    '¡': '𖪒',  // Hack around special case for \U016A92
     // PUA to Unicode here.
     '\uE400':   '\ud81a\ude70',
     '\uE401':   '\ud81a\ude71',
@@ -471,9 +477,9 @@ const cvcv_regex = new RegExp(consonant + "v" + consonant + vowel, "g");
 function handleCvCV(intext, encoding_index) {
   if (intext.match(cvcv_regex)) {
     if (encoding_index == 0) {
-       return intext.replace(cvcv_regex, "$1𖪒$3$5");   // Unicode
+       return intext.replace(cvcv_regex, "$1¡$3$5");   // Unicode
     } else {
-       return intext.replace(cvcv_regex, "$1$3$5");   // PUA
+       return intext.replace(cvcv_regex, "$1¡$3$5");   // PUA
     }
    } else {
    return intext;
@@ -498,15 +504,13 @@ function nst_convertText(intext, encodingIndex) {
   // Handle special case of "v" vowel in pattern consonant-v-consonant-vowel.
   //const low_text = intext.toLowerCase();
   const low_text = intext;
-  const handled_v_text = handleCvCV(low_text, encodingIndex);
-
     let words;  // May be a list of words
     if (word_mode) {
         const split_regex = /\w+\s+/g;
-        words = handled_v_text.match(/\S+\s*/g);
+        words = intext.match(/\S+\s*/g);
     } else {
         // Just one big block of all the input.
-        words = [handled_v_text];
+        words = [intext];
     }
     /* WORDS: for each word:
       a. preParseLatin on the word
@@ -517,9 +521,12 @@ function nst_convertText(intext, encodingIndex) {
      */
   // Break into the blocks tht can be individually transformed.
     let outtext_list = [];
-    for (segment of words) {
+    for (let segment of words) {
         let segment_out = [];
         const original_word = segment;
+        // Perform special conversion first.
+        segment = handleCvCV(segment, encodingIndex);
+
         let num_unconverted = 0;
         const parsedText = preParseLatin(segment);
         let result = "";
