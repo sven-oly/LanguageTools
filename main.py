@@ -18,6 +18,7 @@
 
 from flask import Flask, render_template, stream_with_context, request, Response, send_file
 
+import html
 import logging
 import os
 
@@ -34,6 +35,7 @@ import omq
 import phake
 import qiang
 import sunuwar
+import singpho
 import tangsa
 
 # Special for Assames checking.
@@ -60,6 +62,7 @@ language_info_dict['omq'] = omq.langInfo()
 language_info_dict['nst'] = tangsa.langInfo()
 language_info_dict['phk'] = phake.langInfo()
 language_info_dict['qiang'] = qiang.langInfo()
+language_info_dict['sgp'] = singpho.langInfo()
 language_info_dict['suz'] = sunuwar.langInfo()
 
 
@@ -92,6 +95,7 @@ LanguageList = [
     ('Otomanguean phonetic', 'omq'),
     ('Qiang', 'qiang'),
     # ('Rohingya', 'rhg', ),
+    ('Singpho', 'sgp'),
     # ('Tamashek', 'tmh', 'ⵜⴰⵎⴰⵌⴰⵆ'),
     ('Tai Phake', 'phk'),
     ('Tangsa', 'nst', 'Tangsa'),
@@ -274,7 +278,14 @@ def convertHandler(langcode):
       output_font = langInfo.outputFont
     except:
       output_font = 'Unicode'
+
+    # Old text for testing
     text = ''
+    try:
+        text = html.unescape(langInfo.encoding_chars)
+    except:
+        # TODO: Get encodedRanges
+        pass
 
     try:
       encodingList = langInfo.encoding_font_list
@@ -308,6 +319,12 @@ def convertHandler(langcode):
     except:
         print("Cannot get convert_word_tool")
         pass
+
+    try:
+      unicodeCombiningChars = getCombiningCombos(
+        langInfo.baseHexUTF16, langInfo.diacritic_list)
+    except:
+      unicodeCombiningChars = None
 
     try:
       unicodeCombiningChars = getCombiningCombos(

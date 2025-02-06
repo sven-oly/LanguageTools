@@ -24,7 +24,7 @@
     }
     .{{encoding.font_name}} {
       font-family:{{encoding.font_name}};
-      font-size: 30px;
+      font-size: 36px;
     }{% endfor %}
 
     <!-- Unicode fonts -->
@@ -184,8 +184,7 @@
         //let maxText = '';
 
         let rowNum = 1;  // Skip the headers
-        for (let index in code_list) {
-            const code = code_list[index];
+        for (let code of code_list) {
             row = table.insertRow(rowNum);
 
             const items = private_use_map_combined.get(code);
@@ -222,7 +221,7 @@
                 cell.innerHTML = code; // the encoded value
                 cell.title = utf16common(code, "U+", " ", null, []);
                 cell.style.fontFamily = fontName;
-                cell.style.fontSize = "30px";
+                cell.style.fontSize = "36px";
                 outIndex += 1;
 
                 // Unicode conversion.
