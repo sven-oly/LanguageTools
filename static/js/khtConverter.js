@@ -17,9 +17,12 @@ langConverter.transformRules = [
 
     [/ ([\u102f\u103d])/gi, "$1 "],
 
-    [/([\u103b\u103d]) \u102f/gi, "$1\u102f "],
+    [/([\u103b\u103d])\u102f/gi, "$1\u102f "],
 
     [/([\u1031]\ufe00?)([\u103a-\u103d]+)/gi, "$2$1"],
+
+    [/([\u103C\u103D])([\u103B])/gi, "$2$1"],
+    [/([\u103D])([\u103C])/gi, "$2$1"],
 
     // Doubled combiners
     [/\u103a\u103a/gi, "\u103a\u00a0\u103a"],
@@ -48,7 +51,7 @@ langConverter.transformRules = [
 
 // For each ["Tokmaaitai"]
 langConverter.private_use_map_combined = {
-    "u": ["\u1000"],  // က
+    "u": ["\u1000\ufe00"],  // က
     "c": ["\u1075\ufe00"],  // ၵ
     "U": ["\uAA60\ufe00"],  // ꩠ
     "C": ["\u1077\ufe00"],  //ၷ

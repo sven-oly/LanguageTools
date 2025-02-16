@@ -525,7 +525,9 @@ function nst_convertText(intext, encodingIndex) {
         let segment_out = [];
         const original_word = segment;
         // Perform special conversion first.
-        segment = handleCvCV(segment, encodingIndex);
+        // Convert to lower case unconditionally.
+        segment = segment.toLowerCase();
+        Segment = handleCvCV(segment, encodingIndex);
 
         let num_unconverted = 0;
         const parsedText = preParseLatin(segment);
