@@ -12,14 +12,14 @@ langConverter.encoding_data = {
 
 // Copied from Tai Phake
 langConverter.transformRules = [
-    [/([\u1031\u103c]\ufe00?)([\u1000-\u1029\u1075-\u1081\uaa60-\uaa7a]\ufe00?)/gi,
+    [/([\u1031\u103c\u1084]\ufe00?)([\u1000-\u1029\u1075-\u1081\uaa60-\uaa7a]\ufe00?)/gi,
      "$2$1"],
 
     [/ ([\u102f\u103d])/gi, "$1 "],
 
     [/([\u103b\u103d])\u102f/gi, "$1\u102f "],
 
-    [/([\u1031]\ufe00?)([\u103a-\u103d]+)/gi, "$2$1"],
+    [/([\u1031\u1084]\ufe00?)([\u103a-\u103d]+)/gi, "$2$1"],
 
     [/([\u103C\u103D])([\u103B])/gi, "$2$1"],
     [/([\u103D])([\u103C])/gi, "$2$1"],
@@ -51,6 +51,16 @@ langConverter.transformRules = [
 
 // For each ["Tokmaaitai"]
 langConverter.private_use_map_combined = {
+    '0': '\u1090',
+    '1': '\u1091',
+    '2': '\u1092',
+    '3': '\u1093',
+    '4': '\u1094',
+    '5': '\u1095',
+    '6': '\u1096',
+    '7': '\u1097',
+    '8': '\u1098',
+    '9': '\u1099',
     "u": ["\u1000\ufe00"],  // က
     "c": ["\u1075\ufe00"],  // ၵ
     "U": ["\uAA60\ufe00"],  // ꩠ

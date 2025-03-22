@@ -22,10 +22,11 @@
                padding: 5px;
                font-size: 24px;
                font-variant-ligatures: normal;
+               font-family: "{{encodingList.0.font_name}}";
                resize: vertical;
            }
            {
-               font-family: "Courier New";
+               font-family: "{{encodingList.0.font_name}}";
            }
          </style>
 
@@ -230,6 +231,10 @@
                {% else %}
                initKeyboard('Unicode_font_output_text', 'selectKeyboard2', kb_list);
                {%endif%}
+
+               // Set the font to the first one.
+               // TODO: Finish
+               
            }
 
            function init() {

@@ -97,7 +97,7 @@ class langInfo:
           {
             'font_path': '/fonts/khamti/Tokmaaitai.ttf',
             'font_name': 'Tokmaaitai',
-            'display_name': 'TokmaaiTaixyz',
+            'display_name': 'Tokmaai Tai',
           },
         ]
 

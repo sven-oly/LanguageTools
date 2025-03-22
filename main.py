@@ -520,6 +520,70 @@ def diacritics(langcode):
         unicode_font_list = langInfo.unicode_font_list,
     )
 
+@app.route('/conjunct/<langcode>')
+def conjuncts(langcode):
+
+    langInfo = getLangInfo(langcode)
+    
+    try:
+        base_num = request.args['base']
+        base_char = unichr(int(base_num, base=16))
+    except:
+        base_char = langInfo.base_consonant
+
+    # Generate combinations of base + diacritic pairs
+    combos = []
+    table = []
+    row_names = []
+    try:
+        base_chars = langInfo.baseChars
+    except:
+        base_chars = []
+
+
+    try:
+        conjunct = langInfo.conjunct_char
+    except:
+        conjunct = ''
+
+    for x in base_chars:
+        if len(x) > 1:
+            utf32 = surrogate_to_utf32(ord(x[0]), ord(x[1]))
+            row = ['%s (0x%x)' % (x, utf32)]
+        else:
+            row = [x + ' (%4x)' % ord(x)]
+        row_names.append(row[0])
+        for y in base_chars:
+            text = x + conjunct + y
+            combos.append({'text': text,
+                           'codes': ['%4x ' % ord(c) for c in text]})
+            row.append(text)
+        table.append(row)
+        
+    try:
+        text_direction = langInfo.direction
+    except AttributeError:
+        text_direction = 'ltr'
+
+    try:
+        showTools = request.args['tools']
+    except:
+        showTools = False
+
+    return render_template(
+        'conjuncts.html',
+        direction = text_direction,
+        language = langInfo.Language,
+        base_chars=base_chars,
+        base_hex = ['%4x' % ord(x) for x in base_chars],
+        conjunct_char=conjunct,
+        diacritics_hex = row_names,  # ['%4x ' % ord(y) for y in langInfo.diacritic_list],
+        combinations = combos,
+        showTools = showTools,
+        table = table,
+        unicode_font_list = langInfo.unicode_font_list,
+    )
+
 @app.route('/phonetickb/<langcode>')
 def phonetic_kb(langcode):
     langInfo = getLangInfo(langcode)

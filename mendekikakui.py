@@ -30,6 +30,14 @@ Language = 'Mende'
 
 encoding_font_list = [
     {
+      # Contains both Unicode and JG and Presentation characters
+    'family': 'KikakuiSansProCombined',
+      'longName': 'Kikakui Sans Pro Combined',
+      'source': '/fonts/MendeKikakui/KikakuiSansProCombined.ttf',
+      'encoding': 'PFA',
+      'info': 'Combined JG, Presentation Forms A, and Unicode'
+    },
+    {
       'font_path':'/fonts/MendeKikakui/jgmende.ttf',
       'source':'/fonts/MendeKikakui/jgmende.ttf',
       'font_name':'JGMende',
@@ -43,17 +51,11 @@ encoding_font_list = [
 unicode_font_list = [
   {
     # Contains both Unicode and JG and Presentation characters
-    'family': 'KikakuiSansPro_Presentation',
-    'longName': 'Kikakui Sans Pro Presentation A',
-    'source': '/fonts/MendeKikakui/KikakuiSansPro_Presentation.ttf',
-    'encoding': 'PUA',
-  },
-  {
-    # Contains both Unicode and JG
-    'family': 'KikakuiSansPro',
-    'longName': 'Kikakui Sans Pro',
-    'source': '/fonts/MendeKikakui/KikakuiSansPro.ot.ttf',
-    'encoding': 'PUA',
+    'family': 'KikakuiSansProCombined',
+    'longName': 'Kikakui Sans Pro Combined',
+    'source': '/fonts/MendeKikakui/KikakuiSansProCombined.ttf',
+    'encoding': 'PFA',
+    'info': 'Combined JG, Presentation Forms A, and Unicode'
   },
   {
     # Has only Unicode characteracters
@@ -133,6 +135,15 @@ class langInfo():
     self.encoding_font_list = encoding_font_list
     self.kb_list = [
       {
+        'shortName': 'menphone3_pfa',
+        'longName': 'Mende FPA 3',
+        'jsName': 'menphone3_pfa',
+        'instructions': 'Output in RTL block U+fBXX. Use / to end a syllable.',
+        'font': 'KikakuiSansPro_Comtined',
+        'fontFamilyToApply': ['MendeKikakuiFonts', 'NotoSansMendeKikakui', 'JGMende'],
+        'fontFamily': 'KikakuiSansPro_Presentation',
+      },
+      {
         'shortName': 'menphone3_unicode',
         'longName': 'Mende Unicode 3',
         'jsName': 'menphone3_unicode',
@@ -203,16 +214,16 @@ class langInfo():
     self.text_file_list = [
       {
         'name': 'KeyMan 1.31 Mende Kikakui - RTL ',
-        'source': '/resources/men/mende_kikakui_1.31.kmp',
-        'description': 'Keyboard 1.3 with digigs for Mobile & Desktop, 6-Dec-2023',
-        'instructions': 'Phonetic: https://languagetools-153419.appspot.com/men/kbtransforms/',
+        'source': '/resources/men/mende_kikakui_1_31.kmp',
+        'description': 'Keyboard 1.31: Presentation Forms, PUA, and Unicode',
+        'instructions': 'Phonetic: http://127.0.0.1:8080/kbtransforms/men',
       },
       {
-        'name': 'KeyMan 1.20 Mende Kikakui - RTL ',
-        'source': '/resources/men/mende_kikakui.1.2.kmp',
-        'description': 'Keyboard for Mobile & Desktop 21-oct-2023',
-        'instructions': 'Phonetic: https://languagetools-153419.appspot.com/men/kbtransforms/',
-      }
+        'name': 'Image: Mende Presentation Area.png',
+        'source': '/resources/men/Mende Kikakui in Arabic Presentation codepoints full.png',
+        'description': 'Image: Kikakui Sans Pro (FPA )',
+        'instructions': 'Codes and glyps for U+FB50.. ',
+      },      
     ]
     self.unicode_font_list = unicode_font_list
     

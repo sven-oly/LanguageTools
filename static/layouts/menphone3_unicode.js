@@ -38,10 +38,10 @@ var MEN_PHONE3_UNICODE_LAYOUT = {
     },
     'transform': {
         '\ufeff(.)': '$1',
-        'pi': '\uD83A\uDC8C',
-        'pii': '\ufb51',
-        'pa/?': '\uD83A\uDC8D',
-        'paa/?': '\ufb53',
+        'pi': '\ue000',
+        'pii': '\ue001',
+        'pa/?': '\ue002',
+        'paa/?': '\ue003',
         'paaa': '\ue004',
         'pu/?': '\ue005',
         'puu': '\ue006',
@@ -344,7 +344,7 @@ var MEN_PHONE3_UNICODE_LAYOUT = {
         'ho': '\ue122',
 
         'i': '\ue127',
-        'a/?': '\ud83a\udc23',
+        'a/?': '\ue128',
         'aa': '\ue129',
         'u/?': '\ue12a',
         'uu': '\ue12b',

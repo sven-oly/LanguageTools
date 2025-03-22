@@ -1,5 +1,5 @@
 // Convert from old font-encoding of Oneida text to Unicode forms:
-const langConverter = new langConverterClass('men', 'Mru');
+const langConverter = new langConverterClass('men', 'Kika');
 
 let private_use_map_combined = {
     // From Private Use Area to Unicode

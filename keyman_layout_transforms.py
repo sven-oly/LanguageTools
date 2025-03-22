@@ -18,17 +18,17 @@ from xml.etree.ElementTree import ElementTree
 
 # Started 27-May-2024
 
-def parseArgs():
+def parseArgs(argv):
   parser = argparse.ArgumentParser(description='Transforms to Keyman rules')
+  parser.add_argument('--hex_out', action='store_true', help="If set, outputs unicode in U+ form")
   parser.add_argument(
-    '--infile', nargs='*',
+    '--infile', nargs=1,
     default='/Users/craig/Desktop/Projects/cldr-keyboards-37.0/keyboards/windows/ga-t-k0-windows.xml',  # Zero or more
                       help='names of cldr keyboard file to convert')
-  parser.add_argument('outfile', nargs='*', default=None,  # Zero or more
+  parser.add_argument('--outfile', nargs=1, default=None,  # Zero or more
                       help='names of JavaScript keyboard file to convert')
-
   args = parser.parse_args()
-
+  return args
 
 class kbTree(ET.TreeBuilder):
   def doctype(self, name, pubid, system):
@@ -38,7 +38,7 @@ def sortLenFirst(val):
   return len(val[0])
 
 class layout():
-  def __init__(self, outfilename=None):
+  def __init__(self, outfilename=None, hex_out=False):
     self.header_info = \
 """// CLDR from JavaScript keyboard data
 //
@@ -48,6 +48,8 @@ class layout():
     self.id = 'id'
     self.dir = 'rtl'
     self.title = 'title'
+
+    self.hex_out = hex_out  # If true, output lines should be in U+ character format
 
     # Mappings from Row/Columns to output values
     self.mappings = {}
@@ -108,7 +110,8 @@ class layout():
   def transformsToKeyman(self):
     # Work on the transforms, converting to Keyman forms
     if not self.transforms:
-      return
+      return None
+
     rules = []
 
     max_length = 0
@@ -142,10 +145,20 @@ class layout():
             # Need to get each part
             chars = []
             for x in first_part:
-              chars.append(self.transforms[x])
+              try:
+                chars.append(self.transforms[x])
+              except KeyError:
+                pass
             context = ''.join(chars)
 
-          rules.append('"%s" + "%s" > "%s"' % (context, last, t[1]))
+          out_string = t[1]
+          if self.hex_out:
+            context = self.string_to_hex(context)
+            last = self.string_to_hex(last)
+            out_string = self.string_to_hex(out_string)
+          rule_string = '%s + %s > %s' % (context, last, out_string)
+
+          rules.append(rule_string.replace('  ', ' '))
 
     self.rules = rules
     # etc...
@@ -263,9 +276,14 @@ class layout():
     return doctype + xml_output
 
   def parseJS(self, infile_name):
-    # Read and get the data fomr
+    # Read and get the data from the layout file
 
-    infile = open(infile_name, mode='r', encoding='UTF-8')
+    try:
+      infile = open(infile_name[0], mode='r', encoding='UTF-8')
+    except BaseException as error:
+      logging.error('Cannot open file %s. Error = %s', infile_name, error)
+      return None
+
     js_raw = infile.read()
 
     start_json = js_raw.find('{')
@@ -408,28 +426,33 @@ class layout():
       elif child.tag == "transforms":
         self.addTransforms(child)
 
+  def string_to_hex(self, in_text):
+    res = ''.join(r'U+{:04X} '.format(ord(chr)) for chr in in_text)
+    return res
 
 def main(argv):
   # 
 
-  args = parseArgs()
-  #print('args = %s' % args)
-  infile = sys.argv[1]
+  args = parseArgs(argv)
+  print('args = %s' % args)
+  infiles = args.infile
+  outname = args.outfile[0]
 
-  #print('Input  = %s' % infile)
-  if len(sys.argv) > 2:
-    outname = sys.argv[2]
-    #print('Output = %s' % outfile)
-  else:
-    outname = None
+  print('Input  = %s' % infiles)
+  print('Output = %s' % outname)
 
-  parser = layout(outname)
-  parser.parseJS(infile)
+  parser = layout(outname, args.hex_out)
+  parser.parseJS(infiles)
 
   parser.transformsToKeyman()
 
+  rule_set = set()
+  rules_unique = []
   for rule in parser.rules:
-    print(rule)
+    if rule not in rule_set:
+      print(rule)
+      rule_set.add(rule)
+      rules_unique.append(rule)
 
   # parser.outputLdml(parsed_json)
 

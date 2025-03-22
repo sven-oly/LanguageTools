@@ -31,6 +31,9 @@ links = [
     {'linkText': 'Resources',
      'ref': '/' + LanguageCode + '/downloads/'
     },
+    {'linkText': 'Conjuncts',
+     'ref': '/conjunct/' + LanguageCode
+    },
     # {'linkText': 'Unicode page',
     #  'ref': 'https://www.unicode.org/charts/PDF/U1C00.pdf'
     # },
@@ -42,9 +45,9 @@ links = [
     # {'linkText': 'Ethnolog',
     #  'ref': 'https://www.ethnologue.com/language/XYZ'
     # },
-    # {'linkText': 'Combiners',
-    #  'ref': '/lep/diacritic/'
-    #  },
+    {'linkText': 'Combiners',
+     'ref': '/diacritic/' + LanguageCode
+    },
 ]
 
 
@@ -99,10 +102,34 @@ class langInfo:
 
         self.links = links
 
-        # Unicode range
-        self.unicodeRanges = [('\0980', '\09ff')]
+        # Non-diacritics
+        self.unicodeRanges = [('\u0996', '\u09a8'),
+                              ('\u09aa', '\u09b0'),
+                              ('\u09b2', '\u09b2'),
+                              ('\u09b6', '\u09b9'),
+                              ('\u09dc', '\u09dd'),
+                              ('\u09df', '\u09df'),
+                              ('\u09f0', '\u09f1'),
+        ]
+        # Compute the full set of letters
+        self.baseChars = []
+        for item in self.unicodeRanges:
+            start = ord(item[0])
+            end = ord(item[1])
+            for n in range(start, end+1):
+                self.baseChars.append(chr(n))
+        
+        self.base_consonant = '\u099a'
         # TODO: Fill in with diacritics
-        self.diacritic_list = [unichr(x) for x in range(0x300, 0x330)]
+        self.diacritic_list = ['\u0981', '\u0982', '\u0983',
+                               '\u09bc', '\u09be', '\u09bf',
+                               '\u09cb', '\u09cc', '\u09cd',
+                               '\u09c1', '\u09c2', '\u09c3',
+                               '\u09c4', '\u09c7', '\u09c8',
+                               '\u09cb', '\u09cc', '\u09cd',
+                               '\u09d7', '\u09e2', '\u09e3',
+                               ]
+        self.conjunct_char = '\u09cd'
         # TODO: Fill in base consonant
         self.default_base_consonant = u'\0x61'
 
