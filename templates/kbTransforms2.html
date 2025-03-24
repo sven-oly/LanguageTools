@@ -155,7 +155,10 @@
     }
 
   function onPageLoaded() {
+    let target = 'Unicode_font_output_text';
     buildingTransformTable(0); // The first keyboard
+    let selected_font_option = document.getElementById('fontSelector');
+    setUnicodeFontColumns(selected_font_option.value, 'column_table');
   }
 
   {% if converter_list %}

@@ -69,7 +69,7 @@ unicode_font_list = [
 
 links = [
     {'linkText': 'Keyboard',
-     'ref': '/men/'
+     'ref': '/langbase/men/'
     },\
     {'linkText': 'Keyboard conversions',
      'ref': '/kbtransforms/' + LanguageCode

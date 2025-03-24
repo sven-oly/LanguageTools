@@ -1,4 +1,6 @@
 <!DOCTYPE html>
+<!-- Special case for checking Assamese conversions betwee Javascript and Python" -->
+
 <html>
   <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
@@ -22,11 +24,10 @@
                padding: 5px;
                font-size: 24px;
                font-variant-ligatures: normal;
-               font-family: "{{encodingList.0.font_name}}";
                resize: vertical;
            }
            {
-               font-family: "{{encodingList.0.font_name}}";
+               font-family: "Courier New";
            }
          </style>
 
@@ -231,14 +232,6 @@
                {% else %}
                initKeyboard('Unicode_font_output_text', 'selectKeyboard2', kb_list);
                {%endif%}
-
-               // Set the fonts 
-               // TODO: Finish
-               let target = 'Unicode_font_output_text';
-               const output_text = document.getElementById(target);
-               let selected_font_option = document.getElementById('selectFont');
-               output_text.style.fontFamily  = selected_font_options.value;
-               
            }
 
            function init() {
@@ -415,11 +408,11 @@
                    if(ele[i].checked) return i;
                }
            }
-           function changeWordMode(checkbox_id) {
+         </script>
 
-               const element = document.getElementById(checkbox_id);
-               langConverter.word_mode = element.checked;
-           }
+         <script>
+           // Handle the Assamese raw data
+           const raw_data = {{en_as_raw}};
          </script>
   </head>
 
@@ -436,6 +429,12 @@
             <!--Convert options:<!input type="radio" id="age1" name="convertOption" -->
             {% endif %}
 
+            <br />
+            <textarea class="" id="english_input_text"
+                      rows="1" style="font-size: 36px;"
+                      dir="{{direction}}" spellcheck="false">{{oldInput}}</textarea>
+            <br />
+
             {% if translit_kb_list %}
             Keyboard: <select onchange="onLayoutSelected(this, null, 'Unicode{{language}}Tools');" id="selectKeyboardTop">
               {% for kb in translit_kb_list %}
@@ -444,11 +443,11 @@
             </select>
             {% endif %}
             <textarea class="{{encodingList.0.font_name}}" id="old_font_input_text"
-                      rows="3" style="font-size: 36px;"
+                      rows="1" style="font-size: 36px;"
                       onchange="updateHex('old_font_input_text', 'old_hex');"
                       dir="{{direction}}" spellcheck="false">{{oldInput}}</textarea>
             <br />
-
+            
             <input type="button" value="Clear"
                    onclick="clearArea('old_font_input_text', 'old_hex');">
             {% if isTransLit %}
@@ -492,11 +491,7 @@
                                 'Unicode_font_output_text', 'selectEncodingFont', 'new_hex');">
                 {% endif %}
                 <input type="checkbox" name="showOldTools" id="showOldTools"
-                       onchange="toggle('OldEncodingTools', 'showOldTools');">Tools?
-                {% if convert_word_tool %}
-                <input type="checkbox" name="converterWordMode" id="converterWordMode"
-                       onchange="changeWordMode('converterWordMode');">Word mode?<br />
-                {% endif %}
+                       onchange="toggle('OldEncodingTools', 'showOldTools');">Tools?<br />
                 {% if variation_sequence %}
                 <input type="checkbox" checked id="useVariationSequence"
                        onchange="toggle('Unicode{{language}}Tools', 'showNewTools');">Convert with variation sequence<br />
@@ -545,7 +540,13 @@
                       dir="{{direction}}" spellcheck="false"
                       >{{unicodeInput}}</textarea>
             <br />
-            <input type="button" value="Clear"
+            <textarea class="{{unicodeFonts.0.family}}" id="python_output_text"
+                      onchange="updateHex('Unicode_font_output_text', 'new_hex');"
+                      cols="50" rows="3" style="font-size: 28px;" lang="{{langTag}}"
+                      dir="{{direction}}" spellcheck="false"
+                      >{{unicodeInput}}</textarea>
+            <br />
+           <input type="button" value="Clear"
                    onclick="clearArea('Unicode_font_output_text', 'new_hex');">
             {% if unicodeChars %}<input type="button"
                                         onclick="fillWithUnicodeText('Unicode_font_output_text',
