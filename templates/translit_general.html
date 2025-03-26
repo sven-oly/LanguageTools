@@ -222,6 +222,35 @@
                updateHex(target, hex_target);
            }
            
+           // From encoding area
+           function handleTextareaPaste(event) {
+               // If auto mode, get the data
+               const pastedData = event.clipboardData.getData('text');
+
+               if (checkAutoMode()) {
+                   callConvertEncodingToUnicode('old_font_input_text',
+                                                'Unicode_font_output_text',
+                                                'selectEncodingFont');
+                   
+               }
+               
+           }
+
+           function onKeyUp(event) {
+               // Handle key up in a text area
+           }
+
+           function changeAutoMode(checkbox) {
+               let toggle = document.getElementById('autoMode');
+               let is_on = toggle.checked;
+           }
+
+           function checkAutoMode() {
+               let toggle = document.getElementById('autoMode');
+               let is_on = toggle.checked;
+               return is_on;
+           }
+
            function onPageLoaded() {
                if (isTransliterator) {
                    makeConvertOptionsUi(convertOptions);  // Using convertObject
@@ -263,6 +292,9 @@
                    if (outarea) {
                        outarea.innerHTML = outarea.value = newText;
                    }
+                   if (checkAutoMode()) {
+                       updateHex('Unicode_font_output_text', 'new_hex');
+                   }
                    return;
                }
 
@@ -298,6 +330,9 @@
 
                toggleConvertedVS(destinationArea, vsSelector);
                {% endif %}
+               if (checkAutoMode()) {
+                   updateHex('Unicode_font_output_text', 'new_hex');
+               }
            }
 
            {% if variation_sequence %}
@@ -446,6 +481,7 @@
             <textarea class="{{encodingList.0.font_name}}" id="old_font_input_text"
                       rows="3" style="font-size: 36px;"
                       onchange="updateHex('old_font_input_text', 'old_hex');"
+                      onpaste="handleTextareaPaste(event);"
                       dir="{{direction}}" spellcheck="false">{{oldInput}}</textarea>
             <br />
 
@@ -664,6 +700,8 @@
           <input type="hidden" name='language' value='{{language}}'>
           <input type="hidden" name='font' value=''>
         </form>
+        <input type="checkbox" name="autoMode" id="autoMode"
+               onchange="changeAutoMode();">Auto mode
       </div>
     </div>
 </div>
