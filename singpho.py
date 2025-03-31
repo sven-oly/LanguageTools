@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 #
 # Unless required by applicable law or agreed to in writing, software
 # distributed under the License is distributed on an "AS IS" BASIS,
@@ -7,6 +8,9 @@
 #
 
 import base
+
+# 
+import preconverted_assamese
 
 # For Python 2.x. and Python
 try:
@@ -23,7 +27,7 @@ links = [
      'ref': '/' + LanguageCode + '/'
     },
     {'linkText': 'Converter',
-     'ref': '/convert/' + LanguageCode
+     'ref': '/convert/' + LanguageCode + '?tools=1'
     },
     {'linkText': 'Font conversion summary',
      'ref': '/encodingRules/' + LanguageCode
@@ -53,6 +57,10 @@ links = [
 
 class langInfo:
     def __init__(self):
+        # Special case 
+        self.preconverted_data = preconverted_assamese.sgp_assamese_info
+        print('SGP preconverted %d items' % (len(self.preconverted_data)))
+
         self.LanguageCode = LanguageCode
         self.Language = Language
         self.Language_native = Language_native

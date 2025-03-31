@@ -266,8 +266,18 @@
                let target = 'Unicode_font_output_text';
                const output_text = document.getElementById(target);
                let selected_font_option = document.getElementById('selectFont');
-               output_text.style.fontFamily  = selected_font_options.value;
+               output_text.style.fontFamily  = selected_font_option.value;
+
+               let fontsize_selector = document.getElementById('sizeSelector');
+               utils.onSizeSelected(fontsize_selector.value, 'Unicode_font_output_text');
+
+               fontsize_selector = document.getElementById('encoded_sizeSelector');
+               utils.onSizeSelected(fontsize_selector.value, 'old_font_input_text');
+
                
+               if (preconverted_data) {
+                   loadPreconvertedData(0);
+               }
            }
 
            function init() {
@@ -456,6 +466,50 @@
                langConverter.word_mode = element.checked;
            }
          </script>
+         <script>
+           // For  handlin
+           let current_sample = 0;
+           {% if preconverted_data %}
+           // FIX
+           const preconverted_data = {{preconverted_data | tojson}};
+           {% else %}
+           const preconverted_data = [];
+           {% endif %}
+
+           // From encoding area
+           function loadPreconvertedData(direction) {
+               
+               current_sample += direction;
+               if (current_sample < 0) {
+                   current_sample = preconverted_data.length - 1;
+               }
+               if (current_sample >= preconverted_data.length) {
+                   current_sample = 0;
+               }
+
+               // If auto mode, get the data
+               const inArea = document.getElementById('old_font_input_text');
+               inArea.value = preconverted_data[current_sample][2];
+               updateHex('old_font_input_text', 'old_hex');
+
+               callConvertEncodingToUnicode('old_font_input_text',
+                                            'Unicode_font_output_text',
+                                            'selectEncodingFont');
+               
+               let sample_num_text = document.getElementById("sample_number");
+               sample_num_text.value = current_sample;
+
+               let sample_text_element = document.getElementById("sample_text");
+               sample_text_element.value = preconverted_data[current_sample][1];
+           }
+
+           function setCurrentSample() {
+               let input = document.getElementById("sample_number");
+               current_sample = parseInt(input.value);
+               loadPreconvertedData(0);
+           }
+         </script>
+
   </head>
 
   <body onload="onPageLoaded();">
@@ -499,12 +553,12 @@
                 {% endfor %}
                 {%endif%}
               </select>
-              Font Size: <select onchange="utils.onSizeSelected(this.value, 'old_font_input_text');" id="sizeSelector">
+              Font Size: <select onchange="utils.onSizeSelected(this.value, 'old_font_input_text');" id="encoded_sizeSelector">
                 <option value="10px">10</option>
                 <option value="14px">14</option>
                 <option value="18px">18</option>
-                <option value="24px" selected>24</option>
-                <option value="32px">32</option>
+                <option value="24px">24</option>
+                <option value="32px" selected>32</option>
                 <option value="48px">48</option>
                 <option value="48px">60</option>
                 <option value="72px">72</option>
@@ -596,8 +650,8 @@
               <option value="10px">10</option>
               <option value="14px">14</option>
               <option value="18px">18</option>
-              <option value="24px" selected>24</option>
-              <option value="32px">32</option>
+              <option value="24px">24</option>
+              <option value="32px" selected>32</option>
               <option value="48px">48</option>
               <option value="48px">60</option>
               <option value="72px">72</option>
@@ -700,8 +754,24 @@
           <input type="hidden" name='language' value='{{language}}'>
           <input type="hidden" name='font' value=''>
         </form>
+        <div id="sample_controls">
         <input type="checkbox" name="autoMode" id="autoMode"
                onchange="changeAutoMode();">Auto mode
+        {% if preconverted_data %}
+        <br><br>
+            <input type="button" value="Prev"
+                   onclick="loadPreconvertedData(-1);">
+            <input type="button" value="Next"
+                   onclick="loadPreconvertedData(+1);">
+            <br>
+            <label for="sample_number"> Sample #</label>
+                   <input type="text" id="sample_number" value="0"
+                          onchange = "setCurrentSample();">
+            <br><label for="sample_text">Sample text</label>
+            <input type="text" id="sample_text" value="0">
+            {% endif %}
+
+        </div>
       </div>
     </div>
 </div>

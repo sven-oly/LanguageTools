@@ -38,8 +38,10 @@ import sunuwar
 import singpho
 import tangsa
 
+
 # Special for Assames checking.
 import English_Assamese
+import preconverted_assamese
 
 # If `entrypoint` is not defined in app.yaml, App Engine will look for an app
 # called `app` in `main.py`.
@@ -258,6 +260,11 @@ def convertHandler(langcode):
         )
 
     try:
+        showTools = request.args['tools']
+    except:
+        showTools = None
+
+    try:
       converters = langInfo.converters
     except:
       converters = None
@@ -311,8 +318,6 @@ def convertHandler(langcode):
          '\u000a\u000b'},
       ]
       
-    showTools = False
-
     convert_word_tool = False
     try:
         convert_word_tool = langInfo.convert_word
@@ -331,7 +336,16 @@ def convertHandler(langcode):
         langInfo.baseHexUTF16, langInfo.diacritic_list)
     except:
       unicodeCombiningChars = None
-    
+
+    preconverted_data = None   
+    try:
+        preconverted_data = langInfo.preconverted_data
+        print('PRECONVERTED HAS %d items' % len(preconverted_data))
+    except:
+        preconverted_data = None
+        print('PRECONVERTED is NONE')
+    print('PRECONVERTED: %s' % (preconverted_data[11]))
+
     return render_template(
         'translit_general.html',
         converters = converters,
@@ -355,6 +369,7 @@ def convertHandler(langcode):
         combiningChars = unicodeCombiningChars,
         variation_sequence = variation_sequence,
         convert_word_tool=convert_word_tool,
+        preconverted_data=preconverted_data,
     )
 
 @app.route('/kbtransforms/<langcode>')
@@ -379,7 +394,7 @@ def kbtransformstHandler(langcode):
         text_functions = None
 
     try:
-        showTools = request.args('tools', None)
+        showTools = request.args['tools']
     except:
         showTools = False
 
