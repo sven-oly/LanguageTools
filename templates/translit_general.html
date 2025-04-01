@@ -508,6 +508,25 @@
                current_sample = parseInt(input.value);
                loadPreconvertedData(0);
            }
+
+           function changeSearchHex() {
+               // Looks through the preconverted text for string with the character
+               // specified by the hex value.
+               let input = document.getElementById("sample_search_hex").value;
+               let charCode = parseInt(input, 16);
+               let searchChar = String.fromCharCode([charCode]);
+               // Search for the first one following.
+               let start_pos = current_sample;
+               for (let pos = start_pos; pos < preconverted_data.length; pos++) {
+                   if (preconverted_data[pos][2].indexOf(searchChar) >= 0) {
+                       current_sample = pos;
+                       loadPreconvertedData(0);
+                       return;
+                   }
+               }
+               // What if not found?
+               
+           }
          </script>
 
   </head>
@@ -769,6 +788,8 @@
                           onchange = "setCurrentSample();">
             <br><label for="sample_text">Sample text</label>
             <input type="text" id="sample_text" value="0">
+            <br><label for="sample_text">Search hex</label>
+            <input type="text" id="sample_search_hex" value="" onchange="changeSearchHex();">
             {% endif %}
 
         </div>
