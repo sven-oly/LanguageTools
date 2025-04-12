@@ -19,6 +19,7 @@
 from flask import Flask, render_template, stream_with_context, request, Response, send_file
 
 import html
+import json
 import logging
 import os
 
@@ -163,7 +164,7 @@ def getLangInfo(langcode):
         )
 
     return language_info_dict[langcode]
-    
+
 
 @app.route('/')
 def MainHandler():
@@ -190,7 +191,7 @@ def topLangHandler(langcode):
         encoded_ranges = langInfo.encoded_ranges
     except:
         encoded_ranges = None
-        
+
     try:
         allFonts = langInfo.allFonts
     except:
@@ -216,7 +217,7 @@ def topLangHandler(langcode):
                            allFonts = allFonts,
                            test_data = '',
     )
-    
+
 @app.route('/downloads/<langcode>')
 def downloadsHandler(langcode):
     # Show downloads for this language code.
@@ -227,7 +228,7 @@ def downloadsHandler(langcode):
         )
 
     langInfo = language_info_dict[langcode]
-    
+
     public_unicode_fonts = []
     try:
         public_unicode_fonts = langInfo.public_font_resources
@@ -252,7 +253,7 @@ def downloadsHandler(langcode):
 def convertHandler(langcode):
     # Show downloads for this language code.
     langInfo = getLangInfo(langcode)
-    
+
     if not langInfo:
         return render_template(
             'language_not_defined.html',
@@ -270,13 +271,13 @@ def convertHandler(langcode):
       converters = None
 
     font = None
-    
+
     try:
         text_direction = langInfo.direction
     except AttributeError:
         # Default
         text_direction = 'ltr'
-    
+
     # Needed?
     oldChars = ''
     oldInput = ''
@@ -298,7 +299,7 @@ def convertHandler(langcode):
       encodingList = langInfo.encoding_font_list
     except:
       encodingList = None
-    
+
     try:
       unicodeChars = langInfo.unicodeChars
     except:
@@ -317,7 +318,7 @@ def convertHandler(langcode):
          'string': u'\u0004\u0005\u0006\u0007\u0008\u0009' +
          '\u000a\u000b'},
       ]
-      
+
     convert_word_tool = False
     try:
         convert_word_tool = langInfo.convert_word
@@ -337,14 +338,11 @@ def convertHandler(langcode):
     except:
       unicodeCombiningChars = None
 
-    preconverted_data = None   
+    preconverted_data = None
     try:
         preconverted_data = langInfo.preconverted_data
-        print('PRECONVERTED HAS %d items' % len(preconverted_data))
     except:
         preconverted_data = None
-        print('PRECONVERTED is NONE')
-    print('PRECONVERTED: %s' % (preconverted_data[11]))
 
     return render_template(
         'translit_general.html',
@@ -376,7 +374,7 @@ def convertHandler(langcode):
 def kbtransformstHandler(langcode):
 
     langInfo = getLangInfo(langcode)
-    
+
     if not langInfo:
         return render_template(
             'language_not_defined.html',
@@ -439,7 +437,7 @@ def allFonts(langcode):
         LanguageTag = langInfo.LanguageCode,
         kb_list = langInfo.kb_list
     )
-                  
+
 @app.route('/encodingRules/<langcode>')
 def encodingRules(langcode):
 
@@ -465,7 +463,7 @@ def encodingRules(langcode):
         variation_sequence = None
 
     converterJS = '/static/js/' + langInfo.LanguageCode + 'Converter.js'
-    
+
     return render_template(
         'encodingConvert.html',
         converter_list = converter_list,
@@ -486,7 +484,7 @@ def encodingRules(langcode):
 def diacritics(langcode):
 
     langInfo = getLangInfo(langcode)
-    
+
     try:
         base_num = request.args['base']
         base_char = unichr(int(base_num, base=16))
@@ -539,7 +537,7 @@ def diacritics(langcode):
 def conjuncts(langcode):
 
     langInfo = getLangInfo(langcode)
-    
+
     try:
         base_num = request.args['base']
         base_char = unichr(int(base_num, base=16))
@@ -574,7 +572,7 @@ def conjuncts(langcode):
                            'codes': ['%4x ' % ord(c) for c in text]})
             row.append(text)
         table.append(row)
-        
+
     try:
         text_direction = langInfo.direction
     except AttributeError:
@@ -624,7 +622,7 @@ def phonetic_kb(langcode):
     except BaseException as err:
         print('unicodeinfo not read: %s' % err)
         unicode_data = ''
-        
+
     return render_template(
         'phoneticTable.html',
         converterJS = '/js/' + langInfo.LanguageCode + 'Converter.js',
@@ -637,7 +635,7 @@ def phonetic_kb(langcode):
         links = langInfo.links,
         showTools = showTools,
         text_functions = text_functions,
-        unicode_data = unicode_data,        
+        unicode_data = unicode_data,
         )
 
 
@@ -657,17 +655,17 @@ def check_conversion(langcode):
       converters = None
 
     font = None
-    
+
     try:
         text_direction = langInfo.direction
     except AttributeError:
         # Default
         text_direction = 'ltr'
-    
+
     # Special for Assamese
     raw_data = English_Assamese.en_as_raw_data
 
-    
+
     # Needed?
     oldChars = ''
     oldInput = ''
@@ -682,7 +680,7 @@ def check_conversion(langcode):
       encodingList = langInfo.encoding_font_list
     except:
       encodingList = None
-    
+
     try:
       unicodeChars = langInfo.unicodeChars
     except:
@@ -701,9 +699,9 @@ def check_conversion(langcode):
          'string': u'\u0004\u0005\u0006\u0007\u0008\u0009' +
          '\u000a\u000b'},
       ]
-      
+
     showTools = False
-    
+
     try:
       unicodeCombiningChars = getCombiningCombos(
         langInfo.baseHexUTF16, langInfo.diacritic_list)
@@ -737,6 +735,28 @@ def check_conversion(langcode):
           en_as_raw = raw_data
     )
 
+@app.route('/save_converted_values/', methods=['GET', 'POST'])
+def saveConvertedValues():
+
+    converted_values = {}
+    if request.method == 'POST':
+        langTag = request.form['langTag']
+        json_converted = request.form['json_converted']
+        converted_values = json.loads(json_converted)
+    else:
+        langTag = request.args.get('langTag')
+        json_converted = request.args.get('json_converted')
+        converted_values = json.loads(json_converted)
+
+
+    # TODO: put these in the database
+    print('***lang tag = %s' % langTag);
+    print('** %s converted values found' % len(converted_values))
+    print(converted_values)
+    # Send back the count of those found
+    return '%s values received at server' % len(converted_values)
+
+
 
 # class DownloadKBText(webapp2.RequestHandler):
 #     def get(self):
@@ -754,4 +774,5 @@ if __name__ == '__main__':
     # can be configured by adding an `entrypoint` to app.yaml.
     app.run(host='127.0.0.1', port=8080, debug=True, threaded=True)
 # [END gae_python37_app]
+
 

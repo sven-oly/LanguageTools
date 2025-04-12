@@ -80,6 +80,8 @@
          <script>
            const utils = new Utils();  // Object for utility functions
 
+           const langTag = "{{langTag}}";
+
            // Check for a converter class
            let converterObj;
            let encodingInfo;
@@ -95,9 +97,18 @@
            diff_list = [];
            // When an area is changed, set the hex characters, too.
            function updateHex(inArea, outArea) {
-               const inText = document.getElementById(inArea).value;
+               /* Handle selected region, too. */
+               const selObj = window.getSelection();
+               const selected = selObj.toString();
+               let intext;
+               if (!selected) {
+                   intext = document.getElementById(inArea).value;
+               } else {
+                   intext = selected;  // Only highlighted
+               }
+
                const hex_output = document.getElementById(outArea);
-               const hexString = uplus(inText); uplus  //charsToHexString
+               const hexString = uplus(intext); uplus  //charsToHexString
                if (hex_output != null) {
                    hex_output.value = hexString;
                    hex_output.innerHTML = hexString;
@@ -231,9 +242,7 @@
                    callConvertEncodingToUnicode('old_font_input_text',
                                                 'Unicode_font_output_text',
                                                 'selectEncodingFont');
-                   
                }
-               
            }
 
            function onKeyUp(event) {
@@ -278,6 +287,39 @@
                if (preconverted_data) {
                    loadPreconvertedData(0);
                }
+
+               window.onbeforeunload = function () {
+                   // todo: save the status
+                   saveStatusToServer(0);  // Indicate window closing
+               }
+           }
+
+           function saveStatusToServer(flag) {
+               // If status has any values, convert to JSON and send to the server side.
+               let req = new XMLHttpRequest();
+               req.onreadystatechange = function() {
+                   if (this.readyState == 4 && this.status == 200) {
+                       // Show stored result
+                       alert(this.responseText);
+                       const response = this.responseText;
+                   } else {
+                       const x = 0;
+                   }
+               };
+
+               let target_list = [];
+               const json_converted = JSON.stringify(converted);
+               
+               target_list.push('langTag=' + langTag);
+               target_list.push('json_converted=' + json_converted);
+               const target = target_list.join('&');
+               
+               let server_url = '/save_converted_values/'; 
+               
+               req.open('POST', server_url, true);
+               req.setRequestHeader('content-type', 'application/x-www-form-urlencoded;charset=UTF-8');
+               req.send(target);
+               
            }
 
            function init() {
@@ -469,6 +511,9 @@
          <script>
            // For  handlin
            let current_sample = 0;
+           const status = {};
+           const converted = {};
+
            {% if preconverted_data %}
            // FIX
            const preconverted_data = {{preconverted_data | tojson}};
@@ -515,8 +560,15 @@
                let input = document.getElementById("sample_search_hex").value;
                let charCode = parseInt(input, 16);
                let searchChar = String.fromCharCode([charCode]);
+
                // Search for the first one following.
                let start_pos = current_sample;
+               if (preconverted_data[start_pos][2].indexOf(searchChar) >= 0) {
+                   start_pos += 1;
+               }
+               if (start_pos > preconverted_data.length) {
+                   start_pos = 0;
+               }
                for (let pos = start_pos; pos < preconverted_data.length; pos++) {
                    if (preconverted_data[pos][2].indexOf(searchChar) >= 0) {
                        current_sample = pos;
@@ -526,6 +578,22 @@
                }
                // What if not found?
                
+           }
+
+           function setStatus(val) {
+               // TODO: Set a persistent value for this status.
+               // Get the current index
+               const index_obj = document.getElementById('sample_number');
+
+               const index = parseInt(index_obj.value);
+               status[index] = val;
+               if (val > 0) {
+                   // Get the correct result if true
+                   const unicode_area = document.getElementById('Unicode_font_output_text');
+                   converted[index] = unicode_area.innerHTML;
+               }
+               // Advance to next
+               loadPreconvertedData(1);
            }
          </script>
 
@@ -577,8 +645,8 @@
                 <option value="14px">14</option>
                 <option value="18px">18</option>
                 <option value="24px">24</option>
-                <option value="32px" selected>32</option>
-                <option value="48px">48</option>
+                <option value="32px">32</option>
+                <option value="48px" selected>48</option>
                 <option value="48px">60</option>
                 <option value="72px">72</option>
                 <option value="96px">96</option>
@@ -670,7 +738,9 @@
               <option value="14px">14</option>
               <option value="18px">18</option>
               <option value="24px">24</option>
-              <option value="32px" selected>32</option>
+              <option value="32px">32</option>
+              <option value="36px">36</option>
+              <option value="40px" selected>40</option>
               <option value="48px">48</option>
               <option value="48px">60</option>
               <option value="72px">72</option>
@@ -774,7 +844,7 @@
           <input type="hidden" name='font' value=''>
         </form>
         <div id="sample_controls">
-        <input type="checkbox" name="autoMode" id="autoMode"
+        <input type="checkbox" name="autoMode" id="autoMode" checked
                onchange="changeAutoMode();">Auto mode
         {% if preconverted_data %}
         <br><br>
@@ -790,6 +860,13 @@
             <input type="text" id="sample_text" value="0">
             <br><label for="sample_text">Search hex</label>
             <input type="text" id="sample_search_hex" value="" onchange="changeSearchHex();">
+            <br><label for="OK">OK</label>
+            <input type="button" id="OK" value="OK" onClick="setStatus(1);">
+            <br><label for="notOK">Bad</label>
+            <input type="button" id="notOK" value="Bad" onClick="setStatus(0);">
+            <br><label for="save_converted"></label>
+            <input type="button" id="save_converted" value="Save status now"
+                   onClick="saveStatusToServer(1);">
             {% endif %}
 
         </div>

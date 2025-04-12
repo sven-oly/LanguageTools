@@ -64,6 +64,9 @@ class langInfo:
         self.LanguageCode = LanguageCode
         self.Language = Language
         self.Language_native = Language_native
+
+        self.conversionLanguage = 'Assamese'
+
         self.test_data = u''
         self.unicode_font_list = [
           {'family': 'NotoSerif',
