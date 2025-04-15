@@ -20,6 +20,10 @@ langConverter.transformRules = [
     [/(\u098b\u09c3)/gi, '\u09e0'],  // Doubled!
 
     [/(\u0985\u09be)/gi, '\u0986'],
+    [/([\u0981])(\u09be)/gi, '$2$1'],
+
+    // Hack - remove duplicate virama
+    [/\u09cd\u09cd/gi, '\u09cd'],
     
     // 0xea and reversing - include following diacritic
     [/([\u0993-\u09b9][\u09be]?)(\u09cd\u09af)?(\u09b0\u09cd)/gi, '$3$1$2'],
@@ -30,7 +34,7 @@ langConverter.transformRules = [
     [/(\u09ae\u09cd)(\u09e9)/gi, '$1\u09ad'], // ??
 
     // vowel sign I moves over consonant
-    [/([\u09bf\u09c7\u09c8])([\u0985-\u09b9\u09f1])/gi, '$2$1'],
+    [/([\u09bf\u09c7\u09c8])([\u0985-\u09b9\u09dc-\u09e1\u09f0\u09f1])/gi, '$2$1'],
 
     // next, vowel sign I moves over conjunct and following
     [/([\u09bf\u09c7\u09c8])(\u09cd)([\u0993-\u09b9\u09e6-\u09f1])/gi, '$2$3$1'],
@@ -145,7 +149,7 @@ private_use_map_combined = {
     't': ['\u09df'],
     'u': ['ৎ'],
     'v': ['ং'],
-    'w': ['া'],
+    '\u0077': ['া'],
     'x': ['\u09bf'],
     'y': ['\u09c0'],
     'z': ['\u09cd'],
@@ -167,7 +171,7 @@ private_use_map_combined = {
     '©': ['\u09A6\u09CD\u09F0'], 
     'ª': ['\u09A3\u09CD\u09A0'],
     '«': ['\u09a3\u09cd\u09a1'], 
-    '¬': ['ম্'],
+    '\u00ac': ['\u09a8\u09cd\u09a7'],
     '­': ['ন্ড'], 
     '®': ['প্ত'],
     '¯': ['\u09AA\u09CD\u09AA'], 
@@ -215,7 +219,7 @@ private_use_map_combined = {
     '\u00d4': ['\u09c2'],
     '\u00d6': ['\u09c1'],
     '\u00d7': ['\u09c1'],
-    '\u00d8': ['\u09cd\u09a8'],
+    '\u00d8': ['\u09c1'],
     '\u00d9': ['\u09c3'],
     '\u00da': ['\u09c3'],
     '\u00de': ['\u09cd\u09b0'],
@@ -227,7 +231,7 @@ private_use_map_combined = {
     '\u00e2': ['চ'],
     '\u00e3': ['\u099E\u09CD\u099A'],
     '\u00e4': ['ও'],
-    '\u00e5': ['০'],
+    '\u00e5': ['\u09a3\u09cd'],
     '\u00e6': ['\u09a4'],
     '\u00e7': ['\u0993'],
     '\u00e8': ['\u098f'],
@@ -252,10 +256,10 @@ private_use_map_combined = {
     '\u00f8': ['\u09cd\u09af'],
     // '\u00f9': ['\u09b2'],
     '\u00f9': ['\u09ae\u09cd'],  // OK
-    '\u00fa': ['\u09b6'],
-    '\u00fb': ['\u09b7'],
-    '\u00fc': ['\u09b7'],
-    '\u00fd': ['\u09b8'],
+    '\u00fa': ['\u09b6\u09cd'],
+    '\u00fb': ['\u09b7\u09cd'],
+    '\u00fc': ['\u09b7\u09cd'],
+    '\u00fd': ['\u09b8\u09cd'],
     '\u00fe': ['\u09b8\u09cd'],
     '\u00ff': ['\u09cd\u09a5'],
 

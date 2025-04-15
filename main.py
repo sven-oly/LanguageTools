@@ -344,12 +344,18 @@ def convertHandler(langcode):
     except:
         preconverted_data = None
 
+    try:
+        encodingLanguage = langInfo.encodingLanguage
+    except:
+        encodingLanguage = langInfo.Language
+
     return render_template(
         'translit_general.html',
         converters = converters,
         isTransLit = False,
         font = font,
         language = langInfo.Language,
+        encodingLanguage = encodingLanguage,
         langTag = langInfo.LanguageCode,
         encodingList = encodingList,
         lang_list = langInfo.lang_list,
@@ -464,11 +470,18 @@ def encodingRules(langcode):
 
     converterJS = '/static/js/' + langInfo.LanguageCode + 'Converter.js'
 
+    try:
+        conversionLanguage = langInfo.encodingLanguage
+    except:
+        conversionLanguage = langInfo.Language
+        
+
     return render_template(
         'encodingConvert.html',
         converter_list = converter_list,
         converterJS = converterJS,
         conversion_data = conversion_data,
+        conversion_language = conversionLanguage,
         language = langInfo.Language,
         lang_list = langInfo.lang_list,
         encoding_list = langInfo.encoding_font_list,

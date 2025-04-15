@@ -4,7 +4,7 @@
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Converting {{language}}</title>
+    <title>Converting {{encodingLanguage}}</title>
 
     <link rel="stylesheet" href="/static/css/blueprint/screen.css" type="text/css" media="screen">
     <link rel="stylesheet" href="/static/css/blueprint/print.css" type="text/css" media="print"> 
@@ -20,6 +20,7 @@
                height: 120px;
                border: 3px solid #cccccc;
                padding: 5px;
+               padding-top: 10px;
                font-size: 24px;
                font-variant-ligatures: normal;
                font-family: "{{encodingList.0.font_name}}";
@@ -604,7 +605,7 @@
 
       <div class="span-16">
         <div id="old_encoding_area">
-          <h3>Encoded {{language}} font data</h3>
+          <h3>Encoded {{encodingLanguage}} font data</h3>
           {% if isTransLit %}
           <div id="transform_options">
             Convert options:<br />
@@ -619,13 +620,6 @@
               {% endfor %}
             </select>
             {% endif %}
-            <textarea class="{{encodingList.0.font_name}}" id="old_font_input_text"
-                      rows="3" style="font-size: 36px;"
-                      onchange="updateHex('old_font_input_text', 'old_hex');"
-                      onpaste="handleTextareaPaste(event);"
-                      dir="{{direction}}" spellcheck="false">{{oldInput}}</textarea>
-            <br />
-
             <input type="button" value="Clear"
                    onclick="clearArea('old_font_input_text', 'old_hex');">
             {% if isTransLit %}
@@ -708,13 +702,21 @@
                          value="Convert hex to text" />
                 </div>
                 <br />
+
+            <textarea class="{{encodingList.0.font_name}}" id="old_font_input_text"
+                      rows="3" style="font-size: 36px;"
+                      onchange="updateHex('old_font_input_text', 'old_hex');"
+                      onpaste="handleTextareaPaste(event);"
+                      dir="{{direction}}" spellcheck="false">{{oldInput}}</textarea>
+            <br />
+
           </div>
 
           <div id="unicode_area">
             {% if converters %}
             <h3 id='result_type'></h3>
             {% else %}
-            <h3>{%if outputFont %}{{outputFont}}{%else%}Unicode{%endif%} {{language}} text</h3>
+            <h3>{%if outputFont %}{{outputFont}}{%else%}Unicode{%endif%} {{encodingLanguage}} text</h3>
             {% endif %}
             <textarea class="{{unicodeFonts.0.family}}" id="Unicode_font_output_text"
                       onchange="updateHex('Unicode_font_output_text', 'new_hex');"

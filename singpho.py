@@ -63,6 +63,7 @@ class langInfo:
 
         self.LanguageCode = LanguageCode
         self.Language = Language
+        self.encodingLanguage = 'Assamese'
         self.Language_native = Language_native
 
         self.conversionLanguage = 'Assamese'
@@ -114,7 +115,7 @@ class langInfo:
         self.links = links
 
         # Non-diacritics
-        self.unicodeRanges = [('\u0996', '\u09a8'),
+        self.unicodeRanges = [('\u0993', '\u09a8'),
                               ('\u09aa', '\u09b0'),
                               ('\u09b2', '\u09b2'),
                               ('\u09b6', '\u09b9'),
