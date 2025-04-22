@@ -11,6 +11,8 @@ import base
 
 # 
 import preconverted_assamese
+# Strings that are verified as correct
+import good_results_sgp
 
 # For Python 2.x. and Python
 try:
@@ -59,6 +61,8 @@ class langInfo:
     def __init__(self):
         # Special case 
         self.preconverted_data = preconverted_assamese.sgp_assamese_info
+        self.good_results = good_results_sgp.good_results_sgp
+
         print('SGP preconverted %d items' % (len(self.preconverted_data)))
 
         self.LanguageCode = LanguageCode

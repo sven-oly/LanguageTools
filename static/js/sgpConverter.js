@@ -25,11 +25,13 @@ langConverter.transformRules = [
     // Hack - remove duplicate virama
     [/\u09cd\u09cd/gi, '\u09cd'],
     
+    // ??? Move killer over 9c7 & 9c8
+    [/(\u09cd)([\u09c7\u09c8])/gi, '$2$1'],
+
     // 0xea and reversing - include following diacritic
     [/([\u0993-\u09b9][\u09be]?)(\u09cd\u09af)?(\u09b0\u09cd)/gi, '$3$1$2'],
     // ??? [/([\u0993-\u09b9][\u09be]?)(\u09b0\u09cd)/gi, '$2$1'],
     
-
     // 0xea
     [/(\u09ae\u09cd)(\u09e9)/gi, '$1\u09ad'], // ??
 
@@ -163,7 +165,8 @@ private_use_map_combined = {
     '¡': ['\u09A3\u09CD\u09A1'], 
     '¢': ['\u09A4\u09CD\u09F0'],
     '£': ['\u0995'],
-    '¤': ['\u09A4\u09CD\u09A5'],
+    '\u00a3': ['\u09a4\u09cd\u09a4'],
+    '¤': ['\U09a4\u09CD\u09A5'],
     '¥': ['\u09A6\u09CD\u09A6'], 
     '¦': ['দ্ধ'],
     '§': ['দ্\u09A6\u09CD\u09Ac'], 
@@ -181,11 +184,11 @@ private_use_map_combined = {
     '±': ['\u09ac\u09cd\u099c'],
     '²': ['\u09ac\u09cd\u09a6'],
     '³': ['\u09AC\u09CD\u09A6\u09CD\u09B9'],
-    '´': ['\u09f0'],
+    '\u00b4': ['\u09f0'],
     'µ': ['\u09ac'],
     '¶': ['\u09a6\u09cd\u09a7'],
     '·': ['·'],
-    '¸': ['\u09AD\u09CD\u09f0'],
+    '\u00a7': ['\u09AD\u09CD\u09f0'],
     '¹': ['\u09AE\u09CD\u09AC'],
     'º': ['\u09AE\u09CD\u09AD'],
     '»': ['\u09AE\u09CD\u09AD\u09CD\u09AC'],

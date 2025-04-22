@@ -30,6 +30,7 @@ import bete
 import chakma
 import cherokee
 import cree
+import fulfulde
 import khamti
 import mendekikakui
 import omq
@@ -39,10 +40,12 @@ import sunuwar
 import singpho
 import tangsa
 
+import wordsearch
 
 # Special for Assames checking.
 import English_Assamese
 import preconverted_assamese
+import good_results_sgp
 
 # If `entrypoint` is not defined in app.yaml, App Engine will look for an app
 # called `app` in `main.py`.
@@ -59,6 +62,7 @@ language_info_dict['bete'] = bete.langInfo()
 language_info_dict['ccp'] = chakma.langInfo()
 language_info_dict['cr'] = cree.langInfo()
 language_info_dict['chr'] = cherokee.langInfo()
+language_info_dict['ff'] = fulfulde.langInfo()
 language_info_dict['kht'] =  khamti.langInfo()
 language_info_dict['men'] =  mendekikakui.langInfo()
 language_info_dict['omq'] = omq.langInfo()
@@ -144,7 +148,7 @@ LanguageList = [
     # ('Kalabari', 'ijn'),
     # ('Mru', 'mro'),
     # ('Sylheti', 'syl'),
-    # ('Fulfulde', 'ff'),
+   ('Pular / Fulfulde', 'ff'),
     # ('Rhade', 'rad', 'klei Êđê'),
     # ('Mahasu', 'bfz'),
     # ('Vietnamese', 'vn', 'tiếng Việt'),
@@ -345,6 +349,11 @@ def convertHandler(langcode):
         preconverted_data = None
 
     try:
+        good_results = langInfo.good_results
+    except:
+        good_results = None
+        
+    try:
         encodingLanguage = langInfo.encodingLanguage
     except:
         encodingLanguage = langInfo.Language
@@ -374,6 +383,7 @@ def convertHandler(langcode):
         variation_sequence = variation_sequence,
         convert_word_tool=convert_word_tool,
         preconverted_data=preconverted_data,
+        good_results=good_results,
     )
 
 @app.route('/kbtransforms/<langcode>')
@@ -770,6 +780,83 @@ def saveConvertedValues():
     return '%s values received at server' % len(converted_values)
 
 
+@app.route('/wordsearch/<langcode>/')
+def wordsearch(langcode):
+    langInfo = getLangInfo(langcode)
+
+    testGridSize = 1.4
+    testData = ''
+    charNames = None
+
+    try:
+      combiningChars = langInfo.unicodeCombiningChars
+    except:
+      combiningChars = None
+
+    try:
+      letterFillList = langInfo.fillChars
+    except:
+      letterFillList = []
+    fillers = '||'.join(letterFillList)
+
+    combiners = '||'.join(langInfo.unicodeCombiningChars)
+    
+    try:
+        direction = langInfo.direction
+    except:
+        direction = 'ltr'
+
+    return render_template('wordsearch.html',
+                           language=langInfo.Language,
+                           LanguageTag=langInfo.LanguageCode,
+                           kb_list = langInfo.kb_list,
+                           charTable=charNames,
+                           charNameData= charNames,
+                           unicodeCombiningChars= combiners,
+                           letterFillList= fillers,
+                           unicode_font_list= langInfo.unicode_font_list,
+                           testData= testData,
+                           testGridSize= testGridSize,
+                           direction= direction,
+    )
+
+@app.route('/games/generatewordsearch/')
+def generatewordsearch():
+    if request.method == 'POST':
+        langTag = request.form['language']
+    else:
+        langTag = request.args.get('language')
+
+    langInfo = getLangInfo(langTag)
+
+    logging.info(langInfo)
+    rawWordList = request.args.get('words', '')
+
+    # Suggested size for the grid
+    raw_size = request.args.get('size', '0')
+    logging.info('games WordSearchHandler raw_size = >%s<' % raw_size)
+    if not raw_size or raw_size is '' or raw_size is ' ':
+      grid_width = 0
+    else:
+      grid_width = int(raw_size)
+
+    # A measure of when to quit the search
+    max_tries =  request.args.get('max_tries', 1000)
+    # How many solutions to generated
+    max_solution_count =  request.args.get('max_solution_count', 1)
+
+    # logging.info('games WordSearchHandler rawWordList = %s' % rawWordList)
+
+    # Strip out white space.
+    wordList = rawWordList.replace(",", " ").replace("\r", " ").replace("\t", " ").split()
+    # logging.info('games WordSearchDFS Handler wordList = %s' % wordList)
+    logging.info('games WordSearchDFS Handler size = %s' % grid_width)
+
+    ws = wordsearch.generateDFSWordSearch(wordList,
+                               grid_width, max_tries, max_solution_count)
+    # TODO: Finish this
+    return None
+
 
 # class DownloadKBText(webapp2.RequestHandler):
 #     def get(self):
@@ -785,7 +872,8 @@ if __name__ == '__main__':
     # This is used when running locally only. When deploying to Google App
     # Engine, a webserver process such as Gunicorn will serve the app. This
     # can be configured by adding an `entrypoint` to app.yaml.
-    app.run(host='127.0.0.1', port=8080, debug=True, threaded=True)
+    app.run(host='127.0.0.1',
+            port=8080, debug=True, threaded=True)
 # [END gae_python37_app]
 
 
