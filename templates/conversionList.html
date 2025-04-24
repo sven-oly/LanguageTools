@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+
+  <title>{{conversion_language}} list of encoding conversions to Unicode</title>
+  <style>
+    <!-- Font encodings -->
+    @font-face{
+      font-family:'Arial';
+      font-weight:normal;
+      font-style:normal;
+    }
+    .Arial {
+      font-family:Arial;
+      font-size: 30px;
+    }
+    {% for encoding in encoding_list %}
+    @font-face{
+      font-family:'{{encoding.font_name}}';
+      src:url('/static{{encoding.font_path}}'){% if '.ttf' in encoding.font_path %}format('truetype'){%endif%}{% if '.TTF' in encoding.font_path %}format('truetype'){%endif%}{% if '.otf' in encoding.font_path %}format('opentype'){%endif%}{%if '.woff' in encoding.font_path %}format('woff'){%endif%};
+      font-weight:normal;
+      font-style:normal;
+    }
+    .{{encoding.font_name}} {
+      font-family:{{encoding.font_name}};
+      font-size: 36px;
+    }{% endfor %}
+
+    <!-- Unicode fonts -->
+    {
+       font-family: "Courier New";
+    }
+    {% for font in unicode_list %}
+    @font-face{
+      font-family:'{{font.family}}';
+      src:url('/static{{font.source}}'){% if '.ttf' in font.source %}format('truetype'){%endif%}{% if '.TTF' in font.source %}format('truetype'){%endif%}{% if '.otf' in font.source %}format('opentype'){%endif%}{%if '.woff' in font.source %}format('woff'){%endif%};
+      font-weight:normal;
+      font-style:normal;
+    }
+    .{{font.family}} {
+      font-family:{{font.family}};
+      font-size: 32px;
+    }{% endfor %}
+  </style>
+  <style>
+    table {
+      border-collapse: collapse;
+    }
+    table, th, td {
+      border: 1px solid black;
+    }
+    td {
+    text-align: center;
+    width: 120px;
+    font-size:20px;
+    }
+  </style>
+
+  <!-- Path to convert with code tables and other  this for the converter. -->
+  <script src="/static/js/baseConverter.js"></script>
+  <script src="{{converterJS}}"></script>
+  <script src="/static/js/utils.js"></script>
+
+  <script>
+  // Get data from converter.
+  let private_use_map_combined = undefined;
+  let encoding_data;
+  if (langConverter) {
+    private_use_map_combined = langConverter.one2oneMap;
+    encoding_data = langConverter.encoding_data;
+  }
+
+  const k = { loadme: Object};
+  k.loadme.prototype = function(a) {
+    return a;
+  }
+  const e = {keyboard: k};
+  const google = {elements: e};
+  </script>
+
+  <script>
+    // Initialize precoverted data and good conversions, if provided.
+    {% if preconverted_data %}
+    const preconverted_data = {{preconverted_data | tojson}};
+    {% else %}
+    const preconverted_data = [];
+    {% endif %}
+    {% if good_results %}
+    const good_results = {{good_results | tojson}};
+    {% else %}
+    const good_results = {};
+    {% endif %}
+
+    function onPageLoaded() {
+        const codetable = document.getElementById('column_table');
+        // Old code to be replaced.
+        buildEncodingTable(codetable);
+        // buildConvertedTable();
+        {% if encoding_tables %}
+        // Build based on encoding table descriptions.
+        selected_table = document.getElementById('selectTable').value;
+        const output_table = document.getElementById('encoding_table_area');
+        buildEncodingTableFromData(output_table, encoding_tables[selected_table]);
+        {% endif %}
+        {%if converter_list %}
+        setupConverterSelector('converter_select', converter_list);
+        {% endif %}
+    }
+
+    const encoding_font_list = [
+        {% for encoding in encoding_list %}"{{encoding.font_name}}"{% if not loop.last %},{% endif %}{% endfor %}
+    ];
+    const encoding_display_names = [
+        {% for encoding in encoding_list %}"{{encoding.display_name}}"{% if not loop.last %},{% endif %}{% endfor %}
+    ];
+    const unicode_font_list = [
+        {% for font in unicode_list %}"{{font.family}}",{% endfor %}
+    ];
+
+    // Data describing columns and contents.
+    {% if encoding_tables %}
+    const encoding_tables = {
+        {% for item, columns in encoding_tables.items %}"{{item}}":
+        [{% for dict in columns %}
+         { {% for k, v in dict.items %}"{{ k }}": "{{ v }}"{% if not loop.last %},{% endif %}
+           {% endfor %}}{% if not loop.last %},{% endif %}
+         {% endfor %}
+        ]{% if not forloop.last %},{% endif %}
+        {% endfor %}{% if not loop.last %},{% endif %}
+    };{% endif %}
+
+    function buildEncodingTable(codetable) {
+    }
+
+    function buildEncodingTableFromData(table, encoding_table_data) {
+        // Remove existing rows.
+        if (table.rows) {
+            let rowCount = table.rows.length;
+            for (let x = rowCount-1; x>0; x--) {
+                table.deleteRow(x);
+            }
+            table.deleteTHead();
+        }
+
+        const header = table.createTHead();
+        const row = header.insertRow(0);
+        const column_data = encoding_table_data;
+        let outIndex = 0;
+        for (let column in column_data) {
+            row.insertCell(outIndex).innerHTML = column_data[column]['title'];
+            outIndex++;
+        }
+        // Find the source for each column and add the values into rows.
+
+    }
+
+    // Rebuild table and display.
+    function onEncodingSelected(selector, output_id) {
+        const table = document.getElementById(output_id)
+        buildEncodingTableFromData(table, encoding_tables[selector.value]);
+    }
+
+    function buildEncodingTable(table) {
+        const fontsize="14px";
+        let code;
+        // Update headers.
+        let header = table.createTHead();
+        let row = header.insertRow(0);
+        let outIndex = 0;
+        let cell1 = row.insertCell(outIndex);
+        cell1.innerHTML = "Hex Code";
+        outIndex += 1;
+        let cell2 = row.insertCell(outIndex)
+        cell2.innerHTML = "Unicode";
+        cell2.style.borderRight = "thick solid";
+        outIndex += 1;
+
+        for (let i = 0 ; i < encoding_font_list.length; i ++) {
+            row = table.rows[0];
+            row.insertCell(outIndex).innerHTML = encoding_display_names[i];
+            outIndex += 1;
+            cell2 = row.insertCell(outIndex)
+            cell2.innerHTML = "to Unicode";
+            cell2.style.borderRight = "thick solid";
+            outIndex += 1;
+        }
+        const code_list = [];
+        if (private_use_map_combined === undefined) {
+            return;
+        }
+
+        for (let key of private_use_map_combined.keys()) {
+            code_list.push(key);
+        }
+        code_list.sort();
+
+        // Temporary
+        //let maxTextSize = 0;
+        //let maxText = '';
+
+        let rowNum = 1;  // Skip the headers
+        for (let code of code_list) {
+            row = table.insertRow(rowNum);
+
+            const items = private_use_map_combined.get(code);
+
+            cell1 = row.insertCell(0);
+            cell2 = row.insertCell(1);
+            cell2.style.borderRight = "thick solid";
+            cell1.innerHTML = "0x" + code.charCodeAt(0).toString(16);
+            const code_char = utf16common(code, "", " ", null, []);
+            cell2.title = "U+" + code_char;
+            // Special case for PUA
+            if (code >= '\ue000' && code <= '\uf8ff') {
+                cell2.innerHTML = "PUA " + code_char;
+            } else {
+                cell2.innerHTML = code;
+            }
+
+            // Add coded output.
+            let outIndex = 2;
+            let encodingIndex;
+            let fontName;
+            for (let i = 0; i<encoding_font_list.length; i ++) {
+                const fontName = encoding_font_list[i];
+                if (langConverter.encoding_data) {
+                    encodingIndex = langConverter.encoding_data[fontName].index;
+                } else if (typeof map_font_to_encoding == 'object') {
+                    encodingIndex =  encoding_data[fontName];
+                } else {
+                    encodingIndex = i;
+                }
+
+                // The encoded value.
+                const cell = row.insertCell(outIndex);
+                cell.innerHTML = code; // the encoded value
+                cell.title = utf16common(code, "U+", " ", null, []);
+                cell.style.fontFamily = fontName;
+                cell.style.fontSize = "36px";
+                outIndex += 1;
+
+                // Unicode conversion.
+                const cellUni = row.insertCell(outIndex);
+                cellUni.style.borderRight = "thick solid";
+                if (encodingIndex < items.length && items[encodingIndex]) {
+                    let output = items[encodingIndex];
+                    {% if variation_sequence %}
+                    output = add_variation_modifiers(output);
+                    {% endif %}
+
+                    cellUni.innerHTML = output;
+                    cellUni.style.fontFamily = unicode_font_list[0];
+                    cellUni.style.fontSize = "30px";
+                    // Add the Unicode hex for hover info.
+                    // TODO: show as full Unicode numeric values
+                    cellUni.title = utf16common(output, "U+", " ", null, []);
+                }
+                outIndex += 1;
+
+            }
+            rowNum += 1;
+        }
+    }
+
+    // TODO: Set these up with the converter.
+
+    {% if converter_list %}
+    const converter_list = [{% for converter in converter_list %}
+                            { {% for k, v in converter.items %}"{{k}}": "{{v}}",{%endfor%}{% if not loop.last %},{% endif %}
+                            }{% endfor %}
+                           ];
+    {% endif %}
+
+    {% if conversion_data %}
+    //
+    const convert_data_list = [ {% for entry in conversion_data %}
+                                { {% for k, v in entry.items %}"{{k}}": "{{v}}"{%endfor%}{% if not loop.last %},{% endif %}
+                                }{% endfor %}{% if not loop.last %},{% endif %}
+                              ];
+    {% endif %}
+    
+    function setupConverterSelector(selector_id) {
+    }
+
+    function changeConverter(selector) {
+    }
+
+    // Changes the Unicode font applied to each converted column in table.
+    function setUnicodeFontColumns(unicodeFont, tableId) {
+        const table = document.getElementById(tableId);
+        const numberColumns = table.rows[0].cells.length;
+        const numberRows = table.rows.length;
+
+        // Unicode columns are 3, 5, 7, ...
+        for (let col = 3; col < numberColumns; col += 2) {
+            for (let row = 1; row < numberRows; row += 1) {
+                const cell = table.rows[row].cells[col];
+                if (cell) {
+                    cell.style.fontFamily = unicodeFont;
+                }
+            }
+        }
+}
+
+  </script>
+</head>
+
+
+<body onload="onPageLoaded();">
+  <h1>{{conversion_language}} encoding converters to Unicode</h1>
+  <p>This table gives the code points and characters shown in
+    font encodings for {{conversion_language}}. Conversions to Unicode appear for each entry.
+  <p>Hint: hover over the Unicode conversions for the hex code points (UTF-16).
+
+    <p>
+{% include "fontSelector.html" %}
+
+{% if variation_sequence %}
+<input type="checkbox" name="vsToggle" id="toggleVS" checked
+       onchange="toggleConvertedVS('Unicode_font_output_text', toggleVS);">Variation sequences activated<br />
+{% endif %}
+
+  {% if encoding_tables %}
+    DisplayTable: <select id='selectTable' onchange="onEncodingSelected(this, 'encoding_table_area')">
+      {% for table, value in encoding_tables.items %}
+      <option value="{{table}}" select="">{{table}}</option>
+      {% endfor %}
+    </select>
+
+    {% if converter_list%}
+    DisplayTable: <select id='converter_select' onchange="changeConverter(this)">
+
+    </select>
+    {% endif %}
+    <br/>
+
+    <!-- TEMPORARY -->
+  <h2>Encoding table</h2>
+  <table id='encoding_table_area' border="3">
+  <br/><br/>
+  {% endif %}
+  <h2>Old code table</h2>
+  <table id='column_table' border="1">
+
+  </table>
+
+
+
+  </table>
+</body>
+</html>

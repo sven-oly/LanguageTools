@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{{language}} word search generator</title>
+
+    <link rel="stylesheet" href="/static/css/blueprint/screen.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="/static/css/blueprint/print.css" type="text/css" media="print" />
+
+    <!--[if lt IE 8]>
+        <link rel="stylesheet" href="/static/css/blueprint/ie.css" type="text/css" media="screen, projection">
+        <![endif]-->
+         
+    <link rel="stylesheet" type="text/css" href="/static/css/fonts.css">
+    
+    <script src="/static/js/utils.js"></script>
+    <script src="/static/js/vk-debug.js"></script>
+    
+    <!-- may be used for splitting words into grapheme clusters -->
+    <script src="/static/js/graphemesplitter.js"></script>
+    
+    
+    <script src="/static/js/wordsearch/wordsearch.js"></script>
+    
+    <style>
+      @media print {
+          .noprint {display:none;}
+      }
+      @media screen {
+      }
+    </style>
+
+    <style>
+      {% for font in unicode_font_list %}
+      @font-face{
+          font-family:"{{font.family}}";
+          src:url('/static{{font.source}}'){% if '.ttf' in font.source %}format('truetype'){%endif%}{% if '.TTF' in font.source %}format('truetype'){%endif%}{% if '.otf' in font.source %}format('opentype'){%endif%}{%if '.woff' in font.source %}format('woff'){%endif%};
+          font-weight:normal;
+          font-style:normal;
+          font-size: 32px;
+      }
+      {% endfor %}
+
+      .default-font {
+          font-family: "Arial";
+          font-size:18px;
+      }
+    </style>
+    
+    <style>
+      p, table {
+          border: 2px solid #cccccc;
+          padding: 5px;
+          font-size: 24px;
+          font-variant-ligatures: normal;
+      }
+      .default {
+          font-family: "Courier New";
+      }
+      td, th {
+          border: dashed 1px #dddddd;
+          text-align: center;
+      }
+      textarea {
+          font-size: 24px;
+          direction: {{direction}};
+      }
+
+      li {
+          font-size: 24px;
+          font-family:Arial;
+      }
+      input {
+          font-size: 14px;
+      }
+      button {
+          font-size: 20px;
+      }
+    </style>
+
+    <script>
+      // For loading keyboard.
+      var k = { loadme: Object};
+      k.loadme.prototype = function(a) {
+          return a;
+      }
+      var e = {keyboard: k};
+      var google = {elements: e};  var diff_list = [];  // needed for utils.js
+
+      // Variables of data in setup.
+      const wordListInfo = new wordListData("{{language}}",
+                                            "{{LanguageTag}}");
+      const gridTestSize = {{testGridSize}};
+
+      wordListInfo.fillList = '{{letterFillList}}';
+      wordListInfo.diacritics = '{{unicodeCombiningChars}}';
+      const language = '{{language}}';
+
+      function sendRegionWords(wordSrc, resultArea, answerArea, useDfs) {
+          // Check if a random seed should be used.
+          wordListInfo.seed = null;
+          const useSeed = document.getElementById('toggleSeed').checked;
+          if (useSeed) {
+              const seedString = document.getElementById('seedValue').value;
+              if (seedValue && seedString.length > 0) {
+                  const seedInt = parseInt(seedString);
+                  if (seedInt !== NaN) {
+                      wordListInfo.seed = seedInt;
+                  }
+              }
+          }
+
+          const inputArea = document.getElementById(wordSrc);
+          const wordData = inputArea.value;
+          return wordListInfo.sendWords(
+              wordData, resultArea, answerArea, useDfs);
+      }
+
+      // Grapheme splitter
+      const gsplitter = new GraphemeSplitter();
+
+      function onAnswerClickEvent(e) {
+          var x = e;
+          var text = e.target.innerHTML;
+          var positions = wordListInfo.all_answers[text][0];
+
+          highlightAnswer(e.target.innerHTML, positions);
+      }
+
+      function clearTableRows(tableId) {
+          var table = document.getElementById(tableId);
+          var rows = table.getElementsByTagName("tr")
+
+          // Clear all rows first.
+          while (rows.length > 0) {
+              table.deleteRow(0);
+          }
+      }
+
+      function clearChildNodes(regionId) {
+          // Prepare answers region
+          var answerArea = document.getElementById(regionId);
+          // Remove old entries
+          while (answerArea.children.length > 0) {
+              answerArea.removeChild(answerArea.childNodes[0]);
+          }
+      }
+
+      function clearArea(id) {
+          var obj = document.getElementById(id);
+          if (obj) {
+              obj.innerHTML = obj.value = '';
+          }
+      }
+
+      function toggle(id, toggle) {
+
+          var obj = document.getElementById(id);
+          var checkBox = document.getElementById(toggle);
+          var showIt = checkBox.checked;
+          if(showIt)
+              obj.style.display = 'block';
+          else
+              obj.style.display = 'none';
+      }
+
+      // --------------------------------------------------------------
+      // Handle Keyboard
+      const utils = new Utils();  // Object for utility functions
+
+      var controller, visible = true;
+      const kb_info = {
+          {% for kb in kb_list %}{{kb.shortName}}: ["{{kb.longName}}",
+                                                    "{{kb.instructions}}",
+                                                    "{{kb.fontFamily}}"],
+          {%endfor%}
+      };
+      // -------------------------
+      function initKeyboard(textAreaID) {
+          var input = document.getElementById('wordlist');
+          controller = new i18n.input.keyboard.Keyboard();
+
+          var x = i18n.input.keyboard.Controller;
+
+          utils.onSizeSelected(document.getElementById("sizeSelector").value, 'wordlist');
+          {% for kb in kb_list %}
+          controller.loadLayout('{{kb.shortName}}');
+          {% endfor %}
+          controller.reposition(input, 3, 4, [5, 0, 0, 0]);
+          controller.activateLayout('{{kb_list.0.shortName}}');
+          controller.register(input);
+          controller.addEventListener(
+              'kc',
+              function() { visible = false; });
+
+          let kb_obj = document.getElementById('kbd');
+
+          // Set font based on keyboard?
+          // Get the font associated with the keyboard, if available.
+          //
+          controller.addEventListener(
+              'lat',
+              function () {
+                  const selector = document.getElementById("selectKeyboard");
+                  // TODO: Get the current selection?
+                  const kb_data = kb_info[selector.value];
+                  let font_family = font_families[0];  // Default
+                  if (kb_data[2]) {
+                      font_family = kb_data[2];
+                  }
+                  utils.setFontFamily(font_family, 'wordlist');
+              }
+          );
+
+          input.focus();
+
+          var selector = document.getElementById("selectKeyboard");
+          utils.onLayoutSelected(selector.value, 'wordlist', 'kb_instructions');
+
+          utils.setFontFamily(document.getElementById("selectFont").value, 'wordlist');
+      }
+
+      function setWordSearchSize(size) {
+          const t = document.getElementById('gridTable');
+          const nrows = t.rows.length;
+          for (let i = 0; i < nrows; i++) {
+              const r = t.rows[i];
+              const ncols = r.cells.length;
+              for (let j = 0; j < ncols; j ++) {
+                  let cell = r.cells[j];
+                  cell.style.fontSize = size;
+              }
+          }
+      }
+
+      function setWordsearchFonts(selector) {
+          const fontFamily = selector.value;
+          utils.setFontFamily(fontFamily, 'wordlist');
+          utils.setFontFamily(fontFamily, 'wordsToFind');
+          utils.setFontFamily(fontFamily, 'gridTable');
+          utils.setFontFamily(fontFamily, 'answerList');
+
+          const t = document.getElementById('gridTable');
+          const nrows = t.rows.length;
+          for (let i = 0; i < nrows; i++) {
+              const r = t.rows[i];
+              const ncols = r.cells.length;
+              for (let j = 0; j < ncols; j ++) {
+                  let cell = r.cells[j];
+                  cell.style.fontFamily = fontFamily;
+              }
+          }
+      }
+
+      function onLayoutSelected(selector, this_controller, outputId) {
+          var layoutCode = selector.value;
+          if (this_controller) {
+              this_controller.activateLayout(layoutCode);
+          } else {  // The global.
+              controller.activateLayout(layoutCode);
+          }
+          document.getElementById(outputId).focus();
+      }
+
+      function toggleKeyboard() {
+          if (controller) {
+              controller.setVisible(visible = !visible);
+          }
+      }
+
+      function printPage() {
+          // Don't print keyboard
+          var wasVisible = visible;
+          if (controller) {
+              controller.setVisible(false);
+          }
+          window.print();
+          if (controller) {
+              controller.setVisible(wasVisible);
+          }
+      }
+
+      function onPageLoaded() {
+          initKeyboard("wordlist");
+
+          var doc = document;
+
+
+          if (controller) {
+              controller.className += " noprint";
+          }
+
+          const fontSelector = document.getElementById('selectFont');
+          setWordsearchFonts(fontSelector);
+      }
+      const font_families = [{% for font in unicode_font_list %}"{{font.family}}", {% endfor %}];
+
+    </script>
+  </head>
+
+
+  <body onload="onPageLoaded();">
+    <div class="container">
+
+      <div class="span-16">
+
+        <div class="noprint" id="uiOnly">
+<div>
+  <h3>{{language}} Words:</h3>
+  <textarea id="wordlist">{{testData}}</textarea>
+</div>
+<input type="button" value="Clear words and solution"
+       onclick="clearArea('wordlist');clearArea('wordsToFind');clearChildNodes('answerList');clearTableRows('gridTable');">
+<input type="button" value="Submit words from box"
+       onclick="sendRegionWords('wordlist', 'Grid', 'Answers', false);">
+<br />
+<div style="display: none;">
+  Grid size:
+  <input id='grid_size' type=text value='10' size='4'/>
+  Max tries:
+  <input id='max_tries' type=text value='4' size='4'/>
+  Num solutions:
+  <input id='num_solutions' type=text value='1' size='4'/>
+  <br />
+</div>
+
+</div>
+
+<div id="printGamearea">
+  <div id="divTable">
+    <table id="gridTable">
+    </table>
+  </div>
+  <div>
+    <h2>Words to find:</h2>
+    <p id="wordsToFind" dir='{{direction}}'></p>
+  </div>
+</div>
+
+<p style="page-break-before: always; border:none;"> </p>
+<input type="checkbox" id="toggleAnswers"
+       onclick="toggle('answers', 'toggleAnswers');"/>Show answers?
+<div id="answers" style="display: none;">
+
+  <div id="answerBlock">
+    <ul id="answerList">
+    </ul>
+  </div>
+  <canvas id="myCanvas" width="800" height="800"></canvas>
+</div>
+
+</div>
+<div class="span-4 last">
+  <!--    {% if user_nickname %}-->
+  <!--      <h4>Welcome {{user_nickname}}</h4>-->
+  <!--    {% if user_logout %}-->
+  <!--    <a href={{user_logout}}>Logout</a>-->
+  <!--    {% endif %}-->
+  <!--    {% else %}-->
+  <!--    <a href='{{user_login_url}}'>Log in</a>-->
+  <!--    {% endif %}-->
+  <!--    <br />-->
+
+            Select font: <select onchange="setWordsearchFonts(this);" id="selectFont">
+            {% for font in unicode_font_list %}
+            <option value="{{font.family}}">{{font.longName}}</option>
+            {% endfor %}
+          </select>
+
+          Keyboard: <select onchange="onLayoutSelected(this, null, none');" id="selectKeyboard">
+            {% for kb in kb_list %}{{kb.shortName}}: ["{{kb.longName}}",
+            <option value="{{kb.shortName}}">{{kb.shortName}} Unicode</option>
+            {%endfor%}
+            };
+          </select>
+</select>
+<br/>
+<label for="sizeSelector">Size: </label>
+<select onchange="setWordSearchSize(this.value);" id="sizeSelector">
+  <option value="10px">10</option>
+  <option value="14px">14</option>
+  <option value="18px">18</option>
+  <option value="24px" selected>24</option>
+  <option value="32px">32</option>
+  <option value="48px">48</option>
+  <option value="48px">60</option>
+  <option value="72px">72</option>
+  <option value="96px">96</option>
+  <option value="120px">120</option>
+  <option value="240px">240</option>
+</select>
+
+<input type='button' value='Toggle keyboard'
+         onClick="toggleKeyboard(); return false;" />
+  <input type='button' value='Print page'
+         onClick="printPage(); return false;" />
+  <!-- Random seed input -->
+  <br /><input type="checkbox" id="toggleSeed"
+         onclick="toggle('answers', 'toggleSeed');"/>Use random seed?</input>
+  <label for="seedForRandom">Seed: </label>
+  <input type="text" id="seedValue" name="seedForRandom"><br/>
+  
+</div>
+</div>
+
+</body>

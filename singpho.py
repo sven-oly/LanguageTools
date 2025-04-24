@@ -26,7 +26,7 @@ LanguageCode = 'sgp'
 ScriptCode = 'Beng'
 links = [
     {'linkText': 'Keyboard',
-     'ref': '/' + LanguageCode + '/'
+     'ref': '/langbase/' + LanguageCode + '/'
     },
     {'linkText': 'Converter',
      'ref': '/convert/' + LanguageCode + '?tools=1'
@@ -83,6 +83,26 @@ class langInfo:
            'longName': 'Noto Sans Bengali',
            'source':
            '/fonts/Assamese/NotoSansBengali-Regular.ttf',
+           },
+          {'family': 'JonakiThin',
+           'longName': 'Jonak Thin',
+           'source':
+           '/fonts/Assamese/Jonak_Thin.ttf',
+           },
+          {'family': 'Jyotirupa',
+           'longName': 'Jyotirupa',
+           'source':
+           '/fonts/Assamese/Jyotirupa.ttf',
+           },
+            {'family': 'Rangmon',
+           'longName': 'Rangmon',
+           'source':
+           '/fonts/Assamese/Rangmon.ttf',
+           },
+          {'family': 'Uxa_Final',
+           'longName': 'Uxa Final',
+           'source':
+           '/fonts/Assamese/Uxa_Final.ttf',
            },
           {'family': 'NotoSans',
            'longName': 'Noto Sans',

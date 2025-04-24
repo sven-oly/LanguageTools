@@ -261,38 +261,20 @@
                return is_on;
            }
 
-           function onPageLoaded() {
-               if (isTransliterator) {
-                   makeConvertOptionsUi(convertOptions);  // Using convertObject
+           function regression_test(good_results) {
+               const keys = Object.keys(good_results);
+
+               for (key of keys) {
+                   // Get the data and convert, checking if it's still the same as good results.
+                   
                }
-               {% if translit_kb_list %}
-               initKeyboard('old_font_input_text', 'selectKeyboardTop', translit_kb_list);
-               {% else %}
-               initKeyboard('Unicode_font_output_text', 'selectKeyboard2', kb_list);
-               {%endif%}
+                   
+           }
 
-               // Set the fonts 
-               // TODO: Finish
-               let target = 'Unicode_font_output_text';
-               const output_text = document.getElementById(target);
-               let selected_font_option = document.getElementById('selectFont');
-               output_text.style.fontFamily  = selected_font_option.value;
-
-               let fontsize_selector = document.getElementById('sizeSelector');
-               utils.onSizeSelected(fontsize_selector.value, 'Unicode_font_output_text');
-
-               fontsize_selector = document.getElementById('encoded_sizeSelector');
-               utils.onSizeSelected(fontsize_selector.value, 'old_font_input_text');
-
+           function skip_to_next_unverified() {
+               // From the current position, skip over all verified item to show
+               // the next one that's not verified.
                
-               if (preconverted_data) {
-                   loadPreconvertedData(0);
-               }
-
-               window.onbeforeunload = function () {
-                   // todo: save the status
-                   saveStatusToServer(0);  // Indicate window closing
-               }
            }
 
            function saveStatusToServer(flag) {
@@ -434,6 +416,18 @@
          </script>
          <script src="/static/js/langinfo/langdata.js"></script>
          <script>
+           {% if preconverted_data %}
+           // Initialize precoverted data and good conversions, if provided.
+           const preconverted_data = {{preconverted_data | tojson}};
+           {% else %}
+           const preconverted_data = [];
+           {% endif %}
+           {% if good_results %}
+           const good_results = {{good_results | tojson}};
+           {% else %}
+           const good_results = {};
+           {% endif %}
+
            const langInformation = new langData("{{language}}", "{{langTag}}");
 
            // Handle new conversion object.
@@ -508,19 +502,11 @@
                const element = document.getElementById(checkbox_id);
                langConverter.word_mode = element.checked;
            }
-         </script>
-         <script>
-           // For  handlin
+
+           // For  handling preconverted information.
            let current_sample = 0;
            const status = {};
            const converted = {};
-
-           {% if preconverted_data %}
-           // FIX
-           const preconverted_data = {{preconverted_data | tojson}};
-           {% else %}
-           const preconverted_data = [];
-           {% endif %}
 
            // From encoding area
            function loadPreconvertedData(direction) {
@@ -558,6 +544,7 @@
            function changeSearchHex() {
                // Looks through the preconverted text for string with the character
                // specified by the hex value.
+               // TODO: look for multiple codes in a given string.
                let input = document.getElementById("sample_search_hex").value;
                let charCode = parseInt(input, 16);
                let searchChar = String.fromCharCode([charCode]);
@@ -578,7 +565,9 @@
                    }
                }
                // What if not found?
-               
+               alert('No more instances');
+               current_sample = 0;
+               loadPreconvertedData(0);
            }
 
            function setStatus(val) {
@@ -596,6 +585,45 @@
                // Advance to next
                loadPreconvertedData(1);
            }
+
+
+           function onPageLoaded() {
+               if (isTransliterator) {
+                   makeConvertOptionsUi(convertOptions);  // Using convertObject
+               }
+               {% if translit_kb_list %}
+               initKeyboard('old_font_input_text', 'selectKeyboardTop', translit_kb_list);
+               {% else %}
+               initKeyboard('Unicode_font_output_text', 'selectKeyboard2', kb_list);
+               {%endif%}
+
+               // Set the fonts 
+               // TODO: Finish
+               let target = 'Unicode_font_output_text';
+               const output_text = document.getElementById(target);
+               let selected_font_option = document.getElementById('selectFont');
+               output_text.style.fontFamily  = selected_font_option.value;
+
+               let fontsize_selector = document.getElementById('sizeSelector');
+               utils.onSizeSelected(fontsize_selector.value, 'Unicode_font_output_text');
+
+               fontsize_selector = document.getElementById('encoded_sizeSelector');
+               utils.onSizeSelected(fontsize_selector.value, 'old_font_input_text');
+
+               
+               if (preconverted_data) {
+                   loadPreconvertedData(0);
+               }
+
+               window.onbeforeunload = function () {
+                   // todo: save the status
+                   saveStatusToServer(0);  // Indicate window closing
+               }
+
+               // Check previously OK strings
+               regression_test(good_results);
+           }
+           
          </script>
 
   </head>
