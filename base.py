@@ -49,6 +49,42 @@ except NameError:
 
 # Explicitly NOT PART OF THE CLASS
 
+class baseLangInfo:
+    def __init__(self):
+        self.LanguageCode = ''
+        self.Language = ''
+        self.Language_native = ''
+        self.insert_text = ''
+        self.diacritic_list = []
+        self.base_consonant = ' '
+        self.baseHexUTF16 = ''
+        self.lang_list = []
+        self.kb_list = []
+        self.text_functions = ''
+        self.links = []
+        self.text_file_list = []
+        self.unicode_font_list = []
+        self.unicode_database = ''
+        self.test_chars = ''
+        self.baseChars = []
+        self.default_base_consonant = ''
+        self.encodedRanges = []
+        self.text_file_list = []        
+        self.fillChars = []
+        self.unicodeCombiningChars = self.diacritic_list
+        
+        self.convert_word_tool = None
+        self.conversionLanguage = ''  # For printing in converter page
+        self.encoding_chars = ''
+        self.encoding_font_list = None
+
+        self.preconverted_data = None
+        self.good_results = None
+        self.converters = None
+        self.encodingList = None
+        self.text_direction = 'ltr'
+
+
 
 # Shows keyboards for Language
 class LanguagesHomeHandler():

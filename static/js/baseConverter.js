@@ -72,6 +72,36 @@ langConverterClass.prototype.addSingleTransform = function (inChars, outChars, i
   this.one2oneMap[inChars][index] = outChars;
 }
 
+langConverterClass.prototype.convertText = function (intext, encodingIndex) {
+    // First, replace all single characters with their Unicode equivalents.
+
+    let outtext = "";
+    let out;
+    for (let index = 0; index < intext.length; index ++) {
+        const c = intext[index];
+        out = c;
+        if (this.one2oneMap.has(c)) {
+            // Null replacements are possible
+            const charList = this.one2oneMap.get(c);
+            out = charList[encodingIndex];
+        }
+        outtext += out;
+    }
+
+    // Insert more complex replacements here.
+    let newText = outtext;
+    if (this.transformRules) {
+        for (let rule in this.transformRules) {
+            const transform = this.transformRules[rule];
+            newText = newText.replace(transform[0], transform[1]);
+        }
+    }
+
+    // Any final processing
+    newText = this.postProcessing(newText);
+    return newText;
+}
+
 langConverterClass.prototype.convertEncodingToUnicode = function (inbox, outbox, encodingIndex) {
   const inarea = document.getElementById(inbox);
   const outarea = document.getElementById(outbox);

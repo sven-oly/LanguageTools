@@ -360,30 +360,30 @@ def convertHandler(langcode):
 
     return render_template(
         'translit_general.html',
-        converters = converters,
-        isTransLit = False,
-        font = font,
-        language = langInfo.Language,
-        encodingLanguage = encodingLanguage,
-        langTag = langInfo.LanguageCode,
-        encodingList = encodingList,
-        lang_list = langInfo.lang_list,
-        kb_list = langInfo.kb_list,
+        combiningChars = unicodeCombiningChars,
+        convert_word_tool=convert_word_tool,
         direction = text_direction,
-        unicodeFonts = langInfo.unicode_font_list,
+        encodingLanguage = encodingLanguage,
+        encodingList = encodingList,
+        font = font,
+        good_results=good_results,
+        isTransLit = False,
+        kb_list = langInfo.kb_list,
+        langTag = langInfo.LanguageCode,
+        lang_list = langInfo.lang_list,
+        language = langInfo.Language,
         links = langInfo.links,
         oldChars = oldChars,
         oldInput = oldInput,
         outputFont = output_font,
+        preconverted_data=preconverted_data,
+        showTools = showTools,
         text = text,
         textStrings = testStringList,
-        showTools = showTools,
         unicodeChars = unicodeChars,
-        combiningChars = unicodeCombiningChars,
+        unicodeFonts = langInfo.unicode_font_list,
         variation_sequence = variation_sequence,
-        convert_word_tool=convert_word_tool,
-        preconverted_data=preconverted_data,
-        good_results=good_results,
+        converters = converters,
     )
 
 @app.route('/kbtransforms/<langcode>')
@@ -735,6 +735,7 @@ def check_conversion(langcode):
 
       return render_template(
         'translit_assamese.html',
+        encodingLanguage = langInfo.encodingLanguage,
         converters = converters,
         isTransLit = False,
         font = font,
@@ -758,6 +759,7 @@ def check_conversion(langcode):
           en_as_raw = raw_data
     )
 
+  
 @app.route('/save_converted_values/', methods=['GET', 'POST'])
 def saveConvertedValues():
 
@@ -778,6 +780,34 @@ def saveConvertedValues():
     print(converted_values)
     # Send back the count of those found
     return '%s values received at server' % len(converted_values)
+
+
+@app.route('/convertedlist/<langcode>')
+def convertedlist(langcode):
+    langInfo = getLangInfo(langcode)
+
+    print(langInfo.LanguageCode)
+    print(langInfo.encoding_font_list)
+    print(langInfo.unicode_font_list)
+
+    encodingList = langInfo.encoding_font_list
+    
+
+    return render_template('conversionList.html',
+                           converters=langInfo.converters,
+                           convert_word_tool=langInfo.convert_word_tool,
+                           direction=langInfo.text_direction,
+                           encodingLanguage=langInfo.encodingLanguage,
+                           encoding_list=langInfo.encoding_font_list,
+                           good_results=langInfo.good_results,
+                           kb_list=langInfo.kb_list,
+                           langTag=langInfo.LanguageCode,
+                           lang_list=langInfo.lang_list,
+                           language=langInfo.Language,
+                           links=langInfo.links,
+                           preconverted_data=langInfo.preconverted_data,
+                           unicode_list=langInfo.unicode_font_list,
+                           )
 
 
 @app.route('/wordsearch/<langcode>/')
@@ -820,6 +850,7 @@ def wordsearch(langcode):
                            direction= direction,
     )
 
+
 @app.route('/games/generatewordsearch/')
 def generatewordsearch():
     if request.method == 'POST':
@@ -835,7 +866,7 @@ def generatewordsearch():
     # Suggested size for the grid
     raw_size = request.args.get('size', '0')
     logging.info('games WordSearchHandler raw_size = >%s<' % raw_size)
-    if not raw_size or raw_size is '' or raw_size is ' ':
+    if not raw_size or raw_size == '' or raw_size == ' ':
       grid_width = 0
     else:
       grid_width = int(raw_size)

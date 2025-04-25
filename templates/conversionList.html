@@ -61,15 +61,20 @@
   <script src="/static/js/baseConverter.js"></script>
   <script src="{{converterJS}}"></script>
   <script src="/static/js/utils.js"></script>
+  {% if converterName %}
+  <script src="/static/js/{{converterName}}.js"></script>
+  {%else%}}
+  <script src="/static/js/{{langTag}}Converter.js"></script>
+  {%endif%}
 
   <script>
-  // Get data from converter.
-  let private_use_map_combined = undefined;
-  let encoding_data;
-  if (langConverter) {
-    private_use_map_combined = langConverter.one2oneMap;
-    encoding_data = langConverter.encoding_data;
-  }
+    // Get data from converter.
+    let private_use_map_combined = undefined;
+    let encoding_data;
+    if (langConverter) {
+        private_use_map_combined = langConverter.one2oneMap;
+        encoding_data = langConverter.encoding_data;
+    }
 
   const k = { loadme: Object};
   k.loadme.prototype = function(a) {
@@ -169,146 +174,103 @@
         let row = header.insertRow(0);
         let outIndex = 0;
         let cell1 = row.insertCell(outIndex);
-        cell1.innerHTML = "Hex Code";
+        cell1.innerHTML = "Index";
         outIndex += 1;
         let cell2 = row.insertCell(outIndex)
-        cell2.innerHTML = "Unicode";
-        cell2.style.borderRight = "thick solid";
-        outIndex += 1;
+        cell2.innerHTML = "Definition";
 
-        for (let i = 0 ; i < encoding_font_list.length; i ++) {
-            row = table.rows[0];
-            row.insertCell(outIndex).innerHTML = encoding_display_names[i];
-            outIndex += 1;
-            cell2 = row.insertCell(outIndex)
-            cell2.innerHTML = "to Unicode";
-            cell2.style.borderRight = "thick solid";
-            outIndex += 1;
-        }
+        outIndex += 1;
+        let cell3 = row.insertCell(outIndex);
+        // Set name
+        cell3.innerHTML = "Encoded with " + encoding_font_list[0];
+
+        outIndex += 1;
+        let cell4 = row.insertCell(outIndex);
+        cell4.innerHTML = "Converted";
+        
+        outIndex += 1;
+        let cell5 = row.insertCell(outIndex);
+        cell5.innerHTML = "Verified";
+        
         const code_list = [];
-        if (private_use_map_combined === undefined) {
+        if (preconverted_data === undefined) {
             return;
         }
 
-        for (let key of private_use_map_combined.keys()) {
-            code_list.push(key);
+        for (let item  of preconverted_data) {
+            let key = item[0];
+            code_list.push(parseInt(key));
         }
-        code_list.sort();
 
-        // Temporary
-        //let maxTextSize = 0;
-        //let maxText = '';
+        // Assuming a single encoding for now.
+        const encodingIndex = 0;
 
         let rowNum = 1;  // Skip the headers
         for (let code of code_list) {
             row = table.insertRow(rowNum);
 
-            const items = private_use_map_combined.get(code);
+            const item = preconverted_data[code]
 
-            cell1 = row.insertCell(0);
-            cell2 = row.insertCell(1);
-            cell2.style.borderRight = "thick solid";
-            cell1.innerHTML = "0x" + code.charCodeAt(0).toString(16);
+            let cell1 = row.insertCell(0);
+            cell1.innerHTML = code;
+
+            let cell1b = row.insertCell(1);
+            cell1b.innerHTML = item[1];
+
+            // TODO: set up font for this encoded
+            let cell2 = row.insertCell(2);
+            let encoded_text = item[2];
+            cell2.innerHTML = encoded_text;
+            cell2.style.fontFamily = encoding_font_list[0];
+            cell2.style.fontSize = '36px';
+
             const code_char = utf16common(code, "", " ", null, []);
             cell2.title = "U+" + code_char;
-            // Special case for PUA
-            if (code >= '\ue000' && code <= '\uf8ff') {
-                cell2.innerHTML = "PUA " + code_char;
-            } else {
-                cell2.innerHTML = code;
-            }
-
-            // Add coded output.
-            let outIndex = 2;
-            let encodingIndex;
-            let fontName;
-            for (let i = 0; i<encoding_font_list.length; i ++) {
-                const fontName = encoding_font_list[i];
-                if (langConverter.encoding_data) {
-                    encodingIndex = langConverter.encoding_data[fontName].index;
-                } else if (typeof map_font_to_encoding == 'object') {
-                    encodingIndex =  encoding_data[fontName];
+            cell3 = row.insertCell(3);
+            cell4 = row.insertCell(4);
+            let text_out = langConverter.convertText(encoded_text, encodingIndex);
+            if (code in good_results) {
+                cell3.innerHTML = good_results[code];
+                if (text_out == good_results[code]) {
+                    cell4.innerHTML = 'OK';
                 } else {
-                    encodingIndex = i;
+                    cell4.innerHTML = 'CHANGED';
+                    cell3.innerHTML = text_out;
                 }
-
-                // The encoded value.
-                const cell = row.insertCell(outIndex);
-                cell.innerHTML = code; // the encoded value
-                cell.title = utf16common(code, "U+", " ", null, []);
-                cell.style.fontFamily = fontName;
-                cell.style.fontSize = "36px";
-                outIndex += 1;
-
-                // Unicode conversion.
-                const cellUni = row.insertCell(outIndex);
-                cellUni.style.borderRight = "thick solid";
-                if (encodingIndex < items.length && items[encodingIndex]) {
-                    let output = items[encodingIndex];
-                    {% if variation_sequence %}
-                    output = add_variation_modifiers(output);
-                    {% endif %}
-
-                    cellUni.innerHTML = output;
-                    cellUni.style.fontFamily = unicode_font_list[0];
-                    cellUni.style.fontSize = "30px";
-                    // Add the Unicode hex for hover info.
-                    // TODO: show as full Unicode numeric values
-                    cellUni.title = utf16common(output, "U+", " ", null, []);
-                }
-                outIndex += 1;
-
+            } else {
+                // Call the converter
+                cell3.innerHTML = text_out;
+                cell4.innerHTML='new';
             }
+            cell3.style.fontFamily = unicode_font_list[0];
+            cell3.style.fontSize = '31px';
+
+            cell4.style.fontSize = '20px';
             rowNum += 1;
         }
     }
 
-    // TODO: Set these up with the converter.
-
-    {% if converter_list %}
-    const converter_list = [{% for converter in converter_list %}
-                            { {% for k, v in converter.items %}"{{k}}": "{{v}}",{%endfor%}{% if not loop.last %},{% endif %}
-                            }{% endfor %}
-                           ];
-    {% endif %}
-
-    {% if conversion_data %}
-    //
-    const convert_data_list = [ {% for entry in conversion_data %}
-                                { {% for k, v in entry.items %}"{{k}}": "{{v}}"{%endfor%}{% if not loop.last %},{% endif %}
-                                }{% endfor %}{% if not loop.last %},{% endif %}
-                              ];
-    {% endif %}
-    
-    function setupConverterSelector(selector_id) {
-    }
-
-    function changeConverter(selector) {
-    }
 
     // Changes the Unicode font applied to each converted column in table.
     function setUnicodeFontColumns(unicodeFont, tableId) {
         const table = document.getElementById(tableId);
-        const numberColumns = table.rows[0].cells.length;
         const numberRows = table.rows.length;
 
-        // Unicode columns are 3, 5, 7, ...
-        for (let col = 3; col < numberColumns; col += 2) {
-            for (let row = 1; row < numberRows; row += 1) {
-                const cell = table.rows[row].cells[col];
-                if (cell) {
-                    cell.style.fontFamily = unicodeFont;
-                }
+        const col = 3; // Assume only one output column
+        for (let row = 1; row < numberRows; row += 1) {
+            const cell = table.rows[row].cells[col];
+            if (cell) {
+                cell.style.fontFamily = unicodeFont;
             }
         }
-}
+    }
 
   </script>
 </head>
 
 
 <body onload="onPageLoaded();">
-  <h1>{{conversion_language}} encoding converters to Unicode</h1>
+  <h1>{{conversion_language}}List of conversions to Unicode</h1>
   <p>This table gives the code points and characters shown in
     font encodings for {{conversion_language}}. Conversions to Unicode appear for each entry.
   <p>Hint: hover over the Unicode conversions for the hex code points (UTF-16).
@@ -321,6 +283,14 @@
        onchange="toggleConvertedVS('Unicode_font_output_text', toggleVS);">Variation sequences activated<br />
 {% endif %}
 
+    <p>
+      {% if preconverted_data %}
+      We have {{preconverted_data|length}} raw values.
+      {% endif %}
+      {% if good_results %}
+      We have {{good_results|length}} verified values.
+      {% endif %}
+
   {% if encoding_tables %}
     DisplayTable: <select id='selectTable' onchange="onEncodingSelected(this, 'encoding_table_area')">
       {% for table, value in encoding_tables.items %}
@@ -328,11 +298,6 @@
       {% endfor %}
     </select>
 
-    {% if converter_list%}
-    DisplayTable: <select id='converter_select' onchange="changeConverter(this)">
-
-    </select>
-    {% endif %}
     <br/>
 
     <!-- TEMPORARY -->

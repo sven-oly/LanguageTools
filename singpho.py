@@ -34,8 +34,11 @@ links = [
     {'linkText': 'Font conversion summary',
      'ref': '/encodingRules/' + LanguageCode
     },
+    {'linkText': 'All conversions',
+     'ref': '/convertedlist/' + LanguageCode
+     },
     {'linkText': 'Resources',
-     'ref': '/' + LanguageCode + '/downloads/'
+     'ref': '/downloads/' + LanguageCode
     },
     {'linkText': 'Conjuncts',
      'ref': '/conjunct/' + LanguageCode
@@ -57,13 +60,15 @@ links = [
 ]
 
 
-class langInfo:
+class langInfo(base.baseLangInfo):
     def __init__(self):
+        super().__init__()
+
         # Special case 
         self.preconverted_data = preconverted_assamese.sgp_assamese_info
         self.good_results = good_results_sgp.good_results_sgp
 
-        print('SGP preconverted %d items' % (len(self.preconverted_data)))
+        # print('SGP preconverted %d items' % (len(self.preconverted_data)))
 
         self.LanguageCode = LanguageCode
         self.Language = Language
@@ -74,12 +79,12 @@ class langInfo:
 
         self.test_data = u''
         self.unicode_font_list = [
-          {'family': 'NotoSerif',
+          {'family': 'NotoSerifBengali',
            'longName': 'Noto Serif Bengali',
            'source':
            '/fonts/Assamese/NotoSerifBengali-Regular.ttf',
            },
-          {'family': 'NotoSans',
+          {'family': 'NotoSansBengali',
            'longName': 'Noto Sans Bengali',
            'source':
            '/fonts/Assamese/NotoSansBengali-Regular.ttf',
