@@ -11,6 +11,10 @@ langConverter.encoding_data = {
     'Noto Sans' : {index:1, outputEncoding:'Unicode', outputScript:'Bengali'},
 };
 
+langConverter.preTransforms = [
+    [/'\u0067\u00b5\u00ea'/gi, '\u90b0\u09cd\u09ac\u09cd\u09ac'],
+];
+
 langConverter.transformRules = [
     [/(\u09a1\u09bc)/gi, '\u09dc'],
     [/(\u09a2\u09bc)/gi, '\u09dd'],
@@ -19,8 +23,8 @@ langConverter.transformRules = [
 
     [/(\u098b\u09c3)/gi, '\u09e0'],  // Doubled!
 
-    [/(\u0985\u09be)/gi, '\u0986'],
     [/([\u0981])(\u09be)/gi, '$2$1'],
+    [/(\u0985\u09be)/gi, '\u0986'],
 
     // Hack - remove duplicate virama
     [/\u09cd\u09cd/gi, '\u09cd'],
@@ -29,8 +33,8 @@ langConverter.transformRules = [
     [/(\u09cd)([\u09c7\u09c8])/gi, '$2$1'],
 
     // 0xea and reversing - include following diacritic
-    [/([\u0993-\u09b9][\u09be]?)(\u09cd\u09af)?(\u09b0\u09cd)/gi, '$3$1$2'],
-    // ??? [/([\u0993-\u09b9][\u09be]?)(\u09b0\u09cd)/gi, '$2$1'],
+    /// ???    [/([\u0993-\u09b9])([\u09be-\u09cc])?(\u09b0\u09cd)/gi, '$3$1$2'],
+    [/([\u0993-\u09b9][\u09be\09c0-09cc]?)(\u09cd[\u09a3-\u09af])?(\u09b0\u09cd)/gi, '$3$1$2'],
     
     // 0xea
     [/(\u09ae\u09cd)(\u09e9)/gi, '$1\u09ad'], // ??
@@ -51,7 +55,13 @@ langConverter.transformRules = [
 
     [/([\u09bf\u09c7])(\u09cd\u09a4)/gi, '$2$1'],
     // Specific to a3 df
-    [/\u09a4\u09cd\u09a4\u09cd\u09a4/gi, '\u0995\u09cd\u09a4']
+    [/\u09a4\u09cd\u09a4\u09cd\u09a4/gi, '\u0995\u09cd\u09a4'],
+    // For a2 df
+    [/\u09a4\u09cd\u09f0(\u09c7?)\u09cd\u09a4/gi, '\u0995\u09cd\u09f0$1'],
+    // Specific to ec e8
+    [/\u09a8\u09cd\u098f/gi, '\u09ae\u09cd\u09b0'],
+    // fe, e7
+    [/\u09B8\u09CD\u0993/gi, '\u09b8\u09cd\u09a4\u09c1'],
 ];
 
 private_use_map_combined = {
@@ -95,7 +105,7 @@ private_use_map_combined = {
     
     // 0x40
     '@': ['@'],
-    'A': ['অ'],
+    'A': ['\u0985'],
     'B': ['ই'],
     'C': ['ঈ'],
     'D': ['উ'],

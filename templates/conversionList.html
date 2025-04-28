@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8"/>
 
-  <title>{{conversion_language}} list of encoding conversions to Unicode</title>
+  <title>{{conversion_language}} conversions</title>
   <style>
     <!-- Font encodings -->
     @font-face{
@@ -63,7 +63,7 @@
   <script src="/static/js/utils.js"></script>
   {% if converterName %}
   <script src="/static/js/{{converterName}}.js"></script>
-  {%else%}}
+  {%else%}
   <script src="/static/js/{{langTag}}Converter.js"></script>
   {%endif%}
 
@@ -169,29 +169,44 @@
     function buildEncodingTable(table) {
         const fontsize="14px";
         let code;
+
+        // Header row
+        let rowNum = 0;
         // Update headers.
         let header = table.createTHead();
         let row = header.insertRow(0);
         let outIndex = 0;
         let cell1 = row.insertCell(outIndex);
+        cell1.rowSpan = 2;
         cell1.innerHTML = "Index";
         outIndex += 1;
         let cell2 = row.insertCell(outIndex)
         cell2.innerHTML = "Definition";
+        cell2.rowSpan = 2;
 
         outIndex += 1;
         let cell3 = row.insertCell(outIndex);
         // Set name
         cell3.innerHTML = "Encoded with " + encoding_font_list[0];
 
-        outIndex += 1;
-        let cell4 = row.insertCell(outIndex);
-        cell4.innerHTML = "Converted";
-        
+        /*
+         outIndex += 1;
+         let cell4 = row.insertCell(outIndex);
+         cell4.innerHTML = "Converted";
+        */  
         outIndex += 1;
         let cell5 = row.insertCell(outIndex);
         cell5.innerHTML = "Verified";
-        
+        cell5.rowSpan = 2;
+
+        // The next row with only the word "Converted"
+        rowNum+= 1;
+        row = header.insertRow(rowNum);        
+        outIndex = 1;
+        let cellConverted = row.insertCell(0);
+        cellConverted.innerHTML = "Converted";
+        rowNum+= 1;
+
         const code_list = [];
         if (preconverted_data === undefined) {
             return;
@@ -205,7 +220,6 @@
         // Assuming a single encoding for now.
         const encodingIndex = 0;
 
-        let rowNum = 1;  // Skip the headers
         for (let code of code_list) {
             row = table.insertRow(rowNum);
 
@@ -213,11 +227,13 @@
 
             let cell1 = row.insertCell(0);
             cell1.innerHTML = code;
+            cell1.rowSpan = 2;
 
             let cell1b = row.insertCell(1);
             cell1b.innerHTML = item[1];
+            cell1b.rowSpan = 2;
 
-            // TODO: set up font for this encoded
+            // TODO: set up font for this encoded value
             let cell2 = row.insertCell(2);
             let encoded_text = item[2];
             cell2.innerHTML = encoded_text;
@@ -226,9 +242,18 @@
 
             const code_char = utf16common(code, "", " ", null, []);
             cell2.title = "U+" + code_char;
-            cell3 = row.insertCell(3);
-            cell4 = row.insertCell(4);
+
+            let cell4 = row.insertCell(3);
+            cell4.rowSpan = 2;
+
             let text_out = langConverter.convertText(encoded_text, encodingIndex);
+            // The second row for this entry
+            rowNum += 1;
+            row2 = table.insertRow(rowNum);
+            let cell3 = row2.insertCell(0);
+            cell3.style.fontFamily = unicode_font_list[0];
+            cell3.style.fontSize = '31px';
+
             if (code in good_results) {
                 cell3.innerHTML = good_results[code];
                 if (text_out == good_results[code]) {
@@ -240,11 +265,8 @@
             } else {
                 // Call the converter
                 cell3.innerHTML = text_out;
-                cell4.innerHTML='new';
+                cell4.innerHTML = 'new';
             }
-            cell3.style.fontFamily = unicode_font_list[0];
-            cell3.style.fontSize = '31px';
-
             cell4.style.fontSize = '20px';
             rowNum += 1;
         }
@@ -270,11 +292,9 @@
 
 
 <body onload="onPageLoaded();">
-  <h1>{{conversion_language}}List of conversions to Unicode</h1>
+  <h1>{{conversion_language}} conversions to Unicode</h1>
   <p>This table gives the code points and characters shown in
     font encodings for {{conversion_language}}. Conversions to Unicode appear for each entry.
-  <p>Hint: hover over the Unicode conversions for the hex code points (UTF-16).
-
     <p>
 {% include "fontSelector.html" %}
 
@@ -305,7 +325,6 @@
   <table id='encoding_table_area' border="3">
   <br/><br/>
   {% endif %}
-  <h2>Old code table</h2>
   <table id='column_table' border="1">
 
   </table>

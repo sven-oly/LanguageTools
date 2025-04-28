@@ -795,6 +795,7 @@ def convertedlist(langcode):
 
     return render_template('conversionList.html',
                            converters=langInfo.converters,
+                           conversion_language=langInfo.conversionLanguage,
                            convert_word_tool=langInfo.convert_word_tool,
                            direction=langInfo.text_direction,
                            encodingLanguage=langInfo.encodingLanguage,
@@ -886,6 +887,11 @@ def generatewordsearch():
     ws = wordsearch.generateDFSWordSearch(wordList,
                                grid_width, max_tries, max_solution_count)
     # TODO: Finish this
+    return None
+
+
+@app.route('/games/generatewordsearchDFS/')
+def generatewordDFSsearch():
     return None
 
 
