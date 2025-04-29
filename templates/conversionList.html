@@ -305,10 +305,10 @@
 
     <p>
       {% if preconverted_data %}
-      We have {{preconverted_data|length}} raw values.
+      There are {{preconverted_data|length}} raw values.
       {% endif %}
       {% if good_results %}
-      We have {{good_results|length}} verified values.
+      {{good_results|length}} of these conversions have been verified (OK).
       {% endif %}
 
   {% if encoding_tables %}
