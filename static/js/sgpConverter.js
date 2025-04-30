@@ -21,7 +21,7 @@ langConverter.transformRules = [
     [/(\u09af\u09bc)/gi, '\u09df'],
     [/(\u09bc\u09bc)/gi, '\u09bc'],  // Doubled!
 
-    [/(\u098b\u09c3)/gi, '\u09e0'],  // Doubled!
+    [/(\u098b\u09c3)/gi, '\u09e0'],
 
     [/([\u0981])(\u09be)/gi, '$2$1'],
     [/(\u0985\u09be)/gi, '\u0986'],
@@ -29,8 +29,12 @@ langConverter.transformRules = [
     // Hack - remove duplicate virama
     [/\u09cd\u09cd/gi, '\u09cd'],
     
+    
     // ??? Move killer over 9c7 & 9c8
     [/(\u09cd)([\u09c7\u09c8])/gi, '$2$1'],
+
+    // Bare virama before some cases. Insert ZWSP
+    [/\u09cd([\u09ab\u0964])/gi, '\u09cd\ufeff$1'],
 
     // 0xea and reversing - include following diacritic
     /// ???    [/([\u0993-\u09b9])([\u09be-\u09cc])?(\u09b0\u09cd)/gi, '$3$1$2'],
@@ -41,6 +45,9 @@ langConverter.transformRules = [
 
     // vowel sign I moves over consonant
     [/([\u09bf\u09c7\u09c8])([\u0985-\u09b9\u09dc-\u09e1\u09f0\u09f1])/gi, '$2$1'],
+
+    // next, vowel sign I moves over two conjuncts and following
+    [/([\u09bf\u09c7\u09c8])(\u09cd)([\u0993-\u09b9\u09e6-\u09f1])(\u09cd)([\u0993-\u09b9\u09e6-\u09f1])/gi, '$2$3$4$5$1'],
 
     // next, vowel sign I moves over conjunct and following
     [/([\u09bf\u09c7\u09c8])(\u09cd)([\u0993-\u09b9\u09e6-\u09f1])/gi, '$2$3$1'],
@@ -60,8 +67,20 @@ langConverter.transformRules = [
     [/\u09a4\u09cd\u09f0(\u09c7?)\u09cd\u09a4/gi, '\u0995\u09cd\u09f0$1'],
     // Specific to ec e8
     [/\u09a8\u09cd\u098f/gi, '\u09ae\u09cd\u09b0'],
-    // fe, e7
+    // fe, e7 
     [/\u09B8\u09CD\u0993/gi, '\u09b8\u09cd\u09a4\u09c1'],
+    // fe, e8 
+    [/\u09B8\u09CD\u098f/gi, '\u09b8\u09cd\u09a4\u09cd\u09b0'],
+    // ec e7
+    [/\u09a8\u09CD\u0993/gi, '\u09a8\u09cd\u09a4\u09c1'],
+    // ec e8
+    [/\u09ae\u09CD([\u09b0\u09f0])/gi, '\u09a8\u09cd\u09a4\u09cd$1'],
+
+    // A3 D8
+    [/\u09A4\u09CD\u09A4\u09C1/gi, '\u0995\u09CD\u09A4'],
+
+    // Remove virama after U sign
+    [/([\u09c1])\u09cd/gi, '$1'],
 ];
 
 private_use_map_combined = {
@@ -272,8 +291,7 @@ private_use_map_combined = {
     '\u00f7': ['\u09a7'],
     // '\u00f8': ['\u09cd\u09af'],
     '\u00f8': ['\u09cd\u09af'],
-    // '\u00f9': ['\u09b2'],
-    '\u00f9': ['\u09ae\u09cd'],  // OK
+    '\u00f9': ['\u09b2\u09cd'],  // OK
     '\u00fa': ['\u09b6\u09cd'],
     '\u00fb': ['\u09b7\u09cd'],
     '\u00fc': ['\u09b7\u09cd'],
