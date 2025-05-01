@@ -76,8 +76,8 @@ langConverter.transformRules = [
     // ec e8
     [/\u09ae\u09CD([\u09b0\u09f0])/gi, '\u09a8\u09cd\u09a4\u09cd$1'],
 
-    // A3 D8
-    [/\u09A4\u09CD\u09A4\u09C1/gi, '\u0995\u09CD\u09A4'],
+    // A3 D8 - move 
+    [/\u09A4\u09CD\u09A4(\u09bf)?\u09C1/gi, '\u0995\u09CD\u09A4$1'],
 
     // Remove virama after U sign
     [/([\u09c1])\u09cd/gi, '$1'],
