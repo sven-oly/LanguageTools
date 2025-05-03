@@ -283,7 +283,9 @@
                req.onreadystatechange = function() {
                    if (this.readyState == 4 && this.status == 200) {
                        // Show stored result
-                       alert(this.responseText);
+                       if (this.response != '') {
+                           alert(this.responseText);
+                       }
                        const response = this.responseText;
                    } else {
                        const x = 0;

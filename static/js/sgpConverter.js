@@ -30,14 +30,10 @@ langConverter.transformRules = [
     [/\u09cd\u09cd/gi, '\u09cd'],
     
     
-    // ??? Move killer over 9c7 & 9c8
-    [/(\u09cd)([\u09c7\u09c8])/gi, '$2$1'],
-
     // Bare virama before some cases. Insert ZWSP
     [/\u09cd([\u09ab\u0964])/gi, '\u09cd\ufeff$1'],
 
     // 0xea and reversing - include following diacritic
-    /// ???    [/([\u0993-\u09b9])([\u09be-\u09cc])?(\u09b0\u09cd)/gi, '$3$1$2'],
     [/([\u0993-\u09b9][\u09be\09c0-09cc]?)(\u09cd[\u09a3-\u09af])?(\u09b0\u09cd)/gi, '$3$1$2'],
     
     // 0xea
@@ -76,11 +72,17 @@ langConverter.transformRules = [
     // ec e8
     [/\u09ae\u09CD([\u09b0\u09f0])/gi, '\u09a8\u09cd\u09a4\u09cd$1'],
 
-    // A3 D8 - move 
+    // A3 D8 - move 9bf over, too
     [/\u09A4\u09CD\u09A4(\u09bf)?\u09C1/gi, '\u0995\u09CD\u09A4$1'],
+    // A9 AE special case
+    [/\u09A6\u09CD\u09f0\u09b0\u09cd/gi, '\u09b0\u09CD\u09A6\u09cd\u09f0'],
 
     // Remove virama after U sign
     [/([\u09c1])\u09cd/gi, '$1'],
+
+    // ??? Move killer over 9c7 & 9c8
+    [/(\u09cd)([\u09c7\u09c8])/gi, '$2$1'],
+
 ];
 
 private_use_map_combined = {

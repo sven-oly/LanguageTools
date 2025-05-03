@@ -773,13 +773,15 @@ def saveConvertedValues():
         json_converted = request.args.get('json_converted')
         converted_values = json.loads(json_converted)
 
-
     # TODO: put these in the database
     print('***lang tag = %s' % langTag);
     print('** %s converted values found' % len(converted_values))
     print(converted_values)
     # Send back the count of those found
-    return '%s values received at server' % len(converted_values)
+    if len(converted_values) > 0:
+        return '%s values received at server' % len(converted_values)
+    else:
+        return ''
 
 
 @app.route('/convertedlist/<langcode>')

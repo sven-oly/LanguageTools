@@ -91,9 +91,11 @@ langConverterClass.prototype.convertText = function (intext, encodingIndex) {
     // Insert more complex replacements here.
     let newText = outtext;
     if (this.transformRules) {
-        for (let rule in this.transformRules) {
-            const transform = this.transformRules[rule];
-            newText = newText.replace(transform[0], transform[1]);
+        for (const transform of this.transformRules) {
+            const lastUpdate = newText.replace(transform[0], transform[1]);
+            if (lastUpdate != newText) {
+                newText = lastUpdate;
+            }
         }
     }
 
@@ -114,31 +116,8 @@ langConverterClass.prototype.convertEncodingToUnicode = function (inbox, outbox,
     intext = selected;  // Only highlighted
   }
 
-  // First, replace all single characters with their Unicode equivalents.
-  let outtext = "";
-  let out;
-  for (let index = 0; index < intext.length; index ++) {
-    const c = intext[index];
-    out = c;
-    if (this.one2oneMap.has(c)) {
-      // Null replacements are possible
-      const charList = this.one2oneMap.get(c);
-      out = charList[encodingIndex];
-    }
-    outtext += out;
-  }
+    newText = this.convertText(intext, encodingIndex);
 
-  // Insert more complex replacements here.
-  let newText = outtext;
-  if (this.transformRules) {
-    for (let rule in this.transformRules) {
-      const transform = this.transformRules[rule];
-      newText = newText.replace(transform[0], transform[1]);
-    }
-  }
-
-  // Any final processing
-  newText = this.postProcessing(newText);
 
   if (outarea) {
     outarea.innerHTML = outarea.value = newText;

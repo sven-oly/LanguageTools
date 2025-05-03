@@ -15,6 +15,10 @@
       font-family:Arial;
       font-size: 30px;
     }
+    tr {
+        border-bottom: 2px solid black;
+    }
+
     {% for encoding in encoding_list %}
     @font-face{
       font-family:'{{encoding.font_name}}';
@@ -196,7 +200,7 @@
         */  
         outIndex += 1;
         let cell5 = row.insertCell(outIndex);
-        cell5.innerHTML = "Verified";
+        cell5.innerHTML = "Verified?";
         cell5.rowSpan = 2;
 
         // The next row with only the word "Converted"
@@ -237,6 +241,7 @@
             let cell2 = row.insertCell(2);
             let encoded_text = item[2];
             cell2.innerHTML = encoded_text;
+            cell2.style.padding = '10px';
             cell2.style.fontFamily = encoding_font_list[0];
             cell2.style.fontSize = '36px';
 
@@ -253,6 +258,7 @@
             let cell3 = row2.insertCell(0);
             cell3.style.fontFamily = unicode_font_list[0];
             cell3.style.fontSize = '31px';
+            cell3.style.width = '400px';
 
             if (code in good_results) {
                 cell3.innerHTML = good_results[code];
@@ -265,7 +271,7 @@
             } else {
                 // Call the converter
                 cell3.innerHTML = text_out;
-                cell4.innerHTML = 'new';
+                cell4.innerHTML = 'unverified';
             }
             cell4.style.fontSize = '20px';
             rowNum += 1;
