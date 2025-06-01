@@ -1,11 +1,4 @@
 # -*- coding: utf-8 -*-
-# !/usr/bin/env python
-#
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#
-#     http://www.apache.org/licenses/LICENSE-2.0
 #
 # Unless required by applicable law or agreed to in writing, software
 # distributed under the License is distributed on an "AS IS" BASIS,
@@ -14,8 +7,10 @@
 # limitations under the License.
 #
 
-
 import base
+
+# 
+# Strings that are verified as correct
 
 # For Python 2.x. and Python
 try:
@@ -24,80 +19,88 @@ except NameError:
     unichr = chr
 
 Language = 'Assamese'
-Language_native = 'Assamese'
-LanguageCode = 'as'
+Language_native = 'অসমীয়া'
+LanguageCode = 'asm'
 ScriptCode = 'Beng'
+links = [
+    {'linkText': 'Converter',
+     'ref': '/convert/' + LanguageCode
+    },
+    {'linkText': 'Font conversion summary',
+     'ref': '/encodingRules/' + LanguageCode
+    },
+    # {'linkText': 'All conversions',
+    #  'ref': '/convertedlist/' + LanguageCode
+    #  },
+    {'linkText': 'Conjuncts',
+     'ref': '/conjunct/' + LanguageCode
+    },
+    # {'linkText': 'Unicode page',
+    #  'ref': 'https://www.unicode.org/charts/PDF/U0980.pdf'
+    # },
+    # {'linkText': 'THIS SCRIPT',
+    #  'ref': 'https://en.wikipedia.org/wiki/XYZ_alphabet'
+    # {'linkText': 'Ethnolog',
+    #  'ref': 'https://www.ethnologue.com/language/XYZ'
+    # },
+    {'linkText': 'Combiners',
+     'ref': '/diacritic/' + LanguageCode
+    },
+    {'linkText': 'Resources',
+     'ref': '/downloads/' + LanguageCode
+    },
+    {'linkText': 'Wikipedi page',
+     'ref': 'https://en.wikipedia.org/wiki/Assamese_language'
+    },
+]
 
 
-
-class langInfo:
+class langInfo(base.baseLangInfo):
     def __init__(self):
+        super().__init__()
+
+        # Special case 
+        self.preconverted_data = None
+        self.good_results = None
+
         self.LanguageCode = LanguageCode
         self.Language = Language
+        self.encodingLanguage = 'Assamese'
         self.Language_native = Language_native
+
+        self.conversionLanguage = 'Assamese'
+
         self.test_data = u''
-        self.base_consonant = u'\u0995'
-        list1 = [u'\u0981', u'\u0982', u'\u0983', u'\u09BC', u'\u09be', u'\u09bf', u'\u09c0', u'\u09c1',
-                 u'\u09c2', u'\u09c3', u'\u09c4', u'\u09c7', u'\u09c8', u'\u09cb', u'\u09cc',
-                 u'\u09cd', u'\u09ce']
-        self.diacritic_list = list1
-
-
-
-        links = [
-            {'linkText': 'Keyboard',
-             'ref': '/' + LanguageCode + '/'
-            },
-            {'linkText': 'Assamese alphabet',
-             'ref': 'https://en.wikipedia.org/wiki/Assamese_alphabet',
-            },
-            {'linkText': 'Converter',
-             'ref': '/convert/' + self.LanguageCode
-            },
-            {'linkText': 'Font conversion summary',
-             'ref': '/encodingRules/' + self.LanguageCode
-            },
-            {'linkText': 'Diacritics',
-             'ref': '/my/diacritic/'
-            },
-            {'linkText': 'Unicode page',
-             'ref': 'https://www.unicode.org/charts/PDF/U0980.pdf'
-            },
-            # {'linkText': "Download Unicode Gautau University keyboard layouts and fonts",
-            #  'ref': 'https://gauhati.ac.in/member/shikhar-kumar-sarma?aid=NA==&did=MzA='}
-            # {'linkText': 'THIS SCRIPT',
-            #  'ref': 'https://en.wikipedia.org/wiki/XYZ_alphabet'
-            # },
-            # {'linkText': 'Wikipedi page',
-            #  'ref': 'https://en.wikipedia.org/wiki/XYZ_language'
-            # },
-            # {'linkText': 'Ethnolog',
-            #  'ref': 'https://www.ethnologue.com/language/XYZ'
-            # },
-            # {'linkText': 'Combiners',
-            #  'ref': '/lep/diacritic/'
-            #  },
-        ]
         self.unicode_font_list = [
-          {'family': 'UxaFinal',
-           'longName': 'Uxa Final',
-           'source': '/fonts/Assamese/Uxa_Final.ttf',
-           },
-          {'family': 'Jonaki_Thin',
-           'longName': 'Jonaki Thin',
-           'source': '/fonts/Assamese/Jonaki_Thin.ttf',
-           },
           {'family': 'NotoSerifBengali',
            'longName': 'Noto Serif Bengali',
-           'source': '/fonts/Assames/NotoSerifBengali-Regular.ttf'
+           'source':
+           '/fonts/Assamese/NotoSerifBengali-Regular.ttf',
            },
           {'family': 'NotoSansBengali',
            'longName': 'Noto Sans Bengali',
-            'source': '/fonts/Assamese/NotoSansBengali-VariableFont_wdth,wght.ttf'
+           'source':
+           '/fonts/Assamese/NotoSansBengali-Regular.ttf',
            },
-          {'family': 'NotoSerif',
-           'longName': 'Noto Serif',
-           'source': '/fonts/NotoSerif-Regular.ttf',
+          {'family': 'JonakiThin',
+           'longName': 'Jonak Thin',
+           'source':
+           '/fonts/Assamese/Jonak_Thin.ttf',
+           },
+          {'family': 'Jyotirupa',
+           'longName': 'Jyotirupa',
+           'source':
+           '/fonts/Assamese/Jyotirupa.ttf',
+           },
+            {'family': 'Rangmon',
+           'longName': 'Rangmon',
+           'source':
+           '/fonts/Assamese/Rangmon.ttf',
+           },
+          {'family': 'Uxa_Final',
+           'longName': 'Uxa Final',
+           'source':
+           '/fonts/Assamese/Uxa_Final.ttf',
            },
           {'family': 'NotoSans',
            'longName': 'Noto Sans',
@@ -107,46 +110,84 @@ class langInfo:
 
         self.encoding_font_list = [
           {
-            'font_path': '/fonts/Assamese/ASSAMNEW.TTF',
-            'font_name': 'AssamNew',
-            'display_name': 'Assam New',
+            'font_path': '/fonts/Singpho/tboishkh-2001.ttf',
+            'font_name': 'Tanmatra Boishakhi',
+            'display_name': 'Tanmatra Boishakhi',
           },
+            # !!!! TEMPORARY
+            # {
+            #     'font_path': '/fonts/NotoSans-Regular.ttf',
+            #     'font_name': 'NotoSans-Regular, arial',
+            #     'display_name': 'Noto Sans',
+            # },
         ]
+
+        self.encoding_chars = """!  $ % ( ) * + , - . /  0 1 2 3 4 5 6 7 8 9 : ;  ? @ A B C D E F G H I J K L M N O P Q R S T U V W X Y Z [ \ ] ^ _ ` a b c d e f g h i j k l m n o p q r s t u v w x y z { | } ~    ¡ ¢ £ ¤ ¥ ¦ § ¨ © ª « ¬ ­ ® ¯  ° ± ² ³ ´ µ ¶ · ¸ ¹ º » ¼ ½ ¾ ¿ À Á Â Ã Ä Å Æ Ç È É Ê Ë Ì Í Î Ï Ð Ñ Ò Ó Ô Õ Ö × Ø Ù Ú Û Ü Ý Þ ß à á â ã ä å æ ç è é ê ë ì í î ï ð ñ ò ó ô õ ö ÷ ø ù ú û ü ý þ ÿ """
+        added_chars = []
+        self.encoding_chars += ' '.join(added_chars)
 
         self.lang_list = [LanguageCode]  # This may be extended
 
         self.kb_list = [
-          {'shortName': 'as1',
-           'longName': "Assamese fonatic",
-           'instructions': 'Keyboard layouts and fonts courtesy of Gauhati University. Download from links.',
-           },
-          {'shortName': 'as2',
-           'longName': "AS Script",
-           'instructions': 'Keyboard layouts and fonts courtesy of Gauhati University. Download from links.',
-           },
-          {'shortName': 'as_indic3',
-           'longName': "Indic3",
-           'instructions': 'Based on MS Indic3 for Assamese',
+          {'shortName': LanguageCode,
+           'longName': LanguageCode,
            },
         ]
 
         self.links = links
 
-        # Unicode range
-        self.unicodeRanges = [('\u0980', '\u09FF')]
+        # Non-diacritics
+        self.unicodeRanges = [('\u0993', '\u09a8'),
+                              ('\u09aa', '\u09b0'),
+                              ('\u09b2', '\u09b2'),
+                              ('\u09b6', '\u09b9'),
+                              ('\u09dc', '\u09dd'),
+                              ('\u09df', '\u09df'),
+                              ('\u09f0', '\u09f1'),
+        ]
+        # Compute the full set of letters
+        self.baseChars = []
+        for item in self.unicodeRanges:
+            start = ord(item[0])
+            end = ord(item[1])
+            for n in range(start, end+1):
+                self.baseChars.append(chr(n))
+        
+        self.base_consonant = '\u099a'
         # TODO: Fill in with diacritics
-        #self.diacritic_list = [unichr(x) for x in range(0x981, 0x984)]
+        self.diacritic_list = ['\u0981', '\u0982', '\u0983',
+                               '\u09bc', '\u09be', '\u09bf',
+                               '\u09cb', '\u09cc', '\u09cd',
+                               '\u09c1', '\u09c2', '\u09c3',
+                               '\u09c4', '\u09c7', '\u09c8',
+                               '\u09cb', '\u09cc', '\u09cd',
+                               '\u09d7', '\u09e2', '\u09e3',
+                               ]
+        self.conjunct_char = '\u09cd'
         # TODO: Fill in base consonant
         self.default_base_consonant = u'\0x61'
 
         self.encodedRanges = [
-            (0x20, 0xff),
+            (0x20, 0x7f),
+            (0xa0, 0xff)
         ]
 
         # For additional resources for download
-        self.text_file_list = []
+        self.text_file_list = [
 
-        # TODO: Fill in the rest of the common data.
+        ]
+
+        self.fillChars = [chr(x) for x in range(0x61, 0x7b)]
+        self.unicodeCombiningChars = self.diacritic_list
+
+        resource_list = [
+          {
+            'name': 'Unicode 72 pre-release ICU4C *.tgz',
+            'source': '/resources/unicode/icu-r37e2956-x86_64-pc-linux-gnu-Ubuntu-22.04.tgz',
+            'description': 'Unicode 72 pre-release ICU4C *.tgz',
+          }
+        ]
+        self.text_file_list = resource_list
 
 
 langInstance = langInfo()

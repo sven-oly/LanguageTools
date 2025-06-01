@@ -58,6 +58,7 @@ language_info_dict = {
 # Add in languages as we get them ready
 language_info_dict['aho'] = ahom.langInfo()
 language_info_dict['as'] = assamese.langInfo()
+language_info_dict['asm'] = assamese.langInfo()
 language_info_dict['bete'] = bete.langInfo()
 language_info_dict['ccp'] = chakma.langInfo()
 language_info_dict['cr'] = cree.langInfo()

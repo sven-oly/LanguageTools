@@ -205,9 +205,9 @@ class langInfo:
 
     resource_list = [
       {
-        'name': 'KeyMan Phake keyboard for mobile and computer',
-        'source': '/resources/phk/phk_1.14.kmp',
-        'description': 'Version 1.14 26-Oct-2021 updated'
+        'name': 'KeyMan Tai Phake keyboard for mobile and desktop',
+        'source': '/resources/phk/templates/taiphake2.kmp',
+        'description': 'Version 1.15 13-May-2025 updated'
       },
     ]
 
