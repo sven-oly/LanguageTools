@@ -170,3 +170,4 @@ var FF_ADLAM_LAYOUT = {
 
 // Load the layout and inform the keyboard to switch layout if necessary.
 google.elements.keyboard.loadme(FF_ADLAM_LAYOUT);
+ff_adam = FF_ADLAM_LAYOUT

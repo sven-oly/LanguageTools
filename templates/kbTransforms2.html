@@ -342,8 +342,12 @@
 
                         if (result == undefined) result = "";
 
+                        let hint = utf16common(result, "", " ", null, []);
                         cell.innerHTML = result;
-                        cell.title = utf16common(result, "", " ", null, []);
+       {% if showTools %}
+                        cell.innerHTML = result + '   (' + hint + ')';
+       {% endif %}
+                        cell.title = hint;
                         cell.style.fontSize = fontsize;
                         cell.style.width = cellWidth;
                         cell.style.fontFamily = kb_fonts[kb_index];

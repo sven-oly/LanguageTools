@@ -35,9 +35,6 @@ links = [
     {'linkText': 'Conjuncts',
      'ref': '/conjunct/' + LanguageCode
     },
-    # {'linkText': 'Unicode page',
-    #  'ref': 'https://www.unicode.org/charts/PDF/U0980.pdf'
-    # },
     # {'linkText': 'THIS SCRIPT',
     #  'ref': 'https://en.wikipedia.org/wiki/XYZ_alphabet'
     # {'linkText': 'Ethnolog',
@@ -48,6 +45,9 @@ links = [
     },
     {'linkText': 'Resources',
      'ref': '/downloads/' + LanguageCode
+    },
+    {'linkText': 'Unicode page',
+     'ref': 'https://www.unicode.org/charts/PDF/U0980.pdf'
     },
     {'linkText': 'Wikipedi page',
      'ref': 'https://en.wikipedia.org/wiki/Assamese_language'
