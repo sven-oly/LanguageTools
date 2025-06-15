@@ -30,21 +30,25 @@ Language = 'Mende'
 
 encoding_font_list = [
     {
-      # Contains both Unicode and JG and Presentation characters
-    'family': 'KikakuiSansProCombined',
-      'longName': 'Kikakui Sans Pro Combined',
+      'font_path': '/fonts/MendeKikakui/KikakuiSansProCombined.ttf',
       'source': '/fonts/MendeKikakui/KikakuiSansProCombined.ttf',
-      'encoding': 'PFA',
-      'info': 'Combined JG, Presentation Forms A, and Unicode'
-    },
-    {
-      'font_path':'/fonts/MendeKikakui/jgmende.ttf',
-      'source':'/fonts/MendeKikakui/jgmende.ttf',
-      'font_name':'JGMende',
+      'font_name':'PUA/FPA to Unicode',
       'family': 'JGMende',
       'longName': 'JGMende PUA',
-      'display_name': 'JG Mende PUA',
+      'display_name': 'PUA/FPA to Unicode',
+      'encoding': 'PUA',
       'Source location': 'http://glavyfonts.com/african.html',
+    },
+    {
+      # Contains both Unicode and JG and Presentation characters
+      'font_path': '/fonts/MendeKikakui/KikakuiSansProCombined.ttf',
+      'source': '/fonts/MendeKikakui/KikakuiSansProCombined.ttf',
+      'font_name': 'PUA to FPA',
+      'family': 'KikakuiSansProCombined',
+      'longName': 'Kikakui Sans Pro Combined',
+      'display_name': 'PUA to FPA',
+      'encoding': 'PFA',
+      'info': 'Combined JG, Presentation Forms A, and Unicode'
     },
 ]
 
@@ -213,9 +217,15 @@ class langInfo():
     self.links = links
     self.text_file_list = [
       {
+        'name': 'KeyMan Mende Kikakui Presentation Forms',
+        'source': '/resources/men/mende_kikakui_pfa.kmp',
+        'description': 'Keyboard for Presentation Forms',
+        'instructions': 'Phonetic: http://127.0.0.1:8080/kbtransforms/men',
+      },
+      {
         'name': 'KeyMan 1.31 Mende Kikakui - RTL ',
         'source': '/resources/men/mende_kikakui_1_31.kmp',
-        'description': 'Keyboard 1.31: Presentation Forms, PUA, and Unicode',
+        'description': 'V1.31: 3 keyboards Presentation Forms, PUA, and Unicode',
         'instructions': 'Phonetic: http://127.0.0.1:8080/kbtransforms/men',
       },
       {

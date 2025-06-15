@@ -79,6 +79,18 @@
          <script src="/static/js/vk-debug.js"></script>
 
          <script>
+           {% if preconverted_data %}
+           // Initialize precoverted data and good conversions, if provided.
+           const preconverted_data = {{preconverted_data | tojson}};
+           {% else %}
+           const preconverted_data = null;
+           {% endif %}
+           {% if good_results %}
+           const good_results = {{good_results | tojson}};
+           {% else %}
+           const good_results = null;
+           {% endif %}
+
            const utils = new Utils();  // Object for utility functions
 
            const langTag = "{{langTag}}";
@@ -418,18 +430,6 @@
          </script>
          <script src="/static/js/langinfo/langdata.js"></script>
          <script>
-           {% if preconverted_data %}
-           // Initialize precoverted data and good conversions, if provided.
-           const preconverted_data = {{preconverted_data | tojson}};
-           {% else %}
-           const preconverted_data = [];
-           {% endif %}
-           {% if good_results %}
-           const good_results = {{good_results | tojson}};
-           {% else %}
-           const good_results = {};
-           {% endif %}
-
            const langInformation = new langData("{{language}}", "{{langTag}}");
 
            // Handle new conversion object.
@@ -512,6 +512,7 @@
 
            // From encoding area
            function loadPreconvertedData(direction) {
+               if (preconverted_data == null) return;
                
                current_sample += direction;
                if (current_sample < 0) {
@@ -523,6 +524,7 @@
 
                // If auto mode, get the data
                const inArea = document.getElementById('old_font_input_text');
+               if (preconverted_data)
                inArea.value = preconverted_data[current_sample][2];
                updateHex('old_font_input_text', 'old_hex');
 
@@ -544,6 +546,8 @@
            }
 
            function changeSearchHex() {
+               if (preconverted_data === null) return;
+
                // Looks through the preconverted text for string with the character
                // specified by the hex value.
                // TODO: look for multiple codes in a given string.
@@ -613,7 +617,7 @@
                utils.onSizeSelected(fontsize_selector.value, 'old_font_input_text');
 
                
-               if (preconverted_data) {
+               if (preconverted_data === null) {
                    loadPreconvertedData(0);
                }
 
@@ -623,7 +627,9 @@
                }
 
                // Check previously OK strings
-               regression_test(good_results);
+               if (good_results) {
+                   regression_test(good_results);
+               }
            }
            
          </script>
@@ -910,3 +916,4 @@
 
 </body>
 </html>
+

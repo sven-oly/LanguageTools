@@ -1,4 +1,3 @@
-// Convert from old font-encoding of Oneida text to Unicode forms:
 const langConverter = new langConverterClass('men', 'Kika');
 
 let private_use_map_combined = {
@@ -43,7 +42,7 @@ let private_use_map_combined = {
     '\ue049': ['\uD83A\uDC9F'],
     '\ue04a': ['\uD83A\uDCA0'],
     '\ue04d': ['\uD83A\uDCA1'],
-    '\ue04f': ['\uD83A\uDCA2'],
+    '\ue04f': ['\uD83A\uDCA2'], 
     '\ue050': ['\uD83A\uDCA3'],
     '\ue053': ['\uD83A\uDCA5'],
     '\ue055': ['\uD83A\uDCA4'],
@@ -225,16 +224,20 @@ let private_use_map_combined = {
 //    adding 0x1b50 to the code. This gives a non-PUA character that has
 //    RTL propertie.
 const pua_to_presentation_a = 0x1b50;
-
+// PresentationFormsA is used as a Unicode range that is RTL in default direction.
+// It is the same as the JGMende PUA, but shifted by the pua_to_presentation_a value.
 const low_pua = 0xe000;
 const high_pua = 0xe162;
+const low_pua_char = String.fromCharCode(low_pua);
+const high_pua_char = String.fromCharCode(high_pua);
+
 
 for (let code = low_pua; code <= high_pua; code+=1) {
-    const code_char = String.fromCharCode(code);
-    const x = code.toString(16)
-    if (!(code_char in private_use_map_combined)) {
+    const index_char = String.fromCharCode(code);
+    const fpa_char = String.fromCharCode(code + pua_to_presentation_a);
+    if (!(fpa_char in private_use_map_combined)) {
         // Add this in the presentation A block
-        private_use_map_combined[code_char] = String.fromCharCode(code + pua_to_presentation_a);
+        private_use_map_combined[fpa_char] = private_use_map_combined[index_char];
     }
 }
 
@@ -249,9 +252,46 @@ langConverter.addOne2OneTransforms(
 // Font encoding information.
 // Map by font name, index in lookup table, output encoding, output script.
 langConverter.encoding_data = {
-    'JGMende': {index:0, outputEncoding:'unicode', outputScript:'Mende Kikakui'},
-    'Kikakui Sans Pro': {index:0, outputEncoding:'unicode', outputScript:'Mende Kikakui'},
+    'PUA/FPA to Unicode': {'font': "Kikakui Sans Pro Combined",
+                           index:0,
+                           inputEncoding: "PUA/FPA",
+                        outputEncoding:'unicode',
+                        outputScript:'Mende Kikakui'},
+    'PUA to FPA': {index:1,
+                    inputEncoding: "JGMendePUA",
+                    outputEncoding:'PFA',
+                    outputScript:'PFA'},
 };
+
+langConverter.baseConverter = langConverterClass;
+
+langConverter.convertText = function(intext, encodingIndex) {
+    let outText = "";
+    if (encodingIndex == 0) {
+        let out;
+        for (let index = 0; index < intext.length; index ++) {
+            const c = intext[index];
+            out = c;
+            if (this.one2oneMap.has(c)) {
+                const charList = this.one2oneMap.get(c);
+                out = charList[0];
+            }
+            outText += out;
+        }
+    }
+    else if (encodingIndex == 1) {
+        // For characer in PUA, add the offset.
+        let out_char;
+        for (let index = 0; index < intext.length; index ++) {
+            let out_char = intext[index];
+            if (out_char >= low_pua_char && out_char <= high_pua_char) {
+                out_char= String.fromCharCode(intext.codePointAt(out_char) + pua_to_presentation_a);
+            }
+            outText += out_char;
+        }
+    }
+    return outText;
+}
 
 const map_translit_output = [];
 const translit_source = 'JG Mende';
