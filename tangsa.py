@@ -199,7 +199,7 @@ class langInfo():
         #   'ref': '/' + self.LanguageCode + '/encodingRules/'
         # },
         {'linkText': 'KB transforms',
-          'ref': '/' + self.LanguageCode + '/kbtransforms/'
+          'ref': '/' + 'kbtransforms/' + self.LanguageCode
         },
         {'linkText': 'Tangsa languages',
          'ref': 'https://en.wikipedia.org/wiki/Tangsa_language'
@@ -212,7 +212,7 @@ class langInfo():
         {'linkText': 'Download KeyMan keyboard',
          'ref': 'https://keyman.com/keyboards/tangsa_lakhum'},
         {'linkText': 'Resources',
-         'ref': '/' + self.LanguageCode + '/downloads/'
+         'ref': '/downloads/' + self.LanguageCode
         },
       {
         'linkText': "Download Noto Tangsa fonts",

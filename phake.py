@@ -45,12 +45,12 @@ class langInfo:
     ]
 
     self.unicode_font_list = [
-      {'source': '/fonts/Phake/PhakeRamayanaUnicode.otf',
-       'family': 'PhakeRamayanaUnicode',
-       'longName': 'Ramayana Unicode OTF',
-       'info': 'Dotted form by Ben Mitchell, 29-Jul-2021. ' +
-               'https://github.com/ohbendy/Phake-Ramayana/blob/main/PhakeRamayanaUnicode.otf',
-       },
+      # {'source': '/fonts/Phake/PhakeRamayanaUnicode.otf',
+      #  'family': 'PhakeRamayanaUnicode',
+      #  'longName': 'Ramayana Unicode OTF',
+      #  'info': 'Dotted form by Ben Mitchell, 29-Jul-2021. ' +
+      #          'https://github.com/ohbendy/Phake-Ramayana/blob/main/PhakeRamayanaUnicode.otf',
+      #  },
       {'source': '/fonts/Phake/PhakeRamayanaUnicode.ttf',
        'family': 'PhakeRamayanaUnicode',
        'longName': 'Ramayana Unicode TTF',

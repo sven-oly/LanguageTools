@@ -49,6 +49,9 @@ langConverter.one2oneMap =  private_use_map_combined = {
     'oayz': ['', '𖩰𖪀'],
     'oayc': ['', '𖩱𖪁'],
     'oayx': ['', '𖩳𖪃'],
+    'oyc': ['𖩱𖪁', ''],
+    'oyx': ['𖩳𖪃', ''],
+    'oyz': ['𖩰𖪀', ''],
     'ayz': ['', '𖩴𖪀'],
     'ayc': ['', '𖩵𖪁'],
     'ayx': ['', '𖩷𖪃'],
@@ -332,11 +335,11 @@ var gamwin_latin_chars =
     ""|uiungc|uiungx|ovmz|ovmc|ovmx|omz|omc|omx|oamz|oamc|oamx|amz|amc|amx|vmz|vmc|vmx|emz|emc|emx|imz|imc|imx|umz|" +
     "umc|umx|awmz|awmc|awmx|uimz|uimc|uimx|uemz|uemc|uemx|uiumz|uiumc|uiumx|ovnz|ovnc|ovnx|oanz|oanc|oanx|anz|anc|" +
     "anx|vnz|vnc|vnx|enz|enc|enx|inz|inc|inx|unz|unc|unx|awnz|awnc|awnx|uinz|uinc|uinx|uenz|uenc|uenx|uiunz|uiunc|" +
-    "uiunx|ovlz|ovlc|ovlx|oalz|oalc|oalx|alz|alc|alx|vlz|vlc|vlx|elz|elc|elx|ilz|ilc|ilx|ulz|ulc|ulx|awlz|awlc|awlx|" +
+    "uiunx|ovlz|ovlc|ovlx|oalz|oalc|oalx|oyc|oyx|oyz|alz|alc|alx|vlz|vlc|vlx|elz|elc|elx|ilz|ilc|ilx|ulz|ulc|ulx|awlz|awlc|awlx|" +
     "uilz|uilc|uilx|uelz|uelc|uelx|uiulz|uiulc|uiulx|ovrz|ovrc|ovrx|oarz|oarc|oarx|arz|arc|arx|vrz|vrc|vrx|erz|erc|" +
     "erx|irz|irc|irx|urz|urc|urx|awrz|awrc|awrx|uirz|uirc|uirx|uerz|uerc|uerx|uiurz|uiurc|uiurx|ok|ak|vk|ek|ik|uk|" +
     "awk|uik|uek|uiuk|ovp|oap ~ op|op|ap|vp|ep|ip|up|awp|uip|uep|uiup|ovt|oat|at|vt|et|it|ut|awt|uit|uet|uiut|oz|" +
-    "oc|ox|az|ac|ax|vz|vc|vx|ez|ec|ex|iz|ic|ix|uz|uc|ux|awz|awc|awx|uiz|uic|uix|uez|uec|uex|uiuz|uiuc|uiux|htt|th|" +
+    "oc|ox|oy||az|ac|ax|vz|vc|vx|ez|ec|ex|iz|ic|ix|uz|uc|ux|awz|awc|awx|uiz|uic|uix|uez|uec|uex|uiuz|uiuc|uiux|htt|th|" +
     "ht|ch|kh|ng|ny|ph|nh|sh|ts|gh|f|k|g|s|y|w|p|b|m|n|h|l|t|d|r|j|v| |,|.|\u0020|,|\.|\u000a"
 
 function preParseLatin(instring) {
