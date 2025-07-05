@@ -77,6 +77,35 @@ function remove_variation_modifiers(text) {
   return out_text;
 }
 
+// Segment as for Myanmar characters
+segmenterPhkGrapheme = new Intl.Segmenter("my", {granularity: "grapheme"});
+
+function toggle_grapheme_boundary_chars(text, use_boundary, grapheme_boundary_char) {
+    // Find grapheme cluster boundaries, then add or remove the boundary character as indicated
+    let text_out = text;
+
+    if (segmenterPhkGrapheme) {
+        // Clear all existing boundary characters
+        let stripped_string = text.replaceAll(grapheme_boundary_char, '');
+        if (!use_boundary) {
+            // Clears the string of boundary chars.
+            return stripped_string;
+        }
+        // Otherwise, add break char after each segmented part.
+        let items = [];
+        const iterator1 = segmenterPhkGrapheme.segment(stripped_string)[Symbol.iterator]();
+        let result = iterator1.next();
+        while (!result.done) {
+            let cluster = result.value;
+            items.push(cluster.segment + grapheme_boundary_char);
+            result = iterator1.next();
+        }
+        text_out = items.join('');
+    }
+    return text_out;
+}
+
+
 // This should be a map. But the output should not include U+FE00.
 // They can be added by calling add_variation_modifiers.
 private_use_map_combined = {

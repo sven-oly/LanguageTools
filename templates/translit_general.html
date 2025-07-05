@@ -379,6 +379,15 @@
 
                toggleConvertedVS(destinationArea, vsSelector);
                {% endif %}
+
+               {% if grapheme_boundaries %} 
+               const use_grapheme = document.getElementById('useGraphemeBoundaries');
+               
+               const grapheme_toggle = document.getElementById('toggleGraphemeBoundaries');
+               grapheme_toggle.checked = use_grapheme.checked;
+               toggleGraphemeBoundaries(destinationArea, use_grapheme);
+               {% endif %}
+
                if (checkAutoMode()) {
                    updateHex('Unicode_font_output_text', 'new_hex');
                }
@@ -400,6 +409,18 @@
            }
            {% endif %}
 
+           {% if grapheme_boundaries %}
+           function toggleGraphemeBoundaries(text_area_id, toggle) {
+               var text_area = document.getElementById(text_area_id);
+               let grapheme_boundary_char = '{{grapheme_boundary_char}}';
+               var text = text_area.value;
+               var new_text =
+                   toggle_grapheme_boundary_chars(text, toggle.checked, grapheme_boundary_char);
+               text_area.innerHTML = text_area.value = new_text;
+           }
+           {% endif %}
+           
+           
            {% if converters %}
            function newConverter(type, input_id, output_id, outtype_id) {
                var input_area = document.getElementById(input_id);
@@ -705,9 +726,14 @@
                        onchange="changeWordMode('converterWordMode');">Word mode?<br />
                 {% endif %}
                 {% if variation_sequence %}
-                <input type="checkbox" checked id="useVariationSequence"
-                       onchange="toggle('Unicode{{language}}Tools', 'showNewTools');">Convert with variation sequence<br />
+                <br /><input type="checkbox" checked id="useVariationSequence"
+                       onchange="toggle('Unicode{{language}}Tools', 'showNewTools');">Convert with variation sequence
                 {% endif %}
+            {% if grapheme_boundaries %} 
+                <input type="checkbox" checked id="toggleGraphemeBoundaries"
+                       onchange="toggle('Unicode{{language}}Tools', 'showNewTools');">Grapheme boundaries
+                {% endif %}
+                
                 <div id="OldEncodingTools"
                      {% if showTools %}
                      style="display:block;"
@@ -806,9 +832,14 @@
             <input type="checkbox" name="showNewTools" id="showNewTools"
                    onchange="toggle('Unicode{{language}}Tools', 'showNewTools');">Tools?
             {% if variation_sequence %}
-            <input type="checkbox" name="vsToggle" id="toggleVS" checked
+            <br /><input type="checkbox" name="vsToggle" id="toggleVS" checked
                    onchange="toggleConvertedVS('Unicode_font_output_text', toggleVS);">Toggle variation sequence<br />
             {% endif %}
+
+            {% if grapheme_boundaries %}
+                <input type="checkbox" checked id="useGraphemeBoundaries"
+                       onchange="toggleGraphemeBoundaries('Unicode_font_output_text', useGraphemeBoundaries);">Toggle grapheme cluster boundaries<br />
+                {% endif %}
           </div>
           <div id="Unicode{{language}}Tools"
                {% if showTools %}

@@ -315,6 +315,13 @@ def convertHandler(langcode):
     except:
       variation_sequence = None
 
+    grapheme_boundary_char = ''
+    try:
+      grapheme_boundaries = langInfo.grapheme_boundaries
+      grapheme_boundary_char = langInfo.grapheme_boundary_char
+    except:
+      grapheme_boundaries = None
+
     try:
       testStringList = langInfo.testStringList
     except:
@@ -368,6 +375,8 @@ def convertHandler(langcode):
         encodingList = encodingList,
         font = font,
         good_results=good_results,
+        grapheme_boundaries=grapheme_boundaries,
+        grapheme_boundary_char=grapheme_boundary_char,
         isTransLit = False,
         kb_list = langInfo.kb_list,
         langTag = langInfo.LanguageCode,

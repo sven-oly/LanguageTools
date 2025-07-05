@@ -247,6 +247,10 @@ class langInfo:
     # Set up the toggle to change variation sequence.
     self.variation_sequence = True
 
+    # Toggle to insert variation boundaries between grapheme clusters
+    self.grapheme_boundaries = True
+    self.grapheme_boundary_char = "\u200b"
+
     self.dictionaryNData = [
       {
         'langName': self.Language, 'langNative': '',
