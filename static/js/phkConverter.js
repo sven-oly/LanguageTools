@@ -78,7 +78,14 @@ function remove_variation_modifiers(text) {
 }
 
 // Segment as for Myanmar characters
-segmenterPhkGrapheme = new Intl.Segmenter("my", {granularity: "grapheme"});
+segmenterPhkGrapheme = new Intl.Segmenter('phk', {granularity: "grapheme"});
+
+// For removing grapheme boundary character from incorrect places.
+const rm_boundary_before = /\u200b([\u102b-\u1035\u1056-\u1059\u1062-\u106d\u1072-\u1074\u1082-\u108d\u109a-\u109d\uaa7b-\uaa7d])/gi;
+
+function remove_extra_boundary(match, match_char, offset, string) {
+    return match_char;
+}
 
 function toggle_grapheme_boundary_chars(text, use_boundary, grapheme_boundary_char) {
     // Find grapheme cluster boundaries, then add or remove the boundary character as indicated
@@ -102,6 +109,8 @@ function toggle_grapheme_boundary_chars(text, use_boundary, grapheme_boundary_ch
         }
         text_out = items.join('');
     }
+    const match_pattern = '/' + grapheme_boundary_char + rm_boundary_before + '/gi';
+    text_out = text_out.replace(rm_boundary_before, remove_extra_boundary);
     return text_out;
 }
 
