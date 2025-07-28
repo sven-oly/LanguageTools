@@ -110,8 +110,8 @@ class langInfo:
     self.public_font_resources = [
       {'source': '/fonts/Phake/PhakeRamayanaUnicode.ttf',
        'family': 'PhakeRamayanaUnicode',
-       'longName': 'Ramayana Unicode TTF',
-       'info': 'Dotted form by Ben Mitchell, 29-Jul-2021. ' +
+       'longName': 'Ramayana Unicode TTF - updated 22-Jul-2025',
+       'info': 'Updated by Ben Mitchell, 22-Jul-2025. ' +
                'https://github.com/ohbendy/Phake-Ramayana/blob/main/PhakeRamayanaUnicode.ttf',
       },
       {'source': '/fonts/Myanmar/NotoSerifMyanmar-Light.ttf',
