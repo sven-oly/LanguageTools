@@ -15,9 +15,6 @@
 #
 
 import os
-import webapp2
-
-from google.appengine.ext.webapp import template
 
 import base
 
@@ -54,8 +51,8 @@ unicode_font_list = [
 ]
 
 kb_list = [
-  {'shortName': LanguageCode,
-   'longName': LanguageCode,
+  {'shortName': 'blt',
+   'longName': 'Tai Dam',
    },
 ]
 
@@ -71,8 +68,11 @@ links = [
     {'linkText': 'Resources',
       'ref': '/' + LanguageCode + '/downloads/'
     },
+  {'linkText': 'Keyman Tai Dam layout',
+   'ref': 'https://keymanweb.com/#blt,Keyboard_sil_tai_dam',
+   },
     {'linkText': 'Unicode page',
-     'ref': 'https://www.unicode.org/charts/PDF/U1C00.pdf'
+     'ref': 'https://www.unicode.org/charts/PDF/UAA80.pdf'
     },
     {'linkText': 'Tai Viet script',
      'ref': 'https://en.wikipedia.org/wiki/https://en.wikipedia.org/wiki/https://en.wikipedia.org/wiki/Tai_Viet'
@@ -93,7 +93,7 @@ links = [
 
 
 # TODO: Fill in with diacritics
-diacritic_list = [unichr(x) for x in range(0x1c24, 0x1c37)]
+diacritic_list = [chr(x) for x in range(0x1c24, 0x1c37)]
 #TODO: Fill in base consonant
 default_base_consonant = u'\u1c00'
 
@@ -112,14 +112,7 @@ class langInfo():
 
 
 
-
-kb_list = [
-  {'shortName': LanguageCode,
-   'longName': LanguageCode,
-   },
-]
-
-diacritic_list = [unichr(x) for x in range(0xa926, 0xa92d)]
+diacritic_list = [chr(x) for x in range(0xa926, 0xa92d)]
 
 default_base_consonant = u'\u1c00'
 
@@ -128,13 +121,13 @@ encodedRanges = [
   (0x20, 0x7b),
 ]
 # Presents UI for conversions from font encoding to Unicode.
-class ConvertUIHandler(webapp2.RequestHandler):
+class ConvertUIHandler():
     def get(self):
 
       # All old characters
       oldCharList = []
       for run in encodedRanges:
-        oldCharList.extend([unichr(x) + ' ' for x in xrange(run[0], run[1])])
+        oldCharList.extend([chr(x) + ' ' for x in xrange(run[0], run[1])])
 
       oldChars = ''.join(oldCharList)
       text = self.request.get('text', oldChars)
@@ -176,7 +169,7 @@ class ConvertUIHandler(webapp2.RequestHandler):
       self.response.out.write(template.render(path, template_values))
 
 
-class DiacriticHandler(webapp2.RequestHandler):
+class DiacriticHandler():
   def get(self):
     global default_base_consonant
 
@@ -185,7 +178,7 @@ class DiacriticHandler(webapp2.RequestHandler):
     if not inchars:
       base_consonant = default_base_consonant
     elif inchars[0] == 'u':
-      base_consonant = unichr(int(''.join(inchars[1:]), 16))
+      base_consonant = chr(int(''.join(inchars[1:]), 16))
     else:
       # A unicode character
       base_consonant = inchars
@@ -218,14 +211,3 @@ class DiacriticHandler(webapp2.RequestHandler):
     self.response.out.write(template.render(path, template_values))
 
 langInstance = langInfo()
-
-app = webapp2.WSGIApplication([
-    ('/' + LanguageCode + '/', base.LanguagesHomeHandler),
-    ('/' + LanguageCode + '/convertUI/', ConvertUIHandler),
-    ('/' + LanguageCode + '/downloads/', base.Downloads),
-    ('/' + LanguageCode + '/encodingRules/', base.EncodingRules),
-    ('/' + LanguageCode + '/diacritic/', DiacriticHandler),
-  ],
-  debug=True,
-  config={'langInfo': langInstance}
-)
