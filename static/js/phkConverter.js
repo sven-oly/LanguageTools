@@ -43,6 +43,8 @@ langConverter.transformRules = [
     [/([\u102f\u1030\u1036])([\u103a\u103b\u103c\u103d\u105e\u109d\ua935])/gi,
      "$2$1"],
     [/([\u103b\u103c\u103d])(\u105e)/gi , "$2$1"],
+
+    [/([\u1038])([\u109d])/gi , "$2$1"],
     
   // Ellipsis
   [/\.\.\./gi, "\u2026"],
@@ -81,7 +83,7 @@ function remove_variation_modifiers(text) {
 segmenterPhkGrapheme = new Intl.Segmenter('phk', {granularity: "grapheme"});
 
 // For removing grapheme boundary character from incorrect places.
-const rm_boundary_before = /\u200b([\u102b-\u1035\u1056-\u1059\u1062-\u106d\u1072-\u1074\u1082-\u108d\u109a-\u109d\uaa7b-\uaa7d])/gi;
+const rm_boundary_before = /\u200b([\u102b-\u1035\u1038\u1056-\u1059\u1062-\u106d\u1072-\u1074\u1082-\u108d\u109a-\u109d\uaa7b-\uaa7d])/gi;
 
 function remove_extra_boundary(match, match_char, offset, string) {
     return match_char;
