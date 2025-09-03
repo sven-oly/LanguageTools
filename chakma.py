@@ -56,19 +56,36 @@ LanguageCode = 'ccp'
 Language = 'Chakma'
 Language_native = '𑄌𑄋𑄴𑄟𑄳𑄦'
 
-unicode_font_list = [
-  {'family': 'RibengUni2020June',
-   'longName': 'RibengUni October 2024',
-   'source': '/fonts/Chakma/RibengUni-Regular.ttf',
+unicode_font_list = [ 
+  
+  {'family': 'ChakmaUnicode-Regular',
+   'longName': 'Chakma Unicode Regular',
+   'source': '/fonts/Chakma/ChakmaUnicode-Regular.ttf',
    },
-  {'family': 'ChakmaHandwriting',
+  {'family': 'ChakmaUnicode-Italic',
+   'longName': 'Chakma Unicode Italic',
+   'source': '/fonts/Chakma/ChakmaUnicode-Italic.ttf',
+   },
+  {'family': 'ChakmaUnicode-Bold',
+   'longName': 'Chakma Unicode Bold',
+   'source': '/fonts/Chakma/ChakmaUnicode-Bold.ttf',
+   },
+  {'family': 'ChakmaUnicode-BoldItalic',
+   'longName': 'Chakma Unicode Bold Italic',
+   'source': '/fonts/Chakma/ChakmaUnicode-BoldItalic.ttf',
+   },
+   {'family': 'ChakmaHandwriting',
    'longName': 'Chakma Handwriting 2024',
    'source': '/fonts/Chakma/ChakmaHandwriting.ttf',
    },
   { 'family': 'NotoSansChakma',
     'longName': 'NotoSans Chakma 2024',
     'source': '/fonts/Chakma/NotoSansChakma-Regular.ttf',
-  }
+  },
+  # {'family': 'RibengUni2020June',
+  #  'longName': 'RibengUni October 2024',
+  #  'source': '/fonts/Chakma/RibengUni-Regular.ttf',
+  #  },
 ]
 
 links = [
