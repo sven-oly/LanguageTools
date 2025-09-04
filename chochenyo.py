@@ -6,24 +6,14 @@
 # limitations under the License.
 #
 
-
 import base
 
-# For Python 2.x. and Python
-try:
-    unichr
-except NameError:
-    unichr = chr
-
-Language = 'English'
-Language_native = 'English'
-LanguageCode = 'en'
+Language = 'Chocheyo'
+Language_native = 'Chocheyo'
+LanguageCode = 'cst'
 ScriptCode = 'Latn'
 
 links = [
-    {'linkText': 'Keyboard',
-     'ref': '/' + LanguageCode + '/'
-    },
     {'linkText': 'Word search',
      'ref': '/' + LanguageCode + '/wordsearch/'
     },
@@ -33,7 +23,7 @@ links = [
     #   'ref': '/' + LanguageCode + '/encodingRules/'
     # },
     {'linkText': 'Resources',
-      'ref': '/' + LanguageCode + '/downloads/'
+      'ref': '/' + LanguageCode + '/resources/'
     },
     # {'linkText': 'Unicode page',
     #  'ref': 'https://www.unicode.org/charts/PDF/U1C00.pdf'
@@ -41,9 +31,9 @@ links = [
     # {'linkText': 'THIS SCRIPT',
     #  'ref': 'https://en.wikipedia.org/wiki/XYZ_alphabet'
     # },
-    # {'linkText': 'Wikipedi page',
-    #  'ref': 'https://en.wikipedia.org/wiki/XYZ_language'
-    # },
+    {'linkText': 'Wikipedi page',
+     'ref': 'https://en.wikipedia.org/wiki/Chochenyo_language',
+    },
     # {'linkText': 'Ethnolog',
     #  'ref': 'https://www.ethnologue.com/language/XYZ'
     # },
@@ -71,18 +61,13 @@ class langInfo:
         ]
 
         self.encoding_font_list = [
-          {
-            'font_path': '/fonts/xyz.ttf',
-            'font_name': 'xyz',
-            'display_name': 'xyz',
-          },
         ]
 
         self.lang_list = [LanguageCode]  # This may be extended
 
         self.kb_list = [
           {'shortName': LanguageCode,
-           'longName': LanguageCode,
+           'longName': Language,
            },
         ]
 
@@ -90,8 +75,9 @@ class langInfo:
 
         # Unicode range
         self.unicodeRanges = [('\u0020', '\u007f')]
+
         # TODO: Fill in with diacritics
-        self.diacritic_list = [unichr(x) for x in range(0x300, 0x330)]
+        self.diacritic_list = [chr(x) for x in range(0x300, 0x330)]
         # TODO: Fill in base consonant
         self.default_base_consonant = u'\0x61'
 
@@ -101,20 +87,18 @@ class langInfo:
 
         # For additional resources for download
         self.text_file_list = [
-
         ]
 
-        self.fillChars = [unichr(x) for x in range(0x61, 0x7b)]
+        self.fillChars = [chr(x) for x in range(0x61, 0x7b)]
         self.unicodeCombiningChars = self.diacritic_list
 
         resource_list = [
           {
-            'name': 'Unicode 72 pre-release ICU4C *.tgz',
-            'source': '/resources/unicode/icu-r37e2956-x86_64-pc-linux-gnu-Ubuntu-22.04.tgz',
-            'description': 'Unicode 72 pre-release ICU4C *.tgz',
+              'name': 'Keyman Chochenyo v1.0',
+              'source': '/resources/cst/cst.kmp',
+              'description': 'Keyman Chochenyo'
           }
         ]
         self.text_file_list = resource_list
-
 
 langInstance = langInfo()

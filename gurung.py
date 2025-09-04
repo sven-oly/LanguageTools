@@ -15,10 +15,10 @@ try:
 except NameError:
     unichr = chr
 
-Language = 'English'
-Language_native = 'English'
-LanguageCode = 'en'
-ScriptCode = 'Latn'
+Language = 'Gurung'
+Language_native = 'गुरुङ'
+LanguageCode = 'grv'
+ScriptCode = 'Gukh'
 
 links = [
     {'linkText': 'Keyboard',
@@ -33,11 +33,11 @@ links = [
     #   'ref': '/' + LanguageCode + '/encodingRules/'
     # },
     {'linkText': 'Resources',
-      'ref': '/' + LanguageCode + '/downloads/'
+      'ref': '/' + LanguageCode + '/resources/'
     },
-    # {'linkText': 'Unicode page',
-    #  'ref': 'https://www.unicode.org/charts/PDF/U1C00.pdf'
-    # },
+    {'linkText': 'Khema Unicode',
+     'ref': 'https://www.unicode.org/charts/PDF/U16100.pdf'
+    },
     # {'linkText': 'THIS SCRIPT',
     #  'ref': 'https://en.wikipedia.org/wiki/XYZ_alphabet'
     # },
@@ -60,9 +60,13 @@ class langInfo:
         self.Language_native = Language_native
         self.test_data = u''
         self.unicode_font_list = [
-          {'family': 'NotoSerif',
-           'longName': 'Noto Serif',
-           'source': '/fonts/NotoSerif-Regular.ttf',
+          {'family': 'Khema',
+           'longName': 'Khema',
+           'source': '/fonts/Gurung/Khema_extended.ttf',
+           },
+          {'family': 'KhemaExtended',
+           'longName': 'Khema Extended',
+           'source': '/fonts/Gurung/Khema.ttf',
            },
           {'family': 'NotoSans',
            'longName': 'Noto Sans',
@@ -89,11 +93,13 @@ class langInfo:
         self.links = links
 
         # Unicode range
-        self.unicodeRanges = [('\u0020', '\u007f')]
-        # TODO: Fill in with diacritics
-        self.diacritic_list = [unichr(x) for x in range(0x300, 0x330)]
+        self.unicodeRanges = [(chr(0x16100), chr(0x16139))]
+        self.digits = [(chr(0x16130), chr(0x16139))]
+
+        self.diacritic_list = [chr(x) for x in range(0x1611e, 0x1612f)]
+
         # TODO: Fill in base consonant
-        self.default_base_consonant = u'\0x61'
+        self.default_base_consonant = chr(0x16101)
 
         self.encodedRanges = [
             (0x20, 0xff),
@@ -104,14 +110,14 @@ class langInfo:
 
         ]
 
-        self.fillChars = [unichr(x) for x in range(0x61, 0x7b)]
+        self.fillChars = [chr(x) for x in range(0x61, 0x7b)]
         self.unicodeCombiningChars = self.diacritic_list
 
         resource_list = [
           {
-            'name': 'Unicode 72 pre-release ICU4C *.tgz',
-            'source': '/resources/unicode/icu-r37e2956-x86_64-pc-linux-gnu-Ubuntu-22.04.tgz',
-            'description': 'Unicode 72 pre-release ICU4C *.tgz',
+              'name': 'Keyman Gurung Khema v1.0',
+              'source': '/resources/grv/gurung_khema.kmp',
+              'description': 'Keyman Gurung Khema'
           }
         ]
         self.text_file_list = resource_list

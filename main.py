@@ -29,8 +29,10 @@ import assamese
 import bete
 import chakma
 import cherokee
+import chochenyo
 import cree
 import fulfulde
+import gurung
 import khamti
 import mendekikakui
 import omq
@@ -39,6 +41,7 @@ import qiang
 import sunuwar
 import singpho
 import tangsa
+import taivietscript
 
 import wordsearch
 
@@ -72,6 +75,9 @@ language_info_dict['phk'] = phake.langInfo()
 language_info_dict['qiang'] = qiang.langInfo()
 language_info_dict['sgp'] = singpho.langInfo()
 language_info_dict['suz'] = sunuwar.langInfo()
+language_info_dict['tavt'] = taivietscript.langInfo()
+language_info_dict['cst'] = chochenyo.langInfo()
+language_info_dict['grv'] = gurung.langInfo()
 
 
 # English name, language code, name in the language.
@@ -83,6 +89,10 @@ LanguageList = [
     (u'Bété', 'bete'),
 #    ('Batak Sinalungun', 'bts'),
     ('Chakma', 'ccp', '𑄌𑄋𑄴𑄟𑄳𑄦'),
+    ('Chochenyo', 'cst'),
+
+
+
     # ('Gondi', 'gon', 'Gōndi family'),
     # ('Gondi Northern (Gunjala)', 'gno', 'Northern Gōndi (Gunjala)'),
     # ('Gondi Aheri (Masaram)', 'esg', 'Aheri Gōndi Masaram'),
@@ -119,7 +129,7 @@ LanguageList = [
     # ('Kaingang', 'kgp'),
     # ('Kpelle', 'kpe'),
     # ('Loma', 'lom'),
-    # ('Tai Viet script', 'tavt'),
+    ('Tai Viet script', 'tavt'),
     # ('Karen', 'ksw'),
     # ('Lampung', 'lampung'),
     # ('Lepcha', 'lep'),

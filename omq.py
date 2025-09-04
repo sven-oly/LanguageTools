@@ -172,7 +172,13 @@ class langInfo():
 
     resource_list = [
       {
-        'name': 'KeyMan 1.1 for Chatino',
+        'name': 'KeyMan Acentos fonéticos', # 
+        'source': '/resources/omq/chatino_with_accents.kmp',
+        'description': 'Keyboard Acentos fonéticos Mobile & Desktop',
+        'instructions': '',
+      },
+      {
+        'name': 'KeyMan 1.1 for Chatino', # 
         'source': '/resources/omq/chatino1.1.kmp',
         'description': 'Keyboard for Mobile & Desktop with superscripts A-W',
         'instructions': '',
