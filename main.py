@@ -93,6 +93,8 @@ LanguageList = [
 
 
 
+    ('Gurung', 'grv'),
+
     # ('Gondi', 'gon', 'Gōndi family'),
     # ('Gondi Northern (Gunjala)', 'gno', 'Northern Gōndi (Gunjala)'),
     # ('Gondi Aheri (Masaram)', 'esg', 'Aheri Gōndi Masaram'),

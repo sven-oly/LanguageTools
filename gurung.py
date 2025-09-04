@@ -33,7 +33,7 @@ links = [
     #   'ref': '/' + LanguageCode + '/encodingRules/'
     # },
     {'linkText': 'Resources',
-      'ref': '/' + LanguageCode + '/resources/'
+      'ref': '/' + LanguageCode + '/downloads/'
     },
     {'linkText': 'Khema Unicode',
      'ref': 'https://www.unicode.org/charts/PDF/U16100.pdf'
@@ -60,13 +60,9 @@ class langInfo:
         self.Language_native = Language_native
         self.test_data = u''
         self.unicode_font_list = [
-          {'family': 'Khema',
-           'longName': 'Khema',
+          {'family': 'Khema extended',
+           'longName': 'Khema extended',
            'source': '/fonts/Gurung/Khema_extended.ttf',
-           },
-          {'family': 'KhemaExtended',
-           'longName': 'Khema Extended',
-           'source': '/fonts/Gurung/Khema.ttf',
            },
           {'family': 'NotoSans',
            'longName': 'Noto Sans',
