@@ -897,6 +897,7 @@ class CharacterTableHandler():
     path = os.path.join(os.path.dirname(__file__), 'HTML/characterNames.html')
 #    self.response.out.write(template.render(path, template_values))
 
+
 class WordSearchHandler():
   def get(self):
     langInfo = self.app.config.get('langInfo')

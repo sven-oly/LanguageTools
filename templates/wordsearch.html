@@ -102,6 +102,7 @@
           // Check if a random seed should be used.
           wordListInfo.seed = null;
           const useSeed = document.getElementById('toggleSeed').checked;
+          const useDFS = true; // document.getElementById('useDFS').checked;
           if (useSeed) {
               const seedString = document.getElementById('seedValue').value;
               if (seedValue && seedString.length > 0) {
@@ -113,9 +114,11 @@
           }
 
           const inputArea = document.getElementById(wordSrc);
+          // Enforce minimum size
+          wordlistChanged(inputArea);
           const wordData = inputArea.value;
           return wordListInfo.sendWords(
-              wordData, resultArea, answerArea, useDfs);
+              wordData, resultArea, answerArea, useDFS);
       }
 
       // Grapheme splitter
@@ -297,6 +300,25 @@
       }
       const font_families = [{% for font in unicode_font_list %}"{{font.family}}", {% endfor %}];
 
+      function wordlistChanged(input_area) {
+          const text = input_area.value.replace(',', '').replace('\u000a', '');
+          // Split into words, then compute maximum size.
+          const words = text.split(' ');
+          let max_size = 0;
+          for (const word of words) {
+              if (word.length > max_size) {
+                  const grapheme_count = gsplitter.countGraphemes(word);
+                  max_size = word.length;
+              }
+          }
+          
+          // Set the min grid size to be that size
+          let grid_size_element = document.getElementById('grid_size');
+          let grid_size = parseInt(grid_size_element.value);
+          if (max_size > grid_size) {
+              grid_size_element.value = max_size;
+          }
+      }
     </script>
   </head>
 
@@ -309,20 +331,23 @@
         <div class="noprint" id="uiOnly">
 <div>
   <h3>{{language}} Words:</h3>
-  <textarea id="wordlist">{{testData}}</textarea>
+  <textarea id="wordlist" oninput="wordlistChanged(this);">{{testData}}</textarea>
 </div>
+
 <input type="button" value="Clear words and solution"
        onclick="clearArea('wordlist');clearArea('wordsToFind');clearChildNodes('answerList');clearTableRows('gridTable');">
 <input type="button" value="Submit words from box"
-       onclick="sendRegionWords('wordlist', 'Grid', 'Answers', false);">
+       onclick="sendRegionWords('wordlist', 'Grid', 'Answers', true);">
 <br />
-<div style="display: none;">
-  Grid size:
-  <input id='grid_size' type=text value='10' size='4'/>
+<div>
+  Minumum grid size:
+  <input id='grid_size' type=text value='6' size='4'/>
   Max tries:
   <input id='max_tries' type=text value='4' size='4'/>
   Num solutions:
   <input id='num_solutions' type=text value='1' size='4'/>
+  Use grapheme clusters:
+  <input id='use_grapheme_clusters' type='checkbox'/>
   <br />
 </div>
 
@@ -377,7 +402,7 @@
           </select>
 </select>
 <br/>
-<label for="sizeSelector">Size: </label>
+<label for="sizeSelector">Font size: </label>
 <select onchange="setWordSearchSize(this.value);" id="sizeSelector">
   <option value="10px">10</option>
   <option value="14px">14</option>
@@ -399,6 +424,8 @@
   <!-- Random seed input -->
   <br /><input type="checkbox" id="toggleSeed"
          onclick="toggle('answers', 'toggleSeed');"/>Use random seed?</input>
+  <br /><input type="checkbox" id="useDFS" checked
+         onclick="toggle('useDFS', 'useDFS');"/>Use DFS</input>
   <label for="seedForRandom">Seed: </label>
   <input type="text" id="seedValue" name="seedForRandom"><br/>
   

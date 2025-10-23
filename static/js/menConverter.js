@@ -230,7 +230,8 @@ const low_pua = 0xe000;
 const high_pua = 0xe162;
 const low_pua_char = String.fromCharCode(low_pua);
 const high_pua_char = String.fromCharCode(high_pua);
-
+const rtl_mark = '\u200f';
+const rtl_override = '\u200e';
 
 for (let code = low_pua; code <= high_pua; code+=1) {
     const index_char = String.fromCharCode(code);
@@ -284,8 +285,9 @@ langConverter.convertText = function(intext, encodingIndex) {
         let out_char;
         for (let index = 0; index < intext.length; index ++) {
             let out_char = intext[index];
+            if (out_char == rtl_mark || out_char == rtl_override) continue;  // skip this!
             if (out_char >= low_pua_char && out_char <= high_pua_char) {
-                out_char= String.fromCharCode(intext.codePointAt(out_char) + pua_to_presentation_a);
+                out_char= String.fromCharCode(intext.codePointAt(index) + pua_to_presentation_a);
             }
             outText += out_char;
         }

@@ -58,7 +58,7 @@ for f in all_cherokee_unicode_fonts:
 
 links = [
     {'linkText': 'Keyboard',
-     'ref': '/chr/'
+     'ref': '/langbase/chr/'
     },
     {'linkText': 'Phonetic table',
      'ref': '/' + LanguageCode + '/phonetickb/'
@@ -87,6 +87,9 @@ links = [
     {'linkText': 'Calendar',
      'ref': '/chr/calendar/'
     },
+    {'linkText': 'Word search',
+     'ref': '/wordsearch/' + LanguageCode + '/'
+    },
 ]
 
 
@@ -99,6 +102,11 @@ class langInfo:
     self.unicodeChars.extend([chr(x) for x in range(0xaa70, 0xabbf)])
     self.unicode_font_list = unicode_font_list
     self.encoding_font_list = encoding_font_list
+
+    self.unicodeCombiningChars = []
+    self.diacritic_list = []
+    # lower case only
+    self.fillChars = [chr(x) for x in range(0x13a0, 0x13fd)]
 
     self.allFonts = True
 

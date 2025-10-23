@@ -35,7 +35,7 @@ links = [
      'ref': '/' + LanguageCode + '/'
     },
     {'linkText': 'Word search',
-     'ref': '/' + LanguageCode + '/wordsearch/'
+     'ref': '/wordsearch/' + LanguageCode + '/'
     },
     {'linkText': 'Calendar',
      'ref': '/' + LanguageCode + '/calendar/'

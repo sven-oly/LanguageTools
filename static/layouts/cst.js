@@ -10,39 +10,41 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+// Updated 15-Oct-2025 to V1.1, adding c, C, and single apostrophe
 
 var CST_LAYOUT = {
-  'id': 'cst',
-  'title': 'Chochenyo',
-  'mappings': {
-    ',c': {
-      '': '`1234567890-=' +
-          '‘wertyuiop[]\\' +
-          'as{{s̆}}ṭ{{}}h{{}}kl;ʻ' +
-          '{{—}}x{{c̆}}{{}}{{}}nm,./'
+    'id': 'cst',
+    'title': 'Chochenyo',
+    'verison': '1.1',
+    'mappings': {
+        ',c': {
+            '': '`1234567890-=' +
+                '‘wertyuiop[]\\' +
+                'as{{s̆}}ṭ{{}}h{{}}kl;\'' +
+                '{{—}}xc{{c̆}}{{}}nm,./'
+        },
+        's,sc': {
+            '': '~!@#$%^&*()_+' +
+                'QWERTYUIOP{}|' +
+                'AS{{S̆}}Ṭ{{}}H{{}}KL:"' +
+                '{{}}XC{{C̆}}{{}}NM<>?'
+        },
+        'l,c̆,cl': {
+            '': '`1234567890-=' +
+                'qwertyuiop[]\\' +
+                'asdfghjkl;\'' +
+                'zxcvbnm,./'
+        },
+        'sc̆,sl,scl': {
+            '': '~!@#$%^&*()_+' +
+                'QWERTYUIOP{}|' +
+                'ASDFGHJKL:"\'' +
+                'ZXCVBNM<>?'
+        }
     },
-    's,sc': {
-      '': '~!@#$%^&*()_+' +
-          'QWERTYUIOP{}|' +
-          'AS{{S̆}}Ṭ{{}}H{{}}KL:"' +
-          '{{}}X{{C̆}}{{}}{{}}NM<>?'
-    },
-    'l,c̆,cl': {
-      '': '`1234567890-=' +
-          'qwertyuiop[]\\' +
-          'asdfghjkl;\'' +
-          'zxcvbnm,./'
-    },
-    'sc̆,sl,scl': {
-      '': '~!@#$%^&*()_+' +
-          'QWERTYUIOP{}|' +
-          'ASDFGHJKL:"\'' +
-          'ZXCVBNM<>?'
+    'transform': {
+        '^': '^',  // Placeholder
     }
-  },
-  'transform': {
-    '^': '^',  // Placeholder
-  }
 };
 
 // Load the layout and inform the keyboard to switch layout if necessary.

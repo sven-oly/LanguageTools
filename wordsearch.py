@@ -6,6 +6,8 @@
 from __future__ import print_function
 #from builtins import range
 #from builtins import object
+import grapheme
+
 import itertools
 import logging
 import math
@@ -22,7 +24,7 @@ try:
 except NameError:
   unichr = chr
 
-lower_letters = u'ꠞꠔꠂꠥꠤꠧꠙꠣꠡꠖ?ꠉꠢꠎꠇꠟꠐꠌꠥꠛꠘꠝ'
+lower_letters = u'abcdefghijklmnopqrstuvwxyz'
 
 letters = lower_letters
 
@@ -73,10 +75,11 @@ class Position(object):
     self.word = ''.join(tokens)
 
 class WordSearch(object):
-  def __init__(self, maxGridSize=10):
+  def __init__(self, words, maxGridSize=10):
     # Get the fill characters
     self.grid = None
-    self.words = []  # The original inputs
+    self.words = words  # The original inputs
+    logging.info('WordSearch words: %s', words)
     self.tokenList = None  # The tokenized word lists.
     self.do_diagonal = True
     self.do_reverse = True
@@ -107,14 +110,9 @@ class WordSearch(object):
     self.backtracks = 0  # Number of failed word inserts
     self.failed_inserts = 0  # Number of failed word inserts
     self.cells_filled = 0  # Now many filled with words.
-
-    # By reversed length of token list.
-    self.max_level = 0
-
     self.width = self.height = self.size = 0
 
-  def computeGridSize(self):
-    factor = 1.2
+  def computeGridSize(self, factor=1.2):
     tokenSizes = [len(s) for s in self.tokenList]
     max_xy = max(tokenSizes)
     totalTokens = sum(tokenSizes)
@@ -126,11 +124,14 @@ class WordSearch(object):
   def generateTokens(self, words):
     self.tokenList = []
     for word in words:
+      # TODO: use graphemes instead?
+      graphemes_in_word = grapheme.graphemes(word)
       self.tokenList.append(
         WordSearch.getTokens(word, self.diacriticSet))
-    
+
   def setWords(self, words):
     self.words = words
+    self.max_level = len(self.words)
     self.generateTokens(words)
 
   def setMode(self, isWordSearch):
@@ -155,32 +156,35 @@ class WordSearch(object):
     attempts = 10
     size = self.computeGridSize()
 
+    # Make the grid of this size
+    default_value = ''
+    self.grid = [[default_value for _ in range(size)] for _ in range(size)]
+
     # Make several attempts to create the search
     for attempt in range(attempts):
       if debug:
         logging.info('makeGrid: try = %s' % (attempt))
         try:
-          return [attemptGrid(words, tokenList, size,
-                             self.fillList, self.diacriticsSet,
-                             self.is_wordsearch), attempt]
+          return self.attemptGrid()
+          # return [attemptGrid(words, tokenList, size,
+          #                    self.fillList, self.diacriticsSet,
+          #                    self.is_wordsearch), attempt]
         except RuntimeError as e:
           logging.error('AttemptGrid error %s' % e)
           pass
     logging.info("ERROR - Couldn't create valid board")
-    return None, None, Nont
+    return None, None, None
 
   def attemptGrid(self):
     # Fill in with inserting words
 
-    grid = [[' ' for _ in range(size[0])] for __ in range(size[1])]
-    
     # Insert answers and store their locations
     answers = {}
-    for index in range(0, len(words)):
+    for index in range(0, len(self.words)):
       word = self.words[index]
       tokens = self.tokenList[index]
       grid, answer, reversed = insertWord(
-        tokens, grid, None, self.is_wordsearch)
+        tokens, self.grid, None, self.is_wordsearch)
 
       if answer[0][0] == answer[-1][0]:
         direction = 'row'
@@ -203,11 +207,15 @@ class WordSearch(object):
     return grid, answers
   
   def generate(self, size=0, tries=None, num_solutions=None):
-    logging.info('generate size = %s' % size)
-    logging.info('generate self.size = %s' % self.size)
+    logging.info('GENERATE SIZE = %s', size)
+    logging.info('GENERATE SELF.size = %s', self.size)
     if size > 0:
       self.size = self.width = self.height = max(size, self.size)
-      self.generateGrid()
+      self.max_level = len(self.words)
+      self.generateTokens(self.words)
+      self.generateGrid(self.words)
+    else:
+      logging.info('Size = %d ???', size)
 
     result = self.generateLevel()
 
@@ -680,9 +688,17 @@ def generateWordsGrid(words, fillList=None, diacritics=None, randomSeed=None):
 
 
 # Use the new Depth First Search method with size suggestion, etc.
-def generateDFSWordSearch(words, size=0, tries=None, num_solutions=1):
+def generateDFSWordSearch(words, fill_list, diacritics, size=10, tries=None, num_solutions=1):
+  print('GENERATE DFS WORD SEARCH %s' % (words))
+  logging.info('generateDFSWordSearch: %s, %s, %s, %s',
+               words, size, tries, num_solutions)
   ws = WordSearch(words)
+  ws.setFillLetters(fill_list)
+  ws.setDiacritics(diacritics)
+
+  # See if the grid size is too small.
   ws.generate(size, tries, num_solutions)
+  print('RESULT: GENERATE DFS WORD SEARCH %s' % (ws))
 
   return ws
 
@@ -731,16 +747,32 @@ def testGrid():
 
 def testNewWordSearch(words, args):
   print('args = %s' % args)
-  if args > 1:
-    size = int(args[1])
+  if args:
+    size = args
   else:
-    size = 13
+    size = 10
+
   max_tries = 1000
   num_solutions = 1
-  ws = generateDFSWordSearch(words, size, max_tries, num_solutions)
 
-  print('%s words = %s' % (len(ws.token_list), [len(x) for x in ws.token_list]))
-  print('max tokens = %s' % ws.size)
+  # For Chochenyou text
+  fillLetters = [chr(x) for x in range(ord('a'), ord('z') + 1)]
+  fillLetters.append('\u1E6D')
+  fillLetters.append('\u0073\u0306')
+  fillLetters.append('\u0063\u0306')
+
+  diacritics = ['\u0300', '\u0305', '\u0301', '\u0306']
+  ws = generateDFSWordSearch(words, fillLetters, diacritics,
+                             size, max_tries, num_solutions)
+
+  ws.setDiacritics(diacritics)
+  max_tries = 1000
+  num_solutions = 1
+  ws = generateDFSWordSearch(words, fillLetters, size, max_tries, num_solutions)
+
+  logging.info('Words = %s', ws.words)
+  print('%s tokens = %s' % (len(ws.tokenList), [len(x) for x in ws.tokenList]))
+  print('grid size = %s' % ws.size)
   print()
   ws.printGrid()
   print('%s solutions found' % len(ws.solutions_list))
@@ -767,15 +799,18 @@ class testing():
     testString = 'ꠗꠣꠞꠣ ꠢꠇꠟ ꠝꠣꠘꠥꠡ ꠡꠣꠗꠤꠘꠜꠣꠛꠦ ꠢꠝꠣꠘ ꠁꠎ꠆ꠎꠔ ꠀꠞ ꠢꠇ'
     wordList = testString.replace(",", " ").replace("\r", " ").replace("\t", " ").replace(".", '').split()
 
-    wordSearchObj = WordSearch()
-    wordSearchObj.setFillLetters(self.fillList)
-    wordSearchObj.setDiacritics(self.diacritics)
+    wordSearchObj = WordSearch(self.words, 10)
+
+
     grid, answers = wordSearchObj.makeGrid(wordList)
   
 def main(args):
   t = testing()
   # t.testSyl()
-  t.testWordSearchObj()
+  #t.testWordSearchObj()
+
+  cst_words = ['šummi', 'horše', 'melle', 'talle']
+  testNewWordSearch(cst_words, 6)   # grid size 6
 
 if __name__ == "__main__":
   print('ARGS = %s' % sys.argv)

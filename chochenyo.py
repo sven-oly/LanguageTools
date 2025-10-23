@@ -15,7 +15,7 @@ ScriptCode = 'Latn'
 
 links = [
     {'linkText': 'Word search',
-     'ref': '/' + LanguageCode + '/wordsearch/'
+     'ref': '/wordsearch/' + LanguageCode + '/'
     },
     # {'linkText': 'Converter',
     #  'ref': '/' + LanguageCode + '/convertUI/'},
@@ -23,7 +23,7 @@ links = [
     #   'ref': '/' + LanguageCode + '/encodingRules/'
     # },
     {'linkText': 'Resources',
-      'ref': '/' + LanguageCode + '/resources/'
+      'ref': '/downloads/' + LanguageCode
     },
     # {'linkText': 'Unicode page',
     #  'ref': 'https://www.unicode.org/charts/PDF/U1C00.pdf'
@@ -90,13 +90,19 @@ class langInfo:
         ]
 
         self.fillChars = [chr(x) for x in range(0x61, 0x7b)]
+        self.fillChars.extend(['s̆', 'ṭ', 'c̆'])
         self.unicodeCombiningChars = self.diacritic_list
 
         resource_list = [
           {
+              'name': 'Keyman Chochenyo v1.1',
+              'source': '/resources/cst/cst_1.1.kmp',
+              'description': 'Keyman Chochenyo 1.1'
+          },
+          {
               'name': 'Keyman Chochenyo v1.0',
               'source': '/resources/cst/cst.kmp',
-              'description': 'Keyman Chochenyo'
+              'description': 'Keyman Chochenyo 1.0'
           }
         ]
         self.text_file_list = resource_list
