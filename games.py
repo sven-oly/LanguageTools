@@ -151,7 +151,7 @@ class GenerateWordSearchDFSHandler():
       message = 'Cannot create grid'
     else:
       message = 'Created a grid of size %s' % grid_width
-
+b
     #logging.info('games WordSearchHandler grid = %s' % grid)
     #logging.info('games WordSearchHandler answers = %s' % answers)
     #logging.info('games WordSearchHandler words = %s' % words)

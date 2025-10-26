@@ -20,38 +20,6 @@ Language_native = 'गुरुङ'
 LanguageCode = 'grv'
 ScriptCode = 'Gukh'
 
-links = [
-    {'linkText': 'Keyboard',
-     'ref': '/' + LanguageCode + '/'
-    },
-    {'linkText': 'Word search',
-     'ref': '/' + LanguageCode + '/wordsearch/'
-    },
-    # {'linkText': 'Converter',
-    #  'ref': '/' + LanguageCode + '/convertUI/'},
-    # {'linkText': 'Font conversion summary',
-    #   'ref': '/' + LanguageCode + '/encodingRules/'
-    # },
-    {'linkText': 'Resources',
-      'ref': '/' + LanguageCode + '/downloads/'
-    },
-    {'linkText': 'Khema Unicode',
-     'ref': 'https://www.unicode.org/charts/PDF/U16100.pdf'
-    },
-    # {'linkText': 'THIS SCRIPT',
-    #  'ref': 'https://en.wikipedia.org/wiki/XYZ_alphabet'
-    # },
-    # {'linkText': 'Wikipedi page',
-    #  'ref': 'https://en.wikipedia.org/wiki/XYZ_language'
-    # },
-    # {'linkText': 'Ethnolog',
-    #  'ref': 'https://www.ethnologue.com/language/XYZ'
-    # },
-    # {'linkText': 'Combiners',
-    #  'ref': '/lep/diacritic/'
-    #  },
-]
-
 
 class langInfo:
     def __init__(self):
@@ -86,7 +54,37 @@ class langInfo:
            },
         ]
 
-        self.links = links
+        self.links = [
+            {'linkText': 'Keyboard',
+             'ref': '/' + self.LanguageCode + '/'
+            },
+            {'linkText': 'Word search',
+             'ref': '/wordsearch/' + self.LanguageCode
+            },
+            # {'linkText': 'Converter',
+            #  'ref': '/' + LanguageCode + '/convertUI/'},
+            # {'linkText': 'Font conversion summary',
+            #   'ref': '/' + LanguageCode + '/encodingRules/'
+            # },
+    {'linkText': 'Resources',
+     'ref': '/downloads/' + LanguageCode
+    },
+            {'linkText': 'Khema Unicode',
+             'ref': 'https://www.unicode.org/charts/PDF/U16100.pdf'
+            },
+            # {'linkText': 'THIS SCRIPT',
+            #  'ref': 'https://en.wikipedia.org/wiki/XYZ_alphabet'
+            # },
+            # {'linkText': 'Wikipedi page',
+            #  'ref': 'https://en.wikipedia.org/wiki/XYZ_language'
+            # },
+            # {'linkText': 'Ethnolog',
+            #  'ref': 'https://www.ethnologue.com/language/XYZ'
+            # },
+            # {'linkText': 'Combiners',
+            #  'ref': '/lep/diacritic/'
+            #  },
+]
 
         # Unicode range
         self.unicodeRanges = [(chr(0x16100), chr(0x16139))]
@@ -111,8 +109,8 @@ class langInfo:
 
         resource_list = [
           {
-              'name': 'Keyman Gurung Khema v1.0',
-              'source': '/resources/grv/gurung_khema.kmp',
+              'name': 'Keyman Gurung Khema keyboards (2) 2025-09-22',
+              'source': '/resources/grv/gurung_khema2.kmp',
               'description': 'Keyman Gurung Khema'
           }
         ]

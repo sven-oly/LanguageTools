@@ -14,49 +14,13 @@
 # limitations under the License.
 #
 
-import webapp2
-
 import base
 
-# For Python 2.x. and Python
-try:
-    unichr
-except NameError:
-    unichr = chr
 
 Language = 'Tai Yo'
 Language_native = 'ไทญ้อ'
 LanguageCode = 'tyj'
 ScriptCode = 'Latn'
-
-links = [
-  {'linkText': 'Keyboard',
-   'ref': '/' + LanguageCode + '/'
-   },
-  # {'linkText': 'Converter',
-  #  'ref': '/' + LanguageCode + '/convertUI/'},
-  # {'linkText': 'Font conversion summary',
-  #   'ref': '/' + LanguageCode + '/encodingRules/'
-  # },
-  {'linkText': 'Resources',
-    'ref': '/' + LanguageCode + '/downloads/'
-  },
-  {'linkText': 'Unicode proposal 22-289R',
-   'ref': 'https://www.unicode.org/L2/L2022/22289r-tai-yo-script.pdf'
-  },
-  # {'linkText': 'THIS SCRIPT',
-  #  'ref': 'https://en.wikipedia.org/wiki/XYZ_alphabet'
-  # },
-  # {'linkText': 'Wikipedi page',
-  #  'ref': 'https://en.wikipedia.org/wiki/XYZ_language'
-  # },
-  # {'linkText': 'Ethnolog',
-  #  'ref': 'https://www.ethnologue.com/language/XYZ'
-  # },
-  # {'linkText': 'Combiners',
-  #  'ref': '/lep/diacritic/'
-  #  },fc
-]
 
 
 class langInfo:
@@ -97,14 +61,48 @@ class langInfo:
            },
         ]
 
-        self.links = links
+        self.links = [
+            {'linkText': 'Keyboard',
+             'ref': '/langbase/' + self.LanguageCode + '/'
+            },
+            {'linkText': 'Word search',
+             'ref': '/wordsearch/' + self.LanguageCode
+            },
+            
+            # {'linkText': 'Converter',
+            #  'ref': '/' + LanguageCode + '/convertUI/'},
+            # {'linkText': 'Font conversion summary',
+            #   'ref': '/' + LanguageCode + '/encodingRules/'
+            # },
+            {'linkText': 'Resources', 'ref': '/downloads/' + self.LanguageCode
+            },
+            {'linkText': 'Unicode proposal 22-289R',
+             'ref': 'https://www.unicode.org/L2/L2022/22289r-tai-yo-script.pdf'
+            },
+            # {'linkText': 'THIS SCRIPT',
+            #  'ref': 'https://en.wikipedia.org/wiki/XYZ_alphabet'
+            # },
+            # {'linkText': 'Wikipedi page',
+            #  'ref': 'https://en.wikipedia.org/wiki/XYZ_language'
+            # },
+            # {'linkText': 'Ethnolog',
+            #  'ref': 'https://www.ethnologue.com/language/XYZ'
+            # },
+            # {'linkText': 'Combiners',
+            #  'ref': '/lep/diacritic/'
+            #  },
+        ]
 
         # Unicode range
-        self.unicodeRanges = [('\u0020', '\u007f')]
+        self.unicodeRanges = [(chr(0x1E6C0), chr(0x1E6FF))]
         # TODO: Fill in with diacritics
-        self.diacritic_list = [unichr(x) for x in range(0x300, 0x330)]
+        self.fillChars = [chr(x) for x in range(0x1e6c0, 0x1e6ff)]
+        self.diacritic_list = [
+            chr(x) for x in [0x16e3, 0x1e6e6, 0x1e6ee, 0x1e6ef, 0x1e6f5]]
+        self.unicodeCombiningChars = self.diacritic_list
+                              
         # TODO: Fill in base consonant
-        self.default_base_consonant = u'\0x61'
+        self.default_base_consonant = chr(0x1e6c0)
 
         self.encodedRanges = [
             (0x20, 0xff),
@@ -113,11 +111,18 @@ class langInfo:
         # For additional resources for download
         self.text_file_list = [
             {
-                'name': 'KeyMan 1.1 for Tai Yo Unicode - 13-Nov-2023',
-                'source': '/resources/tyj/tai_yo_1.1.kmp',
+                'name': 'KeyMan 1.21 for Tai Yo Unicode - 22-Sept-2025',
+                'source': '/resources/tyj/tai_yo_1.21.kmp',
                 'description': 'Keyboard for Desktop',
                 'instructions': '',
-            }
+            },
+            # {
+            #     'name': 'KeyMan 1.1 for Tai Yo Unicode - 13-Nov-2023',
+            #     'source': '/resources/tyj/tai_yo_1.1.kmp',
+            #     'description': 'Keyboard for Desktop',
+            #     'instructions': '',
+            # }
+            
         ]
 
         self.to_keyman = True
@@ -127,15 +132,3 @@ class langInfo:
 
 
 langInstance = langInfo()
-
-app = webapp2.WSGIApplication([
-  ('/' + LanguageCode + '/', base.LanguagesHomeHandler),
-  ('/' + LanguageCode + '/convertUI/', base.ConvertUIHandler),
-  ('/' + LanguageCode + '/downloads/', base.Downloads),
-  ('/' + LanguageCode + '/encodingRules/', base.EncodingRules),
-  ('/' + LanguageCode + '/diacritic/', base.DiacriticHandler),
-  ('/' + langInstance.LanguageCode + '/wordsearch/', base.WordSearchHandler),
-  ('/' + langInstance.LanguageCode + '/keyman/', base.KeyManHandler),
-], debug=True,
-  config={'langInfo': langInstance}
-)

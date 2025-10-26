@@ -105,6 +105,9 @@ class langInfo:
             {'linkText': 'Resources',
              'ref': '/downloads/' + self.LanguageCode
              },
+            {'linkText': 'Word search',
+             'ref': '/wordsearch/%s/' % self.LanguageCode
+            },
         ]
 
         self.kb_list = [
@@ -142,12 +145,19 @@ class langInfo:
         self.base_consonant = u'\U00011700'
 
         if sys.maxunicode >= 0x10000:
-            self.unicodeChars = [chr(x) for x in range(0x11700, 0x1173f)]
+            self.unicodeChars = [chr(x) for x in range(0x11700, 0x1171b)]
+            self.unicodeChars.extend([chr(x) for x in range(0x1171d, 0x1172c)])
+            self.unicodeChars.extend([chr(x) for x in range(0x11730, 0x11747)])
             self.diacritic_list = [chr(x) for x in range(0x1171d, 0x1172c)]
         else:
             self.unicodeChars = [chr(0xd805) + chr(0xdf00 + x) for x in range(0x00, 0x3f)]
             self.diacritic_list = [chr(0xd805) + chr(0xdf00 + x) for x in range(0x1d, 0x2c)]
 
+        self.unicodeCombiningChars = self.diacritic_list
+
+        # For wordsearch and games
+        self.fillChars = self.unicodeChars
+        
         # Python-based transliteration tool.
         self.transliterator = None
 

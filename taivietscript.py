@@ -66,7 +66,7 @@ links = [
       'ref': '/' + LanguageCode + '/encodingRules/'
     },
     {'linkText': 'Resources',
-      'ref': '/' + LanguageCode + '/downloads/'
+      'ref': '/downloads/' + LanguageCode
     },
   {'linkText': 'Keyman Tai Dam layout',
    'ref': 'https://keymanweb.com/#blt,Keyboard_sil_tai_dam',

@@ -48,43 +48,6 @@ unicode_font_list = [
   # },
 ]
 
-links = [
-    {'linkText': 'Keyboard',
-     'ref': '/bete/'
-    },
-    {'linkText': 'Keyboard conversions',
-     'ref': '/kbtransforms/' + 'bete'    # {'linkText': 'Converter',
-     },
-    #  'ref': '/bete/convertUI/'
-    # },
-    # {'linkText': 'Font conversion summary',
-    #   'ref': '/bete/encodingRules/'
-    # },
-    # {'linkText': 'Resources',
-    #   'ref': '/bete/downloads/'
-    # },
-    # {'linkText': 'Unicode Page',
-    #  'ref': 'https://www.unicode.org/charts/PDF/U1E800.pdf'
-    # },
-    {'linkText': 'Kru languages, Ivory Coast',
-     'ref': 'https://en.wikipedia.org/wiki/Kru_languages'
-    },
-    {'linkText': 'Language Wikipedia',
-     'ref': 'https://en.wikipedia.org/wiki/B%C3%A9t%C3%A9_languages'
-    },
-    {'ref': 'http://www.unicode.org/L2/L2019/19044-bete-script.pdf',
-     'linkText': 'Unicode proposal 2019'
-    },
-    {'linkText': 'Unicode proposal draft 2017',
-     'ref': 'http://www.unicode.org/L2/L2017/17323-bete-progress.pdf'
-    },
-    {'linkText': 'Athinkra Character Picker',
-     'ref': 'http://nkoconvert.ho.ua/bete-ime/'
-    },
-    {'linkText': 'Digital Orientalist',
-     'ref': 'https://digitalorientalist.com/2021/01/22/building-tools-with-bete-mende-and-kpelle-users/'
-    },
-]
 
 class langInfo():
   def __init__(self):
@@ -118,13 +81,58 @@ class langInfo():
         'fontFamily': 'JGBete4',
       },
     ]
-    self.links = links
+    self.links = [
+      {'linkText': 'Keyboard',
+       'ref': '/bete/'
+      },
+      {'linkText': 'Keyboard conversions',
+       'ref': '/kbtransforms/' + 'bete'    # {'linkText': 'Converter',
+      },
+      {'linkText': 'Word search',
+       'ref': '/wordsearch/' + self.LanguageCode
+      },
+      #  'ref': '/bete/convertUI/'
+      # },
+      # {'linkText': 'Font conversion summary',
+      #   'ref': '/bete/encodingRules/'
+      # },
+      # {'linkText': 'Resources',
+      #   'ref': '/downloads/bete/
+      # },
+      # {'linkText': 'Unicode Page',
+      #  'ref': 'https://www.unicode.org/charts/PDF/U1E800.pdf'
+      # },
+      {'linkText': 'Kru languages, Ivory Coast',
+       'ref': 'https://en.wikipedia.org/wiki/Kru_languages'
+      },
+      {'linkText': 'Language Wikipedia',
+       'ref': 'https://en.wikipedia.org/wiki/B%C3%A9t%C3%A9_languages'
+      },
+      {'ref': 'http://www.unicode.org/L2/L2019/19044-bete-script.pdf',
+       'linkText': 'Unicode proposal 2019'
+      },
+      {'linkText': 'Unicode proposal draft 2017',
+       'ref': 'http://www.unicode.org/L2/L2017/17323-bete-progress.pdf'
+      },
+      {'linkText': 'Athinkra Character Picker',
+       'ref': 'http://nkoconvert.ho.ua/bete-ime/'
+      },
+      {'linkText': 'Digital Orientalist',
+       'ref': 'https://digitalorientalist.com/2021/01/22/building-tools-with-bete-mende-and-kpelle-users/'
+      },
+    ]
     self.text_file_list = []
     self.unicode_font_list = unicode_font_list
 
     # Lists of test characters for the various encodings
     self.test_chars = ' '.join([chr(x) for x in range(0xe600, 0xe780)])
 
+    # Temporary for PUA
+    self.unicodeChars = [chr(x) for x in range(0xe600, 0xe780)]
+    self.fillChars = self.unicodeChars
+    self.diacritics = []
+    self.unicodeCombiningChars = []
+    
     # For dictionary
     self.dictionaryLang1 = "English"
     self.dictionaryLang2 = self.Language

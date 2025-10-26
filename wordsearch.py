@@ -15,6 +15,10 @@ import random
 import sys
 from random import randint
 
+from chochenyo import langInstance as cstLangInstance
+from phake import langInstance as phkLangInstance
+from tangsa import langInstance as nstLangInstance
+
 # Set up fill letters, including those with diacritics.
 # Should we done something with statistics?
 # Check for bad words?
@@ -125,14 +129,16 @@ class WordSearch(object):
     self.tokenList = []
     for word in words:
       # TODO: use graphemes instead?
-      graphemes_in_word = grapheme.graphemes(word)
-      self.tokenList.append(
-        WordSearch.getTokens(word, self.diacriticSet))
+      lower_case_word = word.lower()
+      graphemes_in_word = grapheme.graphemes(lower_case_word)
+      grapheme_list = list(graphemes_in_word)
+      self.tokenList.append(grapheme_list)
+    WordSearch.getTokens(word, self.diacriticSet)
 
   def setWords(self, words):
-    self.words = words
+    self.words = [word.lower() for word in words]
     self.max_level = len(self.words)
-    self.generateTokens(words)
+    self.generateTokens(self.words)
 
   def setMode(self, isWordSearch):
     self.is_wordsearch = isWordSearch
@@ -140,7 +146,7 @@ class WordSearch(object):
   # The main generator based on the WordSearch object
   def makeGrid(self, words=None):
     if not self.words and words:
-      self.words = words
+      self.words = [word.lower() for word in words]
 
     # Token sets sorted by size
     token_list = []
@@ -692,7 +698,7 @@ def generateDFSWordSearch(words, fill_list, diacritics, size=10, tries=None, num
   print('GENERATE DFS WORD SEARCH %s' % (words))
   logging.info('generateDFSWordSearch: %s, %s, %s, %s',
                words, size, tries, num_solutions)
-  ws = WordSearch(words)
+  ws = WordSearch([word.lower() for word in words])
   ws.setFillLetters(fill_list)
   ws.setDiacritics(diacritics)
 
@@ -745,41 +751,6 @@ def testGrid():
   return grid, answers, words, max_xy + 1
 
 
-def testNewWordSearch(words, args):
-  print('args = %s' % args)
-  if args:
-    size = args
-  else:
-    size = 10
-
-  max_tries = 1000
-  num_solutions = 1
-
-  # For Chochenyou text
-  fillLetters = [chr(x) for x in range(ord('a'), ord('z') + 1)]
-  fillLetters.append('\u1E6D')
-  fillLetters.append('\u0073\u0306')
-  fillLetters.append('\u0063\u0306')
-
-  diacritics = ['\u0300', '\u0305', '\u0301', '\u0306']
-  ws = generateDFSWordSearch(words, fillLetters, diacritics,
-                             size, max_tries, num_solutions)
-
-  ws.setDiacritics(diacritics)
-  max_tries = 1000
-  num_solutions = 1
-  ws = generateDFSWordSearch(words, fillLetters, size, max_tries, num_solutions)
-
-  logging.info('Words = %s', ws.words)
-  print('%s tokens = %s' % (len(ws.tokenList), [len(x) for x in ws.tokenList]))
-  print('grid size = %s' % ws.size)
-  print()
-  ws.printGrid()
-  print('%s solutions found' % len(ws.solutions_list))
-  print('Statistics\n')
-  ws.printStats()
-  ws.printSolution()
-
 class testing():
   def __init__(self, maxGridSize=10):
     self.fillList = 'ꠀ,ꠁ,ꠃ,ꠄ,ꠅ,ꠇ,ꠈ,ꠉ,ꠊ,ꠌ,ꠍ,ꠎ,ꠏ,ꠐ,ꠑ,ꠒ,ꠓ,ꠔ,ꠕ,ꠖ,ꠗ,ꠘ,ꠙ,ꠚ,ꠛ,ꠜ,ꠝ,ꠞ,ꠟ,ꠠ,ꠡ,ꠢ'.split(',')
@@ -800,17 +771,74 @@ class testing():
     wordList = testString.replace(",", " ").replace("\r", " ").replace("\t", " ").replace(".", '').split()
 
     wordSearchObj = WordSearch(self.words, 10)
-
-
     grid, answers = wordSearchObj.makeGrid(wordList)
-  
+
+  def showTestResults(self, lang_code, ws):
+    logging.info('%s words = %s', lang_code, ws.words)
+    print('%s tokens = %s' % (len(ws.tokenList), [len(x) for x in ws.tokenList]))
+    print('grid size = %s' % ws.size)
+    print()
+    ws.printGrid()
+    print('%s solutions found' % len(ws.solutions_list))
+    print('Statistics\n')
+    ws.printStats()
+    ws.printSolution()
+  def testChochenyoWordSearch(self):
+    lang_code = 'cst'
+    words = ['šummi', 'horše', 'Melle', 'talle']
+
+    max_tries = 100
+    num_solutions = 3
+
+    # For Chochenyou text
+    max_tries = 100
+    num_solutions = 1
+    size=5
+    ws = generateDFSWordSearch(words, cstLangInstance.fillChars, cstLangInstance.diacritic_list,
+                               size, max_tries, num_solutions)
+
+    self.showTestResults(self, lang_code, ws)
+
+
+  def testTaiPhakeWordSearch(self):
+    lang_code = 'phk'
+    words = ['ꩬ︀ံၵ︀ွံက︀တ︀်',  'မ︀ိဝ︀်ဢ︀ွꩫ︀်',  'မ︀ိဝ︀်ထ︀ိုက︀်', 'ၸ︀ႝမ︀ႝ']
+    fillChars = phkLangInstance.fillChars
+    diacritics = phkLangInstance.diacritic_list
+
+    max_tries = 10
+    num_solutions = 1
+    size = 10
+    ws = generateDFSWordSearch(words, fillChars, diacritics,
+                               size, max_tries, num_solutions)
+
+    self.showTestResults(self, lang_code, ws)
+
+
+  def testTangaWordSearch(self):
+    lang_code = 'nst'
+    words = ['𖪰𖪖', '𖪲𖪖', '𖪦𖩸𖪲', '𖪦𖩸𖪄𖪐', '𖪫𖪗', '𖪥𖩻𖪫𖪲𖪔𖪫']
+    fillChars = nstLangInstance.fillChars
+    diacritics = nstLangInstance.diacritic_list
+
+    max_tries = 10
+    num_solutions = 1
+    size = 10
+    ws = generateDFSWordSearch(words, fillChars, diacritics,
+                               size, max_tries, num_solutions)
+    self.showTestResults(lang_code, ws)
+
 def main(args):
   t = testing()
   # t.testSyl()
   #t.testWordSearchObj()
 
-  cst_words = ['šummi', 'horše', 'melle', 'talle']
-  testNewWordSearch(cst_words, 6)   # grid size 6
+  t.testTangaWordSearch()
+
+  t.testChochenyoWordSearch()   # grid size 6
+
+  t.testTaiPhakeWordSearch()
+
 
 if __name__ == "__main__":
   print('ARGS = %s' % sys.argv)

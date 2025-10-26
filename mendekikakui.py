@@ -53,7 +53,14 @@ encoding_font_list = [
 ]
 
 unicode_font_list = [
-  {
+{
+    # Contains both Unicode and JG and Presentation characters
+    'family': 'KikakuiSansProCombined strong',
+    'longName': 'Kikakui Sans Pro Combined strong',
+    'source': '/fonts/MendeKikakui/KikakuiSansProCombined_strong.ttf',
+    'encoding': 'PFA',
+    'info': 'Combined JG, Presentation Forms A, and Unicode #3'
+  },  {
     # Contains both Unicode and JG and Presentation characters
     'family': 'KikakuiSansProCombined',
     'longName': 'Kikakui Sans Pro Combined',
@@ -71,47 +78,6 @@ unicode_font_list = [
   encoding_font_list[0],
 ]
 
-links = [
-    {'linkText': 'Keyboard',
-     'ref': '/langbase/men/'
-    },\
-    {'linkText': 'Keyboard conversions',
-     'ref': '/kbtransforms/' + LanguageCode
-     },
-    {'linkText': 'Phonetic table',
-     'ref': '/phonetickb/' + LanguageCode
-     },
-    {'linkText': 'Converter',
-     'ref': '/convert/' + LanguageCode
-    },
-    {'linkText': 'Font conversion summary',
-      'ref': '/encodingRules/' + LanguageCode
-    },
-    {'linkText': 'Resources',
-     'ref': '/downloads/' + LanguageCode
-    },
-    {'linkText': 'Unicode Page',
-     'ref': 'https://www.unicode.org/charts/PDF/U1E800.pdf'
-    },
-  {'linkText': 'Unicode proposal 2012',
-   'ref': 'https://www.unicode.org/L2/L2012/12023-n4167-mende.pdf'
-   },
-    {'linkText': 'Language Wikipedia',
-     'ref': 'https://en.wikipedia.org/wiki/Mende_language'
-    },
-    {'linkText': 'Athinkra Character Picker',
-     'ref': 'http://athinkra.github.io/mende-kikakui/tools/#?load=0x1e800-mende_kikakui.json'
-     },
-    {'linkText': 'Digital Orientalist',
-      'ref': 'https://digitalorientalist.com/2021/01/22/building-tools-with-bete-mende-and-kpelle-users/'
-    },
-    {'linkText': 'Jason Glavy fonts',
-     'ref': 'http://glavyfonts.com/african.html'
-    },
-    {'linkText': 'YouTube video about Ki-ka-kui',
-     'ref': 'https://youtu.be/THQYjoVjZlQ?si=0Astt8p3kFvx4BmC'
-    }
-]
 
 class langInfo():
   def __init__(self):
@@ -139,14 +105,23 @@ class langInfo():
     self.encoding_font_list = encoding_font_list
     self.kb_list = [
       {
-        'shortName': 'menphone3_pfa',
-        'longName': 'Mende FPA 3',
-        'jsName': 'menphone3_pfa',
+        'shortName': 'menphone3_pfa_new',
+        'longName': 'Mende FPA 3 NEW',
+        'jsName': 'menphone3_pfa_new',
         'instructions': 'Output in RTL block U+fBXX. Use / to end a syllable.',
-        'font': 'KikakuiSansPro_Comtined',
+        'font': 'KikakuiSansProCombined_Strong',
         'fontFamilyToApply': ['MendeKikakuiFonts', 'NotoSansMendeKikakui', 'JGMende'],
         'fontFamily': 'KikakuiSansPro_Presentation',
       },
+      # {
+      #   'shortName': 'menphone3_pfa',
+      #   'longName': 'Mende FPA 3',
+      #   'jsName': 'menphone3_pfa',
+      #   'instructions': 'Output in RTL block U+fBXX. Use / to end a syllable.',
+      #   'font': 'KikakuiSansPro_Comtined',
+      #   'fontFamilyToApply': ['MendeKikakuiFonts', 'NotoSansMendeKikakui', 'JGMende'],
+      #   'fontFamily': 'KikakuiSansPro_Presentation',
+      # },
       {
         'shortName': 'menphone3_unicode',
         'longName': 'Mende Unicode 3',
@@ -214,7 +189,51 @@ class langInfo():
     # For attaching sorting, etc
     self.text_functions = 'js/men.js'
 
-    self.links = links
+    self.links = [
+      {'linkText': 'Keyboard',
+       'ref': '/langbase/men/'
+      },\
+      {'linkText': 'Keyboard conversions',
+       'ref': '/kbtransforms/' + LanguageCode
+      },
+      {'linkText': 'Phonetic table',
+       'ref': '/phonetickb/' + LanguageCode
+      },
+      {'linkText': 'Converter',
+       'ref': '/convert/' + LanguageCode
+      },
+      {'linkText': 'Font conversion summary',
+       'ref': '/encodingRules/' + LanguageCode
+      },
+      {'linkText': 'Resources',
+       'ref': '/downloads/' + LanguageCode
+      },
+      {'linkText': 'Unicode Page',
+       'ref': 'https://www.unicode.org/charts/PDF/U1E800.pdf'
+      },
+      {'linkText': 'Unicode proposal 2012',
+       'ref': 'https://www.unicode.org/L2/L2012/12023-n4167-mende.pdf'
+      },
+      {'linkText': 'Language Wikipedia',
+       'ref': 'https://en.wikipedia.org/wiki/Mende_language'
+      },
+      {'linkText': 'Athinkra Character Picker',
+       'ref': 'http://athinkra.github.io/mende-kikakui/tools/#?load=0x1e800-mende_kikakui.json'
+      },
+      {'linkText': 'Digital Orientalist',
+       'ref': 'https://digitalorientalist.com/2021/01/22/building-tools-with-bete-mende-and-kpelle-users/'
+      },
+      {'linkText': 'Jason Glavy fonts',
+       'ref': 'http://glavyfonts.com/african.html'
+      },
+      {'linkText': 'YouTube video about Ki-ka-kui',
+       'ref': 'https://youtu.be/THQYjoVjZlQ?si=0Astt8p3kFvx4BmC'
+      },
+      {'linkText': 'Word search',
+       'ref': '/wordsearch/' + self.LanguageCode
+      },
+    ]
+
     self.text_file_list = [
       {
         'name': 'KeyMan Mende Kikakui Presentation Forms',
@@ -244,6 +263,11 @@ class langInfo():
     # Lists of test characters for the various encodings
     self.test_chars = ' '.join([chr(x) for x in range(0xe000, 0xe103)])
 
+    self.unicodeChars = [chr(x) for x in range(0xe000, 0xe103)]
+    self.fillChars = [chr(x) for x in range(0xe000, 0xe103)]
+    self.unicodeCombiningChars = self.diacritic_list = []
+
+    
 # Global in this file.
 langInstance = langInfo()
 
@@ -252,7 +276,7 @@ langInstance = langInfo()
 #      ('/men/convertUI/', base.ConvertUIHandler),
 #      ('/men/downloads/', base.Downloads),
 #      ('/men/converter/', base.ConvertHandler),
-#      ('/men/encodingRules/', base.EncodingRules),
+
 #      ('/men/diacritic/', base.DiacriticHandler),
 #      ('/men/phonetickb/', base.PhoneticKbHandler),
 #      # ('/' + langInstance.LanguageCode + '/kbtransforms/', base.KeyboardTransforms),

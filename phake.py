@@ -18,7 +18,7 @@
 import base
 
 
-# Handling Ahom and other language codes for testing font and conversions.
+# Handling Tai Phake and other language codes for testing font and conversions.
 # Should this be inherited from base.languageTemplate?
 class langInfo:
   def __init__(self):
@@ -201,6 +201,9 @@ class langInfo:
       {'linkText': 'Calendar',
        'ref': '/' + self.LanguageCode + '/calendar/'
       },
+      {'linkText': 'Word search',
+       'ref': '/wordsearch/' + self.LanguageCode + '/'
+      },
     ]
 
     resource_list = [
@@ -217,14 +220,24 @@ class langInfo:
     self.baseHexUTF16 = u'\u1000\ufe00'
     self.base_consonant = u'\u1000\ufe00'
 
-    self.unicodeChars = [chr(x) for x in range(0x1000, 0x105f)]
     self.diacritic_list = [chr(x) for x in range(0x102d, 0x1031)]
     self.diacritic_list.append(chr(0x1036))
-    self.diacritic_list.extend([chr(x) for x in range(0x103a, 0x103e)])
+    self.diacritic_list.extend([chr(x) for x in range(0x1039, 0x103e)])
     self.diacritic_list.append(chr(0x105e))
+    self.diacritic_list.append(chr(0x1083))
+    self.diacritic_list.append(chr(0x109c))
     self.diacritic_list.append(chr(0x109d))
     self.diacritic_list.append(chr(0xa9e5))
 
+    self.unicodeChars = ['\u1000', '\u1075', '\u1004', '\u1000', '\u1075', '\u1004', '\uAA61',
+                         '\u107A', '\u1010', '\u1011', '\uAA6B', '\u1015', '\u1078', '\u1019',
+                         '\u101A', '\uAA7A', '\u101C', '\u101D', '\uAA6D', '\u1022', '\u103B',
+                         '\u103C', '\u105E', '\u1083', '\u109C', '\u102E', '\u1030', '\u1031',
+                         '\u1036', '\uAA77', '\uAA78', '\uAA79', ]
+    self.fillChars = ['\u1000', '\u1075', '\u1004', '\u1000', '\u1075', '\u1004', '\uAA61',
+                      '\u107A', '\u1010', '\u1011', '\uAA6B', '\u1015', '\u1078', '\u1019',
+                      '\u101A', '\uAA7A', '\u101C', '\u101D', '\uAA6D', '\u1022',]
+    
     # These are pairs that need to be reversed to appear correctly
     self.diacritic_reverse_pairs = [
       [[0x102d, 0x102e], [0x103a, 0x103b, 0x103c, 0x103d, 0x105e]],
@@ -234,6 +247,13 @@ class langInfo:
       [[0x103d], [0x103a, 0x103c, 0x105e]],
       [[0xa9e5], [0x103a, 0x103b, 0x103c, 0x105e]]
     ]
+
+    # self.diacritic_list = [
+    #   '\u102d', '\u', 
+    #   '\u102e', '\u102f', '\u1030', '\u1031', '\u1036', '\u1039', '\u103B', '\u103C', '\u103a', '\u105E', '\u1083', '\u109c', '\u109d',
+    # ]
+    self.unicodeCombiningChars = self.diacritic_list
+
     # Python-based transliteration tool.
     self.transliterator = None
 

@@ -306,9 +306,9 @@
           const words = text.split(' ');
           let max_size = 0;
           for (const word of words) {
-              if (word.length > max_size) {
-                  const grapheme_count = gsplitter.countGraphemes(word);
-                  max_size = word.length;
+              const grapheme_count = gsplitter.countGraphemes(word);
+             if (grapheme_count > max_size) {
+                  max_size = grapheme_count;
               }
           }
           
@@ -331,7 +331,7 @@
         <div class="noprint" id="uiOnly">
 <div>
   <h3>{{language}} Words:</h3>
-  <textarea id="wordlist" oninput="wordlistChanged(this);">{{testData}}</textarea>
+  <textarea id="wordlist" oninput="wordlistChanged(this);" rows="4">{{testData}}</textarea>
 </div>
 
 <input type="button" value="Clear words and solution"
@@ -388,6 +388,8 @@
   <!--    {% endif %}-->
   <!--    <br />-->
 
+   <h4><a href='/langbase/{{LanguageTag}}/' target='_blank'>Back to {{language}} top</a></h4>
+  
             Select font: <select onchange="setWordsearchFonts(this);" id="selectFont">
             {% for font in unicode_font_list %}
             <option value="{{font.family}}">{{font.longName}}</option>

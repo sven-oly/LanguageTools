@@ -22,6 +22,7 @@ import html
 import json
 import logging
 import os
+import sys
 
 # Start importing language stuff. This will be replaced by database eventually.
 import ahom
@@ -42,8 +43,10 @@ import sunuwar
 import singpho
 import tangsa
 import taivietscript
+import taiyo
 
-import wordsearch
+from  wordsearch import generateDFSWordSearch
+from  wordsearch import WordSearch
 
 # Special for Assames checking.
 import English_Assamese
@@ -77,6 +80,7 @@ language_info_dict['sgp'] = singpho.langInfo()
 language_info_dict['suz'] = sunuwar.langInfo()
 language_info_dict['tavt'] = taivietscript.langInfo()
 language_info_dict['cst'] = chochenyo.langInfo()
+language_info_dict['tyj'] = taiyo.langInfo()
 language_info_dict['grv'] = gurung.langInfo()
 
 
@@ -90,11 +94,7 @@ LanguageList = [
 #    ('Batak Sinalungun', 'bts'),
     ('Chakma', 'ccp', '𑄌𑄋𑄴𑄟𑄳𑄦'),
     ('Chochenyo', 'cst'),
-
-
-
     ('Gurung', 'grv'),
-
     # ('Gondi', 'gon', 'Gōndi family'),
     # ('Gondi Northern (Gunjala)', 'gno', 'Northern Gōndi (Gunjala)'),
     # ('Gondi Aheri (Masaram)', 'esg', 'Aheri Gōndi Masaram'),
@@ -108,7 +108,7 @@ LanguageList = [
     # ('Mende', 'men', 'Mɛnde yia'),
     # ('Mingrelian', 'xmf'),
     # ('Kuṛmāli / Kudmali', 'kyw'),
-    # ('Tai Yo', 'tyj'),
+    ('Tai Yo', 'tyj'),
     # # ('Myanmar', 'my', 'မြန်မာဘာသာ'),
     # # ('Navajo', 'nv', 'Diné bizaad'),
     # ('Oneida', 'one', 'Onʌyoteʔa·ká·'),
@@ -876,13 +876,14 @@ def wordsearch(langcode):
     )
 
 
-@app.route('/games/generatewordsearch/')
+@app.route('/games/generatewordsearchDFS/')
 def generatewordsearch():
     if request.method == 'POST':
         langTag = request.form['language']
     else:
         langTag = request.args.get('language')
-
+    print('GENERATEWORDSEARCH: %s' % (langTag))
+    
     langInfo = getLangInfo(langTag)
 
     logging.info(langInfo)
@@ -901,17 +902,42 @@ def generatewordsearch():
     # How many solutions to generated
     max_solution_count =  request.args.get('max_solution_count', 1)
 
-    # logging.info('games WordSearchHandler rawWordList = %s' % rawWordList)
+    logging.info('games WordSearchHandler rawWordList = %s', rawWordList)
+    logging.info('games WordSearchHandler max_tries = %s', max_tries)
+    logging.info('games WordSearchHandler grid_width = %s', grid_width)
+    logging.info('games WordSearchHandler max_solution_count = %s', max_solution_count)
 
     # Strip out white space.
     wordList = rawWordList.replace(",", " ").replace("\r", " ").replace("\t", " ").split()
-    # logging.info('games WordSearchDFS Handler wordList = %s' % wordList)
+
     logging.info('games WordSearchDFS Handler size = %s' % grid_width)
 
-    ws = wordsearch.generateDFSWordSearch(wordList,
+    try:
+        fill_list = request.args.get('fillList').split('||')
+    except:
+        fill_list = langInfo.unicodeChars
+
+    try:
+        diacritics = request.args.get('diacritics').split('||')
+    except:
+        diacritics = []
+
+        
+    ws = generateDFSWordSearch(wordList, fill_list, diacritics,
                                grid_width, max_tries, max_solution_count)
-    # TODO: Finish this
-    return None
+
+    return_json = {
+        'language': langTag,
+        #'fontFamilies': main.OsageFonts,
+        'grid': ws. grid,
+        'answers': ws.formatAnswers(),
+        'words': ws.words,
+        'grid_width': ws.size,
+        'maxunicode': sys.maxunicode,
+    }
+        
+    return json.dumps(return_json)
+
 
 
 @app.route('/games/generatewordsearchDFS/')

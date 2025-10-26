@@ -183,47 +183,51 @@ class langInfo():
     }
 
     self.links = [
-        {'linkText': 'Keyboard',
-         'ref': '/' + self.LanguageCode + '/',
-        },
-        # {'linkText': 'Keyboard transforms',
-        #  'ref': '/' + LanguageCode + '/kbtransforms/'
-        # },
+      {'linkText': 'Keyboard',
+       'ref': '/' + self.LanguageCode + '/',
+      },
+      # {'linkText': 'Keyboard transforms',
+      #  'ref': '/' + LanguageCode + '/kbtransforms/'
+      # },
         {'linkText': 'Converter',
-          'ref': '/convert/' + self.LanguageCode
+         'ref': '/convert/' + self.LanguageCode
         },
-        {'linkText': 'Collation test',
-         'ref': '/' + self.LanguageCode + '/collation/'
-        },
-        # {'linkText': 'Font conversion summary',
-        #   'ref': '/' + self.LanguageCode + '/encodingRules/'
-        # },
+      {'linkText': 'Collation test',
+       'ref': '/' + self.LanguageCode + '/collation/'
+      },
+      # {'linkText': 'Font conversion summary',
+      #   'ref': '/' + self.LanguageCode + '/encodingRules/'
+      # },
         {'linkText': 'KB transforms',
-          'ref': '/' + 'kbtransforms/' + self.LanguageCode
+         'ref': '/' + 'kbtransforms/' + self.LanguageCode
         },
-        {'linkText': 'Tangsa languages',
-         'ref': 'https://en.wikipedia.org/wiki/Tangsa_language'
-        },
-        {'linkText': 'Tangsa Lakhum Unicode proposal',
-          'ref': 'http://www.unicode.org/L2/L2021/21027-tangsa.pdf'
-        },
-        {'linkText': 'KeyMan Tangsa Lakhum help',
-         'ref': 'https://help.keyman.com/keyboard/tangsa_lakhum/1.1/tangsa_lakhum'},
-        {'linkText': 'Download KeyMan keyboard',
-         'ref': 'https://keyman.com/keyboards/tangsa_lakhum'},
-        {'linkText': 'Resources',
-         'ref': '/downloads/' + self.LanguageCode
-        },
+      {'linkText': 'Tangsa languages',
+       'ref': 'https://en.wikipedia.org/wiki/Tangsa_language'
+      },
+      {'linkText': 'Tangsa Lakhum Unicode proposal',
+       'ref': 'http://www.unicode.org/L2/L2021/21027-tangsa.pdf'
+      },
+      {'linkText': 'KeyMan Tangsa Lakhum help',
+       'ref': 'https://help.keyman.com/keyboard/tangsa_lakhum/1.1/tangsa_lakhum'},
+      {'linkText': 'Download KeyMan keyboard',
+       'ref': 'https://keyman.com/keyboards/tangsa_lakhum'},
+      {'linkText': 'Resources',
+       'ref': '/downloads/' + self.LanguageCode
+      },
       {
         'linkText': "Download Noto Tangsa fonts",
         'ref': 'https://github.com/notofonts/noto-fonts/tree/main/hinted/ttf/NotoSansTangsa'
       },
-        {'linkText': 'Calculator',
-         'ref': '/nst/numerals/'
-        },
-        # {'linkText': 'Calendar',
-        #  'ref': '/' + self.LanguageCode + '/calendar/'
-        # },
+      {'linkText': 'Calculator',
+       'ref': '/nst/numerals/'
+      },
+      {'linkText': 'Word search',
+       'ref': '/wordsearch/' + self.LanguageCode + '/'
+      },
+      # {'linkText': 'Calendar',
+      #  'ref': '/' + self.LanguageCode + '/calendar/'
+      # },
+      
     ]
 
     # Resource files
@@ -277,6 +281,9 @@ class langInfo():
       self.unicodeChars = [chr(0xd81a) + chr(x+0xde00) for x in range(0x70, 0xca)]
     self.diacritic_list = []
 
+    self.fillChars = self.unicodeChars
+    self.unicodeCombiningChars = self.diacritic_list
+    
     # Python-based transliteration tool.
     self.transliterator = None
 

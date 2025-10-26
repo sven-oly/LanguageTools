@@ -332,39 +332,7 @@ class langInfo:
 #       self.response.out.write(json.dumps(result))
 
 
-# class AllFontTest(webapp2.RequestHandler):
-#   def get(self):
-#     utext = self.request.get("utext", "")
-#     encodedText = self.request.get("encodedText", "")
-#     logging.info('AllFontTest utext =>%s<' % utext)
-#     template_values = {
-#       'scriptName': Language,
-#       'fontFamilies': all_cherokee_unicode_fonts,
-#       'encodedText': encodedText,
-#       'utext': utext,
-#       'language': Language,
-#       'LanguageTag': LanguageTag
-#     }
-
-#     path = os.path.join(os.path.dirname(__file__), 'HTML/allFonts.html')
-#     self.response.out.write(template.render(path, template_values))
 
 
 langInstance = langInfo()
 
-# app = webapp2.WSGIApplication(
-#     [('/chr/', base.LanguagesHomeHandler),
-#      ('/chr/convertUI/', CherokeeConvertUIHandler),
-#      ('/chr/convertToLatin/', CherokeeConvertToLatinHandler),
-#      ('/chr/downloads/', base.Downloads),
-#      ('/chr/converter/', CherokeeConvertHandler),
-#      ('/chr/encodingRules/', base.EncodingRules),
-#      ('/chr/AllFonts/', AllFontTest ),
-#      ('/chr/phonetickb/', base.PhoneticKbHandler),
-#      ('/' + langInstance.LanguageCode + '/dictionaryN/', base.DictionaryN),
-
-#      ('/' + langInstance.LanguageCode + '/calendar/', base.CalendarHandler),
-#      ],
-#     debug=True,
-#     config={'langInfo': langInstance}
-# )

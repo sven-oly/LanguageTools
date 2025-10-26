@@ -21,7 +21,7 @@ import languageTemplate
 import transliterate
 import unicodeinfo  # Some character data
 
-import wordsearch
+#import wordsearch
 
 import json
 import logging
@@ -898,54 +898,54 @@ class CharacterTableHandler():
 #    self.response.out.write(template.render(path, template_values))
 
 
-class WordSearchHandler():
-  def get(self):
-    langInfo = self.app.config.get('langInfo')
-
-    testGridSize = self.request.get('gfactor', 1.4)
-
-    testData = self.request.get('testing', '')
-
-    try:
-      charNames = langInfo.charNames.split('\n')
-      charNames = '!!!'.join(charNames)
-    except:
-      charNames = None
-
-    try:
-        direction = langInfo.direction
-    except:
-        direction = 'ltr'
-
-    try:
-      combiningChars = langInfo.unicodeCombiningChars
-    except:
-      combiningChars = None
-
-    try:
-      letterFillList = langInfo.fillChars
-    except:
-      letterFillList = []
-    #logging.info('letterFillList = %s' % letterFillList)
-    
-    # Make it easy to split the characters
-    combiners = '||'.join(langInfo.unicodeCombiningChars)
-    fillers = '||'.join(letterFillList)
-    #logging.info('Diacritics: %s' % (combiners))
-    template_values = {
-        'language': langInfo.Language,
-        'LanguageTag': langInfo.LanguageCode,
-        'kb_list': langInfo.kb_list,
-        'charTable': charNames,
-        'charNameData': charNames,
-        'unicodeCombiningChars': combiners,
-        'letterFillList': fillers,
-        'unicode_font_list': langInfo.unicode_font_list,
-        'testData': testData,
-        'testGridSize': testGridSize,
-        'direction': direction,
-    }
-    path = os.path.join(os.path.dirname(__file__), 'HTML/wordsearch.html')
+#class WordSearchHandler():
+  # def get(self):
+  #   langInfo = self.app.config.get('langInfo')
+  #
+  #   testGridSize = self.request.get('gfactor', 1.4)
+  #
+  #   testData = self.request.get('testing', '')
+  #
+  #   try:
+  #     charNames = langInfo.charNames.split('\n')
+  #     charNames = '!!!'.join(charNames)
+  #   except:
+  #     charNames = None
+  #
+  #   try:
+  #       direction = langInfo.direction
+  #   except:
+  #       direction = 'ltr'
+  #
+  #   try:
+  #     combiningChars = langInfo.unicodeCombiningChars
+  #   except:
+  #     combiningChars = None
+  #
+  #   try:
+  #     letterFillList = langInfo.fillChars
+  #   except:
+  #     letterFillList = []
+  #   #logging.info('letterFillList = %s' % letterFillList)
+  #
+  #   # Make it easy to split the characters
+  #   combiners = '||'.join(langInfo.unicodeCombiningChars)
+  #   fillers = '||'.join(letterFillList)
+  #   #logging.info('Diacritics: %s' % (combiners))
+  #   template_values = {
+  #       'language': langInfo.Language,
+  #       'LanguageTag': langInfo.LanguageCode,
+  #       'kb_list': langInfo.kb_list,
+  #       'charTable': charNames,
+  #       'charNameData': charNames,
+  #       'unicodeCombiningChars': combiners,
+  #       'letterFillList': fillers,
+  #       'unicode_font_list': langInfo.unicode_font_list,
+  #       'testData': testData,
+  #       'testGridSize': testGridSize,
+  #       'direction': direction,
+  #   }
+  #   path = os.path.join(os.path.dirname(__file__), 'HTML/wordsearch.html')
 #    self.response.out.write(template.render(path, template_values))
 
 class NumeralsHandler():

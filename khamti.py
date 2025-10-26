@@ -23,38 +23,6 @@ Language_native = '(တဲး)ၵမ်းတီ'
 LanguageCode = 'kht'
 ScriptCode = 'Mymr'
 
-links = [
-    {'linkText': 'Keyboard',
-     'ref': '/' + LanguageCode + '/'
-    },
-    {'linkText': 'Converter',
-     'ref': '/convert/' + LanguageCode
-    },
-    {'linkText': 'Font conversion summary',
-     'ref': '/encodingRules/' + LanguageCode
-    },
-  #   'ref': '/' + LanguageCode + '/encodingRules/'
-  # },
-  # {'linkText': 'Resources',
-  #   'ref': '/' + LanguageCode + '/downloads/'
-  # },
-  # {'linkText': 'Unicode page',
-  #  'ref': 'https://www.unicode.org/charts/PDF/U1C00.pdf'
-  # },
-  # {'linkText': 'Lepcha script',
-  #  'ref': 'https://en.wikipedia.org/wiki/Lepcha_alphabet'
-  # },
-  {'linkText': 'Wikipedi page',
-   'ref': 'https://en.wikipedia.org/wiki/Khamti_language'
-  },
-  # {'linkText': 'Ethnolog',
-  #  'ref': 'https://www.ethnologue.com/language/lep'
-  # },
-  # {'linkText': 'Combiners',
-  #  'ref': '/lep/diacritic/'
-  #  },
-]
-
 
 class langInfo:
     def __init__(self):
@@ -110,8 +78,38 @@ class langInfo:
             },            
         ]
 
-        self.links = links
-
+        self.links = [
+            {'linkText': 'Keyboard',
+             'ref': '/' + LanguageCode + '/'
+            },
+            {'linkText': 'Converter',
+             'ref': '/convert/' + LanguageCode
+            },
+            {'linkText': 'Font conversion summary',
+             'ref': '/encodingRules/' + LanguageCode
+            },
+            {'linkText': 'Word search',
+             'ref': '/wordsearch/' + self.LanguageCode
+            },
+            #   'ref': '/' + LanguageCode + '/encodingRules/'
+            # },
+            # {'linkText': 'Resources',
+            #   'ref': '/downloads/' + LanguageCode
+            # },
+            # {'linkText': 'Unicode page',
+            #  'ref': 'https://www.unicode.org/charts/PDF/U1C00.pdf'
+            # },
+            # {'linkText': 'Lepcha script',
+            #  'ref': 'https://en.wikipedia.org/wiki/Lepcha_alphabet'
+            # },
+            {'linkText': 'Wikipedi page',
+             'ref': 'https://en.wikipedia.org/wiki/Khamti_language'
+            },
+            # {'linkText': 'Ethnolog',
+            #  'ref': 'https://www.ethnologue.com/language/lep'
+            # },
+        ]
+        
         # TODO!
         consonants = [
             0x1000,
@@ -187,6 +185,9 @@ class langInfo:
             self.unicodeChars.append(chr(x))
         for x in logograms:
             self.unicodeChars.append(chr(x))
+        self.fillChars = self.unicodeChars
+
+        self.unicodeCombiningChars = self.diacritic_list
 
         self.default_base_consonant = 'u\1000'
 

@@ -24,7 +24,7 @@ import logging
 import os
 import sys
 import urllib
-# import webapp2
+
 
 encoding_font_list = [
   {
@@ -175,47 +175,6 @@ unicode_font_list = [
   # },
 ]
 
-links = [
-    {'linkText': 'Keyboard',
-     'ref': '/suz/'
-    },
-    {'linkText': 'Convert to Unicode',
-     'ref': '/translit/suz'
-    },
-    {'linkText': 'Old converter',
-     'ref': '/convertUI/suz'
-    },
-    # {'linkText': 'Font conversion summary',
-    #   'ref': '/encodingRules/suz/'
-    # },
-    {'linkText': 'Tikamuli Unicode Proposal',
-      'ref': 'http://www.unicode.org/L2/L2010/10465-tikamuli.pdf'
-    },
-    {'linkText': 'Kõits-Bleshe-Sunuwar Unicode Proposal 2021',
-      'ref': '  https://www.unicode.org/L2/L2021/21157-sunuwar.pdf'
-    },
-    {'linkText': 'Sunuwar Wikipedia',
-     'ref': 'https://en.wikipedia.org/wiki/Sunwar_language'
-    },
-    {'linkText': 'Sunuwar.org',
-     'ref': 'https://www.sunuwar.org/'},
-    {'linkText': 'Preeti to Unicode converter',
-     'ref': 'https://preeti.arthasarokar.com/'
-    },
-    {'linkText': 'Calculator',
-     'ref': '/numerals/suz/'
-    },
-    {'linkText': 'Calendar',
-     'ref': '/calendar/suz/'
-    },
-    {'linkText': 'Resources & Downloads',
-     'ref': '/downloads/suz'
-    },
-  # {
-    #   'linkText': 'Combiners',
-    #   'ref': '/bn/diacritic/'
-    # },
-]
 
 class langInfo():
   def __init__(self):
@@ -299,7 +258,50 @@ class langInfo():
     ]
     self.text_file_list = resource_list
 
-    self.links = links
+    self.links = [
+      {'linkText': 'Keyboard',
+       'ref': '/suz/'
+      },
+      {'linkText': 'Convert to Unicode',
+       'ref': '/translit/suz'
+      },
+      {'linkText': 'Old converter',
+       'ref': '/convertUI/suz'
+      },
+      # {'linkText': 'Font conversion summary',
+      #   'ref': '/encodingRules/suz/'
+      # },
+    {'linkText': 'Tikamuli Unicode Proposal',
+     'ref': 'http://www.unicode.org/L2/L2010/10465-tikamuli.pdf'
+    },
+      {'linkText': 'Kõits-Bleshe-Sunuwar Unicode Proposal 2021',
+       'ref': '  https://www.unicode.org/L2/L2021/21157-sunuwar.pdf'
+      },
+      {'linkText': 'Sunuwar Wikipedia',
+       'ref': 'https://en.wikipedia.org/wiki/Sunwar_language'
+      },
+      {'linkText': 'Sunuwar.org',
+       'ref': 'https://www.sunuwar.org/'},
+      {'linkText': 'Preeti to Unicode converter',
+       'ref': 'https://preeti.arthasarokar.com/'
+      },
+      {'linkText': 'Calculator',
+       'ref': '/numerals/suz/'
+      },
+      {'linkText': 'Calendar',
+       'ref': '/calendar/suz/'
+      },
+      {'linkText': 'Resources & Downloads',
+       'ref': '/downloads/suz'
+      },
+      {'linkText': 'Word search',
+       'ref': '/wordsearch/' + self.LanguageCode + '/'
+      },
+      # {
+      #   'linkText': 'Combiners',
+      #   'ref': '/bn/diacritic/'
+      # },
+    ]
 
     self.public_unicode_fonts = unicode_font_list
 
