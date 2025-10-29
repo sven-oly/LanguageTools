@@ -828,6 +828,19 @@ class testing():
                                size, max_tries, num_solutions)
     self.showTestResults(lang_code, ws)
 
+  def testSunuwarWordSearch(self):
+    lang_code = 'suz'
+    words = ['𖪰𖪖', '𖪲𖪖', '𖪦𖩸𖪲', '𖪦𖩸𖪄𖪐', '𖪫𖪗', '𖪥𖩻𖪫𖪲𖪔𖪫']
+    fillChars = nstLangInstance.fillChars
+    diacritics = nstLangInstance.diacritic_list
+
+    max_tries = 10
+    num_solutions = 1
+    size = 10
+    ws = generateDFSWordSearch(words, fillChars, diacritics,
+                               size, max_tries, num_solutions)
+    self.showTestResults(lang_code, ws)
+
 def main(args):
   t = testing()
   # t.testSyl()

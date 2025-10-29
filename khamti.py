@@ -21,7 +21,7 @@ import base
 Language = 'Khamti'
 Language_native = '(တဲး)ၵမ်းတီ'
 LanguageCode = 'kht'
-ScriptCode = 'Mymr'
+Scriptcode = 'Mymr'
 
 
 class langInfo:
