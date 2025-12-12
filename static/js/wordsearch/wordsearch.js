@@ -8,12 +8,13 @@ class wordListData {
         this.diacritics = null;
         // The variables of the data.
         this.whole_grid = null;
+        this.original_words = null;
         this.all_answers = null;
         this.all_words = null;
         this.gridFactor = -1; // Not set
         this.lastAttempt = -1
 
-	this.seed = null;
+        this.seed = null;
     }
 
     setGridFactor(newFactor) {
@@ -58,13 +59,14 @@ class wordListData {
                 const outputArea = document.getElementById(resultArea);
                 const answersArea = document.getElementById(answerArea);
 
-                words = json_obj.answers;  // get the keys
+                const new_words = json_obj.answers;  // get the keys
 
                 // Any messages for me?
                 const message = json_obj.message;
                 // Globals
                 wordSearchObj.whole_grid = json_obj.grid;
-                wordSearchObj.all_words = words;
+                wordSearchObj.all_words = new_words;
+                wordSearchObj.original_words = words;
                 wordSearchObj.all_answers = json_obj.answers;
                 wordSearchObj.lastAttempt = json_obj.attempts;
 
@@ -87,16 +89,16 @@ class wordListData {
         target += "&langTag=" + this.langTag;
         target += "&words=" + wordData;
         target += "&tokenGroups=" + wordTokenGroups;
-        target += "&gridFactor" + this.gridFactor;
+        target += "&gridFactor=" + this.gridFactor;
         target += '&diacritics=' + this.diacritics;
         target += '&fillList=' + this.fillList;
         target += "&size=" + document.getElementById("grid_size").value;
         target += "&max_tries=" + document.getElementById("max_tries").value;
         target += "&num_solutions=" + document.getElementById("num_solutions").value;
 
-	if (this.seed) {
-	    target += "&seed=" + this.seed;
-	}
+        if (this.seed) {
+            target += "&seed=" + this.seed;
+        }
         xmlhttp.open("GET", target, true);  // GET?
         const size = target.length;
         xmlhttp.send(null);
@@ -131,7 +133,7 @@ function createGameGrid(grid, words, answers, info) {
     // Add the words to find.
     const wordArea = document.getElementById('wordsToFind');
     let wordList = "";
-    for (word in words) {
+    for (word of info.original_words) {
         wordList += " " + word + "\u00a0\u00a0\u00a0";
     }
     wordArea.innerHTML = wordList;
@@ -140,15 +142,16 @@ function createGameGrid(grid, words, answers, info) {
     clearChildNodes('answerList');
     const answerArea = document.getElementById('answerList');
     let font = document.getElementById("selectFont").value;
-
+    let index = 0;
     for (let word in words) {
+        const original_word = info.original_words[index];
         const answer = answers[word];
         const positions = answer[0].concat();
         const li = document.createElement("li");
         const btn = document.createElement("button");
         btn.style.fontFamily = font;
 
-        const t = document.createTextNode(word);
+        const t = document.createTextNode(original_word);
 
         // Test smarter casing.
         var this_lower = word.toLocaleLowerCase(info.langTag);
@@ -160,6 +163,7 @@ function createGameGrid(grid, words, answers, info) {
             " : (" + positions[0] + ') (' + answer[3] + ')');
         li.appendChild(ans_text);
         answerArea.appendChild(li);
+        index += 1;
     }
     showAnswerGrid('gridTable', grid, answers);
 }

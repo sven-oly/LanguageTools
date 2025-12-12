@@ -53,6 +53,9 @@ import English_Assamese
 import preconverted_assamese
 import good_results_sgp
 
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.DEBUG)
+
 # If `entrypoint` is not defined in app.yaml, App Engine will look for an app
 # called `app` in `main.py`.
 app = Flask(__name__)
@@ -81,7 +84,7 @@ language_info_dict['suz'] = sunuwar.langInfo()
 language_info_dict['tavt'] = taivietscript.langInfo()
 language_info_dict['cst'] = chochenyo.langInfo()
 language_info_dict['tyj'] = taiyo.langInfo()
-language_info_dict['grv'] = gurung.langInfo()
+language_info_dict['gvr'] = gurung.langInfo()
 
 
 # English name, language code, name in the language.
@@ -94,7 +97,7 @@ LanguageList = [
 #    ('Batak Sinalungun', 'bts'),
     ('Chakma', 'ccp', '𑄌𑄋𑄴𑄟𑄳𑄦'),
     ('Chochenyo', 'cst'),
-    ('Gurung', 'grv'),
+    ('Gurung', 'gvr'),
     # ('Gondi', 'gon', 'Gōndi family'),
     # ('Gondi Northern (Gunjala)', 'gno', 'Northern Gōndi (Gunjala)'),
     # ('Gondi Aheri (Masaram)', 'esg', 'Aheri Gōndi Masaram'),
@@ -218,7 +221,7 @@ def topLangHandler(langcode):
       text_direction = langInfo.direction
     except AttributeError:
       text_direction = 'ltr'
-    logging.warning('####### Direction = %s', text_direction)
+    logger.warning('####### Direction = %s', text_direction)
 
     return render_template('demo_general.html',
                            langTag = langcode,
@@ -863,7 +866,7 @@ def wordsearch(langcode):
 
     return render_template('wordsearch.html',
                            language=langInfo.Language,
-                           LanguageTag=langInfo.LanguageCode,
+                           languageTag=langInfo.LanguageCode,
                            kb_list = langInfo.kb_list,
                            charTable=charNames,
                            charNameData= charNames,
@@ -879,19 +882,18 @@ def wordsearch(langcode):
 @app.route('/games/generatewordsearchDFS/')
 def generatewordsearch():
     if request.method == 'POST':
-        langTag = request.form['language']
+        langTag = request.form['langTag']
     else:
-        langTag = request.args.get('language')
-    print('GENERATEWORDSEARCH: %s' % (langTag))
+        langTag = request.args.get('langTag')
+    logger.info('GENERATEWORDSEARCH: %s', langTag)
     
     langInfo = getLangInfo(langTag)
 
-    logging.info(langInfo)
     rawWordList = request.args.get('words', '')
 
     # Suggested size for the grid
     raw_size = request.args.get('size', '0')
-    logging.info('games WordSearchHandler raw_size = >%s<' % raw_size)
+    logger.debug('games WordSearchHandler raw_size = >%s<' % raw_size)
     if not raw_size or raw_size == '' or raw_size == ' ':
       grid_width = 0
     else:
@@ -901,16 +903,17 @@ def generatewordsearch():
     max_tries =  request.args.get('max_tries', 1000)
     # How many solutions to generated
     max_solution_count =  request.args.get('max_solution_count', 1)
-
-    logging.info('games WordSearchHandler rawWordList = %s', rawWordList)
-    logging.info('games WordSearchHandler max_tries = %s', max_tries)
-    logging.info('games WordSearchHandler grid_width = %s', grid_width)
-    logging.info('games WordSearchHandler max_solution_count = %s', max_solution_count)
+ 
+    logger.info('games WordSearchHandler langTag = %s', langTag)
+    logger.info('games WordSearchHandler rawWordList = %s', rawWordList)
+    logger.info('games WordSearchHandler max_tries = %s', max_tries)
+    logger.info('games WordSearchHandler grid_width = %s', grid_width)
+    logger.info('games WordSearchHandler max_solution_count = %s', max_solution_count)
 
     # Strip out white space.
     wordList = rawWordList.replace(",", " ").replace("\r", " ").replace("\t", " ").split()
 
-    logging.info('games WordSearchDFS Handler size = %s' % grid_width)
+    logger.info('games WordSearchDFS Handler size = %s' % grid_width)
 
     try:
         fill_list = request.args.get('fillList').split('||')
@@ -922,9 +925,10 @@ def generatewordsearch():
     except:
         diacritics = []
 
-        
+    logger.debug('Calling DFS WordSearch (%s) with %s', langTag, wordList)
     ws = generateDFSWordSearch(wordList, fill_list, diacritics,
-                               grid_width, max_tries, max_solution_count)
+                               grid_width, max_tries, max_solution_count,
+                               lang_code=langTag)
 
     return_json = {
         'language': langTag,
@@ -938,11 +942,6 @@ def generatewordsearch():
         
     return json.dumps(return_json)
 
-
-
-@app.route('/games/generatewordsearchDFS/')
-def generatewordDFSsearch():
-    return None
 
 
 # class DownloadKBText(webapp2.RequestHandler):

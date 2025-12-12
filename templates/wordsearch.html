@@ -91,7 +91,7 @@
 
       // Variables of data in setup.
       const wordListInfo = new wordListData("{{language}}",
-                                            "{{LanguageTag}}");
+                                            "{{languageTag}}");
       const gridTestSize = {{testGridSize}};
 
       wordListInfo.fillList = '{{letterFillList}}';
@@ -388,7 +388,7 @@
   <!--    {% endif %}-->
   <!--    <br />-->
 
-   <h4><a href='/langbase/{{LanguageTag}}/' target='_blank'>Back to {{language}} top</a></h4>
+   <h4><a href='/langbase/{{languageTag}}/' target='_blank'>Back to {{language}} top</a></h4>
   
             Select font: <select onchange="setWordsearchFonts(this);" id="selectFont">
             {% for font in unicode_font_list %}
