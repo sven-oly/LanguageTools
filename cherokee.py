@@ -99,14 +99,14 @@ class langInfo:
     self.Language = 'Cherokee'
     self.Language_native = 'ᏣᎳᎩ'
     self.unicodeChars = [chr(x) for x in range(0x13a0, 0x13fd)]
-    self.unicodeChars.extend([chr(x) for x in range(0xaa70, 0xabbf)])
+    self.unicodeChars.extend([chr(x) for x in range(0xab70, 0xabbf)])
     self.unicode_font_list = unicode_font_list
     self.encoding_font_list = encoding_font_list
 
     self.unicodeCombiningChars = []
     self.diacritic_list = []
     # lower case only
-    self.fillChars = [chr(x) for x in range(0x13a0, 0x13fd)]
+    self.fillChars = self.unicodeChars
 
     self.allFonts = True
 

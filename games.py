@@ -122,6 +122,9 @@ class GenerateWordSearchDFSHandler():
 
     rawWordList = self.request.get('words', '')
 
+    direction = self.request.get('direction', 'all')
+    grid_directions = lf.request.get('grid_directions', 'all')
+
     # Suggested size for the grid
     raw_size = self.request.get('size', '0')
     logging.info('games WordSearchHandler raw_size = >%s<' % raw_size)
@@ -143,14 +146,14 @@ class GenerateWordSearchDFSHandler():
     logging.info('games WordSearchDFS Handler size = %s' % grid_width)
 
     ws = wordsearch.generateDFSWordSearch(wordList,
-                               grid_width, max_tries, max_solution_count)
-
+                                          grid_width, max_tries, max_solution_count,
+                                          direction_option=grid_directions)
     grid = ws.grid
 
     if not grid:
-      message = 'Cannot create grid'
+      ws.message = 'Cannot create grid'
     else:
-      message = 'Created a grid of size %s' % grid_width
+      ws.message = 'Created a grid of size %s' % grid_width
 
     #logging.info('games WordSearchHandler grid = %s' % grid)
     #logging.info('games WordSearchHandler answers = %s' % answers)

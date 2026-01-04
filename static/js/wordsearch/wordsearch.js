@@ -13,6 +13,8 @@ class wordListData {
         this.all_words = null;
         this.gridFactor = -1; // Not set
         this.lastAttempt = -1
+        this.direction = 'all';  // Default
+        this.size = 0;  // Actual size returned
 
         this.seed = null;
     }
@@ -63,13 +65,29 @@ class wordListData {
 
                 // Any messages for me?
                 const message = json_obj.message;
+
                 // Globals
                 wordSearchObj.whole_grid = json_obj.grid;
                 wordSearchObj.all_words = new_words;
                 wordSearchObj.original_words = words;
                 wordSearchObj.all_answers = json_obj.answers;
                 wordSearchObj.lastAttempt = json_obj.attempts;
+                wordSearchObj.lastAttempt = json_obj.attempts;
+                wordSearchObj.size = json_obj.grid_width;
+                
+                const requested_grid_size =
+                      document.getElementById("grid_size").value;
 
+                if (wordSearchObj.size != requested_grid_size) {
+                    alert('Grid size is reset to ' + 
+                          wordSearchObj.size)
+                    document.getElementById("grid_size").value =
+                        wordSearchObj.size;
+
+                }
+                // Find maximum size of new_words and reset the grid size to a value
+                // at least as large as that.
+                // ?? option to set to minimum size?
                 createGameGrid(wordSearchObj.whole_grid,
                                wordSearchObj.all_words,
                                wordSearchObj.all_answers,
@@ -78,6 +96,7 @@ class wordListData {
             }
         }
 
+        // Set up the HTML to generate the WordSearch
         let target;
         if (useDfs) {
             target = "/games/generatewordsearchDFS/";
@@ -90,11 +109,18 @@ class wordListData {
         target += "&words=" + wordData;
         target += "&tokenGroups=" + wordTokenGroups;
         target += "&gridFactor=" + this.gridFactor;
-        target += '&diacritics=' + this.diacritics;
-        target += '&fillList=' + this.fillList;
+        // target += '&diacritics=' + this.diacritics;
+        // target += '&fillList=' + this.fillList;
         target += "&size=" + document.getElementById("grid_size").value;
         target += "&max_tries=" + document.getElementById("max_tries").value;
         target += "&num_solutions=" + document.getElementById("num_solutions").value;
+
+        const selectedRadio = document.querySelector('input[name="directions"]:checked');
+        let selected_direction = 'all';
+        if (selectedRadio) {
+            selected_direction = selectedRadio.value;
+        }
+        target += "&grid_directions=" + selected_direction;
 
         if (this.seed) {
             target += "&seed=" + this.seed;

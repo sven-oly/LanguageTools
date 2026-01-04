@@ -65,7 +65,7 @@
       }
       textarea {
           font-size: 24px;
-          direction: {{direction}};
+          direction: {{text_direction}};
       }
 
       li {
@@ -349,6 +349,21 @@
   Use grapheme clusters:
   <input id='use_grapheme_clusters' type='checkbox'/>
   <br />
+  <fieldset>
+    <legend>Allowed directions:</legend>
+    <div id="direction_radio">
+      <input type="radio" id="all" name="directions" value="all" checked />
+      <label for="all">All</label>
+      <input type="radio" id="ltr" name="directions" value="ltr"/>
+      <label for="ltr">Left-to-right</label>
+      <input type="radio" id="rtl" name="directions" value="rtl"/>
+      <label for="all">Right-to-left</label>
+      <input type="radio" id="no_diagonal" name="directions" value="no_diagonal"/>
+      <label for="all">No diagonal</label>
+      <input type="radio" id="diagonal_only" name="directions" value="diagonal_only"/>
+      <label for="all">Diagonal only</label>
+    </div>
+  </fieldset>
 </div>
 
 </div>
@@ -360,7 +375,7 @@
   </div>
   <div>
     <h2>Words to find:</h2>
-    <p id="wordsToFind" dir='{{direction}}'></p>
+    <p id="wordsToFind" dir='{{text_direction}}'></p>
   </div>
 </div>
 

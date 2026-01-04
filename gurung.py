@@ -17,7 +17,7 @@ except NameError:
 
 Language = 'Gurung'
 Language_native = 'गुरुङ'
-LanguageCode = 'grv'
+LanguageCode = 'gvr'
 ScriptCode = 'Gukh'
 
 
@@ -109,8 +109,8 @@ class langInfo:
 
         resource_list = [
           {
-              'name': 'Keyman Gurung Khema keyboards (2) 2025-09-22',
-              'source': '/resources/grv/gurung_khema2.kmp',
+              'name': 'Keyman Gurung Khema keyboards (2) 2025-11-20',
+              'source': '/resources/gvr/gurung_khema.kmp',
               'description': 'Keyman Gurung Khema'
           }
         ]

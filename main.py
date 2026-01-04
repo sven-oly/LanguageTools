@@ -844,6 +844,11 @@ def wordsearch(langcode):
 
     testGridSize = 1.4
     testData = ''
+    try:
+        testData = request.args['testData']
+    except:
+        testData = ''
+
     charNames = None
 
     try:
@@ -875,7 +880,7 @@ def wordsearch(langcode):
                            unicode_font_list= langInfo.unicode_font_list,
                            testData= testData,
                            testGridSize= testGridSize,
-                           direction= direction,
+                           text_direction=direction,
     )
 
 
@@ -899,16 +904,22 @@ def generatewordsearch():
     else:
       grid_width = int(raw_size)
 
+    grid_directions = request.args.get('grid_directions', 'all')
+    logger.debug('MAIN: Set grid_directions: %s', grid_directions)
+
     # A measure of when to quit the search
     max_tries =  request.args.get('max_tries', 1000)
     # How many solutions to generated
     max_solution_count =  request.args.get('max_solution_count', 1)
  
     logger.info('games WordSearchHandler langTag = %s', langTag)
-    logger.info('games WordSearchHandler rawWordList = %s', rawWordList)
-    logger.info('games WordSearchHandler max_tries = %s', max_tries)
-    logger.info('games WordSearchHandler grid_width = %s', grid_width)
-    logger.info('games WordSearchHandler max_solution_count = %s', max_solution_count)
+    logger.debug('games WordSearchHandler rawWordList = %s', rawWordList)
+    logger.debug('games WordSearchHandler max_tries = %s', max_tries)
+    logger.debug('games WordSearchHandler grid_width = %s', grid_width)
+    logger.debug('games WordSearchHandler max_solution_count = %s',
+                 max_solution_count)
+    logger.debug('games WordSearchHandler grid_directions = %s',
+                 grid_directions)
 
     # Strip out white space.
     wordList = rawWordList.replace(",", " ").replace("\r", " ").replace("\t", " ").split()
@@ -916,28 +927,43 @@ def generatewordsearch():
     logger.info('games WordSearchDFS Handler size = %s' % grid_width)
 
     try:
-        fill_list = request.args.get('fillList').split('||')
+        fill_list = language_info_dic[langTag].fillChars
     except:
-        fill_list = langInfo.unicodeChars
+        try:
+            fill_list = request.args.get('fillList').split('||')
+        except:
+            fill_list = langInfo.unicodeChars
 
     try:
-        diacritics = request.args.get('diacritics').split('||')
+        diacritics = language_info_dict[langTag],diacritic_list
     except:
-        diacritics = []
+        try:
+            diacritics = request.args.get('diacritics').split('||')
+        except:
+            diacritics = []
 
     logger.debug('Calling DFS WordSearch (%s) with %s', langTag, wordList)
+    logger.debug('BEFORE DFS WordSearch (%s) with direction option %s',
+                 langTag, grid_directions)
     ws = generateDFSWordSearch(wordList, fill_list, diacritics,
                                grid_width, max_tries, max_solution_count,
-                               lang_code=langTag)
+                               lang_code=langTag,
+                               direction_option=grid_directions)
+    logger.debug('After DFS WordSearch (%s) with direction option %s',
+                 langTag, ws.direction_option)
 
     return_json = {
         'language': langTag,
         #'fontFamilies': main.OsageFonts,
-        'grid': ws. grid,
+        'grid': ws.grid,
         'answers': ws.formatAnswers(),
         'words': ws.words,
         'grid_width': ws.size,
         'maxunicode': sys.maxunicode,
+        'grid_direction': ws.direction_option,
+        'iterations': ws.iterations,
+        'backtracks': ws.backtracks,
+        'failed_inserts': ws.failed_inserts,
     }
         
     return json.dumps(return_json)
@@ -961,5 +987,6 @@ if __name__ == '__main__':
     app.run(host='127.0.0.1',
             port=8080, debug=True, threaded=True)
 # [END gae_python37_app]
+
 
 
