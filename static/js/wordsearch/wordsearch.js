@@ -39,7 +39,8 @@ class wordListData {
 
         // Testing grapheme splits
         let wordTokenGroups = [];
-        let words = wordData.split(/[ ,\u000a]/);
+        // Omit multiple spaces, too.
+        let words = wordData.replace(/\s+/g, ' ').split(/[ ,\u000a]/);
         for (let i = 0; i < words.length; i ++) {
             let group = gsplitter.splitGraphemes(words[i]);
             wordTokenGroups.push(group);

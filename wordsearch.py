@@ -372,7 +372,7 @@ class WordSearch(object):
             continue  # No need to go further
         for y in range(0, self.height):
           yend = y + offset[1]
-          if xend >= 0 and xend < self.width and yend >= 0 and yend < self.height:
+          if yend >= 0 and yend < self.height:
             pos = Position(x, y, dir)
             pos.genPositions(length1 + 1)
             positions.append(pos)
