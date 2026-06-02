@@ -26,6 +26,7 @@ import sys
 
 # Start importing language stuff. This will be replaced by database eventually.
 import ahom
+import aiton
 import assamese
 import bete
 import chakma
@@ -39,6 +40,7 @@ import mendekikakui
 import omq
 import phake
 import qiang
+import shan
 import sunuwar
 import singpho
 import tangsa
@@ -66,6 +68,7 @@ language_info_dict = {
 
 # Add in languages as we get them ready
 language_info_dict['aho'] = ahom.langInfo()
+language_info_dict['aio'] = aiton.langInfo()
 language_info_dict['as'] = assamese.langInfo()
 language_info_dict['asm'] = assamese.langInfo()
 language_info_dict['bete'] = bete.langInfo()
@@ -80,6 +83,7 @@ language_info_dict['nst'] = tangsa.langInfo()
 language_info_dict['phk'] = phake.langInfo()
 language_info_dict['qiang'] = qiang.langInfo()
 language_info_dict['sgp'] = singpho.langInfo()
+language_info_dict['shn'] = shan.langInfo()
 language_info_dict['suz'] = sunuwar.langInfo()
 language_info_dict['tavt'] = taivietscript.langInfo()
 language_info_dict['cst'] = chochenyo.langInfo()
@@ -145,7 +149,7 @@ LanguageList = [
     # ('Nyiakeng Puachue Hmong', 'hnj'),
     # ('Nigerian Pidgin', 'pcm'),
     # ('Kinyarwanda', 'rw'),
-    # ('Shan', 'shn', 'လိၵ်ႈတႆ'),
+    ('Shan', 'shn', 'လိၵ်ႈတႆ'),
     # ('Sora', 'srb'),
     # ('Tulu', 'tcy'),
     # ('Tongan', 'to'),
@@ -159,7 +163,7 @@ LanguageList = [
     # ('Tamil', 'ta', 'தமிழ்'),
     # ('Santali', 'sat', 'ᱥᱟᱱᱛᱟᱲᱤ'),
     # ('Meitei (Manipuri)', 'mni', 'ꯃꯤꯇꯩ ꯃꯌꯦꯛ'),
-#    ('Aiton', 'aio', '(တႝ)ဢႝတွꩫ်'),
+    ('Aiton', 'aio', '(တႝ)ဢႝတွꩫ်'),
     ('Khamti', 'kht', '(တဲး)ၵမ်းတီ'),
     # ('Kalabari', 'ijn'),
     # ('Mru', 'mro'),
@@ -350,7 +354,7 @@ def convertHandler(langcode):
     try:
         convert_word_tool = langInfo.convert_word
     except:
-        print("Cannot get convert_word_tool")
+        logger.warning("Cannot get convert_word_tool")
         pass
 
     try:
@@ -668,7 +672,7 @@ def phonetic_kb(langcode):
         unicode_info = unicodeinfo.UnicodeData(langInfo.unicode_database)
         unicode_data = unicode_info.numTextString()
     except BaseException as err:
-        print('unicodeinfo not read: %s' % err)
+        logger.warning('unicodeinfo not read: %s' % err)
         unicode_data = ''
 
     return render_template(
@@ -799,9 +803,6 @@ def saveConvertedValues():
         converted_values = json.loads(json_converted)
 
     # TODO: put these in the database
-    print('***lang tag = %s' % langTag);
-    print('** %s converted values found' % len(converted_values))
-    print(converted_values)
     # Send back the count of those found
     if len(converted_values) > 0:
         return '%s values received at server' % len(converted_values)
@@ -812,13 +813,7 @@ def saveConvertedValues():
 @app.route('/convertedlist/<langcode>')
 def convertedlist(langcode):
     langInfo = getLangInfo(langcode)
-
-    print(langInfo.LanguageCode)
-    print(langInfo.encoding_font_list)
-    print(langInfo.unicode_font_list)
-
     encodingList = langInfo.encoding_font_list
-    
 
     return render_template('conversionList.html',
                            converters=langInfo.converters,

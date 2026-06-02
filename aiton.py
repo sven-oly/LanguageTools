@@ -14,15 +14,9 @@
 # limitations under the License.
 #
 
-import webapp2
+import sys
 
 import base
-
-# For Python 2.x. and Python
-try:
-    unichr
-except NameError:
-    unichr = chr
 
 Language = 'Aiton'
 Language_native = '(တႝ)ဢႝတွꩫ်'
@@ -30,17 +24,15 @@ LanguageCode = 'aio'
 ScriptCode = 'Mymr'
 
 links = [
-  {'linkText': 'Keyboard',
-   'ref': '/' + LanguageCode + '/'
+  {'linkText': 'Converter',
+   'ref': '/convert/' + LanguageCode
    },
-  # {'linkText': 'Converter',
-  #  'ref': '/' + LanguageCode + '/convertUI/'},
-  # {'linkText': 'Font conversion summary',
-  #   'ref': '/' + LanguageCode + '/encodingRules/'
-  # },
-  # {'linkText': 'Resources',
-  #   'ref': '/' + LanguageCode + '/downloads/'
-  # },
+  {'linkText': 'Font conversion summary',
+    'ref': '/encodingRules/%s' % LanguageCode
+  },
+  {'linkText': 'Resources',
+    'ref': '/downloads/%s' % LanguageCode
+  },
   {'linkText': 'Wikipedi Aiton language',
    'ref': 'https://en.wikipedia.org/wiki/Aiton_language'
    },
@@ -94,7 +86,7 @@ class langInfo:
         self.links = links
 
         # TODO: Fill in with diacritics
-        self.diacritic_list = [unichr(x) for x in range(0x300, 0x330)]
+        self.diacritic_list = [chr(x) for x in range(0x300, 0x330)]
         # TODO: Fill in base consonant
         self.default_base_consonant = u'\0x61'
 
@@ -110,12 +102,3 @@ class langInfo:
 
 langInstance = langInfo()
 
-app = webapp2.WSGIApplication([
-  ('/' + LanguageCode + '/', base.LanguagesHomeHandler),
-  ('/' + LanguageCode + '/convertUI/', base.ConvertUIHandler),
-  ('/' + LanguageCode + '/downloads/', base.Downloads),
-  ('/' + LanguageCode + '/encodingRules/', base.EncodingRules),
-  ('/' + LanguageCode + '/diacritic/', base.DiacriticHandler),
-], debug=True,
-  config={'langInfo': langInstance}
-)

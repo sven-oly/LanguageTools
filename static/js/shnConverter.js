@@ -1,6 +1,7 @@
 // Convert from old font-encoding of text to Unicode forms:
 const langConverter = new langConverterClass('shn', 'Shan');
 
+// Note that the second column is not correct for Zawgyi-Tai.
 langConverter.one2oneMap = private_use_map_combined = {
   '\u0020': [' ', ' '],
     '\u0030': ['\u1040', '\u1040'],
@@ -16,7 +17,7 @@ langConverter.one2oneMap = private_use_map_combined = {
     '\u003a': ['\u1038', '\u1038'],
 
     '\u0041': ['\u1022', '\u1022'],
-    '\u0042': ['\u102b', '\u102b'],
+    '\u0042': ['\u1062', '\u1062'],
     '\u0043': ['\u108a', '\u108a'],
     '\u0044': ['\u103c', '\u103c'],
     '\u0045': ['\u1082\u1072', '\u1082\u1072'],
@@ -41,16 +42,16 @@ langConverter.one2oneMap = private_use_map_combined = {
     '\u0057': ['\u1084', '\u1084'],
     '\u0058': ['\u103a\u1083', '\u103a\u1083'],
     '\u0059': ['\u1085', '\u1085'],
-    '\u005a': ['\u1033', '\u1033'],
+    '\u005a': ['\u103A\u1036', '\u103A\u1036'],
 
     '\u0061': ['\u1083', '\u1083'],
     '\u0062': ['\u1017', '\u1017'],
     '\u0063': ['\u1078', '\u1078'],
     '\u0064': ['\u1012', '\u1012'],
     '\u0065': ['\u1031', '\u1031'],
-    '\u0066': ['ၽ', '\u1083'],
+    '\u0066': ['\u107d', '\u107d'],
     '\u0067': ['\u1004', '\u1004'],
-    '\u0068': ['ႁ', '\u1083'],
+    '\u0068': ['\u1081', '\u1083'],
     '\u0069': ['\u102d', '\u102d'],
     '\u006a': ['\u1086', '\u1086'],
     '\u006b': ['\u1075', '\u1075'],
