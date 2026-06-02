@@ -31,9 +31,7 @@ import logging
 import os
 import sys
 import urllib
-import webapp2
 
-from google.appengine.ext.webapp import template
 
 # For Python 2.x. and Python
 try:
@@ -60,10 +58,15 @@ my_wwburn_converter_Z = None  # to Unicode or maybe to Z?
 
 encoding_font_list = [
   {
-    'font_path': '/fonts/Shan/Zawgyi-Tai.ttf',
-    'font_name': 'ZawgyiTai',
-    'display_name': 'Zawgyi-Tai',
+    'font_path': '/fonts/Shan/SHAN.TTF',
+    'font_name': 'SHAN TTF',
+    'display_name': 'Shan ttf',
   },
+  # {
+  #   'font_path': '/fonts/Shan/Zawgyi-Tai.ttf',
+  #   'font_name': 'Zawgyi-Tai',
+  #   'display_name': 'Zawgyi-Tai',
+  # },
 ]
 
 unicode_font_list = [
@@ -132,20 +135,25 @@ unicode_font_list = [
     'longName': 'Padauk Sgaw',
     'source': '/fonts/Myanmar/PadaukSgaw.ttf',
   },
+    {
+        'source': '/fonts/Shan/mmrtext.ttf.ttf',
+        'family': 'MyanmarText',
+        'longName': 'Myanmar Text',
+    },
 ]
 
 
 links = [
     {'linkText': 'Converter',
-     'ref': '/shn/convertUI/'},
+     'ref': '/convert/shn'},
     {'linkText': 'Font conversion summary',
-     'ref': '/shn/encodingRules/'
+     'ref': '/encodingRules/shn'
     },
-    {'linkText': 'Diacritics',
-     'ref': '/shn/diacritic/'
-     },
+    # {'linkText': 'Diacritics',
+    #  'ref': '/diacritic/shn'
+    # },
     # {'linkText': 'Resources',
-    #  'ref': '/shn/downloads/'
+    #  'ref': '/downloads/shn/'
     # },
     {'linkText': 'Unicode Myanmar',
      'ref': 'http://unicode.org/charts/PDF/U1000.pdf'
@@ -225,214 +233,196 @@ class langInfo():
 langInstance = langInfo()
 
 # Presents UI for conversions from font encoding to Unicode.
-class ConvertUIHandler(webapp2.RequestHandler):
-    def get(self):
+# class ConvertUIHandler(webapp2.RequestHandler):
+#     def get(self):
 
-      # All old characters
-      oldChars = (u'')
-      text = self.request.get('text', oldChars)
-      font = self.request.get('font')
+#       # All old characters
+#       oldChars = (u'')
+#       text = self.request.get('text', oldChars)
+#       font = self.request.get('font')
 
-      oldInput = u''
+#       oldInput = u''
 
-      unicodeChars = ''
-      unicodeCombiningChars = ''
-      kb_list = [
-        {'shortName':  LanguageCode,
-         'longName': Language,
-        }
-      ]
+#       unicodeChars = ''
+#       unicodeCombiningChars = ''
+#       kb_list = [
+#         {'shortName':  LanguageCode,
+#          'longName': Language,
+#         }
+#       ]
 
-      template_values = {
-          'font': font,
-          'language': Language,
-          'langTag': LanguageCode,
-          'encodingList': encoding_font_list,
-          'encoding': encoding_font_list[0],
-          'kb_list': kb_list,
-          'unicodeFonts': unicode_font_list,
-          'links': links,
-          'oldChars': oldChars,
-          'oldInput': oldInput,
-          'text': text,
-          'textStrings': testStringList,
-          'showTools': self.request.get('tools', None),
-          'unicodeChars': unicodeChars,
-          'combiningChars': unicodeCombiningChars,
-          'backend_convert': True,  # For the backend conversion.
-          'converter_type': 'WWBURN_Unicode',
-      }
-      path = os.path.join(os.path.dirname(__file__), 'HTML/translit_general.html')
-      self.response.out.write(template.render(path, template_values))
-
-
-# Convert text in URL, with JSON return
-class ConvertHandler(webapp2.RequestHandler):
-  def post(self):
-    self.response.headers['Content-Type'] = 'text/plain'
-
-    print('ConvertHandler post received.')
-    self.response.out.write('ConvertHandler post received.\n')
-
-  def get(self):
-    logging.info('ConvertHandler get received. %s' % self.request)
-    global my_wwburn_converter_Unicode
-
-    text = unicode(self.request.get('text'))
-    #logging.info('text         = %s' % text)
-    input_type = self.request.get('type', 'Z')
-    strip_spaces = self.request.get('strip_spaces', None)
-    debug = self.request.get('debug', None)
-
-    input = urllib.unquote(text)  # .decode('utf-8')
-    #logging.info('decoded text = %s' % text)
-
-    noreturn = self.request.get('noreturn', None)
-    msg = ''
-
-    # THE ACTUAL CONVERSION.
-    if True:  ## TODO: Fix later. not my_wwburn_converter_Unicode:
-      my_wwburn_converter_Unicode = transliterate.Transliterate(
-        transrule_my_wwburn.MY_WWBURN_UNICODE_TRANSLITERATE,
-        transrule_my_wwburn.UNICODE_DESCRIPTION)
-
-    subst = transrule_my_wwburn.Substitutions
-    text = input
-    for rep in subst:
-      text = input.replace(rep[0], rep[1])
-      input = text
-    result = my_wwburn_converter_Unicode.transliterate(input, debug)
+#       template_values = {
+#           'font': font,
+#           'language': Language,
+#           'langTag': LanguageCode,
+#           'encodingList': encoding_font_list,
+#           'encoding': encoding_font_list[0],
+#           'kb_list': kb_list,
+#           'unicodeFonts': unicode_font_list,
+#           'links': links,
+#           'oldChars': oldChars,
+#           'oldInput': oldInput,
+#           'text': text,
+#           'textStrings': testStringList,
+#           'showTools': self.request.get('tools', None),
+#           'unicodeChars': unicodeChars,
+#           'combiningChars': unicodeCombiningChars,
+#           'backend_convert': True,  # For the backend conversion.
+#           'converter_type': 'WWBURN_Unicode',
+#       }
+#       path = os.path.join(os.path.dirname(__file__), 'HTML/translit_general.html')
+#       self.response.out.write(template.render(path, template_values))
 
 
-    self.response.headers['Content-Type'] = 'application/json'
-    if input:
-      if noreturn:
-        returntext = ''
-      else:
-        returntext = text
+# # Convert text in URL, with JSON return
+# class ConvertHandler(webapp2.RequestHandler):
+#   def post(self):
+#     self.response.headers['Content-Type'] = 'text/plain'
 
-      #logging.info('RESULT has %d characters' % len(result))
+#     print('ConvertHandler post received.')
+#     self.response.out.write('ConvertHandler post received.\n')
 
-      # Call the converter on this text data.
-      obj = {'input': returntext,
-             'input_type': input_type,
-             'msg': msg,
-             'converted': result,
-             'detector_description': transrule_my_wwburn.UNICODE_DESCRIPTION,
-             'noreturn': noreturn,
-             'inputSize': len(input),
-             'resultSize': len(result),
-             'errmsg': None}
-    else:
-      obj = {'input': text,
-             'input_type': input_type,
-             'msg': msg,
-             'noreturn': noreturn,
-             'errmsg': 'Null input'}
-    self.response.out.write(json.dumps(obj))
+#   def get(self):
+#     logging.info('ConvertHandler get received. %s' % self.request)
+#     global my_wwburn_converter_Unicode
 
-# TODO: Perform transliteration using Okell/JKW and others
-class TransliterateHandler(webapp2.RequestHandler):
-  def get(self):
-    # Load existing transliterations
+#     text = unicode(self.request.get('text'))
+#     #logging.info('text         = %s' % text)
+#     input_type = self.request.get('type', 'Z')
+#     strip_spaces = self.request.get('strip_spaces', None)
+#     debug = self.request.get('debug', None)
 
-    translit_rules_list = [
-        ]
+#     input = urllib.unquote(text)  # .decode('utf-8')
+#     #logging.info('decoded text = %s' % text)
 
-    template_values = {
-      'language': langInstance.Language,
-      'langTag': langInstance.LanguageCode,
-      'font_list': langInstance.unicode_font_list,
-      'lang_list': langInstance.lang_list,
-      'kb_list': langInstance.kb_list,
-      'langInfo': langInfo,
-      'links': langInstance.links,
-      'showTools': self.request.get('tools', None),
-      'test_data': 'ဓာတ်',  ## !!! langInstance.translit_test_data,
-      'translit_rules_list': translit_rules_list,
-    }
-    path = os.path.join(os.path.dirname(__file__), 'HTML/burmese_transliteration.html')
-    self.response.out.write(template.render(path, template_values))
+#     noreturn = self.request.get('noreturn', None)
+#     msg = ''
 
-# Globals
-# OkellJKW_Translit = None
+#     # THE ACTUAL CONVERSION.
+#     if True:  ## TODO: Fix later. not my_wwburn_converter_Unicode:
+#       my_wwburn_converter_Unicode = transliterate.Transliterate(
+#         transrule_my_wwburn.MY_WWBURN_UNICODE_TRANSLITERATE,
+#         transrule_my_wwburn.UNICODE_DESCRIPTION)
+
+#     subst = transrule_my_wwburn.Substitutions
+#     text = input
+#     for rep in subst:
+#       text = input.replace(rep[0], rep[1])
+#       input = text
+#     result = my_wwburn_converter_Unicode.transliterate(input, debug)
 
 
-# !!! TODO: adapt to new transliteration for Burmese --> Latin
-class DoTranslitHandler(webapp2.RequestHandler):
-  def get(self):
-    # Get parameters
-    logging.info('DoTranslitHandler')
-
-    rules = self.request.get('rules', '').decode('unicode-escape')
-    inputData = self.request.get('input', 'No input')
-    inputData = urllib.unquote(inputData.encode('utf-8'))
-
-    logging.info('DoTranslitHandler rules = %s' % rules)
-
-    error = ''  # Set if there's a problem.
-    debug = True
-
-    OkellJKW_Translit = None
-    # Create transliterator(s) if needed
-    OkellJKW_Translit = transliterate.Transliterate(
-      translit_burmese_rules.TRANSLIT_MY_OKELL_JW, debug=True)
-    try:
-      if not OkellJKW_Translit:
-        logging.info('NEW NEW OKELL')
-        logging.info('*** %s lines' % len(translit_burmese_rules.TRANSLIT_MY_OKELL_JW.split('\n')))
-        OkellJKW_Translit = transliterate.Transliterate(
-          translit_burmese_rules.TRANSLIT_MY_OKELL_JW, debug=True)
-    except:
-      e = sys.exc_info()[0]
-      error = '!!!!! Creating transliterator Error e = %s.' % (e)
-      logging.error(error)
-      out_text = '~~~~~~~~~ Creation Error: %s' % e
-
-    # !!! FINISH THIS
-    trans = OkellJKW_Translit
-
-    out_text = "not transliterated"
-
-    try:
-      out_text = trans.transliterate(inputData)
-    except:
-      e = sys.exc_info()[0]
-      logging.error('!! Calling transliterate Error e = %s. trans=%s' % (e, trans))
-      logging.info('outText = %s' % (out_text))
-
-    message = 'MESSAGE  #'''  # TODO: Fill in with error or success message.
-    summary_text = "No summary available"
-    if trans:
-      try:
-        summary = trans.getSummary()
-        summary_text = ','.join(summary['shortcuts'].values())
-      except AttributeError:
-        summary_text = "No summary available"
-
-    result = {
-      'outText': out_text,
-      #'outText' : outText,
-      'message' : message,
-      'error': error,
-      'summary' : summary_text,
-    }
-    return_string = json.dumps(result)
-    self.response.out.write(return_string)
+#     self.response.headers['Content-Type'] = 'application/json'
+#     if input:
+#       if noreturn:
+#         returntext = ''
+#       else:
+#         returntext = text
 
 
-app = webapp2.WSGIApplication([
-    ('/shn/', base.LanguagesHomeHandler),
-    ('/shn/', base.LanguagesHomeHandler),
-    ('/shn/convertUI/', ConvertUIHandler),
-    ('/shn/downloads/', base.Downloads),
-    ('/shn/converter/', ConvertHandler),
-    ('/shn/encodingRules/', base.EncodingRules),
-    ('/shn/diacritic/', base.DiacriticHandler),
-    ('/shn/transliterate/', TransliterateHandler),
-    ('/shn/dotranslit/', DoTranslitHandler),
-    ('/shn/AllFonts/', base.AllFontTest ),
-  ],
-  debug=True,
-  config = {'langInfo': langInstance}
-)
+
+# # TODO: Perform transliteration using Okell/JKW and others
+# class TransliterateHandler(webapp2.RequestHandler):
+#   def get(self):
+#     # Load existing transliterations
+
+#     translit_rules_list = [
+#         ]
+
+#     template_values = {
+#       'language': langInstance.Language,
+#       'langTag': langInstance.LanguageCode,
+#       'font_list': langInstance.unicode_font_list,
+#       'lang_list': langInstance.lang_list,
+#       'kb_list': langInstance.kb_list,
+#       'langInfo': langInfo,
+#       'links': langInstance.links,
+#       'showTools': self.request.get('tools', None),
+#       'test_data': 'ဓာတ်',  ## !!! langInstance.translit_test_data,
+#       'translit_rules_list': translit_rules_list,
+#     }
+#     path = os.path.join(os.path.dirname(__file__), 'HTML/burmese_transliteration.html')
+#     self.response.out.write(template.render(path, template_values))
+
+# # Globals
+# # OkellJKW_Translit = None
+
+
+# # !!! TODO: adapt to new transliteration for Burmese --> Latin
+# class DoTranslitHandler(webapp2.RequestHandler):
+#   def get(self):
+#     # Get parameters
+#     logging.info('DoTranslitHandler')
+
+#     rules = self.request.get('rules', '').decode('unicode-escape')
+#     inputData = self.request.get('input', 'No input')
+#     inputData = urllib.unquote(inputData.encode('utf-8'))
+
+#     logging.info('DoTranslitHandler rules = %s' % rules)
+
+#     error = ''  # Set if there's a problem.
+#     debug = True
+
+#     OkellJKW_Translit = None
+#     # Create transliterator(s) if needed
+#     OkellJKW_Translit = transliterate.Transliterate(
+#       translit_burmese_rules.TRANSLIT_MY_OKELL_JW, debug=True)
+#     try:
+#       if not OkellJKW_Translit:
+#         logging.info('NEW NEW OKELL')
+#         logging.info('*** %s lines' % len(translit_burmese_rules.TRANSLIT_MY_OKELL_JW.split('\n')))
+#         OkellJKW_Translit = transliterate.Transliterate(
+#           translit_burmese_rules.TRANSLIT_MY_OKELL_JW, debug=True)
+#     except:
+#       e = sys.exc_info()[0]
+#       error = '!!!!! Creating transliterator Error e = %s.' % (e)
+#       logging.error(error)
+#       out_text = '~~~~~~~~~ Creation Error: %s' % e
+
+#     # !!! FINISH THIS
+#     trans = OkellJKW_Translit
+
+#     out_text = "not transliterated"
+
+#     try:
+#       out_text = trans.transliterate(inputData)
+#     except:
+#       e = sys.exc_info()[0]
+#       logging.error('!! Calling transliterate Error e = %s. trans=%s' % (e, trans))
+#       logging.info('outText = %s' % (out_text))
+
+#     message = 'MESSAGE  #'''  # TODO: Fill in with error or success message.
+#     summary_text = "No summary available"
+#     if trans:
+#       try:
+#         summary = trans.getSummary()
+#         summary_text = ','.join(summary['shortcuts'].values())
+#       except AttributeError:
+#         summary_text = "No summary available"
+
+#     result = {
+#       'outText': out_text,
+#       #'outText' : outText,
+#       'message' : message,
+#       'error': error,
+#       'summary' : summary_text,
+#     }
+#     return_string = json.dumps(result)
+#     self.response.out.write(return_string)
+
+
+# app = webapp2.WSGIApplication([
+#     ('/shn/', base.LanguagesHomeHandler),
+#     ('/shn/', base.LanguagesHomeHandler),
+#     ('/shn/convertUI/', ConvertUIHandler),
+#     ('/shn/downloads/', base.Downloads),
+#     ('/shn/converter/', ConvertHandler),
+#     ('/shn/encodingRules/', base.EncodingRules),
+#     ('/shn/diacritic/', base.DiacriticHandler),
+#     ('/shn/transliterate/', TransliterateHandler),
+#     ('/shn/dotranslit/', DoTranslitHandler),
+#     ('/shn/AllFonts/', base.AllFontTest ),
+#   ],
+#   debug=True,
+#   config = {'langInfo': langInstance}
+# )
