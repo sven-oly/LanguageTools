@@ -10,7 +10,7 @@ Substitutions = KNU_substitutions = [
     [ u'\u003d', u'\u103c'],
     [ u'[',  u'\u101f'],  # 0x5b
     [ u'\\',  u'\u103f'], # 0x5c
-    [ u'\]', '='],         # 0x5d
+    [ u']', '='],         # 0x5d
     [ u';', u'\u1038'],
     [ u'|',  u'ျွ'],      # 0x7c
     [u'^', u'\u1009'],    # 0x5e

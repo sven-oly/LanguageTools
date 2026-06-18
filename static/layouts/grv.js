@@ -11,8 +11,8 @@
 // limitations under the License.
 
 
-var GRV_LAYOUT = {
-  'id': 'grv',
+var GVR_LAYOUT = {
+  'id': 'gvr',
   'title': 'Gurung Khema',
   'mappings': {
     ',c': {
@@ -45,5 +45,5 @@ var GRV_LAYOUT = {
 };
 
 // Load the layout and inform the keyboard to switch layout if necessary.
-google.elements.keyboard.loadme(GRV_LAYOUT);
-grv = GRV_LAYOUT;
+google.elements.keyboard.loadme(GVR_LAYOUT);
+gvr = GVR_LAYOUT;

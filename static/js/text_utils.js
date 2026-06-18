@@ -8,6 +8,7 @@ var bad_data_ids = [ 1999, 2017, 2116, 2132, 2137, 3354, 3435, 3436, 6181, 6182,
 // TODO: investigate how to render this.
 var lower_dot_before_consonant_ids = [8671, 8640, 8880];
 
+let diff_list = [];
 
 function clear_rules_counts() {
   var i;
@@ -111,7 +112,7 @@ function utf16common(text, prefix, suffix, asciitoo, highlight_list)
     for (testpos = 0; testpos < data.length; testpos ++) {
       ITconverted = Z1_Uni(data[testpos][1]);
       if (ITconverted != data[testpos][2]) {
-	allConvertDiffs.push(testpos);
+        allConvertDiffs.push(testpos);
       }
     }
     return allConvertDiffs;
@@ -140,9 +141,9 @@ function identifyBadOriginalData() {
     var bad_ids = new Array(0);
     var index;
     for (index = 0; index < data.length; index ++) {
-	if (orig_font[index][1] > 1 && orig_font[index][2] > 0) {
-	    bad_ids.push(index);
-	}
+        if (orig_font[index][1] > 1 && orig_font[index][2] > 0) {
+            bad_ids.push(index);
+        }
     }
     return bad_ids;
 }
@@ -152,14 +153,14 @@ function identifyBadDetection() {
     var orig_not_U = new Array(0);
     var index;
     for (index = 0; index < data.length; index ++) {
-	if (data[index][4] && orig_font[index][1] > 0) {
-	    // detected as Z but bad Z rendering
-	    orig_not_Z.push(index);
-	}
-	if (!data[index][4] && orig_font[index][2] > 0) {
-	    // detected as Z but bad Z rendering
-	    orig_not_U.push(index);
-	}
+        if (data[index][4] && orig_font[index][1] > 0) {
+            // detected as Z but bad Z rendering
+            orig_not_Z.push(index);
+        }
+        if (!data[index][4] && orig_font[index][2] > 0) {
+            // detected as Z but bad Z rendering
+            orig_not_U.push(index);
+        }
     }
     return orig_not_Z + ' | ' + orig_not_U;
 }
@@ -170,16 +171,16 @@ function identifyBadConversion() {
     var index;
     for (index = 0; index < data.length; index ++) {
 
-	if (data[index][4] && orig_font[index][1] == 0 && converted_font[index][2] > 0) {
-	    // detected as Z but bad Z rendering
-	    bad_U_render.push(index);
-	}
-	if (data[index][4] && orig_font[index][1] > 0 && detectZawgyi(data[index][2])) {
-	    // detected as Z but bad Z rendering
-	    converted_is_Z.push(index);
-	}
+        if (data[index][4] && orig_font[index][1] == 0 && converted_font[index][2] > 0) {
+            // detected as Z but bad Z rendering
+            bad_U_render.push(index);
+        }
+        if (data[index][4] && orig_font[index][1] > 0 && detectZawgyi(data[index][2])) {
+            // detected as Z but bad Z rendering
+            converted_is_Z.push(index);
+        }
     }
-	return bad_U_render + ' | ' +converted_is_Z;
+        return bad_U_render + ' | ' +converted_is_Z;
 }
 
 // Using the ordering expecdted for Unicode code points, parse a string into syllables.

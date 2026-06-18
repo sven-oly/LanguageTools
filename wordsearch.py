@@ -153,9 +153,9 @@ class WordSearch(object):
                      new_grid_size)
         self.size = new_grid_size
 
-    if self.direction_option == 'diagonal_only':
-        self.size += 1
-        logger.debug('computeGridSize: for diagonal, incleasing grid size to %d', self.size)
+        if self.direction_option == 'diagonal_only':
+            self.size += 1
+            logger.debug('computeGridSize: for diagonal, incleasing grid size to %d', self.size)
 
     logger.debug('computeGridSize: new gridSize=%s', new_grid_size)
     return int(new_grid_size)
@@ -363,8 +363,14 @@ class WordSearch(object):
         return positions
     # logger.debug('generateOptions: %s, %s', self.width, self.height)
 
+    # TODO: Prefer those that overlap with words already placed?
+    overlap_options = self.computer_overlaps(tokens)
+
     length1 = len(tokens) - 1
-    for dir in self.allowed_directions:
+    shuffled_directions = random.sample(self.allowed_directions, len(self.allowed_directions))
+    logger.debug('RANDOM directions: %s', shuffled_directions)
+
+    for dir in shuffled_directions:
       offset = (DIR_OFFSETS[dir][0] * length1, DIR_OFFSETS[dir][1] * length1)
       for x in range(0, self.width):
         xend = x + offset[0]
@@ -399,6 +405,10 @@ class WordSearch(object):
       if current_val and current_val != ' ' and current_val[0] != tokens[i]:
         return False
     return fits
+
+  def computer_overlaps(selfs, tokens):
+    # TODO: Finish this
+    return
 
   def revertWordAtLevel(self):
     return True
@@ -746,7 +756,7 @@ def generateWordsGrid(words, fillList=None, diacritics=None, randomSeed=None):
   max_xy = max(tokenSizes) + 1  # TODO: find a way to improve this
   totalTokens = sum(tokenSizes)
   # Grid width/height should be at least a factor times the number of tokens
-  factor = 1.4
+  factor = 1.2
   grid_size = int(math.ceil(max(max_xy, int(factor * math.sqrt(totalTokens)))))
   grid_answers, attempts = makeGrid(words, fillList, diacritics, [grid_size, grid_size], 10, True)
   return grid_answers[0], grid_answers[1], words, grid_size, attempts

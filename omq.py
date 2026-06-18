@@ -57,7 +57,7 @@ unicode_font_list = [
 kb_list = [
   {
     'shortName': 'omq_accents',
-    'longName': 'Acentos fonéticos otomangues, teclado español',
+    'longName': 'Diacríticos fonéticos otomangues, teclado español',
     'instructions':
       ' Tone marks on digits. Numerals on CapsLock'
   },
@@ -172,9 +172,9 @@ class langInfo():
 
     resource_list = [
       {
-        'name': 'KeyMan Acentos fonéticos', # 
+        'name': 'KeyMan Diacríticos fonéticos', # 
         'source': '/resources/omq/chatino_with_accents.kmp',
-        'description': 'Keyboard Acentos fonéticos Mobile & Desktop',
+        'description': 'Keyboard Diacríticos fonéticos Mobile & Desktop',
         'instructions': '',
       },
       {

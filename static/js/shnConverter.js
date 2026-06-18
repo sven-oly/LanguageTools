@@ -17,8 +17,8 @@ langConverter.one2oneMap = private_use_map_combined = {
     '\u0037': ['\u1047', '\u0037', '\u0037'],
     '\u0038': ['\u1048', '\u0038', '\u0038'],
     '\u0039': ['\u1049', '\u0039', '\u0039'],
-    '\u003a': ['\u1038', '\u003a', 'ႈ'],
-    '\u003b': ['\u003b', '\u003b', 'း'],
+    '\u003a': ['\u1038', '\u003a', 'း'],
+    '\u003b': ['\u003b', '\u003b', '\u1088'],
 
     '\u0041': ['\u1022', '\u0041', 'ဢ'],
     '\u0042': ['\u1062', '\u0042', 'ၿ'],
@@ -47,6 +47,7 @@ langConverter.one2oneMap = private_use_map_combined = {
     '\u0058': ['\u103a\u1083', '\u0058', 'ြ'],
     '\u0059': ['\u1085', '\u0059', 'ၺ'],
     '\u005a': ['\u103A\u1036', '\u005a', 'ွ'],
+    '\u005c': ['\u005c', '\u005c', 'ႁု'],
 
     '\u0061': ['\u1083', '\u0061', 'ၢ'],
     '\u0062': ['\u1017', '\u0062', 'ပ'],
@@ -75,6 +76,7 @@ langConverter.one2oneMap = private_use_map_combined = {
     '\u0078': ['\u1076', '\u0078', '့'],
     '\u0079': ['\u101a', '\u0079', 'ယ'],
     '\u007a': ['\u102d\u1030', '\u007a', 'ွ'],
+    '\u007c': ['\u007c', '\u007c', 'ႁူ'],
 
     // Zawgyi-Tai --> Unicode
     // https://github.com/SaingHmineTun/TMKFontConverter/blob/master/app/src/main/java/it/saimao/tmkfontconverter/fontconverter/ShanZawgyiConverter.java
