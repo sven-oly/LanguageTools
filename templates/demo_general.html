@@ -246,6 +246,15 @@
 
     function textarea_onchange(area) {
         let x = area;
+                                       }
+                                       
+    function gotoWordSearch(textarea_id) {
+        const text_area = document.getElementById(textarea_id);
+        const text = text_area.value;
+        const url = '/wordsearch/{{langTag}}' +
+              '?language={{langTag}}' +
+              '&testData=' + text.replace('\n', '');
+         window.open(url, '_blank');
     }
   </script>
   <link rel="stylesheet" type="text/css" href="/static/css/keyboard.css" />
@@ -319,6 +328,7 @@
               dir="{{direction}}" onchange="textarea_onchange(this);">{{insert_text}}{{test_data}}</textarea>
     <input type="button" value="Clear text" onclick="utils.clearText('codepoints');utils.clearText('t1', true);insertText('t1', '{{insert_text}}');">
     <input type="button" value="Undo delete" onclick="utils.restoreText('t1');">
+    <input type="button" value="Create a word search" onclick="gotoWordSearch('t1');">
   <br />
   {% if allFonts %}
   <input type="button" onclick="toAllFonts('t1', null);" value="To all fonts">

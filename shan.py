@@ -69,6 +69,13 @@ encoding_font_list = [
     'font_name': 'Zawgyi-Tai',
     'display_name': 'Zawgyi-Tai',
   },
+  {
+    # A converter to Unicode that may be useful.
+    # https://github.com/SaingHmineTun/TMKFontConverter/blob/master/app/src/main/java/it/saimao/tmkfontconverter/fontconverter/ShanZawgyiConverter.java
+    'font_path': '/fonts/Shan/st_metta.ttf',
+    'font_name': 'ST_Metta',
+    'display_name': 'ST_Metta',
+},
 ]
 
 unicode_font_list = [
