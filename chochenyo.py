@@ -8,8 +8,8 @@
 
 import base
 
-Language = 'Čočenyo (Chochenyo)'
-Language_native = 'Čočenyo'
+Language = 'Chochenyo'
+Language_native = 'Chochenyo'
 LanguageCode = 'cst'
 ScriptCode = 'Latn'
 
@@ -17,6 +17,11 @@ links = [
     {'linkText': 'Word search',
      'ref': '/wordsearch/' + LanguageCode + '/'
     },
+    # {'linkText': 'Converter',
+    #  'ref': '/' + LanguageCode + '/convertUI/'},
+    # {'linkText': 'Font conversion summary',
+    #   'ref': '/' + LanguageCode + '/encodingRules/'
+    # },
     {'linkText': 'Resources',
       'ref': '/downloads/' + LanguageCode
     },
@@ -29,9 +34,6 @@ links = [
     {'linkText': 'Wikipedi page',
      'ref': 'https://en.wikipedia.org/wiki/Chochenyo_language',
     },
-    {'linkText': 'Čočenyo in ELP',
-     'ref': 'https://www.endangeredlanguages.com/elp-language/7409'
-     },
     # {'linkText': 'Ethnolog',
     #  'ref': 'https://www.ethnologue.com/language/XYZ'
     # },
@@ -74,9 +76,6 @@ class langInfo:
         # Unicode range
         self.unicodeRanges = [('\u0020', '\u007f')]
 
-        self.unicodeChars = [chr(x) for x in range(0x61, 0x7b)]
-        self.unicodeChars.extend(['c\u0306', 's\u0306', '\u1E6D'])
-
         # TODO: Fill in with diacritics
         self.diacritic_list = [chr(x) for x in range(0x300, 0x330)]
         # TODO: Fill in base consonant
@@ -95,17 +94,7 @@ class langInfo:
         self.unicodeCombiningChars = self.diacritic_list
 
         resource_list = [
-            {
-                'name': 'Keyman Chochenyo v1.12',
-                'source': '/resources/cst/cst_1.12.kmp',
-                'description': '1.12 (03-Aug-2026). Add acute accent'
-            },
-            {
-                'name': 'Keyman Chochenyo v1.11',
-                'source': '/resources/cst/cst_1.1.kmp',
-                'description': 'Keyman Chochenyo 1.11 (03-Aug-2026). Fix shift in alt layer'
-            },
-            {
+          {
               'name': 'Keyman Chochenyo v1.1',
               'source': '/resources/cst/cst_1.1.kmp',
               'description': 'Keyman Chochenyo 1.1'
