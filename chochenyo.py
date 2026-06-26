@@ -92,6 +92,7 @@ class langInfo:
         self.fillChars = [chr(x) for x in range(0x61, 0x7b)]
         self.fillChars.extend(['s̆', 'ṭ', 'c̆'])
         self.unicodeCombiningChars = self.diacritic_list
+        self.unicodeChars = self.fillChars
 
         resource_list = [
           {
