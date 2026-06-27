@@ -4,3 +4,4 @@ google-cloud-tasks==2.7.1
 grapheme>=0.6.0
 langid==1.1.6
 Werkzeug>=3.0.0
+regex>=2026.5.9
