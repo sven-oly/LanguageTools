@@ -31,7 +31,7 @@ links = [
     # {'linkText': 'THIS SCRIPT',
     #  'ref': 'https://en.wikipedia.org/wiki/XYZ_alphabet'
     # },
-    {'linkText': 'Wikipedi page',
+    {'linkText': 'Wikipedia page',
      'ref': 'https://en.wikipedia.org/wiki/Chochenyo_language',
     },
     # {'linkText': 'Ethnolog',
