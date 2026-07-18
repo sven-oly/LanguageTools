@@ -47,13 +47,23 @@ class langInfo:
             {
                 'family': 'NotoSansLepcha',
                 'longName': 'Noto Sans Lepcha',
-                'source': '/fonts/NotoSansLepcha-Regular.ttf',
+                'source': '/fonts/Lepcha/NotoSansLepcha-Regular.ttf',
             },
             {
                 'family': 'MingzatLepcha',
                 'longName': 'Mingzat (SIL)',
-                'source': '/fonts/Mingzat-R.woff',
+                'source': '/fonts/Lepcha/Mingzat-R.woff',
             },
+            {
+                'family': 'DawaLepcha',
+                'longName': 'DawaLepcha (Róng Kít)',
+                'source': '/fonts/Lepcha/DawaLepcha.otf',
+            },
+            {
+            'family': 'MainwaringRong',
+        'longName': 'MainwaringRong (Róng Kít)',
+        'source': '/fonts/Lepcha/MainwaringRong.otf',
+        },
         ]
 
         self.lang_list = [Language]
@@ -89,6 +99,8 @@ class langInfo:
             {'linkText': 'Ethnolog',
              'ref': 'https://www.ethnologue.com/language/lep'
              },
+            {'linkText': 'SIBLAC',
+             'ref': 'http://www.siblac.org/index.html'},
             {'linkText': 'Combiners',
              'ref': '/diacritic/%s' % LanguageCode
              },
