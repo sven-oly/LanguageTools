@@ -27,9 +27,6 @@ import json
 import logging
 import os
 import unicodedata
-#import webapp2
-
-#from google.appengine.ext.webapp import template
 
 try:
     unichr
@@ -1046,39 +1043,3 @@ def handle_500(request, response, exception):
     response.write('A server error occurred!\n\n')
     response.write('Request = %s\n' % request.url)
     response.set_status(500)
-
-
-# app = webapp2.WSGIApplication(
-#     [
-#     ],
-#     debug=True,
-#     config={'langInfo': instance}
-# )
-
-# app.router.add((basePath + '/downloads/', Downloads))
-# app.router.add((basePath + '/encodingRules/', EncodingRules))
-# app.router.add((basePath + '/', LanguagesHomeHandler))
-# app.router.add((basePath + '/dictionaryInput/', DictionaryInput))
-# app.router.add((basePath + '/kbtransforms/', KeyboardTransforms))
-# app.router.add((basePath + '/collation/', CollationHandler))
-# app.router.add((basePath + '/combos/', RenderPage))
-# app.router.add((basePath + '/keyman/', KeyManHandler))
-# app.router.add((basePath + '/AllFonts/', AllFontTest))
-# app.router.add((basePath + '/charTable/', CharacterTableHandler)),
-# app.router.add((basePath + '/wordsearch/', WordSearchHandler)),
-
-# app.router.add((basePath + '/numerals/', NumeralsHandler)),
-
-
-# app.router.add((basePath + '/games/generatewordsearch/',
-#                 games.GenerateWordSearchHandler)),
-
-# app.router.add((basePath + '/phonetickb/', PhoneticKbHandler)),
-
-# # Future
-# #app.router.add((basePath + '/games/generatewordsearchDFS/',
-# #                games.GenerateWordSearchDFSHandler)),
-
-# app.error_handlers[301] = handle_301
-# app.error_handlers[404] = handle_404
-# app.error_handlers[500] = handle_500

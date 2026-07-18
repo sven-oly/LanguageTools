@@ -14,13 +14,6 @@
 # limitations under the License.
 #
 
-import os
-import webapp2
-
-import base
-
-from google.appengine.ext.webapp import template
-
 Language = 'Kpelle'
 Language_native = 'Kpelle'
 LanguageCode = 'kpe'
@@ -52,13 +45,13 @@ kb_list = [
 
 links = [
     {'linkText': 'Keyboard',
-     'ref': '/' + LanguageCode + '/'
-    },
+     'ref': '/langbase/%s' % LanguageCode,
+     },
     {'linkText': 'Keyboard conversions',
-     'ref': '/' + LanguageCode + '/kbtransforms/'
+     'ref': '/kbtransforms/%s' % LanguageCode,
     },
     {'linkText': 'Phonetic table',
-     'ref': '/' + LanguageCode + '/phonetickb/'
+     'ref': '/phonetickb/%s' % LanguageCode
      },
     {'linkText': 'Wikipedia Kpelle syllabary',
      'ref': 'https://en.wikipedia.org/wiki/Kpelle_syllabary'
@@ -117,15 +110,3 @@ default_base_consonant = u'\u16c00'
 
 langInstance = langInfo()
 
-app = webapp2.WSGIApplication([
-  ('/' + LanguageCode + '/', base.LanguagesHomeHandler),
-  ('/' + LanguageCode + '/convertUI/', base.ConvertUIHandler),
-  ('/' + LanguageCode + '/downloads/', base.Downloads),
-  ('/' + LanguageCode + '/encodingRules/', base.EncodingRules),
-  ('/' + LanguageCode + '/diacritic/', base.DiacriticHandler),
-  ('/' + LanguageCode + '/phonetickb/', base.PhoneticKbHandler),
-  ('/' + langInstance.LanguageCode + '/kbtransforms/', base.KeyboardTransforms),
-  ],
-  debug=True,
-  config={'langInfo': langInstance}
-  )

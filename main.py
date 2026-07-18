@@ -36,7 +36,10 @@ import cree
 import fulfulde
 import gurung
 import khamti
+import kpelle
+import lepcha
 import mendekikakui
+import mundari
 import omq
 import phake
 import qiang
@@ -46,6 +49,7 @@ import singpho
 import tangsa
 import taivietscript
 import taiyo
+import tulu
 
 from  wordsearch import generateDFSWordSearch
 from  wordsearch import WordSearch
@@ -73,22 +77,26 @@ language_info_dict['as'] = assamese.langInfo()
 language_info_dict['asm'] = assamese.langInfo()
 language_info_dict['bete'] = bete.langInfo()
 language_info_dict['ccp'] = chakma.langInfo()
-language_info_dict['cr'] = cree.langInfo()
 language_info_dict['chr'] = cherokee.langInfo()
+language_info_dict['cr'] = cree.langInfo()
+language_info_dict['cst'] = chochenyo.langInfo()
 language_info_dict['ff'] = fulfulde.langInfo()
+language_info_dict['gvr'] = gurung.langInfo()
 language_info_dict['kht'] =  khamti.langInfo()
+language_info_dict['kpe'] = kpelle.langInfo()
+language_info_dict['lep'] = lepcha.langInfo()
 language_info_dict['men'] =  mendekikakui.langInfo()
-language_info_dict['omq'] = omq.langInfo()
 language_info_dict['nst'] = tangsa.langInfo()
+language_info_dict['omq'] = omq.langInfo()
 language_info_dict['phk'] = phake.langInfo()
 language_info_dict['qiang'] = qiang.langInfo()
 language_info_dict['sgp'] = singpho.langInfo()
 language_info_dict['shn'] = shan.langInfo()
 language_info_dict['suz'] = sunuwar.langInfo()
 language_info_dict['tavt'] = taivietscript.langInfo()
-language_info_dict['cst'] = chochenyo.langInfo()
+language_info_dict['tcy'] = tulu.langInfo()
 language_info_dict['tyj'] = taiyo.langInfo()
-language_info_dict['gvr'] = gurung.langInfo()
+language_info_dict['unr'] = mundari.langInfo()
 
 
 # English name, language code, name in the language.
@@ -136,12 +144,12 @@ LanguageList = [
     # ('Ho', 'hoc'),
     # ('Igbo', 'ig'),
     # ('Kaingang', 'kgp'),
-    # ('Kpelle', 'kpe'),
+    ('Kpelle', 'kpe'),
     # ('Loma', 'lom'),
     ('Tai Viet script', 'tavt'),
     # ('Karen', 'ksw'),
     # ('Lampung', 'lampung'),
-    # ('Lepcha', 'lep'),
+    ('Lepcha', 'lep'),
     # ('Mongolian', 'mn'),
     ('Mende Kikakui', 'men'),
     # ('Wancho', 'nnp'),
@@ -151,10 +159,10 @@ LanguageList = [
     # ('Kinyarwanda', 'rw'),
     ('Shan', 'shn', 'လိၵ်ႈတႆ'),
     # ('Sora', 'srb'),
-    # ('Tulu', 'tcy'),
+    ('Tulu', 'tcy'),
     # ('Tongan', 'to'),
     ('Sunuwar', 'suz'),
-    # ('Mundari', 'unr'),
+    ('Mundari', 'unr'),
     # ('Yoruba', 'yo'),
     # ('Zaghawa', 'zag'),
     # ('Burmese', 'my'),

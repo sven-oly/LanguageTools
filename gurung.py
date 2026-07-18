@@ -6,15 +6,6 @@
 # limitations under the License.
 #
 
-
-import base
-
-# For Python 2.x. and Python
-try:
-    unichr
-except NameError:
-    unichr = chr
-
 Language = 'Gurung'
 Language_native = 'गुरुङ'
 LanguageCode = 'gvr'
@@ -28,14 +19,26 @@ class langInfo:
         self.Language_native = Language_native
         self.test_data = u''
         self.unicode_font_list = [
-          {'family': 'Khema extended',
-           'longName': 'Khema extended',
-           'source': '/fonts/Gurung/Khema_extended.ttf',
-           },
-          {'family': 'NotoSans',
-           'longName': 'Noto Sans',
-           'source': '/fonts/NotoSans-Regular.ttf',
-           },
+            {'family': 'Khema 2019 final',
+             'longName': 'Khema 2019 final',
+             'source': '/fonts/Gurung/Khema_2019 final.ttf',
+             },
+            {'family': 'Khema extended',
+             'longName': 'Khema extended',
+             'source': '/fonts/Gurung/Khema_extended.ttf',
+             },
+            {'family': 'NotoSansGurung',
+             'longName': 'Noto Sans Gurung Khema',
+             'source': '/fonts/Gurung/NotoSansGurungKhema.ttf',
+             },
+            {'family': 'Khema',
+             'longName': 'Khema',
+             'source': '/fonts/Gurung/Khema.ttf',
+             },
+            {'family': 'NotoSans',
+             'longName': 'Noto Sans Latin',
+             'source': '/fonts/NotoSans-Regular.ttf',
+             },
         ]
 
         self.encoding_font_list = [
@@ -56,10 +59,10 @@ class langInfo:
 
         self.links = [
             {'linkText': 'Keyboard',
-             'ref': '/' + self.LanguageCode + '/'
-            },
+             'ref': '/langbase/%s' % LanguageCode
+             },
             {'linkText': 'Word search',
-             'ref': '/wordsearch/' + self.LanguageCode
+             'ref': '/wordsearch/%s' % LanguageCode
             },
             # {'linkText': 'Converter',
             #  'ref': '/' + LanguageCode + '/convertUI/'},
@@ -72,18 +75,6 @@ class langInfo:
             {'linkText': 'Khema Unicode',
              'ref': 'https://www.unicode.org/charts/PDF/U16100.pdf'
             },
-            # {'linkText': 'THIS SCRIPT',
-            #  'ref': 'https://en.wikipedia.org/wiki/XYZ_alphabet'
-            # },
-            # {'linkText': 'Wikipedi page',
-            #  'ref': 'https://en.wikipedia.org/wiki/XYZ_language'
-            # },
-            # {'linkText': 'Ethnolog',
-            #  'ref': 'https://www.ethnologue.com/language/XYZ'
-            # },
-            # {'linkText': 'Combiners',
-            #  'ref': '/lep/diacritic/'
-            #  },
 ]
 
         # Unicode range

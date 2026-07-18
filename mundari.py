@@ -15,15 +15,10 @@
 #
 
 import sys
-import webapp2
 
-# Use routines from this base class
-import base
-
-
-# Testing Mundar language
+# Testing Mundari language
 # Should this be inherited from base.languageTemplate?
-class langInfo():
+class langInfo:
   def __init__(self):
     self.LanguageCode = 'unr'
     self.Language = 'Mundari'
@@ -56,8 +51,8 @@ class langInfo():
 
     self.unicode_font_list = [
       { 'source': '/fonts/Mundari/NotoSansNagMundari-VariableFont_wght.ttf',
-        'family': 'Noto Sans Nag Mudari',
-        'longName': 'Noto Sans Nag Mudari'
+        'family': 'Noto Sans Nag Mundari',
+        'longName': 'Noto Sans Nag Mundari'
       },
       { 'source': '/fonts/MundariBani/MundariLipiArialSutuUni.ttf',
         'family': 'MundariLipiRegulaSutuUni',
@@ -77,31 +72,28 @@ class langInfo():
     self.links = [
         {'linkText': 'Keyboard',
          'ref': '/unr/'
-        },
+         },
         {'linkText': 'Converter',
-         'ref': '/' + self.LanguageCode + '/convertUI/'
+         'ref': '/convert/%s' % self.LanguageCode,
         },
-      {'linkText': 'Font conversion summary',
-       'ref': '/unr/encodingRules/'
-       },
-        # {'linkText': 'Keyboard reference',
-        #   'ref': 'https://wikis.swarthmore.edu/ling073/Kaingang/Keyboard'
-        # },
-      {'linkText': 'Mundari Bani script',
-       'ref': 'https://omniglot.com/writing/mundaribani.htm'
-       },
-      {'linkText': 'Unicode proposal 21031r',
-       'ref': 'https://www.unicode.org/L2/L2021/21031r-mundari.pdf'
-       },
-      {'linkText': 'Mundari Bani Wikipedia',
+        {'linkText': 'Font conversion summary',
+         'ref': '/encodingRules/%s' % self.LanguageCode,
+         },
+        {'linkText': 'Mundari Bani script',
+         'ref': 'https://omniglot.com/writing/mundaribani.htm'
+         },
+        {'linkText': 'Unicode proposal 21031r',
+         'ref': 'https://www.unicode.org/L2/L2021/21031r-mundari.pdf'
+         },
+        {'linkText': 'Mundari Bani Wikipedia',
          'ref': 'https://en.wikipedia.org/wiki/Mundari_Bani'
-        },
+         },
         {'linkText': 'Resources',
          'ref': '/' + self.LanguageCode + '/downloads/'
-        },
-      {'linkText': 'Source of ASCII-encoded fonts',
-       'ref': 'https://mundarisamaj.blogspot.com/p/download-mundari-software.html'
-        },
+         },
+        {'linkText': 'Source of ASCII-encoded fonts',
+         'ref': 'https://mundarisamaj.blogspot.com/p/download-mundari-software.html'
+         },
     ]
 
     self.kb_list = [
@@ -118,10 +110,10 @@ class langInfo():
     self.base_consonant = u'\u1400'
 
     if sys.maxunicode >= 0x10000:
-      self.unicodeChars = [unichr(x) for x in range(0x1400, 0x167F)]
+      self.unicodeChars = [chr(x) for x in range(0x1400, 0x167F)]
       self.diacritic_list = []
     else:
-      self.unicodeChars = [unichr(x) for x in range(0x1400, 0x167F)]
+      self.unicodeChars = [chr(x) for x in range(0x1400, 0x167F)]
       self.diacritic_list = []
 
 
@@ -134,18 +126,3 @@ class langInfo():
 
 
 langInstance = langInfo()
-app = webapp2.WSGIApplication(
-    [
-        ('/unr/', base.LanguagesHomeHandler),
-        ('/unr/keyboard/', base.LanguagesHomeHandler),
-        ('/unr/AllFonts/', base.AllFontTest),
-        ('/unr/convertUI/', base.ConvertUIHandler),
-        ('/unr/downloads/', base.Downloads),
-        ('/unr/converter/', base.ConvertUIHandler),
-        ('/unr/encodingRules/', base.EncodingRules),
-        ('/unr/diacritic/', base.DiacriticHandler),
-        ('/unr/render/', base.EncodingRules),
-    ],
-    debug=True,
-    config={'langInfo': langInstance}
-)

@@ -14,12 +14,15 @@ langConverter.encoding_data = {
 };
 
 langConverter.transformRules = [
+    // Special rule for both 'e' and '['
+    [/([\u1031\u103c]\ufe00?)([\u1031\u103c]\ufe00?)([\u1000-\u1029\u1075-\u1081\uaa60-\uaa7a]\ufe00?)/gi,
+     "$3$1$2"],
     [/([\u1031\u103c]\ufe00?)([\u1000-\u1029\u1075-\u1081\uaa60-\uaa7a]\ufe00?)/gi,
      "$2$1"],
 
     [/ ([\u102f\u103d])/gi, "$1 "],
 
-    [/([\u103b\u103d]) \u102f/gi, "$1\u102f "],
+    [/([\u103b\u103d])\u102f/gi, "$1\u102f "],
 
     [/([\u1031]\ufe00?)([\u103a-\u103d]+)/gi, "$2$1"],
 

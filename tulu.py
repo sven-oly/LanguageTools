@@ -14,12 +14,6 @@
 # limitations under the License.
 #
 
-import os
-import webapp2
-
-import base
-
-from google.appengine.ext.webapp import template
 
 Language = 'Tulu'
 Language_native = '???ᰶ'
@@ -33,7 +27,7 @@ encoding_font_list = [
   #   'display_name': 'xyz',
   # },
 ]
-# Not yet in Unicode
+# Added to Unicode in 2024
 unicode_font_list = [
   {
       'family': 'TuluSri20',
@@ -69,12 +63,15 @@ kb_list = [
 ]
 
 links = [
-  {'linkText': 'Keyboard',
-   'ref': '/' + LanguageCode + '/'
-  },
-  {'linkText': 'KB transforms',
-   'ref': '/' + LanguageCode + '/kbtransforms/'
-   },
+    {'linkText': 'Keyboard',
+     'ref': '/langbase/%s' % LanguageCode,
+     },
+  #   {'linkText': 'Converter',
+  #    'ref': '/convert/%s' % LanguageCode,
+  #    },
+  # {'linkText': 'KB transforms',
+  #  'ref': '/encodingRules/%s' % LanguageCode,
+  #  },
   {'linkText': 'Unicode proposal 22031',
     'ref': 'https://www.unicode.org/L2/L2022/22031-tulu-tigalari-prop.pdf'
   },
@@ -87,32 +84,9 @@ links = [
   {'linkText': 'The Tulu Font (ASCII encoded)',
     'ref': 'http://thetulufont.in'
   },
-    # {'linkText': 'Converter',
-    #  'ref': '/' + LanguageCode + '/convertUI/'},
-    # {'linkText': 'Font conversion summary',
-    #   'ref': '/' + LanguageCode + '/encodingRules/'
-    # },
-    # {'linkText': 'Resources',
-    #   'ref': '/' + LanguageCode + '/downloads/'
-    # },
-    # {'linkText': 'Unicode page',
-    #  'ref': 'https://www.unicode.org/charts/PDF/U1C00.pdf'
-    # },
-    # {'linkText': 'Lepcha script',
-    #  'ref': 'https://en.wikipedia.org/wiki/Lepcha_alphabet'
-    # },
-    # {'linkText': 'Wikipedi page',
-    #  'ref': 'https://en.wikipedia.org/wiki/Lepcha_language'
-    # },
-    # {'linkText': 'Ethnolog',
-    #  'ref': 'https://www.ethnologue.com/language/lep'
-    # },
-    # {'linkText': 'Combiners',
-    #  'ref': '/lep/diacritic/'
-    #  },
 ]
 
-class langInfo():
+class langInfo:
   def __init__(self):
     self.LanguageCode = LanguageCode
     self.Language = Language
@@ -134,33 +108,16 @@ class langInfo():
 
     # TODO: Fill in the rest of the common data.
 
-# TODO: Fill in with diacritics
-diacritic_list = [unichr(x) for x in range(0x300, 0x330)]
-#TODO: Fill in base consonant
-default_base_consonant = u'\0x61'
+    self.unicodeRanges = [(chr(0x11380), chr(0x113e2))]
 
-kb_list = [
-  {'shortName': LanguageCode,
-   'longName': LanguageCode,
-   'fontFamily': 'SriType2,arial',
-   },
-]
+    self.diacritic_list = [chr(x) for x in range(0x300, 0x330)]
+    #TODO: Fill in base consonant
+    self.default_base_consonant = '\U00011392'
 
-encodedRanges = [
-  (0x0030, 0x0030),
-  (0x0d00, 0xd7f),
-]
-
+    self.encodedRanges = [
+        (0x0030, 0x0030),
+        (0x0d00, 0xd7f),
+    ]
 
 langInstance = langInfo()
 
-app = webapp2.WSGIApplication([
-  ('/' + LanguageCode + '/', base.LanguagesHomeHandler),
-  ('/' + LanguageCode + '/convertUI/', base.ConvertUIHandler),
-  ('/' + LanguageCode + '/downloads/', base.Downloads),
-  ('/' + LanguageCode + '/encodingRules/', base.EncodingRules),
-  ('/' + LanguageCode + '/diacritic/', base.DiacriticHandler),
-  ('/' + langInstance.LanguageCode + '/kbtransforms/', base.KeyboardTransforms),
-], debug=True,
-                              config={'langInfo': langInstance}
-)
