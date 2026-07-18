@@ -14,17 +14,6 @@
 # limitations under the License.
 #
 
-import base
-
-# import transliterate
-# import transrule_ccp
-
-import json
-import logging
-import os
-import sys
-import urllib
-
 encoding_font_list = [
     {
        'font_path':'/fonts/bete/JGBete4PUA.ttf',
@@ -56,13 +45,7 @@ class langInfo():
     self.Language_native = u'Bété'
     self.direction = 'ltr'
 
-    if sys.maxunicode >= 0x10000:
-      logging.info('WIDE SYSTEM BUILD!!!')
-      self.diacritic_list = [chr(x) for x in range(0xe753, 0xe75)]
-    else:
-      logging.info('NARROW SYSTEM BUILD!!!')
-      self.diacritic_list = [chr(x) for x in range(0xe753, 0xe75)]
-
+    self.diacritic_list = [chr(x) for x in range(0xe753, 0xe75)]
     self.base_consonant = u'𞠀'
     self.baseHexUTF16 = u'\ud81a\udee7'
 
@@ -82,9 +65,9 @@ class langInfo():
       },
     ]
     self.links = [
-      {'linkText': 'Keyboard',
-       'ref': '/bete/'
-      },
+        {'linkText': 'Keyboard',
+         'ref': '/langbase/%s' % self.LanguageCode
+         },
       {'linkText': 'Keyboard conversions',
        'ref': '/kbtransforms/' + 'bete'    # {'linkText': 'Converter',
       },
@@ -142,16 +125,3 @@ class langInfo():
   
 # Global in this file.
 langInstance = langInfo()
-
-# app = webapp2.WSGIApplication(
-#     [('/' + langInstance.LanguageCode+ '/', base.LanguagesHomeHandler),
-#      ('/' + langInstance.LanguageCode + '/convertUI/', base.ConvertUIHandler),
-#      ('/' + langInstance.LanguageCode+ '/downloads/', base.Downloads),
-#      ('/' + langInstance.LanguageCode+ '/converter/', base.ConvertHandler),
-#      ('/' + langInstance.LanguageCode+ '/encodingRules/', base.EncodingRules),
-#      ('/' + langInstance.LanguageCode+ '/diacritic/', base.DiacriticHandler),
-#      ('/' + langInstance.LanguageCode + '/dictionaryInput/', base.DictionaryInput),
-#      ('/' + langInstance.LanguageCode + '/kbtransforms/', base.KeyboardTransforms),
-#      ], debug=True,
-#     config={'langInfo': langInstance}
-# )

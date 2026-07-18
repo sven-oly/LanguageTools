@@ -52,8 +52,8 @@ import taivietscript
 import taiyo
 import tulu
 
-from  wordsearch import generateDFSWordSearch
-from  wordsearch import WordSearch
+from wordsearch import generateDFSWordSearch
+from wordsearch import WordSearch
 
 # Special for Assames checking.
 import English_Assamese
@@ -69,7 +69,7 @@ app = Flask(__name__)
 
 # Dictionary of language data
 language_info_dict = {
-    }
+}
 
 # Add in languages as we get them ready
 language_info_dict['aho'] = ahom.langInfo()
@@ -84,10 +84,10 @@ language_info_dict['cst'] = chochenyo.langInfo()
 language_info_dict['ff'] = fulfulde.langInfo()
 language_info_dict['gvr'] = gurung.langInfo()
 language_info_dict['hoc'] = ho.langInfo()
-language_info_dict['kht'] =  khamti.langInfo()
+language_info_dict['kht'] = khamti.langInfo()
 language_info_dict['kpe'] = kpelle.langInfo()
 language_info_dict['lep'] = lepcha.langInfo()
-language_info_dict['men'] =  mendekikakui.langInfo()
+language_info_dict['men'] = mendekikakui.langInfo()
 language_info_dict['nst'] = tangsa.langInfo()
 language_info_dict['omq'] = omq.langInfo()
 language_info_dict['phk'] = phake.langInfo()
@@ -100,15 +100,14 @@ language_info_dict['tcy'] = tulu.langInfo()
 language_info_dict['tyj'] = taiyo.langInfo()
 language_info_dict['unr'] = mundari.langInfo()
 
-
 # English name, language code, name in the language.
 LanguageList = [
-#    (u'A\u1e49angu Yol\u014bu', 'en_anangu', 'Aṉangu-Yolngu'),
+    #    (u'A\u1e49angu Yol\u014bu', 'en_anangu', 'Aṉangu-Yolngu'),
     ('Ahom', 'aho'),
     ('Assamese', 'as'),
-#    ('Bamum', 'bax'),
+    #    ('Bamum', 'bax'),
     (u'Bété', 'bete'),
-#    ('Batak Sinalungun', 'bts'),
+    #    ('Batak Sinalungun', 'bts'),
     ('Chakma', 'ccp', '𑄌𑄋𑄴𑄟𑄳𑄦'),
     ('Chochenyo', 'cst'),
     ('Gurung', 'gvr'),
@@ -178,7 +177,7 @@ LanguageList = [
     # ('Kalabari', 'ijn'),
     # ('Mru', 'mro'),
     # ('Sylheti', 'syl'),
-   ('Pular / Fulfulde', 'ff'),
+    ('Pular / Fulfulde', 'ff'),
     # ('Rhade', 'rad', 'klei Êđê'),
     # ('Mahasu', 'bfz'),
     # ('Vietnamese', 'vn', 'tiếng Việt'),
@@ -194,7 +193,7 @@ def getLangInfo(langcode):
     if langcode not in language_info_dict:
         return render_template(
             'language_not_defined.html',
-            langcode = langcode
+            langcode=langcode
         )
 
     return language_info_dict[langcode]
@@ -202,10 +201,10 @@ def getLangInfo(langcode):
 
 @app.route('/')
 def MainHandler():
-    return  render_template(
+    return render_template(
         'languagetools.html',
-        langlist = sorted(LanguageList, key=lambda lang: lang[0])
-        )
+        langlist=sorted(LanguageList, key=lambda lang: lang[0])
+    )
 
 
 @app.route('/langbase/<langcode>/')
@@ -216,7 +215,7 @@ def topLangHandler(langcode):
     if langcode not in language_info_dict:
         return render_template(
             'language_not_defined.html',
-            langcode = langcode
+            langcode=langcode
         )
 
     langInfo = language_info_dict[langcode]
@@ -232,25 +231,26 @@ def topLangHandler(langcode):
         allFonts = True
 
     try:
-      text_direction = langInfo.direction
+        text_direction = langInfo.direction
     except AttributeError:
-      text_direction = 'ltr'
+        text_direction = 'ltr'
     logger.warning('####### Direction = %s', text_direction)
 
     return render_template('demo_general.html',
-                           langTag = langcode,
-                           direction = text_direction,
-                           language = langInfo.Language,
-                           font_list = langInfo.unicode_font_list,
-                           kb_list = langInfo.kb_list,
+                           langTag=langcode,
+                           direction=text_direction,
+                           language=langInfo.Language,
+                           font_list=langInfo.unicode_font_list,
+                           kb_list=langInfo.kb_list,
                            # Fill in other things here
-                           encoded_ranges = encoded_ranges,
-                           lang_list = langInfo.lang_list,
-                           langInfo = langInfo,
-                           links = langInfo.links,
-                           allFonts = allFonts,
-                           test_data = '',
-    )
+                           encoded_ranges=encoded_ranges,
+                           lang_list=langInfo.lang_list,
+                           langInfo=langInfo,
+                           links=langInfo.links,
+                           allFonts=allFonts,
+                           test_data='',
+                           )
+
 
 @app.route('/downloads/<langcode>')
 def downloadsHandler(langcode):
@@ -258,7 +258,7 @@ def downloadsHandler(langcode):
     if langcode not in language_info_dict:
         return render_template(
             'language_not_defined.html',
-            langcode = langcode
+            langcode=langcode
         )
 
     langInfo = language_info_dict[langcode]
@@ -276,12 +276,13 @@ def downloadsHandler(langcode):
 
     return render_template(
         'downloads.html',
-        language = langInfo.Language,
-        language_native = langInfo.Language_native,
-        unicode_font_list = public_unicode_fonts,
-        file_list = text_file_list,
-        showTools = True   # Make an optional parameter
+        language=langInfo.Language,
+        language_native=langInfo.Language_native,
+        unicode_font_list=public_unicode_fonts,
+        file_list=text_file_list,
+        showTools=True  # Make an optional parameter
     )
+
 
 @app.route('/convert/<langcode>')
 def convertHandler(langcode):
@@ -291,7 +292,7 @@ def convertHandler(langcode):
     if not langInfo:
         return render_template(
             'language_not_defined.html',
-            langcode = langcode
+            langcode=langcode
         )
 
     try:
@@ -300,9 +301,9 @@ def convertHandler(langcode):
         showTools = None
 
     try:
-      converters = langInfo.converters
+        converters = langInfo.converters
     except:
-      converters = None
+        converters = None
 
     font = None
 
@@ -317,9 +318,9 @@ def convertHandler(langcode):
     oldInput = ''
     # Handle non-Unicode output.
     try:
-      output_font = langInfo.outputFont
+        output_font = langInfo.outputFont
     except:
-      output_font = 'Unicode'
+        output_font = 'Unicode'
 
     # Old text for testing
     text = ''
@@ -330,35 +331,35 @@ def convertHandler(langcode):
         pass
 
     try:
-      encodingList = langInfo.encoding_font_list
+        encodingList = langInfo.encoding_font_list
     except:
-      encodingList = None
+        encodingList = None
 
     try:
-      unicodeChars = langInfo.unicodeChars
+        unicodeChars = langInfo.unicodeChars
     except:
-      unicodeChars = None
+        unicodeChars = None
 
     try:
-      variation_sequence = langInfo.variation_sequence
+        variation_sequence = langInfo.variation_sequence
     except:
-      variation_sequence = None
+        variation_sequence = None
 
     grapheme_boundary_char = ''
     try:
-      grapheme_boundaries = langInfo.grapheme_boundaries
-      grapheme_boundary_char = langInfo.grapheme_boundary_char
+        grapheme_boundaries = langInfo.grapheme_boundaries
+        grapheme_boundary_char = langInfo.grapheme_boundary_char
     except:
-      grapheme_boundaries = None
+        grapheme_boundaries = None
 
     try:
-      testStringList = langInfo.testStringList
+        testStringList = langInfo.testStringList
     except:
-      testStringList = [
-        {'name': 'Test 1', # Note: must escape the single quote.
-         'string': u'\u0004\u0005\u0006\u0007\u0008\u0009' +
-         '\u000a\u000b'},
-      ]
+        testStringList = [
+            {'name': 'Test 1',  # Note: must escape the single quote.
+             'string': u'\u0004\u0005\u0006\u0007\u0008\u0009' +
+                       '\u000a\u000b'},
+        ]
 
     convert_word_tool = False
     try:
@@ -368,16 +369,16 @@ def convertHandler(langcode):
         pass
 
     try:
-      unicodeCombiningChars = getCombiningCombos(
-        langInfo.baseHexUTF16, langInfo.diacritic_list)
+        unicodeCombiningChars = getCombiningCombos(
+            langInfo.baseHexUTF16, langInfo.diacritic_list)
     except:
-      unicodeCombiningChars = None
+        unicodeCombiningChars = None
 
     try:
-      unicodeCombiningChars = getCombiningCombos(
-        langInfo.baseHexUTF16, langInfo.diacritic_list)
+        unicodeCombiningChars = getCombiningCombos(
+            langInfo.baseHexUTF16, langInfo.diacritic_list)
     except:
-      unicodeCombiningChars = None
+        unicodeCombiningChars = None
 
     preconverted_data = None
     try:
@@ -389,7 +390,7 @@ def convertHandler(langcode):
         good_results = langInfo.good_results
     except:
         good_results = None
-        
+
     try:
         encodingLanguage = langInfo.encodingLanguage
     except:
@@ -397,43 +398,43 @@ def convertHandler(langcode):
 
     return render_template(
         'translit_general.html',
-        combiningChars = unicodeCombiningChars,
+        combiningChars=unicodeCombiningChars,
         convert_word_tool=convert_word_tool,
-        direction = text_direction,
-        encodingLanguage = encodingLanguage,
-        encodingList = encodingList,
-        font = font,
+        direction=text_direction,
+        encodingLanguage=encodingLanguage,
+        encodingList=encodingList,
+        font=font,
         good_results=good_results,
         grapheme_boundaries=grapheme_boundaries,
         grapheme_boundary_char=grapheme_boundary_char,
-        isTransLit = False,
-        kb_list = langInfo.kb_list,
-        langTag = langInfo.LanguageCode,
-        lang_list = langInfo.lang_list,
-        language = langInfo.Language,
-        links = langInfo.links,
-        oldChars = oldChars,
-        oldInput = oldInput,
-        outputFont = output_font,
+        isTransLit=False,
+        kb_list=langInfo.kb_list,
+        langTag=langInfo.LanguageCode,
+        lang_list=langInfo.lang_list,
+        language=langInfo.Language,
+        links=langInfo.links,
+        oldChars=oldChars,
+        oldInput=oldInput,
+        outputFont=output_font,
         preconverted_data=preconverted_data,
-        showTools = showTools,
-        text = text,
-        textStrings = testStringList,
-        unicodeChars = unicodeChars,
-        unicodeFonts = langInfo.unicode_font_list,
-        variation_sequence = variation_sequence,
-        converters = converters,
+        showTools=showTools,
+        text=text,
+        textStrings=testStringList,
+        unicodeChars=unicodeChars,
+        unicodeFonts=langInfo.unicode_font_list,
+        variation_sequence=variation_sequence,
+        converters=converters,
     )
+
 
 @app.route('/kbtransforms/<langcode>')
 def kbtransformstHandler(langcode):
-
     langInfo = getLangInfo(langcode)
 
     if not langInfo:
         return render_template(
             'language_not_defined.html',
-            langcode = langcode
+            langcode=langcode
         )
 
     try:
@@ -453,21 +454,21 @@ def kbtransformstHandler(langcode):
 
     return render_template(
         'kbTransforms2.html',
-        converterJS = '/js/' + langInfo.LanguageCode + 'Converter.js',
-        converter_list = converter_list,
-        language = langInfo.Language,
-        lang_list = langInfo.lang_list,
-        encoding_list = langInfo.encoding_font_list,
-        unicode_list = langInfo.unicode_font_list,
-        kb_list = langInfo.kb_list,
-        links = langInfo.links,
-        showTools = showTools,
-        text_functions = text_functions
+        converterJS='/js/' + langInfo.LanguageCode + 'Converter.js',
+        converter_list=converter_list,
+        language=langInfo.Language,
+        lang_list=langInfo.lang_list,
+        encoding_list=langInfo.encoding_font_list,
+        unicode_list=langInfo.unicode_font_list,
+        kb_list=langInfo.kb_list,
+        links=langInfo.links,
+        showTools=showTools,
+        text_functions=text_functions
     )
+
 
 @app.route('/allFonts/<langcode>')
 def allFonts(langcode):
-
     langInfo = getLangInfo(langcode)
 
     # Text from the args
@@ -484,24 +485,24 @@ def allFonts(langcode):
 
     return render_template(
         'allFonts.html',
-        scriptName = langInfo.Language,
-        fontFamilies = unicode_fonts,
-        encodedText = encoded_text,
-        utext = utext,
-        language = langInfo.Language,
-        LanguageTag = langInfo.LanguageCode,
-        kb_list = langInfo.kb_list
+        scriptName=langInfo.Language,
+        fontFamilies=unicode_fonts,
+        encodedText=encoded_text,
+        utext=utext,
+        language=langInfo.Language,
+        LanguageTag=langInfo.LanguageCode,
+        kb_list=langInfo.kb_list
     )
+
 
 @app.route('/encodingRules/<langcode>')
 def encodingRules(langcode):
-
     langInfo = getLangInfo(langcode)
 
     try:
-      encoding_tables = langInfo.encoding_tables
+        encoding_tables = langInfo.encoding_tables
     except:
-      encoding_tables = None
+        encoding_tables = None
 
     try:
         converter_list = langInfo.converters
@@ -523,28 +524,27 @@ def encodingRules(langcode):
         conversionLanguage = langInfo.encodingLanguage
     except:
         conversionLanguage = langInfo.Language
-        
 
     return render_template(
         'encodingConvert.html',
-        converter_list = converter_list,
-        converterJS = converterJS,
-        conversion_data = conversion_data,
-        conversion_language = conversionLanguage,
-        language = langInfo.Language,
-        lang_list = langInfo.lang_list,
-        encoding_list = langInfo.encoding_font_list,
-        encoding_tables = encoding_tables,
-        unicode_list = langInfo.unicode_font_list,
-        kb_list = langInfo.kb_list,
-        links = langInfo.links,
-        showTools = False,
-        variation_sequence = variation_sequence
+        converter_list=converter_list,
+        converterJS=converterJS,
+        conversion_data=conversion_data,
+        conversion_language=conversionLanguage,
+        language=langInfo.Language,
+        lang_list=langInfo.lang_list,
+        encoding_list=langInfo.encoding_font_list,
+        encoding_tables=encoding_tables,
+        unicode_list=langInfo.unicode_font_list,
+        kb_list=langInfo.kb_list,
+        links=langInfo.links,
+        showTools=False,
+        variation_sequence=variation_sequence
     )
+
 
 @app.route('/diacritic/<langcode>')
 def diacritics(langcode):
-
     langInfo = getLangInfo(langcode)
 
     try:
@@ -583,21 +583,21 @@ def diacritics(langcode):
 
     return render_template(
         'diacritics.html',
-        direction = text_direction,
-        language = langInfo.Language,
-        base_char = base_char.encode('utf-8'),
-        base_hex = ['%4x' % ord(x) for x in langInfo.base_consonant],
-        diacritics = [x for x in langInfo.diacritic_list],
-        diacritics_hex = row_names,  # ['%4x ' % ord(y) for y in langInfo.diacritic_list],
-        combinations = combos,
-        showTools = showTools,
-        table = table,
-        unicode_font_list = langInfo.unicode_font_list,
+        direction=text_direction,
+        language=langInfo.Language,
+        base_char=base_char.encode('utf-8'),
+        base_hex=['%4x' % ord(x) for x in langInfo.base_consonant],
+        diacritics=[x for x in langInfo.diacritic_list],
+        diacritics_hex=row_names,  # ['%4x ' % ord(y) for y in langInfo.diacritic_list],
+        combinations=combos,
+        showTools=showTools,
+        table=table,
+        unicode_font_list=langInfo.unicode_font_list,
     )
+
 
 @app.route('/conjunct/<langcode>')
 def conjuncts(langcode):
-
     langInfo = getLangInfo(langcode)
 
     try:
@@ -614,7 +614,6 @@ def conjuncts(langcode):
         base_chars = langInfo.baseChars
     except:
         base_chars = []
-
 
     try:
         conjunct = langInfo.conjunct_char
@@ -647,17 +646,18 @@ def conjuncts(langcode):
 
     return render_template(
         'conjuncts.html',
-        direction = text_direction,
-        language = langInfo.Language,
+        direction=text_direction,
+        language=langInfo.Language,
         base_chars=base_chars,
-        base_hex = ['%4x' % ord(x) for x in base_chars],
+        base_hex=['%4x' % ord(x) for x in base_chars],
         conjunct_char=conjunct,
-        diacritics_hex = row_names,  # ['%4x ' % ord(y) for y in langInfo.diacritic_list],
-        combinations = combos,
-        showTools = showTools,
-        table = table,
-        unicode_font_list = langInfo.unicode_font_list,
+        diacritics_hex=row_names,  # ['%4x ' % ord(y) for y in langInfo.diacritic_list],
+        combinations=combos,
+        showTools=showTools,
+        table=table,
+        unicode_font_list=langInfo.unicode_font_list,
     )
+
 
 @app.route('/phonetickb/<langcode>')
 def phonetic_kb(langcode):
@@ -687,18 +687,18 @@ def phonetic_kb(langcode):
 
     return render_template(
         'phoneticTable.html',
-        converterJS = '/js/' + langInfo.LanguageCode + 'Converter.js',
-        converter_list = converter_list,
-        language = langInfo.Language,
-        lang_list = langInfo.lang_list,
-        encoding_list = langInfo.encoding_font_list,
-        unicode_list = langInfo.unicode_font_list,
-        kb_list = langInfo.kb_list,
-        links = langInfo.links,
-        showTools = showTools,
-        text_functions = text_functions,
-        unicode_data = unicode_data,
-        )
+        converterJS='/js/' + langInfo.LanguageCode + 'Converter.js',
+        converter_list=converter_list,
+        language=langInfo.Language,
+        lang_list=langInfo.lang_list,
+        encoding_list=langInfo.encoding_font_list,
+        unicode_list=langInfo.unicode_font_list,
+        kb_list=langInfo.kb_list,
+        links=langInfo.links,
+        showTools=showTools,
+        text_functions=text_functions,
+        unicode_data=unicode_data,
+    )
 
 
 @app.route('/checkconversion/<langcode>')
@@ -708,13 +708,13 @@ def check_conversion(langcode):
     if not langInfo:
         return render_template(
             'language_not_defined.html',
-            langcode = langcode
+            langcode=langcode
         )
 
     try:
-      converters = langInfo.converters
+        converters = langInfo.converters
     except:
-      converters = None
+        converters = None
 
     font = None
 
@@ -727,81 +727,79 @@ def check_conversion(langcode):
     # Special for Assamese
     raw_data = English_Assamese.en_as_raw_data
 
-
     # Needed?
     oldChars = ''
     oldInput = ''
     # Handle non-Unicode output.
     try:
-      output_font = langInfo.outputFont
+        output_font = langInfo.outputFont
     except:
-      output_font = 'Unicode'
+        output_font = 'Unicode'
     text = ''
 
     try:
-      encodingList = langInfo.encoding_font_list
+        encodingList = langInfo.encoding_font_list
     except:
-      encodingList = None
+        encodingList = None
 
     try:
-      unicodeChars = langInfo.unicodeChars
+        unicodeChars = langInfo.unicodeChars
     except:
-      unicodeChars = None
+        unicodeChars = None
 
     try:
-      variation_sequence = langInfo.variation_sequence
+        variation_sequence = langInfo.variation_sequence
     except:
-      variation_sequence = None
+        variation_sequence = None
 
     try:
-      testStringList = langInfo.testStringList
+        testStringList = langInfo.testStringList
     except:
-      testStringList = [
-        {'name': 'Test 1', # Note: must escape the single quote.
-         'string': u'\u0004\u0005\u0006\u0007\u0008\u0009' +
-         '\u000a\u000b'},
-      ]
+        testStringList = [
+            {'name': 'Test 1',  # Note: must escape the single quote.
+             'string': u'\u0004\u0005\u0006\u0007\u0008\u0009' +
+                       '\u000a\u000b'},
+        ]
 
     showTools = False
 
     try:
-      unicodeCombiningChars = getCombiningCombos(
-        langInfo.baseHexUTF16, langInfo.diacritic_list)
+        unicodeCombiningChars = getCombiningCombos(
+            langInfo.baseHexUTF16, langInfo.diacritic_list)
     except:
-      unicodeCombiningChars = None
+        unicodeCombiningChars = None
 
-      # Get the Assamese conversion data
+        # Get the Assamese conversion data
 
-      return render_template(
-        'translit_assamese.html',
-        encodingLanguage = langInfo.encodingLanguage,
-        converters = converters,
-        isTransLit = False,
-        font = font,
-        language = langInfo.Language,
-        langTag = langInfo.LanguageCode,
-        encodingList = encodingList,
-        lang_list = langInfo.lang_list,
-        kb_list = langInfo.kb_list,
-        direction = text_direction,
-        unicodeFonts = langInfo.unicode_font_list,
-        links = langInfo.links,
-        oldChars = oldChars,
-        oldInput = oldInput,
-        outputFont = output_font,
-        text = text,
-        textStrings = testStringList,
-        showTools = showTools,
-        unicodeChars = unicodeChars,
-        combiningChars = unicodeCombiningChars,
-          variation_sequence = variation_sequence,
-          en_as_raw = raw_data
-    )
+        return render_template(
+            'translit_assamese.html',
+            encodingLanguage=langInfo.encodingLanguage,
+            converters=converters,
+            isTransLit=False,
+            font=font,
+            language=langInfo.Language,
+            langTag=langInfo.LanguageCode,
+            encodingList=encodingList,
+            lang_list=langInfo.lang_list,
+            kb_list=langInfo.kb_list,
+            direction=text_direction,
+            unicodeFonts=langInfo.unicode_font_list,
+            links=langInfo.links,
+            oldChars=oldChars,
+            oldInput=oldInput,
+            outputFont=output_font,
+            text=text,
+            textStrings=testStringList,
+            showTools=showTools,
+            unicodeChars=unicodeChars,
+            combiningChars=unicodeCombiningChars,
+            variation_sequence=variation_sequence,
+            en_as_raw=raw_data
+        )
 
-  
+
 @app.route('/save_converted_values/', methods=['GET', 'POST'])
 def saveConvertedValues():
-
     converted_values = {}
     if request.method == 'POST':
         langTag = request.form['langTag']
@@ -857,18 +855,18 @@ def wordsearch(langcode):
     charNames = None
 
     try:
-      combiningChars = langInfo.unicodeCombiningChars
+        combiningChars = langInfo.unicodeCombiningChars
     except:
-      combiningChars = None
+        combiningChars = None
 
     try:
-      letterFillList = langInfo.fillChars
+        letterFillList = langInfo.fillChars
     except:
-      letterFillList = []
+        letterFillList = []
     fillers = '||'.join(letterFillList)
 
     combiners = '||'.join(langInfo.unicodeCombiningChars)
-    
+
     try:
         direction = langInfo.direction
     except:
@@ -877,16 +875,16 @@ def wordsearch(langcode):
     return render_template('wordsearch.html',
                            language=langInfo.Language,
                            languageTag=langInfo.LanguageCode,
-                           kb_list = langInfo.kb_list,
+                           kb_list=langInfo.kb_list,
                            charTable=charNames,
-                           charNameData= charNames,
-                           unicodeCombiningChars= combiners,
-                           letterFillList= fillers,
-                           unicode_font_list= langInfo.unicode_font_list,
-                           testData= testData,
-                           testGridSize= testGridSize,
+                           charNameData=charNames,
+                           unicodeCombiningChars=combiners,
+                           letterFillList=fillers,
+                           unicode_font_list=langInfo.unicode_font_list,
+                           testData=testData,
+                           testGridSize=testGridSize,
                            text_direction=direction,
-    )
+                           )
 
 
 @app.route('/games/generatewordsearchDFS/')
@@ -896,7 +894,7 @@ def generatewordsearch():
     else:
         langTag = request.args.get('langTag')
     logger.info('GENERATEWORDSEARCH: %s', langTag)
-    
+
     langInfo = getLangInfo(langTag)
 
     rawWordList = request.args.get('words', '')
@@ -905,18 +903,18 @@ def generatewordsearch():
     raw_size = request.args.get('size', '0')
     logger.debug('games WordSearchHandler raw_size = >%s<' % raw_size)
     if not raw_size or raw_size == '' or raw_size == ' ':
-      grid_width = 0
+        grid_width = 0
     else:
-      grid_width = int(raw_size)
+        grid_width = int(raw_size)
 
     grid_directions = request.args.get('grid_directions', 'all')
     logger.debug('MAIN: Set grid_directions: %s', grid_directions)
 
     # A measure of when to quit the search
-    max_tries =  request.args.get('max_tries', 1000)
+    max_tries = request.args.get('max_tries', 1000)
     # How many solutions to generated
-    max_solution_count =  request.args.get('max_solution_count', 1)
- 
+    max_solution_count = request.args.get('max_solution_count', 1)
+
     logger.info('games WordSearchHandler langTag = %s', langTag)
     logger.debug('games WordSearchHandler rawWordList = %s', rawWordList)
     logger.debug('games WordSearchHandler max_tries = %s', max_tries)
@@ -940,7 +938,7 @@ def generatewordsearch():
             fill_list = langInfo.unicodeChars
 
     try:
-        diacritics = language_info_dict[langTag],diacritic_list
+        diacritics = language_info_dict[langTag], diacritic_list
     except:
         try:
             diacritics = request.args.get('diacritics').split('||')
@@ -959,7 +957,7 @@ def generatewordsearch():
 
     return_json = {
         'language': langTag,
-        #'fontFamilies': main.OsageFonts,
+        # 'fontFamilies': main.OsageFonts,
         'grid': ws.grid,
         'answers': ws.formatAnswers(),
         'words': ws.words,
@@ -970,9 +968,8 @@ def generatewordsearch():
         'backtracks': ws.backtracks,
         'failed_inserts': ws.failed_inserts,
     }
-        
-    return json.dumps(return_json)
 
+    return json.dumps(return_json)
 
 
 # class DownloadKBText(webapp2.RequestHandler):
@@ -992,6 +989,3 @@ if __name__ == '__main__':
     app.run(host='127.0.0.1',
             port=8083, debug=True, threaded=True)
 # [END gae_python37_app]
-
-
-
