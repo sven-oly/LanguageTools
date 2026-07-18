@@ -42,19 +42,19 @@ class langInfo:
         ]
 
         self.encoding_font_list = [
-          {
-            'font_path': '/fonts/xyz.ttf',
-            'font_name': 'xyz',
-            'display_name': 'xyz',
-          },
+            {
+                'font_path': '/fonts/xyz.ttf',
+                'font_name': 'xyz',
+                'display_name': 'xyz',
+            },
         ]
 
         self.lang_list = [LanguageCode]  # This may be extended
 
         self.kb_list = [
-          {'shortName': LanguageCode,
-           'longName': LanguageCode,
-           },
+            {'shortName': LanguageCode,
+             'longName': LanguageCode,
+             },
         ]
 
         self.links = [
@@ -63,19 +63,19 @@ class langInfo:
              },
             {'linkText': 'Word search',
              'ref': '/wordsearch/%s' % LanguageCode
-            },
+             },
             # {'linkText': 'Converter',
             #  'ref': '/' + LanguageCode + '/convertUI/'},
             # {'linkText': 'Font conversion summary',
             #   'ref': '/' + LanguageCode + '/encodingRules/'
             # },
-    {'linkText': 'Resources',
-     'ref': '/downloads/' + LanguageCode
-    },
+            {'linkText': 'Resources',
+             'ref': '/downloads/' + LanguageCode
+             },
             {'linkText': 'Khema Unicode',
              'ref': 'https://www.unicode.org/charts/PDF/U16100.pdf'
-            },
-]
+             },
+        ]
 
         # Unicode range
         self.unicodeRanges = [(chr(0x16100), chr(0x16139))]
@@ -99,11 +99,11 @@ class langInfo:
         self.unicodeCombiningChars = self.diacritic_list
 
         resource_list = [
-          {
-              'name': 'Keyman Gurung Khema keyboards (2) 2025-11-20',
-              'source': '/resources/gvr/gurung_khema.kmp',
-              'description': 'Keyman Gurung Khema'
-          }
+            {
+                'name': 'Keyman Gurung Khema keyboards (2) 2025-11-20',
+                'source': '/resources/gvr/gurung_khema.kmp',
+                'description': 'Keyman Gurung Khema'
+            }
         ]
         self.text_file_list = resource_list
 

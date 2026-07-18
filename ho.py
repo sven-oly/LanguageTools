@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-#!/usr/bin/env python
+# !/usr/bin/env python
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -33,9 +33,9 @@ unicode_font_list = [
 ]
 
 kb_list = [
-  {'shortName': 'ho',
-   'longName': 'ho',
-   },
+    {'shortName': 'ho',
+     'longName': 'ho',
+     },
 ]
 
 links = [
@@ -49,71 +49,65 @@ links = [
      },
     {'linkText': 'Resources',
      'ref': '/downloads/' + LanguageCode
-    },
+     },
     {
         'linkText': 'Ho tribal language',
         'ref': 'http://ho.triballanguage.in/'
     },
     {'linkText': 'Unicode page',
      'ref': 'https://www.unicode.org/charts/PDF/U118A0.pdf'
-    },
+     },
     {'linkText': 'Warang Citi script',
      'ref': 'https://en.wikipedia.org/wiki/Warang_Citi'
-    },
+     },
     {'linkText': 'Ho Language',
      'ref': 'https://en.wikipedia.org/wiki/Ho_language'
-    },
+     },
 ]
 
-# TODO: Fill in with diacritics
-diacritic_list = []  # PYTHON3 [unichr(x) for x in range(0x118a0, 0x118ff)]
-#TODO: Fill in base consonant
-default_base_consonant = u'\u118a0'
 
-class langInfo():
-  def __init__(self):
-    self.LanguageCode = LanguageCode
-    self.Language = Language
-    self.Language_native = Language_native
-    self.test_data = u'̄'
-    self.unicode_font_list = unicode_font_list
-    self.lang_list = [Language]
-    self.kb_list = kb_list
-    self.links = links
+class langInfo:
+    def __init__(self):
+        self.LanguageCode = LanguageCode
+        self.Language = Language
+        self.Language_native = Language_native
+        self.test_data = u'̄'
+        self.unicode_font_list = unicode_font_list
+        self.lang_list = [Language]
+        self.kb_list = kb_list
+        self.links = links
 
+        self.encoding_font_list = [
+            {
+                'font_path': '/fonts/hoc/BoYo Warong Chiti - 04.ttf',
+                'font_name': 'BoYoWarongCiti',
+                'display_name': 'BoYo',
+            },
+            {
+                'font_path': '/fonts/hoc/GhansyhamBodra_2.ttf',
+                'font_name': 'GhansyhamBodra',
+                'display_name': 'Ghansyham Bodra',
+            },
+            {
+                'font_path': '/fonts/hoc/Gurbaba.ttf.TTF',
+                'font_name': 'Gurbaba',
+                'display_name': 'Gurbaba',
+            }
+        ]
 
-    self.encoding_font_list = [
-      {
-        'font_path': '/fonts/hoc/BoYo Warong Chiti - 04.ttf',
-        'font_name': 'BoYoWarongCiti',
-        'display_name': 'BoYo',
-      },
-      {
-        'font_path': '/fonts/hoc/GhansyhamBodra_2.ttf',
-        'font_name': 'GhansyhamBodra',
-        'display_name': 'Ghansyham Bodra',
-      },
-      {
-        'font_path': '/fonts/hoc/Gurbaba.ttf.TTF',
-        'font_name': 'Gurbaba',
-        'display_name': 'Gurbaba',
-      }
-    ]
+        self.kb_list = [
+            {'shortName': LanguageCode,
+             'longName': LanguageCode,
+             },
+        ]
 
-kb_list = [
-  {'shortName': LanguageCode,
-   'longName': LanguageCode,
-   },
-]
+        self.default_base_consonant = u'\u118a0'
 
-diacritic_list = [] # PYTHON# [unichr(x) for x in range(0xa926, 0xa92d)]
-
-default_base_consonant = u'\u1c00'
-
-encodedRanges = [
-  (0x20, 0x7b),
-]
+        self.encodedRanges = [
+            (0x20, 0x7b),
+        ]
+        # TODO: Fill in with diacritics
+        self.diacritic_list = [chr(x) for x in range(0x118a0, 0x118ff)]
 
 
 langInstance = langInfo()
-
