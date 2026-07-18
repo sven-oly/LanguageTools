@@ -35,6 +35,7 @@ import chochenyo
 import cree
 import fulfulde
 import gurung
+import ho
 import khamti
 import kpelle
 import lepcha
@@ -82,6 +83,7 @@ language_info_dict['cr'] = cree.langInfo()
 language_info_dict['cst'] = chochenyo.langInfo()
 language_info_dict['ff'] = fulfulde.langInfo()
 language_info_dict['gvr'] = gurung.langInfo()
+language_info_dict['hoc'] = ho.langInfo()
 language_info_dict['kht'] =  khamti.langInfo()
 language_info_dict['kpe'] = kpelle.langInfo()
 language_info_dict['lep'] = lepcha.langInfo()
@@ -141,7 +143,7 @@ LanguageList = [
     # ('Choctaw', 'cho'),
     ('Cree', 'cr'),
     # ('Lenape', 'del'),
-    # ('Ho', 'hoc'),
+    ('Ho', 'hoc'),
     # ('Igbo', 'ig'),
     # ('Kaingang', 'kgp'),
     ('Kpelle', 'kpe'),

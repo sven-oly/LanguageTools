@@ -14,13 +14,6 @@
 # limitations under the License.
 #
 
-import os
-import webapp2
-
-from google.appengine.ext.webapp import template
-
-import base
-
 Language = 'Ho'
 Language_native = '𑢹𑣉𑣉 𑣎𑣋𑣜'
 LanguageCode = 'hoc'
@@ -47,19 +40,19 @@ kb_list = [
 
 links = [
     {'linkText': 'Keyboard',
-     'ref': '/' + LanguageCode + '/'
+     'ref': '/langbase/%s' % LanguageCode
+     },
+    {'linkText': 'Converter',
+     'ref': '/convert/%s' % LanguageCode},
+    {'linkText': 'Font conversion summary',
+     'ref': '/encodingRules/%s' % LanguageCode,
+     },
+    {'linkText': 'Resources',
+     'ref': '/downloads/' + LanguageCode
     },
     {
-      'linkText': 'Ho tribal language',
-      'ref': 'http://ho.triballanguage.in/'
-      },
-    {'linkText': 'Converter',
-     'ref': '/' + LanguageCode + '/convertUI/'},
-    {'linkText': 'Font conversion summary',
-      'ref': '/' + LanguageCode + '/encodingRules/'
-    },
-    {'linkText': 'Resources',
-      'ref': '/' + LanguageCode + '/downloads/'
+        'linkText': 'Ho tribal language',
+        'ref': 'http://ho.triballanguage.in/'
     },
     {'linkText': 'Unicode page',
      'ref': 'https://www.unicode.org/charts/PDF/U118A0.pdf'
@@ -124,13 +117,3 @@ encodedRanges = [
 
 langInstance = langInfo()
 
-app = webapp2.WSGIApplication([
-      ('/' + LanguageCode + '/', base.LanguagesHomeHandler),
-      ('/' + LanguageCode + '/convertUI/', base.ConvertUIHandler),
-      ('/' + LanguageCode + '/downloads/', base.Downloads),
-      ('/' + LanguageCode + '/encodingRules/', base.EncodingRules),
-      ('/' + LanguageCode + '/diacritic/', base.DiacriticHandler),
-    ],
-  debug=True,
-  config={'langInfo': langInstance}
-)

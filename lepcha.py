@@ -80,6 +80,9 @@ class langInfo:
             {'linkText': 'Lepcha script',
              'ref': 'https://en.wikipedia.org/wiki/Lepcha_alphabet'
              },
+            {'linkText': 'Introduction to the Lepcha script',
+             'ref': 'https://www.unicode.org/L2/L2003/03259-intro-lepcha.pdf'
+             },
             {'linkText': 'Wikipedi page',
              'ref': 'https://en.wikipedia.org/wiki/Lepcha_language'
              },
