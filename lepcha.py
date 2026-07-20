@@ -41,6 +41,11 @@ class langInfo:
                 'font_name': 'JGLepcha',
                 'display_name': 'JG Lepcha',
             },
+            {
+                'font_path': '/fonts/Lepcha/Munsalong.ttf',
+                'font_name': 'Munsalong',
+                'display_name': 'Munsalong',
+            },
         ]
 
         self.unicode_font_list = [
