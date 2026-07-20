@@ -155,6 +155,12 @@ private_use_map_combined = {
 
 langConverter.one2oneMap = langConverter.dictionaryToMap(private_use_map_combined);
 
+langConverter.transformRules = [
+  //[/ ([\u1c27-\u1c29\u1c34-\u1c35])/g, "$1"],
+  [/([\u1c27-\u1c29\u1c34-\u1c35]+)([\u1c00-\u1c23\u1c4d-\u1c4f])/g, "$2$1"],  // Move over consonants
+  [/([\u1c34-\u1c35])([\u1c27-\u1c29])/g, "$2$1"],  // Move over consonants
+];
+
 function convertEncoding(intext, encodingIndex) {
   var outtext = "";
   var out;
@@ -176,77 +182,6 @@ function convertEncoding(intext, encodingIndex) {
 
   // Insert more complex replacements here.
   var newText = outtext;
-
-  // Fix AA sign before letter to O sign
-  pattern = /\u1c26([\u1c00-\u1c23\u1c27\u1c29])/gi;
-  replace = "\u1c28$1";
-  newText = outtext.replace(pattern, replace);
-  outtext = newText;
-
-  // Fix left modifiers before space
-  pattern = /([\u1c27-\u1c29\u1c34-\u1c35]+)(u0020)/gi;
-  replace = "$1";
-  newText = outtext.replace(pattern, replace);
-  outtext = newText;
-
-  // Fix right letters after space before comma
-  pattern = /(\u0020)([\u1c24-\u1c26]+)(\u002c)/gi;
-  replace = "$2$3";
-  newText = outtext.replace(pattern, replace);
-  outtext = newText;
-  // Fix right letters after space
-  pattern = /(\u0020)([\u1c24-\u1c26]+)/gi;
-  replace = "$2$1";
-  newText = outtext.replace(pattern, replace);
-  outtext = newText;
-
-  // Move left diacritics to right of letter
-  pattern = /([\u1c27-\u1c29\u1c34-\u1c35]+)([\u1c00-\u1c23\u1c4d-\u1c4f])/gi;
-  replace = "$2$1";
-  newText = outtext.replace(pattern, replace);
-  outtext = newText;
-
-  // Move first group left side diacritics to left of others
-  pattern = /([\u1c26-\u1c36]+)([\u1c24\u1c25\u1c37]+)/gi;
-  replace = "$2$1";
-  newText = outtext.replace(pattern, replace);
-  outtext = newText;
-
-  // Move next group
-  pattern = /([\u1c26\u1c2a-\u1c36]+)([\u1c27-\u1c29\u]+)/gi;
-  replace = "$2$1";
-  newText = outtext.replace(pattern, replace);
-  outtext = newText;
-
-  // Move next group left side diacritics to left of others
-  pattern = /([\u1c26\u1c2d-\u1c36]+)([\u1c2a-\u1c2c]+)/gi;
-  replace = "$2$1";
-  newText = outtext.replace(pattern, replace);
-  outtext = newText;
-
-  // Move next group left side diacritics to left of others
-  pattern = /([\u1c2d-\u1c36]+)([\u1c26]+)/gi;
-  replace = "$2$1";
-  newText = outtext.replace(pattern, replace);
-  outtext = newText;
-
-  // Repeat: move first group left side diacritics to left of others
-  pattern = /([\u1c26-\u1c36]+)([\u1c24\u1c25\u1c37]+)/gi;
-  replace = "$2$1";
-  newText = outtext.replace(pattern, replace);
-  outtext = newText;
-
-  // 1c35 < 1c32
-  pattern = /([\u1c32-\u1c33\u1c36\u1c37]+)([\u1c34-\u1c35]+)/gi;
-  replace = "$2$1";
-  newText = outtext.replace(pattern, replace);
-  outtext = newText;
-
-  // Fix diacritics after space.
-  pattern = /\u0020([\u1c24-\u1c2f\u1c31\u1c33])/gi;
-  replace = "$1";
-  newText = outtext.replace(pattern, replace);
-  outtext = newText;
 
   return outtext;
 };
