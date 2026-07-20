@@ -234,7 +234,7 @@
                     {% endif %}
 
                     cellUni.innerHTML = output;
-                    cellUni.style.fontFamily = unicode_font_list[0];
+                    cellUni.style.fontFamily = unicode_font_list[{{font_index}}];
                     cellUni.style.fontSize = "30px";
                     // Add the Unicode hex for hover info.
                     // TODO: show as full Unicode numeric values

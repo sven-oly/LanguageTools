@@ -525,12 +525,15 @@ def encodingRules(langcode):
     except:
         conversionLanguage = langInfo.Language
 
+    font_index = request.args.get('font_index', 0, int)
+
     return render_template(
         'encodingConvert.html',
         converter_list=converter_list,
         converterJS=converterJS,
         conversion_data=conversion_data,
         conversion_language=conversionLanguage,
+        font_index=font_index,
         language=langInfo.Language,
         lang_list=langInfo.lang_list,
         encoding_list=langInfo.encoding_font_list,
