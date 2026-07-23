@@ -315,7 +315,11 @@ def convertHandler(langcode):
 
     # Needed?
     oldChars = ''
-    oldInput = ''
+    try:
+        oldInput = request.args['oldInput']
+    except:
+        oldInput = ''
+
     # Handle non-Unicode output.
     try:
         output_font = langInfo.outputFont
