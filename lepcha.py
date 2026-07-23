@@ -32,12 +32,12 @@ class langInfo:
         self.test_data = u''
         self.encoding_font_list = [
             {
-                'font_path': '/fonts/Shipmoo.ttf',
+                'font_path': '/fonts/Lepcha/Shipmoo.ttf',
                 'font_name': 'Shipmoo',
                 'display_name': 'Shipmoo Lepcha',
             },
             {
-                'font_path': '/fonts/JG_Lepcha.ttf',
+                'font_path': '/fonts/Lepcha/JG_Lepcha.ttf',
                 'font_name': 'JGLepcha',
                 'display_name': 'JG Lepcha',
             },
@@ -57,7 +57,7 @@ class langInfo:
             {
                 'family': 'MingzatLepcha',
                 'longName': 'Mingzat (SIL)',
-                'source': '/fonts/Lepcha/Mingzat-R.woff',
+                'source': '/fonts/Lepcha/Mingzat-Regular.ttf',
             },
             {
                 'family': 'DawaLepcha',
