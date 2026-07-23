@@ -8,7 +8,7 @@
 
 import base
 
-Language = 'Chochneyo'
+Language = 'Chochenyo'
 Language_native = 'Chochenyo'
 LanguageCode = 'cst'
 ScriptCode = 'Latn'
