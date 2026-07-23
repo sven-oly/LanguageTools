@@ -122,7 +122,7 @@ class langInfo:
                            [chr(x) + ' ' for x in range(0xf2, 0xf4)]
         self.oldChars = ''.join(self.oldCharList)
 
-        self.diacritic_list = [chr(x) for x in range(0x1c25, 0x1c38)]
+        self.diacritic_list = [chr(x) for x in range(0x1c24, 0x1c38)]
 
         self.base_consonant = '\u1C00'
         self.unicodeChars = ''

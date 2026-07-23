@@ -20,9 +20,15 @@
         border: 3px solid #cccccc;
         padding: 5px;
         font-size: 24px;
-        }
+  }
   {
     font-family: "Courier New";
+  }
+ .th {
+      position:sticky;
+      z-index: 2;
+      top: 0;
+
   }
   </style>
 
@@ -98,7 +104,7 @@
       <th  dir='{{direction}}'>
         <td></td>
         {% for d in diacritics_hex %}
-        <td  dir='{{direction}}'>
+        <td  dir='{{direction}}' title="{{d}}">
           {{d}}
         </td>
         {%endfor%}

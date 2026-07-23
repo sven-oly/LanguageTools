@@ -157,8 +157,17 @@ langConverter.one2oneMap = langConverter.dictionaryToMap(private_use_map_combine
 
 langConverter.transformRules = [
   //[/ ([\u1c27-\u1c29\u1c34-\u1c35])/g, "$1"],
-  [/([\u1c27-\u1c29\u1c34-\u1c35]+)([\u1c00-\u1c23\u1c4d-\u1c4f])/g, "$2$1"],  // Move over consonants
-  [/([\u1c34-\u1c35])([\u1c27-\u1c29])/g, "$2$1"],  // Move over consonants
+  [/([\u1c24-\u1c29\u1c34-\u1c35]+)([\u1c00-\u1c23\u1c4d-\u1c4f])/g, "$2$1"],  // Move over consonants
+  [/([\u1c34-\u1c35])([\u1c25-\u1c2c])/g, "$2$1"],  // Move over consonants
+  [/(\u1c36)([\u1c24-\u1c35\u1c37]+)/g, "$2$1"], // Move \u1c36 to last
+  [/([\u1c26-\u1c36]+)([\u1c24\u1c25\u1c37])/g, "$2$1"],
+  [/([\u1c2d-\u1c36]+)([\u1c2a\u1c2b])/g, "$2$1"],
+  [/([\u1c2e\u1c33]+)([\u1c28\u1c2c])/g, "$2$1"],
+  [/([\u1c26\u1c2b\u1c31]+)([\u1c2c])/g, "$2$1"],
+  [/([\u1c27]+)([\u1c25])/g, "$2$1"],
+  [/([\u1c36]+)([\u1c33])/g, "$2$1"],
+  [/([\u1c2d\u1c31\u1c32]+)([\u1c28])/g, "$2$1"],
+  [/(\u1c31+)(\u1c31)/g, "$2"],  // Duplicate removal
 ];
 
 function convertEncoding(intext, encodingIndex) {
