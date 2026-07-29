@@ -73,8 +73,12 @@ class langInfo:
 
         self.lang_list = [Language]
         self.kb_list = [
-            {'shortName': LanguageCode,
-             'longName': LanguageCode,
+            {'shortName': 'lep_rong',
+             'longName': 'Rong_Lepcha',
+             'source': 'Rong-Lepcha_Cheatsheet.pdf'
+             },
+            {'shortName': 'lep',
+             'longName': 'Lepcha',
              },
         ]
         self.links = [
