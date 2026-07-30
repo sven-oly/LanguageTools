@@ -14,20 +14,19 @@
 // Rong - Lepcha)Cheatsheet.pdf
 // http://www.siblac.org/doc/Rong_Kit_Introduction.pdf
 
-var LEP_RONG_LAYOUT = {
-  'id': 'lep_rong',
-  'title': 'Rong_Lepcha',
+var LEP_MUNSALONG_LAYOUT = {
+  'id': 'lep_Munsalong',
+  'title': 'Munsalong Lepcha',
   'mappings': {
     '': {
-      '': '`\u1c41\u1c42\u1c43\u1c44\u1c45\u1c46\u1c47\u1c48\u1c49\u1c40{{\u1c32\u1c31}}{{}}' +
-          '\u1c23\u1c22\u1c2c\u1c1b\u1c0a\u1c1a' +
-            '\u1c2a\u1c27\u1c28\u1c0e\u1c09\u1c4d{{}}' +
-          '\u1c28\u1c20\u1c0c\u1c11\u1c03\u1c1D{{\u1c08}}\u1c00\u1c1c{{\u1c17}}{{\u1c05}}' +
-            '\u1c19{{\u1c21\u1c24}}\u1c06\u1c1f\u1c13\u1c0d\u1c15\u1c3d\u1c3f\u1c2a\u0964'
-    },
+      '': '`\u1c41\u1c42\u1c43\u1c44\u1c45\u1c46\u1c47\u1c48\u1c49\u1c40-=' +
+          'ᰕᰜᰆᰗᰙᰟᰚᰊᰓ{{}}ᰭ{{}}{{}}' +
+          'ᰑᰠᰅ᰽ᰈᰉ\u1c0b\u1c0cᰍ{{}}"' +
+          'ᰡᰝᰃᰛᰂᰗᰎ,./'
+      },
     's': {
-      '': ':{{}}{{}}{{}}{{}}{{}}{{}}{{}}{{}}{{}}{{}}-{{}}' +
-             '{{}}{{}}{{}}{{\u1c32}}{{\u1c33}}{{}}{{\u1c2b}}{{}}\u1c29{{\u1c31}}\u1c34\u1c4f{{}}' +
+      '':  '`\u1c41\u1c42\u1c43\u1c44\u1c45\u1c46\u1c47\u1c48\u1c49\u1c40-=' +
+             'ᰔᰣ$᰽{{ᰑ\u1c2c}}{{ᰝ\u1c2c}}{{ᰝ\u1c37}}{{\u1c37}}{{\u1c01}}{{\u1c12}}{{}}\u1c2d{{}}{{}}' +
           '\u1c36{{}}{{}}{{}}{{}}{{}}{{}}\u1c2d\u1c2f{{}}\u1c35' +
           '{{}}{{}}{{}}{{}}{{}}\u1c30\u1c2e\u1c3e\u1c37\u0965'
     },
@@ -54,5 +53,5 @@ var LEP_RONG_LAYOUT = {
 };
 
 // Load the layout and inform the keyboard to switch layout if necessary.
-google.elements.keyboard.loadme(LEP_RONG_LAYOUT);
-lep_rong = LEP_RONG_LAYOUT;
+google.elements.keyboard.loadme(LEP_MUNSALONG_LAYOUT);
+lep_Munsalong = LEP_MUNSALONG_LAYOUT;
