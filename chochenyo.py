@@ -8,8 +8,8 @@
 
 import base
 
-Language = 'Chochenyo'
-Language_native = 'Chochenyo'
+Language = 'Čočenyo (Chochenyo)'
+Language_native = 'Čočenyo'
 LanguageCode = 'cst'
 ScriptCode = 'Latn'
 
@@ -34,6 +34,9 @@ links = [
     {'linkText': 'Wikipedi page',
      'ref': 'https://en.wikipedia.org/wiki/Chochenyo_language',
     },
+    {'linkText': 'Čočenyo in ELP',
+     'ref': 'https://www.endangeredlanguages.com/elp-language/7409'
+     },
     # {'linkText': 'Ethnolog',
     #  'ref': 'https://www.ethnologue.com/language/XYZ'
     # },

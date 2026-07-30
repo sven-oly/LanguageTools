@@ -14,8 +14,8 @@
 
 var CST_LAYOUT = {
     'id': 'cst',
-    'title': 'Chochenyo',
-    'verison': '1.1',
+    'title': 'Čočenyo',
+    'version': '1.1',
     'mappings': {
         ',c': {
             '': '`1234567890-=' +
