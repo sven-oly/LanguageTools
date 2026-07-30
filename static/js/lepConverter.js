@@ -166,6 +166,7 @@ langConverter.transformRules = [
   [/([\u1c2c-\u1c35]+)([\u1c24-\u1c2b\u1c37]+)/g, "$2$1"],  // The second group moved to last
   [/([\u1c26-\u1c2b]+)([\u1c24-\u1c25\u1c37]+)/g, "$2$1"],  // The third group moved to last
   [/([\u1c27])([\u1c25])/g, "$2$1"],  // The fourth group moved to last
+  [/([\u1c2d\u1c35])([\u1c2c])/g, "$2$1"],  // The fourth group moved to last
   /* [/([\u1c34-\u1c35])([\u1c25-\u1c2c])/g, "$2$1"],
   [/([\u1c26-\u1c36]+)([\u1c24\u1c25\u1c37])/g, "$2$1"],
   [/([\u1c2d-\u1c36]+)([\u1c2a\u1c2b])/g, "$2$1"],
