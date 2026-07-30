@@ -73,17 +73,17 @@ class langInfo:
 
         self.lang_list = [Language]
         self.kb_list = [
+            {'shortName': 'lep_Munsalong',
+             'longName': 'Munsalon Lepcha',
+             'source': 'Lepcha community'
+             },
             {'shortName': 'lep_rong',
              'longName': 'Rong Lepcha',
              'source': 'Rong-Lepcha_Cheatsheet.pdf'
              },
-            {'shortName': 'lep_Munsalong',
-             'longName': 'Munsalon Lepcha',
-             'source': 'Lepcha community'
-            },
-            {'shortName': 'lep',
-             'longName': 'Lepcha',
-             },
+             {'shortName': 'lep',
+              'longName': 'Lepcha',
+              },
         ]
         self.links = [
             {'linkText': 'Keyboard',

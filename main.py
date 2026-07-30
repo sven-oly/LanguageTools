@@ -109,7 +109,7 @@ LanguageList = [
     (u'Bété', 'bete'),
     #    ('Batak Sinalungun', 'bts'),
     ('Chakma', 'ccp', '𑄌𑄋𑄴𑄟𑄳𑄦'),
-    ('Chochenyo', 'cst'),
+    ('Chochenyo', 'cst', 'Čočenyo'),
     ('Gurung', 'gvr'),
     # ('Gondi', 'gon', 'Gōndi family'),
     # ('Gondi Northern (Gunjala)', 'gno', 'Northern Gōndi (Gunjala)'),

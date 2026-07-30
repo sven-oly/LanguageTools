@@ -23,7 +23,7 @@ var LEP_RONG_LAYOUT = {
           '\u1c23\u1c22\u1c2c\u1c1b\u1c0a\u1c1a' +
             '\u1c2a\u1c27\u1c28\u1c0e\u1c09\u1c4d{{}}' +
           '\u1c28\u1c20\u1c0c\u1c11\u1c03\u1c1D{{\u1c08}}\u1c00\u1c1c{{\u1c17}}{{\u1c05}}' +
-            '\u1c19{{\u1c21\u1c24}}\u1c06\u1c1f\u1c13\u1c0d\u1c15\u1c3d\u1c3f\u1c2a\u0964'
+            '\u1c19{{\u1c21\u1c24}}\u1c06\u1c1f\u1c13\u1c0d\u1c15\u1c3d\u1c3f\u0964'
     },
     's': {
       '': ':{{}}{{}}{{}}{{}}{{}}{{}}{{}}{{}}{{}}{{}}-{{}}' +
