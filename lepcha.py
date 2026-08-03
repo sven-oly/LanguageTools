@@ -136,5 +136,7 @@ class langInfo:
         self.unicodeChars = ''
         self.unicodeCombiningChars = self.diacritic_list
 
+        self.to_keyman = True
+
 
 langInstance = langInfo()

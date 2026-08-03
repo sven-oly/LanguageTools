@@ -231,6 +231,11 @@ def topLangHandler(langcode):
         allFonts = True
 
     try:
+        to_keyman = langInfo.to_keyman
+    except:
+        to_keyman = None
+
+    try:
         text_direction = langInfo.direction
     except AttributeError:
         text_direction = 'ltr'
@@ -249,6 +254,7 @@ def topLangHandler(langcode):
                            links=langInfo.links,
                            allFonts=allFonts,
                            test_data='',
+                           to_keyman=to_keyman,
                            )
 
 
