@@ -97,7 +97,12 @@ class langInfo:
         self.unicodeCombiningChars = self.diacritic_list
 
         resource_list = [
-          {
+            {
+                'name': 'Keyman Chochenyo v1.11',
+                'source': '/resources/cst/cst_1.1.kmp',
+                'description': 'Keyman Chochenyo 1.11 (03-Aug-2026). Fix shift in alt layer'
+            },
+            {
               'name': 'Keyman Chochenyo v1.1',
               'source': '/resources/cst/cst_1.1.kmp',
               'description': 'Keyman Chochenyo 1.1'
