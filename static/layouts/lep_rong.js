@@ -50,6 +50,9 @@ var LEP_RONG_LAYOUT = {
           'zxcvbnm<>?'
     }
   },
+  'transform' : {
+    '([\u1c27-\u1c29\u1c34\u1c35])\u200b([\u1c00-\u1c23\u1c4d-\u1c4f])': '$2$1',
+  }
 
 };
 

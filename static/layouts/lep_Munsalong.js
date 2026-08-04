@@ -20,9 +20,9 @@ var LEP_MUNSALONG_LAYOUT = {
   'mappings': {
     '': {
       '': '`᱁᱂᱃᱄᱅᱆᱇᱈᱉᱀-=' +
-          '\u1C14\u1C23\u1C36\u1C1E{{\u1C00\u1c37\u1c25}}{{\u1c1d\u1c37\u1c25\u1c2c}}{{\u1c1d\u1c37\u1c25}}\u1C2C\u1C0F\u1C12\u1C2D{{\u1C35\u200C}}\u1C37' +
-          '\u1C36\u1C16{{\u1C27\u200C}}{{\u1C29\u200C}}\u1C2A\u1C2B\u1C20\u1C34\u1C22\u1C2F\u0027' +
-          '{{\u1c03\u1c37\u1c25\u1c2c}}{{\u1c00\u1c37\u1c25\u1c2c}}\u1C4F\u1C28\u1C26\u1C04\u1C01,./'
+          '\u1C14\u1C23\u1C36\u1C1E{{\u1C00\u1c37\u1c25}}{{\u1c1d\u1c37\u1c25\u1c2c}}{{\u1c1d\u1c37\u1c25}}\u1C2C\u1C0F\u1C12\u1C2D{{\u1C35\u200b}}\u1C37' +
+          '\u1C36\u1C16{{\u1C27\u200b}}{{\u1C29\u200b}}\u1C2A\u1C2B\u1C20{{\u1C34\u200b}}\u1C22\u1C2F\u0027' +
+          '{{\u1c03\u1c37\u1c25\u1c2c}}{{\u1c00\u1c37\u1c25\u1c2c}}\u1C4F{{\u1C28\u200b}}\u1C26\u1C04\u1C01,./'
       },
     's': {
       '':  '`\u1c41\u1c42\u1c43\u1c44\u1c45\u1c46\u1c47\u1c48\u1c49\u1c40-=' +
@@ -55,7 +55,9 @@ var LEP_MUNSALONG_LAYOUT = {
           'zxcvbnm,./'
     }
   },
-
+  'transform' : {
+    '([\u1c27-\u1c29\u1c34\u1c35])\u200b([\u1c00-\u1c23\u1c4d-\u1c4f])': '$2$1',
+  }
 };
 
 // Load the layout and inform the keyboard to switch layout if necessary.

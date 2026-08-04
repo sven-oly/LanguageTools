@@ -98,6 +98,11 @@ class langInfo:
 
         resource_list = [
             {
+                'name': 'Keyman Chochenyo v1.12',
+                'source': '/resources/cst/cst_1.12.kmp',
+                'description': '1.12 (03-Aug-2026). Add acute accent'
+            },
+            {
                 'name': 'Keyman Chochenyo v1.11',
                 'source': '/resources/cst/cst_1.1.kmp',
                 'description': 'Keyman Chochenyo 1.11 (03-Aug-2026). Fix shift in alt layer'
