@@ -119,6 +119,15 @@ class langInfo:
              },
         ]
 
+        resource_list = [
+            {
+                'name': 'Keyman Lepcha Unicode v1.0',
+                'source': '/resources/lep/lepcha_unicode.kmp',
+                'description': 'no reorder rules'
+            },
+        ]
+        self.text_file_list = resource_list
+
         # All old characters
         self.oldCharList = [chr(x) + ' ' for x in range(0x20, 0x7b)] + \
                            [chr(x) + ' ' for x in range(0xc0, 0xc6)] + \

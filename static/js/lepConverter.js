@@ -13,15 +13,15 @@ langConverter.encoding_data = {
 };
 
 // 1c00 is the base.
-// \u200c is used to mark values that need to be moved right over other values
+// \u200b is used to mark values that need to be moved right over other values
 private_use_map_combined = {
-    '\u0021': ['!', '\u1c29\u200c\u1c2d', '!'],
-    '\u0022': ['\"', '\u1c29\u200c\u1c2e', '\"'],
-    '\u0023': ['#', '\u1c29\u200c\u1c2f', '\"'],
-    '\u0024': ['$', '\u1c29\u200c\u1c30', '$'],
-    '\u0025': ['\u1c25', '\u1c29\u200c\u1c31', '\u1c25'],
-    '\u0026': ['\u1c24', '\u1c29\u200c\u1c32', '\u1c24'],
-    '\u0027': ['\'', '\u1c29\u200c\u1c33', '\''],
+    '\u0021': ['!', '\u1c29\u200b\u1c2d', '!'],
+    '\u0022': ['\"', '\u1c29\u200b\u1c2e', '\"'],
+    '\u0023': ['#', '\u1c29\u200b\u1c2f', '\"'],
+    '\u0024': ['$', '\u1c29\u200b\u1c30', '$'],
+    '\u0025': ['\u1c25', '\u1c29\u200b\u1c31', '\u1c25'],
+    '\u0026': ['\u1c24', '\u1c29\u200b\u1c32', '\u1c24'],
+    '\u0027': ['\'', '\u1c29\u200b\u1c33', '\''],
     '\u0028': ['*', '\u1c2d\u1c36', '*'],
     '\u0029': ['\u1c25', '\u1c2e\u1c36', '\u1c25'],
     '\u002a': ['\u1c24', '\u1c2f\u1c36', '\u1c24'],
@@ -39,7 +39,7 @@ private_use_map_combined = {
     '\u0037': ['\u1c47', '\u1c47', '\u1c47'],
     '\u0038': ['\u1c48', '\u1c48', '\u1c48'],
     '\u0039': ['\u1c49', '\u1c49', '\u1c49'],
-    '\u003a': ['\u1c2e', '\u1c27\u200c\u1c35\u200c', '\u1c2e'],
+    '\u003a': ['\u1c2e', '\u1c27\u200b\u1c35\u200b', '\u1c2e'],
     '\u003b': ['\u1c2f', '\u1c37', '\u1c2f'],
     '\u003c': ['\u1c31', 'v\u25CC', '\u1c31'],
     '\u003e': ['\u1c30', 'c/v\u25cc', '\u1c30'],
@@ -60,7 +60,7 @@ private_use_map_combined = {
     '\u004c': ['\u1c0d', '\u1c2f', '\u1c0d'],
     '\u004d': ['\u1c0e', '\u1c2e', '\u1c0e'],
     '\u004e': ['\u1c10', '\u1c30', '\u1c10'],
-    '\u004f': ['\u1c11', '\u1c26\u200c', '\u1c11'],
+    '\u004f': ['\u1c11', '\u1c26\u200b', '\u1c11'],
 
     '\u0050': ['\u1c13', '\u1c10', '\u1c13'],
     '\u0051': ['\u1c15', '\u1c18', '\u1c15'],
@@ -68,33 +68,33 @@ private_use_map_combined = {
     '\u0053': ['\u1c18', '\u1c21', '\u1c18'],
     '\u0054': ['\u1c19', '\u1c0b', '\u1c19'],
     '\u0055': ['\u1c1a', '\u1c2b', '\u1c1a'],
-    '\u0056': ['\u1c1b', '\u1c35\u200c', '\u1c1b'],
+    '\u0056': ['\u1c1b', '\u1c35\u200b', '\u1c1b'],
     '\u0057': ['\u1c1c', '\u1c01', '\u1c1c'],
     '\u0058': ['\u1c1d', '\u1c2d', '\u1c1d'],
     '\u0059': ['\u1c1f', '\u1c0f', '\u1c1f'],
-    '\u005a': ['\u1c21', '\u1c34\u200c', '\u1c21'],
+    '\u005a': ['\u1c21', '\u1c34\u200b', '\u1c21'],
     '\u005b': ['\u1c2d', '[', '\u1c2d'],
     '\u005c': ['\u1c37', '/', '\u1c37'],
-    '\u005d': ['\u1c35\u200c', ']', '\u1c35\u200c'],
+    '\u005d': ['\u1c35\u200b', ']', '\u1c35\u200b'],
     '\u005e': ['^', '\u1c33\u1c36', '\u1c36'],
     '\u005f': ['\u1c33', '\u1c36', '\u1c33'],
 
-    '\u0061': ['\u1c36', '\u1c28\u200c', '\u1c36'],
+    '\u0061': ['\u1c36', '\u1c28\u200b', '\u1c36'],
     '\u0062': ['\u1c26', '\u1c13', '\u1c26'],
-    '\u0063': ['\u1c28\u200c', '\u1c06', '\u1c28\u200c'],
-    '\u0064': ['\u1c27\u200c', '\u1c0c', '\u1c27\u200c'],
+    '\u0063': ['\u1c28\u200b', '\u1c06', '\u1c28\u200b'],
+    '\u0064': ['\u1c27\u200b', '\u1c0c', '\u1c27\u200b'],
     '\u0065': ['\u1c36', '\u1c2c', '\u1c36'],
-    '\u0066': ['\u1c29\u200c', '\u1c11', '\u1c29\u200c'],
+    '\u0066': ['\u1c29\u200b', '\u1c11', '\u1c29\u200b'],
     '\u0067': ['\u1c2a', '\u1c03', '\u1c2a'],
 
     '\u0068': ['\u1c2b', '\u1c1d', '\u1c2b'],
-    '\u0069': ['\u1c2c', '\u1c27\u200c', '\u1c2c'],
-    '\u006a': ['\u1c34\u200c', '\u1c08', '\u1c34\u200c'],
+    '\u0069': ['\u1c2c', '\u1c27\u200b', '\u1c2c'],
+    '\u006a': ['\u1c34\u200b', '\u1c08', '\u1c34\u200b'],
     '\u006b': ['\u1c20', '\u1c00', '\u1c20'],
     '\u006c': ['\u1c22', '\u1c1c', '\u1c22'],
     '\u006d': ['\u1c01', '\u1c15', '\u1c01'],
     '\u006e': ['\u1c04', '\u1c0d', '\u1c04'],
-    '\u006f': ['\u1c0f', '\u1c29\u200c', '\u1c0f'],
+    '\u006f': ['\u1c0f', '\u1c29\u200b', '\u1c0f'],
 
     '\u0070': ['\u1c12', '\u1c0e', '\u1c12'],
     '\u0071': ['\u1c14', '\u1c17', '\u1c14'],
@@ -158,8 +158,8 @@ langConverter.one2oneMap = langConverter.dictionaryToMap(private_use_map_combine
 
 langConverter.transformRules = [
   //Move signs from before the consonant
-  [/([\u1c27-\u1c29\u1c34-\u1c35])\u200c([\u1c27-\u1c29\u1c34-\u1c35])\u200c([\u1c00-\u1c23\u1c4d-\u1c4f])/g, "$3$1$2"],  // Combination move over consonants
-  [/([\u1c27-\u1c29\u1c34\u1c35])\u200c([\u1c00-\u1c23\u1c4d-\u1c4f])/g, "$2$1"],  // Move single over consonants
+  [/([\u1c27-\u1c29\u1c34-\u1c35])\u200b([\u1c27-\u1c29\u1c34-\u1c35])\u200b([\u1c00-\u1c23\u1c4d-\u1c4f])/g, "$3$1$2"],  // Combination move over consonants
+  [/([\u1c27-\u1c29\u1c34\u1c35])\u200b([\u1c00-\u1c23\u1c4d-\u1c4f])/g, "$2$1"],  // Move single over consonants
   // Move signs into the correct order
   [/(\u1c36)([\u1c24-\u1c35\u1c37]+)/g, "$2$1"], // Move \u1c36 to last
   [/([\u1c24-\u1c36]+)([\u1c37]+)/g, "$2$1"],  // Move \u1c37 to the front
