@@ -225,7 +225,10 @@ function map_en_to_x(layout, outputCtrlAlt, outputMobile, outputTransforms, opti
             layers.push("\n");
 
             base = propContaining(keys, "sc");
-            Array.prototype.push.apply(layers, map_qwerty(vals[base][""], "SHIFT CTRL ", qwerty_names));
+            if (base) {
+                Array.prototype.push.apply(layers, map_qwerty(vals[base][""], "SHIFT CTRL ", qwerty_names));
+
+            }
 
             // !!! TODO: Add T_ identifiers.
         }
@@ -364,13 +367,15 @@ function getTransforms(layout) {
     let reverse_map = {};
     for (let map in mappings) {
       let en_map = get_en_layer(map, en_qwerty);
-      let en_items = parselayerstring(en_qwerty[en_map][''])
-      let index = 0;
+      if (en_map) {
+          let en_items = parselayerstring(en_qwerty[en_map][''])
+          let index = 0;
 
-      let map_string = parselayerstring(mappings[map]['']);
-      for (index = 0; index < map_string.length; index++) {
-        let place = map_string[index];
-        reverse_map[place] = en_items[index];
+          let map_string = parselayerstring(mappings[map]['']);
+          for (index = 0; index < map_string.length; index++) {
+            let place = map_string[index];
+            reverse_map[place] = en_items[index];
+          }
       }
     }
 

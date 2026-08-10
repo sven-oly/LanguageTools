@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <title>{{language}} Keyboard to Keyman</title>
+
+    <script src="/static/js/utils.js"></script>
+    <style>
+    textarea {
+        width: 600px;
+        height: 600px;
+        border: 3px solid #cccccc;
+        padding: 5px;
+        font-size: 12px;
+        font-variant-ligatures: normal;
+        resize: vertical;
+        font-family: "Courier New";
+    }
+    </style>
+    <script>
+    // TESTING
+    var loaded_layout = '';
+    function layout_info(x) {
+      layout_loaded = x;
+    }
+
+    var k = { loadme: Object};
+    k.loadme.prototype = function(a) {
+      return a;
+    }
+    var e = {keyboard: k};
+
+    var google = {elements: e};
+    //google.elements = ''
+
+     google.elements.keyboard.loadme.prototype = layout_info;
+
+     //google.elements.keyboard.loadme.prototype = function(a) {
+//      return a;
+     //};
+    </script>
+    <script src="/static/layouts/en.js"></script>
+    {% for kb in keyboards %}
+    <script src="/static/layouts/{{kb.shortName}}.js"></script>
+    {% endfor %}
+    <script src="/static/layouts/{{kb_js}}.js"></script>
+    <script src="/static/js/kmexport/kmexport.js"></script>
+<script>
+
+  function getMobileOptions() {
+      const elem = document.getElementById('doMobile');
+      return elem.checked;
+  }
+
+  // global
+  let layout_selected = '{{kb_js}}';
+  const layouts = {
+    {% for kb in keyboards %}
+      '{{kb.shortName}}': {{kb.shortName}},
+    {% endfor %}
+    };
+
+  function change_layout(layout_name) {
+    const layout = layouts[layout_name];
+    let kbResults = map_en_to_x(layout, true);
+
+    const doMobile = true;
+    const outputTransforms = null;
+    const mobileOptions = getMobileOptions();
+
+    const mobileResults = map_en_to_x(
+        layout, true, doMobile, outputTransforms, mobileOptions);
+
+    // Finish this
+    let rules = getTransforms(layout);
+
+    let output = document.getElementById('output');
+    output.innerHTML = kbResults;
+
+    output = document.getElementById('touch_output');
+    output.innerHTML = mobileResults;
+  }
+
+  function onPageLoaded() {
+    // Compute mobile first because T_ constants are created there.
+    const layout_name = '{{kb_js}}';  // The default layout for this keyboard
+
+    change_layout(layout_name);
+
+}
+
+function onError() {
+    alert('ERROR');
+}
+
+</script>
+</head>
+
+  <body onload="onPageLoaded();" onerror="r=onError();">
+  <p>LangCode = {{lang_code}}</p>
+  <label for="kb_selector">Select a keyboard layout</label>
+  <select id="kb_selector" onchange="change_layout(this.value, true);">
+  {% for kb in keyboards %}
+    <option value="{{kb.shortName}}">{{kb.longName}}</option>{% endfor %}
+  </select>
+  <br />
+
+    <input type="checkbox" id="doMobile" name="doMobile" value="Yes" checked>
+    <label for="doMobile">Include mobile</label><br>
+    <input type="checkbox" id="doAltLayers" name="doAltLayers" value="Yes" checked>
+    <label for="doAltLayers">Include alt layers</label><br>
+    <input type="checkbox" id="doCapsLockLayers" name="doAltLayers" value="Yes" checked>
+    <label for="doCapsLockLayers">Include caps lock layers</label><br>
+
+    <h1>Load keyboard</h1>
+  <textarea id="output"></textarea>
+  <h1>Mobile touch</h1>
+  <textarea id="touch_output"></textarea>
+</body>
+</html>
+</!DOCTYPE>

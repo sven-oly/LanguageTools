@@ -230,16 +230,21 @@ def topLangHandler(langcode):
     except:
         allFonts = True
 
-    try:
-        to_keyman = langInfo.to_keyman
-    except:
-        to_keyman = None
+    to_keyman = None
+    if 'to_keyman' in request.args:
+        to_keyman = request.args['to_keyman']
+    else:
+        try:
+            to_keyman = langInfo.to_keyman
+        except:
+            to_keyman = None
 
     try:
         text_direction = langInfo.direction
     except AttributeError:
         text_direction = 'ltr'
     logger.warning('####### Direction = %s', text_direction)
+
 
     return render_template('demo_general.html',
                            langTag=langcode,
@@ -983,6 +988,19 @@ def generatewordsearch():
     }
 
     return json.dumps(return_json)
+
+@app.route('/test/kbkm/')
+def keyboard2Keyman():
+    kbname = request.args['kbname']
+    lang_code = request.args['langCode']
+    return render_template(
+        'kbkeyman.html',
+        keyboards=getLangInfo(lang_code).kb_list,
+        value=1,
+        lang_code=lang_code,
+        kb_js=kbname,
+        kb_layout=kbname.upper() + '_LAYOUT',
+    )
 
 
 # class DownloadKBText(webapp2.RequestHandler):

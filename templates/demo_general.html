@@ -217,7 +217,7 @@
         // Opens a windows with the keyman keyboard data
         var textArea = document.getElementById(textarea_id);
         var selector = document.getElementById(select_layout_id);
-        newUrl = "/test/kbkm/?kbname=" + selector.value;
+        newUrl = "/test/kbkm/?langCode={{langTag}}&kbname=" + selector.value;
 
         window.open(newUrl, '_blank');
    }
@@ -275,7 +275,7 @@
     <h2>{{language}} Keyboard</h2>
 
   <span {% if lang_list|length <= 1 %}hidden{% endif %}>
-    Language: <select onchange="utils.onLanguageSelected(this.value, 't1')">
+    Language: <select onchange="utils.onLanguageSelected(this.value, 't1');">
     {% for lang in lang_list %}
     <option value="{{lang.shortName}}" select="">{{lang.longName}}</option>
     {% endfor %}

@@ -80,7 +80,7 @@ class langInfo:
         self.unicodeRanges = [('\u0020', '\u007f')]
 
         self.unicodeChars = [chr(x) for x in range(0x61, 0x7b)]
-        self.unicodeChars.extend(['c\u0306', 's\u0306', '\u1E6D', '\u2018'])
+        self.unicodeChars.extend(['c\u0306', 's\u0306', '\u1E6D'])
 
         # TODO: Fill in with diacritics
         self.diacritic_list = [chr(x) for x in range(0x300, 0x330)]
