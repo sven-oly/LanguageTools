@@ -66,39 +66,71 @@ class langInfo:
            },
         ]
 
-        self.encoding_font_list = [
-            {
-                'font_path': '/fonts/Meitei/EPAOMAYEK.TTF',
-                'font_name': 'epomayek',
-                'display_name': 'E-Pao! Mayak',
-                'url': 'https://e-pao.net/epPageExtractor.asp?src=MeiteiMayek.meetei_mayek_keys.html'
-            },
-            {
-            'font_path': '/fonts/Meitei/RATHA99.TTF',
-            'font_name': 'RATHA99',
-            'display_name': 'RATHA99',
-          },
-          {
-            'font_path': '/fonts/Meitei/RATHA.TTF',
-            'font_name': 'RATHA',
-            'display_name': 'RATHA',
-          },
+        # EPAOMAYEK.TTF from: 'url': 'https://e-pao.net/epPageExtractor.asp?src=MeiteiMayek.meetei_mayek_keys.html'
+        more_encoding_fonts = [
+            'EPAOMAYEK.TTF',
+            'EyekAhobi-Regular.ttf',
+            'EyekPro-Regular.ttf',
+            'Kachappa1.TTF',
+            'Kaeeyek.TTF',
+            'Kangla.TTF',
+            'Kapaba.TTF',
+            'Kathaba.TTF',
+            'Kfajaba.TTF',
+            'Kfajatha.TTF',
+            'Kleiteng.TTF',
+            'Ktonkoiba.TTF',
+            'RATHA.TTF',
+            'RATHA1.TTF',
+            'RATHA99.TTF',
+            'rathayek.TTF',
 
-          {
-            'font_path': '/fonts/Meitei/rathayek.TTF',
-            'font_name': 'rathayek',
-            'display_name': 'Rathayek',
-          },
-        {
-            'font_path': '/fonts/Meitei/EyekPro-Regular.ttf',
-            'font_name': 'EyekPro-Regular',
-            'display_name': 'EyekPro-Regular',
-          },
         ]
+        self.encoding_font_list = []
+        for font in more_encoding_fonts:
+            self.encoding_font_list.append({
+                'font_path': '/fonts/Meitei/' + font,
+                'font_name': font,
+                'display_name': font.replace('.TTF', '').replace('.ttf', ''),
+            })
+        print('## self.encoding_font_list: \n%s' % self.encoding_font_list)
+
+        # self.encoding_font_list = [
+        #     {
+        #         'font_path': '/fonts/Meitei/EPAOMAYEK.TTF',
+        #         'font_name': 'epomayek',
+        #         'display_name': 'E-Pao! Mayak',
+        #         'url': 'https://e-pao.net/epPageExtractor.asp?src=MeiteiMayek.meetei_mayek_keys.html'
+        #     },
+        #     {
+        #     'font_path': '/fonts/Meitei/RATHA99.TTF',
+        #     'font_name': 'RATHA99',
+        #     'display_name': 'RATHA99',
+        #   },
+        #   {
+        #     'font_path': '/fonts/Meitei/RATHA.TTF',
+        #     'font_name': 'RATHA',
+        #     'display_name': 'RATHA',
+        #   },
+        #
+        #   {
+        #     'font_path': '/fonts/Meitei/rathayek.TTF',
+        #     'font_name': 'rathayek',
+        #     'display_name': 'Rathayek',
+        #   },
+        # {
+        #     'font_path': '/fonts/Meitei/EyekPro-Regular.ttf',
+        #     'font_name': 'EyekPro-Regular',
+        #     'display_name': 'EyekPro-Regular',
+        #   },
+        # ]
 
         self.lang_list = [LanguageCode]  # This may be extended
 
         self.kb_list = [
+            {'shortName': 'mni_kanglei',
+             'longName': 'Meitei Kanglei',
+             },
             {'shortName': 'mniCdac',
              'longName': 'Meitei Mayek',
            },
