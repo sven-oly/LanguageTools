@@ -20,7 +20,7 @@ langConverter.addOne2OneTransforms(
 // TODO: Add E-pao conversions
 langConverter.addOne2OneTransforms(
   "=ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]",
-  "=\uabd1\uabdaC\uabd9\uabe9F\uabd8\uabe1\uabcd\uabd3\uabc8\uabdc\uabdd\uabdf\uabe7\uabde\uabdbRS\uabca\uabceVWX\uabe0\uabc9[\\]",
+  "=\uabd1\uabdaC\uabd9\uabe9F\uabd8\uabe1\uabcf\uabd3\uabc8\uabdc\uabdd\uabdf\uabe7\uabde\uabdbRS\uabca\uabceVWX\uabe0\uabc9[\\]",
   1
 );
 langConverter.addOne2OneTransforms(
@@ -36,18 +36,18 @@ langConverter.addOne2OneTransforms(
 
 // For Eeyek font - TODO: finish
 langConverter.addOne2OneTransforms(
-  "ABCDEFGIKMNORSTWXZ",
-  "ꯑꯚ ꯭\uabe7\u0000\uabeaꯁꯜꯞꯣꯙꯈꯏꯐꯘꯉ ",
+  "=ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]",
+  "=\uabe5\uabd5C\uabd9\uabe9F\uabd8\uabe1\uabcf\uabd3\uabc8\uabdc\uabdd\uabdf\uabe7\uabde\uabdb\u20B9S\uabca\uabceVWX\uabe0\uabc9[\\]",
   2
 );
 langConverter.addOne2OneTransforms(
-  "abcdefgijklmopqrsvwxyz",
-  "ꯃꯨꯖꯛꯅꯇꯤꯡꯔꯥꯦꯂꯍꯩꯕꯗꯀꯙꯄꯒꯧꯚ",
+  "abcdefghijklmnopqrstuvwxyz",
+  "\uabd1\uabd5\uabc6\uabd7\uabe6\uabd0\uabd2\uabcd\uabe4\uabd6\uabc0\uabc2\uabc3\uabc5\uabe3\uabc4\uabea\uabd4\uabc1\uabc7\uabe8\uabda\uabcbx\uabcc\uabeb",
   2
 );
 langConverter.addOne2OneTransforms(
-  "1234567890[]\\=",
-  "꯱꯲꯳꯴꯵꯶꯷꯸꯹꯰ꯑꯢꯌ=",
+  "0123456789",
+  "\uabf0\uabf1\uabf2\uabf3\uabf4\uabf5\uabf6\uabf7\uabf8\uabf9",
   2
 );
 
@@ -75,7 +75,7 @@ langConverter.encoding_data = {
     'RATHA': {index:0, outputEncoding:'Unicode', outputScript:'Meitei'},
     'rathayek': {index:3, outputEncoding:'Unicode', outputScript:'Meitei'},
     'epomayek': {index:1, outputEncoding:'Unicode', outputScript:'Meitei'},
-    'EyekPro-Regular': {index:2, outputEncoding:'Unicode', outputScript:'Meitei'},
+    'EyekPro-Regular': {index:2, outputEncoding:'Unicode', outputScript:'Meitei'},  // TODO: complete
 };
 
 const map_translit_output = ['Wiki Latin', 'Oxford Handbook Latin', 'Wiki IPA'];
