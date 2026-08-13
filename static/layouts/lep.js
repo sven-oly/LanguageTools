@@ -15,7 +15,7 @@
 
 var LEP_LAYOUT = {
   'id': 'lep',
-  'title': "Lepcha *** in progress",
+  'title': "Lepcha prototype",
   'mappings': {
     '': {
       '': '`\u1c41\u1c42\u1c43\u1c44\u1c45\u1c46\u1c47\u1c48\u1c49\u1c40{{\u1c32\u1c31}}{{}}' +

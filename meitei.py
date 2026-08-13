@@ -14,45 +14,35 @@
 # limitations under the License.
 #
 
-import os
-import webapp2
-
-import base
-
-from google.appengine.ext.webapp import template
-
 Language = 'Meitei (Manipuri)'
 Language_native = 'ꯃꯤꯇꯩ ꯃꯌꯦꯛ'
 LanguageCode = 'mni'
 ScriptCode = 'Mtei'
 
 links = [
-  {'linkText': 'Keyboard',
-   'ref': '/' + LanguageCode + '/'
-   },
-  {'linkText': 'Converter',
-   'ref': '/' + LanguageCode + '/convertUI/'},
-  {'linkText': 'Font conversion summary',
-    'ref': '/' + LanguageCode + '/encodingRules/'
-  },
-  # {'linkText': 'Resources',
-  #   'ref': '/' + LanguageCode + '/downloads/'
-  # },
-  {'linkText': 'Unicode page',
-   'ref': 'https://www.unicode.org/charts/PDF/UABC0.pdf'
-  },
-  {'linkText': 'Unicode extensions',
-   'ref': 'https://www.unicode.org/charts/PDF/UAAE0.pdf'
-   },
-  {'linkText': 'Meitei Wiki',
-   'ref': 'https://en.wikipedia.org/wiki/Meitei_script'
-  },
-  {'linkText': "Keyman layout",
-   'ref': 'https://keymanweb.com/?_ga=2.97814175.1460627000.1640752683-7452509.1639359229#mni-mtei,Keyboard_meitei_legacy'
-  },
-  # {'linkText': 'Combiners',
-  #  'ref': '/lep/diacritic/'
-  #  },
+    {'linkText': 'Keyboard',
+     'ref': '/langbase/%s' % LanguageCode
+     },
+    {'linkText': 'Converter',
+     'ref': '/convert/%s' % LanguageCode},
+    {'linkText': 'Font conversion summary',
+     'ref': '/encodingRules/%s' % LanguageCode,
+     },
+    {'linkText': 'Resources',
+     'ref': '/downloads/%s' % LanguageCode,
+     },
+    {'linkText': 'Unicode page',
+     'ref': 'https://www.unicode.org/charts/PDF/UABC0.pdf'
+     },
+    {'linkText': 'Unicode extensions',
+     'ref': 'https://www.unicode.org/charts/PDF/UAAE0.pdf'
+     },
+    {'linkText': 'Meitei Wiki',
+     'ref': 'https://en.wikipedia.org/wiki/Meitei_script'
+     },
+    {'linkText': "Keyman layout",
+     'ref': 'https://keymanweb.com/?_ga=2.97814175.1460627000.1640752683-7452509.1639359229#mni-mtei,Keyboard_meitei_legacy'
+     },
 ]
 
 
@@ -70,14 +60,20 @@ class langInfo:
            'source': '/fonts/Meitei/NotoSansMeeteiMayek-VariableFont_wght.ttf',
            },
           {'family': 'EeyekRegular',
-           'longName': 'Eeyek-Regular',
+           'longName': 'Eeyek-Regular Unicode',
            'source': '/fonts/Meitei/Eeyek-Regular.ttf',
            'url': 'http://tabish.freeshell.org/eeyek/download.html'
            },
         ]
 
         self.encoding_font_list = [
-          {
+            {
+                'font_path': '/fonts/Meitei/EPAOMAYEK.TTF',
+                'font_name': 'epomayek',
+                'display_name': 'E-Pao! Mayak',
+                'url': 'https://e-pao.net/epPageExtractor.asp?src=MeiteiMayek.meetei_mayek_keys.html'
+            },
+            {
             'font_path': '/fonts/Meitei/RATHA99.TTF',
             'font_name': 'RATHA99',
             'display_name': 'RATHA99',
@@ -87,18 +83,24 @@ class langInfo:
             'font_name': 'RATHA',
             'display_name': 'RATHA',
           },
+
           {
             'font_path': '/fonts/Meitei/rathayek.TTF',
             'font_name': 'rathayek',
             'display_name': 'Rathayek',
+          },
+        {
+            'font_path': '/fonts/Meitei/EyekPro-Regular.ttf',
+            'font_name': 'EyekPro-Regular',
+            'display_name': 'EyekPro-Regular',
           },
         ]
 
         self.lang_list = [LanguageCode]  # This may be extended
 
         self.kb_list = [
-          {'shortName': 'mniCdac',
-           'longName': 'Meitei Mayek',
+            {'shortName': 'mniCdac',
+             'longName': 'Meitei Mayek',
            },
           {'shortName': 'mni2015',
            'longName': 'Meitei Mayek 2015',
@@ -111,11 +113,11 @@ class langInfo:
         self.links = links
 
         # TODO: Fill in with diacritics
-        self.diacritic_list = [unichr(x) for x in range(0x300, 0x330)]
+        self.diacritic_list = [chr(x) for x in range(0x300, 0x330)]
         # TODO: Fill in base consonant
         self.default_base_consonant = u'\0x61'
-        self.unicodeChars = [unichr(x) for x in range(0xABC0, 0xAc00)]
-        self.unicodeChars.extend([unichr(x) for x in range(0xAAE, 0xAf00)])
+        self.unicodeChars = [chr(x) for x in range(0xABC0, 0xAc00)]
+        self.unicodeChars.extend([chr(x) for x in range(0xAAE, 0xAf00)])
 
         self.encodedRanges = [
             (0x30, 0x39), (0x3d, 0x3d), (0x41, 0x47), (0x49, 0x49),
@@ -127,18 +129,8 @@ class langInfo:
         # For additional resources for download
         self.text_file_list = []
         # TODO: Fill in the rest of the common data.
+        self.to_keyman = True
 
 
 langInstance = langInfo()
 
-app = webapp2.WSGIApplication([
-  ('/' + LanguageCode + '/', base.LanguagesHomeHandler),
-  ('/' + LanguageCode + '/AllFonts/', base.AllFontTest ),
-  ('/' + LanguageCode + '/convertUI/', base.ConvertUIHandler),
-  ('/' + LanguageCode + '/downloads/', base.Downloads),
-  ('/' + LanguageCode + '/encodingRules/', base.EncodingRules),
-  ('/' + LanguageCode + '/diacritic/', base.DiacriticHandler),
-  ('/' + LanguageCode + '/kbtransforms/', base.KeyboardTransforms),
-], debug=True,
-  config={'langInfo': langInstance}
-)

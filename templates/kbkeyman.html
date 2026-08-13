@@ -41,7 +41,6 @@
     {% for kb in keyboards %}
     <script src="/static/layouts/{{kb.shortName}}.js"></script>
     {% endfor %}
-    <script src="/static/layouts/{{kb_js}}.js"></script>
     <script src="/static/js/kmexport/kmexport.js"></script>
 <script>
 
@@ -62,12 +61,19 @@
     const layout = layouts[layout_name];
     let kbResults = map_en_to_x(layout, true);
 
+    const split_results = kbResults.split('SORTED BY OUTPUT:');
+    const kb_area = document.getElementById('output');
+    kb_area.innerHTML = split_results[0];
+
+    const sorted_area = document.getElementById('output_sorted2');
+    sorted_area.innerHTML = split_results[1];
+
     const doMobile = true;
     const outputTransforms = null;
     const mobileOptions = getMobileOptions();
 
-    const mobileResults = map_en_to_x(
-        layout, true, doMobile, outputTransforms, mobileOptions);
+    //const mobileResults = map_en_to_x(
+    //    layout, true, doMobile, outputTransforms, mobileOptions);
 
     // Finish this
     let rules = getTransforms(layout);
@@ -76,7 +82,7 @@
     output.innerHTML = kbResults;
 
     output = document.getElementById('touch_output');
-    output.innerHTML = mobileResults;
+    //output.innerHTML = mobileResults;
   }
 
   function onPageLoaded() {
@@ -99,7 +105,7 @@ function onError() {
   <label for="kb_selector">Select a keyboard layout</label>
   <select id="kb_selector" onchange="change_layout(this.value, true);">
   {% for kb in keyboards %}
-    <option value="{{kb.shortName}}">{{kb.longName}}</option>{% endfor %}
+    <option value="{{kb.shortName}}" {%if kb.shortName == kb_js%}selected{%endif%}>{{kb.longName}}</option>{% endfor %}
   </select>
   <br />
 
@@ -112,6 +118,8 @@ function onError() {
 
     <h1>Load keyboard</h1>
   <textarea id="output"></textarea>
+     <h1>Keyboard sorted by output </h1>
+  <textarea id="output_sorted2"></textarea>
   <h1>Mobile touch</h1>
   <textarea id="touch_output"></textarea>
 </body>

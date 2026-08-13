@@ -32,10 +32,6 @@ var MNI2015_LAYOUT = {
     },
     'l,cl': {
       '': '`1234567890-=' +
-
-
-
-
           'qwertyuiop[]\\' +
           'asdfghjkl;\'' +
           'zxcvbnm,./'

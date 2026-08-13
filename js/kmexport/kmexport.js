@@ -76,6 +76,8 @@ function map_qwerty(layer_values, layer_txt, querty_names) {
             lastPartLoc = item.indexOf('||', lastPartLoc+ 1);
             item = item.substring(lastPartLoc+ 2);
         }
+        // Ignore empty keys, i.e., \u0000
+        if (item == '\u0000') continue;
         let hex = utf16common(item, "U+", " ", true, []);
         layer_list.push("+ [" + layer_txt + querty_names[upper] + "] > " + hex);
     } else {
@@ -220,12 +222,13 @@ function map_en_to_x(layout, outputCtrlAlt, outputMobile, outputTransforms, opti
         layers.push("\n");
 
         if (outputCtrlAlt) {
+            // Make these output for CTRL and CTRL SHIFT
             base = propContaining(keys, "c");
             Array.prototype.push.apply(layers, map_qwerty(vals[base][""], "CTRL ", qwerty_names));
             layers.push("\n");
 
             base = propContaining(keys, "sc");
-            Array.prototype.push.apply(layers, map_qwerty(vals[base][""], "SHIFT CTRL ", qwerty_names));
+            Array.prototype.push.apply(layers, map_qwerty(vals[base][""], "CTRL SHIFT", qwerty_names));
 
             // !!! TODO: Add T_ identifiers.
         }

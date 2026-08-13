@@ -40,6 +40,7 @@ import khamti
 import kpelle
 import lepcha
 import mendekikakui
+import meitei
 import mundari
 import omq
 import phake
@@ -88,6 +89,7 @@ language_info_dict['kht'] = khamti.langInfo()
 language_info_dict['kpe'] = kpelle.langInfo()
 language_info_dict['lep'] = lepcha.langInfo()
 language_info_dict['men'] = mendekikakui.langInfo()
+language_info_dict['mni'] = meitei.langInfo()
 language_info_dict['nst'] = tangsa.langInfo()
 language_info_dict['omq'] = omq.langInfo()
 language_info_dict['phk'] = phake.langInfo()
@@ -171,7 +173,7 @@ LanguageList = [
     # ('Blackfoot', 'bla', 'ᓱᖽᐧᖿ'),  # Added 10-Nov-2021
     # ('Tamil', 'ta', 'தமிழ்'),
     # ('Santali', 'sat', 'ᱥᱟᱱᱛᱟᱲᱤ'),
-    # ('Meitei (Manipuri)', 'mni', 'ꯃꯤꯇꯩ ꯃꯌꯦꯛ'),
+    ('Meitei (Manipuri)', 'mni', 'ꯃꯤꯇꯩ ꯃꯌꯦꯛ'),
     ('Aiton', 'aio', '(တႝ)ဢႝတွꩫ်'),
     ('Khamti', 'kht', '(တဲး)ၵမ်းတီ'),
     # ('Kalabari', 'ijn'),

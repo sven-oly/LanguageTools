@@ -10,7 +10,7 @@ var keymanCreator = new keymanOutput();
 keymanOutput.prototype.createKeymanData = function(
         outArea, layout, outputCtrlAlt, outputMobile, outputTransforms) {
     const results = map_en_to_x(layout, outputCtrlAlt, outputMobile, outputTransforms);
-    outArea.innerHTML = results;
+    outArea.innerHTML = results.split('SORTED BY OUTPUT:')[0];
 }
 
 // TODO: Fix this to avoid globals.
@@ -76,6 +76,8 @@ function map_qwerty(layer_values, layer_txt, querty_names) {
             lastPartLoc = item.indexOf('||', lastPartLoc+ 1);
             item = item.substring(lastPartLoc+ 2);
         }
+        // Don't output empty keys
+        if (item == '\u0000') continue;
         let hex = utf16common(item, "U+", " ", true, []);
         layer_list.push("+ [" + layer_txt + querty_names[upper] + "] > " + hex);
     } else {
@@ -213,20 +215,17 @@ function map_en_to_x(layout, outputCtrlAlt, outputMobile, outputTransforms, opti
     } else {
         // Append
         Array.prototype.push.apply(layers, map_qwerty(vals[base][""], "", qwerty_names))
-        layers.push("\n");
 
         base = propContaining(keys, "s");
         Array.prototype.push.apply(layers, map_qwerty(vals[base][""], "SHIFT ", qwerty_names));
-        layers.push("\n");
 
         if (outputCtrlAlt) {
             base = propContaining(keys, "c");
             Array.prototype.push.apply(layers, map_qwerty(vals[base][""], "CTRL ", qwerty_names));
-            layers.push("\n");
 
             base = propContaining(keys, "sc");
             if (base) {
-                Array.prototype.push.apply(layers, map_qwerty(vals[base][""], "SHIFT CTRL ", qwerty_names));
+                Array.prototype.push.apply(layers, map_qwerty(vals[base][""], "CTRL SHIFT ", qwerty_names));
 
             }
 
@@ -238,8 +237,25 @@ function map_en_to_x(layout, outputCtrlAlt, outputMobile, outputTransforms, opti
         if (outputTransforms) {
             transforms = getTransforms(layout);
         }
+        const by_output = layers.slice();
 
-        return comments + "\n" + storeInfo + "\n" + layers.join('\n') + "\n" + transforms;
+        layers.sort();
+
+        // Create sorted list by output Unicode.
+        by_output.sort((a,b) => {
+          const a_out = a.split(' > ')[1];
+          const b_out = b.split(' > ')[1];
+          if (a_out < b_out) return -1;
+          if (a_out > b_out) return 1;
+          return 0;;
+        });
+
+        results =
+            comments + "\n" + storeInfo + "\n" + layers.join('\n') + "\n" + transforms +
+            '\n\n\nSORTED BY OUTPUT:\n' +
+            by_output.join('\n')
+
+        return results;
     }
 }
 
