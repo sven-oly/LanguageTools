@@ -25,7 +25,7 @@ langConverter.addOne2OneTransforms(
 );
 langConverter.addOne2OneTransforms(
   "abcdefghijklmnopqrstuvwxyz",
-  "\uab35\uabd5\uabc6\uabd7\uabe6\uabd0\uabd2\uabcd\uabe4\uabd6\uabc0\uabc2\uabc3\uabc5\uabe3\uabc4\uabea\uabd4\uabc1\uabc7\uabe8\uabda\uabcbx\uabccz",
+  "\uabe5\uabd5\uabc6\uabd7\uabe6\uabd0\uabd2\uabcd\uabe4\uabd6\uabc0\uabc2\uabc3\uabc5\uabe3\uabc4\uabea\uabd4\uabc1\uabc7\uabe8\uabda\uabcbx\uabccz",
   1
 );
 langConverter.addOne2OneTransforms(
