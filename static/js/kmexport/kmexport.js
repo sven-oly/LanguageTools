@@ -250,10 +250,16 @@ function map_en_to_x(layout, outputCtrlAlt, outputMobile, outputTransforms, opti
           return 0;;
         });
 
+        const reversed = [];
+        for (const item of by_output) {
+            const sp = item.split(' > ');
+            reversed.push(sp[1] + '< ' + sp[0].replace('+ ', ''));
+        }
+
         results =
             comments + "\n" + storeInfo + "\n" + layers.join('\n') + "\n" + transforms +
             '\n\n\nSORTED BY OUTPUT:\n' +
-            by_output.join('\n')
+            reversed.join('\n')
 
         return results;
     }
@@ -375,9 +381,6 @@ function get_en_layer(map, en_mappings) {
 
 // Can this identify dead keys?
 function getTransforms(layout) {
-    let transform_list = [];
-    if (!transform_list) return transform_list;
-
     const en_qwerty = EN_LAYOUT['mappings'];
     const mappings = layout['mappings'];
     let reverse_map = {};
@@ -395,6 +398,7 @@ function getTransforms(layout) {
       }
     }
 
+    let transform_list = [];
     transform_list.push("c Transforms");
     let transforms = layout['transform'];
     // For each key in the transforms dictionary:

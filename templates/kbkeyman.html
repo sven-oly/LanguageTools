@@ -16,7 +16,6 @@
     }
     </style>
     <script>
-    // TESTING
     var loaded_layout = '';
     function layout_info(x) {
       layout_loaded = x;
@@ -33,9 +32,6 @@
 
      google.elements.keyboard.loadme.prototype = layout_info;
 
-     //google.elements.keyboard.loadme.prototype = function(a) {
-//      return a;
-     //};
     </script>
     <script src="/static/layouts/en.js"></script>
     {% for kb in keyboards %}
@@ -72,26 +68,15 @@
     const outputTransforms = null;
     const mobileOptions = getMobileOptions();
 
-    //const mobileResults = map_en_to_x(
-    //    layout, true, doMobile, outputTransforms, mobileOptions);
-
-    // Finish this
+    // TODO: Add transforms to output.
     let rules = getTransforms(layout);
-
-    let output = document.getElementById('output');
-    output.innerHTML = kbResults;
-
-    output = document.getElementById('touch_output');
-    //output.innerHTML = mobileResults;
   }
 
   function onPageLoaded() {
     // Compute mobile first because T_ constants are created there.
     const layout_name = '{{kb_js}}';  // The default layout for this keyboard
-
     change_layout(layout_name);
-
-}
+  }
 
 function onError() {
     alert('ERROR');
