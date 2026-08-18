@@ -208,7 +208,11 @@
             let fontName;
             for (let i = 0; i<encoding_font_list.length; i ++) {
                 const fontName = encoding_font_list[i];
+                if (!(fontName in langConverter.encoding_data)) {
+                  continue;
+                }
                 if (langConverter.encoding_data) {
+
                     encodingIndex = langConverter.encoding_data[fontName].index;
                 } else if (typeof map_font_to_encoding == 'object') {
                     encodingIndex =  encoding_data[fontName];

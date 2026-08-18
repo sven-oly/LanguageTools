@@ -90,7 +90,7 @@ class langInfo:
         for font in more_encoding_fonts:
             self.encoding_font_list.append({
                 'font_path': '/fonts/Meitei/' + font,
-                'font_name': font,
+                'font_name': font.replace('.TTF', '').replace('.ttf', ''),
                 'display_name': font.replace('.TTF', '').replace('.ttf', ''),
             })
         print('## self.encoding_font_list: \n%s' % self.encoding_font_list)
