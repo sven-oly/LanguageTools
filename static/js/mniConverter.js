@@ -2,18 +2,18 @@
 const langConverter = new langConverterClass('mni', 'Meitei');
 
 langConverter.addOne2OneTransforms(
-  "ABCDEFGIKMNORSTWXZ",
-  "ꯝꯎꯓ꯭ꯟꯊꯠꯪꯁꯜꯞꯣꯙꯈꯏꯐꯘꯉ", 0
+  "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+  "ꯝꯎꯓ꯭ꯟꯊꯠHꯪJꯁLꯜꯞꯣPQꯙꯈꯏUVꯐꯘYꯉ", 0
 );
 
 langConverter.addOne2OneTransforms(
-  "abcdefgijklmopqrsvwxyz",
-  "ꯃꯨꯖꯛꯅꯇꯤꯡꯔꯥꯦꯂꯍꯩꯕꯗꯀꯆꯄꯒꯧꯚ", 0
+  "abcdefghijklmnopqrstuvwxyz",
+  "ꯃꯨꯖꯛꯅꯇꯤhꯡꯔꯥꯦꯂnꯍ\uabe9ꯕꯗꯀtuꯆꯄꯒꯧꯚ", 0
 );
 
 langConverter.addOne2OneTransforms(
   "1234567890[]\\=",
-  "꯱꯲꯳꯴꯵꯶꯷꯸꯹꯰ꯑꯢꯌꯆ",
+  "꯱꯲꯳꯴꯵꯶꯷꯸꯹꯰ꯑ]ꯌꯆ",
   0
 );
 
@@ -36,13 +36,13 @@ langConverter.addOne2OneTransforms(
 
 // For Eeyek font - TODO: finish
 langConverter.addOne2OneTransforms(
-  "=ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]",
-  "=\uabe5\uabd5C\uabd9\uabe9F\uabd8\uabe1\uabcf\uabd3\uabc8\uabdc\uabdd\uabdf\uabe7\uabde\uabdb\u20B9S\uabca\uabceVWX\uabe0\uabc9[\\]",
+  "=ABCDEFGHIJKLMNOPQRTUYZ[\\]",
+  "=\uabe5\uabd5\uabc6\uabd9\uabe9\uabd0\uabd8\uabe1\uabcf\uabd3\uabc8\uabdc\uabdd\uabdf\uabe7\uabde\uabdb\u20B9\uabca\uabce\uabe0\uabc9[\\]",
   2
 );
 langConverter.addOne2OneTransforms(
-  "abcdefghijklmnopqrstuvwxyz",
-  "\uabd1\uabd5\uabc6\uabd7\uabe6\uabd0\uabd2\uabcd\uabe4\uabd6\uabc0\uabc2\uabc3\uabc5\uabe3\uabc4\uabea\uabd4\uabc1\uabc7\uabe8\uabda\uabcbx\uabcc\uabeb",
+  "abcdefghijklmnopqrstuvwyz",
+  "\uabd1\uabd5\uabc6\uabd7\uabe6\uabd0\uabd2\uabcd\uabe4\uabd6\uabc0\uabc2\uabc3\uabc5\uabe3\uabc4\uabea\uabd4\uabc1\uabc7\uabe8\uabda\uabcb\uabcc\uabeb",
   2
 );
 langConverter.addOne2OneTransforms(
@@ -51,26 +51,27 @@ langConverter.addOne2OneTransforms(
   2
 );
 
-// Rathayek - almost the same as RATHA99 and RATHA
+// rathayek - almost the same as RATHA99 and RATHA
 langConverter.addOne2OneTransforms(
-  "ABCDEFGIKMNORSTWXZ",
-  "ꯝꯎꯓ꯭ꯟꯊꯠꯪꯁꯜꯞꯣꯙꯈꯏꯐꯘꯉ",
+  "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+  "ꯝꯎꯓ꯭ꯟꯊꯠHꯪJꯁLꯜꯞꯣPQꯙꯈꯏUVꯐꯘYꯉ",
   3
 );
 langConverter.addOne2OneTransforms(
-  "abcdefgijklmopqrsvwxyz",
-  "ꯃꯨꯖꯛꯅꯇꯤꯡꯔꯥꯦꯂꯍꯩꯕꯗꯀꯆꯄꯒꯧꯚ", 3
+  "abcdefghijklmnopqrstuvwxyz",
+  "ꯃꯨꯖꯛꯅꯇꯤhꯡꯔꯥꯦꯂnꯍꯩꯕꯗꯀtuꯆꯄꯒꯧꯚ",
+  3
 );
 langConverter.addOne2OneTransforms(
   "1234567890[]\\=",
-  "꯱꯲꯳꯴꯵꯶꯷꯸꯹꯰ꯑꯢꯌ=",
+  "꯱꯲꯳꯴꯵꯶꯷꯸꯹꯰ꯑ]ꯌ=",
   3
 );
 
 // For all the other fonts - maybe not yet correct.
 langConverter.addOne2OneTransforms(
-  "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
-  "\uabd1\uabed\uabed\uabd9\uabe9\uabd7\uabd8\uabca\uabcf\uabd3\uabdb\uabdc\uabdd\uabdf\uabe7\uabde\uabe8√\uabd8\uabe0\uabcd\u2192\'\u00d7\u00f7\uabe1",
+  "ABCDEFGHIJKLMNOPQRTUVWXYZ",
+  "\uabd1\uabed\uabed\uabd9\uabe9\uabd7\uabd8\uabca\uabcf\uabd3\uabdb\uabdc\uabdd\uabdf\uabe7\uabde\uabe8√\uabca\uabce\u2192\'\u00d7\uabe0\uabc9",
   4
 );
 // Rathayek - almost the same as RATHA99 and RATHA
@@ -85,15 +86,48 @@ langConverter.addOne2OneTransforms(
   4
 );
 
+// For RATHA1
+langConverter.addOne2OneTransforms(
+  "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+  "ꯑ꯭꯭ꯙꯩꯗꯘꯊꯏꯓꯛꯜꯝꯞ\uabe7ꯞ\uabe8√ꯈꯠꯎ→\'×÷ꯡ", 5
+);
+
+langConverter.addOne2OneTransforms(
+  "abcdefghijklmnopqrstuvwxyz",
+  "\uabe5ꯕꯆꯗ\uabe6ꯐꯛꯍ\uabe4ꯖꯀꯂꯃꯅ\uabe3ꯄꯑꯔꯁꯇ\uabe8ꯚꯋꯪꯌꯉ", 5
+);
+
+langConverter.addOne2OneTransforms(
+  "1234567890[]\\=",
+  "꯱꯲꯳꯴꯵꯶꯷꯸꯹꯰[]\\=",
+  5
+);
+
+// EyekAhobi-Regular
+langConverter.addOne2OneTransforms(
+  "ABCDEFGHIJKLMNOPQRTUYZ",
+  "\uabe5ꯕꯆ\uabd9\uabe9ꯐ\uabd8ꯡ\uabcf\uabd3ꯈ\uabdc\uabdd\uabdf\uabe7\uabdeꯛ₹\uabca\uabce\uabe0\uabc9",
+  6
+);
+langConverter.addOne2OneTransforms(
+  "abcdefghijklmnopqrstuvwyz",
+  "ꯑ\uabd5\uabc6\uabd7\uabe6\uabd0ꯒ\uabcd\uabe4\uabd6\uabc0\uabc2\uabc3\uabc5\uabe3\uabc4\uabea\uabd4\uabc1\uabc7\uabe8\uabda\uabcb\uabcc\uabc9",
+  6
+);
+langConverter.addOne2OneTransforms(
+  "1234567890[]\\=",
+  "꯱꯲꯳꯴꯵꯶꯷꯸꯹꯰[]\\=",
+  6
+);
 // Font encoding information.
 // Map by font name, index in lookup table, output encoding, output script.
 langConverter.encoding_data = {
     'RATHA99': {index:0, outputEncoding:'Unicode', outputScript:'Meitei'},
     'RATHA': {index:0, outputEncoding:'Unicode', outputScript:'Meitei'},
-    'RATHA1': {index:0, outputEncoding:'Unicode', outputScript:'Meitei'},
+    'RATHA1': {index:5, outputEncoding:'Unicode', outputScript:'Meitei'},
     'rathayek': {index:3, outputEncoding:'Unicode', outputScript:'Meitei'},
     'EPAOMAYEK': {index:1, outputEncoding:'Unicode', outputScript:'Meitei'},
-    'EyekAhobi-Regular': {index:4, outputEncoding:'Unicode', outputScript:'Meitei'},
+    'EyekAhobi-Regular': {index:6, outputEncoding:'Unicode', outputScript:'Meitei'},
     'EyekPro-Regular': {index:2, outputEncoding:'Unicode', outputScript:'Meitei'},
     // TODO: complete
     "Kachappa1": {index:4, outputEncoding:'Unicode', outputScript:'Meitei'},

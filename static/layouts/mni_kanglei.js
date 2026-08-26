@@ -20,13 +20,13 @@ var MNI_KANGLEI = {
   'mappings': {
     ',c': {
       '': '`꯱꯲꯳꯴꯵꯶꯷꯸꯹꯰-=' +
-          '\uabd1\uabcb\uabe7\uabd4\uabc7\uabcc\uabe8\uabe4\uabe3\uabc4[]\\' +
+          '\uabd1\uabcb\uabe6\uabd4\uabc7\uabcc\uabe8\uabe4\uabe3\uabc4[]\\' +
           '\uabe5\uabc1\uabd7\uabd0\uabd2\uabcd\uabd6\uabc0\uabc2;\'' +
           '\uabc9\uabea\uabc6\uabda\uabd5\uabc5\uabc3,./'
     },
     's,sc': {
       '': '~!@#$%^√*()_+' +
-          '\uabe8\u0301\uabe7\√\uabe0÷\uabce\uabcf\uabe7\uabde{}|' +
+          '\uabe8\u0301\uabe7\√\uabe0÷\uabce\uabcf\uabe3\uabde{}|' +
           '\uabd1\uabc8\uabd9\uabd7\uabd8\uabca\uabd3\uabdb\uabdc:"' +
           '\uABE1X\uabed\u276F\uabed\uabdf\uabdd:\uabeb?'
     },
