@@ -74,7 +74,7 @@ class langInfo:
         self.lang_list = [Language]
         self.kb_list = [
             {'shortName': 'lep_Munsalong',
-             'longName': 'Munsalon Lepcha',
+             'longName': 'Munsalong Lepcha',
              'source': 'Lepcha community'
              },
             {'shortName': 'lep_rong',
@@ -93,6 +93,9 @@ class langInfo:
              'ref': '/convert/%s' % LanguageCode},
             {'linkText': 'Font conversion summary',
              'ref': '/encodingRules/%s' % LanguageCode,
+             },
+            {'linkText': 'Combiners',
+             'ref': '/diacritic/%s' % LanguageCode
              },
             {'linkText': 'Resources',
              'ref': '/downloads/%s' % LanguageCode,
@@ -114,9 +117,10 @@ class langInfo:
              },
             {'linkText': 'SIBLAC',
              'ref': 'http://www.siblac.org/index.html'},
-            {'linkText': 'Combiners',
-             'ref': '/diacritic/%s' % LanguageCode
-             },
+            {'linkText': 'Darjeeling Unlimited',
+             'ref': 'http://www.darjeeling-unlimited.com/rongring.html',
+             'info': 'Some history of Lepcha script and language'
+            }
         ]
 
         resource_list = [
