@@ -19,6 +19,16 @@ let langConverterClass = function(langCode, langName) {
     this.private_use_encodings = null;
     this.customConverter = null
     this.build_custom_map = null;
+
+    // Use this to take values from the converter private use to make a
+    // Google input tools style keyboard for an ASCII-based font
+    this.key2qwerty = {
+      '': '`1234567890-=qwertyuiop[[]\\asdfghjkl;\'zxcvbnm,./',
+      's': '~!@#$%^&*()_+QWERTYUIOP{}|ASDFGHJKL:"ZXCVBNM<>?',
+      'c': '',
+      'l': '',
+    };
+    this.support_qwerty = false;
 }
 
 // Two arrays of characters for conversion

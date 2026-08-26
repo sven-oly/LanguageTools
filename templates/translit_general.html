@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -100,11 +100,13 @@
            let encodingInfo;
            let translitInfo;
            let private_use_encodings;
+           let qwerty_from_ascii_ok = false;
            if (langConverter) {
                // This works!
                encodingInfo = langConverter.decodingInfo();
                translitInfo = langConverter.translitInfo();
                private_use_encodings = langConverter.private_use_encodings;
+               qwerty_from_ascii_ok = langConverter.support_qwerty;  // TODO: implement this to get converter layouts based on ASCII
            }
 
            diff_list = [];
@@ -225,6 +227,36 @@
                updateHex(target, hex_target);
            }
 
+           function generate_ascii_kb() {
+             // Take the converter and create the Google Input Tools format for the layout
+             // based on QWERTY layout.
+             const font_selected = document.getElementById('#selectEncodingFont');
+
+             let chosenOption = getConverterSelection();
+             const converterOption = convertOptions[chosenOption];
+             const convertFn = converterOption['compute'];
+
+             const qwerty_lists = langConverter.key2qwerty;
+             let keys = Object.keys(qwerty_lists);
+             for (const key of keys) {
+               let outline_items = [];
+               const qwerty_level = qwerty_lists[key];
+               // Next, for each entry in this level that has a QWERTY mapping,
+               // Add to the items
+               const all_chars = qwerty_level.split();
+
+               // Look up each character with the converter
+               for (const input_char of all_chars) {
+                 const output = convertFn(input_char, chosenOption, langInformation.langCode);
+                 if (output) {
+                    outline_items.push(output);
+                 } else {
+                    outline_items.push('\{\{\}\}');
+                 }
+               }
+             }
+           }
+
            // Fills the input with all the characters in the old range.
            function fillWithUnicodeText(target, hex_target) {
                const output_text = document.getElementById(target);
@@ -275,10 +307,8 @@
 
            function regression_test(good_results) {
                const keys = Object.keys(good_results);
-
                for (key of keys) {
                    // Get the data and convert, checking if it's still the same as good results.
-                   
                }
                    
            }
@@ -417,10 +447,8 @@
                var new_text =
                    toggle_grapheme_boundary_chars(text, toggle.checked, grapheme_boundary_char);
                text_area.innerHTML = text_area.value = new_text;
-           }
-           {% endif %}
-           
-           
+           }{% endif %}
+
            {% if converters %}
            function newConverter(type, input_id, output_id, outtype_id) {
                var input_area = document.getElementById(input_id);
@@ -445,8 +473,7 @@
                updateHex(output_id, 'new_hex');
                // Rehighlight it.
                input_area.focus();
-           }
-           {% endif %}
+           }{% endif %}
 
          </script>
          <script src="/static/js/langinfo/langdata.js"></script>
@@ -647,6 +674,11 @@
                    saveStatusToServer(0);  // Indicate window closing
                }
 
+               if (qwerty_from_ascii_ok) {
+                 // Turn on the control to generate a keyboard based on ASCII
+                 const qwerty_kb_control = document.getElementById('gen_qwerty_kb');
+                 qwerty_kb_control.hidden = false;
+               }
                // Check previously OK strings
                if (good_results) {
                    regression_test(good_results);
@@ -745,7 +777,9 @@
                      >
                   <input type="button" value="All old chars"
                          onclick="fillWithOldChars('old_font_input_text', 'old_hex')">
-                  {% for text in textStrings %}
+                  <input type="button" value="Generate ASCII keyboard" id="gen_qwerty_kb"
+                         onclick="generate_ascii_kb('old_font_input_text', 'old_hex')" hidden>
+              {% for text in textStrings %}
                   <input type="button" value="{{text.name}}"
                          onclick="fillAreaWithChars('{{text.string}}', 'old_font_input_text', 'old_hex');">
                   {% endfor %}
