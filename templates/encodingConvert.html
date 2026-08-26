@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="utf-8"/>
 
@@ -44,16 +44,30 @@
     }{% endfor %}
   </style>
   <style>
+    /* 1. Create a scrollable container for the table */
+    .table-container {
+      max-height: 1000px;
+      overflow-y: auto;
+    }
     table {
+      width: 100%;
       border-collapse: collapse;
     }
-    table, th, td {
+   td {
       border: 1px solid black;
+      padding: 12px;
+        text-align: center;
+        width: 100px;
+        font-size:16px;
     }
-    td {
-    text-align: center;
-    width: 120px;
-    font-size:20px;
+    /* 2. Make the header cells sticky */
+    th tr {
+        background-color:red;
+
+        position: sticky;
+        top: 0;
+        background-color: #f8f9fa; /* Required: prevents data from showing behind text */
+        z-index: 1;                /* Keeps header layers on top of scrolling body rows */
     }
   </style>
 
@@ -66,9 +80,12 @@
   // Get data from converter.
   let private_use_map_combined = undefined;
   let encoding_data;
+  // TEST: QWERTY from ASCII?
+  let qwerty_from_ascii_ok = false;
   if (langConverter) {
     private_use_map_combined = langConverter.one2oneMap;
     encoding_data = langConverter.encoding_data;
+    qwerty_from_ascii_ok = langConverter.support_qwerty;  // TODO: implement this to get converter layouts based on ASCII
   }
 
   const k = { loadme: Object};
@@ -161,7 +178,6 @@
         outIndex += 1;
 
         for (let i = 0 ; i < encoding_font_list.length; i ++) {
-            row = table.rows[0];
             row.insertCell(outIndex).innerHTML = encoding_display_names[i];
             outIndex += 1;
             cell2 = row.insertCell(outIndex)
@@ -289,11 +305,10 @@
                 }
             }
         }
-}
+    }
 
   </script>
 </head>
-
 
 <body onload="onPageLoaded();">
   <h1>{{conversion_language}} encoding converters to Unicode</h1>
@@ -309,32 +324,12 @@
        onchange="toggleConvertedVS('Unicode_font_output_text', toggleVS);">Variation sequences activated<br />
 {% endif %}
 
-  {% if encoding_tables %}
-    DisplayTable: <select id='selectTable' onchange="onEncodingSelected(this, 'encoding_table_area')">
-      {% for table, value in encoding_tables.items %}
-      <option value="{{table}}" select="">{{table}}</option>
-      {% endfor %}
-    </select>
+  <div class="table-container">
+      <h2>Old code table</h2>
+      <table id='column_table'>
+      <!-- to be filled -->
+      </table>
+  </div>
 
-    {% if converter_list%}
-    DisplayTable: <select id='converter_select' onchange="changeConverter(this)">
-
-    </select>
-    {% endif %}
-    <br/>
-
-    <!-- TEMPORARY -->
-  <h2>Encoding table</h2>
-  <table id='encoding_table_area' border="3">
-  <br/><br/>
-  {% endif %}
-  <h2>Old code table</h2>
-  <table id='column_table' border="1">
-
-  </table>
-
-
-
-  </table>
 </body>
 </html>
