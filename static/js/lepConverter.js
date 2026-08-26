@@ -12,6 +12,9 @@ langConverter.encoding_data = {
     'Munsalong': {index:2, outputEncoding:'Unicode', outputScript:'Lepcha'},
 };
 
+// Show the tool to get ASCII-based keyboard layout.
+langConverter.support_qwerty = true;
+
 // 1c00 is the base.
 // \u200b is used to mark values that need to be moved right over other values
 private_use_map_combined = {
@@ -22,7 +25,7 @@ private_use_map_combined = {
     '\u0025': ['\u1c25', '\u1c29\u200b\u1c31', '\u1c25'],
     '\u0026': ['\u1c24', '\u1c29\u200b\u1c32', '\u1c24'],
     '\u0027': ['\'', '\u1c29\u200b\u1c33', '\''],
-    '\u0028': ['*', '\u1c2d\u1c36', '*'],
+    '\u0028': ['(', '\u1c2d\u1c36', '*'],
     '\u0029': ['\u1c25', '\u1c2e\u1c36', '\u1c25'],
     '\u002a': ['\u1c24', '\u1c2f\u1c36', '\u1c24'],
     '\u002b': ['\u1c36', '\u1c30\u1c36', '\u1c36'],
@@ -107,22 +110,26 @@ private_use_map_combined = {
     '\u0078': ['x', '\u1c04', '\u1c00\u1c37\u1c25\u1c2c'],
     '\u0079': ['y', '\u1c1a', '\u1c1d\u1c37\u1c25\u1c2c'],
     '\u007a': ['z', '\u1c19', '\u1c03\u1c37\u1c25\u1c2c'],
-    '\u007b': ['\u1c2d', '\u1c19', '\u1c2d'],
+    '\u007b': ['\u1c2d', '{', '\u1c2d'],
+    '\u007c': ['|', '|', '|'],
+    '\u007d': ['}', '}', '%'],
 
-    '\u00c0': ['', '\u1c00\u1c24', ''],
-    '\u00c1': ['', '\u1c02\u1c24', ''],
-    '\u00c2': ['', '\u1c03\u1c24', ''],
-    '\u00c3': ['', '\u1c0a\u1c24', ''],
-    '\u00c4': ['', '\u1c0b\u1c24', ''],
-    '\u00c5': ['', '\u1c0c\u1c24', ''],
-    '\u00c8': ['', '\u1c0e\u1c24', ''],
-    '\u00c9': ['', '\u1c10\u1c24', ''],
-    '\u00ca': ['', '\u1c11\u1c24', ''],
-    '\u00cb': ['', '\u1c13\u1c24', ''],
-    '\u00cc': ['', '\u1c15\u1c24', ''],
-    '\u00cd': ['', '\u1c1b\u1c24', ''],
-    '\u00ce': ['', '\u1c1c\u1c24', ''],
-    '\u00cf': ['', '\u1c1d\u1c24', ''],
+    '\u00c0': ['À', '\u1c00\u1c24', '+'],
+    '\u00c1': ['Á', '\u1c02\u1c24', ':'],
+    '\u00c2': ['Â', '\u1c03\u1c24', '+'],
+    '\u00c3': ['Ã', '\u1c0a\u1c24', '('],
+    '\u00c4': ['Ä', '\u1c0b\u1c24', ')'],
+    '\u00c5': ['Å', '\u1c0c\u1c24', '['],
+    '\u00c6': ['Æ', 'Æ', ']'],
+    '\u00c7': ['Ç', 'Ç', '{'],
+    '\u00c8': ['È', '\u1c0e\u1c24', '}'],
+    '\u00c9': ['É', '\u1c10\u1c24', '<'],
+    '\u00ca': ['Ê', '\u1c11\u1c24', '>'],
+    '\u00cb': ['Ë', '\u1c13\u1c24', 'Ë'],
+    '\u00cc': ['Ì', '\u1c15\u1c24', 'Ì'],
+    '\u00cd': ['Í', '\u1c1b\u1c24', 'Í'],
+    '\u00ce': ['Î', '\u1c1c\u1c24', 'Î'],
+    '\u00cf': ['Ï', '\u1c1d\u1c24', 'Ï'],
 
     '\u00d2': ['', '\u1c1f\u1c24', ''],
     '\u00d3': ['', '\u1c01\u1c24', ''],
@@ -150,8 +157,8 @@ private_use_map_combined = {
     '\u00ee': ['', '\u1c13\u1c25\u1c24', ''],
     '\u00ef': ['', '\u1c15\u1c25\u1c24', ''],
 
-    '\u00f2': ['', '\u1c1d\u1c25\u1c24', ''],
-    '\u00f3': ['', '\u1c21\u1c24', ''],
+    '\u00f2': ['ò', '\u1c1d\u1c25\u1c24', 'ò'],
+    '\u00f3': ['ó', '\u1c21\u1c24', 'ó'],
 };
 
 langConverter.one2oneMap = langConverter.dictionaryToMap(private_use_map_combined);
