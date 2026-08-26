@@ -97,6 +97,7 @@ class langInfo:
 
         self.fillChars = [chr(x) for x in range(0x61, 0x7b)]
         self.unicodeCombiningChars = self.diacritic_list
+        self.unicodeChars = [chr(x) for x in range(0x16100, 0x1613a)]
 
         resource_list = [
             {
