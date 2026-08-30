@@ -51,22 +51,23 @@ var LEP_RONG_LAYOUT = {
     }
   },
   'transform' : {
-    // Move signs from the left to the right.
+ // Move signs from the left to the right.
     // For two vowel signs and a consonant
     '([\u1c27-\u1c29\u1c34\u1c35])\u200b([\u1c27-\u1c29\u1c34\u1c35])\u200b\u001d([\u1c00-\u1c23\u1c4d-\u1c4f])': '$3\u001d$1$2',
     // Reposition one consonant before the vowel sign
-    '([\u1c27-\u1c29\u1c34\u1c35]+)\u200b([\u1c00-\u1c23\u1c4d-\u1c4f])': '\u001d$2$1',
+    '([\u1c27-\u1c29\u1c34\u1c35]+)\u200b([\u1c00-\u1c23\u1c4d-\u1c4f])': '$2\u001d$1',
 
     // Reorder some marks before a consonant
     '([\u1c2d-\u1c35])\u200b([\u1c27-\u1c2c])\u200b': '\u001d$2\u200b$1\u200b',
 
      // Move Nukta to first position and reposition the mark after the nukta
-     '([\u1c24-\u1c35\u1c36]+)(\u1c37)': '$2\u001d$1',
+     '\u001d([\u1c26-\u1c36]+)([\u1c24\u1c25\u1c37]+)': '$2\u001d$1',
      // Move Ran to the last position
      '(\u1c36)([\u1c24-\u1c35\u1c37]+)': '$2$1',
      // Reposition some marks
-     '\u001d([\u1c2d-\u1c35]+)([\u1c27-\u1c2c]+)': '$2$1',
-
+     '\u001d([\u1c26-\u1c36]+)([\u1c24\u1c25\u1c37]+)': '$2$1',
+     '([\u1c24-\u1c35\u1c36]+)(\u1c37)': '$2\u001d$1',
+     }
 };
 
 // Load the layout and inform the keyboard to switch layout if necessary.

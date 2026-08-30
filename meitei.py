@@ -93,37 +93,6 @@ class langInfo:
                 'font_name': font.replace('.TTF', '').replace('.ttf', ''),
                 'display_name': font.replace('.TTF', '').replace('.ttf', ''),
             })
-        print('## self.encoding_font_list: \n%s' % self.encoding_font_list)
-
-        # self.encoding_font_list = [
-        #     {
-        #         'font_path': '/fonts/Meitei/EPAOMAYEK.TTF',
-        #         'font_name': 'epomayek',
-        #         'display_name': 'E-Pao! Mayak',
-        #         'url': 'https://e-pao.net/epPageExtractor.asp?src=MeiteiMayek.meetei_mayek_keys.html'
-        #     },
-        #     {
-        #     'font_path': '/fonts/Meitei/RATHA99.TTF',
-        #     'font_name': 'RATHA99',
-        #     'display_name': 'RATHA99',
-        #   },
-        #   {
-        #     'font_path': '/fonts/Meitei/RATHA.TTF',
-        #     'font_name': 'RATHA',
-        #     'display_name': 'RATHA',
-        #   },
-        #
-        #   {
-        #     'font_path': '/fonts/Meitei/rathayek.TTF',
-        #     'font_name': 'rathayek',
-        #     'display_name': 'Rathayek',
-        #   },
-        # {
-        #     'font_path': '/fonts/Meitei/EyekPro-Regular.ttf',
-        #     'font_name': 'EyekPro-Regular',
-        #     'display_name': 'EyekPro-Regular',
-        #   },
-        # ]
 
         self.lang_list = [LanguageCode]  # This may be extended
 
@@ -133,13 +102,13 @@ class langInfo:
              },
             {'shortName': 'mniCdac',
              'longName': 'Meitei Mayek',
-           },
-          {'shortName': 'mni2015',
-           'longName': 'Meitei Mayek 2015',
-           },
-          {'shortName': 'mniMtei',
-           'longName': 'Meitei KM',
-           },
+             },
+            {'shortName': 'mni2015',
+             'longName': 'Meitei Mayek 2015',
+             },
+            {'shortName': 'mniMtei',
+             'longName': 'Meitei KM',
+             },
         ]
 
         self.links = links

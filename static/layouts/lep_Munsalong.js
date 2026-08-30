@@ -22,7 +22,7 @@ var LEP_MUNSALONG_LAYOUT = {
       '': '`᱁᱂᱃᱄᱅᱆᱇᱈᱉᱀-=' +
           '\u1C14\u1C23\u1C36\u1C1E{{\u1C00\u1c37\u1c25}}{{\u1c1d\u1c37\u1c25\u1c2c}}{{\u1c1d\u1c37\u1c25}}\u1C2C\u1C0F\u1C12\u1C2D{{\u1C35\u200b}}\u1C37' +
           '\u1C36\u1C16{{\u1C27\u200b}}{{\u1C29\u200b}}\u1C2A\u1C2B{{\u1C34\u200b}}\u1C20\u1C22\u1C2F\u0027' +
-          '{{\u1c03\u1c37\u1c25\u1c2c}}{{\u1c00\u1c37\u1c25\u1c2c}}{{\u1C28\u200B}}{{\u1C03\u1C37\u1C25}}{{\u1C26\u200b}}\u1C04\u1C01,./'
+          '{{\u1c03\u1c37\u1c25\u1c2c}}{{\u1c00\u1c37\u1c25\u1c2c}}{{\u1C28\u200B}}{{\u1C03\u1C37\u1C25}}{{\u1C26}}\u1C04\u1C01,./'
       },
     's': {
       '':  '`!@"$\u1c25\u1c36\u1c24\u1C24*\u1c25\u1c33\u1c36' +
@@ -66,11 +66,12 @@ var LEP_MUNSALONG_LAYOUT = {
     '([\u1c2d-\u1c35])\u200b([\u1c27-\u1c2c])\u200b': '\u001d$2\u200b$1\u200b',
 
      // Move Nukta to first position and reposition the mark after the nukta
-     '([\u1c24-\u1c35\u1c36]+)(\u1c37)': '$2\u001d$1',
+     '\u001d([\u1c26-\u1c36]+)([\u1c24\u1c25\u1c37]+)': '$2\u001d$1',
      // Move Ran to the last position
      '(\u1c36)([\u1c24-\u1c35\u1c37]+)': '$2$1',
      // Reposition some marks
-     '\u001d([\u1c2d-\u1c35]+)([\u1c27-\u1c2c]+)': '$2$1',
+     '\u001d([\u1c2d6-\u1c36]+)([\u1c24\u1c25\u1c37]+)': '$2$1',
+     '([\u1c24-\u1c35\u1c36]+)(\u1c37)': '$2\u001d$1',
 
   }
 };
