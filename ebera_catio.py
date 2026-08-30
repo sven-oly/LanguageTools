@@ -67,6 +67,12 @@ class langInfo:
           {'shortName': LanguageCode,
            'longName': Language,
            },
+            {'shortName': 'cto_hybrid',
+             'longName': Language + 'hybrid',
+             },
+            {'shortName': 'cto_hybrid_freq',
+             'longName': Language + ' hybrid frequency-based',
+             },
         ]
 
         self.links = links

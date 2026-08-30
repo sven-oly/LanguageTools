@@ -11,9 +11,9 @@
 // limitations under the License.
 
 
-var CTO_LAYOUT = {
-  'id': 'cto',
-  'title': 'Emberá Catío',
+var CTO_LAYOUT_HYBRID_FREQ = {
+  'id': 'cto_hybrid_freq',
+  'title': 'Emberá Catío hybrid frequencies',
   'mappings': {
     '': {
       '': '°1234567890\'¿' +
@@ -58,5 +58,5 @@ var CTO_LAYOUT = {
 };
 
 // Load the layout and inform the keyboard to switch layout if necessary.
-google.elements.keyboard.loadme(CTO_LAYOUT);
-cho = CTO_LAYOUT;
+google.elements.keyboard.loadme(CTO_LAYOUT_HYBRID_FREQ);
+cho = CTO_LAYOUT_HYBRID_FREQ;

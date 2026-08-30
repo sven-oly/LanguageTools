@@ -11,15 +11,15 @@
 // limitations under the License.
 
 
-var CTO_LAYOUT = {
-  'id': 'cto',
-  'title': 'Emberá Catío',
+var CTO_LAYOUT_HYBRID = {
+  'id': 'cto_hybrid',
+  'title': 'Emberá Catío Hybrid',
   'mappings': {
     '': {
       '': '°1234567890\'¿' +
-          'qwertyu\u0289op{{\u0289\u0303}}¨+' +
-          'asd\u0257gikl\u00f1\u0303{' +
-          '{{bu}}{{rr}}{{ch}}\u0253bnm,.-'
+          'ĩɗpkmdũɓõpñgq' +
+          'wnierauotlfz' +
+          'ũyẽãbsj{{ʉ̃}}chv,.'
     },
     'c': {
       '': '`1234567890-=' +
@@ -29,9 +29,9 @@ var CTO_LAYOUT = {
     },
     's': {
       '': '|!"#$%&/()_?¡' +
-          'QWERTYU\u0244OP{{\u0244\u0303}}¨*]' +
-          'ASD\u018aGIJKL\u00d1' +
-          '{{BU}}{{RR}}{{CH}}\u1181BNM;:_'
+          'ĨƊPKMDŨƁÕÑGQ' +
+          'WNIERALUOTLFZ' +
+          'ŨYẼÃBSJ{{Ʉ̃}}CHV:"'
     },
     'sc': {
       '': '~!@#$%^&*()_+' +
@@ -58,5 +58,5 @@ var CTO_LAYOUT = {
 };
 
 // Load the layout and inform the keyboard to switch layout if necessary.
-google.elements.keyboard.loadme(CTO_LAYOUT);
-cho = CTO_LAYOUT;
+google.elements.keyboard.loadme(CTO_LAYOUT_HYBRID);
+cho = CTO_LAYOUT_HYBRID;

@@ -33,6 +33,7 @@ import chakma
 import cherokee
 import chochenyo
 import cree
+import ebera_catio
 import fulfulde
 import gurung
 import ho
@@ -82,6 +83,7 @@ language_info_dict['ccp'] = chakma.langInfo()
 language_info_dict['chr'] = cherokee.langInfo()
 language_info_dict['cr'] = cree.langInfo()
 language_info_dict['cst'] = chochenyo.langInfo()
+language_info_dict['cto'] = ebera_catio.langInfo()
 language_info_dict['ff'] = fulfulde.langInfo()
 language_info_dict['gvr'] = gurung.langInfo()
 language_info_dict['hoc'] = ho.langInfo()
