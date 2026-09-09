@@ -3,7 +3,7 @@ const langConverter = new langConverterClass('lep', 'Lepcha');
 
 // Mappings for Lepcha font encodings
 langConverter.map_encoding_names = map_encoding_names = [
-  'Shipmoo Lepcha', 'JG Lepcha'];
+  'Shipmoo Lepcha', 'JG Lepcha', 'Munsalong'];
 
 
 langConverter.encoding_data = {

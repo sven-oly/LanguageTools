@@ -119,7 +119,7 @@ class langInfo:
         self.links = links
 
         # TODO: Fill in with diacritics
-        self.diacritic_list = [chr(x) for x in range(0x300, 0x330)]
+        self.diacritic_list = [chr(x) for x in range(0xabe3, 0xabee)]
         # TODO: Fill in base consonant
         self.default_base_consonant = u'\0x61'
         self.unicodeChars = [chr(x) for x in range(0xABC0, 0xAc00)]
@@ -136,6 +136,8 @@ class langInfo:
         self.text_file_list = []
         # TODO: Fill in the rest of the common data.
         self.to_keyman = True
+
+        self.unicodeCombiningChars = self.diacritic_list 
 
 
 langInstance = langInfo()
