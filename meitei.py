@@ -84,7 +84,6 @@ class langInfo:
             'RATHA1.TTF',
             'RATHA99.TTF',
             'rathayek.TTF',
-
         ]
         self.encoding_font_list = []
         for font in more_encoding_fonts:
@@ -108,6 +107,9 @@ class langInfo:
              },
             {'shortName': 'mniMtei',
              'longName': 'Meitei KM',
+             },
+            {'shortName': 'mniMtei_extensions',
+             'longName': 'Meitei KM with extensions',
              },
         ]
 

@@ -190,6 +190,7 @@ LanguageList = [
     # ('Kihunde', 'hke'),
     # ('Comanche', 'com', 'Nʉmʉ Tekwapʉ'),
     # ('Kurmanji Yezidi', 'ku'),
+    ('Emberá Catío', 'cto')
 ]
 
 

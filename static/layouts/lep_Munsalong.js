@@ -21,7 +21,7 @@ var LEP_MUNSALONG_LAYOUT = {
     '': {
       '': '`᱁᱂᱃᱄᱅᱆᱇᱈᱉᱀-=' +
           '\u1C14\u1C23\u1C36\u1C1E{{\u1C00\u1c37\u1c25}}{{\u1c1d\u1c37\u1c25\u1c2c}}{{\u1c1d\u1c37\u1c25}}\u1C2C\u1C0F\u1C12\u1C2D{{\u1C35\u200b}}\u1C37' +
-          '\u1C36\u1C16{{\u1C27\u200b}}{{\u1C29\u200b}}\u1C2A\u1C2B{{\u1C34\u200b}}\u1C20\u1C22\u1C2F\u0027' +
+          '\u1C36\u1C16{{\u200b\u1C27}}{{\u1C29\u200b}}\u1C2A\u1C2B{{\u1C34\u200b}}\u1C20\u1C22\u1C2F\u0027' +
           '{{\u1c03\u1c37\u1c25\u1c2c}}{{\u1c00\u1c37\u1c25\u1c2c}}{{\u1C28\u200B}}{{\u1C03\u1C37\u1C25}}{{\u1C26}}\u1C04\u1C01,./'
       },
     's': {
@@ -58,8 +58,9 @@ var LEP_MUNSALONG_LAYOUT = {
   'transform' : {
     // Move signs from the left to the right.
     // For two vowel signs and a consonant
-    '([\u1c27-\u1c29\u1c34\u1c35])\u200b([\u1c27-\u1c29\u1c34\u1c35])\u200b\u001d([\u1c00-\u1c23\u1c4d-\u1c4f])': '$3\u001d$1$2',
+    '\u200b([\u1c27-\u1c29\u1c34\u1c35])\u200b([\u1c27-\u1c29\u1c34\u1c35])\u001d([\u1c00-\u1c23\u1c4d-\u1c4f])': '$3\u001d$1$2',
     // Reposition one consonant before the vowel sign
+    '\u200b([\u1c27-\u1c29\u1c34\u1c35]+)([\u1c00-\u1c23\u1c4d-\u1c4f])': '\u001d$2$1',
     '([\u1c27-\u1c29\u1c34\u1c35]+)\u200b([\u1c00-\u1c23\u1c4d-\u1c4f])': '\u001d$2$1',
 
     // Reorder some marks before a consonant
