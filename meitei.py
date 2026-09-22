@@ -111,6 +111,9 @@ class langInfo:
             {'shortName': 'mniMtei_extensions',
              'longName': 'Meitei KM with extensions',
              },
+            {'shortName': 'mni_leimaren',
+             'longName': 'Leimaren Phonetic',
+             },
         ]
 
         self.links = links
