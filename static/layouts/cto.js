@@ -18,7 +18,7 @@ var CTO_LAYOUT = {
     '': {
       '': '°1234567890\'¿' +
           'qwertyu\u0289op{{\u0289\u0303}}¨+' +
-          'asd\u0257gikl\u00f1\u0303{' +
+          'asd\u0257gikl\u00f1\u0303' +
           '{{bu}}{{rr}}{{ch}}\u0253bnm,.-'
     },
     'c': {
