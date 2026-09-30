@@ -17,13 +17,13 @@ var CTO_LAYOUT = {
   'mappings': {
     '': {
       '': '°1234567890\'¿' +
-          'qwertyu\u0289op{{\u0289\u0303}}¨+' +
-          'asd\u0257gikl\u00f1\u0303' +
+          '\ua78cwertyu\u0289op{{\u0289\u0303}}¨+' +
+          'asd\u0257gikl\u00f1\u0303{{}}' +
           '{{bu}}{{rr}}{{ch}}\u0253bnm,.-'
     },
     'c': {
       '': '`1234567890-=' +
-          'qwertyuiop[]\\' +
+          '\ua78cwertyuiop[]\\' +
           'asdfghjk\u0142;\'' +
           'zxcvbⁿm,./'
     },
@@ -31,7 +31,7 @@ var CTO_LAYOUT = {
       '': '|!"#$%&/()_?¡' +
           'QWERTYU\u0244OP{{\u0244\u0303}}¨*]' +
           'ASD\u018aGIJKL\u00d1' +
-          '{{BU}}{{RR}}{{CH}}\u1181BNM;:_'
+          '{{BU}}{{RR}}{{CH}}\u0181BNM;:_'
     },
     'sc': {
       '': '~!@#$%^&*()_+' +
@@ -39,18 +39,24 @@ var CTO_LAYOUT = {
           'ASDFGHJK\u0141:"' +
           'ZXCVBⁿM<>?'
     },
-    'l,cl': {
-      '': '`1234567890-=' +
-          'qwertyuiop[]\\' +
-          'asdfghjkl;\'' +
-          'zxcvbnm,./'
+    'l': {
+      '': 'º1234567890\'¡' +
+          'qwertyuiop`+ç' +
+          'asdfghjklñ´' +
+          'zxcvbnm,.-\''
     },
-    'sl,scl': {
-      '': '~!@#$%^&*()_+' +
-          'QWERTYUIOP{}|' +
-          'ASDFGHJKL:"' +
-          'ZXCVBNM<>?'
-    }
+    'sl': {
+      '': 'ª!"·$%&/()=?¿' +
+      'QWERTYUIOP^*Ç' +
+      'ASDFGHJKLÑ¨' +
+      'ZXCVBNM;:_'
+    },
+    'cl': {
+      '': '\|@#~€¬{{}}{{}}{{}}{{}}{{}}{{}}' +
+          '{{}}{{}}{{}}{{}}{{}}{{}}{{}}{{}}{{}}{{}}{{}}[]}' +
+          '{{}}{{}}{{}}{{}}{{}}{{}}{{}}{{}}{{}}{{}}}' +
+          ''
+    },
   },
   'transform': {
     '^': '^',  // Placeholder
