@@ -17,9 +17,9 @@ links = [
     {'linkText': 'Word search',
      'ref': '/wordsearch/' + LanguageCode + '/'
     },
-    {'linkText': 'Resources',
-      'ref': '/downloads/' + LanguageCode
-    },
+    # {'linkText': 'Resources',
+    #   'ref': '/downloads/' + LanguageCode
+    # },
     # {'linkText': 'Unicode page',
     #  'ref': 'https://www.unicode.org/charts/PDF/U1C00.pdf'
     # },
@@ -48,6 +48,10 @@ class langInfo:
         self.Language_native = Language_native
         self.test_data = u''
         self.unicode_font_list = [
+          {'family': 'Marãɗe',
+           'longName': 'Marãɗe',
+           'source': '/fonts/EmberáCatío/Marade-Regular.otf',
+           },
           {'family': 'NotoSerif',
            'longName': 'Noto Serif',
            'source': '/fonts/NotoSerif-Regular.ttf',
@@ -107,26 +111,11 @@ class langInfo:
         self.unicodeCombiningChars = self.diacritic_list
 
         resource_list = [
-            {
-                'name': 'Keyman Chochenyo v1.12',
-                'source': '/resources/cst/cst_1.12.kmp',
-                'description': '1.12 (03-Aug-2026). Add acute accent'
-            },
-            {
-                'name': 'Keyman Chochenyo v1.11',
-                'source': '/resources/cst/cst_1.1.kmp',
-                'description': 'Keyman Chochenyo 1.11 (03-Aug-2026). Fix shift in alt layer'
-            },
-            {
-              'name': 'Keyman Chochenyo v1.1',
-              'source': '/resources/cst/cst_1.1.kmp',
-              'description': 'Keyman Chochenyo 1.1'
-          },
-          {
-              'name': 'Keyman Chochenyo v1.0',
-              'source': '/resources/cst/cst.kmp',
-              'description': 'Keyman Chochenyo 1.0'
-          }
+          # {
+          #     'name': 'Keyman Chochenyo v1.0',
+          #     'source': '/resources/cst/cst.kmp',
+          #     'description': 'Keyman Chochenyo 1.0'
+          # }
         ]
         self.text_file_list = resource_list
 
