@@ -67,8 +67,9 @@ var CTO_LAYOUT = {
     '\u0308([aeiouAEIOU])': '$1\u0308',  // diaresis
     '\u00b4([aeiouAEIOU])': '$1\u0301',  // acute accent
     '\u0301([aeiouAEIOU])': '$1\u0301',  // acute accent
-    '\u0060([aeiouAEIOU])': '$1\u0300',  // acute accent  }
-    '\u0300([aeiouAEIOU])': '$1\u0300',  // acute accent  }
+    '\u0060([aeiouAEIOU])': '$1\u0300',  // acute accent
+    '\u0300([aeiouAEIOU])': '$1\u0300',  // acute accent
+  }
 };
 
 // Load the layout and inform the keyboard to switch layout if necessary.

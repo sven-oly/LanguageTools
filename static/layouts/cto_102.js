@@ -14,7 +14,7 @@
 var CTO_102_LAYOUT = {
   'id': 'cto_102',
   'title': 'Emberá Catío 102',
-  //'is102Keyboard': true,
+  'is102Keyboard': true,
   'mappings': {
     '': {  // base layer
       '': '°1234567890\'¿' +
@@ -65,8 +65,6 @@ var CTO_102_LAYOUT = {
     '\u00a8([aeiouAEIOU])': '$1\u0308',  // diaresis
     '\u00b4([aeiouAEIOU])': '$1\u0301',  // acute accent
     '\u0060([aeiouAEIOU])': '$1\u0300',  // acute accent
-
-    '^': '^',  // Placeholder
   }
 };
 
