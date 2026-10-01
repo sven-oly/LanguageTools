@@ -19,15 +19,15 @@ var CTO_LAYOUT = {
   'mappings': {
     '': {  // base layer
       '': '°1234567890\'¿' +
-          '{{\ua78c}}wertyu\u0289op{{S||\u00a8||\u0308}}+' +
+          '{{\ua78c}}wertyu\u0289op{{S||\u00a8||\u0308}}+-' +
           'asd\u0257gijkl\u00f1{{S||\u007e||\u0303}}' +
           '{{\u0289\u0303}}{{bu}}{{rr}}{{ch}}\u0253bnm,.-'
     },
     's': {  // shift layer
       '': '|!"#$%&/()=?¡' +
-          'QWERTYU\u0244OP{{}}{{}}' +
+          '{{}}WERTYU\u0244OP{{}}{{}}_' +
           'ASD\u018aGIJKL\u00d1{{\u0060}}' +
-          '{{\u0244\u0303}}{{BU}}{{RR}}{{CH}}\u0181BNM;:_'
+          '{{\u0244\u0303}}{{BU}}{{RR}}{{CH}}\u0181BNM;:'
     },
     'c': {  // ctrl + alt layer
       '': '`1234567890-=' +

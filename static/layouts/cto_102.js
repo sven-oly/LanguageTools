@@ -40,19 +40,19 @@ var CTO_102_LAYOUT = {
           'ASDFGHJK\u0141:"' +
           'ZXCVBⁿM<>?'
     },
-    'l': {  // caps lock
+    'l': {  // caps lock - Spanish
       '': 'º1234567890\'¡' +
           'qwertyuiop`+ç' +
           'asdfghjklñ´' +
           'zxcvbnm,.-\''
     },
-    'sl': {  // caps lock shift
+    'sl': {  // caps lock shift - Spanish
       '': 'ª!"·$%&/()=?¿' +
       'QWERTYUIOP^*Ç' +
       'ASDFGHJKLÑ¨' +
       'ZXCVBNM;:_'
     },
-    'cl': {  // caps lock ctrl + alt
+    'cl': {  // caps lock ctrl + alt - Spanish
       '': '\|@#~€¬{{}}{{}}{{}}{{}}{{}}{{}}' +
           '{{}}{{}}{{}}{{}}{{}}{{}}{{}}{{}}{{}}{{}}{{}}[]}' +
           '{{}}{{}}{{}}{{}}{{}}{{}}{{}}{{}}{{}}{{}}}' +
