@@ -1573,7 +1573,9 @@ i18n.input.keyboard.ParsedLayout.prototype.parseKeyMappings_ = function $i18n$in
     var parsed = {}, from;
     for (from in map) {
       var to = map[from];
-      if ("" == from && (from = codes, this.view.is102)) {
+      if ("" == from && (from = codes, this.view.is102)) {  // !!! ??? !!!
+        // This moves map[25] to position 27, at the end of the 3rd row. However, it doesn't allow {{}} in the second
+        // row before map[25]. THIS IS A BUG, but only in the 102 layout.
         var normalizedTo = to.slice(0, 25), normalizedTo = normalizedTo + to.slice(26, 37), normalizedTo = normalizedTo + to.charAt(25), to = normalizedTo += to.slice(37)
       }
       from = from.replace("m", "\u00bd");

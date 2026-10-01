@@ -9,25 +9,24 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-var viewIdPrefix_ = '102kbd-k-';
 
 // Caps lock is Spanish keyboard
-var CTO_LAYOUT = {
-  'id': 'cto',
-  'title': 'Emberá Catío',
+var CTO_102_LAYOUT = {
+  'id': 'cto_102',
+  'title': 'Emberá Catío 102',
   //'is102Keyboard': true,
   'mappings': {
     '': {  // base layer
       '': '°1234567890\'¿' +
-          '{{\ua78c}}wertyu\u0289op{{S||\u00a8||\u0308}}+' +
-          'asd\u0257gijkl\u00f1{{S||\u007e||\u0303}}' +
+          '\ua78cwertyuʉop\u00a8+\u0020' +
+          'asd\u0257gijkl\u00f1\u007e' +
           '{{\u0289\u0303}}{{bu}}{{rr}}{{ch}}\u0253bnm,.-'
     },
     's': {  // shift layer
-      '': '|!"#$%&/()=?¡' +
-          'QWERTYU\u0244OP{{}}{{}}' +
-          'ASD\u018aGIJKL\u00d1{{\u0060}}' +
-          '{{\u0244\u0303}}{{BU}}{{RR}}{{CH}}\u0181BNM;:_'
+      '': "|!\"#$%&/()=?¡" +
+          "\u00b4WERTYU\u0244OP\u0000\u0000\u0020" +
+          "ASDƊGIJKLÑ\u0060" +
+          "{{\u0244\u0303}}{{BU}}{{RR}}{{CH}}\u0181BNM;:_"
     },
     'c': {  // ctrl + alt layer
       '': '`1234567890-=' +
@@ -64,13 +63,13 @@ var CTO_LAYOUT = {
     '\u007e([aeiouAEIOU])': '$1\u0303',  // tilde
     '\u0303([aeiouAEIOU])': '$1\u0303',
     '\u00a8([aeiouAEIOU])': '$1\u0308',  // diaresis
-    '\u0308([aeiouAEIOU])': '$1\u0308',  // diaresis
     '\u00b4([aeiouAEIOU])': '$1\u0301',  // acute accent
-    '\u0301([aeiouAEIOU])': '$1\u0301',  // acute accent
-    '\u0060([aeiouAEIOU])': '$1\u0300',  // acute accent  }
-    '\u0300([aeiouAEIOU])': '$1\u0300',  // acute accent  }
+    '\u0060([aeiouAEIOU])': '$1\u0300',  // acute accent
+
+    '^': '^',  // Placeholder
+  }
 };
 
 // Load the layout and inform the keyboard to switch layout if necessary.
-google.elements.keyboard.loadme(CTO_LAYOUT);
-cto = CTO_LAYOUT;
+google.elements.keyboard.loadme(CTO_102_LAYOUT);
+cto_102 = CTO_102_LAYOUT;

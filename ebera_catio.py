@@ -64,9 +64,15 @@ class langInfo:
         self.lang_list = [LanguageCode]  # This may be extended
 
         self.kb_list = [
-          {'shortName': LanguageCode,
+            {'shortName': 'cto_102',
+             'longName': Language + ' 102',
+             },
+            {'shortName': LanguageCode,
            'longName': Language,
            },
+            {'shortName': 'cto_102',
+             'longName': Language + ' 102',
+             },
             {'shortName': 'cto_hybrid',
              'longName': Language + 'hybrid',
              },
